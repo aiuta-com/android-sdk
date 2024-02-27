@@ -1,3 +1,10 @@
+public final class com/aiuta/fashionsdk/network/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public fun <init> ()V
+}
+
 public final class com/aiuta/fashionsdk/network/DefaultNetworkClientKt {
 	public static final fun defaultNetworkClient (Lcom/aiuta/fashionsdk/Fashion;)Lcom/aiuta/fashionsdk/network/NetworkClient;
 	public static final fun defaultNetworkClient (Ljava/lang/String;Ljava/lang/String;)Lcom/aiuta/fashionsdk/network/NetworkClient;
