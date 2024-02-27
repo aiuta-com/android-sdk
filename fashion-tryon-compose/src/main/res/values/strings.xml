@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--App bar-->
+    <string name="app_bar_history">History</string>
+    <string name="app_bar_select">Select</string>
+
+    <!--Image selector-->
+    <string name="image_selector_upload_button">Upload a photo of you</string>
+    <string name="image_selector_change_button">Change photo</string>
+    <string name="image_selector_powered_by_aiuta">Powered by Aiuta</string>
+    <string name="image_selector_generating_outfit">Generating outfit</string>
+
+    <!--History-->
+    <string name="history_selector_disabled_text">You can share or delete images by selecting them</string>
+    <string name="history_selector_disabled_button">Select</string>
+    <string name="history_selector_enable_button_select_all">Select all</string>
+    <string name="history_selector_enable_button_unselect_all">Unselect all</string>
+    <string name="history_selector_enable_button_cancel">Cancel</string>
+
+    <!--Bottom sheets-->
+    <!--Picker sheet-->
+    <string name="picker_sheet_take_photo">Take a photo</string>
+    <string name="picker_sheet_choose_library">Choose from library</string>
+
+    <!--General-->
+    <string name="add_to_wish">Add to wishlist</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="aiuta_url">https://aiuta.com/</string>
+    <string name="try_on">Try on</string>
+    <string name="share">Share</string>
+</resources>

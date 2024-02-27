@@ -1,0 +1,143 @@
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker
+
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.tokens.FashionColor
+import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideCameraPicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideSingleImagePicker
+
+@Composable
+internal fun ColumnScope.ImagePickerSheet() {
+    val context = LocalContext.current
+    val controller = LocalController.current
+    val sharedModifier = Modifier.fillMaxWidth().height(74.dp)
+
+    val newImageUri = remember { CameraFileProvider.newImageUri(context = context) }
+    val cameraPickerLauncher =
+        provideCameraPicker { hasImage ->
+            if (hasImage && newImageUri != null) {
+                controller.lastSavedPhotoUris.value = listOf(newImageUri.toString())
+                controller.bottomSheetNavigator.hide()
+            }
+        }
+
+    val imagePickerLauncher =
+        provideSingleImagePicker { uri ->
+            uri?.let {
+                controller.lastSavedPhotoUris.value = listOf(uri.toString())
+                controller.bottomSheetNavigator.hide()
+            }
+        }
+
+    SheetDivider()
+
+    Spacer(Modifier.height(4.dp))
+
+    PickerButton(
+        modifier = sharedModifier,
+        iconRes = FashionIcon.Camera24,
+        text = stringResource(R.string.picker_sheet_take_photo),
+        onClick = {
+            newImageUri?.let { uri ->
+                openCameraPicker(
+                    newImageUri = { uri },
+                    getLauncher = { cameraPickerLauncher },
+                )
+            }
+        },
+    )
+
+    PickerButton(
+        modifier = sharedModifier,
+        iconRes = FashionIcon.Gallery24,
+        text = stringResource(R.string.picker_sheet_choose_library),
+        shouldDrawDivider = false,
+        onClick = {
+            openMultipleImagePicker { imagePickerLauncher }
+        },
+    )
+
+    Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBars))
+}
+
+@Composable
+private fun PickerButton(
+    modifier: Modifier = Modifier,
+    @DrawableRes
+    iconRes: Int,
+    text: String,
+    shouldDrawDivider: Boolean = true,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier =
+            modifier
+                .clickableUnindicated {
+                    onClick()
+                }
+                .padding(
+                    horizontal = 16.dp,
+                ),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            modifier = Modifier.size(24.dp),
+            imageVector = ImageVector.vectorResource(iconRes),
+            contentDescription = null,
+            tint = FashionColor.ElectricBlue,
+        )
+
+        Spacer(Modifier.width(16.dp))
+
+        Box(
+            modifier = Modifier.weight(1f).fillMaxHeight(),
+        ) {
+            Text(
+                modifier = Modifier.align(Alignment.CenterStart),
+                text = text,
+                style = MaterialTheme.typography.body1,
+                color = FashionColor.Black,
+            )
+
+            if (shouldDrawDivider) {
+                Divider(
+                    modifier = Modifier.fillMaxWidth().align(Alignment.BottomCenter),
+                    color = FashionColor.LightGray,
+                )
+            }
+        }
+    }
+}

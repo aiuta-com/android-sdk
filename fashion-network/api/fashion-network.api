@@ -1,0 +1,35 @@
+public final class com/aiuta/fashionsdk/network/DefaultNetworkClientKt {
+	public static final fun defaultNetworkClient (Lcom/aiuta/fashionsdk/Fashion;)Lcom/aiuta/fashionsdk/network/NetworkClient;
+	public static final fun defaultNetworkClient (Ljava/lang/String;Ljava/lang/String;)Lcom/aiuta/fashionsdk/network/NetworkClient;
+	public static synthetic fun defaultNetworkClient$default (Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/network/NetworkClient;
+}
+
+public abstract interface class com/aiuta/fashionsdk/network/NetworkClient {
+	public abstract fun getHttpClient ()Lkotlin/Lazy;
+}
+
+public abstract interface class com/aiuta/fashionsdk/network/NetworkClient$Factory {
+	public abstract fun create (Ljava/lang/String;Ljava/lang/String;)Lcom/aiuta/fashionsdk/network/NetworkClient;
+	public static synthetic fun create$default (Lcom/aiuta/fashionsdk/network/NetworkClient$Factory;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/network/NetworkClient;
+}
+
+public final class com/aiuta/fashionsdk/network/exceptions/FashionIOException : java/lang/Exception {
+	public fun <init> (ILjava/util/List;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getDate ()Ljava/lang/String;
+	public final fun getErrorCode ()I
+	public final fun getErrorMessages ()Ljava/util/List;
+	public final fun getRequestId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/network/exceptions/FashionNetworkIsDisconnected : java/io/IOException {
+	public fun <init> (Ljava/lang/Throwable;)V
+	public fun getCause ()Ljava/lang/Throwable;
+}
+
+public final class com/aiuta/fashionsdk/network/utils/URLBuilderExtenstionsKt {
+	public static final fun saveAppend (Lio/ktor/http/URLBuilder;Ljava/lang/String;Ljava/lang/Integer;)V
+	public static final fun saveAppend (Lio/ktor/http/URLBuilder;Ljava/lang/String;Ljava/lang/String;)V
+	public static final fun saveAppend (Lio/ktor/http/URLBuilder;Ljava/lang/String;Ljava/util/List;)V
+	public static final fun saveAppendLimit (Lio/ktor/http/URLBuilder;Ljava/lang/Integer;)V
+}
+

@@ -1,0 +1,74 @@
+package com.aiuta.fashionsdk.tryon.core
+
+import com.aiuta.fashionsdk.Fashion
+import com.aiuta.fashionsdk.network.exceptions.FashionIOException
+import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
+import com.aiuta.fashionsdk.network.paging.models.PageContainer
+import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
+import com.aiuta.fashionsdk.tryon.core.domain.FashionTryOnImpl
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
+import java.io.FileNotFoundException
+import kotlinx.coroutines.flow.StateFlow
+
+/**
+ * Default Kotlin extension for creating [FashionTryOn]
+ *
+ * @return new instance of [FashionTryOn]
+ */
+public val Fashion.tryon: FashionTryOn
+    get() = FashionTryOnImpl.create(fashion = this)
+
+/**
+ * Entry point for all functionality of Digital try on
+ */
+public interface FashionTryOn {
+    /**
+     * Flow of current sku generation status
+     *
+     * @see SKUGenerationStatus for possible variants of status
+     */
+    public val skuGenerationStatus: StateFlow<SKUGenerationStatus>
+
+    /**
+     * Get new page of [SKUGenerationItem]
+     *
+     * @param catalogName Name of catalog for concrete SKU
+     * @param paginationOffset Offset for new page request
+     * @param paginationLimit Limit for items in page
+     */
+    public suspend fun getSKUItems(
+        catalogName: String = DEFAULT_CATALOG_NAME,
+        paginationOffset: PaginationOffset? = null,
+        paginationLimit: Int? = null,
+    ): PageContainer<SKUGenerationItem>
+
+    /**
+     * Start sku generation by user image
+     *
+     * Pipeline is next:
+     * - Try to compress image or use origin
+     * - Upload image on backend for processing
+     * - Create generation operation and wait for result
+     *
+     * @throws FashionReadBytesException if the provided ByteArray will be empty or null
+     * @throws FileNotFoundException if the provided URI could not be opened.
+     * @throws IllegalStateException if such operation already exist or it's not valid
+     * @throws FashionIOException
+     * @throws FashionNetworkIsDisconnected
+     */
+    public suspend fun startSKUGeneration(container: SKUGenerationContainer)
+
+    /**
+     * Start sku generation by user images one by one
+     *
+     * @see startSKUGeneration
+     */
+    public suspend fun startSKUGeneration(containers: List<SKUGenerationContainer>)
+
+    public companion object {
+        public const val DEFAULT_CATALOG_NAME: String = "aiuta_demo"
+    }
+}

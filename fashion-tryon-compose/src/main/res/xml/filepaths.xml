@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <files-path
+        name="camera_picker_images"
+        path="images/" />
+    <cache-path
+        name="camera_picker_images"
+        path="images/" />
+    <cache-path name="cache" path="/" />
+</paths>

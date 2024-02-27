@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Welcome" id="Welcome">
+
+    <section-starting-page>
+        <title>Welcome to Fashion SDK!</title>
+        <description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            condimentum feugiat sagittis.
+        </description>
+
+        <spotlight>
+            <a href="Fashion.md"
+               description="Sed condimentum feugiat sagittis" type= "start"/>
+            <a href="Fashion.md"
+               description="Sed condimentum feugiat sagittis" type="search"/>
+            ...
+        </spotlight>
+
+        <primary>
+            <title>Main group</title>
+            <a href="Fashion.md"
+               description="Sed condimentum feugiat sagittis"/>
+            ...
+        </primary>
+
+        <secondary>
+            <title>Highlighted group</title>
+            <a href="Fashion.md"
+               description="Sed condimentum feugiat sagittis"/>
+            ...
+        </secondary>
+
+        <misc>
+            <cards>
+                <title>Custom cards</title>
+                <a href="Fashion.md"
+                   description="Sed condimentum feugiat sagittis"/>
+                ...
+            </cards>
+
+            <links narrow="true">
+                <group>
+                    <title>Custom links</title>
+                    <a href="Fashion.md"
+                       description="Sed condimentum feugiat sagittis"/>
+                    ...
+                </group>
+                ...
+            </links>
+        </misc>
+    </section-starting-page>
+
+</topic>

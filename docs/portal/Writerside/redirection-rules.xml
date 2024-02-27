@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="75e05504">
+        <description>Created after removal of "Tutorial" from Help Instance</description>
+        <accepts>Tutorial.html</accepts>
+    </rule>
+    <rule id="6b727b70">
+        <description>Created after removal of "Starter" from Help Instance</description>
+        <accepts>Starter.html</accepts>
+    </rule>
+    <rule id="103244ad">
+        <description>Created after removal of "kek" from Help Instance</description>
+        <accepts>Empty-MD-Topic.html</accepts>
+    </rule>
+    <rule id="31706922">
+        <description>Created after removal of "Empty XML Topic" from Help Instance</description>
+        <accepts>Empty-XML-Topic.html</accepts>
+    </rule>
+    <rule id="337db0ed">
+        <description>Created after removal of "Starter" from Help Instance</description>
+        <accepts>Starter.html</accepts>
+    </rule>
+    <rule id="3e9bf787">
+        <description>Created after removal of "Welcome" from Help Instance</description>
+        <accepts>Empty-XML-Topic.html</accepts>
+    </rule>
+</rules>
