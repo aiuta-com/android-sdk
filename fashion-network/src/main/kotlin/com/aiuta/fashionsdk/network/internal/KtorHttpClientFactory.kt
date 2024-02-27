@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.network.internal
 
 import android.util.Log
+import com.aiuta.fashionsdk.network.BuildConfig
 import com.aiuta.fashionsdk.network.utils.handleErrors
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
@@ -41,19 +42,20 @@ internal class KtorHttpClientFactory(
             }
         }
 
-    // TODO Delete?
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installLogging() =
         apply {
-            install(Logging) {
-                logger =
-                    object : Logger {
-                        val TAG = "HTTP_CLIENT_TAG"
+            if (BuildConfig.DEBUG) {
+                install(Logging) {
+                    logger =
+                        object : Logger {
+                            val TAG = "HTTP_CLIENT_TAG"
 
-                        override fun log(message: String) {
-                            Log.d(TAG, "ktorNetworkClient: $message")
+                            override fun log(message: String) {
+                                Log.d(TAG, "ktorNetworkClient: $message")
+                            }
                         }
-                    }
-                level = LogLevel.ALL
+                    level = LogLevel.ALL
+                }
             }
         }
 

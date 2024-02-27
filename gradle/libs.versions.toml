@@ -21,7 +21,6 @@ gradle-plugin-android = "8.2.2"
 gradle-plugin-jetbrains-compose= "1.5.12"
 gradle-plugin-mavenPublish= "0.27.0"
 
-kotlinx-datetime = "0.5.0"
 kotlinx-serialization = "1.6.2"
 ktor = "2.3.8"
 
@@ -42,7 +41,6 @@ spotless = "6.25.0"
 
 
 [libraries]
-
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-benchmark-macro = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "androidx-benchmark" }
@@ -71,7 +69,6 @@ gradlePlugin-mavenPublish = { module = "com.vanniktech:gradle-maven-publish-plug
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-engine-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }

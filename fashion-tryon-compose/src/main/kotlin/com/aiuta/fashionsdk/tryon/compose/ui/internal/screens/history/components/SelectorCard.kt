@@ -21,7 +21,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
@@ -41,7 +40,6 @@ internal fun SelectorCard(
     onShare: () -> Unit,
     onDelete: () -> Unit,
 ) {
-    val context = LocalContext.current
     val transition =
         updateTransition(
             targetState = selectionMode.value == SelectorMode.DISABLED,
