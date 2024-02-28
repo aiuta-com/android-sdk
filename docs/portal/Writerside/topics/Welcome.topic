@@ -6,7 +6,7 @@
        title="Welcome" id="Welcome">
 
     <section-starting-page>
-        <title>Welcome to Fashion SDK for Android Documentation!</title>
+        <title>Welcome to Fashion SDK Documentation for Android!</title>
         <description>
             A fashion try on generation library for Android.
         </description>
@@ -19,14 +19,15 @@
         </spotlight>
 
         <primary>
-            <title>That's Fashion</title>
+            <title>Try your first generation</title>
             <a href="Make-digital-try-on.md"/>
+            <a href="Compose-flow.md"/>
         </primary>
 
         <secondary>
-            <title>Try your first generation</title>
-            <a href="Getting-started-with-Fashion-Try-On.md"
-               description="Sed condimentum feugiat sagittis"/>
+            <title>Have some question?</title>
+            <a href="Releases.md"/>
+            <a href="FAQ.md"/>
         </secondary>
 
         <misc>

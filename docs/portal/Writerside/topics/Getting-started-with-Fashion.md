@@ -12,7 +12,6 @@ from [dev portal](https://developer.aiuta.com/).
 ## Prerequisites
 
 Before starting this tutorial:
-
 - [Install Android Studio](https://developer.android.com/studio)
 
 

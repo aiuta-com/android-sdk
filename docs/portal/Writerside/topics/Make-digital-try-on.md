@@ -1,12 +1,11 @@
 # Make digital try on
 
-In this tutorial, you will learn how to make your first generation with [Fashion Digital Try](https://developer.aiuta.com/products/digital-try-on) 
+In this tutorial, you will learn how to make your first generation with [Fashion Digital Try On](https://developer.aiuta.com/products/digital-try-on) 
 
 
 ## Prerequisites
 
 Before starting this tutorial:
-- [Initialize Fashion](Getting-started-with-Fashion.md)
 - [Initialize Fashion Try On](Getting-started-with-Fashion-Try-On.md)
 
 
