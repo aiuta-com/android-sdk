@@ -8,7 +8,7 @@
     <section-starting-page>
         <title>Welcome to Fashion SDK for Android Documentation!</title>
         <description>
-            An fashion try on generation library for Android.
+            A fashion try on generation library for Android.
         </description>
 
         <spotlight>
@@ -20,8 +20,7 @@
 
         <primary>
             <title>That's Fashion</title>
-            <a href="Getting-started-with-Fashion.md"
-               description="Sed condimentum feugiat sagittis"/>
+            <a href="Make-digital-try-on.md"/>
         </primary>
 
         <secondary>
