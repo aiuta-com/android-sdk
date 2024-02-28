@@ -30,4 +30,20 @@
         <description>Created after removal of "Welcome" from Help Instance</description>
         <accepts>Empty-XML-Topic.html</accepts>
     </rule>
+    <rule id="31262fc6">
+        <description>Created after removal of "Other Resources" from Fashion SDK</description>
+        <accepts>Other-Resources.html</accepts>
+    </rule>
+    <rule id="6a5e136b">
+        <description>Created after removal of "Using the Bill of Materials" from Fashion SDK</description>
+        <accepts>Using-the-Bill-of-Materials.html</accepts>
+    </rule>
+    <rule id="1697f54f">
+        <description>Created after removal of "Compose flow" from Fashion SDK</description>
+        <accepts>Compose-flow.html</accepts>
+    </rule>
+    <rule id="ece2031">
+        <description>Created after removal of "Make digital try on" from Fashion SDK</description>
+        <accepts>First-generation.html</accepts>
+    </rule>
 </rules>

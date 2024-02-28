@@ -1,3 +1,0 @@
-# Fashion
-
-Start typing here...
