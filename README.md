@@ -1,6 +1,56 @@
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/aiuta-com/android-sdk/assets/54765046/b104018c-9366-4cc3-8f40-dc202b6f5c8e">
+    <img alt="Aiuta logo" src="https://github.com/aiuta-com/android-sdk/assets/54765046/b104018c-9366-4cc3-8f40-dc202b6f5c8e">
+  </picture>
+</div>
+
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.aiuta/fashionsdk)](https://central.sonatype.com/search?q=com.aiuta)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+
+
 # Fashion Android SDK
 
 This repo distributes the [Fashion Android SDK](https://developer.aiuta.com/products/digital-try-on/Documentation)
+
+## Download
+Fashion SDK for Android is available on `mavenCentral()`.
+```kotlin
+repositories {
+    mavenCentral()
+}
+
+implementation("com.aiuta:fashionsdk:<last version>")
+```
+
+## Quick Start
+General
+- Visit [Aiuta developer portal](https://developer.aiuta.com) for getting api key
+- Initialize Fashion
+```kotlin
+    val fashion: Fashion = Fashion.Builder()
+        .setApiKey(...)
+        .setApplication(...)
+        .build()
+```
+
+Digital Try On
+- Initialize Fashion Try on and start generation
+```kotlin
+    val fashionTryOn: FashionTryOn = fashion.tryon
+
+    fashionTryOn.startSKUGeneration(
+        //...
+    )
+```
+
+## Documentation
+
+Full documentation you can find [here](https://aiuta-com.github.io/android-sdk-docs). Also pay attention 
+on [API refrence](https://aiuta-com.github.io/android-sdk-docs-api) 
+
 
 ## License
 
