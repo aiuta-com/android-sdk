@@ -12,4 +12,13 @@
         <download-page>https://play.google.com/store/apps/details?id=com.aiuta.fashion</download-page>
         <showDownloadButton>true</showDownloadButton>
     </variables>
+    <footer>
+        <copyright>Aiuta 2024</copyright>
+        <social type="linkedin" href="https://www.linkedin.com/company/aiuta-inc/"/>
+        <social type="email" href="aiuta@aiuta.com"/>
+        <social type="instagram" href="https://www.instagram.com/aiutacom"/>
+        <link href="https://github.com/aiuta-com/android-sdk/pulls">Contribute to Fashion SDK</link>
+        <link href="https://aiuta-com.github.io/android-sdk-docs-api/">API Reference</link>
+        <link href="https://aiuta.com/">Visit Aiuta</link>
+    </footer>
 </buildprofiles>

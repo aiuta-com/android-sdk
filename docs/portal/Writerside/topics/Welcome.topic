@@ -37,11 +37,15 @@
                     <a href="Getting-started-with-Fashion.md"/>
                     <a href="Using-the-Bill-of-Materials.md"/>
                 </group>
-            </links>
-            <links narrow="true">
                 <group>
                     <title>Fashion Try On</title>
                     <a href="Getting-started-with-Fashion-Try-On.md"/>
+                    <a href="Paging.md"/>
+                    <a href="Compose-flow.md"/>
+                </group>
+                <group>
+                    <title>Other Resources</title>
+                    <a href="https://aiuta-com.github.io/android-sdk-docs-api/">API Reference</a>
                 </group>
             </links>
         </misc>
