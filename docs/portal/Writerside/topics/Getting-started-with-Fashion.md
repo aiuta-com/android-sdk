@@ -1,7 +1,7 @@
 # Getting started with Fashion
 
 In this tutorial, you will learn how to initialize the SDK and figure out how to create
-your own application using all the features of [Aiuta](https://aiuta.com/)!
+your own application using all the features of [Aiuta](https://aiuta.com/)
 
 > Code example is [here](https://github.com/aiuta-com/android-sdk/tree/main/samples/tryon)
 

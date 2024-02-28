@@ -14,28 +14,34 @@
         <spotlight>
             <a href="Getting-started-with-Fashion.md"
                description="Get started with Fashion" type= "start"/>
-            <a href="Fashion-Try-on.md"
+            <a href="Getting-started-with-Fashion-Try-On.md"
                description="Get started with Fashion Try on" type="idea"/>
         </spotlight>
 
         <primary>
-            <title>Just Fashion</title>
+            <title>That's Fashion</title>
             <a href="Getting-started-with-Fashion-Try-On.md"
                description="Sed condimentum feugiat sagittis"/>
         </primary>
 
         <secondary>
             <title>Try your first generation</title>
-            <a href="Fashion-Try-on.md"
+            <a href="Getting-started-with-Fashion-Try-On.md"
                description="Sed condimentum feugiat sagittis"/>
         </secondary>
 
         <misc>
             <links narrow="true">
                 <group>
-                    <title>Custom links</title>
-                    <a href="Fashion.md"
-                       description="Sed condimentum feugiat sagittis"/>
+                    <title>Fashion</title>
+                    <a href="Getting-started-with-Fashion.md"/>
+                    <a href="Using-the-Bill-of-Materials.md"/>
+                </group>
+            </links>
+            <links narrow="true">
+                <group>
+                    <title>Fashion Try On</title>
+                    <a href="Getting-started-with-Fashion-Try-On.md"/>
                 </group>
             </links>
         </misc>
