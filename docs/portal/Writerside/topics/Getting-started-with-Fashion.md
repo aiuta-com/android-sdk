@@ -32,11 +32,15 @@ Let's add dependencies required for a Fashion SDK.
 <procedure collapsible="false">
     <step>Be sure, that you use <b>mavenCentral</b> for solving dependencies in
     your <b>root build.gradle.kts</b> file
-    <code-block lang="kotlin">
-        repositories {
-            mavenCentral()
-        }
-    </code-block>
+    <tabs>
+        <tab title="Gradle (Kotlin)">
+            <code-block lang="kotlin">
+                repositories {
+                    mavenCentral()
+                }
+            </code-block>
+        </tab>
+    </tabs>
     </step>
     <step>
     Solve what the last version of Fashion sdk 
@@ -48,12 +52,16 @@ Let's add dependencies required for a Fashion SDK.
     </note>
     </step>
     <step>Open the <b>app/build.gradle.kts</b> file and add the following artifacts to the dependencies block:
-    <code-block lang="kotlin">
-        dependencies {
-            val fashionVersion: String = "0.1.0"
-            implementation("com.aiuta:fashionsdk:$fashionVersion")
-        }
-    </code-block>
+    <tabs>
+        <tab title="Gradle (Kotlin)">
+            <code-block lang="kotlin">
+                dependencies {
+                    val fashionVersion: String = "0.1.0"
+                    implementation("com.aiuta:fashionsdk:$fashionVersion")
+                }
+            </code-block>
+        </tab>
+    </tabs>
     </step>
     <step>Synchronize Project with gradle file</step>
 </procedure>
