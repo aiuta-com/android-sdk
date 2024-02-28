@@ -20,7 +20,7 @@
 
         <primary>
             <title>That's Fashion</title>
-            <a href="Getting-started-with-Fashion-Try-On.md"
+            <a href="Getting-started-with-Fashion.md"
                description="Sed condimentum feugiat sagittis"/>
         </primary>
 
@@ -40,8 +40,9 @@
                 <group>
                     <title>Fashion Try On</title>
                     <a href="Getting-started-with-Fashion-Try-On.md"/>
-                    <a href="Paging.md"/>
+                    <a href="Make-digital-try-on.md"/>
                     <a href="Compose-flow.md"/>
+                    <a href="Paging.md"/>
                 </group>
                 <group>
                     <title>Other Resources</title>

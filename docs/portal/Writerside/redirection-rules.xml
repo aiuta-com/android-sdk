@@ -42,4 +42,8 @@
         <description>Created after removal of "Compose flow" from Fashion SDK</description>
         <accepts>Compose-flow.html</accepts>
     </rule>
+    <rule id="ece2031">
+        <description>Created after removal of "Make digital try on" from Fashion SDK</description>
+        <accepts>First-generation.html</accepts>
+    </rule>
 </rules>

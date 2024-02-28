@@ -1,0 +1,6 @@
+<vars>
+    <var name="latest_fashion_version"
+         value="0.1.0"
+         type="string"
+    />
+</vars>

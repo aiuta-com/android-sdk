@@ -7,7 +7,7 @@ versioning of all Fashion SDK dependencies
     <tab title="Gradle (Kotlin)">
     <code-block lang="kotlin">
         dependencies {
-            val fashionVersion: String = "0.1.0"
+            val fashionVersion: String = "%latest_fashion_version%"
             implementation(platform("com.aiuta:fashionsdk-bom:$fashionVersion"))
             implementation("com.aiuta:fashionsdk")
             // ...
