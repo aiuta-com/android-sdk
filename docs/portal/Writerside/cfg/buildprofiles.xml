@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildprofiles
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd">
+
+    <variables>
+        <primary-color>blueberry</primary-color>
+        <header-logo>logo.svg</header-logo>
+        <product-web-url>https://aiuta.com/</product-web-url>
+        <custom-favicons>logo.svg</custom-favicons>
+        <download-title>Get Aiuta App</download-title>
+        <download-page>https://play.google.com/store/apps/details?id=com.aiuta.fashion</download-page>
+        <showDownloadButton>true</showDownloadButton>
+    </variables>
+</buildprofiles>

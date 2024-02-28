@@ -38,4 +38,8 @@
         <description>Created after removal of "Using the Bill of Materials" from Fashion SDK</description>
         <accepts>Using-the-Bill-of-Materials.html</accepts>
     </rule>
+    <rule id="1697f54f">
+        <description>Created after removal of "Compose flow" from Fashion SDK</description>
+        <accepts>Compose-flow.html</accepts>
+    </rule>
 </rules>
