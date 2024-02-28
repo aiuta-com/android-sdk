@@ -5,13 +5,11 @@
   </picture>
 </div>
 
+# Fashion Android SDK
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aiuta/fashionsdk)](https://central.sonatype.com/search?q=com.aiuta)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
-
-
-# Fashion Android SDK
 
 This repo distributes the [Fashion Android SDK](https://developer.aiuta.com/products/digital-try-on/Documentation)
 
