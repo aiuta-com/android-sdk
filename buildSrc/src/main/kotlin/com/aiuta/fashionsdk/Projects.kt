@@ -117,6 +117,8 @@ private fun <T : BaseExtension> Project.androidBase(
                     "UnknownIssueId",
                     "VectorPath",
                     "VectorRaster",
+                    "ObsoleteLintCustomCheck",
+                    "MonochromeLauncherIcon",
                 )
         }
         action()

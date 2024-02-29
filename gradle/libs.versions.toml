@@ -27,7 +27,7 @@ ktor = "2.3.8"
 jetbrains-compose-compiler = "1.5.7.1"
 
 kotlin = "1.9.22"
-ktlint = "1.1.0"
+ktlint = "1.2.0"
 ksp = "1.9.22-1.0.17"
 
 room = "2.6.1"
