@@ -45,6 +45,17 @@ tasks.withType<DokkaMultiModuleTask>().configureEach {
     outputDirectory = layout.projectDirectory.dir("docs/api")
 }
 
+tasks.register<Exec>("installGitHooks") {
+    description = "Install local git hooks"
+    group = "Build Setup"
+    commandLine("chmod", "-R", "+x", "${rootProject.rootDir}/.githooks/")
+    commandLine("git", "config", "--local", "core.hooksPath", "${rootProject.rootDir}/.githooks/")
+}
+
+val initialTaskNames: List<String> = project.gradle.startParameter.taskNames
+project.gradle.startParameter.setTaskNames(initialTaskNames + listOf("installGitHooks"))
+
+
 allprojects {
     repositories {
         google()
