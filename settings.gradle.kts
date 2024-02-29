@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "fashion-sdk-root"
+rootProject.name = "aiuta-sdk"
 
 // Need for generate project accessors in deps
 // https://docs.gradle.org/7.4/userguide/declaring_dependencies.html#sec:type-safe-project-accessors
