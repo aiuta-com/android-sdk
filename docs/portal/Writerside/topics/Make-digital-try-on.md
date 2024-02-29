@@ -1,6 +1,6 @@
 # Make digital try on
 
-In this tutorial, you will learn how to make your first generation with [Fashion Digital Try On](https://developer.aiuta.com/products/digital-try-on) 
+In this tutorial, you will learn how to make your first generation with [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) 
 
 
 ## Prerequisites
@@ -11,7 +11,7 @@ Before starting this tutorial:
 
 ## SKU Catalog items
 
-To implement generation with [Fashion Digital Try](https://developer.aiuta.com/products/digital-try-on) you
+To implement generation with [Aiuta Digital Try](https://developer.aiuta.com/products/digital-try-on) you
 should have `skuId` of the item, иy which we can determine which fitting needs to be done for the photo.
 
 Perhaps you already have a set of SKY with all the necessary meta information, then

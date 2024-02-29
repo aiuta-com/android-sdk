@@ -4,7 +4,7 @@
 
 <instance-profile
         id="hi"
-        name="Fashion SDK"
+        name="Aiuta SDK"
         start-page="Welcome.topic">
 
     <toc-element topic="Welcome.topic"/>

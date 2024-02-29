@@ -2,7 +2,7 @@
 
 In this tutorial, you will learn how to use default implementation of paginng with
 [Paging 3 library](https://developer.android.com/topic/libraries/architecture/paging/v3-overview) and
-[Fashion Digital Try On](https://developer.aiuta.com/products/digital-try-on)
+[Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on)
 
 ## Prerequisites
 

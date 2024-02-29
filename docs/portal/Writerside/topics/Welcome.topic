@@ -6,7 +6,7 @@
        title="Welcome" id="Welcome">
 
     <section-starting-page>
-        <title>Welcome to Fashion SDK Documentation for Android!</title>
+        <title>Welcome to Aiuta SDK Documentation for Android!</title>
         <description>
             A fashion try on generation library for Android.
         </description>
