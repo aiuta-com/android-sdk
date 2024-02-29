@@ -1,0 +1,55 @@
+name: CI
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+concurrency:
+    # Limit concurrency to 1 for PRs
+    group: ${{ github.head_ref || github.run_id }}
+    cancel-in-progress: true
+env:
+    JAVA_VERSION: 17
+jobs:
+    checks:
+        name: Checks
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-java@v4
+              with:
+                  distribution: 'zulu'
+                  java-version: ${{ env.JAVA_VERSION }}
+
+            - name: Check Gradle wrapper
+              uses: gradle/wrapper-validation-action@v1
+
+            - name: Check style
+              run: ./gradlew spotlessCheck
+
+            - name: Check lint
+              run: ./gradlew lint
+
+            - name: Check binary compatibility
+              run: ./gradlew apiCheck || { exit_code=$?; printf "*** This PR changes Coil's public API. If this change is intentional, run './gradlew apiDump' and commit the new API files. ***"; exit $exit_code; }
+
+    build-samples:
+        name: Build samples
+        runs-on: macos-14
+        timeout-minutes: 30
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-java@v4
+              with:
+                  distribution: 'zulu'
+                  java-version: ${{ env.JAVA_VERSION }}
+            - uses: gradle/gradle-build-action@v2
+              continue-on-error: true
+              timeout-minutes: 5
+              with:
+                  cache-overwrite-existing: true
+                  gradle-home-cache-cleanup: true
+
+            - name: Build samples
+              run: ./gradlew :samples:tryon:assembleDebug
