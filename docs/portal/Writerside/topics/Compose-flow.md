@@ -1,6 +1,6 @@
 # Compose flow
 
-In this tutorial, you will learn how to use [Fashion Digital Try On](https://developer.aiuta.com/products/digital-try-on) power with
+In this tutorial, you will learn how to use [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) power with
 [Jetpack Compose Framework](https://developer.android.com/jetpack/compose)
 
 
@@ -12,7 +12,7 @@ Before starting this tutorial:
 
 ## Add dependencies
 
-Let's add dependencies to use [Fashion Digital Try On](https://developer.aiuta.com/products/digital-try-on) 
+Let's add dependencies to use [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) 
 with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 <procedure collapsible="false">
@@ -35,7 +35,7 @@ with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 </procedure>
 
 
-## Use Fashion Digital Try On in Compose
+## Use Aiuta Digital Try On in Compose
 
 Now you can use the prepared UI to try on the SKU. 
 To do this, call the following in the appropriate place:
@@ -55,7 +55,7 @@ Where:
 and 
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-fashion-try-on-listeners/index.html)
 )
-- fashionTryOn - is a instance of `FashionTryOn` for using all logic of [Fashion Digital Try On](https://developer.aiuta.com/products/digital-try-on) (
+- fashionTryOn - is a instance of `FashionTryOn` for using all logic of [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) (
 [code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/FashionTryOn.kt)
 and
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-core/com.aiuta.fashionsdk.tryon.core/-fashion-try-on/index.html)

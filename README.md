@@ -5,7 +5,7 @@
   </picture>
 </div>
 
-# Fashion Android SDK
+# Aiuta SDK for Android
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.aiuta/fashionsdk)](https://central.sonatype.com/search?q=com.aiuta)
 [![Kotlin](https://img.shields.io/badge/kotlin-1.9.22-blue.svg?logo=kotlin)](http://kotlinlang.org)
@@ -14,7 +14,7 @@
 This repo distributes the [Fashion Android SDK](https://developer.aiuta.com/products/digital-try-on/Documentation)
 
 ## Download
-Fashion SDK for Android is available on `mavenCentral()`.
+Aiuta SDK for Android is available on `mavenCentral()`.
 ```kotlin
 repositories {
     mavenCentral()
@@ -46,8 +46,8 @@ Digital Try On
 
 ## Documentation
 
-Full documentation you can find [here](https://aiuta-com.github.io/android-sdk-docs). Also pay attention 
-on [API refrence](https://aiuta-com.github.io/android-sdk-docs-api) 
+Full documentation you can find [here](https://aiuta-com.github.io/android-sdk-docs). Also pay attention
+on [API refrence](https://aiuta-com.github.io/android-sdk-docs-api)
 
 
 ## License
