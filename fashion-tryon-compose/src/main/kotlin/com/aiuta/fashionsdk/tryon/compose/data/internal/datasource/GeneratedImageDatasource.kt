@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 internal class GeneratedImageDatasource(
@@ -29,6 +30,10 @@ internal class GeneratedImageDatasource(
                 generatedImageIds = generatedImageIds,
             )
         }
+    }
+
+    fun count(): Flow<Int> {
+        return generatedImageDao.count()
     }
 
     companion object {
