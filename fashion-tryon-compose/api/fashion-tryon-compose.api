@@ -10,6 +10,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/database/App
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/dao/GeneratedImageDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/dao/GeneratedImageDao {
 	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun count ()Lkotlinx/coroutines/flow/Flow;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insertAll (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun pagingSource ()Landroidx/paging/PagingSource;
