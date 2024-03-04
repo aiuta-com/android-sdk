@@ -48,6 +48,10 @@ internal class GeneratedImageInteractor(
         )
     }
 
+    fun count(): Flow<Int> {
+        return generatedImageDatasource.count()
+    }
+
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
