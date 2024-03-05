@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 /**
  * Be careful, order is matter for animation transitions,
  */
-public enum class NavigationScreen {
+internal enum class NavigationScreen {
     SPLASH,
 
     IMAGE_SELECTOR,
@@ -14,6 +14,6 @@ public enum class NavigationScreen {
     HISTORY,
 }
 
-public fun defaultStartScreen(): NavigationScreen {
+internal fun defaultStartScreen(): NavigationScreen {
     return NavigationScreen.SPLASH
 }
