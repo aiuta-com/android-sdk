@@ -48,20 +48,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/Com
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function2;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen : java/lang/Enum {
-	public static final field GENERATION_RESULT Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-	public static final field HISTORY Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-	public static final field IMAGE_SELECTOR Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-	public static final field SPLASH Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreenKt {
-	public static final fun defaultStartScreen ()Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/NavigationScreen;
-}
-
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/ComposableSingletons$NavigationAppBarKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/ComposableSingletons$NavigationAppBarKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;
