@@ -90,6 +90,8 @@ internal class FashionTryOnController(
     // Edit mode
     internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
+    // Interface z index
+    val zIndexInterface : Float = 2f,
     // Data
     public val lastSavedPhotoUris: MutableState<List<String>>,
     public val skuForGeneration: () -> SKUGenerationItem,

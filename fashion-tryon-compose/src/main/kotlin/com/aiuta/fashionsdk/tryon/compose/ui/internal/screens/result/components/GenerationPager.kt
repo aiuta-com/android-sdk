@@ -62,6 +62,7 @@ internal fun GenerationVerticalPagerBlock(
         modifier = modifier,
         state = generationResultController.generationPagerState,
         contentPadding = PaddingValues(vertical = 16.dp),
+        userScrollEnabled = !generationResultController.verticalSwipeState.isAnimationRunning,
         pageSpacing = 8.dp,
     ) { index ->
         when {

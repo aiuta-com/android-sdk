@@ -2,7 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.connection
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
@@ -19,20 +21,23 @@ internal fun rememberGenerationResultNestedScroll(
     return remember {
         GenerationResultNestedScroll(
             verticalSwipeState = generationResultController.verticalSwipeState,
+            pagerState = generationResultController.generationPagerState,
         )
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
+@Immutable
 internal class GenerationResultNestedScroll(
     private val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
+    private val pagerState: PagerState,
 ) : NestedScrollConnection {
     override fun onPreScroll(
         available: Offset,
         source: NestedScrollSource,
     ): Offset {
         val delta = available.y
-        return if (delta < 0) {
+        return if (delta < 0 && shouldScrollGenerateMore()) {
             verticalSwipeState.dispatchRawDelta(delta).toOffset()
         } else {
             Offset.Zero
@@ -49,7 +54,7 @@ internal class GenerationResultNestedScroll(
     }
 
     override suspend fun onPreFling(available: Velocity): Velocity {
-        return if (available.y < 0) {
+        return if (available.y < 0 && shouldScrollGenerateMore()) {
             verticalSwipeState.dispatchRawDelta(available.y)
             available
         } else {
@@ -64,6 +69,8 @@ internal class GenerationResultNestedScroll(
         verticalSwipeState.settle(velocity = available.y)
         return super.onPostFling(consumed, available)
     }
+
+    private fun shouldScrollGenerateMore() = pagerState.settledPage == pagerState.pageCount - 1 && !pagerState.isScrollInProgress
 
     private fun Float.toOffset() = Offset(0f, this)
 }
