@@ -47,7 +47,6 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -55,6 +54,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
@@ -69,6 +69,7 @@ private val SHARED_CORNER_RADIUS = 16.dp
 @Composable
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val generatedImages =
         controller
             .generatedImageInteractor
@@ -79,7 +80,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
         modifier =
             modifier
                 .fillMaxSize()
-                .background(color = FashionColor.LightGray),
+                .background(color = theme.colors.background),
     ) {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
@@ -150,6 +151,7 @@ private fun ImageContainer(
     onClick: () -> Unit,
 ) {
     val context = LocalContext.current
+    val theme = LocalTheme.current
 
     Box(
         modifier = modifier.clickableUnindicated { onClick() },
@@ -161,7 +163,7 @@ private fun ImageContainer(
                     .fillMaxWidth()
                     .height(178.dp)
                     .clip(RoundedCornerShape(SHARED_CORNER_RADIUS))
-                    .background(color = FashionColor.White),
+                    .background(color = theme.colors.background),
             model =
                 ImageRequest.Builder(context)
                     .data(imageUrl)
@@ -187,9 +189,9 @@ private fun ImageContainer(
                 modifier =
                     Modifier
                         .size(24.dp)
-                        .border(width = 1.dp, color = FashionColor.White, shape = CircleShape)
+                        .border(width = 1.dp, color = theme.colors.onDark, shape = CircleShape)
                         .background(
-                            color = if (isSelectedItem) FashionColor.ElectricBlue else FashionColor.LightGray,
+                            color = if (isSelectedItem) theme.colors.aiuta else theme.colors.gray1,
                             shape = CircleShape,
                         ),
                 contentAlignment = Alignment.Center,
@@ -199,7 +201,7 @@ private fun ImageContainer(
                         modifier = Modifier.size(20.dp),
                         imageVector = ImageVector.vectorResource(FashionIcon.Check16),
                         contentDescription = null,
-                        tint = FashionColor.White,
+                        tint = theme.colors.onDark,
                     )
                 }
             }
