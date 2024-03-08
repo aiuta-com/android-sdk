@@ -11,13 +11,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.Sel
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 // Configs
-private val screensWithSKUItems =
+internal val screensWithSKUItems =
     setOf(
         NavigationScreen.IMAGE_SELECTOR,
         NavigationScreen.GENERATION_RESULT,
     )
 
-private val skippedBackStackScreens =
+internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.SPLASH,
     )
@@ -62,6 +62,15 @@ internal fun FashionTryOnController.deactivateGeneration() {
     isGenerationActive.value = false
 }
 
+// Active SKU item visibility
+internal fun FashionTryOnController.forceShowActiveSKUItem() {
+    isSKUItemVisible.value = true
+}
+
+internal fun FashionTryOnController.forceHideActiveSKUItem() {
+    isSKUItemVisible.value = false
+}
+
 // Checks
 @Composable
 internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> {
@@ -102,15 +111,6 @@ internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> {
     return remember(selectorState.value) {
         derivedStateOf {
             selectorState.value != SelectorMode.DISABLED
-        }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.isSKUItemVisible(): State<Boolean> {
-    return remember(currentScreen.value) {
-        derivedStateOf {
-            currentScreen.value in screensWithSKUItems
         }
     }
 }

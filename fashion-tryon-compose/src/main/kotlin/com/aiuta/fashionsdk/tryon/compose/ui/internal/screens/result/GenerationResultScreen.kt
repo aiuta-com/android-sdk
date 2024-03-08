@@ -1,11 +1,13 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.anchoredDraggable
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -95,39 +97,52 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
                 modifier =
                     Modifier
                         .zIndex(generationResultController.zIndexList)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .height(maxHeight),
+                generationResultController = generationResultController,
             )
         }
 
         GenerationResultInterface(
+            modifier = Modifier.fillMaxSize(),
             generationResultController = generationResultController,
         )
     }
 }
 
 @Composable
-internal fun BoxWithConstraintsScope.GenerationResultInterface(
+internal fun GenerationResultInterface(
+    modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
-    GenerationButtonsBlock(
-        modifier =
-            Modifier
-                .zIndex(generationResultController.zIndexInterface)
-                .fillMaxWidth()
-                .height(generationResultController.footerHeight(maxHeight))
-                .background(FashionColor.White)
-                .align(Alignment.BottomCenter)
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(horizontal = 16.dp),
-    )
+    AnimatedVisibility(
+        modifier = modifier,
+        visible = generationResultController.isInterfaceVisible.value,
+        enter = fadeIn(),
+        exit = fadeOut(),
+    ) {
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            GenerationButtonsBlock(
+                modifier =
+                    Modifier
+                        .zIndex(generationResultController.zIndexInterface)
+                        .fillMaxWidth()
+                        .height(generationResultController.footerHeight(maxHeight))
+                        .background(FashionColor.White)
+                        .align(Alignment.BottomCenter)
+                        .windowInsetsPadding(WindowInsets.navigationBars)
+                        .padding(horizontal = 16.dp),
+            )
 
-    GenerationCarouselBlock(
-        modifier =
-            Modifier
-                .zIndex(generationResultController.zIndexInterface)
-                .height(generationResultController.bodyHeight(maxHeight))
-                .padding(start = 16.dp)
-                .align(Alignment.TopStart),
-        generationResultController = generationResultController,
-    )
+            GenerationCarouselBlock(
+                modifier =
+                    Modifier
+                        .zIndex(generationResultController.zIndexInterface)
+                        .height(generationResultController.bodyHeight(maxHeight))
+                        .padding(start = 16.dp)
+                        .align(Alignment.TopStart),
+                generationResultController = generationResultController,
+            )
+        }
+    }
 }

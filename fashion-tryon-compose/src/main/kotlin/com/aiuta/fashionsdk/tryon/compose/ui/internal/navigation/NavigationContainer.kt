@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSKUItemVisible
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
@@ -82,7 +81,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
 
         AnimatedVisibility(
             modifier = sharedModifier.background(FashionColor.White),
-            visible = controller.isSKUItemVisible().value,
+            visible = controller.isSKUItemVisible.value,
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically(),
         ) {

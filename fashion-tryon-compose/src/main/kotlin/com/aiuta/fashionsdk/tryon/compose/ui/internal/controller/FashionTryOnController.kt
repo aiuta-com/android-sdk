@@ -44,6 +44,10 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         rememberZoomImageController(
             constraints = constraints,
         )
+    val defaultSKUItemVisibility =
+        remember {
+            mutableStateOf(false)
+        }
 
     val defaultCurrentScreen =
         remember {
@@ -71,6 +75,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             bottomSheetNavigator = defaultBottomSheetNavigator,
             selectorState = defaultSelectorState,
             zoomImageController = zoomImageController,
+            isSKUItemVisible = defaultSKUItemVisibility,
             lastSavedPhotoUris = defaultLastSavedUriPhoto,
             activeSKUItem = activeSKUItem,
             fashionTryOn = fashionTryOn,
@@ -78,6 +83,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = GeneratedImageInteractor.getInstance(context),
         )
+    }.also {
+        it.skuItemVisibilityListener()
     }
 }
 
@@ -87,6 +94,7 @@ internal class FashionTryOnController(
     public val currentScreen: MutableState<NavigationScreen>,
     internal val backStack: LinkedList<NavigationScreen> = LinkedList(),
     public val zoomImageController: ZoomImageController,
+    public val isSKUItemVisible: MutableState<Boolean>,
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
     // Edit mode

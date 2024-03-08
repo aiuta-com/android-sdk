@@ -10,9 +10,12 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 
@@ -44,6 +47,10 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
     val pagerState = rememberPagerState(pageCount = totalPages)
 
     val imageCarouselState = rememberLazyListState()
+    val defaultInterfaceVisibility =
+        remember {
+            mutableStateOf(true)
+        }
 
     val bodyHeight = maxHeight * (BODY_WEIGHT / TOTAL_WEIGHT)
     val verticalSwipeState =
@@ -60,7 +67,7 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
                         GenerateResultState.SHOW_GENERATE_MORE at
                             with(
                                 density,
-                            ) { -maxHeight.toPx() }
+                            ) { -maxHeight.toPx() + 48.dp.toPx() }
                     },
                 )
             }
@@ -73,6 +80,7 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             totalPageSize = totalPages,
             zIndexList = controller.zIndexInterface - 2,
             zIndexInterface = controller.zIndexInterface - 1,
+            isInterfaceVisible = defaultInterfaceVisibility,
             imageCarouselState = imageCarouselState,
             verticalSwipeState = verticalSwipeState,
         )
@@ -92,12 +100,15 @@ internal class GenerationResultController(
     public val totalPageSize: () -> Int,
     public val zIndexList: Float,
     public val zIndexInterface: Float,
+    // Interface visibility
+    public val isInterfaceVisible: MutableState<Boolean>,
     // Carousel state
     public val imageCarouselState: LazyListState,
     // Swipe state
     public val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
 )
 
+// Size calculation
 internal fun GenerationResultController.bodyHeight(maxHeight: Dp) =
     maxHeight * (bodyWeight / totalWeight)
 
@@ -109,3 +120,12 @@ internal fun GenerationResultController.isGenerationPagerItem(index: Int) =
 
 internal fun GenerationResultController.isMetaInfoPagerItem(index: Int) =
     index == totalPageSize() - 1
+
+// Interface visibility
+internal fun GenerationResultController.showInterface() {
+    isInterfaceVisible.value = true
+}
+
+internal fun GenerationResultController.hideInterface() {
+    isInterfaceVisible.value = false
+}
