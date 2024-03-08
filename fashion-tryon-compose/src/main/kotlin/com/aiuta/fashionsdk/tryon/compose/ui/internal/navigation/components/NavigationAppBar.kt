@@ -21,14 +21,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.appbarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
@@ -46,6 +47,7 @@ internal fun NavigationAppBar(
     navigateToHistory: () -> Unit,
 ) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val appbarState = controller.appbarState()
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
@@ -58,9 +60,9 @@ internal fun NavigationAppBar(
 
     val actionColorCalculation: (Boolean) -> Color = { active ->
         if (active) {
-            FashionColor.ElectricBlue
+            theme.colors.primary
         } else {
-            FashionColor.ElectricBlue.copy(alpha = 0.4f)
+            theme.colors.primary.copy(alpha = 0.4f)
         }
     }
 
@@ -78,7 +80,7 @@ internal fun NavigationAppBar(
 
     TopAppBar(
         modifier = modifier,
-        backgroundColor = FashionColor.White,
+        backgroundColor = theme.colors.background,
         elevation = 0.dp,
         navigationIcon = {
             Icon(
@@ -90,7 +92,7 @@ internal fun NavigationAppBar(
                         },
                 imageVector = ImageVector.vectorResource(FashionIcon.Arrow36),
                 contentDescription = null,
-                tint = FashionColor.ElectricBlue,
+                tint = theme.colors.primary,
             )
         },
         title = {
@@ -105,8 +107,8 @@ internal fun NavigationAppBar(
                         NavigationAppBarState.GENERAL -> {
                             Icon(
                                 modifier = Modifier.padding(bottom = 4.dp),
-                                imageVector = ImageVector.vectorResource(id = FashionIcon.MainLogo),
-                                tint = FashionColor.DarkGray,
+                                painter = painterResource(theme.navLogo),
+                                tint = theme.colors.navLogoColor,
                                 contentDescription = null,
                             )
                         }
@@ -116,7 +118,7 @@ internal fun NavigationAppBar(
                                 modifier = Modifier.padding(bottom = 4.dp),
                                 text = stringResource(R.string.app_bar_history),
                                 style = MaterialTheme.typography.h6,
-                                color = FashionColor.Black,
+                                color = theme.colors.primary,
                             )
                         }
 
