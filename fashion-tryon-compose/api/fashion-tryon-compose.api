@@ -25,20 +25,37 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/FashionTryOn
 	public final fun getCloseClick ()Lkotlin/jvm/functions/Function0;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUMetaInfo {
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/util/List;FLjava/lang/Float;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;FLjava/lang/Float;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;FLjava/lang/Float;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;FLjava/lang/Float;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()F
+	public final fun component6 ()Ljava/lang/Float;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;FLjava/lang/Float;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;
+	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;FLjava/lang/Float;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCatalogName ()Ljava/lang/String;
 	public final fun getDescription ()Ljava/lang/String;
+	public final fun getGenerateMoreSKU ()Ljava/util/List;
 	public final fun getImageUrls ()Ljava/util/List;
 	public final fun getPrice ()F
 	public final fun getPriceCurrency ()Ljava/lang/String;
 	public final fun getPriceDiscounted ()Ljava/lang/Float;
+	public final fun getSkuId ()Ljava/lang/String;
 	public final fun getStore ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/FashionTryOnFlowKt {
-	public static final fun FashionTryOnFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun FashionTryOnFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {
@@ -95,6 +112,15 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/ComposableSingletons$GenerationMoreBlockKt {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/ComposableSingletons$GenerationMoreBlockKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public static field lambda-2 Lkotlin/jvm/functions/Function4;
+	public fun <init> ()V
+	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/ComposableSingletons$GenerationPagerKt {

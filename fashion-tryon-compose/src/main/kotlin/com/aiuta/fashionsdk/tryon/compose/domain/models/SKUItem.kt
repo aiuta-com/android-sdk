@@ -6,6 +6,8 @@ import java.util.UUID
 /**
  * Provided sku for generation with meta info
  *
+ * @param skuId - Id of sku to generate
+ * @param catalogName - Name of catalog with current [skuId]
  * @param description - Small description about provided sku
  * @param imageUrls - List of urls with images of provided sku
  * @param price - Original price per sku

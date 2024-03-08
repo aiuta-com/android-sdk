@@ -29,7 +29,6 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
  *
  * @see FashionTryOn
  * @see FashionTryOnListeners
- * @see SKUGenerationItem
  * @see SKUItem
  */
 @OptIn(ExperimentalMaterialApi::class)
