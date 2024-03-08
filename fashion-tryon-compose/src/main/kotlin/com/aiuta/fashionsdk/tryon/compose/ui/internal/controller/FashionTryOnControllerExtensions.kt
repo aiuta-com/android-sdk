@@ -5,19 +5,20 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 // Configs
-private val screensWithSKUItems =
+internal val screensWithSKUItems =
     setOf(
         NavigationScreen.IMAGE_SELECTOR,
         NavigationScreen.GENERATION_RESULT,
     )
 
-private val skippedBackStackScreens =
+internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.SPLASH,
     )
@@ -43,6 +44,11 @@ internal fun FashionTryOnController.navigateBack() {
     }
 }
 
+// Active SKU State
+internal fun FashionTryOnController.changeActiveSKU(newSkuItem: SKUItem) {
+    activeSKUItem.value = newSkuItem
+}
+
 // Edit mode
 internal fun FashionTryOnController.activateSelectMode() {
     selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
@@ -60,6 +66,15 @@ internal fun FashionTryOnController.activateGeneration() {
 
 internal fun FashionTryOnController.deactivateGeneration() {
     isGenerationActive.value = false
+}
+
+// Active SKU item visibility
+internal fun FashionTryOnController.forceShowActiveSKUItem() {
+    isSKUItemVisible.value = true
+}
+
+internal fun FashionTryOnController.forceHideActiveSKUItem() {
+    isSKUItemVisible.value = false
 }
 
 // Checks
@@ -102,15 +117,6 @@ internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> {
     return remember(selectorState.value) {
         derivedStateOf {
             selectorState.value != SelectorMode.DISABLED
-        }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.isSKUItemVisible(): State<Boolean> {
-    return remember(currentScreen.value) {
-        derivedStateOf {
-            currentScreen.value in screensWithSKUItems
         }
     }
 }

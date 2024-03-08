@@ -16,22 +16,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUMetaInfo
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import kotlin.math.roundToInt
 
 @Composable
 internal fun SKUInfo(
     modifier: Modifier = Modifier,
-    skuMetaInfo: () -> SKUMetaInfo,
+    skuItem: SKUItem,
 ) {
-    val skuItem = skuMetaInfo()
-
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
@@ -65,9 +61,9 @@ internal fun SKUInfo(
                 text = skuItem.priceWithCurrency,
                 style =
                     MaterialTheme.typography.body1.copy(
-                        textDecoration = solveGeneralPriceDecoration(skuMetaInfo),
+                        textDecoration = solveGeneralPriceDecoration(skuItem),
                     ),
-                color = solveGeneralPriceColor(skuMetaInfo),
+                color = solveGeneralPriceColor(skuItem),
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -98,7 +94,7 @@ internal fun SKUInfo(
 }
 
 @Composable
-private fun DiscountBlock(
+internal fun DiscountBlock(
     modifier: Modifier = Modifier,
     price: Float,
     priceWithDiscount: Float,
@@ -125,19 +121,5 @@ private fun DiscountBlock(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
-    }
-}
-
-private fun solveGeneralPriceColor(skuMetaInfo: () -> SKUMetaInfo): Color {
-    return if (skuMetaInfo().priceDiscounted != null) {
-        FashionColor.Gray
-    } else {
-        FashionColor.Black
-    }
-}
-
-private fun solveGeneralPriceDecoration(skuMetaInfo: () -> SKUMetaInfo): TextDecoration? {
-    return skuMetaInfo().priceDiscounted?.let {
-        TextDecoration.LineThrough
     }
 }

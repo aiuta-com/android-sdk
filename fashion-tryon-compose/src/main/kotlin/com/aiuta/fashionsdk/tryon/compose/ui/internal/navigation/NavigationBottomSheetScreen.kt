@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 
 @Immutable
 internal sealed interface NavigationBottomSheetScreen {
@@ -10,6 +11,7 @@ internal sealed interface NavigationBottomSheetScreen {
 
     public class SKUInfo(
         public val primaryButtonState: PrimaryButtonState,
+        public val skuItem: SKUItem,
     ) : NavigationBottomSheetScreen {
         public enum class PrimaryButtonState {
             ADD_TO_CART,

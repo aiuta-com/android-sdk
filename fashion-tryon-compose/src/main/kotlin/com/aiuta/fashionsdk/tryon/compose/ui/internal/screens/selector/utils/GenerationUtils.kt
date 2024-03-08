@@ -13,15 +13,14 @@ internal fun FashionTryOnController.startGeneration(scope: CoroutineScope) {
             activateGeneration()
 
             val imageUri = lastSavedPhotoUris.value.firstOrNull()?.toUri()
-            val skuInfo = skuForGeneration()
 
             imageUri?.let {
                 fashionTryOn().startSKUGeneration(
                     container =
                         SKUGenerationContainer(
                             fileUri = imageUri,
-                            skuId = skuInfo.skuId,
-                            skuCatalogName = skuInfo.catalogName,
+                            skuId = activeSKUItem.value.skuId,
+                            skuCatalogName = activeSKUItem.value.catalogName,
                         ),
                 )
             }

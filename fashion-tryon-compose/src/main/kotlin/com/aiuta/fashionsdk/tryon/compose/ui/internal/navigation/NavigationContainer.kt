@@ -20,9 +20,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSKUItemVisible
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
@@ -57,12 +57,16 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
 @Composable
 private fun NavigationContainerContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val sharedModifier = Modifier.zIndex(controller.zIndexInterface).fillMaxWidth()
 
     Column(
         modifier = modifier.background(FashionColor.White),
     ) {
         NavigationAppBar(
-            modifier = Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.statusBars),
+            modifier =
+                sharedModifier.background(
+                    FashionColor.White,
+                ).windowInsetsPadding(WindowInsets.statusBars),
             navigateBack = controller::navigateBack,
             navigateToHistory = {
                 controller.navigateTo(NavigationScreen.HISTORY)
@@ -70,13 +74,14 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
         )
 
         Divider(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = sharedModifier,
             color = FashionColor.LightGray,
             thickness = 1.dp,
         )
 
         AnimatedVisibility(
-            visible = controller.isSKUItemVisible().value,
+            modifier = sharedModifier.background(FashionColor.White),
+            visible = controller.isSKUItemVisible.value,
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically(),
         ) {
@@ -87,6 +92,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                         newSheetScreen =
                             NavigationBottomSheetScreen.SKUInfo(
                                 primaryButtonState = PrimaryButtonState.ADD_TO_CART,
+                                skuItem = controller.activeSKUItem.value,
                             ),
                     )
                 },
@@ -94,7 +100,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
         }
 
         Divider(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = sharedModifier,
             color = FashionColor.LightGray,
             thickness = 1.dp,
         )

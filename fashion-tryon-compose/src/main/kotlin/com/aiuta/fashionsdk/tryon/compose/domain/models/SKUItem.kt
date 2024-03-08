@@ -1,10 +1,13 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models
 
 import androidx.compose.runtime.Immutable
+import java.util.UUID
 
 /**
- * Meta info about provided sku for generation
+ * Provided sku for generation with meta info
  *
+ * @param skuId - Id of sku to generate
+ * @param catalogName - Name of catalog with current [skuId]
  * @param description - Small description about provided sku
  * @param imageUrls - List of urls with images of provided sku
  * @param price - Original price per sku
@@ -13,14 +16,18 @@ import androidx.compose.runtime.Immutable
  * @param store - Name of store
  */
 @Immutable
-public class SKUMetaInfo(
+public data class SKUItem(
+    public val skuId: String,
+    public val catalogName: String? = null,
     public val description: String,
     public val imageUrls: List<String>,
     public val price: Float,
     public val priceDiscounted: Float? = null,
     public val priceCurrency: String,
     public val store: String,
+    public val generateMoreSKU: List<SKUItem>? = null,
 ) {
     internal val priceWithCurrency = "$priceCurrency$price"
     internal val priceDiscountedWithCurrency = "$priceCurrency$priceDiscounted"
+    internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
 }
