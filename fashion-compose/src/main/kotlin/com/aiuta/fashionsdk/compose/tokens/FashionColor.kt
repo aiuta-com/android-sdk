@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.compose.tokens
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
+@Deprecated("Use AiutaColors instead")
 @Immutable
 public object FashionColor {
     public val Black: Color = Color(0xFF000000)
