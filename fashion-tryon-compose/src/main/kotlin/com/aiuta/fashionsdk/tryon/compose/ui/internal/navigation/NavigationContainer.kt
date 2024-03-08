@@ -92,6 +92,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                         newSheetScreen =
                             NavigationBottomSheetScreen.SKUInfo(
                                 primaryButtonState = PrimaryButtonState.ADD_TO_CART,
+                                skuItem = controller.activeSKUItem.value,
                             ),
                     )
                 },

@@ -141,6 +141,7 @@ private fun GenerationMoreBlockItem(
                         newSheetScreen =
                             NavigationBottomSheetScreen.SKUInfo(
                                 primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.TRY_ON,
+                                skuItem = skuItem,
                             ),
                     )
                 },

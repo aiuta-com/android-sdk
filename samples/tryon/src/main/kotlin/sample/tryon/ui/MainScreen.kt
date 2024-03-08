@@ -33,7 +33,7 @@ fun MainScreen() {
                 priceCurrency = "\$",
                 store = "ASOS DESIGN",
                 generateMoreSKU =
-                    List(10) {
+                    listOf(
                         SKUItem(
                             skuId = "AIUTA-DEMO-0",
                             description = "90s straight leg jeans in light blue",
@@ -47,9 +47,38 @@ fun MainScreen() {
                             price = 41.99F,
                             priceDiscounted = 34.99F,
                             priceCurrency = "\$",
-                            store = "ASOS DESIGN $it",
-                        )
-                    },
+                            store = "ASOS DESIGN 0",
+                        ),
+                        SKUItem(
+                            skuId = "AIUTA-DEMO-1",
+                            description = "90s straight leg jeans in light blue",
+                            imageUrls =
+                                listOf(
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_1.jpg",
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_0.jpg",
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_2.jpg",
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_3.jpg",
+                                ),
+                            price = 41.99F,
+                            priceDiscounted = 34.99F,
+                            priceCurrency = "\$",
+                            store = "ASOS DESIGN 1",
+                        ),
+                        SKUItem(
+                            skuId = "AIUTA-DEMO-2",
+                            description = "90s straight leg jeans in light blue",
+                            imageUrls =
+                                listOf(
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_2.jpg",
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_1.jpg",
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_0.jpg",
+                                    "https://storage.googleapis.com/aiuta_prod_external_api_images/external_api/lora/0001_shein_ohwx_color_and_title_filter/19c1437a4f46b0c6180dbd62a838caedbbf631c3efec36e2e566ded5be452ab0_Multicolor_3.jpg",
+                                ),
+                            price = 41.99F,
+                            priceCurrency = "\$",
+                            store = "ASOS DESIGN 2",
+                        ),
+                    ),
             )
         }
 

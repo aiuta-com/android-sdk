@@ -37,14 +37,14 @@ import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 
 @Composable
-internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
-    val controller = LocalController.current
-    val imageUrls = controller.activeSKUItem.value.imageUrls
-
+internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
     val sharedHorizontalPadding = 16.dp
 
     SheetDivider()
@@ -57,7 +57,7 @@ internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         itemsIndexed(
-            items = imageUrls,
+            items = skuInfo.skuItem.imageUrls,
             key = { index, _ -> index },
         ) { _, imageUrl ->
             ImageContainer(
@@ -78,7 +78,7 @@ internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = sharedHorizontalPadding),
-        skuItem = controller.activeSKUItem.value,
+        skuItem = skuInfo.skuItem,
     )
 
     Spacer(Modifier.height(24.dp))
@@ -88,7 +88,7 @@ internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = sharedHorizontalPadding),
-        primaryButtonState = primaryButtonState,
+        skuInfo = skuInfo,
     )
 
     Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBars))
@@ -120,7 +120,7 @@ private fun ImageContainer(
 @Composable
 private fun ButtonsContainer(
     modifier: Modifier = Modifier,
-    primaryButtonState: PrimaryButtonState,
+    skuInfo: NavigationBottomSheetScreen.SKUInfo,
 ) {
     val controller = LocalController.current
 
@@ -142,20 +142,22 @@ private fun ButtonsContainer(
             modifier = Modifier.weight(1f),
             text =
                 stringResource(
-                    if (primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                         R.string.add_to_cart
                     } else {
                         R.string.try_on
                     },
                 ),
-            iconRes = FashionIcon.Magic.takeIf { primaryButtonState == PrimaryButtonState.TRY_ON },
+            iconRes = FashionIcon.Magic.takeIf { skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON },
             style = FashionButtonStyles.primaryStyle(),
             size = FashionButtonSizes.xlSize(),
             onClick = {
-                if (primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     controller.fashionTryOnListeners().addToCartClick()
                 } else {
-                    // TODO
+                    controller.changeActiveSKU(skuInfo.skuItem)
+                    controller.bottomSheetNavigator.hide()
+                    controller.navigateBack()
                 }
             },
         )

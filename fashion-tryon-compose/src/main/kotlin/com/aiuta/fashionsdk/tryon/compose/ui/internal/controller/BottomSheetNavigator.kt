@@ -56,7 +56,7 @@ internal class BottomSheetNavigator(
 
             is NavigationBottomSheetScreen.SKUInfo -> {
                 SKUInfoSheet(
-                    primaryButtonState = bottomScreen.primaryButtonState,
+                    skuInfo = bottomScreen,
                 )
             }
 
