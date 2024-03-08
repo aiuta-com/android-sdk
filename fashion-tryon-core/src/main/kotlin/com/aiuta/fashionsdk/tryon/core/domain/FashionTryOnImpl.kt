@@ -70,9 +70,7 @@ internal class FashionTryOnImpl(
         mutex.withLock {
             // Set loading state with previous image urls
             _skuGenerationStatus.emit(
-                SKUGenerationStatus.LoadingGenerationStatus(
-                    imageUrls = _skuGenerationStatus.value.imageUrls,
-                ),
+                SKUGenerationStatus.LoadingGenerationStatus(),
             )
 
             // Firstly, upload image on backend
