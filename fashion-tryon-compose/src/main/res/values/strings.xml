@@ -19,6 +19,7 @@
 
     <!--Generation Result-->
     <string name="generation_result_more_title">More for you to try on</string>
+    <string name="generation_result_swipe_up">Swipe up for more</string>
 
     <!--Bottom sheets-->
     <!--Picker sheet-->

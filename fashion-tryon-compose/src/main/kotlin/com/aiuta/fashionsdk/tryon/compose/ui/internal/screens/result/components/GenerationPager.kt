@@ -3,14 +3,21 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,17 +30,24 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
+import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -105,6 +119,7 @@ internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize(),
             imageUrl = skuMetaImages.getOrNull(index),
             isShareAvailable = false,
+            isSwipeTipVisible = true,
         )
     }
 }
@@ -114,6 +129,7 @@ internal fun PagerImageContainer(
     modifier: Modifier = Modifier,
     imageUrl: String?,
     isShareAvailable: Boolean = true,
+    isSwipeTipVisible: Boolean = false,
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
@@ -162,6 +178,15 @@ internal fun PagerImageContainer(
             contentDescription = null,
         )
 
+        if (isSwipeTipVisible) {
+            PagerImageSwipeTip(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter),
+            )
+        }
+
         if (isShareAvailable) {
             ShareButton(
                 modifier =
@@ -177,5 +202,38 @@ internal fun PagerImageContainer(
                 imageUrl = imageUrl,
             )
         }
+    }
+}
+
+@Composable
+private fun PagerImageSwipeTip(modifier: Modifier = Modifier) {
+    Column(
+        modifier =
+            modifier.background(
+                brush =
+                    Brush.verticalGradient(
+                        listOf(
+                            Color.Transparent,
+                            FashionColor.Black,
+                        ),
+                    ),
+            ),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Icon(
+            imageVector = ImageVector.vectorResource(FashionIcon.SwipeUp),
+            contentDescription = null,
+            tint = FashionColor.White,
+        )
+
+        Spacer(Modifier.height(12.dp))
+
+        Text(
+            text = stringResource(R.string.generation_result_swipe_up),
+            style = MaterialTheme.typography.h6,
+            color = FashionColor.White,
+        )
+
+        Spacer(Modifier.height(24.dp))
     }
 }
