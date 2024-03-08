@@ -37,6 +37,7 @@ import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.ImageSelectorBlock
@@ -49,6 +50,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     val aiutaUri = stringResource(R.string.aiuta_url)
     val controller = LocalController.current
     val uriHandler = LocalUriHandler.current
+    val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
     val fashionTryOn = remember { controller.fashionTryOn() }
@@ -124,7 +126,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                                 .padding(horizontal = 16.dp)
                                 .windowInsetsPadding(WindowInsets.navigationBars),
                         text = stringResource(R.string.try_on),
-                        style = FashionButtonStyles.primaryStyle(),
+                        style = FashionButtonStyles.primaryStyle(theme),
                         size = FashionButtonSizes.xlSize(),
                         iconRes = FashionIcon.Magic,
                         onClick = {

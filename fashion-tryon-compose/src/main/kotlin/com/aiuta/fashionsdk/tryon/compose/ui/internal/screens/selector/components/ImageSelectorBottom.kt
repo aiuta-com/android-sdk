@@ -24,6 +24,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.transitionAnimation
@@ -36,6 +37,7 @@ internal fun ImageSelectorBottom(
 ) {
     val controller = LocalController.current
     val fashionTryOn = remember { controller.fashionTryOn() }
+    val theme = LocalTheme.current
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
     val sharedModifier = Modifier.fillMaxWidth()
 
@@ -65,7 +67,7 @@ internal fun ImageSelectorBottom(
                 FashionButton(
                     modifier = sharedModifier,
                     text = stringResource(R.string.image_selector_upload_button),
-                    style = FashionButtonStyles.primaryStyle(),
+                    style = FashionButtonStyles.primaryStyle(theme),
                     size = FashionButtonSizes.xlSize(),
                     onClick = uploadPhoto,
                 )
@@ -75,7 +77,7 @@ internal fun ImageSelectorBottom(
                 FashionButton(
                     modifier = sharedModifier,
                     text = stringResource(R.string.image_selector_change_button),
-                    style = FashionButtonStyles.outlineStyle(),
+                    style = FashionButtonStyles.outlineStyle(theme),
                     size = FashionButtonSizes.xlSize(),
                     onClick = uploadPhoto,
                 )

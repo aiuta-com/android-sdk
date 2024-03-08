@@ -6,42 +6,19 @@ import com.aiuta.fashionsdk.compose.molecules.button.internal.DefaultFashionButt
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonColors
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.button.internal.OutlineFashionButtonStyle
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 @Immutable
 public object FashionButtonStyles {
     @Composable
-    public fun inverseStyle(): FashionButtonStyle =
+    public fun primaryStyle(theme: AiutaTheme): FashionButtonStyle =
         DefaultFashionButtonStyle(
-            colors = FashionButtonColors.inverseColors(),
+            colors = FashionButtonColors.primaryColors(theme = theme),
         )
 
     @Composable
-    public fun primaryStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.primaryColors(),
-        )
-
-    @Composable
-    public fun errorStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.errorColors(),
-        )
-
-    @Composable
-    public fun secondaryStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.secondaryColors(),
-        )
-
-    @Composable
-    public fun transparentStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.transparentColors(),
-        )
-
-    @Composable
-    public fun outlineStyle(): FashionButtonStyle =
+    public fun outlineStyle(theme: AiutaTheme): FashionButtonStyle =
         OutlineFashionButtonStyle(
-            colors = FashionButtonColors.outlineColors(),
+            colors = FashionButtonColors.outlineColors(theme = theme),
         )
 }
