@@ -21,7 +21,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -91,7 +90,7 @@ internal fun ImageSelectorBottom(
                 ) {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
-                        color = FashionColor.MediumGray,
+                        color = theme.colors.primary,
                         strokeWidth = 2.dp,
                     )
 
@@ -100,7 +99,7 @@ internal fun ImageSelectorBottom(
                     Text(
                         text = stringResource(R.string.image_selector_generating_outfit),
                         style = MaterialTheme.typography.body1,
-                        color = FashionColor.MediumGray,
+                        color = theme.colors.primary,
                     )
                 }
             }

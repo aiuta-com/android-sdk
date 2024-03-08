@@ -7,9 +7,9 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -25,11 +25,8 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
-import com.aiuta.fashionsdk.compose.tokens.utils.conditional
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.dashedBorder
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -65,18 +62,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     Box(
         modifier =
             modifier
-                .conditional(controller.lastSavedPhotoUris.value.isEmpty()) {
-                    dashedBorder(
-                        color = FashionColor.DarkGray,
-                        shape = sharedCornerShape,
-                        dashWidth = 8.dp,
-                        gapWidth = 8.dp,
-                    )
-                }
-                .background(
-                    color = FashionColor.Black.copy(0.04f),
-                    shape = sharedCornerShape,
-                )
+                .clip(sharedCornerShape)
                 .clipToBounds(),
         contentAlignment = Alignment.Center,
     ) {
@@ -87,7 +73,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             val imageUri = uploadedImageUris.firstOrNull()
 
             if (imageUri == null) {
-                DefaultImage(modifier = Modifier.fillMaxSize())
+                DefaultImage(modifier = Modifier.fillMaxSize().padding(bottom = 70.dp))
             } else {
                 UploadImage(
                     modifier = Modifier.fillMaxSize().clip(sharedCornerShape),

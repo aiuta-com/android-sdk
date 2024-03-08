@@ -32,7 +32,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
@@ -67,7 +66,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     ImageSelectorListener(enable = controller.isGenerationActive.value)
 
     Column(
-        modifier = modifier.background(FashionColor.LightGray),
+        modifier = modifier.background(theme.colors.background),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -96,7 +95,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                 text = stringResource(R.string.image_selector_powered_by_aiuta),
                 textDecoration = TextDecoration.Underline,
                 style = MaterialTheme.typography.body1,
-                color = FashionColor.MediumGray,
+                color = theme.colors.primary,
             )
 
             androidx.compose.animation.AnimatedVisibility(
@@ -104,7 +103,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                     Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(0.75f)
-                        .background(FashionColor.White)
+                        .background(theme.colors.background)
                         .align(Alignment.BottomCenter),
                 visible = isTryOnButtonVisible.value,
                 enter = fadeIn() + expandVertically(),
