@@ -171,7 +171,7 @@ private fun GenerationItem(
 @Composable
 private fun MetaImagesContainer(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val imageUrls = controller.skuMetaInfo().imageUrls
+    val imageUrls = controller.activeSKUItem.value.imageUrls
 
     when {
         imageUrls.size <= 2 -> {
@@ -192,7 +192,7 @@ private fun MetaImagesContainer(modifier: Modifier = Modifier) {
 private fun MetaImagesContainerSmall(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
-    val imageUrls = controller.skuMetaInfo().imageUrls
+    val imageUrls = controller.activeSKUItem.value.imageUrls
 
     Row(
         modifier = modifier.background(FashionColor.White),
@@ -215,7 +215,7 @@ private fun MetaImagesContainerSmall(modifier: Modifier = Modifier) {
 private fun MetaImagesContainerMedium(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
-    val imageUrls = controller.skuMetaInfo().imageUrls
+    val imageUrls = controller.activeSKUItem.value.imageUrls
 
     Row(
         modifier = modifier.background(FashionColor.White),
@@ -252,7 +252,7 @@ private fun MetaImagesContainerMedium(modifier: Modifier = Modifier) {
 private fun MetaImagesContainerBig(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
-    val imageUrls = controller.skuMetaInfo().imageUrls
+    val imageUrls = controller.activeSKUItem.value.imageUrls
 
     val rowSize = 2
     val columnSize = 2

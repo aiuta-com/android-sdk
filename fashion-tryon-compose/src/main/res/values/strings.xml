@@ -17,6 +17,9 @@
     <string name="history_selector_enable_button_unselect_all">Unselect all</string>
     <string name="history_selector_enable_button_cancel">Cancel</string>
 
+    <!--Generation Result-->
+    <string name="generation_result_more_title">More for you to try on</string>
+
     <!--Bottom sheets-->
     <!--Picker sheet-->
     <string name="picker_sheet_take_photo">Take a photo</string>

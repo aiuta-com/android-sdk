@@ -65,36 +65,37 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
 
         Column(
             modifier =
-            Modifier
-                .fillMaxSize()
-                .requiredHeight(maxHeight + expandedFooterOffset)
-                .offset {
-                    // Offset of swipe and minus centring of requiredHeight() modifier
-                    IntOffset(
-                        x = 0,
-                        y = (generationResultController.verticalSwipeState.requireOffset() + (expandedFooterOffsetPx / 2)).roundToInt(),
+                Modifier
+                    .fillMaxSize()
+                    .requiredHeight(maxHeight + expandedFooterOffset)
+                    .offset {
+                        // Offset of swipe and minus centring of requiredHeight() modifier
+                        IntOffset(
+                            x = 0,
+                            y = (generationResultController.verticalSwipeState.requireOffset() + (expandedFooterOffsetPx / 2)).roundToInt(),
+                        )
+                    }
+                    .anchoredDraggable(
+                        state = generationResultController.verticalSwipeState,
+                        orientation = Orientation.Vertical,
                     )
-                }
-                .anchoredDraggable(
-                    state = generationResultController.verticalSwipeState,
-                    orientation = Orientation.Vertical,
-                )
-                .nestedScroll(connection),
+                    .nestedScroll(connection),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             GenerationVerticalPagerBlock(
                 modifier =
-                Modifier
-                    .zIndex(generationResultController.zIndexList)
-                    .fillMaxWidth()
-                    .height(generationResultController.bodyHeight(maxHeight)),
+                    Modifier
+                        .zIndex(generationResultController.zIndexList)
+                        .fillMaxWidth()
+                        .height(generationResultController.bodyHeight(maxHeight)),
                 generationResultController = generationResultController,
             )
 
             GenerationMoreBlock(
-                modifier = Modifier
-                    .zIndex(generationResultController.zIndexList)
-                    .fillMaxWidth()
+                modifier =
+                    Modifier
+                        .zIndex(generationResultController.zIndexList)
+                        .fillMaxWidth(),
             )
         }
 
@@ -110,23 +111,23 @@ internal fun BoxWithConstraintsScope.GenerationResultInterface(
 ) {
     GenerationButtonsBlock(
         modifier =
-        Modifier
-            .zIndex(generationResultController.zIndexInterface)
-            .fillMaxWidth()
-            .height(generationResultController.footerHeight(maxHeight))
-            .background(FashionColor.White)
-            .align(Alignment.BottomCenter)
-            .windowInsetsPadding(WindowInsets.navigationBars)
-            .padding(horizontal = 16.dp),
+            Modifier
+                .zIndex(generationResultController.zIndexInterface)
+                .fillMaxWidth()
+                .height(generationResultController.footerHeight(maxHeight))
+                .background(FashionColor.White)
+                .align(Alignment.BottomCenter)
+                .windowInsetsPadding(WindowInsets.navigationBars)
+                .padding(horizontal = 16.dp),
     )
 
     GenerationCarouselBlock(
         modifier =
-        Modifier
-            .zIndex(generationResultController.zIndexInterface)
-            .height(generationResultController.bodyHeight(maxHeight))
-            .padding(start = 16.dp)
-            .align(Alignment.TopStart),
+            Modifier
+                .zIndex(generationResultController.zIndexInterface)
+                .height(generationResultController.bodyHeight(maxHeight))
+                .padding(start = 16.dp)
+                .align(Alignment.TopStart),
         generationResultController = generationResultController,
     )
 }

@@ -64,7 +64,10 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
         modifier = modifier.background(FashionColor.White),
     ) {
         NavigationAppBar(
-            modifier = sharedModifier.background(FashionColor.White).windowInsetsPadding(WindowInsets.statusBars),
+            modifier =
+                sharedModifier.background(
+                    FashionColor.White,
+                ).windowInsetsPadding(WindowInsets.statusBars),
             navigateBack = controller::navigateBack,
             navigateToHistory = {
                 controller.navigateTo(NavigationScreen.HISTORY)

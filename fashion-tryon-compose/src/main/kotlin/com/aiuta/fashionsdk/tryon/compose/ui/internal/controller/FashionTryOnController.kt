@@ -11,14 +11,13 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.GeneratedIm
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.FashionTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUMetaInfo
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
 import com.aiuta.fashionsdk.tryon.core.FashionTryOn
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import java.util.LinkedList
 import kotlinx.coroutines.CoroutineScope
@@ -32,10 +31,14 @@ import kotlinx.coroutines.launch
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     fashionTryOn: () -> FashionTryOn,
     fashionTryOnListeners: () -> FashionTryOnListeners,
-    skuForGeneration: () -> SKUGenerationItem,
-    skuMetaInfo: () -> SKUMetaInfo,
+    skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
     val context = LocalContext.current
+
+    val activeSKUItem =
+        remember {
+            mutableStateOf(skuForGeneration())
+        }
 
     val zoomImageController =
         rememberZoomImageController(
@@ -69,8 +72,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             selectorState = defaultSelectorState,
             zoomImageController = zoomImageController,
             lastSavedPhotoUris = defaultLastSavedUriPhoto,
-            skuForGeneration = skuForGeneration,
-            skuMetaInfo = skuMetaInfo,
+            activeSKUItem = activeSKUItem,
             fashionTryOn = fashionTryOn,
             fashionTryOnListeners = fashionTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
@@ -91,11 +93,10 @@ internal class FashionTryOnController(
     internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
     // Interface z index
-    val zIndexInterface : Float = 2f,
+    val zIndexInterface: Float = 2f,
     // Data
     public val lastSavedPhotoUris: MutableState<List<String>>,
-    public val skuForGeneration: () -> SKUGenerationItem,
-    public val skuMetaInfo: () -> SKUMetaInfo,
+    public val activeSKUItem: MutableState<SKUItem>,
     // Domain
     public val fashionTryOn: () -> FashionTryOn,
     public val fashionTryOnListeners: () -> FashionTryOnListeners,

@@ -13,7 +13,6 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 
@@ -58,7 +57,10 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
                 updateAnchors(
                     DraggableAnchors {
                         GenerateResultState.SHOW_GENERATIONS at 0f
-                        GenerateResultState.SHOW_GENERATE_MORE at with(density) { -maxHeight.toPx() }
+                        GenerateResultState.SHOW_GENERATE_MORE at
+                            with(
+                                density,
+                            ) { -maxHeight.toPx() }
                     },
                 )
             }

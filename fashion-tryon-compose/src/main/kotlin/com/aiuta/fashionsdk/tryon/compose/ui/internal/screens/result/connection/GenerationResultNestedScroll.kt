@@ -70,7 +70,8 @@ internal class GenerationResultNestedScroll(
         return super.onPostFling(consumed, available)
     }
 
-    private fun shouldScrollGenerateMore() = pagerState.settledPage == pagerState.pageCount - 1 && !pagerState.isScrollInProgress
+    private fun shouldScrollGenerateMore() =
+        pagerState.settledPage == pagerState.pageCount - 1 && !pagerState.isScrollInProgress
 
     private fun Float.toOffset() = Offset(0f, this)
 }

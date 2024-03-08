@@ -8,7 +8,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.domain.models.FashionTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUMetaInfo
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -30,7 +30,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
  * @see FashionTryOn
  * @see FashionTryOnListeners
  * @see SKUGenerationItem
- * @see SKUMetaInfo
+ * @see SKUItem
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -38,8 +38,7 @@ public fun FashionTryOnFlow(
     modifier: Modifier = Modifier,
     fashionTryOn: () -> FashionTryOn,
     fashionTryOnListeners: () -> FashionTryOnListeners,
-    skuForGeneration: () -> SKUGenerationItem,
-    skuMetaInfo: () -> SKUMetaInfo,
+    skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -51,7 +50,6 @@ public fun FashionTryOnFlow(
                 fashionTryOn = fashionTryOn,
                 fashionTryOnListeners = fashionTryOnListeners,
                 skuForGeneration = skuForGeneration,
-                skuMetaInfo = skuMetaInfo,
             )
 
         CompositionLocalProvider(

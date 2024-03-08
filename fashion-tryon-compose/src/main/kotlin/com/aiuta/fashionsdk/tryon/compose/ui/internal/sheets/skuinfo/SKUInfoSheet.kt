@@ -43,7 +43,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDiv
 @Composable
 internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
     val controller = LocalController.current
-    val skuMetaInfo = controller.skuMetaInfo()
+    val imageUrls = controller.activeSKUItem.value.imageUrls
 
     val sharedHorizontalPadding = 16.dp
 
@@ -57,7 +57,7 @@ internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         itemsIndexed(
-            items = skuMetaInfo.imageUrls,
+            items = imageUrls,
             key = { index, _ -> index },
         ) { _, imageUrl ->
             ImageContainer(
@@ -78,7 +78,7 @@ internal fun ColumnScope.SKUInfoSheet(primaryButtonState: PrimaryButtonState) {
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = sharedHorizontalPadding),
-        skuMetaInfo = controller.skuMetaInfo,
+        skuItem = controller.activeSKUItem.value,
     )
 
     Spacer(Modifier.height(24.dp))

@@ -88,7 +88,7 @@ internal fun GenerationVerticalPagerBlock(
 @Composable
 internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val skuMetaImages = controller.skuMetaInfo().imageUrls
+    val skuMetaImages = controller.activeSKUItem.value.imageUrls
 
     val pagerState =
         rememberPagerState {

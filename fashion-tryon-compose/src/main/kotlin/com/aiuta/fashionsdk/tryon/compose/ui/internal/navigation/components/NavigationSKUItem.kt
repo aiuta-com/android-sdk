@@ -26,7 +26,6 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUMetaInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -53,14 +52,13 @@ internal fun NavigationSKUItem(
                     width = 40.dp,
                     height = 60.dp,
                 ),
-            skuMetaInfo = controller.skuMetaInfo,
         )
 
         Spacer(Modifier.width(10.dp))
 
         SKUInfo(
             modifier = Modifier.weight(1f),
-            skuMetaInfo = controller.skuMetaInfo,
+            skuItem = controller.activeSKUItem.value,
         )
 
         Spacer(Modifier.width(16.dp))
@@ -75,10 +73,9 @@ internal fun NavigationSKUItem(
 }
 
 @Composable
-private fun SKUImage(
-    modifier: Modifier = Modifier,
-    skuMetaInfo: () -> SKUMetaInfo,
-) {
+private fun SKUImage(modifier: Modifier = Modifier) {
+    val controller = LocalController.current
+
     SubcomposeAsyncImage(
         modifier =
             modifier
@@ -94,7 +91,7 @@ private fun SKUImage(
                 ),
         model =
             ImageRequest.Builder(LocalContext.current)
-                .data(skuMetaInfo().imageUrls.firstOrNull())
+                .data(controller.activeSKUItem.value.imageUrls.firstOrNull())
                 .crossfade(true)
                 .build(),
         loading = {
