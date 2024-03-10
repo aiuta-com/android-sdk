@@ -17,6 +17,27 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/d
 	public fun remove (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors {
+	public abstract fun getAccent-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
+	public abstract fun getBrand-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
+	public abstract fun getNavLogoColor-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColorsKt {
+	public static final fun defaultAiutaTryOnColors-362bZIc (Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
+	public static synthetic fun defaultAiutaTryOnColors-362bZIc$default (Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
+}
+
+public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme {
+	public abstract fun getColors ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
+	public abstract fun getNavLogo ()Ljava/lang/Integer;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnThemeKt {
+	public static final fun defaultAiutaTryOnTheme (Ljava/lang/Integer;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
+	public static synthetic fun defaultAiutaTryOnTheme$default (Ljava/lang/Integer;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
+}
+
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/FashionTryOnListeners {
 	public static final field $stable I
 	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
@@ -55,7 +76,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/FashionTryOnFlowKt {
-	public static final fun FashionTryOnFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun FashionTryOnFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {
@@ -63,13 +84,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/Com
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/ComposableSingletons$NavigationAppBarKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/ComposableSingletons$NavigationAppBarKt;
-	public static field lambda-1 Lkotlin/jvm/functions/Function4;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/ComposableSingletons$NavigationSKUItemKt {
@@ -102,11 +116,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/ComposableSingletons$GenerationMoreBlockKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/ComposableSingletons$GenerationMoreBlockKt;
-	public static field lambda-1 Lkotlin/jvm/functions/Function3;
-	public static field lambda-2 Lkotlin/jvm/functions/Function4;
+	public static field lambda-1 Lkotlin/jvm/functions/Function4;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/ComposableSingletons$GenerationPagerKt {
