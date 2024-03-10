@@ -3,7 +3,12 @@ package com.aiuta.fashionsdk.compose.tokens
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
-// TODO Docs
+/**
+ * Public interface for implementation of [AiutaColors]
+ * for [AiutaTheme]
+ *
+ * @see AiutaTheme
+ */
 @Immutable
 public interface AiutaColors {
     // DS

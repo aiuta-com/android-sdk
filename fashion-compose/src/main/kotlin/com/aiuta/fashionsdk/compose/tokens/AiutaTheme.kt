@@ -3,7 +3,9 @@ package com.aiuta.fashionsdk.compose.tokens
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 
-// TODO Docs
+/**
+ * Final theme for all UI flows
+ */
 @Immutable
 public interface AiutaTheme {
     @get:DrawableRes

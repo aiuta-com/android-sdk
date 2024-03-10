@@ -5,6 +5,11 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.defaultAiutaTheme
 
+/**
+ * Theme for Digital Try On flow.
+ * Depends on provided [navLogo] and [colors] final
+ * theme will be override
+ */
 @Immutable
 public interface AiutaTryOnTheme {
     @get:DrawableRes

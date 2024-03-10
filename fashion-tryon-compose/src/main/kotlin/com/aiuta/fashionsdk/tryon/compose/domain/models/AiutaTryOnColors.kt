@@ -5,6 +5,10 @@ import androidx.compose.ui.graphics.Color
 import com.aiuta.fashionsdk.compose.tokens.AiutaColors
 import com.aiuta.fashionsdk.compose.tokens.defaultAiutaColors
 
+/**
+ * Colors for Digital Try On flow.
+ * Will be used for creating final theme through [AiutaTryOnTheme]
+ */
 @Immutable
 public interface AiutaTryOnColors {
     public val brand: Color?
