@@ -27,11 +27,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
@@ -102,6 +102,8 @@ private fun PickerButton(
     shouldDrawDivider: Boolean = true,
     onClick: () -> Unit,
 ) {
+    val theme = LocalTheme.current
+
     Row(
         modifier =
             modifier
@@ -117,7 +119,7 @@ private fun PickerButton(
             modifier = Modifier.size(24.dp),
             imageVector = ImageVector.vectorResource(iconRes),
             contentDescription = null,
-            tint = FashionColor.ElectricBlue,
+            tint = theme.colors.brand,
         )
 
         Spacer(Modifier.width(16.dp))
@@ -129,13 +131,13 @@ private fun PickerButton(
                 modifier = Modifier.align(Alignment.CenterStart),
                 text = text,
                 style = MaterialTheme.typography.body1,
-                color = FashionColor.Black,
+                color = theme.colors.primary,
             )
 
             if (shouldDrawDivider) {
                 Divider(
                     modifier = Modifier.fillMaxWidth().align(Alignment.BottomCenter),
-                    color = FashionColor.LightGray,
+                    color = theme.colors.gray1,
                 )
             }
         }

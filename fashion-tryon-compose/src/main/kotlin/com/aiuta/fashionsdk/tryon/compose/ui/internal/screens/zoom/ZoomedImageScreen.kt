@@ -40,12 +40,12 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import coil.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
@@ -61,6 +61,7 @@ internal fun ZoomedImageScreen(
     screenState: ZoomImageController,
     onTransitionFinished: () -> Unit,
 ) {
+    val theme = LocalTheme.current
     val isTransitionActive = screenState.isTransitionActiveListener()
 
     val initialOffset =
@@ -82,7 +83,7 @@ internal fun ZoomedImageScreen(
             derivedStateOf {
                 lerp(
                     Color.Transparent,
-                    FashionColor.Black,
+                    Color.Black,
                     sharedElementProgress.value,
                 )
             }
@@ -93,7 +94,7 @@ internal fun ZoomedImageScreen(
             derivedStateOf {
                 lerp(
                     Color.Transparent,
-                    FashionColor.White,
+                    theme.colors.onDark,
                     sharedElementProgress.value,
                 )
             }

@@ -19,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import kotlin.math.roundToInt
 
 @Composable
@@ -28,6 +28,8 @@ internal fun SKUInfo(
     modifier: Modifier = Modifier,
     skuItem: SKUItem,
 ) {
+    val theme = LocalTheme.current
+
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
@@ -36,7 +38,7 @@ internal fun SKUInfo(
         Text(
             text = skuItem.store,
             style = MaterialTheme.typography.body1,
-            color = FashionColor.Gray,
+            color = theme.colors.secondary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -46,7 +48,7 @@ internal fun SKUInfo(
         Text(
             text = skuItem.description,
             style = MaterialTheme.typography.body2,
-            color = FashionColor.Black,
+            color = theme.colors.primary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -76,7 +78,7 @@ internal fun SKUInfo(
                 Text(
                     text = skuItem.priceDiscountedWithCurrency,
                     style = MaterialTheme.typography.body1,
-                    color = FashionColor.RedError,
+                    color = theme.colors.accent,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -99,6 +101,7 @@ internal fun DiscountBlock(
     price: Float,
     priceWithDiscount: Float,
 ) {
+    val theme = LocalTheme.current
     val discount = (priceWithDiscount * 100 / price - 100).roundToInt()
 
     Box(
@@ -106,7 +109,7 @@ internal fun DiscountBlock(
             modifier
                 .background(
                     shape = RoundedCornerShape(4.dp),
-                    color = FashionColor.RedError,
+                    color = theme.colors.accent,
                 )
                 .padding(
                     vertical = 2.dp,
@@ -117,7 +120,7 @@ internal fun DiscountBlock(
         Text(
             text = "$discount%",
             style = MaterialTheme.typography.body2,
-            color = FashionColor.White,
+            color = theme.colors.onDark,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )

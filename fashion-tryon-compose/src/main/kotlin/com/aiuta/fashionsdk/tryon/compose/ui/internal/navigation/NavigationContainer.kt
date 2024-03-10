@@ -18,7 +18,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -39,9 +38,9 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
     ModalBottomSheetLayout(
         modifier = modifier,
         sheetState = currentController.bottomSheetNavigator.sheetState,
-        sheetBackgroundColor = Color.White,
+        sheetBackgroundColor = theme.colors.backgroundElevation2,
         sheetContent = currentController.bottomSheetNavigator.sheetContent,
-        sheetContentColor = theme.colors.background,
+        sheetContentColor = theme.colors.primary,
         sheetShape =
             RoundedCornerShape(
                 topStart = 24.dp,

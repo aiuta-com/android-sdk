@@ -31,7 +31,6 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
@@ -100,11 +99,13 @@ private fun ImageContainer(
     modifier: Modifier = Modifier,
     imageUrl: String,
 ) {
+    val theme = LocalTheme.current
+
     SubcomposeAsyncImage(
         modifier =
             modifier
                 .clip(RoundedCornerShape(8.dp))
-                .background(FashionColor.White),
+                .background(theme.colors.background),
         model =
             ImageRequest.Builder(LocalContext.current)
                 .data(imageUrl)
