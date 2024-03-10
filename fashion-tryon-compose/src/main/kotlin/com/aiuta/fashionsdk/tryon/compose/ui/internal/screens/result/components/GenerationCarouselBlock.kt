@@ -30,10 +30,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import kotlinx.coroutines.launch
 
@@ -45,6 +45,7 @@ internal fun GenerationCarouselBlock(
     generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
     val skuGenerationStatus =
         controller
@@ -57,7 +58,7 @@ internal fun GenerationCarouselBlock(
             .height(96.dp)
             .width(54.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(FashionColor.White)
+            .background(theme.colors.background)
 
     with(generationResultController) {
         LaunchedEffect(generationPagerState.settledPage) {
@@ -98,9 +99,9 @@ internal fun GenerationCarouselBlock(
                 val borderColor by animateColorAsState(
                     targetValue =
                         if (generationPagerState.settledPage == lastIndex) {
-                            FashionColor.White
+                            theme.colors.background
                         } else {
-                            FashionColor.White.copy(alpha = 0.2f)
+                            theme.colors.background.copy(alpha = 0.2f)
                         },
                     label = "border color",
                 )
@@ -134,12 +135,13 @@ private fun GenerationItem(
     onClick: () -> Unit,
 ) {
     val context = LocalContext.current
+    val theme = LocalTheme.current
     val borderColor by animateColorAsState(
         targetValue =
             if (focused) {
-                FashionColor.White
+                theme.colors.background
             } else {
-                FashionColor.White.copy(alpha = 0.2f)
+                theme.colors.background.copy(alpha = 0.2f)
             },
         label = "border color",
     )
@@ -192,10 +194,11 @@ private fun MetaImagesContainer(modifier: Modifier = Modifier) {
 private fun MetaImagesContainerSmall(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val imageUrls = controller.activeSKUItem.value.imageUrls
 
     Row(
-        modifier = modifier.background(FashionColor.White),
+        modifier = modifier.background(theme.colors.background),
     ) {
         imageUrls.forEach { url ->
             AsyncImage(
@@ -215,10 +218,11 @@ private fun MetaImagesContainerSmall(modifier: Modifier = Modifier) {
 private fun MetaImagesContainerMedium(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val imageUrls = controller.activeSKUItem.value.imageUrls
 
     Row(
-        modifier = modifier.background(FashionColor.White),
+        modifier = modifier.background(theme.colors.background),
     ) {
         AsyncImage(
             modifier = Modifier.fillMaxHeight().weight(1f),
@@ -252,13 +256,14 @@ private fun MetaImagesContainerMedium(modifier: Modifier = Modifier) {
 private fun MetaImagesContainerBig(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val imageUrls = controller.activeSKUItem.value.imageUrls
 
     val rowSize = 2
     val columnSize = 2
 
     Row(
-        modifier = modifier.background(FashionColor.White),
+        modifier = modifier.background(theme.colors.background),
     ) {
         (0 until rowSize).forEach { rowIndex ->
             Column(

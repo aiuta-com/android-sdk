@@ -26,7 +26,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationButtonsBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationCarouselBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationMoreBlock
@@ -41,8 +41,10 @@ import kotlin.math.roundToInt
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
+    val theme = LocalTheme.current
+
     BoxWithConstraints(
-        modifier = modifier.background(FashionColor.White),
+        modifier = modifier.background(theme.colors.background),
     ) {
         val constraintsScope = this
         val maxHeight = constraintsScope.maxHeight
@@ -115,6 +117,8 @@ internal fun GenerationResultInterface(
     modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
+    val theme = LocalTheme.current
+
     AnimatedVisibility(
         modifier = modifier,
         visible = generationResultController.isInterfaceVisible.value,
@@ -128,7 +132,7 @@ internal fun GenerationResultInterface(
                         .zIndex(generationResultController.zIndexInterface)
                         .fillMaxWidth()
                         .height(generationResultController.footerHeight(maxHeight))
-                        .background(FashionColor.White)
+                        .background(theme.colors.backgroundElevation2)
                         .align(Alignment.BottomCenter)
                         .windowInsetsPadding(WindowInsets.navigationBars)
                         .padding(horizontal = 16.dp),
