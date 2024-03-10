@@ -27,7 +27,7 @@ internal fun LoadingProgress(
                 Modifier
                     .size(circleSize)
                     .align(Alignment.Center),
-            color = theme.colors.accent,
+            color = theme.colors.brand,
             strokeWidth = circleWidth,
         )
     }

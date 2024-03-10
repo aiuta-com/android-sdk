@@ -20,20 +20,27 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.airbnb.lottie.compose.rememberLottieDynamicProperties
+import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val fashionTryOn = remember { controller.fashionTryOn() }
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
     val sharedCornerShape = RoundedCornerShape(24.dp)
@@ -52,6 +59,21 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
         )
 
     // Lottie
+    val dynamicProperties =
+        rememberLottieDynamicProperties(
+            rememberLottieDynamicProperty(
+                property = LottieProperty.COLOR_FILTER,
+                value =
+                    BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                        theme.colors.brand.hashCode(),
+                        BlendModeCompat.SRC_ATOP,
+                    ),
+                keyPath =
+                    arrayOf(
+                        "**",
+                    ),
+            ),
+        )
     val composition =
         rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.scanning_animation))
     val progress =
@@ -101,6 +123,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
                 contentScale = ContentScale.FillHeight,
                 composition = composition.value,
                 progress = { progress.value },
+                dynamicProperties = dynamicProperties,
             )
         }
     }

@@ -8,6 +8,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,7 +21,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -105,17 +108,16 @@ internal fun NavigationAppBar(
                 ) { state ->
                     when (state) {
                         NavigationAppBarState.GENERAL -> {
-                            Icon(
-                                modifier = Modifier.padding(bottom = 4.dp),
+                            Image(
                                 painter = painterResource(theme.navLogo),
-                                tint = theme.colors.navLogoColor,
+                                colorFilter = ColorFilter.tint(color = theme.colors.navLogoColor),
                                 contentDescription = null,
+                                contentScale = ContentScale.Fit,
                             )
                         }
 
                         NavigationAppBarState.HISTORY -> {
                             Text(
-                                modifier = Modifier.padding(bottom = 4.dp),
                                 text = stringResource(R.string.app_bar_history),
                                 style = MaterialTheme.typography.h6,
                                 color = theme.colors.primary,
