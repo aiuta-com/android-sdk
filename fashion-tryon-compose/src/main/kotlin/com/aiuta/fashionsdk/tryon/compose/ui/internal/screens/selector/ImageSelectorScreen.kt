@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
@@ -26,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
@@ -39,6 +36,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
@@ -86,16 +84,10 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth(),
             contentAlignment = Alignment.Center,
         ) {
-            Text(
-                modifier =
-                    Modifier
-                        .clickableUnindicated {
-                            uriHandler.openUri(aiutaUri)
-                        },
-                text = stringResource(R.string.image_selector_powered_by_aiuta),
-                textDecoration = TextDecoration.Underline,
-                style = MaterialTheme.typography.body1,
-                color = theme.colors.primary,
+            AiutaLabel(
+                onClick = {
+                    uriHandler.openUri(aiutaUri)
+                },
             )
 
             androidx.compose.animation.AnimatedVisibility(

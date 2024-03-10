@@ -18,6 +18,19 @@ internal object FashionButtonColors {
         )
 
     @Composable
+    fun primaryColors(
+        backgroundColor: Color,
+        contentColor: Color,
+    ) = DefaultFashionButtonColor(
+        buttonColors =
+            ButtonDefaults.buttonColors(
+                backgroundColor = backgroundColor,
+                contentColor = contentColor,
+            ),
+        rippleColor = backgroundColor.copy(alpha = 0.1f),
+    )
+
+    @Composable
     fun outlineColors(theme: AiutaTheme) =
         OutlineFashionButtonColor(
             buttonColors =

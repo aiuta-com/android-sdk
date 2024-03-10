@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.componen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +27,7 @@ internal fun ImageSelectorBlock(
                 .background(
                     color = theme.colors.gray1,
                     shape = RoundedCornerShape(24.dp),
-                )
+                ),
     ) {
         ImageSelectorPhoto(
             modifier = Modifier.fillMaxSize(),
@@ -37,11 +36,12 @@ internal fun ImageSelectorBlock(
         Spacer(Modifier.height(26.dp))
 
         ImageSelectorBottom(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 38.dp)
-                .padding(bottom = 30.dp)
-                .align(Alignment.BottomCenter),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 38.dp)
+                    .padding(bottom = 30.dp)
+                    .align(Alignment.BottomCenter),
             uploadPhoto = uploadPhoto,
         )
     }

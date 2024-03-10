@@ -8,8 +8,9 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -35,7 +36,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val fashionTryOn = remember { controller.fashionTryOn() }
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
-    val sharedCornerShape = RoundedCornerShape(8.dp)
+    val sharedCornerShape = RoundedCornerShape(24.dp)
 
     // Animation
     val lastSavedPhotoUrisTransition =
@@ -73,7 +74,14 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             val imageUri = uploadedImageUris.firstOrNull()
 
             if (imageUri == null) {
-                DefaultImage(modifier = Modifier.fillMaxSize().padding(bottom = 70.dp))
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    DefaultImage(
+                        modifier = Modifier.fillMaxHeight(0.55f).fillMaxWidth(),
+                    )
+                }
             } else {
                 UploadImage(
                     modifier = Modifier.fillMaxSize().clip(sharedCornerShape),
