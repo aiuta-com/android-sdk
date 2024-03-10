@@ -31,12 +31,12 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -99,11 +99,13 @@ private fun ImageContainer(
     modifier: Modifier = Modifier,
     imageUrl: String,
 ) {
+    val theme = LocalTheme.current
+
     SubcomposeAsyncImage(
         modifier =
             modifier
                 .clip(RoundedCornerShape(8.dp))
-                .background(FashionColor.White),
+                .background(theme.colors.background),
         model =
             ImageRequest.Builder(LocalContext.current)
                 .data(imageUrl)
@@ -123,6 +125,7 @@ private fun ButtonsContainer(
     skuInfo: NavigationBottomSheetScreen.SKUInfo,
 ) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
 
     Row(
         modifier = modifier,
@@ -131,7 +134,7 @@ private fun ButtonsContainer(
         FashionButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.add_to_wish),
-            style = FashionButtonStyles.outlineStyle(),
+            style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = controller.fashionTryOnListeners().addToWishlistClick,
         )
@@ -149,7 +152,7 @@ private fun ButtonsContainer(
                     },
                 ),
             iconRes = FashionIcon.Magic.takeIf { skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON },
-            style = FashionButtonStyles.primaryStyle(),
+            style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {

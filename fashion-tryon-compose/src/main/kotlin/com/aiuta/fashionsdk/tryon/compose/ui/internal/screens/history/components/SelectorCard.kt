@@ -23,9 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 
 @Composable
@@ -40,6 +40,7 @@ internal fun SelectorCard(
     onShare: () -> Unit,
     onDelete: () -> Unit,
 ) {
+    val theme = LocalTheme.current
     val transition =
         updateTransition(
             targetState = selectionMode.value == SelectorMode.DISABLED,
@@ -50,7 +51,7 @@ internal fun SelectorCard(
         modifier =
             modifier
                 .background(
-                    color = FashionColor.Black,
+                    color = theme.colors.onLight,
                     shape = RoundedCornerShape(16.dp),
                 )
                 .padding(16.dp),
@@ -65,7 +66,7 @@ internal fun SelectorCard(
                         modifier = Modifier.weight(1f),
                         text = stringResource(R.string.history_selector_disabled_text),
                         style = MaterialTheme.typography.body2,
-                        color = FashionColor.White,
+                        color = theme.colors.onDark,
                     )
 
                     Spacer(Modifier.width(12.dp))
@@ -117,7 +118,7 @@ internal fun SelectorCard(
                                     )
                                 },
                             backgroundColor = Color.Transparent,
-                            textColor = FashionColor.White,
+                            textColor = theme.colors.onDark,
                         ) {
                             if (state == SelectorMode.ALL_IS_SELECTED) {
                                 onDeselectAll()

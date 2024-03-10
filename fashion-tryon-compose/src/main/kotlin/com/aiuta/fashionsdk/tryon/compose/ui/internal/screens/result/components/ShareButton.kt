@@ -9,11 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -34,7 +34,7 @@ internal fun ShareButton(
             modifier
                 .background(
                     shape = CircleShape,
-                    color = FashionColor.White,
+                    color = Color.White,
                 )
                 .clickableUnindicated {
                     shareManager.share(
@@ -47,7 +47,7 @@ internal fun ShareButton(
             modifier = Modifier.size(24.dp),
             imageVector = ImageVector.vectorResource(FashionIcon.Share24),
             contentDescription = null,
-            tint = FashionColor.Black,
+            tint = Color.Black,
         )
     }
 }

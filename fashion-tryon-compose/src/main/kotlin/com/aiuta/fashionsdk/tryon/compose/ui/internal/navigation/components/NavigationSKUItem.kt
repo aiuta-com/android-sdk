@@ -23,12 +23,12 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
 @Composable
 internal fun NavigationSKUItem(
@@ -36,6 +36,7 @@ internal fun NavigationSKUItem(
     onItemClick: () -> Unit,
 ) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
 
     Row(
         modifier =
@@ -66,7 +67,7 @@ internal fun NavigationSKUItem(
         Icon(
             modifier = Modifier.size(16.dp).rotate(180f),
             imageVector = ImageVector.vectorResource(id = FashionIcon.Arrow36),
-            tint = FashionColor.DarkGray,
+            tint = theme.colors.secondary,
             contentDescription = null,
         )
     }
@@ -75,13 +76,14 @@ internal fun NavigationSKUItem(
 @Composable
 private fun SKUImage(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
 
     SubcomposeAsyncImage(
         modifier =
             modifier
                 .clip(RoundedCornerShape(8.dp))
                 .background(
-                    color = FashionColor.White,
+                    color = theme.colors.background,
                     shape = RoundedCornerShape(8.dp),
                 )
                 .border(

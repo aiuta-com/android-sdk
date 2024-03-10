@@ -7,7 +7,8 @@
     <!--Image selector-->
     <string name="image_selector_upload_button">Upload a photo of you</string>
     <string name="image_selector_change_button">Change photo</string>
-    <string name="image_selector_powered_by_aiuta">Powered by Aiuta</string>
+    <string name="image_selector_powered_by_aiuta_1">Powered by\u0020</string>
+    <string name="image_selector_powered_by_aiuta_2">Aiuta</string>
     <string name="image_selector_generating_outfit">Generating outfit</string>
 
     <!--History-->

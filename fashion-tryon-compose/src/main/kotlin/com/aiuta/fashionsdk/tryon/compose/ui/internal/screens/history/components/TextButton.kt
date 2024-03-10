@@ -11,15 +11,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
 @Composable
 internal fun TextButton(
     modifier: Modifier = Modifier,
     text: String,
-    backgroundColor: Color = FashionColor.White,
-    textColor: Color = FashionColor.Black,
+    backgroundColor: Color = LocalTheme.current.colors.onDark,
+    textColor: Color = LocalTheme.current.colors.onLight,
     onClick: () -> Unit = {},
 ) {
     Box(

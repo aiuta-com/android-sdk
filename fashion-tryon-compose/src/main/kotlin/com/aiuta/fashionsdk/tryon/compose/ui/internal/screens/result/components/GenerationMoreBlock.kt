@@ -35,7 +35,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
@@ -44,6 +43,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGene
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGeneralPriceDecoration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceHideActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceShowActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -61,6 +61,7 @@ internal fun GenerationMoreBlock(
     generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val generateMoreSKU = controller.activeSKUItem.value.generateMoreSKU.orEmpty()
     val sharedModifier = Modifier.fillMaxWidth().height(300.dp)
 
@@ -94,7 +95,7 @@ internal fun GenerationMoreBlock(
             Text(
                 text = stringResource(R.string.generation_result_more_title),
                 style = MaterialTheme.typography.h5,
-                color = FashionColor.Black,
+                color = theme.colors.primary,
                 fontWeight = FontWeight.Bold,
             )
 
@@ -121,18 +122,19 @@ private fun GenerationMoreBlockItem(
 ) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val sharedCornerShape = RoundedCornerShape(16.dp)
 
     Column(
         modifier =
             modifier
                 .background(
-                    color = FashionColor.White,
+                    color = theme.colors.background,
                     shape = sharedCornerShape,
                 )
                 .border(
                     width = 1.dp,
-                    color = FashionColor.LightGray,
+                    color = theme.colors.gray1,
                     shape = sharedCornerShape,
                 )
                 .padding(8.dp)
@@ -188,7 +190,7 @@ private fun GenerationMoreBlockItem(
         Text(
             text = skuItem.store,
             style = MaterialTheme.typography.body1,
-            color = FashionColor.Gray,
+            color = theme.colors.secondary,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -198,7 +200,7 @@ private fun GenerationMoreBlockItem(
         Text(
             text = skuItem.description,
             style = MaterialTheme.typography.body2,
-            color = FashionColor.Black,
+            color = theme.colors.primary,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
         )
@@ -227,7 +229,7 @@ private fun GenerationMoreBlockItem(
                 Text(
                     text = skuItem.priceDiscountedWithCurrency,
                     style = MaterialTheme.typography.body1,
-                    color = FashionColor.RedError,
+                    color = theme.colors.accent,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

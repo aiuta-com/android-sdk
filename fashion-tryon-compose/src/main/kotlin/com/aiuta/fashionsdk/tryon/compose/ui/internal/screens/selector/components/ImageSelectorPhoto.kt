@@ -7,9 +7,10 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -19,26 +20,30 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
-import com.aiuta.fashionsdk.compose.tokens.utils.conditional
+import com.airbnb.lottie.compose.rememberLottieDynamicProperties
+import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.dashedBorder
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val fashionTryOn = remember { controller.fashionTryOn() }
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
-    val sharedCornerShape = RoundedCornerShape(8.dp)
+    val sharedCornerShape = RoundedCornerShape(24.dp)
 
     // Animation
     val lastSavedPhotoUrisTransition =
@@ -54,6 +59,21 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
         )
 
     // Lottie
+    val dynamicProperties =
+        rememberLottieDynamicProperties(
+            rememberLottieDynamicProperty(
+                property = LottieProperty.COLOR_FILTER,
+                value =
+                    BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                        theme.colors.brand.hashCode(),
+                        BlendModeCompat.SRC_ATOP,
+                    ),
+                keyPath =
+                    arrayOf(
+                        "**",
+                    ),
+            ),
+        )
     val composition =
         rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.scanning_animation))
     val progress =
@@ -65,18 +85,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     Box(
         modifier =
             modifier
-                .conditional(controller.lastSavedPhotoUris.value.isEmpty()) {
-                    dashedBorder(
-                        color = FashionColor.DarkGray,
-                        shape = sharedCornerShape,
-                        dashWidth = 8.dp,
-                        gapWidth = 8.dp,
-                    )
-                }
-                .background(
-                    color = FashionColor.Black.copy(0.04f),
-                    shape = sharedCornerShape,
-                )
+                .clip(sharedCornerShape)
                 .clipToBounds(),
         contentAlignment = Alignment.Center,
     ) {
@@ -87,7 +96,14 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             val imageUri = uploadedImageUris.firstOrNull()
 
             if (imageUri == null) {
-                DefaultImage(modifier = Modifier.fillMaxSize())
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    DefaultImage(
+                        modifier = Modifier.fillMaxHeight(0.55f).fillMaxWidth(),
+                    )
+                }
             } else {
                 UploadImage(
                     modifier = Modifier.fillMaxSize().clip(sharedCornerShape),
@@ -107,6 +123,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
                 contentScale = ContentScale.FillHeight,
                 composition = composition.value,
                 progress = { progress.value },
+                dynamicProperties = dynamicProperties,
             )
         }
     }

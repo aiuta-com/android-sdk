@@ -44,13 +44,13 @@ import androidx.compose.ui.unit.toSize
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isGenerationPagerItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isMetaInfoPagerItem
@@ -133,6 +133,7 @@ internal fun PagerImageContainer(
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
+    val theme = LocalTheme.current
     val sharedCornerRadius = 24.dp
 
     var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
@@ -142,7 +143,7 @@ internal fun PagerImageContainer(
         modifier
             .clip(RoundedCornerShape(sharedCornerRadius))
             .background(
-                color = FashionColor.White,
+                color = theme.colors.background,
                 shape = RoundedCornerShape(sharedCornerRadius),
             ),
     ) {
@@ -196,8 +197,8 @@ internal fun PagerImageContainer(
                         .size(38.dp)
                         .shadow(
                             elevation = 4.dp,
-                            spotColor = FashionColor.Black.copy(0.2f),
-                            ambientColor = FashionColor.Black.copy(0.2f),
+                            spotColor = Color.Black.copy(0.2f),
+                            ambientColor = Color.Black.copy(0.2f),
                         ),
                 imageUrl = imageUrl,
             )
@@ -214,7 +215,7 @@ private fun PagerImageSwipeTip(modifier: Modifier = Modifier) {
                     Brush.verticalGradient(
                         listOf(
                             Color.Transparent,
-                            FashionColor.Black,
+                            Color.Black,
                         ),
                     ),
             ),
@@ -223,7 +224,7 @@ private fun PagerImageSwipeTip(modifier: Modifier = Modifier) {
         Icon(
             imageVector = ImageVector.vectorResource(FashionIcon.SwipeUp),
             contentDescription = null,
-            tint = FashionColor.White,
+            tint = Color.White,
         )
 
         Spacer(Modifier.height(12.dp))
@@ -231,7 +232,7 @@ private fun PagerImageSwipeTip(modifier: Modifier = Modifier) {
         Text(
             text = stringResource(R.string.generation_result_swipe_up),
             style = MaterialTheme.typography.h6,
-            color = FashionColor.White,
+            color = Color.White,
         )
 
         Spacer(Modifier.height(24.dp))

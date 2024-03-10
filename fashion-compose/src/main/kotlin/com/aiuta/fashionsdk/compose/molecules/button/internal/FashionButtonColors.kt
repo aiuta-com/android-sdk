@@ -3,87 +3,40 @@ package com.aiuta.fashionsdk.compose.molecules.button.internal
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 internal object FashionButtonColors {
     @Composable
-    fun primaryColors() =
+    fun primaryColors(theme: AiutaTheme) =
         DefaultFashionButtonColor(
             buttonColors =
                 ButtonDefaults.buttonColors(
-                    backgroundColor = FashionColor.ElectricBlue,
-                    contentColor = FashionColor.White,
-                    disabledBackgroundColor = FashionColor.Gray,
-                    disabledContentColor = FashionColor.White,
+                    backgroundColor = theme.colors.brand,
+                    contentColor = theme.colors.onDark,
                 ),
-            rippleColor = FashionColor.Black.copy(alpha = 0.1f),
+            rippleColor = theme.colors.brand.copy(alpha = 0.1f),
         )
 
     @Composable
-    fun errorColors() =
-        DefaultFashionButtonColor(
-            buttonColors =
-                ButtonDefaults.buttonColors(
-                    backgroundColor = FashionColor.RedError,
-                    contentColor = FashionColor.White,
-                    disabledBackgroundColor = FashionColor.Gray,
-                    disabledContentColor = FashionColor.White,
-                ),
-            rippleColor = FashionColor.Black.copy(alpha = 0.1f),
-        )
-
-    @Composable
-    fun secondaryColors() =
-        DefaultFashionButtonColor(
-            buttonColors =
-                ButtonDefaults.buttonColors(
-                    backgroundColor = FashionColor.LightGray,
-                    contentColor = FashionColor.ElectricBlue,
-                    disabledBackgroundColor = FashionColor.LightGray,
-                    disabledContentColor = FashionColor.DarkGray,
-                ),
-            rippleColor = FashionColor.Black.copy(alpha = 0.1f),
-        )
-
-    @Composable
-    fun transparentColors(
-        backgroundColor: Color = Color.Transparent,
-        contentColor: Color = FashionColor.ElectricBlue,
-        disabledBackgroundColor: Color = Color.Transparent,
-        disabledContentColor: Color = FashionColor.DarkGray,
-        rippleColor: Color = FashionColor.Black.copy(alpha = 0.1f),
+    fun primaryColors(
+        backgroundColor: Color,
+        contentColor: Color,
     ) = DefaultFashionButtonColor(
         buttonColors =
             ButtonDefaults.buttonColors(
                 backgroundColor = backgroundColor,
                 contentColor = contentColor,
-                disabledBackgroundColor = disabledBackgroundColor,
-                disabledContentColor = disabledContentColor,
             ),
-        rippleColor = rippleColor,
+        rippleColor = backgroundColor.copy(alpha = 0.1f),
     )
 
     @Composable
-    fun inverseColors() =
-        DefaultFashionButtonColor(
-            buttonColors =
-                ButtonDefaults.buttonColors(
-                    backgroundColor = FashionColor.White,
-                    contentColor = FashionColor.ElectricBlue,
-                    disabledBackgroundColor = FashionColor.White,
-                    disabledContentColor = FashionColor.DarkGray,
-                ),
-            rippleColor = FashionColor.ElectricBlue.copy(alpha = 0.15f),
-        )
-
-    @Composable
-    fun outlineColors() =
+    fun outlineColors(theme: AiutaTheme) =
         OutlineFashionButtonColor(
             buttonColors =
                 ButtonDefaults.outlinedButtonColors(
-                    backgroundColor = FashionColor.White,
-                    contentColor = FashionColor.Black,
-                    disabledContentColor = FashionColor.DarkGray,
+                    backgroundColor = Color.Transparent,
+                    contentColor = theme.colors.primary,
                 ),
             borderColor = Color(0xFFCCCCCC),
             rippleColor = Color(0xFFCCCCCC).copy(alpha = 0.15f),

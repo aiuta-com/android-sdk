@@ -18,11 +18,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
@@ -34,13 +33,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.Navi
 @Composable
 internal fun NavigationContainer(modifier: Modifier = Modifier) {
     val currentController = LocalController.current
+    val theme = LocalTheme.current
 
     ModalBottomSheetLayout(
         modifier = modifier,
         sheetState = currentController.bottomSheetNavigator.sheetState,
-        sheetBackgroundColor = Color.White,
+        sheetBackgroundColor = theme.colors.backgroundElevation2,
         sheetContent = currentController.bottomSheetNavigator.sheetContent,
-        sheetContentColor = FashionColor.White,
+        sheetContentColor = theme.colors.primary,
         sheetShape =
             RoundedCornerShape(
                 topStart = 24.dp,
@@ -57,15 +57,16 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
 @Composable
 private fun NavigationContainerContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val sharedModifier = Modifier.zIndex(controller.zIndexInterface).fillMaxWidth()
 
     Column(
-        modifier = modifier.background(FashionColor.White),
+        modifier = modifier.background(theme.colors.background),
     ) {
         NavigationAppBar(
             modifier =
                 sharedModifier.background(
-                    FashionColor.White,
+                    theme.colors.background,
                 ).windowInsetsPadding(WindowInsets.statusBars),
             navigateBack = controller::navigateBack,
             navigateToHistory = {
@@ -75,12 +76,12 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
 
         Divider(
             modifier = sharedModifier,
-            color = FashionColor.LightGray,
+            color = theme.colors.gray2,
             thickness = 1.dp,
         )
 
         AnimatedVisibility(
-            modifier = sharedModifier.background(FashionColor.White),
+            modifier = sharedModifier.background(theme.colors.background),
             visible = controller.isSKUItemVisible.value,
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically(),
@@ -101,7 +102,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
 
         Divider(
             modifier = sharedModifier,
-            color = FashionColor.LightGray,
+            color = theme.colors.gray2,
             thickness = 1.dp,
         )
 

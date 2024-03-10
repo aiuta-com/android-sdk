@@ -20,14 +20,13 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionColor
 import kotlinx.coroutines.delay
 
 @Composable
 internal fun FashionButtonLoadingAnimation(
     modifier: Modifier = Modifier,
     circleSize: Dp = 6.dp,
-    circleColor: Color = FashionColor.White,
+    circleColor: Color = Color.White,
     spaceBetween: Dp = 10.dp,
     travelDistance: Dp = 10.dp,
 ) {

@@ -2,46 +2,37 @@ package com.aiuta.fashionsdk.compose.molecules.button
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
 import com.aiuta.fashionsdk.compose.molecules.button.internal.DefaultFashionButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonColors
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.button.internal.OutlineFashionButtonStyle
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 @Immutable
 public object FashionButtonStyles {
     @Composable
-    public fun inverseStyle(): FashionButtonStyle =
+    public fun primaryStyle(theme: AiutaTheme): FashionButtonStyle =
         DefaultFashionButtonStyle(
-            colors = FashionButtonColors.inverseColors(),
+            colors = FashionButtonColors.primaryColors(theme = theme),
         )
 
     @Composable
-    public fun primaryStyle(): FashionButtonStyle =
+    public fun primaryStyle(
+        backgroundColor: Color,
+        contentColor: Color,
+    ): FashionButtonStyle =
         DefaultFashionButtonStyle(
-            colors = FashionButtonColors.primaryColors(),
+            colors =
+                FashionButtonColors.primaryColors(
+                    backgroundColor = backgroundColor,
+                    contentColor = contentColor,
+                ),
         )
 
     @Composable
-    public fun errorStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.errorColors(),
-        )
-
-    @Composable
-    public fun secondaryStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.secondaryColors(),
-        )
-
-    @Composable
-    public fun transparentStyle(): FashionButtonStyle =
-        DefaultFashionButtonStyle(
-            colors = FashionButtonColors.transparentColors(),
-        )
-
-    @Composable
-    public fun outlineStyle(): FashionButtonStyle =
+    public fun outlineStyle(theme: AiutaTheme): FashionButtonStyle =
         OutlineFashionButtonStyle(
-            colors = FashionButtonColors.outlineColors(),
+            colors = FashionButtonColors.outlineColors(theme = theme),
         )
 }

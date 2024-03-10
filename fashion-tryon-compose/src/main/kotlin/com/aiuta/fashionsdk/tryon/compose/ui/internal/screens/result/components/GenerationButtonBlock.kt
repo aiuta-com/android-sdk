@@ -13,10 +13,12 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
 @Composable
 internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
 
     Row(
         modifier = modifier,
@@ -25,7 +27,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
         FashionButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.add_to_wish),
-            style = FashionButtonStyles.outlineStyle(),
+            style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = controller.fashionTryOnListeners().addToWishlistClick,
         )
@@ -35,7 +37,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
         FashionButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.add_to_cart),
-            style = FashionButtonStyles.primaryStyle(),
+            style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = controller.fashionTryOnListeners().addToCartClick,
         )
