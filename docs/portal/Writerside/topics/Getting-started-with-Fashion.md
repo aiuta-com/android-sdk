@@ -1,11 +1,11 @@
-# Getting started with Fashion
+# Getting started with Aiuta
 
 In this tutorial, you will learn how to initialize the SDK and figure out how to create
 your own application using all the features of [Aiuta](https://aiuta.com/)
 
 > Code example is [here](https://github.com/aiuta-com/android-sdk/tree/main/samples/tryon)
 
-The Fashion SDK for Android provides the ability to use public methods provided by [Aiuta](https://aiuta.com/)
+The Aiuta SDK for Android provides the ability to use public methods provided by [Aiuta](https://aiuta.com/)
 from [dev portal](https://developer.aiuta.com/).
 
 
@@ -17,7 +17,7 @@ Before starting this tutorial:
 
 ## Create a new project
 
-First of all, we need to create a project in which we will use the Fashion SDK
+First of all, we need to create a project in which we will use the Aiuta SDK
 
 <procedure collapsible="false">
     <step>On the Welcome screen, click <b>New Project</b>.
@@ -29,7 +29,7 @@ First of all, we need to create a project in which we will use the Fashion SDK
 
 ## Add dependencies
 
-Let's add dependencies required for a Fashion SDK.
+Let's add dependencies required for a Aiuta SDK.
 
 <procedure collapsible="false">
     <step>Be sure, that you use <b>mavenCentral</b> for solving dependencies in
@@ -45,7 +45,7 @@ Let's add dependencies required for a Fashion SDK.
         </tabs>
     </step>
     <step>
-    Solve what the last version of Fashion sdk
+    Solve what the last version of Aiuta sdk
     on <a href="https://github.com/aiuta-com/android-sdk/releases">Github releases page</a>
         <note>
             <p>
@@ -74,17 +74,17 @@ Let's add dependencies required for a Fashion SDK.
 </procedure>
 
 
-## Initialize Fashion
+## Initialize Aiuta
 
 <procedure collapsible="false">
-    <step>Create <b>MainApplication</b> to initialize Fashion entry point as follow:
+    <step>Create <b>MainApplication</b> to initialize Aiuta entry point as follow:
         <code-block lang="kotlin">
             class MainApplication : Application() {
-                lateinit var aiuta: Fashion
+                lateinit var aiuta: Aiuta
                 ...
                 private fun initFashion() {
                     aiuta =
-                        Fashion.Builder()
+                        Aiuta.Builder()
                             .setApiKey(API_KEY)
                             .setApplication(this)
                             .build()
