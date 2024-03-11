@@ -11,8 +11,22 @@ import com.aiuta.fashionsdk.compose.tokens.defaultAiutaColors
  */
 @Immutable
 public interface AiutaTryOnColors {
+    /**
+     * Your brand's primary color.
+     * This color will be used for all significant interface elements,
+     * such as the main action button on the screen, progress bars, etc.
+     */
     public val brand: Color?
+
+    /**
+     * Extra special attention color. The discounted price labels
+     * and the discount percentage background will be colored in it.
+     */
     public val accent: Color?
+
+    /**
+     * The background color of all screens.
+     */
     public val background: Color?
 }
 

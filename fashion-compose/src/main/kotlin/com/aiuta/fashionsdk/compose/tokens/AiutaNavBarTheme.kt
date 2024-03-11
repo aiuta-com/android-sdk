@@ -4,9 +4,15 @@ import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
 
 public interface AiutaNavBarTheme {
+    /**
+     * A small image of your logo to embed in the navigation bar.
+     */
     @get:DrawableRes
     public val navLogo: Int
 
+    /**
+     * The color of navigation bar elements, such as the back button or text color
+     */
     public val foregroundColor: Color?
 }
 
