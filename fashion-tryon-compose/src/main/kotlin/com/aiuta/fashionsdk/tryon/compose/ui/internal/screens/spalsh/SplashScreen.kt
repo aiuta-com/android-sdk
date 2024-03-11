@@ -38,7 +38,7 @@ internal fun SplashScreen(
     ) {
         Image(
             modifier = Modifier.fillMaxWidth(0.4f),
-            painter = painterResource(theme.navLogo),
+            painter = painterResource(theme.navBarTheme.navLogo),
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
         )

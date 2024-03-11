@@ -54,6 +54,8 @@ internal fun NavigationAppBar(
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 
+    val actionColor = theme.navBarTheme.foregroundColor ?: theme.colors.primary
+
     val appbarTransition =
         updateTransition(
             targetState = appbarState.value,
@@ -62,9 +64,9 @@ internal fun NavigationAppBar(
 
     val actionColorCalculation: (Boolean) -> Color = { active ->
         if (active) {
-            theme.colors.primary
+            actionColor
         } else {
-            theme.colors.primary.copy(alpha = 0.4f)
+            actionColor.copy(alpha = 0.4f)
         }
     }
 
@@ -94,7 +96,7 @@ internal fun NavigationAppBar(
                         },
                 imageVector = ImageVector.vectorResource(FashionIcon.Arrow36),
                 contentDescription = null,
-                tint = theme.colors.primary,
+                tint = actionColor,
             )
         },
         title = {
@@ -108,7 +110,7 @@ internal fun NavigationAppBar(
                     when (state) {
                         NavigationAppBarState.GENERAL -> {
                             Image(
-                                painter = painterResource(theme.navLogo),
+                                painter = painterResource(theme.navBarTheme.navLogo),
                                 contentDescription = null,
                                 contentScale = ContentScale.Fit,
                             )

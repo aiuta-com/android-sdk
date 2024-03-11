@@ -1,29 +1,28 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models
 
-import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.compose.tokens.AiutaNavBarTheme
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.defaultAiutaTheme
 
 /**
  * Theme for Digital Try On flow.
- * Depends on provided [navLogo] and [colors] final
+ * Depends on provided [navBarTheme] and [colors] final
  * theme will be override
  */
 @Immutable
 public interface AiutaTryOnTheme {
-    @get:DrawableRes
-    public val navLogo: Int?
+    public val navBarTheme: AiutaNavBarTheme?
 
     public val colors: AiutaTryOnColors?
 }
 
 public fun defaultAiutaTryOnTheme(
-    navLogo: Int? = null,
+    navBarTheme: AiutaNavBarTheme? = null,
     colors: AiutaTryOnColors? = null,
 ): AiutaTryOnTheme {
     return object : AiutaTryOnTheme {
-        override val navLogo: Int? = navLogo
+        override val navBarTheme: AiutaNavBarTheme? = navBarTheme
         override val colors: AiutaTryOnColors? = colors
     }
 }
@@ -31,7 +30,7 @@ public fun defaultAiutaTryOnTheme(
 internal fun AiutaTryOnTheme?.toTheme(): AiutaTheme {
     return this?.let {
         defaultAiutaTheme(
-            navLogo = navLogo,
+            navBarTheme = navBarTheme,
             colors = colors?.toColors(),
         )
     } ?: defaultAiutaTheme()
