@@ -10,7 +10,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generatedimages.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
-import com.aiuta.fashionsdk.tryon.compose.domain.models.FashionTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
@@ -18,7 +18,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScr
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
-import com.aiuta.fashionsdk.tryon.core.FashionTryOn
+import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import java.util.LinkedList
 import kotlinx.coroutines.CoroutineScope
@@ -30,8 +30,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
-    fashionTryOn: () -> FashionTryOn,
-    fashionTryOnListeners: () -> FashionTryOnListeners,
+    aiutaTryOn: () -> AiutaTryOn,
+    aiutaTryOnListeners: () -> AiutaTryOnListeners,
     skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
     val context = LocalContext.current
@@ -79,8 +79,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             isSKUItemVisible = defaultSKUItemVisibility,
             lastSavedPhotoUris = defaultLastSavedUriPhoto,
             activeSKUItem = activeSKUItem,
-            fashionTryOn = fashionTryOn,
-            fashionTryOnListeners = fashionTryOnListeners,
+            aiutaTryOn = aiutaTryOn,
+            aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = GeneratedImageInteractor.getInstance(context),
             onboardingInteractor = OnboardingInteractor.getInstance(context),
@@ -108,8 +108,8 @@ internal class FashionTryOnController(
     public val lastSavedPhotoUris: MutableState<List<String>>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
-    public val fashionTryOn: () -> FashionTryOn,
-    public val fashionTryOnListeners: () -> FashionTryOnListeners,
+    public val aiutaTryOn: () -> AiutaTryOn,
+    public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
@@ -119,7 +119,7 @@ internal class FashionTryOnController(
 
     init {
         scope.launch {
-            fashionTryOn()
+            aiutaTryOn()
                 .skuGenerationStatus
                 .onEach { status ->
                     if (status is SKUGenerationStatus.SuccessGenerationStatus) {

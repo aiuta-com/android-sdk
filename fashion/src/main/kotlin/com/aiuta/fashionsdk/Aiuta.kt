@@ -3,16 +3,16 @@ package com.aiuta.fashionsdk
 import android.app.Application
 
 /**
- * [Fashion] class is an entry point to Fashion sdk.
+ * [Aiuta] class is an entry point to Aiuta sdk.
  *
  * @param apiKey for
  */
-public class Fashion private constructor(
+public class Aiuta private constructor(
     public val apiKey: String,
     public val application: Application,
 ) {
     /**
-     * Public [Builder] for initialize [Fashion] class
+     * Public [Builder] for initialize [Aiuta] class
      */
     public class Builder {
         private var apiKey: String? = null
@@ -30,7 +30,7 @@ public class Fashion private constructor(
             }
         }
 
-        public fun build(): Fashion {
+        public fun build(): Aiuta {
             val internalApiKey = apiKey
             val internalApplication = application
 
@@ -50,7 +50,7 @@ public class Fashion private constructor(
                 lazyMessage = { ERROR_MESSAGE_CONTEXT_NULL },
             )
 
-            return Fashion(
+            return Aiuta(
                 apiKey = internalApiKey,
                 application = internalApplication,
             )
@@ -59,14 +59,14 @@ public class Fashion private constructor(
 
     private companion object {
         const val ERROR_MESSAGE_API_KEY_NULL =
-            "Fashion: api key is null, therefore cannot init Fashion. " +
+            "Aiuta: api key is null, therefore cannot init Aiuta. " +
                 "Please, call setApiKey() before build()"
         const val ERROR_MESSAGE_API_KEY_EMPTY =
-            "Fashion: api key is empty, therefore cannot init Fashion. " +
+            "Aiuta: api key is empty, therefore cannot init Aiuta. " +
                 "Please, call setApiKey() with not empty apiKey param before build()"
 
         const val ERROR_MESSAGE_CONTEXT_NULL =
-            "Fashion: application context is not applied, therefore cannot init Fashion. " +
+            "Aiuta: application context is not applied, therefore cannot init Aiuta. " +
                 "Please, call setApplication() with application context param before build()"
     }
 }

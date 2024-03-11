@@ -37,7 +37,7 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
 
     val skuGenerationStatus =
         controller
-            .fashionTryOn()
+            .aiutaTryOn()
             .skuGenerationStatus
             .collectAsStateWithLifecycle()
 

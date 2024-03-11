@@ -9,7 +9,7 @@
         <product-web-url>https://aiuta.com/</product-web-url>
         <custom-favicons>logo.svg</custom-favicons>
         <download-title>Get Aiuta App</download-title>
-        <download-page>https://play.google.com/store/apps/details?id=com.aiuta.fashion</download-page>
+        <download-page>https://play.google.com/store/apps/details?id=com.aiuta.aiuta</download-page>
         <showDownloadButton>true</showDownloadButton>
     </variables>
     <footer>

@@ -50,7 +50,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
-    val fashionTryOn = remember { controller.fashionTryOn() }
+    val fashionTryOn = remember { controller.aiutaTryOn() }
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
 
     val isLastSavedPhotoAvailable = controller.isLastSavedPhotoAvailable()

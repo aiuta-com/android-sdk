@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.ui.FashionTryOnFlow
+import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 
 /**
  * Callback listeners for handling specific actions
- * inside [FashionTryOnFlow]
+ * inside [AiutaTryOnFlow]
  *
  * @param addToWishlistClick - use click on 'Add to Wishlist' button
  * @param addToCartClick - use click on 'Add to cart' button
@@ -13,7 +13,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.FashionTryOnFlow
  * navigate back to host app
  */
 @Immutable
-public class FashionTryOnListeners(
+public class AiutaTryOnListeners(
     public val addToWishlistClick: () -> Unit,
     public val addToCartClick: () -> Unit,
     public val closeClick: () -> Unit,

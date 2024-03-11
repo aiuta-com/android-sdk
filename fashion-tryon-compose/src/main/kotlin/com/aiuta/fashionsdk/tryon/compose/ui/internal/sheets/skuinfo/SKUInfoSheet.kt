@@ -136,7 +136,7 @@ private fun ButtonsContainer(
             text = stringResource(R.string.add_to_wish),
             style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
-            onClick = controller.fashionTryOnListeners().addToWishlistClick,
+            onClick = controller.aiutaTryOnListeners().addToWishlistClick,
         )
 
         Spacer(Modifier.width(8.dp))
@@ -156,7 +156,7 @@ private fun ButtonsContainer(
             size = FashionButtonSizes.xlSize(),
             onClick = {
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.fashionTryOnListeners().addToCartClick()
+                    controller.aiutaTryOnListeners().addToCartClick()
                 } else {
                     controller.changeActiveSKU(skuInfo.skuItem)
                     controller.bottomSheetNavigator.hide()

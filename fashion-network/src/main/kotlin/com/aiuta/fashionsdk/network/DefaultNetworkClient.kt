@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.network
 
-import com.aiuta.fashionsdk.Fashion
+import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.internal.KtorNetworkClient
 
 /**
@@ -23,14 +23,14 @@ public fun defaultNetworkClient(
 
 /**
  * Default extension for creating [NetworkClient]. Same as [defaultNetworkClient],
- * but use api key from instance of [Fashion] and take default endpoint
+ * but use api key from instance of [Aiuta] and take default endpoint
  *
- * @param fashion Instance of [Fashion]
+ * @param aiuta Instance of [Aiuta]
  *
  * @return instance of [NetworkClient]
  */
-public fun defaultNetworkClient(fashion: Fashion): NetworkClient {
+public fun defaultNetworkClient(aiuta: Aiuta): NetworkClient {
     return defaultNetworkClient(
-        apiKey = fashion.apiKey,
+        apiKey = aiuta.apiKey,
     )
 }

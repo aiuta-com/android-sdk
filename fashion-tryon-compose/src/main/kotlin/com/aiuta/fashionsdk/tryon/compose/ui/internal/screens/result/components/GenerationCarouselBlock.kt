@@ -49,7 +49,7 @@ internal fun GenerationCarouselBlock(
     val scope = rememberCoroutineScope()
     val skuGenerationStatus =
         controller
-            .fashionTryOn()
+            .aiutaTryOn()
             .skuGenerationStatus
             .collectAsStateWithLifecycle()
 

@@ -45,7 +45,7 @@ Let's add dependencies required for a Fashion SDK.
         </tabs>
     </step>
     <step>
-    Solve what the last version of Fashion sdk 
+    Solve what the last version of Fashion sdk
     on <a href="https://github.com/aiuta-com/android-sdk/releases">Github releases page</a>
         <note>
             <p>
@@ -80,10 +80,10 @@ Let's add dependencies required for a Fashion SDK.
     <step>Create <b>MainApplication</b> to initialize Fashion entry point as follow:
         <code-block lang="kotlin">
             class MainApplication : Application() {
-                lateinit var fashion: Fashion
+                lateinit var aiuta: Fashion
                 ...
                 private fun initFashion() {
-                    fashion =
+                    aiuta =
                         Fashion.Builder()
                             .setApiKey(API_KEY)
                             .setApplication(this)

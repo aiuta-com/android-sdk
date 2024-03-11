@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.core
 
-import com.aiuta.fashionsdk.Fashion
+import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
-import com.aiuta.fashionsdk.tryon.core.domain.FashionTryOnImpl
+import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
@@ -14,17 +14,17 @@ import java.io.FileNotFoundException
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * Default Kotlin extension for creating [FashionTryOn]
+ * Default Kotlin extension for creating [AiutaTryOn]
  *
- * @return new instance of [FashionTryOn]
+ * @return new instance of [AiutaTryOn]
  */
-public val Fashion.tryon: FashionTryOn
-    get() = FashionTryOnImpl.create(fashion = this)
+public val Aiuta.tryon: AiutaTryOn
+    get() = AiutaTryOnImpl.create(aiuta = this)
 
 /**
  * Entry point for all functionality of Digital try on
  */
-public interface FashionTryOn {
+public interface AiutaTryOn {
     /**
      * Flow of current sku generation status
      *

@@ -39,7 +39,7 @@ internal fun ImageSelectorBottom(
     uploadPhoto: () -> Unit,
 ) {
     val controller = LocalController.current
-    val fashionTryOn = remember { controller.fashionTryOn() }
+    val fashionTryOn = remember { controller.aiutaTryOn() }
     val theme = LocalTheme.current
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
     val sharedModifier = Modifier.fillMaxWidth()

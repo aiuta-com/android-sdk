@@ -68,7 +68,7 @@ internal fun GenerationVerticalPagerBlock(
     val controller = LocalController.current
     val skuGenerationStatus =
         controller
-            .fashionTryOn()
+            .aiutaTryOn()
             .skuGenerationStatus
             .collectAsStateWithLifecycle()
 

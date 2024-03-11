@@ -28,7 +28,7 @@ General
 - Visit [Aiuta developer portal](https://developer.aiuta.com) for getting api key
 - Initialize Fashion
 ```kotlin
-    val fashion: Fashion = Fashion.Builder()
+    val aiuta: Aiuta = Aiuta.Builder()
         .setApiKey(...)
         .setApplication(...)
         .build()
@@ -37,9 +37,9 @@ General
 Digital Try On
 - Initialize Fashion Try on and start generation
 ```kotlin
-    val fashionTryOn: FashionTryOn = fashion.tryon
+    val aiutaTryOn: AiutaTryOn = aiuta.tryon
 
-    fashionTryOn.startSKUGeneration(
+    aiutaTryOn.startSKUGeneration(
         //...
     )
 ```
