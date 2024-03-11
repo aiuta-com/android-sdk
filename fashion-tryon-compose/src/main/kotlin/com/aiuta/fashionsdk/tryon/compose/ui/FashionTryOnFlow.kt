@@ -41,7 +41,7 @@ public fun FashionTryOnFlow(
     modifier: Modifier = Modifier,
     fashionTryOn: () -> FashionTryOn,
     fashionTryOnListeners: () -> FashionTryOnListeners,
-    aiutaTryOnTheme: (() -> AiutaTryOnTheme)? = null,
+    theme: (() -> AiutaTryOnTheme)? = null,
     skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()
@@ -55,11 +55,11 @@ public fun FashionTryOnFlow(
                 fashionTryOnListeners = fashionTryOnListeners,
                 skuForGeneration = skuForGeneration,
             )
-        val theme = remember { aiutaTryOnTheme?.invoke().toTheme() }
+        val internalTheme = remember { theme?.invoke().toTheme() }
 
         CompositionLocalProvider(
             LocalController provides controller,
-            LocalTheme provides theme,
+            LocalTheme provides internalTheme,
         ) {
             NavigationContainer(
                 modifier = modifier,
