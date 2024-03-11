@@ -100,6 +100,7 @@ public final class com/aiuta/fashionsdk/compose/tokens/FashionIcon {
 	public final fun getCamera24 ()I
 	public final fun getCheck16 ()I
 	public final fun getCross36 ()I
+	public final fun getError36 ()I
 	public final fun getGallery24 ()I
 	public final fun getMagic ()I
 	public final fun getShare24 ()I

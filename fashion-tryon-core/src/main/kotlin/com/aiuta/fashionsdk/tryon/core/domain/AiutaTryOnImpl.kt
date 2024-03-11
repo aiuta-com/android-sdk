@@ -68,37 +68,39 @@ internal class AiutaTryOnImpl(
 
     override suspend fun startSKUGeneration(container: SKUGenerationContainer) {
         mutex.withLock {
-            // Set loading state with previous image urls
-            _skuGenerationStatus.emit(
-                SKUGenerationStatus.LoadingGenerationStatus(),
-            )
-
-            // Firstly, upload image on backend
-            val uploadedImage =
-                uploadImageSlice.uploadImage(
-                    fileUri = container.fileUri,
-                    fileName = generateFileName(),
+            errorListener {
+                // Set loading state with previous image urls
+                _skuGenerationStatus.emit(
+                    SKUGenerationStatus.LoadingGenerationStatus(),
                 )
 
-            // Secondly, create sku generation operation
-            val newOperation =
-                skuOperationsDataSource.createSKUOperation(
-                    request =
-                        CreateSKUOperationRequest(
-                            skuCatalogName = container.skuCatalogName,
-                            skuId = container.skuId,
-                            uploadedImageId = uploadedImage.id,
-                        ),
-                )
+                // Firstly, upload image on backend
+                val uploadedImage =
+                    uploadImageSlice.uploadImage(
+                        fileUri = container.fileUri,
+                        fileName = generateFileName(),
+                    )
 
-            // Finally, wait for the operation, until it is completed
-            pingOperationSlice.startOperationTypeListening(
-                operationId = newOperation.operationId,
-            )
-            pingOperationSlice
-                .getPingGenerationStatusFlow(operationId = newOperation.operationId)
-                ?.first { it.isTerminate() }
-                .also { solveTerminatedOperationResult(it) }
+                // Secondly, create sku generation operation
+                val newOperation =
+                    skuOperationsDataSource.createSKUOperation(
+                        request =
+                            CreateSKUOperationRequest(
+                                skuCatalogName = container.skuCatalogName,
+                                skuId = container.skuId,
+                                uploadedImageId = uploadedImage.id,
+                            ),
+                    )
+
+                // Finally, wait for the operation, until it is completed
+                pingOperationSlice.startOperationTypeListening(
+                    operationId = newOperation.operationId,
+                )
+                pingOperationSlice
+                    .getPingGenerationStatusFlow(operationId = newOperation.operationId)
+                    ?.first { it.isTerminate() }
+                    .also { solveTerminatedOperationResult(it) }
+            }
         }
     }
 
@@ -125,6 +127,20 @@ internal class AiutaTryOnImpl(
                     ),
                 )
             }
+        }
+    }
+
+    private suspend fun errorListener(action: suspend () -> Unit) {
+        try {
+            action()
+        } catch (e: Exception) {
+            // Fallback with error
+            _skuGenerationStatus.emit(
+                SKUGenerationStatus.ErrorGenerationStatus(
+                    imageUrls = _skuGenerationStatus.value.imageUrls,
+                ),
+            )
+            throw e
         }
     }
 
