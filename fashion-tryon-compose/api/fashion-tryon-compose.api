@@ -27,8 +27,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/o
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors {
 	public abstract fun getAccent-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
+	public abstract fun getBackground-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
 	public abstract fun getBrand-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
-	public abstract fun getNavLogoColor-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColorsKt {
@@ -38,12 +38,12 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnCo
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme {
 	public abstract fun getColors ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
-	public abstract fun getNavLogo ()Ljava/lang/Integer;
+	public abstract fun getNavBarTheme ()Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnThemeKt {
-	public static final fun defaultAiutaTryOnTheme (Ljava/lang/Integer;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
-	public static synthetic fun defaultAiutaTryOnTheme$default (Ljava/lang/Integer;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
+	public static final fun defaultAiutaTryOnTheme (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
+	public static synthetic fun defaultAiutaTryOnTheme$default (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/FashionTryOnListeners {
