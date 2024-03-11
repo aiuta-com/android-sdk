@@ -77,7 +77,7 @@ private suspend fun PointerInputScope.detectTransformGestures(
         isTap = false
     }
 
-    // Vertical scrolling following a double tap is treated as a zoom gesture.
+    // VERTICAL scrolling following a double tap is treated as a zoom gesture.
     if (isTap) {
         val secondDown = awaitSecondDown(firstUp)
         if (secondDown == null) {

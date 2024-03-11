@@ -121,7 +121,7 @@ internal class ZoomState(
                     consume = false
                 } else {
                     val ratio = (abs(pan.x) / abs(pan.y))
-                    if (ratio > 3) { // Horizontal drag
+                    if (ratio > 3) { // HORIZONTAL drag
                         if ((pan.x < 0) && (_offsetX.value == _offsetX.lowerBound)) {
                             // Drag R to L when right edge of the content is shown.
                             consume = false
@@ -130,7 +130,7 @@ internal class ZoomState(
                             // Drag L to R when left edge of the content is shown.
                             consume = false
                         }
-                    } else if (ratio < 0.33) { // Vertical drag
+                    } else if (ratio < 0.33) { // VERTICAL drag
                         if ((pan.y < 0) && (_offsetY.value == _offsetY.lowerBound)) {
                             // Drag bottom to top when bottom edge of the content is shown.
                             consume = false

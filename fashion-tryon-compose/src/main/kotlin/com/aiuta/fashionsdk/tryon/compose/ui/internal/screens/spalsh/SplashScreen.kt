@@ -28,7 +28,8 @@ internal fun SplashScreen(
         delay(SPLASH_SCREEN_SHOWING_DELAY)
 
         // Navigate to image selector then
-        navigateTo(NavigationScreen.IMAGE_SELECTOR)
+        // TODO Solve navigation if onboarding already showed
+        navigateTo(NavigationScreen.ONBOARDING)
     }
 
     Box(
