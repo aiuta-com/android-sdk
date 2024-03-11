@@ -63,10 +63,10 @@ and
 - `skuForGeneration` - is SKU item for fitting on picked photo (
 [code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem.kt)
 and
-[api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-core/com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-item/index.html)
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-s-k-u-item/index.html)
 )
 - `theme` - is a optional theme decoration for `AiutaTryOnFlow` (
 [code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme.kt)
 and
-[api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-s-k-u-meta-info/index.html)
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-aiuta-try-on-theme/index.html)
 )
