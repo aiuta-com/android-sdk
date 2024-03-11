@@ -1,7 +1,7 @@
 # Using the Bill of Materials
 
 In addition to the usual dependency plug-in, you can use [Bill of Materials](https://developer.android.com/jetpack/compose/bom) for better
-versioning of all Fashion SDK dependencies
+versioning of all Aiuta SDK dependencies
 
 <tabs>
     <tab title="Gradle (Kotlin)">

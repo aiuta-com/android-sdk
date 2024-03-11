@@ -6,7 +6,7 @@ In this tutorial, you will learn how to make your first generation with [Aiuta D
 ## Prerequisites
 
 Before starting this tutorial:
-- [Initialize Fashion Try On](Getting-started-with-Fashion-Try-On.md)
+- [Initialize Aiuta Try On](Getting-started-with-Fashion-Try-On.md)
 
 
 ## SKU Catalog items
@@ -36,7 +36,7 @@ For starting generation your need 3 things:
 After receiving all the necessary information, feel free to call the `startSKUGeneration()` method,
 passing all the data through a special wrapper `SKUGenerationContainer`:
 ```kotlin
-val aiutaTryOn: FashionTryOn = ...
+val aiutaTryOn: AiutaTryOn = ...
 
 //...
 
@@ -57,7 +57,7 @@ aiutaTryOn.startSKUGeneration(
 ## Observing result
 
 After the generation starts, you need to wait for some time until the entire result is ready.
-You can track the current status and get the result through `FashionTryOn.skuGenerationStatus`.
+You can track the current status and get the result through `AiutaTryOn.skuGenerationStatus`.
 As the result is ready, the necessary `SKUGenerationStatus` will be emitted.
 
 To learn more about all possible `SKUGenerationStatus`, see [code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus.kt)

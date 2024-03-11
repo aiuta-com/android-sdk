@@ -7,7 +7,7 @@ In this tutorial, you will learn how to use default implementation of paginng wi
 ## Prerequisites
 
 Before starting this tutorial:
-- [Initialize Fashion Try On](Getting-started-with-Fashion-Try-On.md)
+- [Initialize Aiuta Try On](Getting-started-with-Fashion-Try-On.md)
 
 
 ## Add dependencies
@@ -15,12 +15,12 @@ Before starting this tutorial:
 Let's add dependencies required for default paging implementation
 <procedure collapsible="false">
     <step>Firstly, add base dependencies, as described in
-    <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Fashion</a>
+    <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Aiuta</a>
     and
-    <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Fashion</a>
+    <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Aiuta</a>
     guides
     </step>
-    <step>Add try on core dependency to have access to <code>FashionTryOn</code>
+    <step>Add try on core dependency to have access to <code>AiutaTryOn</code>
         <code-block lang="kotlin">
             dependencies {
                 val fashionVersion: String = "%latest_fashion_version%"

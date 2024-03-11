@@ -7,7 +7,7 @@ In this tutorial, you will learn how to use [Aiuta Digital Try On](https://devel
 ## Prerequisites
 
 Before starting this tutorial:
-- [Initialize Fashion Try On](Getting-started-with-Fashion-Try-On.md)
+- [Initialize Aiuta Try On](Getting-started-with-Fashion-Try-On.md)
 
 
 ## Add dependencies
@@ -17,12 +17,12 @@ with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 <procedure collapsible="false">
     <step>Firstly, add base dependencies, as described in
-    <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Fashion</a>
+    <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Aiuta</a>
     and
-    <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Fashion</a>
+    <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Aiuta</a>
     guides
     </step>
-    <step>Add try on compose dependency to have access to <code>FashionTryOnFlow</code>
+    <step>Add try on compose dependency to have access to <code>AiutaTryOnFlow</code>
         <code-block lang="kotlin">
             dependencies {
                 val fashionVersion: String = "%latest_fashion_version%"
@@ -40,33 +40,33 @@ with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 Now you can use the prepared UI to try on the SKU.
 To do this, call the following in the appropriate place:
 ```kotlin
-    FashionTryOnFlow(
+    AiutaTryOnFlow(
         modifier = ...,
-        aiutaTryOnListeners = { ... },
         aiutaTryOn = { ... },
+        aiutaTryOnListeners = { ... },
+        theme = { ... },
         skuForGeneration = { ... },
-        skuMetaInfo = { ... },
     )
 ```
 
 Where:
-- `aiutaTryOnListeners` - is a instance of `FashionTryOnListeners` for observing user interaction inside flow (
+- `aiutaTryOnListeners` - is a instance of `AiutaTryOnListeners` for observing user interaction inside flow (
 [code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners.kt)
 and
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-aiuta-try-on-listeners/index.html)
 )
-- aiutaTryOn - is a instance of `FashionTryOn` for using all logic of [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) (
+- `aiutaTryOn` - is a instance of `AiutaTryOn` for using all logic of [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) (
 [code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/AiutaTryOn.kt)
 and
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-core/com.aiuta.fashionsdk.tryon.core/-aiuta-try-on/index.html)
 )
 - `skuForGeneration` - is SKU item for fitting on picked photo (
-[code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationItem.kt)
+[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem.kt)
 and
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-core/com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-item/index.html)
 )
-- `skuMetaInfo` - is meta info about providing SKU item for showing user in `FashionTryOnFlow`(
-[code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/SKUMetaInfo.kt)
+- `theme` - is a optional theme decoration for `AiutaTryOnFlow` (
+[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme.kt)
 and
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-s-k-u-meta-info/index.html)
 )
