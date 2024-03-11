@@ -12,11 +12,11 @@ Before starting this tutorial:
 
 ## Add dependencies
 
-Let's add dependencies to use [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) 
+Let's add dependencies to use [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on)
 with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 <procedure collapsible="false">
-    <step>Firstly, add base dependencies, as described in 
+    <step>Firstly, add base dependencies, as described in
     <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Fashion</a>
     and
     <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Fashion</a>
@@ -37,36 +37,36 @@ with [Jetpack Compose](https://developer.android.com/jetpack/compose)
 
 ## Use Aiuta Digital Try On in Compose
 
-Now you can use the prepared UI to try on the SKU. 
+Now you can use the prepared UI to try on the SKU.
 To do this, call the following in the appropriate place:
 ```kotlin
     FashionTryOnFlow(
         modifier = ...,
-        fashionTryOnListeners = { ... },
-        fashionTryOn = { ... },
+        aiutaTryOnListeners = { ... },
+        aiutaTryOn = { ... },
         skuForGeneration = { ... },
         skuMetaInfo = { ... },
     )
 ```
 
-Where: 
-- `fashionTryOnListeners` - is a instance of `FashionTryOnListeners` for observing user interaction inside flow (
-[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/FashionTryOnListeners.kt) 
-and 
-[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-fashion-try-on-listeners/index.html)
-)
-- fashionTryOn - is a instance of `FashionTryOn` for using all logic of [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) (
-[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/FashionTryOn.kt)
+Where:
+- `aiutaTryOnListeners` - is a instance of `FashionTryOnListeners` for observing user interaction inside flow (
+[code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners.kt)
 and
-[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-core/com.aiuta.fashionsdk.tryon.core/-fashion-try-on/index.html)
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-aiuta-try-on-listeners/index.html)
+)
+- aiutaTryOn - is a instance of `FashionTryOn` for using all logic of [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) (
+[code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/AiutaTryOn.kt)
+and
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-core/com.aiuta.fashionsdk.tryon.core/-aiuta-try-on/index.html)
 )
 - `skuForGeneration` - is SKU item for fitting on picked photo (
-[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationItem.kt)
+[code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationItem.kt)
 and
-[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-core/com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-item/index.html)
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-core/com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-item/index.html)
 )
 - `skuMetaInfo` - is meta info about providing SKU item for showing user in `FashionTryOnFlow`(
-[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/SKUMetaInfo.kt)
+[code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/SKUMetaInfo.kt)
 and
-[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-s-k-u-meta-info/index.html)
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-s-k-u-meta-info/index.html)
 )

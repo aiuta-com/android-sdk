@@ -41,7 +41,7 @@ internal fun FashionTryOnController.navigateBack() {
 
         currentScreen.value = previousScreen
     } else {
-        fashionTryOnListeners().closeClick()
+        aiutaTryOnListeners().closeClick()
     }
 }
 
@@ -94,7 +94,7 @@ internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> 
 
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
-    val skuGenerationStatus = fashionTryOn().skuGenerationStatus.collectAsStateWithLifecycle()
+    val skuGenerationStatus = aiutaTryOn().skuGenerationStatus.collectAsStateWithLifecycle()
     val historyImageCount = generatedImageInteractor.count().collectAsStateWithLifecycle(0)
 
     return remember(skuGenerationStatus.value) {

@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.core.domain
 
-import com.aiuta.fashionsdk.Fashion
+import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
-import com.aiuta.fashionsdk.tryon.core.FashionTryOn
+import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOperationsDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSKUOperationRequest
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDataSourceFactory
@@ -26,12 +26,12 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-internal class FashionTryOnImpl(
+internal class AiutaTryOnImpl(
     private val pingOperationSlice: PingOperationSlice,
     private val uploadImageSlice: UploadImageSlice,
     private val skuDataSource: FashionSKUDataSource,
     private val skuOperationsDataSource: FashionSKUOperationsDataSource,
-) : FashionTryOn {
+) : AiutaTryOn {
     private val mutex = Mutex()
 
     private val _skuGenerationStatus: MutableStateFlow<SKUGenerationStatus> =
@@ -129,12 +129,12 @@ internal class FashionTryOnImpl(
     }
 
     companion object {
-        fun create(fashion: Fashion): FashionTryOn {
-            return FashionTryOnImpl(
-                pingOperationSlice = fashion.pingOperationSliceFactory,
-                uploadImageSlice = fashion.uploadImageSliceFactory,
-                skuDataSource = fashion.skuDataSourceFactory,
-                skuOperationsDataSource = fashion.skuOperationsDataSourceFactory,
+        fun create(aiuta: Aiuta): AiutaTryOn {
+            return AiutaTryOnImpl(
+                pingOperationSlice = aiuta.pingOperationSliceFactory,
+                uploadImageSlice = aiuta.uploadImageSliceFactory,
+                skuDataSource = aiuta.skuDataSourceFactory,
+                skuOperationsDataSource = aiuta.skuOperationsDataSourceFactory,
             )
         }
     }

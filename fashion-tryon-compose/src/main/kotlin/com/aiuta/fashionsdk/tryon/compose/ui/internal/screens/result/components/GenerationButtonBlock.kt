@@ -29,7 +29,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
             text = stringResource(R.string.add_to_wish),
             style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
-            onClick = controller.fashionTryOnListeners().addToWishlistClick,
+            onClick = controller.aiutaTryOnListeners().addToWishlistClick,
         )
 
         Spacer(Modifier.width(8.dp))
@@ -39,7 +39,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
             text = stringResource(R.string.add_to_cart),
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
-            onClick = controller.fashionTryOnListeners().addToCartClick,
+            onClick = controller.aiutaTryOnListeners().addToCartClick,
         )
     }
 }

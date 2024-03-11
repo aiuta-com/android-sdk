@@ -8,8 +8,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.FashionTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -25,23 +25,23 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.cl
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.disableZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
-import com.aiuta.fashionsdk.tryon.core.FashionTryOn
+import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 /**
  * Entry point for fashion try on flow
  *
- * @see FashionTryOn
- * @see FashionTryOnListeners
+ * @see AiutaTryOn
+ * @see AiutaTryOnListeners
  * @see AiutaTryOnTheme
  * @see SKUItem
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-public fun FashionTryOnFlow(
+public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
-    fashionTryOn: () -> FashionTryOn,
-    fashionTryOnListeners: () -> FashionTryOnListeners,
-    aiutaTryOnTheme: (() -> AiutaTryOnTheme)? = null,
+    aiutaTryOn: () -> AiutaTryOn,
+    aiutaTryOnListeners: () -> AiutaTryOnListeners,
+    theme: (() -> AiutaTryOnTheme)? = null,
     skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()
@@ -51,15 +51,15 @@ public fun FashionTryOnFlow(
     ) {
         val controller =
             rememberFashionTryOnController(
-                fashionTryOn = fashionTryOn,
-                fashionTryOnListeners = fashionTryOnListeners,
+                aiutaTryOn = aiutaTryOn,
+                aiutaTryOnListeners = aiutaTryOnListeners,
                 skuForGeneration = skuForGeneration,
             )
-        val theme = remember { aiutaTryOnTheme?.invoke().toTheme() }
+        val internalTheme = remember { theme?.invoke().toTheme() }
 
         CompositionLocalProvider(
             LocalController provides controller,
-            LocalTheme provides theme,
+            LocalTheme provides internalTheme,
         ) {
             NavigationContainer(
                 modifier = modifier,

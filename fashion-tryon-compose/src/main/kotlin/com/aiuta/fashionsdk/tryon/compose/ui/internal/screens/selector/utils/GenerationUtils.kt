@@ -15,7 +15,7 @@ internal fun FashionTryOnController.startGeneration(scope: CoroutineScope) {
             val imageUri = lastSavedPhotoUris.value.firstOrNull()?.toUri()
 
             imageUri?.let {
-                fashionTryOn().startSKUGeneration(
+                aiutaTryOn().startSKUGeneration(
                     container =
                         SKUGenerationContainer(
                             fileUri = imageUri,

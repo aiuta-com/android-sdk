@@ -6,9 +6,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.FashionTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.ui.FashionTryOnFlow
+import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import sample.tryon.MainViewModel
 
 @Composable
@@ -82,9 +82,9 @@ fun MainScreen() {
             )
         }
 
-    val mockFashionTryOnListeners =
+    val mockAiutaTryOnListeners =
         remember {
-            FashionTryOnListeners(
+            AiutaTryOnListeners(
                 addToWishlistClick = {
                     context.makeToast("Rise Add to Wishlist")
                 },
@@ -97,10 +97,10 @@ fun MainScreen() {
             )
         }
 
-    FashionTryOnFlow(
+    AiutaTryOnFlow(
         modifier = Modifier.fillMaxSize(),
-        fashionTryOnListeners = { mockFashionTryOnListeners },
-        fashionTryOn = { viewModel.fashionTryOn },
+        aiutaTryOnListeners = { mockAiutaTryOnListeners },
+        aiutaTryOn = { viewModel.fashionTryOn },
         skuForGeneration = { mockSKUItem },
     )
 }

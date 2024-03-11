@@ -41,7 +41,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val fashionTryOn = remember { controller.fashionTryOn() }
+    val fashionTryOn = remember { controller.aiutaTryOn() }
     val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
     val sharedCornerShape = RoundedCornerShape(24.dp)
 

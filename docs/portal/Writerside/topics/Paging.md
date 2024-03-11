@@ -14,7 +14,7 @@ Before starting this tutorial:
 
 Let's add dependencies required for default paging implementation
 <procedure collapsible="false">
-    <step>Firstly, add base dependencies, as described in 
+    <step>Firstly, add base dependencies, as described in
     <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Fashion</a>
     and
     <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Fashion</a>
@@ -52,5 +52,5 @@ val pagingFlow = Pager(
 ```
 
 > Example of usage such approach you can find in `implementation("com.aiuta:fashionsdk-tryon-paging:$fashionVersion")`
-> to get list of SKU item. You can find it [here](https://github.com/aiuta-com/android-sdk/blob/4df9d1fa9b8800b81938196f39661c202c399aa3/fashion-tryon-paging/src/main/kotlin/com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensions.kt#L14).
+> to get list of SKU item. You can find it [here](https://github.com/aiuta-com/android-sdk/blob/4df9d1fa9b8800b81938196f39661c202c399aa3/aiuta-tryon-paging/src/main/kotlin/com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensions.kt#L14).
 {style="note"}
