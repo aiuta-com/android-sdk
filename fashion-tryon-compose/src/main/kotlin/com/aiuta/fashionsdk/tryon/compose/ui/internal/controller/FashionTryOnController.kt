@@ -68,12 +68,18 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             mutableStateOf(SelectorMode.DISABLED)
         }
 
+    val defaultFashionTryOnErrorState =
+        remember {
+            mutableStateOf<FashionTryOnErrorState?>(null)
+        }
+
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
 
     return remember {
         FashionTryOnController(
             currentScreen = defaultCurrentScreen,
             bottomSheetNavigator = defaultBottomSheetNavigator,
+            fashionTryOnErrorState = defaultFashionTryOnErrorState,
             selectorState = defaultSelectorState,
             zoomImageController = zoomImageController,
             isSKUItemVisible = defaultSKUItemVisibility,
@@ -99,6 +105,8 @@ internal class FashionTryOnController(
     public val isSKUItemVisible: MutableState<Boolean>,
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
+    // Error state
+    public val fashionTryOnErrorState: MutableState<FashionTryOnErrorState?>,
     // Edit mode
     internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),

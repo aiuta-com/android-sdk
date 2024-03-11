@@ -8,6 +8,7 @@ public object FashionIcon {
     // x36
     public val Arrow36: Int = R.drawable.ic_arrow_36
     public val Cross36: Int = R.drawable.ic_cross_36
+    public val Error36: Int = R.drawable.ic_error_36
     public val Trash36: Int = R.drawable.ic_trash_36
     public val Share36: Int = R.drawable.ic_share_36
 

@@ -50,6 +50,18 @@ internal fun FashionTryOnController.changeActiveSKU(newSkuItem: SKUItem) {
     activeSKUItem.value = newSkuItem
 }
 
+// Error State
+
+internal fun FashionTryOnController.showErrorState(
+    errorState: FashionTryOnErrorState = FashionTryOnErrorState.DEFAULT,
+) {
+    fashionTryOnErrorState.value = errorState
+}
+
+internal fun FashionTryOnController.hideErrorState() {
+    fashionTryOnErrorState.value = null
+}
+
 // Edit mode
 internal fun FashionTryOnController.activateSelectMode() {
     selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
@@ -127,6 +139,15 @@ internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> 
     return remember(lastSavedPhotoUris.value) {
         derivedStateOf {
             lastSavedPhotoUris.value.isNotEmpty()
+        }
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> {
+    return remember(fashionTryOnErrorState.value) {
+        derivedStateOf {
+            fashionTryOnErrorState.value != null
         }
     }
 }
