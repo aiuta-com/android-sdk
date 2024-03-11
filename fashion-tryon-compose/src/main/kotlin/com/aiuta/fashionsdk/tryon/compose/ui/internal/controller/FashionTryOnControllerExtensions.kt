@@ -21,6 +21,7 @@ internal val screensWithSKUItems =
 internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.SPLASH,
+        NavigationScreen.ONBOARDING,
     )
 
 // Navigation
@@ -83,7 +84,7 @@ internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> 
     return remember(currentScreen.value) {
         derivedStateOf {
             when (currentScreen.value) {
-                NavigationScreen.SPLASH -> NavigationAppBarState.EMPTY
+                NavigationScreen.SPLASH, NavigationScreen.ONBOARDING -> NavigationAppBarState.EMPTY
                 NavigationScreen.HISTORY -> NavigationAppBarState.HISTORY
                 else -> NavigationAppBarState.GENERAL
             }

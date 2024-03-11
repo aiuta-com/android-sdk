@@ -4,6 +4,14 @@
     <string name="app_bar_history">History</string>
     <string name="app_bar_select">Select</string>
 
+    <!--Onboarding-->
+    <string name="onboarding_button_next">Next</string>
+    <string name="onboarding_button_start">Start</string>
+    <string name="onboarding_page_tryon_topic">Try on before buying</string>
+    <string name="onboarding_page_tryon_subtopic">Just upload your photo and see how it looks</string>
+    <string name="onboarding_page_best_result_topic">For best results</string>
+    <string name="onboarding_page_best_result_subtopic">Use a photo with good lighting, stand straight a plain background</string>
+
     <!--Image selector-->
     <string name="image_selector_upload_button">Upload a photo of you</string>
     <string name="image_selector_change_button">Change photo</string>

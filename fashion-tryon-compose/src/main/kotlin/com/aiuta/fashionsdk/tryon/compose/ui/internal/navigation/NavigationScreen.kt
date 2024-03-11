@@ -6,6 +6,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 internal enum class NavigationScreen {
     SPLASH,
 
+    ONBOARDING,
+
     IMAGE_SELECTOR,
 
     GENERATION_RESULT,

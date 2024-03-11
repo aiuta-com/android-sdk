@@ -74,37 +74,39 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
             },
         )
 
-        Divider(
-            modifier = sharedModifier,
-            color = theme.colors.gray2,
-            thickness = 1.dp,
-        )
-
         AnimatedVisibility(
             modifier = sharedModifier.background(theme.colors.background),
             visible = controller.isSKUItemVisible.value,
             enter = fadeIn() + expandVertically(),
             exit = fadeOut() + shrinkVertically(),
         ) {
-            NavigationSKUItem(
-                modifier = Modifier.fillMaxWidth(),
-                onItemClick = {
-                    controller.bottomSheetNavigator.show(
-                        newSheetScreen =
-                            NavigationBottomSheetScreen.SKUInfo(
-                                primaryButtonState = PrimaryButtonState.ADD_TO_CART,
-                                skuItem = controller.activeSKUItem.value,
-                            ),
-                    )
-                },
-            )
-        }
+            Column {
+                Divider(
+                    modifier = sharedModifier,
+                    color = theme.colors.gray2,
+                    thickness = 1.dp,
+                )
 
-        Divider(
-            modifier = sharedModifier,
-            color = theme.colors.gray2,
-            thickness = 1.dp,
-        )
+                NavigationSKUItem(
+                    modifier = Modifier.fillMaxWidth(),
+                    onItemClick = {
+                        controller.bottomSheetNavigator.show(
+                            newSheetScreen =
+                                NavigationBottomSheetScreen.SKUInfo(
+                                    primaryButtonState = PrimaryButtonState.ADD_TO_CART,
+                                    skuItem = controller.activeSKUItem.value,
+                                ),
+                        )
+                    },
+                )
+
+                Divider(
+                    modifier = sharedModifier,
+                    color = theme.colors.gray2,
+                    thickness = 1.dp,
+                )
+            }
+        }
 
         NavigationContent(
             modifier = Modifier.weight(1f),

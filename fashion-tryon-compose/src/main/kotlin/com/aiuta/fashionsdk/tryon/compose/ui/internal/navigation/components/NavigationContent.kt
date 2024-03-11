@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScree
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.GenerationResultScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.ImageSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.spalsh.SplashScreen
@@ -41,6 +42,12 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
                 SplashScreen(
                     modifier = sharedModifier,
                     navigateTo = controller::navigateTo,
+                )
+            }
+
+            NavigationScreen.ONBOARDING -> {
+                OnboardingScreen(
+                    modifier = sharedModifier,
                 )
             }
 

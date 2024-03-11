@@ -1,5 +1,4 @@
 import com.aiuta.fashionsdk.androidLibrary
-import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     id("androidx.baselineprofile")
@@ -22,9 +21,6 @@ baselineProfile {
 dependencies {
     baselineProfile(projects.internal.benchmark)
 
-    @OptIn(ExperimentalComposeLibrary::class)
-    implementation(compose.components.resources)
-    implementation(compose.material)
-
+    implementation(libs.androidx.compose.material)
     implementation(libs.androidx.lifecycle.runtime.compose)
 }
