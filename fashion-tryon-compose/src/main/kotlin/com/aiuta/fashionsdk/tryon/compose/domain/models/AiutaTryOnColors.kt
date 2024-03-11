@@ -11,20 +11,34 @@ import com.aiuta.fashionsdk.compose.tokens.defaultAiutaColors
  */
 @Immutable
 public interface AiutaTryOnColors {
+    /**
+     * Your brand's primary color.
+     * This color will be used for all significant interface elements,
+     * such as the main action button on the screen, progress bars, etc.
+     */
     public val brand: Color?
+
+    /**
+     * Extra special attention color. The discounted price labels
+     * and the discount percentage background will be colored in it.
+     */
     public val accent: Color?
-    public val navLogoColor: Color?
+
+    /**
+     * The background color of all screens.
+     */
+    public val background: Color?
 }
 
 public fun defaultAiutaTryOnColors(
-    brand: Color? = null,
     accent: Color? = null,
-    navLogoColor: Color? = null,
+    background: Color? = null,
+    brand: Color? = null,
 ): AiutaTryOnColors {
     return object : AiutaTryOnColors {
         override val brand: Color? = brand
         override val accent: Color? = accent
-        override val navLogoColor: Color? = navLogoColor
+        override val background: Color? = background
     }
 }
 
@@ -32,6 +46,6 @@ internal fun AiutaTryOnColors.toColors(): AiutaColors {
     return defaultAiutaColors(
         brand = brand,
         accent = accent,
-        navLogoColor = navLogoColor,
+        background = background,
     )
 }

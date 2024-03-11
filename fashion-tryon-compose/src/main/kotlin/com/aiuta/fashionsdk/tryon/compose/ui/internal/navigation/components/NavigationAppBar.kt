@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -55,6 +54,8 @@ internal fun NavigationAppBar(
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 
+    val actionColor = theme.navBarTheme.foregroundColor ?: theme.colors.primary
+
     val appbarTransition =
         updateTransition(
             targetState = appbarState.value,
@@ -63,9 +64,9 @@ internal fun NavigationAppBar(
 
     val actionColorCalculation: (Boolean) -> Color = { active ->
         if (active) {
-            theme.colors.primary
+            actionColor
         } else {
-            theme.colors.primary.copy(alpha = 0.4f)
+            actionColor.copy(alpha = 0.4f)
         }
     }
 
@@ -95,7 +96,7 @@ internal fun NavigationAppBar(
                         },
                 imageVector = ImageVector.vectorResource(FashionIcon.Arrow36),
                 contentDescription = null,
-                tint = theme.colors.primary,
+                tint = actionColor,
             )
         },
         title = {
@@ -109,8 +110,7 @@ internal fun NavigationAppBar(
                     when (state) {
                         NavigationAppBarState.GENERAL -> {
                             Image(
-                                painter = painterResource(theme.navLogo),
-                                colorFilter = ColorFilter.tint(color = theme.colors.navLogoColor),
+                                painter = painterResource(theme.navBarTheme.navLogo),
                                 contentDescription = null,
                                 contentScale = ContentScale.Fit,
                             )

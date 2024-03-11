@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.compose.tokens
 
-import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 
 /**
@@ -8,18 +7,17 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 public interface AiutaTheme {
-    @get:DrawableRes
-    public val navLogo: Int
+    public val navBarTheme: AiutaNavBarTheme
 
     public val colors: AiutaColors
 }
 
 public fun defaultAiutaTheme(
-    navLogo: Int? = null,
+    navBarTheme: AiutaNavBarTheme? = null,
     colors: AiutaColors? = null,
 ): AiutaTheme {
     return object : AiutaTheme {
-        override val navLogo: Int = navLogo ?: FashionIcon.MainLogo
+        override val navBarTheme: AiutaNavBarTheme = navBarTheme ?: defaultAiutaNavBarTheme()
         override val colors: AiutaColors = colors ?: defaultAiutaColors()
     }
 }
