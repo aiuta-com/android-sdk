@@ -1,0 +1,153 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AiutaTryOn</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            aiuta-sdk
+                    </a>            </div>
+            <div class="library-version">0.2.0
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":fashion-tryon-core:dokkaHtmlPartial/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="fashion-tryon-core::com.aiuta.fashionsdk.tryon.core/AiutaTryOn///PointingToDeclaration//1662304972">
+  <div class="breadcrumbs"><a href="../../index.html">fashion-tryon-core</a><span class="delimiter">/</span><a href="../index.html">com.aiuta.fashionsdk.tryon.core</a><span class="delimiter">/</span><span class="current">AiutaTryOn</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Aiuta</span><wbr><span>Try</span><wbr><span><span>On</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":fashion-tryon-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">AiutaTryOn</a></div><p class="paragraph">Entry point for all functionality of Digital try on</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1076914466%2FClasslikes%2F1662304972" anchor-label="Companion" id="1076914466%2FClasslikes%2F1662304972" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":fashion-tryon-core:dokkaHtmlPartial/release" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1076914466%2FClasslikes%2F1662304972"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":fashion-tryon-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="650174932%2FProperties%2F1662304972" anchor-label="skuGenerationStatus" id="650174932%2FProperties%2F1662304972" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":fashion-tryon-core:dokkaHtmlPartial/release" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sku-generation-status.html"><span>sku</span><wbr><span>Generation</span><wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="650174932%2FProperties%2F1662304972"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":fashion-tryon-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="sku-generation-status.html">skuGenerationStatus</a><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines.flow/StateFlow///PointingToDeclaration/">StateFlow</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-status/index.html">SKUGenerationStatus</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Flow of current sku generation status</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-2104641986%2FFunctions%2F1662304972" anchor-label="getSKUItems" id="-2104641986%2FFunctions%2F1662304972" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":fashion-tryon-core:dokkaHtmlPartial/release" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-s-k-u-items.html"><span>get</span><wbr><span><span>SKUItems</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2104641986%2FFunctions%2F1662304972"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":fashion-tryon-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="get-s-k-u-items.html"><span class="token function">getSKUItems</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">catalogName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DEFAULT_CATALOG_NAME<span class="token punctuation">, </span></span><span class="parameter ">paginationOffset<span class="token operator">: </span><a href="../../../fashion-network-paging/com.aiuta.fashionsdk.network.paging.models/-pagination-offset/index.html">PaginationOffset</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">paginationLimit<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../fashion-network-paging/com.aiuta.fashionsdk.network.paging.models/-page-container/index.html">PageContainer</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-item/index.html">SKUGenerationItem</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Get new page of <a href="../../com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-item/index.html">SKUGenerationItem</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="583876092%2FFunctions%2F1662304972" anchor-label="startSKUGeneration" id="583876092%2FFunctions%2F1662304972" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release"></a>
+          <div class="table-row" data-filterable-current=":fashion-tryon-core:dokkaHtmlPartial/release" data-filterable-set=":fashion-tryon-core:dokkaHtmlPartial/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="start-s-k-u-generation.html"><span>start</span><wbr><span><span>SKUGeneration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="583876092%2FFunctions%2F1662304972"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":fashion-tryon-core:dokkaHtmlPartial/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="start-s-k-u-generation.html"><span class="token function">startSKUGeneration</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">container<span class="token operator">: </span><a href="../../com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-container/index.html">SKUGenerationContainer</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Start sku generation by user image</p></div><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="start-s-k-u-generation.html"><span class="token function">startSKUGeneration</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">containers<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-container/index.html">SKUGenerationContainer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Start sku generation by user images one by one</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
