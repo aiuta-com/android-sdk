@@ -1,4 +1,4 @@
-public final class com/aiuta/fashionsdk/Fashion {
+public final class com/aiuta/fashionsdk/Aiuta {
 	public static final field ERROR_MESSAGE_API_KEY_EMPTY Ljava/lang/String;
 	public static final field ERROR_MESSAGE_API_KEY_NULL Ljava/lang/String;
 	public static final field ERROR_MESSAGE_CONTEXT_NULL Ljava/lang/String;
@@ -7,10 +7,10 @@ public final class com/aiuta/fashionsdk/Fashion {
 	public final fun getApplication ()Landroid/app/Application;
 }
 
-public final class com/aiuta/fashionsdk/Fashion$Builder {
+public final class com/aiuta/fashionsdk/Aiuta$Builder {
 	public fun <init> ()V
-	public final fun build ()Lcom/aiuta/fashionsdk/Fashion;
-	public final fun setApiKey (Ljava/lang/String;)Lcom/aiuta/fashionsdk/Fashion$Builder;
-	public final fun setApplication (Landroid/app/Application;)Lcom/aiuta/fashionsdk/Fashion$Builder;
+	public final fun build ()Lcom/aiuta/fashionsdk/Aiuta;
+	public final fun setApiKey (Ljava/lang/String;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
+	public final fun setApplication (Landroid/app/Application;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
 }
 

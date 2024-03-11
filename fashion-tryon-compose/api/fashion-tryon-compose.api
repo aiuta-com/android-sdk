@@ -36,6 +36,14 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnCo
 	public static synthetic fun defaultAiutaTryOnColors-362bZIc$default (Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
 }
 
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners {
+	public static final field $stable I
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
+	public final fun getAddToCartClick ()Lkotlin/jvm/functions/Function0;
+	public final fun getAddToWishlistClick ()Lkotlin/jvm/functions/Function0;
+	public final fun getCloseClick ()Lkotlin/jvm/functions/Function0;
+}
+
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme {
 	public abstract fun getColors ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
 	public abstract fun getNavBarTheme ()Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;
@@ -44,14 +52,6 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnThemeKt {
 	public static final fun defaultAiutaTryOnTheme (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
 	public static synthetic fun defaultAiutaTryOnTheme$default (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/FashionTryOnListeners {
-	public static final field $stable I
-	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;)V
-	public final fun getAddToCartClick ()Lkotlin/jvm/functions/Function0;
-	public final fun getAddToWishlistClick ()Lkotlin/jvm/functions/Function0;
-	public final fun getCloseClick ()Lkotlin/jvm/functions/Function0;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
@@ -83,8 +83,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/ui/FashionTryOnFlowKt {
-	public static final fun FashionTryOnFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
+	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {

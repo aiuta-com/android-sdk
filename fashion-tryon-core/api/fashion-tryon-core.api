@@ -1,19 +1,19 @@
-public abstract interface class com/aiuta/fashionsdk/tryon/core/FashionTryOn {
-	public static final field Companion Lcom/aiuta/fashionsdk/tryon/core/FashionTryOn$Companion;
+public abstract interface class com/aiuta/fashionsdk/tryon/core/AiutaTryOn {
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn$Companion;
 	public static final field DEFAULT_CATALOG_NAME Ljava/lang/String;
 	public abstract fun getSKUItems (Ljava/lang/String;Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getSKUItems$default (Lcom/aiuta/fashionsdk/tryon/core/FashionTryOn;Ljava/lang/String;Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun getSKUItems$default (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Ljava/lang/String;Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public abstract fun getSkuGenerationStatus ()Lkotlinx/coroutines/flow/StateFlow;
 	public abstract fun startSKUGeneration (Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun startSKUGeneration (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/FashionTryOn$Companion {
+public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOn$Companion {
 	public static final field DEFAULT_CATALOG_NAME Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/FashionTryOnKt {
-	public static final fun getTryon (Lcom/aiuta/fashionsdk/Fashion;)Lcom/aiuta/fashionsdk/tryon/core/FashionTryOn;
+public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOnKt {
+	public static final fun getTryon (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {

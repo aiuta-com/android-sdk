@@ -6,7 +6,7 @@ public final class com/aiuta/fashionsdk/network/BuildConfig {
 }
 
 public final class com/aiuta/fashionsdk/network/DefaultNetworkClientKt {
-	public static final fun defaultNetworkClient (Lcom/aiuta/fashionsdk/Fashion;)Lcom/aiuta/fashionsdk/network/NetworkClient;
+	public static final fun defaultNetworkClient (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/network/NetworkClient;
 	public static final fun defaultNetworkClient (Ljava/lang/String;Ljava/lang/String;)Lcom/aiuta/fashionsdk/network/NetworkClient;
 	public static synthetic fun defaultNetworkClient$default (Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/network/NetworkClient;
 }
