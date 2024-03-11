@@ -10,11 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import kotlinx.coroutines.delay
-
-private const val SPLASH_SCREEN_SHOWING_DELAY = 1000L
 
 @Composable
 internal fun SplashScreen(
@@ -22,14 +20,17 @@ internal fun SplashScreen(
     navigateTo: (NavigationScreen) -> Unit,
 ) {
     val theme = LocalTheme.current
+    val controller = LocalController.current
 
     LaunchedEffect(Unit) {
-        // Wait for showing splash screen
-        delay(SPLASH_SCREEN_SHOWING_DELAY)
+        // Solve should show onboarding or not
+        val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding()
 
-        // Navigate to image selector then
-        // TODO Solve navigation if onboarding already showed
-        navigateTo(NavigationScreen.ONBOARDING)
+        if (shouldShowOnboarding) {
+            navigateTo(NavigationScreen.ONBOARDING)
+        } else {
+            navigateTo(NavigationScreen.IMAGE_SELECTOR)
+        }
     }
 
     Box(

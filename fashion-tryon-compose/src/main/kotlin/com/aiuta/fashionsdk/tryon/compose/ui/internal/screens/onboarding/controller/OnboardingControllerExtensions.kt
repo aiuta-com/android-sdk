@@ -1,11 +1,13 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
-internal fun OnboardingController.nextPage() {
+internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
     when (state.value) {
         is TryOnPage -> {
             val isLastPageOfTryOn = pagerState.settledPage == TryOnPage.INTERNAL_PAGES.lastIndex
@@ -17,7 +19,10 @@ internal fun OnboardingController.nextPage() {
         }
 
         is BestResultPage -> {
-            navigateTo(NavigationScreen.IMAGE_SELECTOR)
+            scope.launch {
+                controller.onboardingInteractor.setOnboardingAsFinished()
+                controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
+            }
         }
     }
 

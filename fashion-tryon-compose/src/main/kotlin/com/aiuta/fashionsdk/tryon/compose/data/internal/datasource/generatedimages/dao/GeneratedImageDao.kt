@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.dao
+package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generatedimages.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao

@@ -33,7 +33,6 @@ import com.aiuta.fashionsdk.compose.molecules.indicator.PagerIndicator
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.BestResultPage
@@ -47,10 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val onboardingController =
-        rememberOnboardingController(
-            navigateTo = controller::navigateTo,
-        )
+    val onboardingController = rememberOnboardingController()
 
     Column(
         modifier =
@@ -103,11 +99,18 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
         FashionButton(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(R.string.onboarding_button_next), // TODO
+            text =
+                stringResource(
+                    if (onboardingController.state.value is TryOnPage) {
+                        R.string.onboarding_button_next
+                    } else {
+                        R.string.onboarding_button_start
+                    },
+                ),
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {
-                onboardingController.nextPage()
+                onboardingController.nextPage(controller)
             },
         )
 

@@ -9,14 +9,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun rememberOnboardingController(
-    navigateTo: (NavigationScreen) -> Unit,
-): OnboardingController {
+internal fun rememberOnboardingController(): OnboardingController {
     val defaultState =
         remember {
             mutableStateOf<OnboardingState>(TryOnPage)
@@ -36,7 +33,6 @@ internal fun rememberOnboardingController(
             state = defaultState,
             pagerState = pagerState,
             scope = scope,
-            navigateTo = navigateTo,
         )
     }
 }
@@ -47,5 +43,4 @@ internal class OnboardingController(
     val state: MutableState<OnboardingState>,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
-    internal val navigateTo: (NavigationScreen) -> Unit,
 )
