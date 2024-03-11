@@ -119,6 +119,7 @@ private fun <T : BaseExtension> Project.androidBase(
                     "VectorRaster",
                     "ObsoleteLintCustomCheck",
                     "MonochromeLauncherIcon",
+                    "IconLocation",
                 )
         }
         action()
