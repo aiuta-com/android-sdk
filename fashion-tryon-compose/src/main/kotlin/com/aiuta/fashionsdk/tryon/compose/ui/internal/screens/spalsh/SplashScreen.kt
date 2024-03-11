@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -40,7 +39,6 @@ internal fun SplashScreen(
         Image(
             modifier = Modifier.fillMaxWidth(0.4f),
             painter = painterResource(theme.navLogo),
-            colorFilter = ColorFilter.tint(color = theme.colors.navLogoColor),
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
         )

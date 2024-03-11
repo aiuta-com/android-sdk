@@ -13,18 +13,18 @@ import com.aiuta.fashionsdk.compose.tokens.defaultAiutaColors
 public interface AiutaTryOnColors {
     public val brand: Color?
     public val accent: Color?
-    public val navLogoColor: Color?
+    public val background: Color?
 }
 
 public fun defaultAiutaTryOnColors(
-    brand: Color? = null,
     accent: Color? = null,
-    navLogoColor: Color? = null,
+    background: Color? = null,
+    brand: Color? = null,
 ): AiutaTryOnColors {
     return object : AiutaTryOnColors {
         override val brand: Color? = brand
         override val accent: Color? = accent
-        override val navLogoColor: Color? = navLogoColor
+        override val background: Color? = background
     }
 }
 
@@ -32,6 +32,6 @@ internal fun AiutaTryOnColors.toColors(): AiutaColors {
     return defaultAiutaColors(
         brand = brand,
         accent = accent,
-        navLogoColor = navLogoColor,
+        background = background,
     )
 }

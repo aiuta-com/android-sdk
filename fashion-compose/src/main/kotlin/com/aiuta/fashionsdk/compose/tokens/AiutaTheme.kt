@@ -19,7 +19,7 @@ public fun defaultAiutaTheme(
     colors: AiutaColors? = null,
 ): AiutaTheme {
     return object : AiutaTheme {
-        override val navLogo: Int = navLogo ?: FashionIcon.MainLogo
+        override val navLogo: Int = navLogo ?: FashionIcon.AiutaLogo
         override val colors: AiutaColors = colors ?: defaultAiutaColors()
     }
 }
