@@ -38,6 +38,18 @@ public abstract interface class com/aiuta/fashionsdk/compose/molecules/button/in
 	public abstract fun getColors ()Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonColor;
 }
 
+public final class com/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation : java/lang/Enum {
+	public static final field HORIZONTAL Lcom/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation;
+	public static final field VERTICAL Lcom/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation;
+	public static fun values ()[Lcom/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation;
+}
+
+public final class com/aiuta/fashionsdk/compose/molecules/indicator/PagerIndicatorKt {
+	public static final fun PagerIndicator-8BndoHw (Landroidx/compose/ui/Modifier;Landroidx/compose/foundation/pager/PagerState;JIIFFFFLcom/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation;Landroidx/compose/runtime/Composer;II)V
+}
+
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/AiutaColors {
 	public abstract fun getAccent-0d7_KjU ()J
 	public abstract fun getAiuta-0d7_KjU ()J
