@@ -1,6 +1,10 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
@@ -11,6 +15,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.ImagePickerSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.SKUInfoSheet
@@ -25,6 +30,7 @@ internal fun rememberBottomSheetNavigator(): BottomSheetNavigator {
     val defaultBottomSheetState =
         rememberModalBottomSheetState(
             initialValue = ModalBottomSheetValue.Hidden,
+            skipHalfExpanded = true,
         )
 
     val defaultBottomSheetScreen =
@@ -62,6 +68,8 @@ internal class BottomSheetNavigator(
 
             is NavigationBottomSheetScreen.IDLE -> Unit
         }
+
+        Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBars))
     }
 
     public fun show(newSheetScreen: NavigationBottomSheetScreen) {
