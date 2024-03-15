@@ -91,7 +91,6 @@ public fun FashionButton(
                             text?.let {
                                 Text(
                                     style = size.textStyle,
-                                    maxLines = 1,
                                     textAlign = TextAlign.Center,
                                     color =
                                         style.colors.buttonColors.contentColor(

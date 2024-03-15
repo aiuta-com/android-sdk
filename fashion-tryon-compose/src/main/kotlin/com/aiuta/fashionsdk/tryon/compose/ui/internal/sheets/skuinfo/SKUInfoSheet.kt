@@ -6,15 +6,12 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -90,8 +87,6 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
                 .padding(horizontal = sharedHorizontalPadding),
         skuInfo = skuInfo,
     )
-
-    Spacer(Modifier.windowInsetsPadding(WindowInsets.navigationBars))
 }
 
 @Composable
