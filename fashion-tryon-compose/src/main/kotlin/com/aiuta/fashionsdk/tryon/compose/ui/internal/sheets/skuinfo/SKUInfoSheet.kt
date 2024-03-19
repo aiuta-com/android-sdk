@@ -25,11 +25,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.analytic.model.FinishSession
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickMoreDetails
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -128,10 +132,23 @@ private fun ButtonsContainer(
     ) {
         FashionButton(
             modifier = Modifier.weight(1f),
-            text = stringResource(R.string.add_to_wish),
+            text =
+                stringResource(
+                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                        R.string.add_to_wish
+                    } else {
+                        R.string.more_details
+                    },
+                ),
             style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
-            onClick = controller.aiutaTryOnListeners().addToWishlistClick,
+            onClick = {
+                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    controller.clickAddToWishList(origin = FinishSession.Origin.SKU_POPUP)
+                } else {
+                    controller.clickMoreDetails(origin = FinishSession.Origin.MORE_TO_TRYON)
+                }
+            },
         )
 
         Spacer(Modifier.width(8.dp))
@@ -151,7 +168,7 @@ private fun ButtonsContainer(
             size = FashionButtonSizes.xlSize(),
             onClick = {
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.aiutaTryOnListeners().addToCartClick()
+                    controller.clickAddToCart(origin = FinishSession.Origin.SKU_POPUP)
                 } else {
                     controller.changeActiveSKU(skuInfo.skuItem)
                     controller.bottomSheetNavigator.hide()

@@ -10,11 +10,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.analytic.defaultInternalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.domain.analytic.sendStartSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendConfigureEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -54,14 +55,15 @@ public fun AiutaTryOnFlow(
     BoxWithConstraints(
         modifier = modifier,
     ) {
+        val internalAnalytic = remember { defaultInternalAiutaAnalytic(aiuta()) }
+        val internalTheme = remember { theme?.invoke().toTheme() }
         val controller =
             rememberFashionTryOnController(
+                analytic = { internalAnalytic },
                 aiutaTryOn = aiutaTryOn,
                 aiutaTryOnListeners = aiutaTryOnListeners,
                 skuForGeneration = skuForGeneration,
             )
-        val internalTheme = remember { theme?.invoke().toTheme() }
-        val internalAnalytic = remember { defaultInternalAiutaAnalytic(aiuta()) }
 
         CompositionLocalProvider(
             LocalAnalytic provides internalAnalytic,
@@ -69,6 +71,7 @@ public fun AiutaTryOnFlow(
             LocalTheme provides internalTheme,
         ) {
             sendStartSessionEvent()
+            sendConfigureEvent(theme)
 
             NavigationContainer(
                 modifier = modifier,
