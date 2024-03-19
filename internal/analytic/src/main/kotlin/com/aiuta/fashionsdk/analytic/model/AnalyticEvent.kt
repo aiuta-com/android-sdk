@@ -61,3 +61,31 @@ public object ContinueOnBoarding : AnalyticEvent {
 public object FinishOnBoarding : AnalyticEvent {
     override val name: String = "FinishOnBoarding"
 }
+
+// Main screen
+public object OpenMainScreen : AnalyticEvent {
+    override val name: String = "OpenMainScreen"
+
+    public const val LAST_PHOTO_SELECTION_PARAM: String = "last_photos_selection"
+}
+
+public object TapChangePhoto : AnalyticEvent {
+    override val name: String = "TapChangePhoto"
+
+    public const val HAS_CURRENT_PHOTOS_PARAM: String = "has_current_photos"
+    public const val HAS_HISTORY_PHOTOS_PARAM: String = "has_history_photos"
+}
+
+// TODO Add this event with multi selector
+public object SelectOldPhotos : AnalyticEvent {
+    override val name: String = "SelectOldPhotos"
+
+    public const val COUNT_PARAM: String = "count"
+}
+
+public object SelectNewPhotos : AnalyticEvent {
+    override val name: String = "SelectNewPhotos"
+
+    public const val FROM_CAMERA_PARAM: String = "from_camera"
+    public const val FROM_GALLERY_PARAM: String = "from_gallery"
+}

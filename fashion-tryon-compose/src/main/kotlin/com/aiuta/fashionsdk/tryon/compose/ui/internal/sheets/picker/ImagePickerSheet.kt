@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.analytic.sendSelectNewPhotosEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
@@ -46,6 +47,7 @@ internal fun ColumnScope.ImagePickerSheet() {
     val cameraPickerLauncher =
         provideCameraPicker { hasImage ->
             if (hasImage && newImageUri != null) {
+                controller.sendSelectNewPhotosEvent(fromCamera = 1)
                 controller.lastSavedPhotoUris.value = listOf(newImageUri.toString())
                 controller.bottomSheetNavigator.hide()
             }
@@ -54,6 +56,7 @@ internal fun ColumnScope.ImagePickerSheet() {
     val imagePickerLauncher =
         provideSingleImagePicker { uri ->
             uri?.let {
+                controller.sendSelectNewPhotosEvent(fromGallery = 1)
                 controller.lastSavedPhotoUris.value = listOf(uri.toString())
                 controller.bottomSheetNavigator.hide()
             }
