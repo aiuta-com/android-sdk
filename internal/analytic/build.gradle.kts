@@ -7,17 +7,16 @@ plugins {
 }
 
 androidLibrary(
-    name = "com.aiuta.fashionsdk.network",
+    name = "com.aiuta.fashionsdk.analytic",
     config = true,
 )
 
 dependencies {
-    api(projects.fashion)
 
-    implementation(libs.kotlinx.coroutines.core)
+    api(projects.fashion)
+    api(projects.fashionNetwork)
+
+    implementation(libs.androidx.work)
+    implementation(libs.kotlinx.serialization)
     implementation(libs.ktor.core)
-    implementation(libs.ktor.engine.okhttp)
-    implementation(libs.ktor.logging)
-    implementation(libs.ktor.negotiation)
-    implementation(libs.ktor.serialization)
 }

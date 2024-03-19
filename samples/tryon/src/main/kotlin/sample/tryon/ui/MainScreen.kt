@@ -99,8 +99,9 @@ fun MainScreen() {
 
     AiutaTryOnFlow(
         modifier = Modifier.fillMaxSize(),
+        aiuta = { viewModel.aiuta },
+        aiutaTryOn = { viewModel.aiutaTryOn },
         aiutaTryOnListeners = { mockAiutaTryOnListeners },
-        aiutaTryOn = { viewModel.fashionTryOn },
         skuForGeneration = { mockSKUItem },
     )
 }

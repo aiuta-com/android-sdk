@@ -12,21 +12,19 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    aiuta: Aiuta = MainApplication.aiuta,
+    val aiuta: Aiuta = MainApplication.aiuta,
 ) : ViewModel() {
-    val fashionTryOn by lazy {
-        aiuta.tryon
-    }
+    val aiutaTryOn by lazy { aiuta.tryon }
 
-    val skuGenerationStatus: StateFlow<SKUGenerationStatus> = fashionTryOn.skuGenerationStatus
+    val skuGenerationStatus: StateFlow<SKUGenerationStatus> = aiutaTryOn.skuGenerationStatus
 
     fun startSKUGeneration(fileUris: List<Uri>) {
         viewModelScope.launch {
-            val skuItems = fashionTryOn.getSKUItems()
+            val skuItems = aiutaTryOn.getSKUItems()
 
             Log.d(TAG, "startSKUGeneration(): fileUris - $fileUris, skuItems - $skuItems")
             skuItems.result.firstOrNull()?.let { skuItem ->
-                fashionTryOn.startSKUGeneration(
+                aiutaTryOn.startSKUGeneration(
                     containers =
                         fileUris.map { uri ->
                             SKUGenerationContainer(
