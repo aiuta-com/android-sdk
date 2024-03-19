@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.analytic.model.Configure
 import com.aiuta.fashionsdk.analytic.model.FinishSession
+import com.aiuta.fashionsdk.analytic.model.StartOnBoarding
 import com.aiuta.fashionsdk.analytic.model.StartSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
@@ -76,5 +77,14 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
             key = FinishSession.SKU_CATALOG_NAME_PARAM,
             value = skuItem.catalogName,
         )
+    }
+}
+
+// Onboarding
+@Composable
+internal fun sendStartOnBoardingEvent() {
+    val analytic = LocalAnalytic.current
+    LaunchedEffect(Unit) {
+        analytic.sendEvent(StartOnBoarding)
     }
 }

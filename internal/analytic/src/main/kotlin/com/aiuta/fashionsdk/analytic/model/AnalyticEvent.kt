@@ -7,6 +7,7 @@ public sealed interface AnalyticEvent {
     public val name: String
 }
 
+// Config
 public object Configure : AnalyticEvent {
     override val name: String = "Configure"
 
@@ -14,6 +15,7 @@ public object Configure : AnalyticEvent {
     public const val PHOTO_LIMIT_PARAM: String = "photo_selection_limit"
 }
 
+// Session
 public object StartSession : AnalyticEvent {
     override val name: String = "StartSession"
 
@@ -43,4 +45,19 @@ public object FinishSession : AnalyticEvent {
         MORE_TO_TRYON("MoreToTry"),
         MAIN_SCREEN("MainScreen"),
     }
+}
+
+// Onboarding
+public object StartOnBoarding : AnalyticEvent {
+    override val name: String = "StartOnBoarding"
+}
+
+public object ContinueOnBoarding : AnalyticEvent {
+    override val name: String = "ContinueOnBoarding"
+
+    public const val PAGE_PARAM: String = "page"
+}
+
+public object FinishOnBoarding : AnalyticEvent {
+    override val name: String = "FinishOnBoarding"
 }
