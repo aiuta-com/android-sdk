@@ -9,7 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytic.defaultInternalAiutaAnalytic
+import com.aiuta.fashionsdk.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
@@ -55,7 +55,7 @@ public fun AiutaTryOnFlow(
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        val internalAnalytic = remember { defaultInternalAiutaAnalytic(aiuta()) }
+        val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
         val internalTheme = remember { theme?.invoke().toTheme() }
         val controller =
             rememberFashionTryOnController(

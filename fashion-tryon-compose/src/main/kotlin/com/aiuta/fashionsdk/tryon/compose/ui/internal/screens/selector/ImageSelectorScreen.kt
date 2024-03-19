@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.aiuta.fashionsdk.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -126,7 +127,10 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                         size = FashionButtonSizes.xlSize(),
                         iconRes = FashionIcon.Magic,
                         onClick = {
-                            controller.startGeneration(scope = scope)
+                            controller.startGeneration(
+                                origin = StartUITryOn.Origin.TRY_ON_BUTTON,
+                                scope = scope,
+                            )
                         },
                     )
                 }

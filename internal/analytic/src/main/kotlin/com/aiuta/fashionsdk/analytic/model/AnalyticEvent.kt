@@ -89,3 +89,47 @@ public object SelectNewPhotos : AnalyticEvent {
     public const val FROM_CAMERA_PARAM: String = "from_camera"
     public const val FROM_GALLERY_PARAM: String = "from_gallery"
 }
+
+// Try on
+public object StartTryOn : AnalyticEvent {
+    override val name: String = "StartTryOn"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+    public const val PHOTOS_COUNT_PARAM: String = "photos_count"
+}
+
+public object StartUITryOn : AnalyticEvent {
+    override val name: String = "StartUITryOn"
+
+    public const val ORIGIN_PARAM: String = "origin"
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+    public const val PHOTOS_COUNT_PARAM: String = "photos_count"
+
+    public enum class Origin(public val value: String) {
+        TRY_ON_BUTTON("TryOnButton"),
+        SELECT_PHOTOS("ResultsScreen"),
+    }
+}
+
+public object FinishTryOn : AnalyticEvent {
+    override val name: String = "FinishTryOn"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+    public const val PHOTOS_COUNT_PARAM: String = "photos_count"
+    public const val GENERATION_TIME_PARAM: String = "generation_time"
+}
+
+public object TryOnError : AnalyticEvent {
+    override val name: String = "TryOnError"
+
+    public const val TYPE_PARAM: String = "type"
+
+    public enum class Type(public val value: String) {
+        UPLOAD_FAILED("UploadFailed"),
+        TRY_ON_START_FAILED("TryOnStartFailed"),
+        TRY_ON_OPERATION_FAILED("TryOnOperationFailed"),
+    }
+}

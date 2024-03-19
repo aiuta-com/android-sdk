@@ -23,6 +23,7 @@ dependencies {
     api(projects.fashion)
     api(projects.fashionNetwork)
     api(projects.fashionNetworkPaging)
+    api(projects.internal.analytic)
 
     baselineProfile(projects.internal.benchmark)
 
