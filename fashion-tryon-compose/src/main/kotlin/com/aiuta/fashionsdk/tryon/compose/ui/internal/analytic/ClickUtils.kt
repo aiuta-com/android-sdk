@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.analytic.model.FinishSession
 import com.aiuta.fashionsdk.analytic.model.OpenHistoryScreen
+import com.aiuta.fashionsdk.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
@@ -69,6 +70,22 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
         put(
             key = FinishSession.SKU_CATALOG_NAME_PARAM,
             value = skuItem.catalogName,
+        )
+    }
+}
+
+internal fun FashionTryOnController.sendShareGeneratedImageEvent(
+    origin: ShareGeneratedImage.Origin,
+    count: Int,
+) {
+    analytic.sendEvent(ShareGeneratedImage) {
+        put(
+            key = ShareGeneratedImage.ORIGIN_PARAM,
+            value = origin.value,
+        )
+        put(
+            key = ShareGeneratedImage.COUNT_PARAM,
+            value = count.toString(),
         )
     }
 }

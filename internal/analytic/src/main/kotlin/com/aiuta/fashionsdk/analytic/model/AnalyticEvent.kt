@@ -190,3 +190,16 @@ public object SelectMoreToTryOn : AnalyticEvent {
 public object OpenHistoryScreen : AnalyticEvent {
     override val name: String = "OpenHistoryScreen"
 }
+
+public object ShareGeneratedImage : AnalyticEvent {
+    override val name: String = "ShareGeneratedImage"
+
+    public const val ORIGIN_PARAM: String = "origin"
+    public const val COUNT_PARAM: String = "count"
+
+    public enum class Origin(public val value: String) {
+        RESULT_SCREEN("ResultsScreen"),
+        RESULT_FULLSCREEN("ResultsFullScreen"),
+        HISTORY_SCREEN("HistoryScreeen"),
+    }
+}
