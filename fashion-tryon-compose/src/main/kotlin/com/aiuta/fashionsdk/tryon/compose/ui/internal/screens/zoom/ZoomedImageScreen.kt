@@ -40,11 +40,14 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
@@ -167,6 +170,7 @@ private fun ZoomedImageScreenContent(
     imageSize: State<Size>,
 ) {
     val context = LocalContext.current
+    val controller = LocalController.current
     val scope = rememberCoroutineScope()
     val shareManager =
         remember {
@@ -220,8 +224,13 @@ private fun ZoomedImageScreenContent(
                     .windowInsetsPadding(WindowInsets.statusBars)
                     .padding(16.dp)
                     .clickableUnindicated {
+                        val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
+                        controller.sendShareGeneratedImageEvent(
+                            origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
+                            count = imageUrls.size,
+                        )
                         shareManager.share(
-                            imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl),
+                            imageUrls = imageUrls,
                         )
                     },
             text = stringResource(R.string.share),

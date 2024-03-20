@@ -24,7 +24,7 @@ internal class KtorNetworkClient(
             }
         }
 
-        private fun buildKtorNetworkClient(
+        internal fun buildKtorNetworkClient(
             apiKey: String,
             backendEndpoint: String? = null,
         ): NetworkClient {

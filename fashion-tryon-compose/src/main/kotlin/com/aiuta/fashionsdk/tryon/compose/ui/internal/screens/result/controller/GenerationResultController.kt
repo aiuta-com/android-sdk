@@ -84,6 +84,8 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             imageCarouselState = imageCarouselState,
             verticalSwipeState = verticalSwipeState,
         )
+    }.also {
+        GenerationResultControllerListener(it)
     }
 }
 

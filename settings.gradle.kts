@@ -14,6 +14,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // Private modules
 include(
+    ":internal:analytic",
     ":internal:benchmark",
     ":samples:tryon",
 )

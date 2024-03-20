@@ -14,6 +14,7 @@ import java.util.UUID
  * @param priceDiscounted - Price with discount of sku, can be optional
  * @param priceCurrency - Local currency of the sku
  * @param store - Name of store
+ * @param generateMoreSKU - SKU for continuous generations
  */
 @Immutable
 public data class SKUItem(

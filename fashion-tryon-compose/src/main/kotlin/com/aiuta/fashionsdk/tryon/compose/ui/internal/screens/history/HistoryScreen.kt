@@ -47,11 +47,13 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -256,6 +258,10 @@ private fun BoxScope.HistoryScreenInterface(
                         .getList()
                         .map { it.imageUrl }
 
+                controller.sendShareGeneratedImageEvent(
+                    origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
+                    count = imageUrls.size,
+                )
                 shareManager.share(imageUrls = imageUrls)
 
                 controller.deactivateSelectMode()

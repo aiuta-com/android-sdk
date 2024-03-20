@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.aiuta.fashionsdk.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -36,6 +37,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendOpenMainScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
@@ -61,6 +64,8 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
             }
         }
 
+    sendOpenMainScreenEvent()
+
     ImageSelectorListener(enable = controller.isGenerationActive.value)
 
     Column(
@@ -73,6 +78,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(0.7f),
             uploadPhoto = {
+                controller.sendTapChangePhotoEvent()
                 controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
             },
         )
@@ -121,7 +127,10 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                         size = FashionButtonSizes.xlSize(),
                         iconRes = FashionIcon.Magic,
                         onClick = {
-                            controller.startGeneration(scope = scope)
+                            controller.startGeneration(
+                                origin = StartUITryOn.Origin.TRY_ON_BUTTON,
+                                scope = scope,
+                            )
                         },
                     )
                 }

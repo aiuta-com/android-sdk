@@ -22,6 +22,7 @@ baselineProfile {
 dependencies {
     api(projects.fashionCompose)
     api(projects.fashionTryonCore)
+    api(projects.internal.analytic)
 
     annotationProcessor(libs.androidx.room.compiler)
 

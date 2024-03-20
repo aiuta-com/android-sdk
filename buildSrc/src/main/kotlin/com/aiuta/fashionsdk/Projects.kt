@@ -19,7 +19,10 @@ fun Project.androidLibrary(
     name: String,
     config: Boolean = false,
     action: LibraryExtension.() -> Unit = {},
-) = androidBase<LibraryExtension>(name) {
+) = androidBase<LibraryExtension>(
+    name = name,
+    config = config,
+) {
     buildFeatures {
         buildConfig = config
     }
@@ -73,6 +76,7 @@ fun Project.androidTest(
     action: TestExtension.() -> Unit = {},
 ) = androidBase<TestExtension>(
     name = name,
+    config = config,
     shouldBePublic = shouldBePublic,
 ) {
     buildFeatures {
@@ -87,6 +91,7 @@ fun Project.androidTest(
 
 private fun <T : BaseExtension> Project.androidBase(
     name: String,
+    config: Boolean = false,
     shouldBePublic: Boolean = true,
     action: T.() -> Unit,
 ) {
@@ -97,6 +102,10 @@ private fun <T : BaseExtension> Project.androidBase(
             minSdk = project.minSdk
             targetSdk = project.targetSdk
             testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+            if (config) {
+                buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
+            }
         }
         packagingOptions {
             resources.pickFirsts +=

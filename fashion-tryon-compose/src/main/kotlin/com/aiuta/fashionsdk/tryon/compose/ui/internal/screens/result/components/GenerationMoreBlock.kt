@@ -47,6 +47,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceHideActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceShowActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendSelectMoreToTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateResultState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.hideInterface
@@ -139,6 +140,7 @@ private fun GenerationMoreBlockItem(
                 )
                 .padding(8.dp)
                 .clickableUnindicated {
+                    controller.sendSelectMoreToTryOnEvent(skuItem)
                     controller.bottomSheetNavigator.show(
                         newSheetScreen =
                             NavigationBottomSheetScreen.SKUInfo(

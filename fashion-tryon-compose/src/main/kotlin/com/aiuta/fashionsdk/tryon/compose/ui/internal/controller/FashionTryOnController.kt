@@ -7,6 +7,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generatedimages.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
+    analytic: () -> InternalAiutaAnalytic,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     skuForGeneration: () -> SKUItem,
@@ -90,6 +92,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = GeneratedImageInteractor.getInstance(context),
             onboardingInteractor = OnboardingInteractor.getInstance(context),
+            analytic = analytic(),
         )
     }.also {
         it.skuItemVisibilityListener()
@@ -121,6 +124,8 @@ internal class FashionTryOnController(
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
+    // Analytic
+    internal val analytic: InternalAiutaAnalytic,
 ) {
     // Utils
     private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)

@@ -8,10 +8,15 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendConfigureEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartSessionEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -39,6 +44,7 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 @Composable
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
+    aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     theme: (() -> AiutaTryOnTheme)? = null,
@@ -49,18 +55,24 @@ public fun AiutaTryOnFlow(
     BoxWithConstraints(
         modifier = modifier,
     ) {
+        val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
+        val internalTheme = remember { theme?.invoke().toTheme() }
         val controller =
             rememberFashionTryOnController(
+                analytic = { internalAnalytic },
                 aiutaTryOn = aiutaTryOn,
                 aiutaTryOnListeners = aiutaTryOnListeners,
                 skuForGeneration = skuForGeneration,
             )
-        val internalTheme = remember { theme?.invoke().toTheme() }
 
         CompositionLocalProvider(
+            LocalAnalytic provides internalAnalytic,
             LocalController provides controller,
             LocalTheme provides internalTheme,
         ) {
+            sendStartSessionEvent()
+            sendConfigureEvent(theme)
+
             NavigationContainer(
                 modifier = modifier,
             )

@@ -12,12 +12,12 @@ androidLibrary(
 )
 
 dependencies {
+    api(projects.fashion)
+
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.ktor.core)
     implementation(libs.ktor.engine.okhttp)
     implementation(libs.ktor.logging)
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.serialization)
-
-    implementation(projects.fashion)
 }

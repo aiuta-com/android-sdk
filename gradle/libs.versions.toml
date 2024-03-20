@@ -7,6 +7,7 @@ androidx-paging = "3.2.1"
 androidx-test-espresso = "3.5.1"
 androidx-test-junit = "1.1.5"
 androidx-test-uiautomator = "2.3.0"
+androidx-work = "2.9.0"
 
 binaryCompatibility = "0.14.0"
 
@@ -58,6 +59,7 @@ androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "ro
 androidx-test-espresso = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-test-espresso" }
 androidx-test-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-junit" }
 androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidx-test-uiautomator" }
+androidx-work = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
 
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 

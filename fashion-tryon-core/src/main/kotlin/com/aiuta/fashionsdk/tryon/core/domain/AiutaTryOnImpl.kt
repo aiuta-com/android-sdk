@@ -1,6 +1,9 @@
 package com.aiuta.fashionsdk.tryon.core.domain
 
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.analytic.model.TryOnError
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -9,6 +12,9 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSK
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
@@ -20,6 +26,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.pingOperationSliceFacto
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.uploadImageSliceFactory
 import com.aiuta.fashionsdk.tryon.core.utils.generateFileName
+import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
@@ -27,6 +34,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
 internal class AiutaTryOnImpl(
+    private val analytic: InternalAiutaAnalytic,
     private val pingOperationSlice: PingOperationSlice,
     private val uploadImageSlice: UploadImageSlice,
     private val skuDataSource: FashionSKUDataSource,
@@ -68,38 +76,47 @@ internal class AiutaTryOnImpl(
 
     override suspend fun startSKUGeneration(container: SKUGenerationContainer) {
         mutex.withLock {
-            errorListener {
-                // Set loading state with previous image urls
-                _skuGenerationStatus.emit(
-                    SKUGenerationStatus.LoadingGenerationStatus(),
-                )
-
-                // Firstly, upload image on backend
-                val uploadedImage =
-                    uploadImageSlice.uploadImage(
-                        fileUri = container.fileUri,
-                        fileName = generateFileName(),
+            measureTryOn(container) {
+                errorListener {
+                    // Set loading state with previous image urls
+                    _skuGenerationStatus.emit(
+                        SKUGenerationStatus.LoadingGenerationStatus(),
                     )
 
-                // Secondly, create sku generation operation
-                val newOperation =
-                    skuOperationsDataSource.createSKUOperation(
-                        request =
-                            CreateSKUOperationRequest(
-                                skuCatalogName = container.skuCatalogName,
-                                skuId = container.skuId,
-                                uploadedImageId = uploadedImage.id,
-                            ),
-                    )
+                    // Firstly, upload image on backend
+                    val uploadedImage =
+                        trackException(TryOnError.Type.UPLOAD_FAILED) {
+                            uploadImageSlice.uploadImage(
+                                fileUri = container.fileUri,
+                                fileName = generateFileName(),
+                            )
+                        }
 
-                // Finally, wait for the operation, until it is completed
-                pingOperationSlice.startOperationTypeListening(
-                    operationId = newOperation.operationId,
-                )
-                pingOperationSlice
-                    .getPingGenerationStatusFlow(operationId = newOperation.operationId)
-                    ?.first { it.isTerminate() }
-                    .also { solveTerminatedOperationResult(it) }
+                    // Secondly, create sku generation operation
+                    val newOperation =
+                        skuOperationsDataSource.createSKUOperation(
+                            request =
+                                CreateSKUOperationRequest(
+                                    skuCatalogName = container.skuCatalogName,
+                                    skuId = container.skuId,
+                                    uploadedImageId = uploadedImage.id,
+                                ),
+                        )
+
+                    // Finally, wait for the operation, until it is completed
+                    trackException(TryOnError.Type.TRY_ON_START_FAILED) {
+                        pingOperationSlice.startOperationTypeListening(
+                            operationId = newOperation.operationId,
+                        )
+                    }
+
+                    trackException(TryOnError.Type.TRY_ON_OPERATION_FAILED) {
+                        pingOperationSlice
+                            .getPingGenerationStatusFlow(operationId = newOperation.operationId)
+                            ?.first { it.isTerminate() }
+                            .also { solveTerminatedOperationResult(it) }
+                    }
+                }
             }
         }
     }
@@ -144,9 +161,32 @@ internal class AiutaTryOnImpl(
         }
     }
 
+    private suspend fun measureTryOn(
+        container: SKUGenerationContainer,
+        action: suspend () -> Unit,
+    ) {
+        analytic.sendStartTryOnEvent(container)
+        val loadingTimeMillis = measureTimeMillis { action() }
+        analytic.sendFinishTryOnEvent(container, loadingTimeMillis)
+    }
+
+    private suspend fun <T> trackException(
+        type: TryOnError.Type,
+        action: suspend () -> T,
+    ): T {
+        return try {
+            action()
+        } catch (e: Exception) {
+            // Logging exception
+            analytic.sendTryOnErrorEvent(type)
+            throw e
+        }
+    }
+
     companion object {
         fun create(aiuta: Aiuta): AiutaTryOn {
             return AiutaTryOnImpl(
+                analytic = aiuta.internalAiutaAnalytic,
                 pingOperationSlice = aiuta.pingOperationSliceFactory,
                 uploadImageSlice = aiuta.uploadImageSliceFactory,
                 skuDataSource = aiuta.skuDataSourceFactory,

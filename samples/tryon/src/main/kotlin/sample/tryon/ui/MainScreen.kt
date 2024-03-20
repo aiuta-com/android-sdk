@@ -91,6 +91,9 @@ fun MainScreen() {
                 addToCartClick = {
                     context.makeToast("Rise Add to cart")
                 },
+                moreDetailsClick = {
+                    context.makeToast("Rise More details")
+                },
                 closeClick = {
                     context.makeToast("Rise Close")
                 },
@@ -99,8 +102,9 @@ fun MainScreen() {
 
     AiutaTryOnFlow(
         modifier = Modifier.fillMaxSize(),
+        aiuta = { viewModel.aiuta },
+        aiutaTryOn = { viewModel.aiutaTryOn },
         aiutaTryOnListeners = { mockAiutaTryOnListeners },
-        aiutaTryOn = { viewModel.fashionTryOn },
         skuForGeneration = { mockSKUItem },
     )
 }

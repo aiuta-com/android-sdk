@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOpenHistoryScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.hideErrorState
@@ -83,6 +84,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                     ).windowInsetsPadding(WindowInsets.statusBars),
                 navigateBack = controller::navigateBack,
                 navigateToHistory = {
+                    controller.sendOpenHistoryScreen()
                     controller.navigateTo(NavigationScreen.HISTORY)
                 },
             )
