@@ -2,7 +2,9 @@ package com.aiuta.fashionsdk.analytic
 
 import com.aiuta.fashionsdk.analytic.model.AnalyticEvent
 
-// TODO Description
+/**
+ * Internal interface of of analytic service for internal use
+ */
 public interface InternalAiutaAnalytic {
     /**
      * Send new event without additional info

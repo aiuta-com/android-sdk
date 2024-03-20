@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.analytic.internal.worker
 
 import android.content.Context
-import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.aiuta.fashionsdk.analytic.internal.InternalAiutaAnalyticImpl
@@ -28,8 +27,6 @@ internal class AnalyticWorker(
                         context = context,
                         rawData = inputData,
                     )
-                // TODO Delete
-                Log.d("TAG_CHECK", "AnalyticWorker: send event - $completedEvent")
 
                 // Try to send analytic event
                 completedEvent?.let {

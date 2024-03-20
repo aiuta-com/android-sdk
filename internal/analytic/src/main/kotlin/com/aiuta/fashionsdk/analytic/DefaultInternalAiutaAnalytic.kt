@@ -5,7 +5,11 @@ import com.aiuta.fashionsdk.analytic.internal.InternalAiutaAnalyticImpl
 import com.aiuta.fashionsdk.analytic.utils.AnalyticConfig
 import com.aiuta.fashionsdk.network.createNetworkClient
 
-// TODO Description
+/**
+ * Extension for default creation of [InternalAiutaAnalytic].
+ *
+ * Will cache instance of [InternalAiutaAnalytic]
+ */
 public val Aiuta.internalAiutaAnalytic: InternalAiutaAnalytic
     get() =
         InternalAiutaAnalyticImpl.create(
