@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendOpenResultsScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationButtonsBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationCarouselBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationMoreBlock
@@ -42,6 +43,8 @@ import kotlin.math.roundToInt
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
+
+    sendOpenResultsScreenEvent()
 
     BoxWithConstraints(
         modifier = modifier.background(theme.colors.background),

@@ -133,3 +133,56 @@ public object TryOnError : AnalyticEvent {
         TRY_ON_OPERATION_FAILED("TryOnOperationFailed"),
     }
 }
+
+// ResultsScreen
+public object OpenResultsScreen : AnalyticEvent {
+    override val name: String = "OpenResultsScreen"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+    public const val GENERATED_PHOTOS_PARAM: String = "generated_photos"
+    public const val PHOTOS_IN_PROGRESS_PARAM: String = "photos_in_progress"
+    public const val MORE_TO_TRY_ON_PARAM: String = "more_to_try_on"
+}
+
+public object ViewGeneratedImage : AnalyticEvent {
+    override val name: String = "ViewGeneratedImage"
+
+    public const val IMAGE_NUMBER_PARAM: String = "image_number"
+    public const val NAVIGATION_TYPE_PARAM: String = "navigation_type"
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+
+    public enum class NavigationType(public val value: String) {
+        THUMBNAIL("thumbnail"),
+        SWIPE("swipe"),
+    }
+}
+
+// TODO Add with multi selector
+public object UpdateResultsScreen : AnalyticEvent {
+    override val name: String = "UpdateResultsScreen"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+    public const val GENERATED_PHOTOS_PARAM: String = "generated_photos"
+    public const val PHOTOS_IN_PROGRESS_PARAM: String = "photos_in_progress"
+}
+
+public object ViewMoreToTryOn : AnalyticEvent {
+    override val name: String = "ViewMoreToTryOn"
+}
+
+public object TapMoreToTryOn : AnalyticEvent {
+    override val name: String = "TapMoreToTryOn"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+}
+
+public object SelectMoreToTryOn : AnalyticEvent {
+    override val name: String = "SelectMoreToTryOn"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+}

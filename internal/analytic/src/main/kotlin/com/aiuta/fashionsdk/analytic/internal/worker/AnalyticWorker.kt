@@ -28,6 +28,7 @@ internal class AnalyticWorker(
                         context = context,
                         rawData = inputData,
                     )
+                // TODO Delete
                 Log.d("TAG_CHECK", "AnalyticWorker: send event - $completedEvent")
 
                 // Try to send analytic event

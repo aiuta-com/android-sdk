@@ -37,6 +37,7 @@ internal class KtorHttpClientFactory(
                     Json {
                         prettyPrint = true
                         ignoreUnknownKeys = true
+                        encodeDefaults = true
                     },
                 )
             }

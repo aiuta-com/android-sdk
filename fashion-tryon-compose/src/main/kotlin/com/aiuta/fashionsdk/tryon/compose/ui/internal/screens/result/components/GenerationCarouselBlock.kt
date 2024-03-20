@@ -30,10 +30,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendViewGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import kotlinx.coroutines.launch
 
@@ -86,6 +88,10 @@ internal fun GenerationCarouselBlock(
                     imageUrl = imageUrl,
                     onClick = {
                         scope.launch {
+                            controller.sendViewGeneratedImageEvent(
+                                newIndex = index,
+                                type = ViewGeneratedImage.NavigationType.THUMBNAIL,
+                            )
                             generationPagerState.animateScrollToPage(index)
                         }
                     },

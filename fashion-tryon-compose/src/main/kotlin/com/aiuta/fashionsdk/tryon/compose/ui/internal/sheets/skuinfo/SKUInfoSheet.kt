@@ -43,6 +43,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.analytic.sendTapMoreToTryOnEvent
 
 @Composable
 internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
@@ -170,6 +171,7 @@ private fun ButtonsContainer(
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     controller.clickAddToCart(origin = FinishSession.Origin.SKU_POPUP)
                 } else {
+                    controller.sendTapMoreToTryOnEvent(skuInfo.skuItem)
                     controller.changeActiveSKU(skuInfo.skuItem)
                     controller.bottomSheetNavigator.hide()
                     controller.navigateBack()
