@@ -2,13 +2,10 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.analytic.model.Configure
-import com.aiuta.fashionsdk.analytic.model.FinishSession
 import com.aiuta.fashionsdk.analytic.model.StartOnBoarding
 import com.aiuta.fashionsdk.analytic.model.StartSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 
@@ -52,31 +49,6 @@ internal fun sendStartSessionEvent() {
                 value = (skuItem.generateMoreSKU?.size ?: 0).toString(),
             )
         }
-    }
-}
-
-internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
-    action: FinishSession.Action,
-    origin: FinishSession.Origin,
-    skuItem: SKUItem,
-) {
-    sendEvent(FinishSession) {
-        put(
-            key = FinishSession.ACTION_PARAM,
-            value = action.value,
-        )
-        put(
-            key = FinishSession.ORIGIN_PARAM,
-            value = origin.value,
-        )
-        put(
-            key = FinishSession.SKU_ID_PARAM,
-            value = skuItem.skuId,
-        )
-        put(
-            key = FinishSession.SKU_CATALOG_NAME_PARAM,
-            value = skuItem.catalogName,
-        )
     }
 }
 

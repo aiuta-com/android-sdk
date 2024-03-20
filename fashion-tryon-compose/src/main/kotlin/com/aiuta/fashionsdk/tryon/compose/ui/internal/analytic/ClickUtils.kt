@@ -1,6 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
+import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.analytic.model.FinishSession
+import com.aiuta.fashionsdk.analytic.model.OpenHistoryScreen
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 // Listeners
@@ -38,4 +41,34 @@ internal fun FashionTryOnController.clickClose(origin: FinishSession.Origin) {
         origin = origin,
         skuItem = activeSKUItem.value,
     )
+}
+
+// Senders
+internal fun FashionTryOnController.sendOpenHistoryScreen() {
+    analytic.sendEvent(OpenHistoryScreen)
+}
+
+internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
+    action: FinishSession.Action,
+    origin: FinishSession.Origin,
+    skuItem: SKUItem,
+) {
+    sendEvent(FinishSession) {
+        put(
+            key = FinishSession.ACTION_PARAM,
+            value = action.value,
+        )
+        put(
+            key = FinishSession.ORIGIN_PARAM,
+            value = origin.value,
+        )
+        put(
+            key = FinishSession.SKU_ID_PARAM,
+            value = skuItem.skuId,
+        )
+        put(
+            key = FinishSession.SKU_CATALOG_NAME_PARAM,
+            value = skuItem.catalogName,
+        )
+    }
 }

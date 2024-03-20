@@ -186,3 +186,7 @@ public object SelectMoreToTryOn : AnalyticEvent {
     public const val SKU_ID_PARAM: String = "sku_id"
     public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
 }
+
+public object OpenHistoryScreen : AnalyticEvent {
+    override val name: String = "OpenHistoryScreen"
+}
