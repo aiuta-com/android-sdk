@@ -41,7 +41,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
@@ -51,6 +50,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isGenerationPagerItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isMetaInfoPagerItem
@@ -66,11 +66,12 @@ internal fun GenerationVerticalPagerBlock(
     generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
-    val skuGenerationStatus =
-        controller
-            .aiutaTryOn()
-            .skuGenerationStatus
-            .collectAsStateWithLifecycle()
+
+    val successOperations = controller.subscribeToSuccessOperations()
+    val generationUrls =
+        remember(successOperations.value) {
+            successOperations.value.flatMap { it.generatedImageUrls }
+        }
 
     VerticalPager(
         modifier = modifier,
@@ -84,7 +85,7 @@ internal fun GenerationVerticalPagerBlock(
                 // Just generation
                 PagerImageContainer(
                     modifier = sharedModifier,
-                    imageUrl = skuGenerationStatus.value.imageUrls.getOrNull(index),
+                    imageUrl = generationUrls.getOrNull(index),
                 )
             }
 

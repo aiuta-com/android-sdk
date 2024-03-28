@@ -35,7 +35,7 @@ internal fun sendOpenResultsScreenEvent() {
             )
             put(
                 key = OpenResultsScreen.GENERATED_PHOTOS_PARAM,
-                value = skuGenerationStatus.value.imageUrls.size.toString(),
+                value = "0", // TODO Unmock with multi select
             )
             put(
                 key = OpenResultsScreen.PHOTOS_IN_PROGRESS_PARAM,

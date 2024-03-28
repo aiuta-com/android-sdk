@@ -4,8 +4,10 @@ import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generatedimages.GeneratedImageInteractor
@@ -13,6 +15,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScreen
@@ -77,8 +81,20 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
 
+    // Generation state
+    val defaultGenerationUIStatus =
+        remember {
+            mutableStateOf(SKUGenerationUIStatus.IDLE)
+        }
+    val defaultGenerationOperations =
+        remember {
+            mutableStateListOf<SKUGenerationOperation>()
+        }
+
     return remember {
         FashionTryOnController(
+            generationStatus = defaultGenerationUIStatus,
+            generationOperations = defaultGenerationOperations,
             currentScreen = defaultCurrentScreen,
             bottomSheetNavigator = defaultBottomSheetNavigator,
             fashionTryOnErrorState = defaultFashionTryOnErrorState,
@@ -101,6 +117,9 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
 @Immutable
 internal class FashionTryOnController(
+    // Generation state
+    internal val generationStatus: MutableState<SKUGenerationUIStatus>,
+    internal val generationOperations: SnapshotStateList<SKUGenerationOperation>,
     // General navigation
     public val currentScreen: MutableState<NavigationScreen>,
     internal val backStack: LinkedList<NavigationScreen> = LinkedList(),
@@ -128,7 +147,10 @@ internal class FashionTryOnController(
     internal val analytic: InternalAiutaAnalytic,
 ) {
     // Utils
-    private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    internal val scope: CoroutineScope =
+        CoroutineScope(
+            SupervisorJob() + Dispatchers.Main.immediate,
+        )
 
     init {
         scope.launch {

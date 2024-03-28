@@ -11,13 +11,14 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 
 internal enum class GenerateResultState {
     SHOW_GENERATIONS,
@@ -35,14 +36,16 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
     val density = LocalDensity.current
     val controller = LocalController.current
 
-    val skuGenerationStatus =
-        controller
-            .aiutaTryOn()
-            .skuGenerationStatus
-            .collectAsStateWithLifecycle()
+    val successGenerationOperations = controller.subscribeToSuccessOperations()
+    val generationUrlsSize =
+        remember(successGenerationOperations.value) {
+            derivedStateOf {
+                successGenerationOperations.value.flatMap { it.generatedImageUrls }.size
+            }
+        }
 
     // Size of generation + meta sku images
-    val generationSize = { skuGenerationStatus.value.imageUrls.size }
+    val generationSize = { generationUrlsSize.value }
     val totalPages = { generationSize() + 1 }
     val pagerState = rememberPagerState(pageCount = totalPages)
 

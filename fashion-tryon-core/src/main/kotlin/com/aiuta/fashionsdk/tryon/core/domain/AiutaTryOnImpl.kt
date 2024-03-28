@@ -27,11 +27,12 @@ import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.uploadImageSliceFactory
 import com.aiuta.fashionsdk.tryon.core.utils.generateFileName
 import kotlin.system.measureTimeMillis
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.flow.flow
 
 internal class AiutaTryOnImpl(
     private val analytic: InternalAiutaAnalytic,
@@ -40,11 +41,11 @@ internal class AiutaTryOnImpl(
     private val skuDataSource: FashionSKUDataSource,
     private val skuOperationsDataSource: FashionSKUOperationsDataSource,
 ) : AiutaTryOn {
-    private val mutex = Mutex()
-
-    private val _skuGenerationStatus: MutableStateFlow<SKUGenerationStatus> =
-        MutableStateFlow(SKUGenerationStatus.NothingGenerateStatus)
-    override val skuGenerationStatus: StateFlow<SKUGenerationStatus> = _skuGenerationStatus
+    // TODO Delete
+    override val skuGenerationStatus: StateFlow<SKUGenerationStatus> =
+        MutableStateFlow(
+            SKUGenerationStatus.NothingGenerateStatus,
+        )
 
     override suspend fun getSKUItems(
         catalogName: String,
@@ -66,22 +67,12 @@ internal class AiutaTryOnImpl(
         )
     }
 
-    override suspend fun startSKUGeneration(containers: List<SKUGenerationContainer>) {
-        containers.forEach { container ->
-            startSKUGeneration(
-                container = container,
-            )
-        }
-    }
-
-    override suspend fun startSKUGeneration(container: SKUGenerationContainer) {
-        mutex.withLock {
+    override fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus> {
+        return flow {
             measureTryOn(container) {
                 errorListener {
                     // Set loading state with previous image urls
-                    _skuGenerationStatus.emit(
-                        SKUGenerationStatus.LoadingGenerationStatus(),
-                    )
+                    emit(SKUGenerationStatus.LoadingGenerationStatus.StartGeneration)
 
                     // Firstly, upload image on backend
                     val uploadedImage =
@@ -91,6 +82,11 @@ internal class AiutaTryOnImpl(
                                 fileName = generateFileName(),
                             )
                         }
+                    emit(
+                        SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                            sourceImageUrl = uploadedImage.url,
+                        ),
+                    )
 
                     // Secondly, create sku generation operation
                     val newOperation =
@@ -104,6 +100,11 @@ internal class AiutaTryOnImpl(
                         )
 
                     // Finally, wait for the operation, until it is completed
+                    emit(
+                        SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                            sourceImageUrl = uploadedImage.url,
+                        ),
+                    )
                     trackException(TryOnError.Type.TRY_ON_START_FAILED) {
                         pingOperationSlice.startOperationTypeListening(
                             operationId = newOperation.operationId,
@@ -114,14 +115,22 @@ internal class AiutaTryOnImpl(
                         pingOperationSlice
                             .getPingGenerationStatusFlow(operationId = newOperation.operationId)
                             ?.first { it.isTerminate() }
-                            .also { solveTerminatedOperationResult(it) }
+                            .also {
+                                solveTerminatedOperationResult(
+                                    sourceImageUrl = uploadedImage.url,
+                                    terminatedOperation = it,
+                                )
+                            }
                     }
                 }
             }
         }
     }
 
-    private suspend fun solveTerminatedOperationResult(terminatedOperation: PingGenerationStatus?) {
+    private suspend fun FlowCollector<SKUGenerationStatus>.solveTerminatedOperationResult(
+        sourceImageUrl: String,
+        terminatedOperation: PingGenerationStatus?,
+    ) {
         // Check, if last operation is finished and we got it
         requireNotNull(terminatedOperation)
 
@@ -129,32 +138,37 @@ internal class AiutaTryOnImpl(
         when (terminatedOperation) {
             is PingGenerationStatus.SuccessPingGenerationStatus -> {
                 // Add new image urls to current generation
-                _skuGenerationStatus.emit(
+                emit(
                     SKUGenerationStatus.SuccessGenerationStatus(
-                        imageUrls = _skuGenerationStatus.value.imageUrls + terminatedOperation.imageUrls,
+                        sourceImageUrl = sourceImageUrl,
+                        imageUrls = terminatedOperation.imageUrls,
                     ),
                 )
             }
 
             else -> {
                 // Fallback with last success generation result
-                _skuGenerationStatus.emit(
+                emit(
                     SKUGenerationStatus.ErrorGenerationStatus(
-                        imageUrls = _skuGenerationStatus.value.imageUrls,
+                        errorMessage = (terminatedOperation as? PingGenerationStatus.ErrorPingGenerationStatus)?.errorMessage,
+                        exception = (terminatedOperation as? PingGenerationStatus.ErrorPingGenerationStatus)?.exception,
                     ),
                 )
             }
         }
     }
 
-    private suspend fun errorListener(action: suspend () -> Unit) {
+    private suspend fun FlowCollector<SKUGenerationStatus>.errorListener(
+        action: suspend () -> Unit,
+    ) {
         try {
             action()
         } catch (e: Exception) {
             // Fallback with error
-            _skuGenerationStatus.emit(
+            emit(
                 SKUGenerationStatus.ErrorGenerationStatus(
-                    imageUrls = _skuGenerationStatus.value.imageUrls,
+                    errorMessage = e.message,
+                    exception = e,
                 ),
             )
             throw e

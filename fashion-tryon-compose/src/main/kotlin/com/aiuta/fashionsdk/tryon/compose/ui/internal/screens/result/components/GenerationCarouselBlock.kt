@@ -26,7 +26,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
@@ -35,6 +34,8 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToLoadingOperations
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendViewGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import kotlinx.coroutines.launch
@@ -49,11 +50,18 @@ internal fun GenerationCarouselBlock(
     val controller = LocalController.current
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
-    val skuGenerationStatus =
-        controller
-            .aiutaTryOn()
-            .skuGenerationStatus
-            .collectAsStateWithLifecycle()
+
+    val successOperations = controller.subscribeToSuccessOperations()
+    val successGenerationUrls =
+        remember(successOperations.value) {
+            successOperations.value.flatMap { it.generatedImageUrls }
+        }
+
+    val loadingOperations = controller.subscribeToLoadingOperations()
+    val loadingSourceImages =
+        remember(loadingOperations.value) {
+            loadingOperations.value.map { it.sourceImageUri.toString() }
+        }
 
     val sharedModifier =
         Modifier
@@ -76,9 +84,33 @@ internal fun GenerationCarouselBlock(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             itemsIndexed(
-                items = skuGenerationStatus.value.imageUrls,
-                key = { index, _ -> index },
+                items = successGenerationUrls,
+//                key = { _, item -> item },
             ) { index, imageUrl ->
+                GenerationItem(
+                    modifier = sharedModifier,
+                    focused =
+                        remember(generationPagerState.settledPage) {
+                            generationPagerState.settledPage == index
+                        },
+                    imageUrl = imageUrl,
+                    onClick = {
+                        scope.launch {
+                            controller.sendViewGeneratedImageEvent(
+                                newIndex = index,
+                                type = ViewGeneratedImage.NavigationType.THUMBNAIL,
+                            )
+                            generationPagerState.animateScrollToPage(index)
+                        }
+                    },
+                )
+            }
+
+            itemsIndexed(
+                items = loadingSourceImages,
+//                key = { _, item -> item },
+            ) { index, imageUrl ->
+                // TODO Add progress state
                 GenerationItem(
                     modifier = sharedModifier,
                     focused =

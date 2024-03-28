@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
 import java.io.FileNotFoundException
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 /**
@@ -30,6 +31,7 @@ public interface AiutaTryOn {
      *
      * @see SKUGenerationStatus for possible variants of status
      */
+    @Deprecated("Don't use it, implement by your own with startGeneration")
     public val skuGenerationStatus: StateFlow<SKUGenerationStatus>
 
     /**
@@ -59,14 +61,7 @@ public interface AiutaTryOn {
      * @throws FashionIOException
      * @throws FashionNetworkIsDisconnected
      */
-    public suspend fun startSKUGeneration(container: SKUGenerationContainer)
-
-    /**
-     * Start sku generation by user images one by one
-     *
-     * @see startSKUGeneration
-     */
-    public suspend fun startSKUGeneration(containers: List<SKUGenerationContainer>)
+    public fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus>
 
     public companion object {
         public const val DEFAULT_CATALOG_NAME: String = "aiuta_demo"

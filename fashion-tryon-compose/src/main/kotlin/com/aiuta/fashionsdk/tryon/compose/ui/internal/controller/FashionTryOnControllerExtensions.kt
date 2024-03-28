@@ -6,6 +6,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.analytic.model.FinishSession
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
@@ -90,6 +91,25 @@ internal fun FashionTryOnController.forceShowActiveSKUItem() {
 
 internal fun FashionTryOnController.forceHideActiveSKUItem() {
     isSKUItemVisible.value = false
+}
+
+// Generations
+internal inline fun <reified T : SKUGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> {
+    return generationOperations.mapNotNull { it as? T }
+}
+
+@Composable
+internal fun FashionTryOnController.subscribeToSuccessOperations(): State<List<SKUGenerationOperation.SuccessOperation>> {
+    return remember(generationOperations) {
+        derivedStateOf { tryToGetOperations() }
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<SKUGenerationOperation.LoadingOperation>> {
+    return remember(generationOperations) {
+        derivedStateOf { tryToGetOperations() }
+    }
 }
 
 // Checks

@@ -15,24 +15,22 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.transitionAnimation
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @Composable
 internal fun ImageSelectorBottom(
@@ -40,9 +38,10 @@ internal fun ImageSelectorBottom(
     uploadPhoto: () -> Unit,
 ) {
     val controller = LocalController.current
-    val fashionTryOn = remember { controller.aiutaTryOn() }
     val theme = LocalTheme.current
-    val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
+
+    val generationStatus = controller.generationStatus
+
     val sharedModifier = Modifier.fillMaxWidth()
     val sharedBackground = Color.White.copy(alpha = 0.5f)
     val sharedCornerSize = RoundedCornerShape(8.dp)
@@ -57,7 +56,7 @@ internal fun ImageSelectorBottom(
         updateTransition(
             targetState =
                 when {
-                    skuGenerationStatus.value is SKUGenerationStatus.LoadingGenerationStatus -> {
+                    generationStatus.value == SKUGenerationUIStatus.LOADING -> {
                         ImageSelectorState.GENERATION_LOADING
                     }
 
