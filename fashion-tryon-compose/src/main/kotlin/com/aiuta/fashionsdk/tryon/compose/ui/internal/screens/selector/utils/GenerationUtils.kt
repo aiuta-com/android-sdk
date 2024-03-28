@@ -21,14 +21,13 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin) {
-    scope.launch {
+    generationScope.launch {
         sendStartUITryOnEvent(origin)
 
         activateGeneration()
 
         val imageUris: List<Uri> = lastSavedPhotoUris.value.map { Uri.parse(it) }
 
-        // TODO Think about cancellation
         // TODO Create locally generation operation
 
         val generationFlows =

@@ -17,10 +17,5 @@ internal interface PingOperationSlice {
      *
      * @throws IllegalStateException if such operation already exist
      */
-    fun startOperationTypeListening(operationId: String)
-
-    /**
-     * Cancel operation by [operationId] if it exist
-     */
-    fun cancelOperation(operationId: String)
+    suspend fun startOperationTypeListening(operationId: String)
 }

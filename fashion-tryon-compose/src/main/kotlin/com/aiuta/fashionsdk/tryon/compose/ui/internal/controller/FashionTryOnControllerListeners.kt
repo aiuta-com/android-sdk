@@ -24,3 +24,14 @@ internal fun FashionTryOnController.generationNavigationListener() {
         }
     }
 }
+
+@Composable
+internal fun FashionTryOnController.generationOperationListener() {
+    // We should cancel current generation process, if we exit from
+    // result screen back to selector
+    LaunchedEffect(currentScreen.value) {
+        if (currentScreen.value == NavigationScreen.IMAGE_SELECTOR) {
+            cancelGenerationScope()
+        }
+    }
+}

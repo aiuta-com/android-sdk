@@ -28,6 +28,7 @@ import java.util.LinkedList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
@@ -109,6 +110,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     }.also {
         it.skuItemVisibilityListener()
         it.generationNavigationListener()
+        it.generationOperationListener()
     }
 }
 
@@ -144,9 +146,21 @@ internal class FashionTryOnController(
     internal val analytic: InternalAiutaAnalytic,
 ) {
     // Utils
-    // TODO Think about termination
-    internal val scope: CoroutineScope =
-        CoroutineScope(
-            SupervisorJob() + Dispatchers.Main.immediate,
-        )
+    private var internalGenerationScope: CoroutineScope? = null
+    internal val generationScope: CoroutineScope
+        get() {
+            return cancelGenerationScope()
+        }
+
+    /**
+     * Cancel current generation scope and set new for next generation
+     *
+     * @return new coroutine scope
+     */
+    internal fun cancelGenerationScope(): CoroutineScope {
+        internalGenerationScope?.cancel()
+        return CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate).also {
+            internalGenerationScope = it
+        }
+    }
 }
