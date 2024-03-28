@@ -24,14 +24,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.Sel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import java.util.LinkedList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
@@ -152,17 +148,4 @@ internal class FashionTryOnController(
         CoroutineScope(
             SupervisorJob() + Dispatchers.Main.immediate,
         )
-
-    init {
-        scope.launch {
-            aiutaTryOn()
-                .skuGenerationStatus
-                .onEach { status ->
-                    if (status is SKUGenerationStatus.SuccessGenerationStatus) {
-                        generatedImageInteractor.insertAll(status.imageUrls)
-                    }
-                }
-                .collect()
-        }
-    }
 }

@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGenerat
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendStartUITryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -42,8 +43,14 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
                             ),
                     )
                     .onEach {
-                        // TODO If uploaded state - save to storage
+                        // TODO If uploaded state - save to storage of operation
                         // insertOrUpdate
+                    }
+                    .onEach {
+                        // Save generations for history, if operation is success
+                        if (it is SKUGenerationStatus.SuccessGenerationStatus) {
+                            generatedImageInteractor.insertAll(it.imageUrls)
+                        }
                     }
                     .map { status -> status.toOperation(sourceUri = uri) }
             }
@@ -52,35 +59,37 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
             .merge()
             .catch { showErrorState() }
             .cancellable()
-            .collect { operation ->
-                // TODO Delete
-                Log.d("TAG_CHECK", "new operation - $operation")
+            .collect { operation -> solveOperationCollecting(operation) }
+    }
+}
 
-                when (operation) {
-                    is SKUGenerationOperation.LoadingOperation -> {
-                        if (generationStatus.value != SKUGenerationUIStatus.SUCCESS) {
-                            generationStatus.value = SKUGenerationUIStatus.LOADING
-                        }
+private fun FashionTryOnController.solveOperationCollecting(operation: SKUGenerationOperation) {
+    // TODO Delete
+    Log.d("TAG_CHECK", "new operation - $operation")
 
-                        // Check is this operation already exist
-                        // Should think about optimization for O(n)
-                        val existedOperation = generationOperations.find { it.sourceImageUri == operation.sourceImageUri }
-                        if (existedOperation == null) {
-                            generationOperations.add(operation)
-                        }
-                    }
-
-                    is SKUGenerationOperation.SuccessOperation -> {
-                        generationStatus.value = SKUGenerationUIStatus.SUCCESS
-                        refreshOperation(operation)
-                    }
-
-                    is SKUGenerationOperation.ErrorOperation -> {
-                        showErrorState()
-                        refreshOperation(operation)
-                    }
-                }
+    when (operation) {
+        is SKUGenerationOperation.LoadingOperation -> {
+            if (generationStatus.value != SKUGenerationUIStatus.SUCCESS) {
+                generationStatus.value = SKUGenerationUIStatus.LOADING
             }
+
+            // Check is this operation already exist
+            // Should think about optimization for O(n)
+            val existedOperation = generationOperations.find { it.sourceImageUri == operation.sourceImageUri }
+            if (existedOperation == null) {
+                generationOperations.add(operation)
+            }
+        }
+
+        is SKUGenerationOperation.SuccessOperation -> {
+            generationStatus.value = SKUGenerationUIStatus.SUCCESS
+            refreshOperation(operation)
+        }
+
+        is SKUGenerationOperation.ErrorOperation -> {
+            showErrorState()
+            refreshOperation(operation)
+        }
     }
 }
 
