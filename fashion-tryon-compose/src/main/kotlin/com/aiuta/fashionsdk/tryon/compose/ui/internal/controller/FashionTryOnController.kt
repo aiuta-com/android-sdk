@@ -108,6 +108,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }.also {
         it.skuItemVisibilityListener()
+        it.generationNavigationListener()
     }
 }
 
