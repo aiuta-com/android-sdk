@@ -53,6 +53,7 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
             .catch { showErrorState() }
             .cancellable()
             .collect { operation ->
+                // TODO Delete
                 Log.d("TAG_CHECK", "new operation - $operation")
 
                 when (operation) {
@@ -71,20 +72,24 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
 
                     is SKUGenerationOperation.SuccessOperation -> {
                         generationStatus.value = SKUGenerationUIStatus.SUCCESS
-                        generationOperations.replaceAll {
-                            // Refresh old operation
-                            if (it.sourceImageUri == operation.sourceImageUri) {
-                                operation
-                            } else {
-                                it
-                            }
-                        }
+                        refreshOperation(operation)
                     }
 
                     is SKUGenerationOperation.ErrorOperation -> {
-                        showErrorState() // TODO?
+                        showErrorState()
+                        refreshOperation(operation)
                     }
                 }
             }
+    }
+}
+
+private fun FashionTryOnController.refreshOperation(newOperation: SKUGenerationOperation) {
+    generationOperations.replaceAll {
+        if (it.sourceImageUri == newOperation.sourceImageUri) {
+            newOperation
+        } else {
+            it
+        }
     }
 }

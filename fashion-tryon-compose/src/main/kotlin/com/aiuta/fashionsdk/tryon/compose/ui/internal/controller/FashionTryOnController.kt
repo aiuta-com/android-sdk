@@ -147,6 +147,7 @@ internal class FashionTryOnController(
     internal val analytic: InternalAiutaAnalytic,
 ) {
     // Utils
+    // TODO Think about termination
     internal val scope: CoroutineScope =
         CoroutineScope(
             SupervisorJob() + Dispatchers.Main.immediate,
