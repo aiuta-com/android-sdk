@@ -29,8 +29,6 @@ import com.aiuta.fashionsdk.tryon.core.utils.generateFileName
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
@@ -41,12 +39,6 @@ internal class AiutaTryOnImpl(
     private val skuDataSource: FashionSKUDataSource,
     private val skuOperationsDataSource: FashionSKUOperationsDataSource,
 ) : AiutaTryOn {
-    // TODO Delete
-    override val skuGenerationStatus: StateFlow<SKUGenerationStatus> =
-        MutableStateFlow(
-            SKUGenerationStatus.NothingGenerateStatus,
-        )
-
     override suspend fun getSKUItems(
         catalogName: String,
         paginationOffset: PaginationOffset?,

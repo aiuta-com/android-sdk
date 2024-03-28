@@ -39,11 +39,5 @@ internal fun SKUGenerationStatus.toOperation(sourceUri: Uri): SKUGenerationOpera
                 sourceImageUri = sourceUri,
                 generatedImageUrls = imageUrls,
             )
-
-        // TODO Delete
-        else ->
-            SKUGenerationOperation.LoadingOperation(
-                sourceImageUri = sourceUri,
-            )
     }
 }
