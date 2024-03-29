@@ -53,6 +53,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.PhotoLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -77,6 +78,8 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         controller.generatedOperationInteractor
             .getGeneratedOperationFlow()
             .collectAsLazyPagingItems()
+
+    GeneratedOperationsSheetListener()
 
     SheetDivider()
 
@@ -110,8 +113,11 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     modifier = sharedOperationsModifier.animateItemPlacement(),
                     generatedOperation = generatedOperation,
                     onClick = {
-                        controller.lastSavedPhotoUris.value = generatedOperation.sourceImageUrls
-                        controller.bottomSheetNavigator.hide()
+                        with(controller) {
+                            lastSavedOperation.value = generatedOperation
+                            lastSavedPhotoUris.value = generatedOperation.sourceImageUrls
+                            bottomSheetNavigator.hide()
+                        }
                     },
                 )
             }
@@ -189,7 +195,13 @@ private fun OperationItem(
                     .padding(10.dp),
             onClick = {
                 scope.launch {
-                    controller.generatedOperationInteractor.deleteOperation(generatedOperation)
+                    with(controller) {
+                        generatedOperationInteractor.deleteOperation(generatedOperation)
+                        if (lastSavedOperation.value == generatedOperation) {
+                            lastSavedOperation.value = null
+                            lastSavedPhotoUris.value = emptyList()
+                        }
+                    }
                 }
             },
         )

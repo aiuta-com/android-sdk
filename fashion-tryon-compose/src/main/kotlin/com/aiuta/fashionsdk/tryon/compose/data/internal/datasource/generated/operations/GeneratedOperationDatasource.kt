@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperatio
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperationWithImages
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.SourceImageEntity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 internal class GeneratedOperationDatasource(
@@ -43,10 +44,8 @@ internal class GeneratedOperationDatasource(
         }
     }
 
-    suspend fun countGeneratedOperation(): Int {
-        return withContext(Dispatchers.IO) {
-            generatedOperationDao.countGeneratedOperation()
-        }
+    fun countGeneratedOperation(): Flow<Int> {
+        return generatedOperationDao.countGeneratedOperation()
     }
 
     // Source images

@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import kotlinx.coroutines.flow.first
 
 @Composable
 internal fun SplashScreen(
@@ -23,7 +24,11 @@ internal fun SplashScreen(
 
     LaunchedEffect(Unit) {
         // Check operation history
-        val countGeneratedOperation = controller.generatedOperationInteractor.countGeneratedOperation()
+        val countGeneratedOperation =
+            controller.generatedOperationInteractor
+                .countGeneratedOperation()
+                .first()
+
         if (countGeneratedOperation > 0) {
             val lastOperation = controller.generatedOperationInteractor.getLastGeneratedOperation()
             controller.lastSavedPhotoUris.value = lastOperation.sourceImageUrls

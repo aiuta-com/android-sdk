@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.net.Uri
 import com.aiuta.fashionsdk.analytic.model.StartUITryOn
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toOperation
@@ -29,7 +30,7 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
         val imageUris: List<Uri> = lastSavedPhotoUris.value.map { Uri.parse(it) }
         val errorCount = AtomicInteger()
 
-        val operationId = generatedOperationInteractor.createOperation()
+        val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
 
         val generationFlows =
             imageUris.map { uri ->
@@ -46,7 +47,7 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
                         if (status is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage) {
                             generatedOperationInteractor.createImage(
                                 imageUrl = status.sourceImageUrl,
-                                operationId = operationId,
+                                operationId = generatedOperationFactory.getOperationId(),
                             )
                         }
                     }

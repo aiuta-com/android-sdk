@@ -48,7 +48,7 @@ internal class GeneratedOperationInteractor(
         generatedOperationDatasource.deleteOperation(operation.operationId)
     }
 
-    suspend fun countGeneratedOperation(): Int {
+    fun countGeneratedOperation(): Flow<Int> {
         return generatedOperationDatasource.countGeneratedOperation()
     }
 
