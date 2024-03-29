@@ -5,12 +5,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,11 +22,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -144,7 +140,7 @@ internal fun GenerationCarouselBlock(
                     label = "border color",
                 )
 
-                MetaImagesContainer(
+                ImagesContainer(
                     modifier =
                         sharedModifier
                             .border(
@@ -159,6 +155,9 @@ internal fun GenerationCarouselBlock(
                                     )
                                 }
                             },
+                    getImageUrls = {
+                        controller.activeSKUItem.value.imageUrls
+                    },
                 )
             }
         }
@@ -206,119 +205,4 @@ private fun GenerationItem(
         contentScale = ContentScale.Crop,
         contentDescription = null,
     )
-}
-
-@Composable
-private fun MetaImagesContainer(modifier: Modifier = Modifier) {
-    val controller = LocalController.current
-    val imageUrls = controller.activeSKUItem.value.imageUrls
-
-    when {
-        imageUrls.size <= 2 -> {
-            MetaImagesContainerSmall(modifier = modifier)
-        }
-
-        imageUrls.size == 3 -> {
-            MetaImagesContainerMedium(modifier = modifier)
-        }
-
-        else -> {
-            MetaImagesContainerBig(modifier = modifier)
-        }
-    }
-}
-
-@Composable
-private fun MetaImagesContainerSmall(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val controller = LocalController.current
-    val theme = LocalTheme.current
-    val imageUrls = controller.activeSKUItem.value.imageUrls
-
-    Row(
-        modifier = modifier.background(theme.colors.background),
-    ) {
-        imageUrls.forEach { url ->
-            AsyncImage(
-                modifier = Modifier.fillMaxHeight().weight(1f),
-                model =
-                    ImageRequest.Builder(context)
-                        .data(url)
-                        .build(),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-            )
-        }
-    }
-}
-
-@Composable
-private fun MetaImagesContainerMedium(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val controller = LocalController.current
-    val theme = LocalTheme.current
-    val imageUrls = controller.activeSKUItem.value.imageUrls
-
-    Row(
-        modifier = modifier.background(theme.colors.background),
-    ) {
-        AsyncImage(
-            modifier = Modifier.fillMaxHeight().weight(1f),
-            model =
-                ImageRequest.Builder(context)
-                    .data(imageUrls.firstOrNull())
-                    .build(),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-        )
-
-        Column(
-            modifier = Modifier.fillMaxHeight().weight(1f),
-        ) {
-            for (index in 1..imageUrls.lastIndex) {
-                AsyncImage(
-                    modifier = Modifier.weight(1f).fillMaxWidth(),
-                    model =
-                        ImageRequest.Builder(context)
-                            .data(imageUrls.getOrNull(index))
-                            .build(),
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun MetaImagesContainerBig(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val controller = LocalController.current
-    val theme = LocalTheme.current
-    val imageUrls = controller.activeSKUItem.value.imageUrls
-
-    val rowSize = 2
-    val columnSize = 2
-
-    Row(
-        modifier = modifier.background(theme.colors.background),
-    ) {
-        (0 until rowSize).forEach { rowIndex ->
-            Column(
-                modifier = Modifier.weight(1f).fillMaxHeight(),
-            ) {
-                (0 until columnSize).forEach { columnIndex ->
-                    AsyncImage(
-                        modifier = Modifier.weight(1f).fillMaxWidth(),
-                        model =
-                            ImageRequest.Builder(context)
-                                .data(imageUrls.getOrNull(rowIndex * rowSize + columnIndex))
-                                .build(),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                    )
-                }
-            }
-        }
-    }
 }

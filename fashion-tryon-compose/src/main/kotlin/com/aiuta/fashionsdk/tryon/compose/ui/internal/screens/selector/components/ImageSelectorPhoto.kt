@@ -31,6 +31,7 @@ import com.airbnb.lottie.compose.rememberLottieDynamicProperties
 import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
@@ -92,9 +93,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize(),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { uploadedImageUris ->
-            val imageUri = uploadedImageUris.firstOrNull()
-
-            if (imageUri == null) {
+            if (uploadedImageUris.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center,
@@ -104,9 +103,9 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
                     )
                 }
             } else {
-                UploadImage(
+                ImagesContainer(
                     modifier = Modifier.fillMaxSize().clip(sharedCornerShape),
-                    imageUri = imageUri,
+                    getImageUrls = { uploadedImageUris },
                 )
             }
         }
