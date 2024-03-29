@@ -13,8 +13,12 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperatio
 internal interface GeneratedOperationDao {
     // Combined operation
     @Transaction
-    @Query("SELECT * FROM generated_operation")
+    @Query("SELECT * FROM generated_operation ORDER BY id ASC")
     fun pagingGeneratedOperationWithImagesSource(): PagingSource<Int, GeneratedOperationWithImages>
+
+    @Transaction
+    @Query("SELECT * FROM generated_operation ORDER BY id ASC LIMIT 1")
+    fun getLastGeneratedOperationWithImages(): GeneratedOperationWithImages
 
     // Raw operation
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -22,6 +26,9 @@ internal interface GeneratedOperationDao {
 
     @Query("SELECT * FROM generated_operation WHERE rowid = :operationRowId LIMIT 1")
     fun getOperation(operationRowId: Long): GeneratedOperationEntity
+
+    @Query("SELECT count(id) FROM generated_operation")
+    fun countGeneratedOperation(): Int
 
     @Query("DELETE FROM generated_operation WHERE id = :operationId")
     fun deleteOperation(operationId: Long)

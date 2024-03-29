@@ -20,6 +20,12 @@ internal class GeneratedOperationDatasource(
         return generatedOperationDao.pagingGeneratedOperationWithImagesSource()
     }
 
+    suspend fun getLastGeneratedOperationWithImages(): GeneratedOperationWithImages {
+        return withContext(Dispatchers.IO) {
+            generatedOperationDao.getLastGeneratedOperationWithImages()
+        }
+    }
+
     // Raw operation
     suspend fun createOperation(): GeneratedOperationEntity {
         return withContext(Dispatchers.IO) {
@@ -34,6 +40,12 @@ internal class GeneratedOperationDatasource(
         return withContext(Dispatchers.IO) {
             generatedOperationDao.deleteOperation(operationId)
             sourceImageDao.deleteImages(operationId)
+        }
+    }
+
+    suspend fun countGeneratedOperation(): Int {
+        return withContext(Dispatchers.IO) {
+            generatedOperationDao.countGeneratedOperation()
         }
     }
 

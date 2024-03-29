@@ -22,6 +22,13 @@ internal fun SplashScreen(
     val controller = LocalController.current
 
     LaunchedEffect(Unit) {
+        // Check operation history
+        val countGeneratedOperation = controller.generatedOperationInteractor.countGeneratedOperation()
+        if (countGeneratedOperation > 0) {
+            val lastOperation = controller.generatedOperationInteractor.getLastGeneratedOperation()
+            controller.lastSavedPhotoUris.value = lastOperation.sourceImageUrls
+        }
+
         // Solve should show onboarding or not
         val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding()
 

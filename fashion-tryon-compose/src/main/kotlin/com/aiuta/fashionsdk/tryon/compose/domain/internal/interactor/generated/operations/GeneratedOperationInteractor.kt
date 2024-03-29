@@ -35,6 +35,10 @@ internal class GeneratedOperationInteractor(
             }
     }
 
+    suspend fun getLastGeneratedOperation(): GeneratedOperation {
+        return generatedOperationDatasource.getLastGeneratedOperationWithImages().toUiModel()
+    }
+
     // Raw operation
     suspend fun createOperation(): Long {
         return generatedOperationDatasource.createOperation().id
@@ -42,6 +46,10 @@ internal class GeneratedOperationInteractor(
 
     suspend fun deleteOperation(operation: GeneratedOperation) {
         generatedOperationDatasource.deleteOperation(operation.operationId)
+    }
+
+    suspend fun countGeneratedOperation(): Int {
+        return generatedOperationDatasource.countGeneratedOperation()
     }
 
     suspend fun createImage(
