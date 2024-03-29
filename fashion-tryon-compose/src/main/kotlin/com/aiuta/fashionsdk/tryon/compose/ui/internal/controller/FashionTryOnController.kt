@@ -10,7 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generatedimages.GeneratedImageInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners

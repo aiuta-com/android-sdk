@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generatedimages.dao.GeneratedImageDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.OnboardingEntity

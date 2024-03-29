@@ -1,12 +1,12 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generatedimages
+package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images
 
 import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generatedimages.GeneratedImageDatasource
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.GeneratedImageDatasource
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.BackendImageEntity
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toUiModel
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +19,7 @@ internal class GeneratedImageInteractor(
         return generatedImageDatasource.insertAll(
             generatedImages =
                 imageUrls.map { imageUrl ->
-                    GeneratedImageEntity(
+                    BackendImageEntity(
                         imageUrl = imageUrl,
                     )
                 },
