@@ -18,10 +18,6 @@ internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationC
             key = StartTryOn.SKU_CATALOG_NAME_PARAM,
             value = container.skuCatalogName,
         )
-        put(
-            key = StartTryOn.PHOTOS_COUNT_PARAM,
-            value = "1", // TODO Unmock with multi selector
-        )
     }
 }
 
@@ -39,10 +35,6 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
         put(
             key = FinishTryOn.SKU_CATALOG_NAME_PARAM,
             value = container.skuCatalogName,
-        )
-        put(
-            key = FinishTryOn.PHOTOS_COUNT_PARAM,
-            value = "1", // TODO Unmock with multi selector
         )
         put(
             key = FinishTryOn.GENERATION_TIME_PARAM,

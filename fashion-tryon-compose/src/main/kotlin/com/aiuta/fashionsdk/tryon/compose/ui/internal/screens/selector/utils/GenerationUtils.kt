@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.net.Uri
-import android.util.Log
 import com.aiuta.fashionsdk.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
@@ -63,9 +62,6 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
 }
 
 private fun FashionTryOnController.solveOperationCollecting(operation: SKUGenerationOperation) {
-    // TODO Delete
-    Log.d("TAG_CHECK", "new operation - $operation")
-
     when (operation) {
         is SKUGenerationOperation.LoadingOperation -> {
             if (generationStatus.value != SKUGenerationUIStatus.SUCCESS) {

@@ -21,7 +21,7 @@ internal fun sendConfigureEvent(theme: (() -> AiutaTryOnTheme)?) {
             )
             put(
                 key = Configure.PHOTO_LIMIT_PARAM,
-                value = "0", // TODO Unmock with multi selector
+                value = "10", // TODO Unmock with providing such info in config
             )
         }
     }

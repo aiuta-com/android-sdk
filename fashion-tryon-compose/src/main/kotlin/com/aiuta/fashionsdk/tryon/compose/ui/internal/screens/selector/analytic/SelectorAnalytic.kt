@@ -53,7 +53,7 @@ internal fun FashionTryOnController.sendStartUITryOnEvent(origin: StartUITryOn.O
         )
         put(
             key = StartUITryOn.PHOTOS_COUNT_PARAM,
-            value = "1", // TODO Unmock with multi selector
+            value = lastSavedPhotoUris.value.size.toString(),
         )
     }
 }
