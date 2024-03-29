@@ -7,10 +7,12 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendStartUITryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -26,6 +28,7 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
         activateGeneration()
 
         val imageUris: List<Uri> = lastSavedPhotoUris.value.map { Uri.parse(it) }
+        var errorCount = AtomicInteger()
 
         // TODO Create locally generation operation
 
@@ -51,11 +54,17 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
                         }
                     }
                     .map { status -> status.toOperation(sourceUri = uri) }
+                    .catch {
+                        if (errorCount.incrementAndGet() == imageUris.size) {
+                            generationStatus.value = SKUGenerationUIStatus.IDLE
+                            deactivateGeneration()
+                            showErrorState()
+                        }
+                    }
             }
 
         generationFlows
             .merge()
-            .catch { showErrorState() }
             .cancellable()
             .collect { operation -> solveOperationCollecting(operation) }
     }
