@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -42,6 +43,10 @@ internal fun ImageSelectorBottom(
     val theme = LocalTheme.current
 
     val generationStatus = controller.generationStatus
+    val countGeneratedOperation =
+        controller.generatedOperationInteractor
+            .countGeneratedOperation()
+            .collectAsStateWithLifecycle(0)
 
     val sharedModifier = Modifier.fillMaxWidth()
     val sharedBackground = Color.White.copy(alpha = 0.5f)
@@ -96,9 +101,13 @@ internal fun ImageSelectorBottom(
                         ),
                     size = sharedButtonSize,
                     onClick = {
-                        controller.bottomSheetNavigator.show(
-                            NavigationBottomSheetScreen.GeneratedOperations,
-                        )
+                        if (countGeneratedOperation.value == 0) {
+                            uploadPhoto()
+                        } else {
+                            controller.bottomSheetNavigator.show(
+                                NavigationBottomSheetScreen.GeneratedOperations,
+                            )
+                        }
                     },
                 )
             }
