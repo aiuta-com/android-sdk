@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
 internal class GeneratedOperationInteractor(
     private val generatedOperationDatasource: GeneratedOperationDatasource,
 ) {
-    fun getGeneratedOperationWithImagesFlow(): Flow<PagingData<GeneratedOperation>> {
+    fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperation>> {
         return Pager(
             config =
                 PagingConfig(
@@ -38,6 +38,10 @@ internal class GeneratedOperationInteractor(
     // Raw operation
     suspend fun createOperation(): Long {
         return generatedOperationDatasource.createOperation().id
+    }
+
+    suspend fun deleteOperation(operation: GeneratedOperation) {
+        generatedOperationDatasource.deleteOperation(operation.operationId)
     }
 
     suspend fun createImage(

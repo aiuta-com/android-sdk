@@ -30,6 +30,14 @@ internal class GeneratedOperationDatasource(
         }
     }
 
+    suspend fun deleteOperation(operationId: Long) {
+        return withContext(Dispatchers.IO) {
+            generatedOperationDao.deleteOperation(operationId)
+            sourceImageDao.deleteImages(operationId)
+        }
+    }
+
+    // Source images
     suspend fun createImage(
         imageUrl: String,
         operationId: Long,

@@ -19,4 +19,6 @@ internal sealed interface NavigationBottomSheetScreen {
             TRY_ON,
         }
     }
+
+    public object GeneratedOperations : NavigationBottomSheetScreen
 }

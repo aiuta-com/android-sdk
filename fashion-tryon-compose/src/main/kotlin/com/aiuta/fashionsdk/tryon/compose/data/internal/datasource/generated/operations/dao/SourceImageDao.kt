@@ -11,6 +11,9 @@ internal interface SourceImageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertImage(sourceImage: SourceImageEntity): Long
 
-    @Query("SELECT * FROM source_images WHERE rowid == :sourceImageRowId LIMIT 1")
+    @Query("SELECT * FROM source_images WHERE rowid = :sourceImageRowId LIMIT 1")
     fun getImage(sourceImageRowId: Long): SourceImageEntity
+
+    @Query("DELETE FROM source_images WHERE operationId = :operationId")
+    fun deleteImages(operationId: Long)
 }

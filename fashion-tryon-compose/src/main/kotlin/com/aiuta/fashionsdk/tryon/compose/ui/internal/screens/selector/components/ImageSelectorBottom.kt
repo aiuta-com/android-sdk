@@ -29,6 +29,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.transitionAnimation
 
@@ -94,7 +95,11 @@ internal fun ImageSelectorBottom(
                             contentColor = Color.Black,
                         ),
                     size = sharedButtonSize,
-                    onClick = uploadPhoto,
+                    onClick = {
+                        controller.bottomSheetNavigator.show(
+                            NavigationBottomSheetScreen.GeneratedOperations,
+                        )
+                    },
                 )
             }
 

@@ -36,6 +36,10 @@
     <string name="picker_sheet_take_photo">Take a photo</string>
     <string name="picker_sheet_choose_library">Choose from library</string>
 
+    <!--Generated operations sheet-->
+    <string name="generated_operations_sheet_previously">Previously used photos</string>
+    <string name="generated_operations_sheet_upload_new_button">+ Upload new photo</string>
+
     <!--General-->
     <string name="add_to_wish">Add to wishlist</string>
     <string name="add_to_cart">Add to cart</string>
