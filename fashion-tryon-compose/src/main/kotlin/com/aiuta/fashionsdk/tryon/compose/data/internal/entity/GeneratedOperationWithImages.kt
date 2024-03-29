@@ -9,5 +9,5 @@ internal data class GeneratedOperationWithImages(
         parentColumn = "id",
         entityColumn = "operationId",
     )
-    val playlists: List<SourceImageEntity>,
+    val sourceImages: List<SourceImageEntity>,
 )

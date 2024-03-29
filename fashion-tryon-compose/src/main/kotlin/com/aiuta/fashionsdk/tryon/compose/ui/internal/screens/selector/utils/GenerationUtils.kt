@@ -15,7 +15,6 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
@@ -28,9 +27,9 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
         activateGeneration()
 
         val imageUris: List<Uri> = lastSavedPhotoUris.value.map { Uri.parse(it) }
-        var errorCount = AtomicInteger()
+        val errorCount = AtomicInteger()
 
-        // TODO Create locally generation operation
+        val operationId = generatedOperationInteractor.createOperation()
 
         val generationFlows =
             imageUris.map { uri ->
@@ -43,14 +42,18 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
                                 skuCatalogName = activeSKUItem.value.catalogName,
                             ),
                     )
-                    .onEach {
-                        // TODO If uploaded state - save to storage of operation
-                        // insertOrUpdate
+                    .onEach { status ->
+                        if (status is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage) {
+                            generatedOperationInteractor.createImage(
+                                imageUrl = status.sourceImageUrl,
+                                operationId = operationId,
+                            )
+                        }
                     }
-                    .onEach {
+                    .onEach { status ->
                         // Save generations for history, if operation is success
-                        if (it is SKUGenerationStatus.SuccessGenerationStatus) {
-                            generatedImageInteractor.insertAll(it.imageUrls)
+                        if (status is SKUGenerationStatus.SuccessGenerationStatus) {
+                            generatedImageInteractor.insertAll(status.imageUrls)
                         }
                     }
                     .map { status -> status.toOperation(sourceUri = uri) }
@@ -79,7 +82,8 @@ private fun FashionTryOnController.solveOperationCollecting(operation: SKUGenera
 
             // Check is this operation already exist
             // Should think about optimization for O(n)
-            val existedOperation = generationOperations.find { it.sourceImageUri == operation.sourceImageUri }
+            val existedOperation =
+                generationOperations.find { it.sourceImageUri == operation.sourceImageUri }
             if (existedOperation == null) {
                 generationOperations.add(operation)
             }

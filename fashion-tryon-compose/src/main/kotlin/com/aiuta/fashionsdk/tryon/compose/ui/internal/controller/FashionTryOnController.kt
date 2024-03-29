@@ -11,6 +11,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
@@ -104,6 +105,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = GeneratedImageInteractor.getInstance(context),
+            generatedOperationInteractor = GeneratedOperationInteractor.getInstance(context),
             onboardingInteractor = OnboardingInteractor.getInstance(context),
             analytic = analytic(),
         )
@@ -141,6 +143,7 @@ internal class FashionTryOnController(
     public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
+    internal val generatedOperationInteractor: GeneratedOperationInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
     // Analytic
     internal val analytic: InternalAiutaAnalytic,
