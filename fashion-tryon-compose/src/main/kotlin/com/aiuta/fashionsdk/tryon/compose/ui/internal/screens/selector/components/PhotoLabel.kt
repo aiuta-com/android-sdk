@@ -9,7 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.R
@@ -32,7 +32,7 @@ internal fun PhotoLabel(
                 ),
     ) {
         Text(
-            text = stringResource(R.string.image_selector_photos, count),
+            text = pluralStringResource(R.plurals.image_selector_photos, count, count),
             style = MaterialTheme.typography.subtitle2,
             color = Color.White,
             maxLines = 1,

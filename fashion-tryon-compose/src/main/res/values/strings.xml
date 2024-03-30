@@ -18,7 +18,11 @@
     <string name="image_selector_powered_by_aiuta_1">Powered by\u0020</string>
     <string name="image_selector_powered_by_aiuta_2">Aiuta</string>
     <string name="image_selector_generating_outfit">Generating outfit</string>
-    <string name="image_selector_photos">%d photos</string>
+    <plurals name="image_selector_photos">
+        <item quantity="one">%d photo</item>
+        <item quantity="other">%d photos</item>
+    </plurals>
+
 
     <!--History-->
     <string name="history_selector_disabled_text">You can share or delete images by selecting them</string>
