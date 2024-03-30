@@ -173,3 +173,12 @@ internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> {
         }
     }
 }
+
+@Composable
+internal fun FashionTryOnController.isActiveSKUGenerateMoreNotEmpty(): State<Boolean> {
+    return remember(activeSKUItem.value) {
+        derivedStateOf {
+            activeSKUItem.value.generateMoreSKU.orEmpty().isNotEmpty()
+        }
+    }
+}

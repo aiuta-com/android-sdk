@@ -26,7 +26,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isActiveSKUGenerateMoreNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendOpenResultsScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationButtonsBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationCarouselBlock
@@ -44,6 +46,7 @@ import kotlin.math.roundToInt
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
+    val controller = LocalController.current
 
     sendOpenResultsScreenEvent()
 
@@ -88,6 +91,7 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
                     .anchoredDraggable(
                         state = generationResultController.verticalSwipeState,
                         orientation = Orientation.Vertical,
+                        enabled = controller.isActiveSKUGenerateMoreNotEmpty().value,
                     )
                     .nestedScroll(connection),
             horizontalAlignment = Alignment.CenterHorizontally,
