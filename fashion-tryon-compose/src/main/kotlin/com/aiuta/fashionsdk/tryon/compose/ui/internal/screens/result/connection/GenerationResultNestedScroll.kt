@@ -10,6 +10,8 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.unit.Velocity
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isActiveSKUGenerateMoreNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateResultState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 
@@ -18,10 +20,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 internal fun rememberGenerationResultNestedScroll(
     generationResultController: GenerationResultController,
 ): GenerationResultNestedScroll {
+    val controller = LocalController.current
+    val isActiveSKUGenerateMoreNotEmpty = controller.isActiveSKUGenerateMoreNotEmpty().value
+
     return remember {
         GenerationResultNestedScroll(
             verticalSwipeState = generationResultController.verticalSwipeState,
             pagerState = generationResultController.generationPagerState,
+            isActiveSKUGenerateMoreNotEmpty = isActiveSKUGenerateMoreNotEmpty,
         )
     }
 }
@@ -31,6 +37,7 @@ internal fun rememberGenerationResultNestedScroll(
 internal class GenerationResultNestedScroll(
     private val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
     private val pagerState: PagerState,
+    private val isActiveSKUGenerateMoreNotEmpty: Boolean,
 ) : NestedScrollConnection {
     override fun onPreScroll(
         available: Offset,
@@ -71,7 +78,7 @@ internal class GenerationResultNestedScroll(
     }
 
     private fun shouldScrollGenerateMore() =
-        pagerState.settledPage == pagerState.pageCount - 1 && !pagerState.isScrollInProgress
+        pagerState.settledPage == pagerState.pageCount - 1 && !pagerState.isScrollInProgress && isActiveSKUGenerateMoreNotEmpty
 
     private fun Float.toOffset() = Offset(0f, this)
 }

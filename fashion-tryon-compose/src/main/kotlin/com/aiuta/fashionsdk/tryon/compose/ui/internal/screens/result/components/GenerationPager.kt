@@ -50,6 +50,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isActiveSKUGenerateMoreNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isGenerationPagerItem
@@ -120,7 +121,7 @@ internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize(),
             imageUrl = skuMetaImages.getOrNull(index),
             isShareAvailable = false,
-            isSwipeTipVisible = true,
+            isSwipeTipVisible = controller.isActiveSKUGenerateMoreNotEmpty().value,
         )
     }
 }
