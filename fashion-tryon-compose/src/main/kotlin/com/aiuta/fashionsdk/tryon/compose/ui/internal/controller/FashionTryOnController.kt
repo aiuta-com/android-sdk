@@ -4,15 +4,22 @@ import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generatedimages.GeneratedImageInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScreen
@@ -20,14 +27,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.Sel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import java.util.LinkedList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancel
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
@@ -56,9 +60,13 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         remember {
             mutableStateOf(defaultStartScreen())
         }
-    val defaultLastSavedUriPhoto =
+    val defaultLastSavedImages =
         remember {
-            mutableStateOf<List<String>>(emptyList())
+            mutableStateOf<LastSavedImages>(LastSavedImages.Empty)
+        }
+    val defaultSavedOperation =
+        remember {
+            mutableStateOf<GeneratedOperation?>(null)
         }
     val defaultIsGenerationActive =
         remember {
@@ -77,30 +85,49 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
 
+    // Generation state
+    val defaultGenerationUIStatus =
+        remember {
+            mutableStateOf(SKUGenerationUIStatus.IDLE)
+        }
+    val defaultGenerationOperations =
+        remember {
+            mutableStateListOf<SKUGenerationOperation>()
+        }
+
     return remember {
         FashionTryOnController(
+            generationStatus = defaultGenerationUIStatus,
+            generationOperations = defaultGenerationOperations,
             currentScreen = defaultCurrentScreen,
             bottomSheetNavigator = defaultBottomSheetNavigator,
             fashionTryOnErrorState = defaultFashionTryOnErrorState,
             selectorState = defaultSelectorState,
             zoomImageController = zoomImageController,
             isSKUItemVisible = defaultSKUItemVisibility,
-            lastSavedPhotoUris = defaultLastSavedUriPhoto,
+            lastSavedImages = defaultLastSavedImages,
+            lastSavedOperation = defaultSavedOperation,
             activeSKUItem = activeSKUItem,
             aiutaTryOn = aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = GeneratedImageInteractor.getInstance(context),
+            generatedOperationInteractor = GeneratedOperationInteractor.getInstance(context),
             onboardingInteractor = OnboardingInteractor.getInstance(context),
             analytic = analytic(),
         )
     }.also {
         it.skuItemVisibilityListener()
+        it.generationNavigationListener()
+        it.generationOperationListener()
     }
 }
 
 @Immutable
 internal class FashionTryOnController(
+    // Generation state
+    internal val generationStatus: MutableState<SKUGenerationUIStatus>,
+    internal val generationOperations: SnapshotStateList<SKUGenerationOperation>,
     // General navigation
     public val currentScreen: MutableState<NavigationScreen>,
     internal val backStack: LinkedList<NavigationScreen> = LinkedList(),
@@ -116,30 +143,35 @@ internal class FashionTryOnController(
     // Interface z index
     val zIndexInterface: Float = 2f,
     // Data
-    public val lastSavedPhotoUris: MutableState<List<String>>,
+    public val lastSavedImages: MutableState<LastSavedImages>,
+    public val lastSavedOperation: MutableState<GeneratedOperation?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
     public val aiutaTryOn: () -> AiutaTryOn,
     public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
+    internal val generatedOperationInteractor: GeneratedOperationInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
     // Analytic
     internal val analytic: InternalAiutaAnalytic,
 ) {
     // Utils
-    private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
+    private var internalGenerationScope: CoroutineScope? = null
+    internal val generationScope: CoroutineScope
+        get() {
+            return cancelGenerationScope()
+        }
 
-    init {
-        scope.launch {
-            aiutaTryOn()
-                .skuGenerationStatus
-                .onEach { status ->
-                    if (status is SKUGenerationStatus.SuccessGenerationStatus) {
-                        generatedImageInteractor.insertAll(status.imageUrls)
-                    }
-                }
-                .collect()
+    /**
+     * Cancel current generation scope and set new for next generation
+     *
+     * @return new coroutine scope
+     */
+    internal fun cancelGenerationScope(): CoroutineScope {
+        internalGenerationScope?.cancel()
+        return CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate).also {
+            internalGenerationScope = it
         }
     }
 }

@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -35,7 +36,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideCameraPicker
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideSingleImagePicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideMultipleImagePicker
 
 @Composable
 internal fun ColumnScope.ImagePickerSheet() {
@@ -48,18 +49,22 @@ internal fun ColumnScope.ImagePickerSheet() {
         provideCameraPicker { hasImage ->
             if (hasImage && newImageUri != null) {
                 controller.sendSelectNewPhotosEvent(fromCamera = 1)
-                controller.lastSavedPhotoUris.value = listOf(newImageUri.toString())
+                controller.lastSavedImages.value =
+                    LastSavedImages.UriSource(
+                        imageUris = listOf(newImageUri.toString()),
+                    )
                 controller.bottomSheetNavigator.hide()
             }
         }
 
     val imagePickerLauncher =
-        provideSingleImagePicker { uri ->
-            uri?.let {
-                controller.sendSelectNewPhotosEvent(fromGallery = 1)
-                controller.lastSavedPhotoUris.value = listOf(uri.toString())
-                controller.bottomSheetNavigator.hide()
-            }
+        provideMultipleImagePicker { uris ->
+            controller.sendSelectNewPhotosEvent(fromGallery = uris.size)
+            controller.lastSavedImages.value =
+                LastSavedImages.UriSource(
+                    imageUris = uris.map { it.toString() },
+                )
+            controller.bottomSheetNavigator.hide()
         }
 
     SheetDivider()

@@ -9,9 +9,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.aiuta.fashionsdk.tryon.compose.domain.models.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import kotlinx.coroutines.flow.first
 
 @Composable
 internal fun SplashScreen(
@@ -22,6 +24,17 @@ internal fun SplashScreen(
     val controller = LocalController.current
 
     LaunchedEffect(Unit) {
+        // Check operation history
+        val countGeneratedOperation =
+            controller.generatedOperationInteractor
+                .countGeneratedOperation()
+                .first()
+
+        if (countGeneratedOperation > 0) {
+            val lastOperation = controller.generatedOperationInteractor.getLastGeneratedOperation()
+            controller.lastSavedImages.value = lastOperation.toLastSavedImages()
+        }
+
         // Solve should show onboarding or not
         val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding()
 

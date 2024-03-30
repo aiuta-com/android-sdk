@@ -18,6 +18,11 @@
     <string name="image_selector_powered_by_aiuta_1">Powered by\u0020</string>
     <string name="image_selector_powered_by_aiuta_2">Aiuta</string>
     <string name="image_selector_generating_outfit">Generating outfit</string>
+    <plurals name="image_selector_photos">
+        <item quantity="one">%d photo</item>
+        <item quantity="other">%d photos</item>
+    </plurals>
+
 
     <!--History-->
     <string name="history_selector_disabled_text">You can share or delete images by selecting them</string>
@@ -34,6 +39,10 @@
     <!--Picker sheet-->
     <string name="picker_sheet_take_photo">Take a photo</string>
     <string name="picker_sheet_choose_library">Choose from library</string>
+
+    <!--Generated operations sheet-->
+    <string name="generated_operations_sheet_previously">Previously used photos</string>
+    <string name="generated_operations_sheet_upload_new_button">+ Upload new photo</string>
 
     <!--General-->
     <string name="add_to_wish">Add to wishlist</string>

@@ -1,9 +1,9 @@
-package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generatedimages
+package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images
 
 import android.content.Context
 import androidx.paging.PagingSource
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generatedimages.dao.GeneratedImageDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

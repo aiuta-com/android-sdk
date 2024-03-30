@@ -11,7 +11,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
 import java.io.FileNotFoundException
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Default Kotlin extension for creating [AiutaTryOn]
@@ -25,13 +25,6 @@ public val Aiuta.tryon: AiutaTryOn
  * Entry point for all functionality of Digital try on
  */
 public interface AiutaTryOn {
-    /**
-     * Flow of current sku generation status
-     *
-     * @see SKUGenerationStatus for possible variants of status
-     */
-    public val skuGenerationStatus: StateFlow<SKUGenerationStatus>
-
     /**
      * Get new page of [SKUGenerationItem]
      *
@@ -58,15 +51,10 @@ public interface AiutaTryOn {
      * @throws IllegalStateException if such operation already exist or it's not valid
      * @throws FashionIOException
      * @throws FashionNetworkIsDisconnected
-     */
-    public suspend fun startSKUGeneration(container: SKUGenerationContainer)
-
-    /**
-     * Start sku generation by user images one by one
      *
-     * @see startSKUGeneration
+     * @return flow with statuses of started generation
      */
-    public suspend fun startSKUGeneration(containers: List<SKUGenerationContainer>)
+    public fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus>
 
     public companion object {
         public const val DEFAULT_CATALOG_NAME: String = "aiuta_demo"

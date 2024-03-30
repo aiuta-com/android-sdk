@@ -4,35 +4,46 @@ package com.aiuta.fashionsdk.tryon.core.domain.models
  * Status sku generation
  */
 public sealed interface SKUGenerationStatus {
-    public val imageUrls: List<String>
-
-    /**
-     * Base type, which mean nothing to see
-     */
-    public object NothingGenerateStatus : SKUGenerationStatus {
-        override val imageUrls: List<String> = emptyList()
-    }
-
     /**
      * Successfully generate all images
      */
-    public data class SuccessGenerationStatus(
-        override val imageUrls: List<String> = emptyList(),
+    public class SuccessGenerationStatus(
+        public val sourceImageUrl: String,
+        public val imageUrls: List<String> = emptyList(),
     ) : SKUGenerationStatus
 
     /**
      * Generation is in progress
      */
-    public data class LoadingGenerationStatus(
-        override val imageUrls: List<String> = emptyList(),
-    ) : SKUGenerationStatus
+    public interface LoadingGenerationStatus : SKUGenerationStatus {
+        /**
+         * Only start generation process
+         */
+        public object StartGeneration : LoadingGenerationStatus
+
+        /**
+         * Source image successfully upload to storage
+         */
+        public class UploadedSourceImage(
+            public val sourceImageId: String,
+            public val sourceImageUrl: String,
+        ) : LoadingGenerationStatus
+
+        /**
+         * Generation operation successfully created and now should wait until
+         * finish of generation
+         */
+        public class GenerationProcessing(
+            public val sourceImageId: String,
+            public val sourceImageUrl: String,
+        ) : LoadingGenerationStatus
+    }
 
     /**
      * Failed to make generation
      */
-    public data class ErrorGenerationStatus(
-        override val imageUrls: List<String> = emptyList(),
-        val errorMessage: String? = null,
-        val exception: Exception? = null,
+    public class ErrorGenerationStatus(
+        public val errorMessage: String? = null,
+        public val exception: Exception? = null,
     ) : SKUGenerationStatus
 }

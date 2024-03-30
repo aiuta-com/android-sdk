@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.GeneratedOperationsSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.ImagePickerSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.SKUInfoSheet
 import kotlinx.coroutines.CoroutineScope
@@ -66,6 +67,10 @@ internal class BottomSheetNavigator(
                 )
             }
 
+            is NavigationBottomSheetScreen.GeneratedOperations -> {
+                GeneratedOperationsSheet()
+            }
+
             is NavigationBottomSheetScreen.IDLE -> Unit
         }
 
@@ -83,6 +88,14 @@ internal class BottomSheetNavigator(
         scope.launch {
             sheetState.hide()
             currentBottomSheetScreen.value = NavigationBottomSheetScreen.IDLE
+        }
+    }
+
+    public fun change(newSheetScreen: NavigationBottomSheetScreen) {
+        scope.launch {
+            sheetState.hide()
+            currentBottomSheetScreen.value = newSheetScreen
+            sheetState.show()
         }
     }
 }

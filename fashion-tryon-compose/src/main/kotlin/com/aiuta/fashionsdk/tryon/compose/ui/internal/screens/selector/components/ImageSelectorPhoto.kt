@@ -11,9 +11,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -22,7 +22,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.airbnb.lottie.LottieProperty
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -32,29 +31,33 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.airbnb.lottie.compose.rememberLottieDynamicProperties
 import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.imageSource
+import com.aiuta.fashionsdk.tryon.compose.domain.models.size
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val fashionTryOn = remember { controller.aiutaTryOn() }
-    val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
+
+    val generationStatus = controller.generationStatus
+
     val sharedCornerShape = RoundedCornerShape(24.dp)
 
     // Animation
     val lastSavedPhotoUrisTransition =
         updateTransition(
-            targetState = controller.lastSavedPhotoUris.value,
+            targetState = controller.lastSavedImages.value.imageSource,
             label = "lastSavedPhotoUrisTransition",
         )
 
     val skuGenerationTransition =
         updateTransition(
-            targetState = skuGenerationStatus.value,
+            targetState = generationStatus.value,
             label = "skuGenerationTransition",
         )
 
@@ -93,9 +96,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize(),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { uploadedImageUris ->
-            val imageUri = uploadedImageUris.firstOrNull()
-
-            if (imageUri == null) {
+            if (uploadedImageUris.isEmpty()) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center,
@@ -105,16 +106,30 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
                     )
                 }
             } else {
-                UploadImage(
+                ImagesContainer(
                     modifier = Modifier.fillMaxSize().clip(sharedCornerShape),
-                    imageUri = imageUri,
+                    getImageUrls = { uploadedImageUris },
                 )
             }
         }
 
+        lastSavedPhotoUrisTransition.AnimatedVisibility(
+            modifier =
+                Modifier
+                    .align(Alignment.TopStart)
+                    .padding(12.dp),
+            visible = { it.size > 1 },
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            PhotoLabel(
+                count = controller.lastSavedImages.value.size,
+            )
+        }
+
         skuGenerationTransition.AnimatedVisibility(
             modifier = Modifier.fillMaxSize(),
-            visible = { it is SKUGenerationStatus.LoadingGenerationStatus },
+            visible = { it == SKUGenerationUIStatus.LOADING },
             enter = fadeIn(),
             exit = fadeOut(),
         ) {

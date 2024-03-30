@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationVerticalPagerBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.connection.rememberGenerationResultNestedScroll
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.bodyHeight
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.footerHeight
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.rememberGenerationResultController
@@ -45,6 +46,8 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     sendOpenResultsScreenEvent()
+
+    GenerationResultListener()
 
     BoxWithConstraints(
         modifier = modifier.background(theme.colors.background),

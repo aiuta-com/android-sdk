@@ -6,12 +6,14 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.analytic.model.FinishSession
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 // Configs
 internal val screensWithSKUItems =
@@ -92,6 +94,25 @@ internal fun FashionTryOnController.forceHideActiveSKUItem() {
     isSKUItemVisible.value = false
 }
 
+// Generations
+internal inline fun <reified T : SKUGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> {
+    return generationOperations.mapNotNull { it as? T }
+}
+
+@Composable
+internal fun FashionTryOnController.subscribeToSuccessOperations(): State<List<SKUGenerationOperation.SuccessOperation>> {
+    return remember(generationOperations) {
+        derivedStateOf { tryToGetOperations() }
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<SKUGenerationOperation.LoadingOperation>> {
+    return remember(generationOperations) {
+        derivedStateOf { tryToGetOperations() }
+    }
+}
+
 // Checks
 @Composable
 internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> {
@@ -108,12 +129,11 @@ internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> 
 
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
-    val skuGenerationStatus = aiutaTryOn().skuGenerationStatus.collectAsStateWithLifecycle()
     val historyImageCount = generatedImageInteractor.count().collectAsStateWithLifecycle(0)
 
-    return remember(skuGenerationStatus.value) {
+    return remember(generationStatus.value) {
         derivedStateOf {
-            skuGenerationStatus.value !is SKUGenerationStatus.LoadingGenerationStatus && historyImageCount.value != 0
+            generationStatus.value != SKUGenerationUIStatus.LOADING && historyImageCount.value != 0
         }
     }
 }
@@ -138,9 +158,9 @@ internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> {
 
 @Composable
 internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> {
-    return remember(lastSavedPhotoUris.value) {
+    return remember(lastSavedImages.value) {
         derivedStateOf {
-            lastSavedPhotoUris.value.isNotEmpty()
+            lastSavedImages.value.isNotEmpty()
         }
     }
 }

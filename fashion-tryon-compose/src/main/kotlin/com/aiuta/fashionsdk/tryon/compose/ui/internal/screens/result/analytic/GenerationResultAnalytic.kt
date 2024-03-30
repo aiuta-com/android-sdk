@@ -2,26 +2,25 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.analytic.model.OpenResultsScreen
 import com.aiuta.fashionsdk.analytic.model.SelectMoreToTryOn
 import com.aiuta.fashionsdk.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.analytic.model.ViewMoreToTryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToLoadingOperations
 
 @Composable
 internal fun sendOpenResultsScreenEvent() {
     val analytic = LocalAnalytic.current
     val controller = LocalController.current
     val activeSKUItem = controller.activeSKUItem.value
-    val skuGenerationStatus =
-        controller
-            .aiutaTryOn()
-            .skuGenerationStatus
-            .collectAsStateWithLifecycle()
+
+    val lastSavedPhotoUris = controller.lastSavedImages.value
+    val loadingOperations = controller.subscribeToLoadingOperations().value
 
     LaunchedEffect(Unit) {
         analytic.sendEvent(OpenResultsScreen) {
@@ -35,11 +34,11 @@ internal fun sendOpenResultsScreenEvent() {
             )
             put(
                 key = OpenResultsScreen.GENERATED_PHOTOS_PARAM,
-                value = skuGenerationStatus.value.imageUrls.size.toString(),
+                value = lastSavedPhotoUris.size.toString(),
             )
             put(
                 key = OpenResultsScreen.PHOTOS_IN_PROGRESS_PARAM,
-                value = "0", // TODO Unmock with multi select
+                value = loadingOperations.size.toString(),
             )
             put(
                 key = OpenResultsScreen.MORE_TO_TRY_ON_PARAM,

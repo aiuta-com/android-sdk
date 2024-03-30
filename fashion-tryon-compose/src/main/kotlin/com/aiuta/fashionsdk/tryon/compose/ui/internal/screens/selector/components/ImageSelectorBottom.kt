@@ -15,7 +15,6 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,12 +26,14 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.transitionAnimation
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @Composable
 internal fun ImageSelectorBottom(
@@ -40,9 +41,14 @@ internal fun ImageSelectorBottom(
     uploadPhoto: () -> Unit,
 ) {
     val controller = LocalController.current
-    val fashionTryOn = remember { controller.aiutaTryOn() }
     val theme = LocalTheme.current
-    val skuGenerationStatus = fashionTryOn.skuGenerationStatus.collectAsStateWithLifecycle()
+
+    val generationStatus = controller.generationStatus
+    val countGeneratedOperation =
+        controller.generatedOperationInteractor
+            .countGeneratedOperation()
+            .collectAsStateWithLifecycle(0)
+
     val sharedModifier = Modifier.fillMaxWidth()
     val sharedBackground = Color.White.copy(alpha = 0.5f)
     val sharedCornerSize = RoundedCornerShape(8.dp)
@@ -57,7 +63,7 @@ internal fun ImageSelectorBottom(
         updateTransition(
             targetState =
                 when {
-                    skuGenerationStatus.value is SKUGenerationStatus.LoadingGenerationStatus -> {
+                    generationStatus.value == SKUGenerationUIStatus.LOADING -> {
                         ImageSelectorState.GENERATION_LOADING
                     }
 
@@ -81,7 +87,10 @@ internal fun ImageSelectorBottom(
                     text = stringResource(R.string.image_selector_upload_button),
                     style = FashionButtonStyles.primaryStyle(theme),
                     size = sharedButtonSize,
-                    onClick = uploadPhoto,
+                    onClick = {
+                        controller.sendTapChangePhotoEvent()
+                        uploadPhoto()
+                    },
                 )
             }
 
@@ -95,7 +104,17 @@ internal fun ImageSelectorBottom(
                             contentColor = Color.Black,
                         ),
                     size = sharedButtonSize,
-                    onClick = uploadPhoto,
+                    onClick = {
+                        if (countGeneratedOperation.value == 0) {
+                            controller.sendTapChangePhotoEvent()
+                            uploadPhoto()
+                        } else {
+                            controller.sendTapChangePhotoEvent(isHistorySheetOpened = true)
+                            controller.bottomSheetNavigator.show(
+                                NavigationBottomSheetScreen.GeneratedOperations,
+                            )
+                        }
+                    },
                 )
             }
 
