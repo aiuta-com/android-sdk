@@ -46,6 +46,8 @@ import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.domain.models.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -53,6 +55,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.PhotoLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.analytic.sendSelectOldPhotos
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
 import kotlinx.coroutines.launch
 
@@ -114,8 +117,10 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     generatedOperation = generatedOperation,
                     onClick = {
                         with(controller) {
+                            sendSelectOldPhotos(generatedOperation.sourceImageUrls.size)
+
                             lastSavedOperation.value = generatedOperation
-                            lastSavedPhotoUris.value = generatedOperation.sourceImageUrls
+                            lastSavedImages.value = generatedOperation.toLastSavedImages()
                             bottomSheetNavigator.hide()
                         }
                     },
@@ -199,7 +204,7 @@ private fun OperationItem(
                         generatedOperationInteractor.deleteOperation(generatedOperation)
                         if (lastSavedOperation.value == generatedOperation) {
                             lastSavedOperation.value = null
-                            lastSavedPhotoUris.value = emptyList()
+                            lastSavedImages.value = LastSavedImages.Empty
                         }
                     }
                 }

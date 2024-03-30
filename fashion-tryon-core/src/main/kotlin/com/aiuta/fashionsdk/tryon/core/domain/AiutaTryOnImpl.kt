@@ -7,26 +7,28 @@ import com.aiuta.fashionsdk.analytic.model.TryOnError
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.UploadedImage
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOperationsDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSKUOperationRequest
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.isTerminate
 import com.aiuta.fashionsdk.tryon.core.domain.models.toPublic
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.pingOperationSliceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.uploadImageSliceFactory
+import com.aiuta.fashionsdk.tryon.core.domain.utils.errorListener
+import com.aiuta.fashionsdk.tryon.core.domain.utils.measureTryOn
+import com.aiuta.fashionsdk.tryon.core.domain.utils.trackException
 import com.aiuta.fashionsdk.tryon.core.utils.generateFileName
-import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.first
@@ -61,21 +63,25 @@ internal class AiutaTryOnImpl(
 
     override fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus> {
         return flow {
-            measureTryOn(container) {
+            measureTryOn(
+                analytic = analytic,
+                container = container,
+            ) {
                 errorListener {
                     // Set loading state with previous image urls
                     emit(SKUGenerationStatus.LoadingGenerationStatus.StartGeneration)
 
                     // Firstly, upload image on backend
                     val uploadedImage =
-                        trackException(TryOnError.Type.UPLOAD_FAILED) {
-                            uploadImageSlice.uploadImage(
-                                fileUri = container.fileUri,
-                                fileName = generateFileName(),
-                            )
+                        trackException(
+                            analytic = analytic,
+                            type = TryOnError.Type.UPLOAD_FAILED,
+                        ) {
+                            solveUploadingImage(container)
                         }
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                            sourceImageId = uploadedImage.id,
                             sourceImageUrl = uploadedImage.url,
                         ),
                     )
@@ -94,16 +100,23 @@ internal class AiutaTryOnImpl(
                     // Finally, wait for the operation, until it is completed
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                            sourceImageId = uploadedImage.id,
                             sourceImageUrl = uploadedImage.url,
                         ),
                     )
-                    trackException(TryOnError.Type.TRY_ON_START_FAILED) {
+                    trackException(
+                        analytic = analytic,
+                        type = TryOnError.Type.TRY_ON_START_FAILED,
+                    ) {
                         pingOperationSlice.startOperationTypeListening(
                             operationId = newOperation.operationId,
                         )
                     }
 
-                    trackException(TryOnError.Type.TRY_ON_OPERATION_FAILED) {
+                    trackException(
+                        analytic = analytic,
+                        type = TryOnError.Type.TRY_ON_OPERATION_FAILED,
+                    ) {
                         pingOperationSlice
                             .getPingGenerationStatusFlow(operationId = newOperation.operationId)
                             ?.first { it.isTerminate() }
@@ -115,6 +128,24 @@ internal class AiutaTryOnImpl(
                             }
                     }
                 }
+            }
+        }
+    }
+
+    private suspend fun solveUploadingImage(container: SKUGenerationContainer): UploadedImage {
+        return when (container) {
+            is SKUGenerationUriContainer -> {
+                uploadImageSlice.uploadImage(
+                    fileUri = container.fileUri,
+                    fileName = generateFileName(),
+                )
+            }
+
+            is SKUGenerationUrlContainer -> {
+                UploadedImage(
+                    id = container.fileId,
+                    url = container.fileUrl,
+                )
             }
         }
     }
@@ -147,45 +178,6 @@ internal class AiutaTryOnImpl(
                     ),
                 )
             }
-        }
-    }
-
-    private suspend fun FlowCollector<SKUGenerationStatus>.errorListener(
-        action: suspend () -> Unit,
-    ) {
-        try {
-            action()
-        } catch (e: Exception) {
-            // Fallback with error
-            emit(
-                SKUGenerationStatus.ErrorGenerationStatus(
-                    errorMessage = e.message,
-                    exception = e,
-                ),
-            )
-            throw e
-        }
-    }
-
-    private suspend fun measureTryOn(
-        container: SKUGenerationContainer,
-        action: suspend () -> Unit,
-    ) {
-        analytic.sendStartTryOnEvent(container)
-        val loadingTimeMillis = measureTimeMillis { action() }
-        analytic.sendFinishTryOnEvent(container, loadingTimeMillis)
-    }
-
-    private suspend fun <T> trackException(
-        type: TryOnError.Type,
-        action: suspend () -> T,
-    ): T {
-        return try {
-            action()
-        } catch (e: Exception) {
-            // Logging exception
-            analytic.sendTryOnErrorEvent(type)
-            throw e
         }
     }
 

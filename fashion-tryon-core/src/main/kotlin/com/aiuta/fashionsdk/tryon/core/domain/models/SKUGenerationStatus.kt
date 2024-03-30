@@ -25,6 +25,7 @@ public sealed interface SKUGenerationStatus {
          * Source image successfully upload to storage
          */
         public class UploadedSourceImage(
+            public val sourceImageId: String,
             public val sourceImageUrl: String,
         ) : LoadingGenerationStatus
 
@@ -33,6 +34,7 @@ public sealed interface SKUGenerationStatus {
          * finish of generation
          */
         public class GenerationProcessing(
+            public val sourceImageId: String,
             public val sourceImageUrl: String,
         ) : LoadingGenerationStatus
     }

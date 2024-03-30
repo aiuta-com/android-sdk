@@ -37,7 +37,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendOpenMainScreenEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
@@ -74,7 +73,6 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(0.7f),
             uploadPhoto = {
-                controller.sendTapChangePhotoEvent()
                 controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
             },
         )

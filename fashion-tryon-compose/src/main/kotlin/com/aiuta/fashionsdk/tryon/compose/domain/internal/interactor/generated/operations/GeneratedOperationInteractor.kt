@@ -9,6 +9,7 @@ import androidx.paging.map
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.GeneratedOperationDatasource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toUiModel
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
@@ -53,11 +54,12 @@ internal class GeneratedOperationInteractor(
     }
 
     suspend fun createImage(
-        imageUrl: String,
+        status: SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage,
         operationId: Long,
     ) {
         generatedOperationDatasource.createImage(
-            imageUrl = imageUrl,
+            imageId = status.sourceImageId,
+            imageUrl = status.sourceImageUrl,
             operationId = operationId,
         )
     }

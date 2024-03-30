@@ -32,6 +32,8 @@ import com.airbnb.lottie.compose.rememberLottieDynamicProperties
 import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.imageSource
+import com.aiuta.fashionsdk.tryon.compose.domain.models.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -49,7 +51,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
     // Animation
     val lastSavedPhotoUrisTransition =
         updateTransition(
-            targetState = controller.lastSavedPhotoUris.value,
+            targetState = controller.lastSavedImages.value.imageSource,
             label = "lastSavedPhotoUrisTransition",
         )
 
@@ -121,7 +123,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             exit = fadeOut(),
         ) {
             PhotoLabel(
-                count = controller.lastSavedPhotoUris.value.size,
+                count = controller.lastSavedImages.value.size,
             )
         }
 

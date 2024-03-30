@@ -76,7 +76,6 @@ public object TapChangePhoto : AnalyticEvent {
     public const val HAS_HISTORY_PHOTOS_PARAM: String = "has_history_photos"
 }
 
-// TODO Add this event with multi selector
 public object SelectOldPhotos : AnalyticEvent {
     override val name: String = "SelectOldPhotos"
 

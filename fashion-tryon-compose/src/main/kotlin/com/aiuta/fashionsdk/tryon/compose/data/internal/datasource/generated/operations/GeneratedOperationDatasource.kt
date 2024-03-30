@@ -50,12 +50,14 @@ internal class GeneratedOperationDatasource(
 
     // Source images
     suspend fun createImage(
+        imageId: String,
         imageUrl: String,
         operationId: Long,
     ): SourceImageEntity {
         return withContext(Dispatchers.IO) {
             val newSourceImage =
                 SourceImageEntity(
+                    id = imageId,
                     operationId = operationId,
                     imageUrl = imageUrl,
                 )

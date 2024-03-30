@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.analytic.model.SelectMoreToTryOn
 import com.aiuta.fashionsdk.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.analytic.model.ViewMoreToTryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
@@ -18,7 +19,7 @@ internal fun sendOpenResultsScreenEvent() {
     val controller = LocalController.current
     val activeSKUItem = controller.activeSKUItem.value
 
-    val lastSavedPhotoUris = controller.lastSavedPhotoUris.value
+    val lastSavedPhotoUris = controller.lastSavedImages.value
     val loadingOperations = controller.subscribeToLoadingOperations().value
 
     LaunchedEffect(Unit) {

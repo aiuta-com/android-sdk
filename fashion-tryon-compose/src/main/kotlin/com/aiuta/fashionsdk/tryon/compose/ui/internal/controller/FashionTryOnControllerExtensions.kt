@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
@@ -157,9 +158,9 @@ internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> {
 
 @Composable
 internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> {
-    return remember(lastSavedPhotoUris.value) {
+    return remember(lastSavedImages.value) {
         derivedStateOf {
-            lastSavedPhotoUris.value.isNotEmpty()
+            lastSavedImages.value.isNotEmpty()
         }
     }
 }

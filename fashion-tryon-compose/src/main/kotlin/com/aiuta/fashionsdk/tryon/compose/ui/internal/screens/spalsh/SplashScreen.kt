@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.aiuta.fashionsdk.tryon.compose.domain.models.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
@@ -31,7 +32,7 @@ internal fun SplashScreen(
 
         if (countGeneratedOperation > 0) {
             val lastOperation = controller.generatedOperationInteractor.getLastGeneratedOperation()
-            controller.lastSavedPhotoUris.value = lastOperation.sourceImageUrls
+            controller.lastSavedImages.value = lastOperation.toLastSavedImages()
         }
 
         // Solve should show onboarding or not

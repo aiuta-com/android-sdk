@@ -17,6 +17,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolde
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
@@ -59,9 +60,9 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         remember {
             mutableStateOf(defaultStartScreen())
         }
-    val defaultLastSavedUriPhoto =
+    val defaultLastSavedImages =
         remember {
-            mutableStateOf<List<String>>(emptyList())
+            mutableStateOf<LastSavedImages>(LastSavedImages.Empty)
         }
     val defaultSavedOperation =
         remember {
@@ -104,7 +105,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             selectorState = defaultSelectorState,
             zoomImageController = zoomImageController,
             isSKUItemVisible = defaultSKUItemVisibility,
-            lastSavedPhotoUris = defaultLastSavedUriPhoto,
+            lastSavedImages = defaultLastSavedImages,
             lastSavedOperation = defaultSavedOperation,
             activeSKUItem = activeSKUItem,
             aiutaTryOn = aiutaTryOn,
@@ -142,7 +143,7 @@ internal class FashionTryOnController(
     // Interface z index
     val zIndexInterface: Float = 2f,
     // Data
-    public val lastSavedPhotoUris: MutableState<List<String>>,
+    public val lastSavedImages: MutableState<LastSavedImages>,
     public val lastSavedOperation: MutableState<GeneratedOperation?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain

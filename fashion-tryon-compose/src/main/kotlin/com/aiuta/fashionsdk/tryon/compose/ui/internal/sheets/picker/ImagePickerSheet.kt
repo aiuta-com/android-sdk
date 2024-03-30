@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -48,7 +49,10 @@ internal fun ColumnScope.ImagePickerSheet() {
         provideCameraPicker { hasImage ->
             if (hasImage && newImageUri != null) {
                 controller.sendSelectNewPhotosEvent(fromCamera = 1)
-                controller.lastSavedPhotoUris.value = listOf(newImageUri.toString())
+                controller.lastSavedImages.value =
+                    LastSavedImages.UriSource(
+                        imageUris = listOf(newImageUri.toString()),
+                    )
                 controller.bottomSheetNavigator.hide()
             }
         }
@@ -56,7 +60,10 @@ internal fun ColumnScope.ImagePickerSheet() {
     val imagePickerLauncher =
         provideMultipleImagePicker { uris ->
             controller.sendSelectNewPhotosEvent(fromGallery = uris.size)
-            controller.lastSavedPhotoUris.value = uris.map { it.toString() }
+            controller.lastSavedImages.value =
+                LastSavedImages.UriSource(
+                    imageUris = uris.map { it.toString() },
+                )
             controller.bottomSheetNavigator.hide()
         }
 

@@ -60,7 +60,7 @@ internal fun GenerationCarouselBlock(
     val loadingOperations = controller.subscribeToLoadingOperations()
     val loadingSourceImages =
         remember(loadingOperations.value) {
-            loadingOperations.value.map { it.sourceImageUri.toString() }
+            loadingOperations.value.map { it.sourceImage }
         }
 
     val sharedModifier =
