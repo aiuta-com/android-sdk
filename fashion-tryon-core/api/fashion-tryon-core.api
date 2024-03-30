@@ -3,9 +3,7 @@ public abstract interface class com/aiuta/fashionsdk/tryon/core/AiutaTryOn {
 	public static final field DEFAULT_CATALOG_NAME Ljava/lang/String;
 	public abstract fun getSKUItems (Ljava/lang/String;Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getSKUItems$default (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Ljava/lang/String;Lcom/aiuta/fashionsdk/network/paging/models/PaginationOffset;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public abstract fun getSkuGenerationStatus ()Lkotlinx/coroutines/flow/StateFlow;
-	public abstract fun startSKUGeneration (Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun startSKUGeneration (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun startSKUGeneration (Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer;)Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOn$Companion {
@@ -16,12 +14,9 @@ public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOnKt {
 	public static final fun getTryon (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
-	public fun <init> (Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getFileUri ()Landroid/net/Uri;
-	public final fun getSkuCatalogName ()Ljava/lang/String;
-	public final fun getSkuId ()Ljava/lang/String;
+public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
+	public abstract fun getSkuCatalogName ()Ljava/lang/String;
+	public abstract fun getSkuId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationItem {
@@ -39,54 +34,54 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationIt
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
-	public abstract fun getImageUrls ()Ljava/util/List;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$ErrorGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
 	public fun <init> ()V
-	public fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/Exception;)V
-	public synthetic fun <init> (Ljava/util/List;Ljava/lang/String;Ljava/lang/Exception;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/Exception;
-	public final fun copy (Ljava/util/List;Ljava/lang/String;Ljava/lang/Exception;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$ErrorGenerationStatus;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$ErrorGenerationStatus;Ljava/util/List;Ljava/lang/String;Ljava/lang/Exception;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$ErrorGenerationStatus;
-	public fun equals (Ljava/lang/Object;)Z
+	public fun <init> (Ljava/lang/String;Ljava/lang/Exception;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Exception;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getErrorMessage ()Ljava/lang/String;
 	public final fun getException ()Ljava/lang/Exception;
-	public fun getImageUrls ()Ljava/util/List;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
-	public fun <init> ()V
-	public fun <init> (Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus;Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getImageUrls ()Ljava/util/List;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$NothingGenerateStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$NothingGenerateStatus;
-	public fun getImageUrls ()Ljava/util/List;
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$GenerationProcessing : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getSourceImageId ()Ljava/lang/String;
+	public final fun getSourceImageUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$StartGeneration : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$StartGeneration;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$UploadedSourceImage : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getSourceImageId ()Ljava/lang/String;
+	public final fun getSourceImageUrl ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
-	public fun <init> ()V
-	public fun <init> (Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/util/List;
-	public final fun copy (Ljava/util/List;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus;Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getImageUrls ()Ljava/util/List;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getImageUrls ()Ljava/util/List;
+	public final fun getSourceImageUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUriContainer : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
+	public fun <init> (Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getFileUri ()Landroid/net/Uri;
+	public fun getSkuCatalogName ()Ljava/lang/String;
+	public fun getSkuId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUrlContainer : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getFileId ()Ljava/lang/String;
+	public final fun getFileUrl ()Ljava/lang/String;
+	public fun getSkuCatalogName ()Ljava/lang/String;
+	public fun getSkuId ()Ljava/lang/String;
 }
 
