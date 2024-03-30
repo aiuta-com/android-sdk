@@ -158,7 +158,6 @@ public object ViewGeneratedImage : AnalyticEvent {
     }
 }
 
-// TODO Add with multi selector
 public object UpdateResultsScreen : AnalyticEvent {
     override val name: String = "UpdateResultsScreen"
 

@@ -18,23 +18,25 @@ internal fun GenerationResultListener() {
     val loadingOperations = controller.subscribeToLoadingOperations()
 
     LaunchedEffect(successOperations.value, loadingOperations.value) {
-        analytic.sendEvent(UpdateResultsScreen) {
-            put(
-                key = UpdateResultsScreen.SKU_ID_PARAM,
-                value = activeSKUItem.skuId,
-            )
-            put(
-                key = UpdateResultsScreen.SKU_CATALOG_NAME_PARAM,
-                value = activeSKUItem.catalogName,
-            )
-            put(
-                key = UpdateResultsScreen.PHOTOS_IN_PROGRESS_PARAM,
-                value = loadingOperations.value.size.toString(),
-            )
-            put(
-                key = UpdateResultsScreen.GENERATED_PHOTOS_PARAM,
-                value = successOperations.value.flatMap { it.generatedImageUrls }.size.toString(),
-            )
+        if (successOperations.value.isNotEmpty() || loadingOperations.value.isNotEmpty()) {
+            analytic.sendEvent(UpdateResultsScreen) {
+                put(
+                    key = UpdateResultsScreen.SKU_ID_PARAM,
+                    value = activeSKUItem.skuId,
+                )
+                put(
+                    key = UpdateResultsScreen.SKU_CATALOG_NAME_PARAM,
+                    value = activeSKUItem.catalogName,
+                )
+                put(
+                    key = UpdateResultsScreen.PHOTOS_IN_PROGRESS_PARAM,
+                    value = loadingOperations.value.size.toString(),
+                )
+                put(
+                    key = UpdateResultsScreen.GENERATED_PHOTOS_PARAM,
+                    value = successOperations.value.flatMap { it.generatedImageUrls }.size.toString(),
+                )
+            }
         }
     }
 }
