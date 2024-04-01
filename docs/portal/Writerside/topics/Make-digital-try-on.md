@@ -28,37 +28,35 @@ from the `getSKUItems()` method by passing the `categoryName`. Default category 
 
 ## Start generation
 
-For starting generation your need 3 things:
+For starting generation your need next things:
 - `skuId` - which will use to fit on uploaded photo
-- `fileUri` - uri of the photo, on which we will fit SKU
 - `skuCatalogName` (optional) - category name of the generated SKU
+- And source of image - can be uri of file or url of already uploaded image
+
+That is why interface `SKUGenerationContainer` has 2 implementation - `SKUGenerationUriContainer` and `SKUGenerationUrlContainer`
 
 After receiving all the necessary information, feel free to call the `startSKUGeneration()` method,
-passing all the data through a special wrapper `SKUGenerationContainer`:
+passing all the data through a special wrapper `SKUGenerationContainer` and collect returned flow:
 ```kotlin
 val aiutaTryOn: AiutaTryOn = ...
 
 //...
 
-aiutaTryOn.startSKUGeneration(
-    container = SKUGenerationContainer(
-        fileUri = ...,
-        skuId = ...,
-        skuCatalogName = ...,
-    ),
+val receivingFlow = aiutaTryOn.startSKUGeneration(
+    container = // SKUGenerationUriContainer or SKUGenerationUrlContainer
 )
 ```
 
 > Be careful with possible throwing exceptions, which you can find
-> in [code documentation](https://github.com/aiuta-com/android-sdk/blob/4df9d1fa9b8800b81938196f39661c202c399aa3/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/AiutaTryOn.kt#L62)
+> in [code documentation](https://github.com/aiuta-com/android-sdk/blob/57646e50743cda6f10f8bcc54a7267da759c0a04/fashion-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/AiutaTryOn.kt#L49)
 {style="warning"}
 
 
 ## Observing result
 
 After the generation starts, you need to wait for some time until the entire result is ready.
-You can track the current status and get the result through `AiutaTryOn.skuGenerationStatus`.
-As the result is ready, the necessary `SKUGenerationStatus` will be emitted.
+You can track the current status and get the result through by collecting returned flow from `startSKUGeneration()`.
+As the result is ready, the necessary `SKUGenerationStatus.SuccessGenerationStatus` will be emitted.
 
-To learn more about all possible `SKUGenerationStatus`, see [code](https://github.com/aiuta-com/android-sdk/blob/main/aiuta-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus.kt)
-or [api reference](https://aiuta-com.github.io/android-sdk-docs-api/aiuta-tryon-core/com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-status/index.html)
+To learn more about all possible `SKUGenerationStatus`, see [code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-core/src/main/kotlin/com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus.kt)
+or [api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-core/com.aiuta.fashionsdk.tryon.core.domain.models/-s-k-u-generation-status/index.html)
