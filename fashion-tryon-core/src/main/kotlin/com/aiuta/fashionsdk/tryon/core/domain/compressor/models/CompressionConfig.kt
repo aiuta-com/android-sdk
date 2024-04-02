@@ -21,7 +21,7 @@ internal class CompressionConfig(
          * These are temp default values for image compression
          */
         private const val COMPRESSED_IMAGE_MAX_SIZE = 1500
-        private const val COMPRESSED_IMAGE_QUALITY = 90
+        private const val COMPRESSED_IMAGE_QUALITY = 65
 
         private const val ERROR_QUALITY_EXCEPTION = """
             CompressionConfig: New image quality should be set from 0 to 100 percent

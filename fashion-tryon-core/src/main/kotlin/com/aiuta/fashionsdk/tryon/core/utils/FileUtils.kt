@@ -103,7 +103,7 @@ internal suspend inline fun File.writeByteArray(
 internal fun generateFileName(
     fileDateFormat: String = "yyyy_MM_dd_hh_mm_ss_SSSZ",
     fileNameAdditional: String = "",
-    fileExtension: String = "png",
+    fileExtension: String = "jpeg",
     locale: Locale = Locale.getDefault(),
 ): String {
     return "${

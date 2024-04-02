@@ -91,7 +91,7 @@ internal class ImageCompressorImpl(
         val byteArrayOutputStream = ByteArrayOutputStream()
 
         resizedBitmap.compress(
-            Bitmap.CompressFormat.PNG,
+            Bitmap.CompressFormat.JPEG,
             compressionConfig.compressedImageQuality,
             byteArrayOutputStream,
         )
