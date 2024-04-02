@@ -11,11 +11,13 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.SKUItemDTO
 public data class SKUGenerationItem(
     val skuId: String,
     val catalogName: String? = null,
+    val imageUrls: List<String>,
 )
 
 internal fun SKUItemDTO.toPublic(): SKUGenerationItem {
     return SKUGenerationItem(
         skuId = skuId,
         catalogName = skuCatalogName,
+        imageUrls = imageUrls,
     )
 }

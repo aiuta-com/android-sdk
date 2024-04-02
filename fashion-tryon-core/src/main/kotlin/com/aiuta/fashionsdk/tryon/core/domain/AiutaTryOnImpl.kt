@@ -14,6 +14,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDa
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
@@ -41,6 +42,24 @@ internal class AiutaTryOnImpl(
     private val skuDataSource: FashionSKUDataSource,
     private val skuOperationsDataSource: FashionSKUOperationsDataSource,
 ) : AiutaTryOn {
+    override suspend fun getSKUCatalogs(
+        paginationOffset: PaginationOffset?,
+        paginationLimit: Int?,
+    ): PageContainer<SKUCatalog> {
+        val skuCatalogs =
+            skuDataSource.getSKUCatalogs(
+                paginationOffset = paginationOffset,
+                paginationLimit,
+            )
+
+        return PageContainer(
+            result = skuCatalogs.result.map { it.toPublic() },
+            beforeKey = skuCatalogs.beforeKey,
+            afterKey = skuCatalogs.afterKey,
+            errors = skuCatalogs.errors,
+        )
+    }
+
     override suspend fun getSKUItems(
         catalogName: String,
         paginationOffset: PaginationOffset?,
