@@ -8,5 +8,5 @@ internal class SKUCatalogDTO(
     @SerialName("id")
     val id: String,
     @SerialName("sku_catalog_name")
-    val skuCatalogName: String,
+    val catalogName: String,
 )

@@ -24,7 +24,7 @@ class MainViewModel(
             val skuItems =
                 catalogs.firstOrNull()?.let {
                     aiutaTryOn.getSKUItems(
-                        catalogName = it.skuCatalogName,
+                        catalogName = it.catalogName,
                     )
                 }
 

@@ -12,8 +12,8 @@ public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOnKt {
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUCatalog {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getCatalogName ()Ljava/lang/String;
 	public final fun getId ()Ljava/lang/String;
-	public final fun getSkuCatalogName ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {

@@ -26,6 +26,12 @@ public val Aiuta.tryon: AiutaTryOn
  * Entry point for all functionality of Digital try on
  */
 public interface AiutaTryOn {
+    /**
+     * Get new page of [SKUCatalog]
+     *
+     * @param paginationOffset Offset for new page request
+     * @param paginationLimit Limit for items in page
+     */
     public suspend fun getSKUCatalogs(
         paginationOffset: PaginationOffset? = null,
         paginationLimit: Int? = null,
