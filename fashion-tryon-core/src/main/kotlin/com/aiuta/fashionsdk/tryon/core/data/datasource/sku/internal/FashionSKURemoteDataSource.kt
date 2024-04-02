@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.network.paging.utils.saveAppend
 import com.aiuta.fashionsdk.network.utils.saveAppendLimit
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.CreateSKUItemRequest
+import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.SKUCatalogDTO
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.SKUItemDTO
 import io.ktor.client.call.body
 import io.ktor.client.request.delete
@@ -19,6 +20,24 @@ import kotlinx.coroutines.withContext
 internal class FashionSKURemoteDataSource(
     private val networkClient: NetworkClient,
 ) : FashionSKUDataSource {
+    // SKU catalogs
+    override suspend fun getSKUCatalogs(
+        paginationOffset: PaginationOffset?,
+        paginationLimit: Int?,
+    ): PageContainer<SKUCatalogDTO> {
+        return withContext(Dispatchers.IO) {
+            networkClient.httpClient.value.get(
+                urlString = PATH_SKU_CATALOGS,
+            ) {
+                url {
+                    saveAppend(paginationOffset)
+                    saveAppendLimit(paginationLimit)
+                }
+            }.body()
+        }
+    }
+
+    // SKU items
     override suspend fun createSKUItem(
         skuCatalogName: String,
         request: CreateSKUItemRequest,
@@ -73,5 +92,6 @@ internal class FashionSKURemoteDataSource(
 
     private companion object {
         const val PATH_SKU_ITEMS = "/sku_items"
+        const val PATH_SKU_CATALOGS = "/sku_catalogs"
     }
 }

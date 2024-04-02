@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
@@ -25,6 +26,11 @@ public val Aiuta.tryon: AiutaTryOn
  * Entry point for all functionality of Digital try on
  */
 public interface AiutaTryOn {
+    public suspend fun getSKUCatalogs(
+        paginationOffset: PaginationOffset? = null,
+        paginationLimit: Int? = null,
+    ): PageContainer<SKUCatalog>
+
     /**
      * Get new page of [SKUGenerationItem]
      *
@@ -33,7 +39,7 @@ public interface AiutaTryOn {
      * @param paginationLimit Limit for items in page
      */
     public suspend fun getSKUItems(
-        catalogName: String = DEFAULT_CATALOG_NAME,
+        catalogName: String,
         paginationOffset: PaginationOffset? = null,
         paginationLimit: Int? = null,
     ): PageContainer<SKUGenerationItem>
@@ -55,8 +61,4 @@ public interface AiutaTryOn {
      * @return flow with statuses of started generation
      */
     public fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus>
-
-    public companion object {
-        public const val DEFAULT_CATALOG_NAME: String = "aiuta_demo"
-    }
 }
