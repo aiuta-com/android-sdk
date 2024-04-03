@@ -52,5 +52,5 @@ val pagingFlow = Pager(
 ```
 
 > Example of usage such approach you can find in `implementation("com.aiuta:fashionsdk-tryon-paging:$fashionVersion")`
-> to get list of SKU item. You can find it [here](https://github.com/aiuta-com/android-sdk/blob/4df9d1fa9b8800b81938196f39661c202c399aa3/aiuta-tryon-paging/src/main/kotlin/com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensions.kt#L14).
+> to get list of SKU item. You can find it [here](https://github.com/aiuta-com/android-sdk/blob/f9172c6d6afc4e701a0f11285eac9e8f553ee8f0/fashion-tryon-paging/src/main/kotlin/com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensions.kt#L15).
 {style="note"}
