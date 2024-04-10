@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk
 
 val publicModules =
     setOf(
+        "analytic", // TODO Migrate to normal analytic
         "fashion",
         "fashion-compose",
         "fashion-network",
