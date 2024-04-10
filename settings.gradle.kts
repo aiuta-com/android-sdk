@@ -14,13 +14,13 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // Private modules
 include(
-    ":internal:analytic",
     ":internal:benchmark",
     ":samples:tryon",
 )
 
 // Public modules
 include(
+    ":internal:analytic", // TODO Migrate to public
     ":fashion",
     ":fashion-bom",
     ":fashion-compose",
