@@ -9,17 +9,21 @@ internal class KtorNetworkClient(
     companion object : NetworkClient.Factory {
         @Volatile
         private var instance: NetworkClient? = null
+        private var cachedNetworkApiKey: String? = null
 
         override fun create(
             apiKey: String,
             backendEndpoint: String?,
         ): NetworkClient {
+            validateCacheInstance(newApiKey = apiKey)
+
             return instance ?: synchronized(this) {
                 instance ?: buildKtorNetworkClient(
                     apiKey = apiKey,
                     backendEndpoint = backendEndpoint,
                 ).also {
                     instance = it
+                    cachedNetworkApiKey = apiKey
                 }
             }
         }
@@ -35,6 +39,14 @@ internal class KtorNetworkClient(
                         backendEndpoint = backendEndpoint,
                     ).create(),
             )
+        }
+
+        private fun validateCacheInstance(newApiKey: String) {
+            // We should remove cache, if we have new instance of api key
+            if (newApiKey != cachedNetworkApiKey) {
+                instance = null
+                cachedNetworkApiKey = null
+            }
         }
     }
 }
