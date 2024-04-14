@@ -60,6 +60,7 @@ public fun AiutaTryOnFlow(
         val controller =
             rememberFashionTryOnController(
                 analytic = { internalAnalytic },
+                aiuta = aiuta,
                 aiutaTryOn = aiutaTryOn,
                 aiutaTryOnListeners = aiutaTryOnListeners,
                 skuForGeneration = skuForGeneration,

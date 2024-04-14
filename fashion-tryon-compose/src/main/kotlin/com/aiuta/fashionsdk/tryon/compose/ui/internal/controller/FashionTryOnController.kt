@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
@@ -36,10 +37,13 @@ import kotlinx.coroutines.cancel
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     analytic: () -> InternalAiutaAnalytic,
+    aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
+    validateControllerCache(aiuta = aiuta)
+
     val context = LocalContext.current
 
     val activeSKUItem =

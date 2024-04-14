@@ -33,4 +33,7 @@ internal interface GeneratedOperationDao {
 
     @Query("DELETE FROM generated_operation WHERE id = :operationId")
     fun deleteOperation(operationId: Long)
+
+    @Query("DELETE from generated_operation")
+    suspend fun removeAll()
 }
