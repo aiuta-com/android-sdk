@@ -42,8 +42,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
-    validateControllerCache(aiuta = aiuta)
-
     val context = LocalContext.current
 
     val activeSKUItem =
@@ -112,6 +110,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             lastSavedImages = defaultLastSavedImages,
             lastSavedOperation = defaultSavedOperation,
             activeSKUItem = activeSKUItem,
+            aiuta = aiuta,
             aiutaTryOn = aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
@@ -151,6 +150,7 @@ internal class FashionTryOnController(
     public val lastSavedOperation: MutableState<GeneratedOperation?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
+    public val aiuta: () -> Aiuta,
     public val aiutaTryOn: () -> AiutaTryOn,
     public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,

@@ -96,8 +96,8 @@ internal abstract class AppDatabase : RoomDatabase() {
                     if (cachedCode != aiuta.apiKey) {
                         database.withTransaction {
                             // Delete all records
-                            database.generatedImageDao().removeAll()
                             database.generatedOperationDao().removeAll()
+                            database.generatedImageDao().removeAll()
                             database.sourceImageDao().removeAll()
 
                             // Update code
