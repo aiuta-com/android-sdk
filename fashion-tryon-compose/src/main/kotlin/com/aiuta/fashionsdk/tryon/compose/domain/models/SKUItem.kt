@@ -32,3 +32,13 @@ public data class SKUItem(
     internal val priceDiscountedWithCurrency = "$priceCurrency$priceDiscounted"
     internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
 }
+
+internal val defaultSKUItem =
+    SKUItem(
+        skuId = "default_sku_id",
+        description = "default_description",
+        imageUrls = emptyList(),
+        price = 0f,
+        priceCurrency = "\$",
+        store = "default_store",
+    )

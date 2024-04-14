@@ -12,6 +12,7 @@ public data class SKUGenerationItem(
     val skuId: String,
     val catalogName: String? = null,
     val imageUrls: List<String>,
+    val title: String,
 )
 
 internal fun SKUItemDTO.toPublic(): SKUGenerationItem {
@@ -19,5 +20,6 @@ internal fun SKUItemDTO.toPublic(): SKUGenerationItem {
         skuId = skuId,
         catalogName = skuCatalogName,
         imageUrls = imageUrls,
+        title = title,
     )
 }

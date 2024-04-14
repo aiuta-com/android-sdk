@@ -19,6 +19,9 @@ internal interface GeneratedImageDao {
     @Query("DELETE FROM generated_images WHERE id in (:generatedImageIds)")
     suspend fun remove(generatedImageIds: List<Long>)
 
+    @Query("DELETE from generated_images")
+    suspend fun removeAll()
+
     @Query("SELECT count(id) FROM generated_images")
     fun count(): Flow<Int>
 }

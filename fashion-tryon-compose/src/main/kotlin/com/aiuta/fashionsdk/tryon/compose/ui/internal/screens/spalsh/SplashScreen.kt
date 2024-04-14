@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.first
 
@@ -24,6 +25,9 @@ internal fun SplashScreen(
     val controller = LocalController.current
 
     LaunchedEffect(Unit) {
+        // Validate controller
+        validateControllerCache(aiuta = controller.aiuta)
+
         // Check operation history
         val countGeneratedOperation =
             controller.generatedOperationInteractor

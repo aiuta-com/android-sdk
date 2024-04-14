@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
@@ -36,6 +37,7 @@ import kotlinx.coroutines.cancel
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     analytic: () -> InternalAiutaAnalytic,
+    aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     skuForGeneration: () -> SKUItem,
@@ -108,6 +110,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             lastSavedImages = defaultLastSavedImages,
             lastSavedOperation = defaultSavedOperation,
             activeSKUItem = activeSKUItem,
+            aiuta = aiuta,
             aiutaTryOn = aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
@@ -147,6 +150,7 @@ internal class FashionTryOnController(
     public val lastSavedOperation: MutableState<GeneratedOperation?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
+    public val aiuta: () -> Aiuta,
     public val aiutaTryOn: () -> AiutaTryOn,
     public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,

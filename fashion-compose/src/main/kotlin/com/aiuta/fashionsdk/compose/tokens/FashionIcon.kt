@@ -23,5 +23,6 @@ public object FashionIcon {
     // General
     public val AiutaLogo: Int = R.drawable.ic_aiuta_logo
     public val Magic: Int = R.drawable.ic_magic_14
+    public val Recent: Int = R.drawable.ic_recent_100
     public val SwipeUp: Int = R.drawable.ic_swipe_up
 }

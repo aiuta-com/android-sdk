@@ -78,8 +78,8 @@ internal class InternalAiutaAnalyticImpl(
     companion object {
         @Volatile
         private var instance: InternalAiutaAnalytic? = null
+        private var analyticEnvironment: AnalyticEnvironment? = null
         var networkClient: NetworkClient? = null
-        var analyticEnvironment: AnalyticEnvironment? = null
 
         fun create(
             context: Context,
