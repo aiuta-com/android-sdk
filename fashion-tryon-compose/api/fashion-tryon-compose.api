@@ -2,6 +2,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/database/App
 	public static final field $stable I
 	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/data/internal/database/AppDatabase$Companion;
 	public fun <init> ()V
+	public fun aiutaCodeDao ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/datasource/code/dao/AiutaCodeDao;
 	public fun clearAllTables ()V
 	public fun generatedImageDao ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/images/dao/GeneratedImageDao;
 	public fun generatedOperationDao ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/GeneratedOperationDao;
@@ -11,6 +12,14 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/database/App
 	public fun sourceImageDao ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao;
 }
 
+public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/code/dao/AiutaCodeDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/code/dao/AiutaCodeDao {
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun getCodes (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun getRequiredConverters ()Ljava/util/List;
+	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/AiutaCodeEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/images/dao/GeneratedImageDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/images/dao/GeneratedImageDao {
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun count ()Lkotlinx/coroutines/flow/Flow;
@@ -18,6 +27,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 	public fun insertAll (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun pagingSource ()Landroidx/paging/PagingSource;
 	public fun remove (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/GeneratedOperationDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/GeneratedOperationDao {
@@ -29,6 +39,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insertOperation (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/GeneratedOperationEntity;)J
 	public fun pagingGeneratedOperationWithImagesSource ()Landroidx/paging/PagingSource;
+	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao {
@@ -37,6 +48,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 	public fun getImage (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/SourceImageEntity;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insertImage (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/SourceImageEntity;)J
+	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/onboarding/dao/OnboardingDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/onboarding/dao/OnboardingDao {
@@ -123,11 +135,15 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/com
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenKt;
+public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/HistoryFlowKt {
+	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt {
