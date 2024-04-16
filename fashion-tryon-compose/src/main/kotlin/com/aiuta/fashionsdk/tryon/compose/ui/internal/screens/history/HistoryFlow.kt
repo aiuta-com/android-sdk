@@ -34,6 +34,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
+/**
+ * Entry point for history flow
+ *
+ * @see Aiuta
+ * @see AiutaTryOn
+ * @see AiutaTryOnListeners
+ * @see AiutaTryOnTheme
+ */
 @Composable
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
