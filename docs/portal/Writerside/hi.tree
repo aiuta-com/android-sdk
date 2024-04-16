@@ -13,9 +13,14 @@
         <toc-element topic="Using-the-Bill-of-Materials.md"/>
     </toc-element>
     <toc-element toc-title="Aiuta Try on">
+
         <toc-element topic="Getting-started-with-Fashion-Try-On.md"/>
         <toc-element topic="Make-digital-try-on.md"/>
-        <toc-element topic="Compose-flow.md"/>
+        <toc-element toc-title="Flows">
+            <toc-element topic="Get-started-with-Flows.md"/>
+            <toc-element topic="Compose-flow.md"/>
+            <toc-element topic="History-flow.md"/>
+        </toc-element>
         <toc-element topic="Paging.md"/>
     </toc-element>
     <toc-element topic="Releases.md"/>
