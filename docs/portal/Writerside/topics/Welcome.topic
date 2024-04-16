@@ -33,15 +33,16 @@
         <misc>
             <links narrow="true">
                 <group>
-                    <title>Fashion</title>
+                    <title>Aiuta</title>
                     <a href="Getting-started-with-Fashion.md"/>
                     <a href="Using-the-Bill-of-Materials.md"/>
                 </group>
                 <group>
-                    <title>Fashion Try On</title>
+                    <title>Aiuta Try On</title>
                     <a href="Getting-started-with-Fashion-Try-On.md"/>
                     <a href="Make-digital-try-on.md"/>
                     <a href="Compose-flow.md"/>
+                    <a href="History-flow.md"/>
                     <a href="Paging.md"/>
                 </group>
                 <group>

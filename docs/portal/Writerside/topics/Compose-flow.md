@@ -1,4 +1,4 @@
-# Compose flow
+# Aiuta Try On flow
 
 In this tutorial, you will learn how to use [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on) power with
 [Jetpack Compose Framework](https://developer.android.com/jetpack/compose)
@@ -7,32 +7,7 @@ In this tutorial, you will learn how to use [Aiuta Digital Try On](https://devel
 ## Prerequisites
 
 Before starting this tutorial:
-- [Initialize Aiuta Try On](Getting-started-with-Fashion-Try-On.md)
-
-
-## Add dependencies
-
-Let's add dependencies to use [Aiuta Digital Try On](https://developer.aiuta.com/products/digital-try-on)
-with [Jetpack Compose](https://developer.android.com/jetpack/compose)
-
-<procedure collapsible="false">
-    <step>Firstly, add base dependencies, as described in
-    <a href="Getting-started-with-Fashion.md" anchor="add-dependencies">Getting started with Aiuta</a>
-    and
-    <a href="Getting-started-with-Fashion-Try-On.md" anchor="add-dependencies">Getting started with Aiuta</a>
-    guides
-    </step>
-    <step>Add try on compose dependency to have access to <code>AiutaTryOnFlow</code>
-        <code-block lang="kotlin">
-            dependencies {
-                val fashionVersion: String = "%latest_fashion_version%"
-                implementation("com.aiuta:fashionsdk:$fashionVersion")
-                implementation("com.aiuta:fashionsdk-tryon-core:$fashionVersion")
-                implementation("com.aiuta:fashionsdk-tryon-compose:$fashionVersion")
-            }
-        </code-block>
-    </step>
-</procedure>
+- [Initialize Aiuta Try On Flows](Get-started-with-Flows.md)
 
 
 ## Use Aiuta Digital Try On in Compose
