@@ -1,7 +1,7 @@
-package com.aiuta.fashionsdk.analytic.model
+package com.aiuta.fashionsdk.internal.analytic.model
 
-import com.aiuta.fashionsdk.analytic.BuildConfig
-import com.aiuta.fashionsdk.analytic.utils.AnalyticConfig
+import com.aiuta.fashionsdk.internal.analytic.BuildConfig
+import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

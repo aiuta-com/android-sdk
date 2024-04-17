@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.analytic.internal
+package com.aiuta.fashionsdk.internal.analytic.internal
 
 import android.content.Context
 import androidx.work.BackoffPolicy
@@ -6,18 +6,30 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import androidx.work.workDataOf
-import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytic.internal.worker.AnalyticWorker
-import com.aiuta.fashionsdk.analytic.internal.worker.createAnalyticEnvironment
-import com.aiuta.fashionsdk.analytic.model.AnalyticEnvironment
-import com.aiuta.fashionsdk.analytic.model.AnalyticEvent
+import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.internal.worker.AnalyticWorker
+import com.aiuta.fashionsdk.internal.analytic.internal.worker.createAnalyticEnvironment
+import com.aiuta.fashionsdk.internal.analytic.model.AnalyticEnvironment
+import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.model.ShareableAnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.model.SharedAnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 import com.aiuta.fashionsdk.network.NetworkClient
+import com.aiuta.fashionsdk.network.createNetworkClient
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 
 internal class InternalAiutaAnalyticImpl(
     private val context: Context,
 ) : InternalAiutaAnalytic {
-    override fun sendEvent(event: AnalyticEvent) {
+    private val _analyticFlow = MutableStateFlow<SharedAnalyticEvent?>(null)
+    override val analyticFlow: Flow<SharedAnalyticEvent> = _analyticFlow.mapNotNull { it }
+
+    override fun sendEvent(event: InternalAnalyticEvent) {
         resolveLog(
             event = event,
             params = emptyMap(),
@@ -25,7 +37,7 @@ internal class InternalAiutaAnalyticImpl(
     }
 
     override fun sendEvent(
-        event: AnalyticEvent,
+        event: InternalAnalyticEvent,
         params: Map<String, String?>,
     ) {
         resolveLog(
@@ -35,7 +47,7 @@ internal class InternalAiutaAnalyticImpl(
     }
 
     override fun sendEvent(
-        event: AnalyticEvent,
+        event: InternalAnalyticEvent,
         fillMap: MutableMap<String, String?>.() -> Unit,
     ) {
         val map = mutableMapOf<String, String?>()
@@ -47,9 +59,12 @@ internal class InternalAiutaAnalyticImpl(
     }
 
     private fun resolveLog(
-        event: AnalyticEvent,
+        event: InternalAnalyticEvent,
         params: Map<String, String?>,
     ) {
+        // Notify external listeners
+        _analyticFlow.value = (event as? ShareableAnalyticEvent)?.toShared(params)
+
         // Build request
         val analyticWorkRequest: WorkRequest =
             OneTimeWorkRequestBuilder<AnalyticWorker>()
@@ -79,19 +94,23 @@ internal class InternalAiutaAnalyticImpl(
         @Volatile
         private var instance: InternalAiutaAnalytic? = null
         private var analyticEnvironment: AnalyticEnvironment? = null
+        private var cachedApiKey: String? = null
         var networkClient: NetworkClient? = null
 
-        fun create(
-            context: Context,
-            networkClient: NetworkClient,
-        ): InternalAiutaAnalytic {
+        fun create(aiuta: Aiuta): InternalAiutaAnalytic {
+            validateCacheInstance(newApiKey = aiuta.apiKey)
+
             return instance ?: synchronized(this) {
                 instance ?: buildInternalAiutaAnalyticImpl(
-                    context = context,
+                    context = aiuta.application,
                 ).also {
-                    this.instance = it
-                    this.networkClient = networkClient
-                    this.analyticEnvironment = createAnalyticEnvironment(context)
+                    instance = it
+                    networkClient =
+                        createNetworkClient(
+                            apiKey = aiuta.apiKey,
+                            backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
+                        )
+                    analyticEnvironment = createAnalyticEnvironment(aiuta.application)
                 }
             }
         }
@@ -100,6 +119,16 @@ internal class InternalAiutaAnalyticImpl(
             return InternalAiutaAnalyticImpl(
                 context = context,
             )
+        }
+
+        private fun validateCacheInstance(newApiKey: String) {
+            // We should remove cache, if we have new instance of api key
+            if (newApiKey != cachedApiKey) {
+                instance = null
+                analyticEnvironment = null
+                networkClient = null
+                cachedApiKey = newApiKey
+            }
         }
     }
 }

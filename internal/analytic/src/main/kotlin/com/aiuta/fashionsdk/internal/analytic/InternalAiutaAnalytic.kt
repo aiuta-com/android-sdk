@@ -1,15 +1,23 @@
-package com.aiuta.fashionsdk.analytic
+package com.aiuta.fashionsdk.internal.analytic
 
-import com.aiuta.fashionsdk.analytic.model.AnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.model.SharedAnalyticEvent
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Internal interface of of analytic service for internal use
  */
 public interface InternalAiutaAnalytic {
     /**
+     * Flow for listening all events from internals
+     * of SDK for public usage
+     */
+    public val analyticFlow: Flow<SharedAnalyticEvent>
+
+    /**
      * Send new event without additional info
      **/
-    public fun sendEvent(event: AnalyticEvent)
+    public fun sendEvent(event: InternalAnalyticEvent)
 
     /**
      * Send new event with additional info
@@ -18,7 +26,7 @@ public interface InternalAiutaAnalytic {
      * @param params additional info in key-value format
      **/
     public fun sendEvent(
-        event: AnalyticEvent,
+        event: InternalAnalyticEvent,
         params: Map<String, String?>,
     )
 
@@ -29,7 +37,7 @@ public interface InternalAiutaAnalytic {
      * @param fillMap builder of additional info in key-value format
      **/
     public fun sendEvent(
-        event: AnalyticEvent,
+        event: InternalAnalyticEvent,
         fillMap: MutableMap<String, String?>.() -> Unit,
     )
 }

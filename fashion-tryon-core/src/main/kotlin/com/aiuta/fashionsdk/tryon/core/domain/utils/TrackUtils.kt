@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
-import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytic.model.TryOnError
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnErrorEvent

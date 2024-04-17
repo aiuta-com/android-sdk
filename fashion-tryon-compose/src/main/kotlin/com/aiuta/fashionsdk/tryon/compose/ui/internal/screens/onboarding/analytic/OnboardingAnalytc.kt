@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic
 
-import com.aiuta.fashionsdk.analytic.model.ContinueOnBoarding
-import com.aiuta.fashionsdk.analytic.model.FinishOnBoarding
+import com.aiuta.fashionsdk.internal.analytic.model.ContinueOnBoarding
+import com.aiuta.fashionsdk.internal.analytic.model.FinishOnBoarding
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 internal fun FashionTryOnController.sendContinueOnBoardingEvent(newPage: Int) {

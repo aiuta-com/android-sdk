@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.analytic.model
+package com.aiuta.fashionsdk.internal.analytic.model
 
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class AnalyticCompletedEvent(
     @SerialName("event")
-    val event: InternalAnalyticEvent,
+    val event: CompletedInternalAnalyticEvent,
     @SerialName("env")
     val environment: AnalyticEnvironment,
     @SerialName("local_date_time")

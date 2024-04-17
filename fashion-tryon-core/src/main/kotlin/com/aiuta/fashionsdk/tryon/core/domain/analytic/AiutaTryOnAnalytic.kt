@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
-import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytic.model.FinishTryOn
-import com.aiuta.fashionsdk.analytic.model.StartTryOn
-import com.aiuta.fashionsdk.analytic.model.TryOnError
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.FinishTryOn
+import com.aiuta.fashionsdk.internal.analytic.model.StartTryOn
+import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 
 private const val MILLISECONDS_IN_SECOND = 1000L

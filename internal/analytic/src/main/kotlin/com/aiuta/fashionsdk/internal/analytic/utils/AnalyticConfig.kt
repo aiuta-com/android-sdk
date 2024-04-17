@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.analytic.utils
+package com.aiuta.fashionsdk.internal.analytic.utils
 
 internal object AnalyticConfig {
     const val DEFAULT_ENDPOINT = "api.aiuta.com/analytics/v1/android-sdk-analytics"

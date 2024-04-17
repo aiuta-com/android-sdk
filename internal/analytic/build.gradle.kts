@@ -7,7 +7,7 @@ plugins {
 }
 
 androidLibrary(
-    name = "com.aiuta.fashionsdk.analytic",
+    name = "com.aiuta.fashionsdk.internal.analytic",
     config = true,
 )
 
