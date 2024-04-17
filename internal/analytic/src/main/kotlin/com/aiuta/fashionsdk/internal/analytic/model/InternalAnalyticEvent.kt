@@ -151,7 +151,7 @@ public object StartUITryOn : InternalAnalyticEvent, ShareableAnalyticEvent {
             name = publicName,
             params =
                 mapOf(
-                    SKU_ID_PARAM to params[StartTryOn.SKU_ID_PARAM],
+                    SKU_ID_PARAM to params[SKU_ID_PARAM],
                     PHOTOS_COUNT_PARAM to params[PHOTOS_COUNT_PARAM],
                 ),
         )
