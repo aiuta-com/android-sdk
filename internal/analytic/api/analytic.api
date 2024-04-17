@@ -1,4 +1,4 @@
-public final class com/aiuta/fashionsdk/analytic/BuildConfig {
+public final class com/aiuta/fashionsdk/internal/analytic/BuildConfig {
 	public static final field BUILD_TYPE Ljava/lang/String;
 	public static final field DEBUG Z
 	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
@@ -6,239 +6,264 @@ public final class com/aiuta/fashionsdk/analytic/BuildConfig {
 	public fun <init> ()V
 }
 
-public final class com/aiuta/fashionsdk/analytic/DefaultInternalAiutaAnalyticKt {
-	public static final fun getInternalAiutaAnalytic (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/analytic/InternalAiutaAnalytic;
+public final class com/aiuta/fashionsdk/internal/analytic/DefaultInternalAiutaAnalyticKt {
+	public static final fun getInternalAiutaAnalytic (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
 }
 
-public abstract interface class com/aiuta/fashionsdk/analytic/InternalAiutaAnalytic {
-	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/analytic/model/AnalyticEvent;)V
-	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/analytic/model/AnalyticEvent;Ljava/util/Map;)V
-	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/analytic/model/AnalyticEvent;Lkotlin/jvm/functions/Function1;)V
+public abstract interface class com/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic {
+	public abstract fun getAnalyticFlow ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent;)V
+	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent;Ljava/util/Map;)V
+	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent;Lkotlin/jvm/functions/Function1;)V
 }
 
-public abstract interface class com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field Companion Lcom/aiuta/fashionsdk/analytic/model/AnalyticEvent$Companion;
-	public abstract fun getName ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/analytic/model/AnalyticEvent$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
-}
-
-public final class com/aiuta/fashionsdk/analytic/model/Configure : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/Configure : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field HAS_CUSTOM_CONFIGURATION_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/Configure;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/Configure;
 	public static final field PHOTO_LIMIT_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/ContinueOnBoarding : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/ContinueOnBoarding;
+public final class com/aiuta/fashionsdk/internal/analytic/model/ContinueOnBoarding : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ContinueOnBoarding;
 	public static final field PAGE_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/FinishOnBoarding : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/FinishOnBoarding;
+public final class com/aiuta/fashionsdk/internal/analytic/model/FinishOnBoarding : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/FinishOnBoarding;
 	public fun getName ()Ljava/lang/String;
+	public fun getPublicName ()Ljava/lang/String;
+	public fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/FinishSession : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/FinishSession : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field ACTION_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/FinishSession;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession;
 	public static final field ORIGIN_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/FinishSession$Action : java/lang/Enum {
-	public static final field ADD_TO_CART Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Action;
-	public static final field ADD_TO_WISHLIST Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Action;
-	public static final field NONE Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Action;
-	public static final field SHOW_SKU_INFO Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Action;
+public final class com/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action : java/lang/Enum {
+	public static final field ADD_TO_CART Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action;
+	public static final field ADD_TO_WISHLIST Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action;
+	public static final field NONE Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action;
+	public static final field SHOW_SKU_INFO Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Action;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Action;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Action;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/FinishSession$Origin : java/lang/Enum {
-	public static final field MAIN_SCREEN Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Origin;
-	public static final field MORE_TO_TRYON Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Origin;
-	public static final field RESULT_SCREEN Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Origin;
-	public static final field SKU_POPUP Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Origin;
+public final class com/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin : java/lang/Enum {
+	public static final field MAIN_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
+	public static final field MORE_TO_TRYON Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
+	public static final field RESULT_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
+	public static final field SKU_POPUP Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Origin;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytic/model/FinishSession$Origin;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/FinishTryOn : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/FinishTryOn : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field GENERATION_TIME_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/FinishTryOn;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/FinishTryOn;
 	public static final field PHOTOS_COUNT_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/OpenHistoryScreen : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/OpenHistoryScreen;
-	public fun getName ()Ljava/lang/String;
+public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$Companion;
+	public abstract fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/OpenMainScreen : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/OpenMainScreen;
+public final class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/OpenHistoryScreen : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/OpenHistoryScreen;
+	public fun getName ()Ljava/lang/String;
+	public fun getPublicName ()Ljava/lang/String;
+	public fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/OpenMainScreen : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/OpenMainScreen;
 	public static final field LAST_PHOTO_SELECTION_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/OpenResultsScreen : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/OpenResultsScreen : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
 	public static final field GENERATED_PHOTOS_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/OpenResultsScreen;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/OpenResultsScreen;
 	public static final field MORE_TO_TRY_ON_PARAM Ljava/lang/String;
 	public static final field PHOTOS_IN_PROGRESS_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
+	public fun getPublicName ()Ljava/lang/String;
+	public fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/SelectMoreToTryOn : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/SelectMoreToTryOn;
+public final class com/aiuta/fashionsdk/internal/analytic/model/SelectMoreToTryOn : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/SelectMoreToTryOn;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/SelectNewPhotos : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/SelectNewPhotos : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
 	public static final field FROM_CAMERA_PARAM Ljava/lang/String;
 	public static final field FROM_GALLERY_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/SelectNewPhotos;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/SelectNewPhotos;
+	public fun getName ()Ljava/lang/String;
+	public fun getPublicName ()Ljava/lang/String;
+	public fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SelectOldPhotos : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field COUNT_PARAM Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/SelectOldPhotos;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/SelectOldPhotos : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
 	public static final field COUNT_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/SelectOldPhotos;
-	public fun getName ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/analytic/model/ShareGeneratedImage : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field COUNT_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/ShareGeneratedImage;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage;
 	public static final field ORIGIN_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
+	public fun getPublicName ()Ljava/lang/String;
+	public fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/ShareGeneratedImage$Origin : java/lang/Enum {
-	public static final field HISTORY_SCREEN Lcom/aiuta/fashionsdk/analytic/model/ShareGeneratedImage$Origin;
-	public static final field RESULT_FULLSCREEN Lcom/aiuta/fashionsdk/analytic/model/ShareGeneratedImage$Origin;
-	public static final field RESULT_SCREEN Lcom/aiuta/fashionsdk/analytic/model/ShareGeneratedImage$Origin;
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin : java/lang/Enum {
+	public static final field HISTORY_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
+	public static final field RESULT_FULLSCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
+	public static final field RESULT_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytic/model/ShareGeneratedImage$Origin;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytic/model/ShareGeneratedImage$Origin;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/StartOnBoarding : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/StartOnBoarding;
+public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
+	public abstract fun getPublicName ()Ljava/lang/String;
+	public abstract fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
+	public static synthetic fun toShared$default (Lcom/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent;Ljava/util/Map;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent {
+	public fun <init> (Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getName ()Ljava/lang/String;
+	public final fun getParams ()Ljava/util/Map;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartOnBoarding : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/StartOnBoarding;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/StartSession : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/StartSession;
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartSession : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/StartSession;
 	public static final field RELATED_SKU_COUNT_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/StartTryOn : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/StartTryOn;
-	public static final field PHOTOS_COUNT_PARAM Ljava/lang/String;
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartTryOn : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOn;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/StartUITryOn : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/StartUITryOn;
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartUITryOn : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/StartUITryOn;
 	public static final field ORIGIN_PARAM Ljava/lang/String;
 	public static final field PHOTOS_COUNT_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
+	public fun getPublicName ()Ljava/lang/String;
+	public fun toShared (Ljava/util/Map;)Lcom/aiuta/fashionsdk/internal/analytic/model/SharedAnalyticEvent;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/StartUITryOn$Origin : java/lang/Enum {
-	public static final field SELECT_PHOTOS Lcom/aiuta/fashionsdk/analytic/model/StartUITryOn$Origin;
-	public static final field TRY_ON_BUTTON Lcom/aiuta/fashionsdk/analytic/model/StartUITryOn$Origin;
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartUITryOn$Origin : java/lang/Enum {
+	public static final field SELECT_PHOTOS Lcom/aiuta/fashionsdk/internal/analytic/model/StartUITryOn$Origin;
+	public static final field TRY_ON_BUTTON Lcom/aiuta/fashionsdk/internal/analytic/model/StartUITryOn$Origin;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytic/model/StartUITryOn$Origin;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytic/model/StartUITryOn$Origin;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/StartUITryOn$Origin;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/StartUITryOn$Origin;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/TapChangePhoto : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/TapChangePhoto : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field HAS_CURRENT_PHOTOS_PARAM Ljava/lang/String;
 	public static final field HAS_HISTORY_PHOTOS_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/TapChangePhoto;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/TapChangePhoto;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/TapMoreToTryOn : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/TapMoreToTryOn;
+public final class com/aiuta/fashionsdk/internal/analytic/model/TapMoreToTryOn : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/TapMoreToTryOn;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/TryOnError : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/TryOnError;
+public final class com/aiuta/fashionsdk/internal/analytic/model/TryOnError : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/TryOnError;
 	public static final field TYPE_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/TryOnError$Type : java/lang/Enum {
-	public static final field TRY_ON_OPERATION_FAILED Lcom/aiuta/fashionsdk/analytic/model/TryOnError$Type;
-	public static final field TRY_ON_START_FAILED Lcom/aiuta/fashionsdk/analytic/model/TryOnError$Type;
-	public static final field UPLOAD_FAILED Lcom/aiuta/fashionsdk/analytic/model/TryOnError$Type;
+public final class com/aiuta/fashionsdk/internal/analytic/model/TryOnError$Type : java/lang/Enum {
+	public static final field TRY_ON_OPERATION_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/TryOnError$Type;
+	public static final field TRY_ON_START_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/TryOnError$Type;
+	public static final field UPLOAD_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/TryOnError$Type;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytic/model/TryOnError$Type;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytic/model/TryOnError$Type;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/TryOnError$Type;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/TryOnError$Type;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/UpdateResultsScreen : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/UpdateResultsScreen : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field GENERATED_PHOTOS_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/UpdateResultsScreen;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/UpdateResultsScreen;
 	public static final field PHOTOS_IN_PROGRESS_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/ViewGeneratedImage : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
+public final class com/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field IMAGE_NUMBER_PARAM Ljava/lang/String;
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/ViewGeneratedImage;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage;
 	public static final field NAVIGATION_TYPE_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/ViewGeneratedImage$NavigationType : java/lang/Enum {
-	public static final field SWIPE Lcom/aiuta/fashionsdk/analytic/model/ViewGeneratedImage$NavigationType;
-	public static final field THUMBNAIL Lcom/aiuta/fashionsdk/analytic/model/ViewGeneratedImage$NavigationType;
+public final class com/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage$NavigationType : java/lang/Enum {
+	public static final field SWIPE Lcom/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage$NavigationType;
+	public static final field THUMBNAIL Lcom/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage$NavigationType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public final fun getValue ()Ljava/lang/String;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytic/model/ViewGeneratedImage$NavigationType;
-	public static fun values ()[Lcom/aiuta/fashionsdk/analytic/model/ViewGeneratedImage$NavigationType;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage$NavigationType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ViewGeneratedImage$NavigationType;
 }
 
-public final class com/aiuta/fashionsdk/analytic/model/ViewMoreToTryOn : com/aiuta/fashionsdk/analytic/model/AnalyticEvent {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytic/model/ViewMoreToTryOn;
+public final class com/aiuta/fashionsdk/internal/analytic/model/ViewMoreToTryOn : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ViewMoreToTryOn;
 	public fun getName ()Ljava/lang/String;
 }
 
