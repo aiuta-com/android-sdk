@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.analytic.model.OpenMainScreen
-import com.aiuta.fashionsdk.analytic.model.StartUITryOn
-import com.aiuta.fashionsdk.analytic.model.TapChangePhoto
+import com.aiuta.fashionsdk.internal.analytic.model.OpenMainScreen
+import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
+import com.aiuta.fashionsdk.internal.analytic.model.TapChangePhoto
 import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController

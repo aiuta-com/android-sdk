@@ -8,20 +8,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.analytic.model.FinishSession
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
 @Composable
 internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
-    val analytic = LocalAnalytic.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 

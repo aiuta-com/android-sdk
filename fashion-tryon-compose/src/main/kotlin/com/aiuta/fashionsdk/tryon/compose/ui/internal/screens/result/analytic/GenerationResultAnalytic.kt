@@ -2,10 +2,10 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.analytic.model.OpenResultsScreen
-import com.aiuta.fashionsdk.analytic.model.SelectMoreToTryOn
-import com.aiuta.fashionsdk.analytic.model.ViewGeneratedImage
-import com.aiuta.fashionsdk.analytic.model.ViewMoreToTryOn
+import com.aiuta.fashionsdk.internal.analytic.model.OpenResultsScreen
+import com.aiuta.fashionsdk.internal.analytic.model.SelectMoreToTryOn
+import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
+import com.aiuta.fashionsdk.internal.analytic.model.ViewMoreToTryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController

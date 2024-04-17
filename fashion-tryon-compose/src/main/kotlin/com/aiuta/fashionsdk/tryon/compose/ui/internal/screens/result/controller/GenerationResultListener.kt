@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.analytic.model.UpdateResultsScreen
+import com.aiuta.fashionsdk.internal.analytic.model.UpdateResultsScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToLoadingOperations

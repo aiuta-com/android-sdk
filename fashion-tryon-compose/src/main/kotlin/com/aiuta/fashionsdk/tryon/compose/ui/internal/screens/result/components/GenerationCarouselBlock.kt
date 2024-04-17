@@ -28,8 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController

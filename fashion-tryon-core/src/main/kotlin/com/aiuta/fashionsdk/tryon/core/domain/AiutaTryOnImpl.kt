@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.core.domain
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytic.internalAiutaAnalytic
-import com.aiuta.fashionsdk.analytic.model.TryOnError
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn

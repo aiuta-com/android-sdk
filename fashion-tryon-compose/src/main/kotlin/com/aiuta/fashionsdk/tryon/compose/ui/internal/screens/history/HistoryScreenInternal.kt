@@ -52,9 +52,9 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
@@ -66,6 +66,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendOpenHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
@@ -83,6 +84,8 @@ internal fun HistoryScreenInternal(modifier: Modifier = Modifier) {
             .generatedImageInteractor
             .generatedImagesFlow()
             .collectAsLazyPagingItems()
+
+    sendOpenHistoryEvent()
 
     Box(
         modifier =

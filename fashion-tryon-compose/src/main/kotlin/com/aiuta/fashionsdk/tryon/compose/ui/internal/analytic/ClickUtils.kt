@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
-import com.aiuta.fashionsdk.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytic.model.FinishSession
-import com.aiuta.fashionsdk.analytic.model.OpenHistoryScreen
-import com.aiuta.fashionsdk.analytic.model.ShareGeneratedImage
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
+import com.aiuta.fashionsdk.internal.analytic.model.OpenHistoryScreen
+import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 

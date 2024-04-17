@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.net.Uri
-import com.aiuta.fashionsdk.analytic.model.StartUITryOn
+import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
@@ -21,7 +21,6 @@ import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach

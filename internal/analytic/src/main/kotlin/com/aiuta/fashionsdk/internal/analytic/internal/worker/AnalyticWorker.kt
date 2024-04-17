@@ -1,10 +1,9 @@
-package com.aiuta.fashionsdk.analytic.internal.worker
+package com.aiuta.fashionsdk.internal.analytic.internal.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.aiuta.fashionsdk.analytic.internal.InternalAiutaAnalyticImpl
-import io.ktor.client.request.get
+import com.aiuta.fashionsdk.internal.analytic.internal.InternalAiutaAnalyticImpl
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import kotlinx.coroutines.Dispatchers
@@ -31,10 +30,10 @@ internal class AnalyticWorker(
                 // Try to send analytic event
                 completedEvent?.let {
                     networkClient.post { setBody(it) }
-                } ?: Result.failure()
 
-                // Task complete successfully
-                Result.success()
+                    // Task complete successfully
+                    Result.success()
+                } ?: Result.failure()
             } catch (e: Exception) {
                 // Task failed, should retry late
                 Result.retry()

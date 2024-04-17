@@ -45,7 +45,7 @@ internal class KtorNetworkClient(
             // We should remove cache, if we have new instance of api key
             if (newApiKey != cachedApiKey) {
                 instance = null
-                cachedApiKey = null
+                cachedApiKey = newApiKey
             }
         }
     }

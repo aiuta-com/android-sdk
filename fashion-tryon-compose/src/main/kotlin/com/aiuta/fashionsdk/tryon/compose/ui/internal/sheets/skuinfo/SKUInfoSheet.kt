@@ -25,11 +25,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.analytic.model.FinishSession
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList

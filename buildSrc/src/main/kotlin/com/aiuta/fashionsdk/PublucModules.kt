@@ -4,6 +4,7 @@ val publicModules =
     setOf(
         "analytic", // TODO Migrate to normal analytic
         "fashion",
+        "fashion-analytic",
         "fashion-compose",
         "fashion-network",
         "fashion-network-paging",

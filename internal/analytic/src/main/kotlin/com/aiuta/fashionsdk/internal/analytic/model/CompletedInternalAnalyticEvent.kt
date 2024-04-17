@@ -1,10 +1,10 @@
-package com.aiuta.fashionsdk.analytic.model
+package com.aiuta.fashionsdk.internal.analytic.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class InternalAnalyticEvent(
+internal class CompletedInternalAnalyticEvent(
     @SerialName("name")
     public val name: String,
     @SerialName("parameters")

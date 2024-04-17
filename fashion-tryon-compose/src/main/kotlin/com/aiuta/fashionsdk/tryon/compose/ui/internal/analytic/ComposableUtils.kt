@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.analytic.model.Configure
-import com.aiuta.fashionsdk.analytic.model.StartOnBoarding
-import com.aiuta.fashionsdk.analytic.model.StartSession
+import com.aiuta.fashionsdk.internal.analytic.model.Configure
+import com.aiuta.fashionsdk.internal.analytic.model.StartOnBoarding
+import com.aiuta.fashionsdk.internal.analytic.model.StartSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController

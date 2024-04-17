@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.analytic
 
-import com.aiuta.fashionsdk.analytic.model.SelectNewPhotos
+import com.aiuta.fashionsdk.internal.analytic.model.SelectNewPhotos
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 internal fun FashionTryOnController.sendSelectNewPhotosEvent(

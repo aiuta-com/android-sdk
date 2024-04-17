@@ -1,11 +1,11 @@
-package com.aiuta.fashionsdk.analytic.internal.worker
+package com.aiuta.fashionsdk.internal.analytic.internal.worker
 
 import android.content.Context
 import androidx.work.Data
-import com.aiuta.fashionsdk.analytic.model.AnalyticCompletedEvent
-import com.aiuta.fashionsdk.analytic.model.AnalyticEnvironment
-import com.aiuta.fashionsdk.analytic.model.InternalAnalyticEvent
-import com.aiuta.fashionsdk.analytic.utils.AnalyticConfig
+import com.aiuta.fashionsdk.internal.analytic.model.AnalyticCompletedEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AnalyticEnvironment
+import com.aiuta.fashionsdk.internal.analytic.model.CompletedInternalAnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 
 internal fun createAnalyticEnvironment(context: Context): AnalyticEnvironment {
     return try {
@@ -35,7 +35,7 @@ internal fun createAnalyticCompletedEvent(
 
         AnalyticCompletedEvent(
             event =
-                InternalAnalyticEvent(
+                CompletedInternalAnalyticEvent(
                     name = eventName,
                     params = filteredMap,
                 ),

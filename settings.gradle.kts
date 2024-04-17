@@ -22,6 +22,7 @@ include(
 include(
     ":internal:analytic", // TODO Migrate to public
     ":fashion",
+    ":fashion-analytic",
     ":fashion-bom",
     ":fashion-compose",
     ":fashion-network",
