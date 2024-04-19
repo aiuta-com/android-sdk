@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
+package com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils
 
 import android.content.Context
 import android.content.Intent
