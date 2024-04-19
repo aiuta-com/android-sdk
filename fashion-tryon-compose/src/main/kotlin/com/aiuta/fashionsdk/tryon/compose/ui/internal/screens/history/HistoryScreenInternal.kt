@@ -230,6 +230,7 @@ private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImage>,
 ) {
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
     val generatedImages = getGeneratedImages()
 
@@ -276,7 +277,10 @@ private fun BoxScope.HistoryScreenInterface(
                     origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
                     count = imageUrls.size,
                 )
-                shareManager.share(imageUrls = imageUrls)
+                shareManager.share(
+                    imageUrls = imageUrls,
+                    watermarkRes = theme.watermarkRes,
+                )
 
                 controller.deactivateSelectMode()
             },

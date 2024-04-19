@@ -20,6 +20,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
 @Composable
 internal fun ShareButton(
@@ -28,6 +29,7 @@ internal fun ShareButton(
 ) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val shareManager =
         remember {
             ShareManager(context)
@@ -48,6 +50,7 @@ internal fun ShareButton(
                     )
                     shareManager.share(
                         imageUrls = imageUrls,
+                        watermarkRes = theme.watermarkRes,
                     )
                 },
         contentAlignment = Alignment.Center,

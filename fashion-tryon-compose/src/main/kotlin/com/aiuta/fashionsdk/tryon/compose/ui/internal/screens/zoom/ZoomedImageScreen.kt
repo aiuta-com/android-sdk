@@ -171,6 +171,7 @@ private fun ZoomedImageScreenContent(
 ) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
     val shareManager =
         remember {
@@ -231,6 +232,7 @@ private fun ZoomedImageScreenContent(
                         )
                         shareManager.share(
                             imageUrls = imageUrls,
+                            watermarkRes = theme.watermarkRes,
                         )
                     },
             text = stringResource(R.string.share),

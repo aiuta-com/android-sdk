@@ -3,9 +3,13 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toBitmapOrNull
 import coil.Coil
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,12 +31,13 @@ internal class ShareManager(
     public fun share(
         content: String? = null,
         imageUrls: List<String>,
+        @DrawableRes watermarkRes: Int? = null,
     ): StateFlow<SharingState> {
         innerScope.launch {
             try {
                 val imageUris = ArrayList<Uri>()
                 imageUrls
-                    .map { image -> async { getUri(image) } }
+                    .map { image -> async { getUri(image, watermarkRes) } }
                     .awaitAll()
                     .filterNotNull()
                     .toCollection(imageUris)
@@ -48,10 +53,21 @@ internal class ShareManager(
         return stateFlow
     }
 
-    private suspend fun getUri(imageUrl: String): Uri? {
+    private suspend fun getUri(
+        imageUrl: String,
+        @DrawableRes watermarkRes: Int? = null,
+    ): Uri? {
         val bitmap = getBitmap(imageUrl) ?: return null
         return withContext(workerDispatcher) {
-            val modifierBitmap = bitmap.copy(bitmap.config, true)
+            val mutableBitmap = bitmap.copy(bitmap.config, true)
+            val modifierBitmap =
+                watermarkRes?.let {
+                    context.addWatermark(
+                        source = mutableBitmap,
+                        watermarkRes = watermarkRes,
+                    )
+                } ?: mutableBitmap
+
             context.getUriFromBitmap(bmp = modifierBitmap, isCache = true)
         }
     }

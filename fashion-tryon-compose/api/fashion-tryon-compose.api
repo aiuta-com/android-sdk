@@ -81,11 +81,12 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLi
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme {
 	public abstract fun getColors ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;
 	public abstract fun getNavBarTheme ()Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;
+	public abstract fun getWatermarkRes ()Ljava/lang/Integer;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnThemeKt {
-	public static final fun defaultAiutaTryOnTheme (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
-	public static synthetic fun defaultAiutaTryOnTheme$default (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
+	public static final fun defaultAiutaTryOnTheme (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;Ljava/lang/Integer;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
+	public static synthetic fun defaultAiutaTryOnTheme$default (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
