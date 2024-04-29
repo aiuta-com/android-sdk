@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
@@ -122,6 +123,29 @@ internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> 
                 NavigationScreen.SPLASH, NavigationScreen.ONBOARDING -> NavigationAppBarState.EMPTY
                 NavigationScreen.HISTORY -> NavigationAppBarState.HISTORY
                 else -> NavigationAppBarState.GENERAL
+            }
+        }
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.appbarActionState(): State<NavigationAppBarActionState> {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
+
+    return remember(currentScreen.value) {
+        derivedStateOf {
+            when (currentScreen.value) {
+                NavigationScreen.HISTORY -> NavigationAppBarActionState.SELECT_PHOTOS
+
+                NavigationScreen.SPLASH, NavigationScreen.ONBOARDING -> NavigationAppBarActionState.EMPTY
+
+                NavigationScreen.IMAGE_SELECTOR, NavigationScreen.GENERATION_RESULT -> {
+                    if (aiutaConfiguration.isHistoryAvailable) {
+                        NavigationAppBarActionState.HISTORY
+                    } else {
+                        NavigationAppBarActionState.EMPTY
+                    }
+                }
             }
         }
     }

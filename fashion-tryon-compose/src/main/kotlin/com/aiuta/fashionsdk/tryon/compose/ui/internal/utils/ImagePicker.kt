@@ -6,6 +6,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
 
 // Camera Picker
 @Composable
@@ -29,7 +30,7 @@ internal fun openCameraPicker(
 // Image Picker
 @Composable
 internal fun provideMultipleImagePicker(
-    maxItems: Int = 10,
+    maxItems: Int = LocalAiutaConfiguration.current.photoSelectionLimit,
     success: (uris: List<Uri>) -> Unit,
 ): ManagedActivityResultLauncher<PickVisualMediaRequest, *> {
     return rememberLauncherForActivityResult(

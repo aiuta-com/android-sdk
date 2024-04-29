@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
@@ -40,6 +41,7 @@ public fun AiutaTryOnFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
+    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)? = null,
     theme: (() -> AiutaTryOnTheme)? = null,
     skuForGeneration: () -> SKUItem,
 ) {
@@ -50,6 +52,7 @@ public fun AiutaTryOnFlow(
         aiuta = aiuta,
         aiutaTryOn = aiutaTryOn,
         aiutaTryOnListeners = aiutaTryOnListeners,
+        aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         theme = theme,
         skuForGeneration = skuForGeneration,
     ) {
