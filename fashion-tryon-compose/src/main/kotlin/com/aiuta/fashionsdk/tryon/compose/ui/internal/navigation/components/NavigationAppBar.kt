@@ -110,7 +110,7 @@ internal fun NavigationAppBar(
         },
         title = {
             appbarTransition.AnimatedContent(
-                modifier = Modifier.align(Alignment.TopCenter),
+                modifier = Modifier.align(Alignment.Center),
                 transitionSpec = { slideTransitionAnimation },
             ) { state ->
                 when (state) {
