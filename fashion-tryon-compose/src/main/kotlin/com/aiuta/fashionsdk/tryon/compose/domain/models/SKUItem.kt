@@ -15,6 +15,7 @@ import java.util.UUID
  * @param priceCurrency - Local currency of the sku
  * @param store - Name of store
  * @param generateMoreSKU - SKU for continuous generations
+ * @param additionalShareInfo - Some additional info for sharing generated item
  */
 @Immutable
 public class SKUItem(
