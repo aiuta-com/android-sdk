@@ -1,12 +1,28 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 
-// TODO Docs
+/**
+ * Configuration of Aiuta Try on Flow
+ *
+ * @see [AiutaTryOnFlow]
+ */
 @Immutable
 public interface AiutaTryOnConfiguration {
+    /**
+     * The maximum number of photos that a user can select
+     * in the system picket for virtual try on.
+     */
     public val photoSelectionLimit: Int
 
+    /**
+     * Flag which turn on or off possibility to use history flow
+     * inside [AiutaTryOnFlow].
+     *
+     * Be careful - if you turn off this flag, all previous
+     * generation history will be deleted
+     */
     public val isHistoryAvailable: Boolean
 }
 
