@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
@@ -128,8 +129,31 @@ internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> 
 }
 
 @Composable
+internal fun FashionTryOnController.appbarActionState(): State<NavigationAppBarActionState> {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
+
+    return remember(currentScreen.value) {
+        derivedStateOf {
+            when (currentScreen.value) {
+                NavigationScreen.HISTORY -> NavigationAppBarActionState.SELECT_PHOTOS
+
+                NavigationScreen.SPLASH, NavigationScreen.ONBOARDING -> NavigationAppBarActionState.EMPTY
+
+                NavigationScreen.IMAGE_SELECTOR, NavigationScreen.GENERATION_RESULT -> {
+                    if (aiutaConfiguration.isHistoryAvailable) {
+                        NavigationAppBarActionState.HISTORY
+                    } else {
+                        NavigationAppBarActionState.EMPTY
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
-    val historyImageCount = generatedImageInteractor.count().collectAsStateWithLifecycle(0)
+    val historyImageCount = generatedImageInteractor.countFlow().collectAsStateWithLifecycle(0)
 
     return remember(generationStatus.value) {
         derivedStateOf {

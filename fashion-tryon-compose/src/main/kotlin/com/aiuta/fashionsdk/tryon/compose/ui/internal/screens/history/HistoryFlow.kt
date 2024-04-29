@@ -54,6 +54,7 @@ public fun HistoryFlow(
         aiuta = aiuta,
         aiutaTryOn = aiutaTryOn,
         aiutaTryOnListeners = aiutaTryOnListeners,
+        aiutaTryOnConfiguration = null,
         theme = theme,
         skuForGeneration = { defaultSKUItem },
     ) {

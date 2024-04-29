@@ -15,6 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.i
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
@@ -40,6 +41,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
+    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
     val context = LocalContext.current
@@ -123,6 +125,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         it.skuItemVisibilityListener()
         it.generationNavigationListener()
         it.generationOperationListener()
+        it.historyAvailabilityListener(aiutaTryOnConfiguration)
     }
 }
 

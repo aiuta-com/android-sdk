@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.updateTransition
@@ -10,14 +11,14 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,9 +34,11 @@ import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.appbarActionState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.appbarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarSelectAvailable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 
 private val slideEnterAnimation = fadeIn() + expandVertically()
@@ -51,6 +54,7 @@ internal fun NavigationAppBar(
     val controller = LocalController.current
     val theme = LocalTheme.current
     val appbarState = controller.appbarState()
+    val appbarActionState = controller.appbarActionState()
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 
@@ -60,6 +64,12 @@ internal fun NavigationAppBar(
         updateTransition(
             targetState = appbarState.value,
             label = "appbarTransition",
+        )
+
+    val appbarActionTransition =
+        updateTransition(
+            targetState = appbarActionState.value,
+            label = "appbarActionTransition",
         )
 
     val actionColorCalculation: (Boolean) -> Color = { active ->
@@ -82,14 +92,13 @@ internal fun NavigationAppBar(
             label = "selectColorTransition",
         )
 
-    TopAppBar(
+    AppBar(
         modifier = modifier,
-        backgroundColor = theme.colors.background,
-        elevation = 0.dp,
         navigationIcon = {
             Icon(
                 modifier =
                     Modifier
+                        .align(Alignment.CenterStart)
                         .size(36.dp)
                         .clickableUnindicated {
                             navigateBack()
@@ -100,71 +109,24 @@ internal fun NavigationAppBar(
             )
         },
         title = {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center,
-            ) {
-                appbarTransition.AnimatedContent(
-                    transitionSpec = { slideTransitionAnimation },
-                ) { state ->
-                    when (state) {
-                        NavigationAppBarState.GENERAL -> {
-                            Image(
-                                painter = painterResource(theme.navBarTheme.navLogo),
-                                contentDescription = null,
-                                contentScale = ContentScale.Fit,
-                            )
-                        }
-
-                        NavigationAppBarState.HISTORY -> {
-                            Text(
-                                text = stringResource(R.string.app_bar_history),
-                                style = MaterialTheme.typography.h6,
-                                color = theme.colors.primary,
-                            )
-                        }
-
-                        NavigationAppBarState.EMPTY -> Unit
-                    }
-                }
-            }
-        },
-        actions = {
             appbarTransition.AnimatedContent(
+                modifier = Modifier.align(Alignment.TopCenter),
                 transitionSpec = { slideTransitionAnimation },
             ) { state ->
                 when (state) {
                     NavigationAppBarState.GENERAL -> {
-                        Text(
-                            modifier =
-                                Modifier
-                                    .align(Alignment.CenterVertically)
-                                    .padding(end = 8.dp)
-                                    .clickableUnindicated {
-                                        if (isAppbarHistoryAvailable.value) {
-                                            navigateToHistory()
-                                        }
-                                    },
-                            text = stringResource(R.string.app_bar_history),
-                            style = MaterialTheme.typography.h6,
-                            color = historyColorTransition.value,
+                        Image(
+                            painter = painterResource(theme.navBarTheme.navLogo),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
                         )
                     }
 
                     NavigationAppBarState.HISTORY -> {
                         Text(
-                            modifier =
-                                Modifier
-                                    .align(Alignment.CenterVertically)
-                                    .padding(end = 8.dp)
-                                    .clickableUnindicated {
-                                        if (isAppbarSelectAvailable.value) {
-                                            controller.activateSelectMode()
-                                        }
-                                    },
-                            text = stringResource(R.string.app_bar_select),
+                            text = stringResource(R.string.app_bar_history),
                             style = MaterialTheme.typography.h6,
-                            color = selectColorTransition.value,
+                            color = theme.colors.primary,
                         )
                     }
 
@@ -172,5 +134,72 @@ internal fun NavigationAppBar(
                 }
             }
         },
+        actions = {
+            appbarActionTransition.AnimatedContent(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                transitionSpec = { slideTransitionAnimation },
+            ) { state ->
+                when (state) {
+                    NavigationAppBarActionState.HISTORY -> {
+                        AppBarActionText(
+                            textRes = R.string.app_bar_history,
+                            enable = isAppbarHistoryAvailable,
+                            colorTransition = historyColorTransition,
+                            onClick = navigateToHistory,
+                        )
+                    }
+
+                    NavigationAppBarActionState.SELECT_PHOTOS -> {
+                        AppBarActionText(
+                            textRes = R.string.app_bar_select,
+                            enable = isAppbarSelectAvailable,
+                            colorTransition = selectColorTransition,
+                            onClick = controller::activateSelectMode,
+                        )
+                    }
+
+                    NavigationAppBarActionState.EMPTY -> Unit
+                }
+            }
+        },
+    )
+}
+
+@Composable
+private fun AppBar(
+    modifier: Modifier = Modifier,
+    navigationIcon: @Composable BoxScope.() -> Unit,
+    title: @Composable BoxScope.() -> Unit,
+    actions: @Composable BoxScope.() -> Unit,
+) {
+    Box(
+        modifier = modifier,
+    ) {
+        navigationIcon()
+
+        title()
+
+        actions()
+    }
+}
+
+@Composable
+private fun AppBarActionText(
+    modifier: Modifier = Modifier,
+    @StringRes textRes: Int,
+    enable: State<Boolean>,
+    colorTransition: State<Color>,
+    onClick: () -> Unit,
+) {
+    Text(
+        modifier =
+            modifier
+                .padding(end = 8.dp)
+                .clickableUnindicated {
+                    if (enable.value) onClick()
+                },
+        text = stringResource(textRes),
+        style = MaterialTheme.typography.h6,
+        color = colorTransition.value,
     )
 }

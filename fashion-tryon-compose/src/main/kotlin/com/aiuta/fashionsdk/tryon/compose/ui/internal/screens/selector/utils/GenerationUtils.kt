@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 import android.net.Uri
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
@@ -26,7 +27,10 @@ import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin) {
+internal fun FashionTryOnController.startGeneration(
+    aiutaConfiguration: AiutaTryOnConfiguration,
+    origin: StartUITryOn.Origin,
+) {
     generationScope.launch {
         sendStartUITryOnEvent(origin)
 
@@ -39,8 +43,8 @@ internal fun FashionTryOnController.startGeneration(origin: StartUITryOn.Origin)
             rawGenerationFlows.mapIndexed { index, generationFlow ->
                 generationFlow
                     .onEach { status ->
-                        // Save generations for history, if operation is success
-                        if (status is SKUGenerationStatus.SuccessGenerationStatus) {
+                        // Save generations for history, if operation is success and history available
+                        if (status is SKUGenerationStatus.SuccessGenerationStatus && aiutaConfiguration.isHistoryAvailable) {
                             generatedImageInteractor.insertAll(status.imageUrls)
                         }
                     }

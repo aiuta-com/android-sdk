@@ -12,6 +12,7 @@ internal class ZoomImageUiModel(
     val initialCornerRadius: Dp,
     val imageUrl: String?,
     val parentImageOffset: Offset,
+    val additionalShareInfo: String? = null,
 ) {
     companion object {
         val EMPTY =

@@ -17,7 +17,7 @@ import java.util.UUID
  * @param generateMoreSKU - SKU for continuous generations
  */
 @Immutable
-public data class SKUItem(
+public class SKUItem(
     public val skuId: String,
     public val catalogName: String? = null,
     public val description: String,
@@ -27,6 +27,7 @@ public data class SKUItem(
     public val priceCurrency: String,
     public val store: String,
     public val generateMoreSKU: List<SKUItem>? = null,
+    public val additionalShareInfo: String? = null,
 ) {
     internal val priceWithCurrency = "$priceCurrency$price"
     internal val priceDiscountedWithCurrency = "$priceCurrency$priceDiscounted"

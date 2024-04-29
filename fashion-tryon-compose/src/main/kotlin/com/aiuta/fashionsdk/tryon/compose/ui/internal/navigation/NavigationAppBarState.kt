@@ -7,3 +7,11 @@ internal enum class NavigationAppBarState {
 
     HISTORY,
 }
+
+internal enum class NavigationAppBarActionState {
+    EMPTY,
+
+    SELECT_PHOTOS,
+
+    HISTORY,
+}

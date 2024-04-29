@@ -10,6 +10,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import sample.tryon.MainViewModel
 
@@ -53,6 +54,11 @@ fun MainScreen() {
                                 store = "MOCK STORE",
                             )
                         } ?: emptyList(),
+                    additionalShareInfo =
+                        """
+                        You can find more information about this item here:
+                        https://some-cool-website.com/product
+                        """.trimIndent(),
                 )
             }
 
@@ -74,11 +80,19 @@ fun MainScreen() {
                 )
             }
 
+        val mockAiutaConfiguration =
+            remember {
+                defaultAiutaTryOnConfiguration(
+                    photoSelectionLimit = 5,
+                )
+            }
+
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiuta = { viewModel.aiuta },
             aiutaTryOn = { viewModel.aiutaTryOn },
             aiutaTryOnListeners = { mockAiutaTryOnListeners },
+            aiutaTryOnConfiguration = { mockAiutaConfiguration },
             skuForGeneration = { mockSKUItem },
         )
     }
