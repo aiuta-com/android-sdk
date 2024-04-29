@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -141,7 +142,7 @@ internal fun GenerationResultInterface(
                     Modifier
                         .zIndex(generationResultController.zIndexInterface)
                         .fillMaxWidth()
-                        .height(generationResultController.footerHeight(maxHeight))
+                        .heightIn(min = generationResultController.footerHeight(maxHeight))
                         .background(theme.colors.backgroundElevation2)
                         .align(Alignment.BottomCenter)
                         .windowInsetsPadding(WindowInsets.navigationBars)
