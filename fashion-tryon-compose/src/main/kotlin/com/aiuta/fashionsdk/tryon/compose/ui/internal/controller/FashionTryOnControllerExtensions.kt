@@ -153,7 +153,7 @@ internal fun FashionTryOnController.appbarActionState(): State<NavigationAppBarA
 
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
-    val historyImageCount = generatedImageInteractor.count().collectAsStateWithLifecycle(0)
+    val historyImageCount = generatedImageInteractor.countFlow().collectAsStateWithLifecycle(0)
 
     return remember(generationStatus.value) {
         derivedStateOf {

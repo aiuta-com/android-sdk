@@ -26,14 +26,24 @@ internal class GeneratedImageDatasource(
 
     suspend fun remove(generatedImageIds: List<Long>) {
         withContext(Dispatchers.IO) {
+            if (generatedImageDao.count() == 0) return@withContext
+
             generatedImageDao.remove(
                 generatedImageIds = generatedImageIds,
             )
         }
     }
 
-    fun count(): Flow<Int> {
-        return generatedImageDao.count()
+    suspend fun removeAll() {
+        withContext(Dispatchers.IO) {
+            if (generatedImageDao.count() == 0) return@withContext
+
+            generatedImageDao.removeAll()
+        }
+    }
+
+    fun countFlow(): Flow<Int> {
+        return generatedImageDao.countFlow()
     }
 
     companion object {

@@ -32,6 +32,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
@@ -44,9 +45,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.sta
 
 @Composable
 internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
-    val aiutaUri = stringResource(R.string.aiuta_url)
+    val aiutaUri = stringResource(R.string.aiuta_url) // TODO
     val controller = LocalController.current
     val uriHandler = LocalUriHandler.current
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
 
     val generationStatus = controller.generationStatus
@@ -122,6 +124,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                         iconRes = FashionIcon.Magic,
                         onClick = {
                             controller.startGeneration(
+                                aiutaConfiguration = aiutaConfiguration,
                                 origin = StartUITryOn.Origin.TRY_ON_BUTTON,
                             )
                         },

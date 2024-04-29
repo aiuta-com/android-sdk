@@ -48,8 +48,12 @@ internal class GeneratedImageInteractor(
         )
     }
 
-    fun count(): Flow<Int> {
-        return generatedImageDatasource.count()
+    suspend fun removeAll() {
+        return generatedImageDatasource.removeAll()
+    }
+
+    fun countFlow(): Flow<Int> {
+        return generatedImageDatasource.countFlow()
     }
 
     companion object {

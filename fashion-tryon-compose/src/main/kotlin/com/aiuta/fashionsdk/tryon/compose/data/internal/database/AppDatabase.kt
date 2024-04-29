@@ -22,7 +22,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-private const val DATABASE_VERSION = 4
+private const val DATABASE_VERSION = 5
 private const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(

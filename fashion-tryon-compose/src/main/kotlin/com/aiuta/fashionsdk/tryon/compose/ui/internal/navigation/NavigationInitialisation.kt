@@ -46,6 +46,7 @@ internal fun NavigationInitialisation(
                 aiuta = aiuta,
                 aiutaTryOn = aiutaTryOn,
                 aiutaTryOnListeners = aiutaTryOnListeners,
+                aiutaTryOnConfiguration = configuration,
                 skuForGeneration = skuForGeneration,
             )
 

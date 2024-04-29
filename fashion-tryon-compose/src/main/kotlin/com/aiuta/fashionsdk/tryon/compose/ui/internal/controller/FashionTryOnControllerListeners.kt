@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 
@@ -32,6 +33,18 @@ internal fun FashionTryOnController.generationOperationListener() {
     LaunchedEffect(currentScreen.value) {
         if (currentScreen.value == NavigationScreen.IMAGE_SELECTOR) {
             cancelGenerationScope()
+        }
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.historyAvailabilityListener(
+    configuration: AiutaTryOnConfiguration,
+) {
+    // We should delete all generations, if history not available
+    LaunchedEffect(Unit) {
+        if (!configuration.isHistoryAvailable) {
+            generatedImageInteractor.removeAll()
         }
     }
 }

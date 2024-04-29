@@ -23,5 +23,8 @@ internal interface GeneratedImageDao {
     suspend fun removeAll()
 
     @Query("SELECT count(id) FROM generated_images")
-    fun count(): Flow<Int>
+    fun countFlow(): Flow<Int>
+
+    @Query("SELECT count(id) FROM generated_images")
+    suspend fun count(): Int
 }
