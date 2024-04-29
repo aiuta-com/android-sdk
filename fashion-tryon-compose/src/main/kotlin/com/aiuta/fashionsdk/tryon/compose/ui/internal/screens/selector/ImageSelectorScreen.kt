@@ -84,10 +84,12 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
             modifier =
                 Modifier
                     .weight(2f)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .windowInsetsPadding(WindowInsets.navigationBars),
             contentAlignment = Alignment.Center,
         ) {
             AiutaLabel(
+                modifier = Modifier.align(Alignment.Center),
                 onClick = {
                     context.openUri(aiutaUri)
                 },
@@ -96,10 +98,9 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
             androidx.compose.animation.AnimatedVisibility(
                 modifier =
                     Modifier
+                        .fillMaxHeight()
                         .fillMaxWidth()
-                        .fillMaxHeight(0.75f)
-                        .background(theme.colors.background)
-                        .align(Alignment.BottomCenter),
+                        .background(theme.colors.background),
                 visible = isTryOnButtonVisible.value,
                 enter = fadeIn() + expandVertically(),
                 exit = fadeOut() + shrinkVertically(),
@@ -117,8 +118,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                         modifier =
                             Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 16.dp)
-                                .windowInsetsPadding(WindowInsets.navigationBars),
+                                .padding(horizontal = 16.dp),
                         text = stringResource(R.string.try_on),
                         style = FashionButtonStyles.primaryStyle(theme),
                         size = FashionButtonSizes.xlSize(),
