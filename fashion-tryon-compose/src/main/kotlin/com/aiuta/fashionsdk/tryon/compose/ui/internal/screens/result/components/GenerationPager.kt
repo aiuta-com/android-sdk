@@ -166,6 +166,7 @@ internal fun PagerImageContainer(
                                     initialCornerRadius = sharedCornerRadius,
                                     imageUrl = imageUrl,
                                     parentImageOffset = parentImageOffset,
+                                    additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
                                 ),
                         )
                     },

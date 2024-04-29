@@ -49,6 +49,7 @@ internal fun ShareButton(
                         count = imageUrls.size,
                     )
                     shareManager.share(
+                        content = controller.activeSKUItem.value.additionalShareInfo,
                         imageUrls = imageUrls,
                         watermarkRes = theme.watermarkRes,
                     )

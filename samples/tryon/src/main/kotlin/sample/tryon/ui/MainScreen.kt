@@ -54,6 +54,11 @@ fun MainScreen() {
                                 store = "MOCK STORE",
                             )
                         } ?: emptyList(),
+                    additionalShareInfo =
+                        """
+                        You can find more information about this item here:
+                        https://some-cool-website.com/product
+                        """.trimIndent(),
                 )
             }
 
