@@ -20,6 +20,7 @@ To do this, call the following in the appropriate place:
         aiuta = { ... },
         aiutaTryOn = { ... },
         aiutaTryOnListeners = { ... },
+        aiutaTryOnConfiguration = { ... },
         theme = { ... },
         skuForGeneration = { ... },
     )
@@ -40,6 +41,12 @@ and
 [code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners.kt)
 and
 [api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-aiuta-try-on-listeners/index.html)
+)
+- `aiutaTryOnConfiguration` - is a optional instance of `AiutaTryOnConfiguration` for configure internal 
+behaviour of composable flow (
+[code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration.kt)
+and
+[api reference](https://aiuta-com.github.io/android-sdk-docs-api/fashion-tryon-compose/com.aiuta.fashionsdk.tryon.compose.domain.models/-aiuta-try-on-configuration/index.html)
 )
 - `theme` - is a optional theme decoration for `AiutaTryOnFlow` (
 [code](https://github.com/aiuta-com/android-sdk/blob/main/fashion-tryon-compose/src/main/kotlin/com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTheme.kt)

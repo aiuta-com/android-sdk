@@ -1,6 +1,6 @@
 <vars>
     <var name="latest_fashion_version"
-         value="0.3.3"
+         value="0.3.4"
          type="string"
     />
 </vars>
