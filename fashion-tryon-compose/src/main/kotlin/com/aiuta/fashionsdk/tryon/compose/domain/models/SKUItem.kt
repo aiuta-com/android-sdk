@@ -17,7 +17,7 @@ import java.util.UUID
  * @param generateMoreSKU - SKU for continuous generations
  */
 @Immutable
-public data class SKUItem(
+public class SKUItem(
     public val skuId: String,
     public val catalogName: String? = null,
     public val description: String,
