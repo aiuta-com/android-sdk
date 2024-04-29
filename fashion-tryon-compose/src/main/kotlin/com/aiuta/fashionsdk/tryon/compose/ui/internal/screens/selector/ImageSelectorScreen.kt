@@ -21,7 +21,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
@@ -41,13 +41,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.openUri
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 
 @Composable
 internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
-    val aiutaUri = stringResource(R.string.aiuta_url) // TODO
+    val aiutaUri = stringResource(R.string.aiuta_url)
     val controller = LocalController.current
-    val uriHandler = LocalUriHandler.current
+    val context = LocalContext.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
 
@@ -88,7 +89,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         ) {
             AiutaLabel(
                 onClick = {
-                    uriHandler.openUri(aiutaUri)
+                    context.openUri(aiutaUri)
                 },
             )
 
