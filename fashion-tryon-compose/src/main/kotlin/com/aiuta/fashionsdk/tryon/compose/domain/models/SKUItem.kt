@@ -23,15 +23,20 @@ public class SKUItem(
     public val catalogName: String? = null,
     public val description: String,
     public val imageUrls: List<String>,
-    public val price: Float,
+    public val price: Float? = null,
     public val priceDiscounted: Float? = null,
     public val priceCurrency: String,
     public val store: String,
     public val generateMoreSKU: List<SKUItem>? = null,
     public val additionalShareInfo: String? = null,
 ) {
-    internal val priceWithCurrency = "$priceCurrency$price"
-    internal val priceDiscountedWithCurrency = "$priceCurrency$priceDiscounted"
+    internal val priceWithCurrency = price?.let { "$priceCurrency$price" }
+    internal val priceDiscountedWithCurrency =
+        if (price != null && priceDiscounted != null) {
+            "$priceCurrency$priceDiscounted"
+        } else {
+            null
+        }
     internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
 }
 
