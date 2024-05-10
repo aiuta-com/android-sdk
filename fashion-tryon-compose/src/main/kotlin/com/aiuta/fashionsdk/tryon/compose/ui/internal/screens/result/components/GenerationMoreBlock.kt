@@ -175,14 +175,14 @@ private fun GenerationMoreBlockItem(
                 contentDescription = null,
             )
 
-            skuItem.priceDiscounted?.let { priceDiscounted ->
+            if (skuItem.priceDiscounted != null && skuItem.price != null) {
                 DiscountBlock(
                     modifier =
                         Modifier
                             .align(Alignment.BottomStart)
                             .padding(8.dp),
                     price = skuItem.price,
-                    priceWithDiscount = priceDiscounted,
+                    priceWithDiscount = skuItem.priceDiscounted,
                 )
             }
         }
@@ -213,23 +213,25 @@ private fun GenerationMoreBlockItem(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = skuItem.priceWithCurrency,
-                style =
-                    MaterialTheme.typography.body1.copy(
-                        textDecoration = solveGeneralPriceDecoration(skuItem),
-                    ),
-                color = solveGeneralPriceColor(skuItem),
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
+            skuItem.priceWithCurrency?.let { priceWithCurrency ->
+                Text(
+                    text = priceWithCurrency,
+                    style =
+                        MaterialTheme.typography.body1.copy(
+                            textDecoration = solveGeneralPriceDecoration(skuItem),
+                        ),
+                    color = solveGeneralPriceColor(skuItem),
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
 
-            skuItem.priceDiscounted?.let {
+            skuItem.priceDiscountedWithCurrency?.let { priceDiscountedWithCurrency ->
                 Spacer(Modifier.width(4.dp))
 
                 Text(
-                    text = skuItem.priceDiscountedWithCurrency,
+                    text = priceDiscountedWithCurrency,
                     style = MaterialTheme.typography.body1,
                     color = theme.colors.accent,
                     fontWeight = FontWeight.Bold,

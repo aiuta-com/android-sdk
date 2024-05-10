@@ -59,24 +59,26 @@ internal fun SKUInfo(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = skuItem.priceWithCurrency,
-                style =
-                    MaterialTheme.typography.body1.copy(
-                        textDecoration = solveGeneralPriceDecoration(skuItem),
-                    ),
-                color = solveGeneralPriceColor(skuItem),
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
+            skuItem.priceWithCurrency?.let { priceWithCurrency ->
+                Text(
+                    text = priceWithCurrency,
+                    style =
+                        MaterialTheme.typography.body1.copy(
+                            textDecoration = solveGeneralPriceDecoration(skuItem),
+                        ),
+                    color = solveGeneralPriceColor(skuItem),
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
 
-            skuItem.priceDiscounted?.let { priceDiscounted ->
+            skuItem.priceDiscountedWithCurrency?.let { priceDiscountedWithCurrency ->
 
                 Spacer(Modifier.width(4.dp))
 
                 Text(
-                    text = skuItem.priceDiscountedWithCurrency,
+                    text = priceDiscountedWithCurrency,
                     style = MaterialTheme.typography.body1,
                     color = theme.colors.accent,
                     fontWeight = FontWeight.Bold,
@@ -84,12 +86,14 @@ internal fun SKUInfo(
                     overflow = TextOverflow.Ellipsis,
                 )
 
-                Spacer(Modifier.width(8.dp))
+                if (skuItem.price != null && skuItem.priceDiscounted != null) {
+                    Spacer(Modifier.width(8.dp))
 
-                DiscountBlock(
-                    price = skuItem.price,
-                    priceWithDiscount = priceDiscounted,
-                )
+                    DiscountBlock(
+                        price = skuItem.price,
+                        priceWithDiscount = skuItem.priceDiscounted,
+                    )
+                }
             }
         }
     }
