@@ -71,13 +71,23 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnCo
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration {
+	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 	public abstract fun getPhotoSelectionLimit ()I
 	public abstract fun isHistoryAvailable ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (IZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (IZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (IZLcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (IZLcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage : java/lang/Enum {
+	public static final field ENGLISH Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
+	public static final field RUSSIAN Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
+	public static final field TURKISH Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
+	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners {
