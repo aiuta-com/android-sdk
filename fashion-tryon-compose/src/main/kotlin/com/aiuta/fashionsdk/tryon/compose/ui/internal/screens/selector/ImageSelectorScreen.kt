@@ -22,7 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
@@ -30,9 +29,9 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
@@ -46,11 +45,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.sta
 
 @Composable
 internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
-    val aiutaUri = stringResource(R.string.aiuta_url)
     val controller = LocalController.current
     val context = LocalContext.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     val generationStatus = controller.generationStatus
 
@@ -91,7 +90,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
             AiutaLabel(
                 modifier = Modifier.align(Alignment.Center),
                 onClick = {
-                    context.openUri(aiutaUri)
+                    context.openUri(stringResources.aiutaUrl)
                 },
             )
 
@@ -119,7 +118,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                             Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = 16.dp),
-                        text = stringResource(R.string.try_on),
+                        text = stringResources.tryOn,
                         style = FashionButtonStyles.primaryStyle(theme),
                         size = FashionButtonSizes.xlSize(),
                         iconRes = FashionIcon.Magic,

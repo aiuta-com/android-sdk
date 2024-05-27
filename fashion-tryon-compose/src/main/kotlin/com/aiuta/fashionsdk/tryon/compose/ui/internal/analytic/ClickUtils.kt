@@ -9,39 +9,39 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 
 // Listeners
 internal fun FashionTryOnController.clickAddToWishList(origin: FinishSession.Origin) {
-    aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value)
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.ADD_TO_WISHLIST,
         origin = origin,
         skuItem = activeSKUItem.value,
     )
+    aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value)
 }
 
 internal fun FashionTryOnController.clickMoreDetails(origin: FinishSession.Origin) {
-    aiutaTryOnListeners().moreDetailsClick(activeSKUItem.value)
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.SHOW_SKU_INFO,
         origin = origin,
         skuItem = activeSKUItem.value,
     )
+    aiutaTryOnListeners().moreDetailsClick(activeSKUItem.value)
 }
 
 internal fun FashionTryOnController.clickAddToCart(origin: FinishSession.Origin) {
-    aiutaTryOnListeners().addToCartClick(activeSKUItem.value)
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.ADD_TO_CART,
         origin = origin,
         skuItem = activeSKUItem.value,
     )
+    aiutaTryOnListeners().addToCartClick(activeSKUItem.value)
 }
 
 internal fun FashionTryOnController.clickClose(origin: FinishSession.Origin) {
-    aiutaTryOnListeners().closeClick(activeSKUItem.value)
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.NONE,
         origin = origin,
         skuItem = activeSKUItem.value,
     )
+    aiutaTryOnListeners().closeClick(activeSKUItem.value)
 }
 
 // Senders

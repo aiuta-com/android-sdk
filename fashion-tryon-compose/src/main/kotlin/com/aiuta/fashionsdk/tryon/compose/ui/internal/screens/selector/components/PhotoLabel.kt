@@ -9,16 +9,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.solveStringResource
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 
 @Composable
 internal fun PhotoLabel(
     modifier: Modifier = Modifier,
     count: Int,
 ) {
+    val stringResources = LocalAiutaTryOnStringResources.current
+
     Box(
         modifier =
             modifier
@@ -32,7 +34,7 @@ internal fun PhotoLabel(
                 ),
     ) {
         Text(
-            text = pluralStringResource(R.plurals.image_selector_photos, count, count),
+            text = stringResources.imageSelectorPhotos.solveStringResource(count),
             style = MaterialTheme.typography.subtitle2,
             color = Color.White,
             maxLines = 1,

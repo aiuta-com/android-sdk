@@ -18,15 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
@@ -42,6 +41,7 @@ internal fun ImageSelectorBottom(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     val generationStatus = controller.generationStatus
     val countGeneratedOperation =
@@ -84,7 +84,7 @@ internal fun ImageSelectorBottom(
             ImageSelectorState.IDLE -> {
                 FashionButton(
                     modifier = sharedModifier,
-                    text = stringResource(R.string.image_selector_upload_button),
+                    text = stringResources.imageSelectorUploadButton,
                     style = FashionButtonStyles.primaryStyle(theme),
                     size = sharedButtonSize,
                     onClick = {
@@ -97,7 +97,7 @@ internal fun ImageSelectorBottom(
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
                     modifier = sharedModifier,
-                    text = stringResource(R.string.image_selector_change_button),
+                    text = stringResources.imageSelectorChangeButton,
                     style =
                         FashionButtonStyles.primaryStyle(
                             backgroundColor = sharedBackground,
@@ -142,7 +142,7 @@ internal fun ImageSelectorBottom(
                     Spacer(Modifier.width(8.dp))
 
                     Text(
-                        text = stringResource(R.string.image_selector_generating_outfit),
+                        text = stringResources.imageSelectorGeneratingOutfit,
                         style = MaterialTheme.typography.body1,
                         color = theme.colors.primary,
                         textAlign = TextAlign.Center,

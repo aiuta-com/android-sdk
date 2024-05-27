@@ -21,13 +21,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -42,6 +41,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideMultipleImage
 internal fun ColumnScope.ImagePickerSheet() {
     val context = LocalContext.current
     val controller = LocalController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
+
     val sharedModifier = Modifier.fillMaxWidth().height(74.dp)
 
     val newImageUri = remember { CameraFileProvider.newImageUri(context = context) }
@@ -74,7 +75,7 @@ internal fun ColumnScope.ImagePickerSheet() {
     PickerButton(
         modifier = sharedModifier,
         iconRes = FashionIcon.Camera24,
-        text = stringResource(R.string.picker_sheet_take_photo),
+        text = stringResources.pickerSheetTakePhoto,
         onClick = {
             newImageUri?.let { uri ->
                 openCameraPicker(
@@ -88,7 +89,7 @@ internal fun ColumnScope.ImagePickerSheet() {
     PickerButton(
         modifier = sharedModifier,
         iconRes = FashionIcon.Gallery24,
-        text = stringResource(R.string.picker_sheet_choose_library),
+        text = stringResources.pickerSheetChooseLibrary,
         shouldDrawDivider = false,
         onClick = {
             openMultipleImagePicker { imagePickerLauncher }

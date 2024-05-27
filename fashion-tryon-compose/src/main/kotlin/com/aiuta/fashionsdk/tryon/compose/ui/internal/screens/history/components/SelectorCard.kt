@@ -21,10 +21,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
-import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 
@@ -41,6 +40,7 @@ internal fun SelectorCard(
     onDelete: () -> Unit,
 ) {
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
     val transition =
         updateTransition(
             targetState = selectionMode.value == SelectorMode.DISABLED,
@@ -64,14 +64,14 @@ internal fun SelectorCard(
                 if (isDisables) {
                     Text(
                         modifier = Modifier.weight(1f),
-                        text = stringResource(R.string.history_selector_disabled_text),
+                        text = stringResources.historySelectorDisabledText,
                         style = MaterialTheme.typography.body2,
                         color = theme.colors.onDark,
                     )
 
                     Spacer(Modifier.width(12.dp))
 
-                    TextButton(text = stringResource(R.string.history_selector_disabled_button)) {
+                    TextButton(text = stringResources.historySelectorDisabledButton) {
                         onStartSelectionMode()
                     }
                 } else {
@@ -109,13 +109,9 @@ internal fun SelectorCard(
                         TextButton(
                             text =
                                 if (state == SelectorMode.ALL_IS_SELECTED) {
-                                    stringResource(
-                                        R.string.history_selector_enable_button_unselect_all,
-                                    )
+                                    stringResources.historySelectorEnableButtonUnselectAll
                                 } else {
-                                    stringResource(
-                                        R.string.history_selector_enable_button_select_all,
-                                    )
+                                    stringResources.historySelectorEnableButtonSelectAll
                                 },
                             backgroundColor = Color.Transparent,
                             textColor = theme.colors.onDark,
@@ -129,7 +125,7 @@ internal fun SelectorCard(
                     }
 
                     TextButton(
-                        text = stringResource(R.string.history_selector_enable_button_cancel),
+                        text = stringResources.historySelectorEnableButtonCancel,
                     ) {
                         onCancel()
                     }

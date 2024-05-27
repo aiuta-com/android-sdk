@@ -24,14 +24,24 @@ public interface AiutaTryOnConfiguration {
      * generation history will be deleted
      */
     public val isHistoryAvailable: Boolean
+
+    /**
+     * Language of Aiuta Try on Flow
+     *
+     * By default, we will look for the language of the device - if SDK supports it,
+     * we will use it, otherwise we will use English.
+     */
+    public val language: AiutaTryOnLanguage?
 }
 
 public fun defaultAiutaTryOnConfiguration(
     photoSelectionLimit: Int = 10,
     isHistoryAvailable: Boolean = true,
+    language: AiutaTryOnLanguage? = null,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val photoSelectionLimit: Int = photoSelectionLimit
         override val isHistoryAvailable: Boolean = isHistoryAvailable
+        override val language: AiutaTryOnLanguage? = language
     }
 }
