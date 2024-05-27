@@ -9,8 +9,6 @@ import androidx.work.workDataOf
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internal.worker.AnalyticWorker
-import com.aiuta.fashionsdk.internal.analytic.internal.worker.createAnalyticEnvironment
-import com.aiuta.fashionsdk.internal.analytic.model.AnalyticEnvironment
 import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.ShareableAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.SharedAnalyticEvent
@@ -93,7 +91,6 @@ internal class InternalAiutaAnalyticImpl(
     companion object {
         @Volatile
         private var instance: InternalAiutaAnalytic? = null
-        private var analyticEnvironment: AnalyticEnvironment? = null
         private var cachedApiKey: String? = null
         var networkClient: NetworkClient? = null
 
@@ -110,7 +107,6 @@ internal class InternalAiutaAnalyticImpl(
                             apiKey = aiuta.apiKey,
                             backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
                         )
-                    analyticEnvironment = createAnalyticEnvironment(aiuta.application)
                 }
             }
         }
@@ -125,7 +121,6 @@ internal class InternalAiutaAnalyticImpl(
             // We should remove cache, if we have new instance of api key
             if (newApiKey != cachedApiKey) {
                 instance = null
-                analyticEnvironment = null
                 networkClient = null
                 cachedApiKey = newApiKey
             }
