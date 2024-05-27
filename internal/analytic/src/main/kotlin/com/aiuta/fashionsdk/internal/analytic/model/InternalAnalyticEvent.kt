@@ -28,6 +28,11 @@ public object StartSession : InternalAnalyticEvent {
     public const val SKU_ID_PARAM: String = "sku_id"
     public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
     public const val RELATED_SKU_COUNT_PARAM: String = "related_sku_count"
+    public const val DESCRIPTION_PARAM: String = "description"
+    public const val PRICE_PARAM: String = "price"
+    public const val PRICE_DISCOUNTED_PARAM: String = "price_discounted"
+    public const val STORE_PARAM: String = "store"
+    public const val ADDITIONAL_SHARE_INFO_PARAM: String = "additional_share_info"
 }
 
 public object FinishSession : InternalAnalyticEvent {

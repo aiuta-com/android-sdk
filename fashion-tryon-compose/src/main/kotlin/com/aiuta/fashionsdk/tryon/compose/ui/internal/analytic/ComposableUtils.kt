@@ -48,6 +48,22 @@ internal fun sendStartSessionEvent() {
                 key = StartSession.RELATED_SKU_COUNT_PARAM,
                 value = (skuItem.generateMoreSKU?.size ?: 0).toString(),
             )
+            put(
+                key = StartSession.PRICE_PARAM,
+                value = skuItem.price?.toString(),
+            )
+            put(
+                key = StartSession.PRICE_DISCOUNTED_PARAM,
+                value = skuItem.priceDiscounted?.toString(),
+            )
+            put(
+                key = StartSession.STORE_PARAM,
+                value = skuItem.store,
+            )
+            put(
+                key = StartSession.ADDITIONAL_SHARE_INFO_PARAM,
+                value = skuItem.additionalShareInfo,
+            )
         }
     }
 }
