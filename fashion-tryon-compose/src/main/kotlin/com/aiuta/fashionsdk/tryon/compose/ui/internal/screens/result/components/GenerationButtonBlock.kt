@@ -6,15 +6,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
@@ -22,6 +21,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     Row(
         modifier = modifier,
@@ -29,7 +29,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
     ) {
         FashionButton(
             modifier = Modifier.weight(1f),
-            text = stringResource(R.string.add_to_wish),
+            text = stringResources.addToWish,
             style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {
@@ -41,7 +41,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
 
         FashionButton(
             modifier = Modifier.weight(1f),
-            text = stringResource(R.string.add_to_cart),
+            text = stringResources.addToCart,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {

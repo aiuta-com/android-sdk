@@ -30,7 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -44,12 +43,12 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -64,6 +63,7 @@ import kotlinx.coroutines.launch
 internal fun ColumnScope.GeneratedOperationsSheet() {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =
@@ -90,7 +90,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     Text(
         modifier = Modifier.padding(horizontal = sharedHorizontalPadding),
-        text = stringResource(R.string.generated_operations_sheet_previously),
+        text = stringResources.generatedOperationsSheetPreviously,
         style = MaterialTheme.typography.h5,
         color = theme.colors.primary,
         fontWeight = FontWeight.Bold,
@@ -133,7 +133,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     FashionButton(
         modifier = Modifier.fillMaxWidth().padding(horizontal = sharedHorizontalPadding),
-        text = stringResource(R.string.generated_operations_sheet_upload_new_button),
+        text = stringResources.generatedOperationsSheetUploadNewButton,
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.xlSize(),
         onClick = {

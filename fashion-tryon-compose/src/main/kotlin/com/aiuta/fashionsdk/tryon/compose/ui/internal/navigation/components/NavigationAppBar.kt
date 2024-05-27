@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components
 
-import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.updateTransition
@@ -25,12 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
@@ -53,6 +51,7 @@ internal fun NavigationAppBar(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
     val appbarState = controller.appbarState()
     val appbarActionState = controller.appbarActionState()
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
@@ -124,7 +123,7 @@ internal fun NavigationAppBar(
 
                     NavigationAppBarState.HISTORY -> {
                         Text(
-                            text = stringResource(R.string.app_bar_history),
+                            text = stringResources.appBarHistory,
                             style = MaterialTheme.typography.h6,
                             color = theme.colors.primary,
                         )
@@ -142,7 +141,7 @@ internal fun NavigationAppBar(
                 when (state) {
                     NavigationAppBarActionState.HISTORY -> {
                         AppBarActionText(
-                            textRes = R.string.app_bar_history,
+                            text = stringResources.appBarHistory,
                             enable = isAppbarHistoryAvailable,
                             colorTransition = historyColorTransition,
                             onClick = navigateToHistory,
@@ -151,7 +150,7 @@ internal fun NavigationAppBar(
 
                     NavigationAppBarActionState.SELECT_PHOTOS -> {
                         AppBarActionText(
-                            textRes = R.string.app_bar_select,
+                            text = stringResources.appBarSelect,
                             enable = isAppbarSelectAvailable,
                             colorTransition = selectColorTransition,
                             onClick = controller::activateSelectMode,
@@ -186,7 +185,7 @@ private fun AppBar(
 @Composable
 private fun AppBarActionText(
     modifier: Modifier = Modifier,
-    @StringRes textRes: Int,
+    text: String,
     enable: State<Boolean>,
     colorTransition: State<Color>,
     onClick: () -> Unit,
@@ -198,7 +197,7 @@ private fun AppBarActionText(
                 .clickableUnindicated {
                     if (enable.value) onClick()
                 },
-        text = stringResource(textRes),
+        text = text,
         style = MaterialTheme.typography.h6,
         color = colorTransition.value,
     )

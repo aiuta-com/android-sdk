@@ -38,7 +38,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 @Composable
 internal fun TryOnPageContent(
     modifier: Modifier = Modifier,
-    state: TryOnPage,
     onboardingController: OnboardingController,
 ) {
     val currentPage =
@@ -72,7 +71,7 @@ internal fun TryOnPageContent(
             modifier = Modifier.align(Alignment.CenterStart),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            state.INTERNAL_PAGES.forEachIndexed { index, page ->
+            TryOnPage.INTERNAL_PAGES.forEachIndexed { index, page ->
                 key(page.uniqueGeneratedId) {
                     ItemContent(
                         itemImage = page.itemImage,

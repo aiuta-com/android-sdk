@@ -43,7 +43,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -55,12 +54,12 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
@@ -297,6 +296,8 @@ private fun BoxScope.HistoryScreenEmpty(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImage>,
 ) {
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
+
     val generatedImages = getGeneratedImages()
 
     if (generatedImages.itemCount == 0) {
@@ -316,7 +317,7 @@ private fun BoxScope.HistoryScreenEmpty(
 
             Text(
                 modifier = Modifier.padding(horizontal = 30.dp),
-                text = stringResource(R.string.history_empty_description),
+                text = stringResources.historyEmptyDescription,
                 style = MaterialTheme.typography.body1,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,

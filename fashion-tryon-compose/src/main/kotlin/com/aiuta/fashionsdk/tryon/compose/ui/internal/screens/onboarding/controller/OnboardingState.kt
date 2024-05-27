@@ -1,40 +1,21 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.R
 import java.util.UUID
 
 @Immutable
 internal sealed interface OnboardingState {
-    @get:StringRes
-    val topic: Int
+    val topic: String
 
-    @get:StringRes
-    val subtopic: Int
+    val subtopic: String
 }
 
-internal object TryOnPage : OnboardingState, Iterable<TryOnPage.InternalPage> {
-    override val topic: Int = R.string.onboarding_page_tryon_topic
-    override val subtopic: Int = R.string.onboarding_page_tryon_subtopic
-
-    val INTERNAL_PAGES =
-        listOf(
-            InternalPage(
-                mainImage = R.drawable.onboarding_main_1,
-                itemImage = R.drawable.onboarding_item_1,
-            ),
-            InternalPage(
-                mainImage = R.drawable.onboarding_main_2,
-                itemImage = R.drawable.onboarding_item_2,
-            ),
-            InternalPage(
-                mainImage = R.drawable.onboarding_main_3,
-                itemImage = R.drawable.onboarding_item_3,
-            ),
-        )
-
+internal class TryOnPage(
+    override val topic: String,
+    override val subtopic: String,
+) : OnboardingState, Iterable<TryOnPage.InternalPage> {
     @Immutable
     data class InternalPage(
         @DrawableRes
@@ -48,12 +29,30 @@ internal object TryOnPage : OnboardingState, Iterable<TryOnPage.InternalPage> {
     override fun iterator(): Iterator<InternalPage> {
         return INTERNAL_PAGES.iterator()
     }
+
+    companion object {
+        val INTERNAL_PAGES =
+            listOf(
+                InternalPage(
+                    mainImage = R.drawable.onboarding_main_1,
+                    itemImage = R.drawable.onboarding_item_1,
+                ),
+                InternalPage(
+                    mainImage = R.drawable.onboarding_main_2,
+                    itemImage = R.drawable.onboarding_item_2,
+                ),
+                InternalPage(
+                    mainImage = R.drawable.onboarding_main_3,
+                    itemImage = R.drawable.onboarding_item_3,
+                ),
+            )
+    }
 }
 
-internal object BestResultPage : OnboardingState {
-    override val topic: Int = R.string.onboarding_page_best_result_topic
-    override val subtopic: Int = R.string.onboarding_page_best_result_subtopic
-
+internal class BestResultPage(
+    override val topic: String,
+    override val subtopic: String,
+) : OnboardingState {
     val goodImages: List<Int> =
         listOf(
             R.drawable.onboarding_good_image_1,

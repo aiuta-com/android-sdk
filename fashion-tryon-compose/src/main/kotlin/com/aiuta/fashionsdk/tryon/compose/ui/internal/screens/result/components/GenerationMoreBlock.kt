@@ -29,19 +29,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.DiscountBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGeneralPriceColor
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGeneralPriceDecoration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceHideActiveSKUItem
@@ -63,6 +62,8 @@ internal fun GenerationMoreBlock(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
+
     val generateMoreSKU = controller.activeSKUItem.value.generateMoreSKU.orEmpty()
     val sharedModifier = Modifier.fillMaxWidth().height(300.dp)
 
@@ -94,7 +95,7 @@ internal fun GenerationMoreBlock(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = stringResource(R.string.generation_result_more_title),
+                text = stringResources.generationResultMoreTitle,
                 style = MaterialTheme.typography.h5,
                 color = theme.colors.primary,
                 fontWeight = FontWeight.Bold,

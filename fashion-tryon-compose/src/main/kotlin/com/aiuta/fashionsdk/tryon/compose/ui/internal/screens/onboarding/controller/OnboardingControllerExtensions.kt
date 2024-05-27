@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
@@ -9,7 +10,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analyti
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
-internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
+internal fun OnboardingController.nextPage(
+    controller: FashionTryOnController,
+    stringResources: InternalAiutaTryOnLanguage,
+) {
     val nextPageIndex = pagerState.settledPage + 1
 
     when (state.value) {
@@ -18,7 +22,11 @@ internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
 
             if (isLastPageOfTryOn) {
                 // Change state to next
-                state.value = BestResultPage
+                state.value =
+                    BestResultPage(
+                        topic = stringResources.onboardingPageBestResultTopic,
+                        subtopic = stringResources.onboardingPageBestResultSubtopic,
+                    )
             }
 
             controller.sendContinueOnBoardingEvent(newPage = nextPageIndex)

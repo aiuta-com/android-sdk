@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
@@ -30,12 +29,12 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickMoreDetails
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
@@ -126,6 +125,7 @@ private fun ButtonsContainer(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     Row(
         modifier = modifier,
@@ -134,13 +134,11 @@ private fun ButtonsContainer(
         FashionButton(
             modifier = Modifier.weight(1f),
             text =
-                stringResource(
-                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                        R.string.add_to_wish
-                    } else {
-                        R.string.more_details
-                    },
-                ),
+                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    stringResources.addToWish
+                } else {
+                    stringResources.moreDetails
+                },
             style = FashionButtonStyles.outlineStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {
@@ -157,13 +155,11 @@ private fun ButtonsContainer(
         FashionButton(
             modifier = Modifier.weight(1f),
             text =
-                stringResource(
-                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                        R.string.add_to_cart
-                    } else {
-                        R.string.try_on
-                    },
-                ),
+                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    stringResources.addToCart
+                } else {
+                    stringResources.tryOn
+                },
             iconRes = FashionIcon.Magic.takeIf { skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),

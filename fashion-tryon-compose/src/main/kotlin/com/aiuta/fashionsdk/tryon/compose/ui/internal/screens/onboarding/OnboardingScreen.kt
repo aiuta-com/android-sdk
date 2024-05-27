@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -30,8 +29,8 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.indicator.PagerIndicator
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.BestResultPageContent
@@ -47,6 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
     val onboardingController = rememberOnboardingController()
 
     sendStartOnBoardingEvent()
@@ -62,7 +62,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(20.dp))
 
         Text(
-            text = stringResource(onboardingController.state.value.topic),
+            text = onboardingController.state.value.topic,
             style = MaterialTheme.typography.h5,
             color = theme.colors.primary,
             fontWeight = FontWeight.Bold,
@@ -74,7 +74,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
         Text(
             modifier = Modifier.padding(horizontal = 20.dp),
-            text = stringResource(onboardingController.state.value.subtopic),
+            text = onboardingController.state.value.subtopic,
             style = MaterialTheme.typography.h6,
             color = theme.colors.primary,
             overflow = TextOverflow.Ellipsis,
@@ -103,17 +103,18 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
         FashionButton(
             modifier = Modifier.fillMaxWidth(),
             text =
-                stringResource(
-                    if (onboardingController.state.value is TryOnPage) {
-                        R.string.onboarding_button_next
-                    } else {
-                        R.string.onboarding_button_start
-                    },
-                ),
+                if (onboardingController.state.value is TryOnPage) {
+                    stringResources.onboardingButtonNext
+                } else {
+                    stringResources.onboardingButtonStart
+                },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {
-                onboardingController.nextPage(controller)
+                onboardingController.nextPage(
+                    controller = controller,
+                    stringResources = stringResources,
+                )
             },
         )
 
@@ -149,7 +150,6 @@ private fun OnboardingScreenContent(
                 is TryOnPage -> {
                     TryOnPageContent(
                         modifier = Modifier.fillMaxSize(),
-                        state = state,
                         onboardingController = onboardingController,
                     )
                 }

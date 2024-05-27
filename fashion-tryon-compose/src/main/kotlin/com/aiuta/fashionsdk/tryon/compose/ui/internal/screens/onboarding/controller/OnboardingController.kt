@@ -9,14 +9,21 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
+    val stringResources = LocalAiutaTryOnStringResources.current
     val defaultState =
         remember {
-            mutableStateOf<OnboardingState>(TryOnPage)
+            mutableStateOf<OnboardingState>(
+                TryOnPage(
+                    topic = stringResources.onboardingPageTryonTopic,
+                    subtopic = stringResources.onboardingPageTryonSubtopic,
+                ),
+            )
         }
 
     // Try on pages + Best result page

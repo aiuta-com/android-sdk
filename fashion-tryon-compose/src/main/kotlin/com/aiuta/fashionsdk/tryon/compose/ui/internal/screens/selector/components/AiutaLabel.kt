@@ -9,14 +9,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 
 @Composable
@@ -25,11 +24,13 @@ internal fun AiutaLabel(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
+
     val buttonText =
         buildAnnotatedString {
-            append(stringResource(R.string.image_selector_powered_by_aiuta_1))
+            append(stringResources.imageSelectorPoweredByAiuta1)
             withStyle(style = SpanStyle(color = theme.colors.aiuta)) {
-                append(stringResource(R.string.image_selector_powered_by_aiuta_2))
+                append(stringResources.imageSelectorPoweredByAiuta2)
             }
         }
 
