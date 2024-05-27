@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models
 
-// TODO Docs
+/**
+ * One of the languages supported by AiutaTryOn flow
+ */
 public enum class AiutaTryOnLanguage(
     // Code in ISO-639
     internal val code: String,
@@ -12,5 +14,7 @@ public enum class AiutaTryOnLanguage(
     RUSSIAN(code = "ru"),
 }
 
-// TODO Docs
+/**
+ * Default language for AiutaTryOn flow
+ */
 internal val defaultAiutaTryOnLanguage: AiutaTryOnLanguage = AiutaTryOnLanguage.ENGLISH
