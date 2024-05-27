@@ -19,6 +19,10 @@ public object Configure : InternalAnalyticEvent {
 
     public const val HAS_CUSTOM_CONFIGURATION_PARAM: String = "has_custom_configuration"
     public const val PHOTO_LIMIT_PARAM: String = "photo_selection_limit"
+    public const val IS_WATERMARK_PROVIDED_PARAM: String = "is_watermark_provided"
+    public const val IS_LOGO_PROVIDED_PARAM: String = "is_logo_provided"
+    public const val IS_HISTORY_ENABLE_PARAM: String = "is_history_enable"
+    public const val IS_POWERED_BY_VISIBLE_PARAM: String = "is_powered_by_visible"
 }
 
 // Session
