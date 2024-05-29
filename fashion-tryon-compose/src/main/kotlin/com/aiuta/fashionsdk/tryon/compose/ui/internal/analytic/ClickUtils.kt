@@ -77,6 +77,7 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
 internal fun FashionTryOnController.sendShareGeneratedImageEvent(
     origin: ShareGeneratedImage.Origin,
     count: Int,
+    additionalShareInfo: String? = null,
 ) {
     analytic.sendEvent(ShareGeneratedImage) {
         put(
@@ -86,6 +87,10 @@ internal fun FashionTryOnController.sendShareGeneratedImageEvent(
         put(
             key = ShareGeneratedImage.COUNT_PARAM,
             value = count.toString(),
+        )
+        put(
+            key = ShareGeneratedImage.ADDITIONAL_SHARE_INFO_PARAM,
+            value = additionalShareInfo,
         )
     }
 }

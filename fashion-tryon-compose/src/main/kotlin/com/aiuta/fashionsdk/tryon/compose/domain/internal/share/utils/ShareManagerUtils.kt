@@ -43,6 +43,7 @@ internal fun Context.shareContent(
             Intent(this, ShareBroadcastReceiver::class.java).apply {
                 putExtra(COUNT_KEY, contentUris.size)
                 putExtra(ORIGIN_KEY, origin.value)
+                putExtra(Intent.EXTRA_TEXT, content)
             },
             PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
@@ -78,6 +79,7 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
             )
         val count = intent?.getIntExtra(COUNT_KEY, 0)
         val origin = intent?.getStringExtra(ORIGIN_KEY)
+        val additionalShareInfo = intent?.getStringExtra(Intent.EXTRA_TEXT)
 
         InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(ShareSuccessfully) {
             put(
@@ -91,6 +93,10 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
             put(
                 key = ShareSuccessfully.TARGET_PARAM,
                 value = clickedComponent?.packageName,
+            )
+            put(
+                key = ShareSuccessfully.ADDITIONAL_SHARE_INFO_PARAM,
+                value = additionalShareInfo,
             )
         }
     }

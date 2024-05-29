@@ -69,11 +69,11 @@ internal fun sendStartSessionEvent() {
             )
             put(
                 key = StartSession.PRICE_PARAM,
-                value = skuItem.price?.toString(),
+                value = skuItem.priceWithCurrency,
             )
             put(
                 key = StartSession.PRICE_DISCOUNTED_PARAM,
-                value = skuItem.priceDiscounted?.toString(),
+                value = skuItem.priceDiscountedWithCurrency,
             )
             put(
                 key = StartSession.STORE_PARAM,

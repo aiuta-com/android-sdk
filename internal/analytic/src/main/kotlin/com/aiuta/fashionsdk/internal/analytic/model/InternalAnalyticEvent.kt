@@ -266,6 +266,7 @@ public object ShareGeneratedImage : InternalAnalyticEvent, ShareableAnalyticEven
 
     public const val ORIGIN_PARAM: String = "origin"
     public const val COUNT_PARAM: String = "count"
+    public const val ADDITIONAL_SHARE_INFO_PARAM: String = "additional_share_info"
 
     public enum class Origin(public val value: String) {
         RESULT_SCREEN("ResultsScreen"),
@@ -285,4 +286,5 @@ public object ShareSuccessfully : InternalAnalyticEvent {
     public const val ORIGIN_PARAM: String = "origin"
     public const val COUNT_PARAM: String = "count"
     public const val TARGET_PARAM: String = "target"
+    public const val ADDITIONAL_SHARE_INFO_PARAM: String = "additional_share_info"
 }
