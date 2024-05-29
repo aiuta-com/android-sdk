@@ -13,5 +13,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+
+        <receiver android:name=".domain.internal.share.utils.ShareBroadcastReceiver"/>
     </application>
 </manifest>

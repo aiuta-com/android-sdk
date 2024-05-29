@@ -7,6 +7,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toBitmapOrNull
 import coil.Coil
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
@@ -32,6 +33,7 @@ internal class ShareManager(
         content: String? = null,
         imageUrls: List<String>,
         @DrawableRes watermarkRes: Int? = null,
+        origin: ShareGeneratedImage.Origin,
     ): StateFlow<SharingState> {
         innerScope.launch {
             try {
@@ -41,7 +43,7 @@ internal class ShareManager(
                     .awaitAll()
                     .filterNotNull()
                     .toCollection(imageUris)
-                context.shareContent(content, imageUris)
+                context.shareContent(content, imageUris, origin)
                 stateFlow.value = SharingState.Success
             } catch (ignore: CancellationException) {
                 stateFlow.value = SharingState.Idle

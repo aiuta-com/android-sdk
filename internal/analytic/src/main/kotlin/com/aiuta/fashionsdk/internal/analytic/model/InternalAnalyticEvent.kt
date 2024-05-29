@@ -277,3 +277,12 @@ public object ShareGeneratedImage : InternalAnalyticEvent, ShareableAnalyticEven
         return SharedAnalyticEvent(name = publicName)
     }
 }
+
+public object ShareSuccessfully : InternalAnalyticEvent {
+    override val name: String = "ShareSuccessfully"
+
+    // See ShareStarted.Origin
+    public const val ORIGIN_PARAM: String = "origin"
+    public const val COUNT_PARAM: String = "count"
+    public const val TARGET_PARAM: String = "target"
+}

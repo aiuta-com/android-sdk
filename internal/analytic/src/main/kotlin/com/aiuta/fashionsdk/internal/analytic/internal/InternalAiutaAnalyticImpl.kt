@@ -6,15 +6,11 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import androidx.work.workDataOf
-import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internal.worker.AnalyticWorker
 import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.ShareableAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.SharedAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
-import com.aiuta.fashionsdk.network.NetworkClient
-import com.aiuta.fashionsdk.network.createNetworkClient
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -86,44 +82,5 @@ internal class InternalAiutaAnalyticImpl(
 
         // Execute request
         WorkManager.getInstance(context).enqueue(analyticWorkRequest)
-    }
-
-    companion object {
-        @Volatile
-        private var instance: InternalAiutaAnalytic? = null
-        private var cachedApiKey: String? = null
-        var networkClient: NetworkClient? = null
-
-        fun create(aiuta: Aiuta): InternalAiutaAnalytic {
-            validateCacheInstance(newApiKey = aiuta.apiKey)
-
-            return instance ?: synchronized(this) {
-                instance ?: buildInternalAiutaAnalyticImpl(
-                    context = aiuta.application,
-                ).also {
-                    instance = it
-                    networkClient =
-                        createNetworkClient(
-                            apiKey = aiuta.apiKey,
-                            backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
-                        )
-                }
-            }
-        }
-
-        private fun buildInternalAiutaAnalyticImpl(context: Context): InternalAiutaAnalytic {
-            return InternalAiutaAnalyticImpl(
-                context = context,
-            )
-        }
-
-        private fun validateCacheInstance(newApiKey: String) {
-            // We should remove cache, if we have new instance of api key
-            if (newApiKey != cachedApiKey) {
-                instance = null
-                networkClient = null
-                cachedApiKey = newApiKey
-            }
-        }
     }
 }

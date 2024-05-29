@@ -235,6 +235,7 @@ private fun ZoomedImageScreenContent(
                             content = screenState.sharedImage.value.additionalShareInfo,
                             imageUrls = imageUrls,
                             watermarkRes = theme.watermarkRes,
+                            origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
                         )
                     },
             text = stringResources.share,
