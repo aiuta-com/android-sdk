@@ -14,11 +14,13 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
@@ -61,6 +63,7 @@ internal fun NavigationInitialisation(
                 resolveInternalLanguage(
                     selectedLanguage = configuration.language,
                 ),
+            LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
         ) {
             content()
         }

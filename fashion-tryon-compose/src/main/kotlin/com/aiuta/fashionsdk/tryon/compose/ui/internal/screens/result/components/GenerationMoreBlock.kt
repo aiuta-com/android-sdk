@@ -40,9 +40,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.DiscountB
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGeneralPriceColor
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGeneralPriceDecoration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceHideActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceShowActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen

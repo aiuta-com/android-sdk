@@ -5,9 +5,9 @@ import androidx.paging.PagingSource
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperationWithImages
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.SourceImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.SourceImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.operations.GeneratedOperationEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.operations.GeneratedOperationWithImages
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

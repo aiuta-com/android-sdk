@@ -6,8 +6,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperationWithImages
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.operations.GeneratedOperationEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.operations.GeneratedOperationWithImages
 import kotlinx.coroutines.flow.Flow
 
 @Dao

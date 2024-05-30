@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.geometry.Offset

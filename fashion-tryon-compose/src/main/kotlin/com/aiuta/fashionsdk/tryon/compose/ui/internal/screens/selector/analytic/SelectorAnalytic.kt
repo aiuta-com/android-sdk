@@ -5,11 +5,11 @@ import androidx.compose.runtime.LaunchedEffect
 import com.aiuta.fashionsdk.internal.analytic.model.OpenMainScreen
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.internal.analytic.model.TapChangePhoto
-import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
-import com.aiuta.fashionsdk.tryon.compose.domain.models.size
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 @Composable
 internal fun sendOpenMainScreenEvent() {

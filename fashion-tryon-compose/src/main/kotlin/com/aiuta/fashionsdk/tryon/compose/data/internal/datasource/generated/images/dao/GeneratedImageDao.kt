@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.GeneratedImageEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

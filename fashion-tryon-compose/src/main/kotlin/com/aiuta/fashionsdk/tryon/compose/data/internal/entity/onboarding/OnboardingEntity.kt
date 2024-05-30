@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.data.internal.entity
+package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.onboarding
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

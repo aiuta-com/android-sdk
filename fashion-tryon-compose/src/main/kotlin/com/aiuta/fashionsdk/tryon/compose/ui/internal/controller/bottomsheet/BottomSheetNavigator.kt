@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer

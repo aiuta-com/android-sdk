@@ -2,6 +2,7 @@ import com.aiuta.fashionsdk.androidLibrary
 
 plugins {
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlinx.serialization)
     id("androidx.baselineprofile")
     id("com.android.library")
     id("org.jetbrains.compose")
@@ -37,6 +38,9 @@ dependencies {
     implementation(libs.androidx.paging.compose)
     implementation(libs.coil.compose)
     implementation(libs.lottie.compose)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlinx.serialization)
+    implementation(libs.ktor.core)
 
     ksp(libs.androidx.room.compiler)
 }

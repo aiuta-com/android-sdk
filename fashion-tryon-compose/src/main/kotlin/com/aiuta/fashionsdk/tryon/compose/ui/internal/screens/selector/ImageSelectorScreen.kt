@@ -29,18 +29,17 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendOpenMainScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.openUri
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 
 @Composable
@@ -87,12 +86,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                     .windowInsetsPadding(WindowInsets.navigationBars),
             contentAlignment = Alignment.Center,
         ) {
-            AiutaLabel(
-                modifier = Modifier.align(Alignment.Center),
-                onClick = {
-                    context.openUri(stringResources.aiutaUrl)
-                },
-            )
+            AiutaLabel(modifier = Modifier.align(Alignment.Center))
 
             androidx.compose.animation.AnimatedVisibility(
                 modifier =

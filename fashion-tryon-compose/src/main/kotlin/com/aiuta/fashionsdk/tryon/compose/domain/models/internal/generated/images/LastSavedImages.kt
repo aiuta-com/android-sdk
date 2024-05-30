@@ -1,6 +1,7 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 
 @Immutable
 internal sealed interface LastSavedImages {
@@ -38,7 +39,7 @@ internal val LastSavedImages.size: Int
 
 // Converters
 internal fun GeneratedOperation.toLastSavedImages(): LastSavedImages {
-    return LastSavedImages.UrlSource(
+    return com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages.UrlSource(
         sourceImages = sourceImages,
     )
 }

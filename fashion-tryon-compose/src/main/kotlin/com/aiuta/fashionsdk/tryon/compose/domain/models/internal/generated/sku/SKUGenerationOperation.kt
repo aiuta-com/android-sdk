@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus

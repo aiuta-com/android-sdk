@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendConfigureEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartSessionEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationContainer

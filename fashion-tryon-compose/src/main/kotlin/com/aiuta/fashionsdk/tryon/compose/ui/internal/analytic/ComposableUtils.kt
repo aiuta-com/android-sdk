@@ -6,9 +6,9 @@ import com.aiuta.fashionsdk.internal.analytic.model.Configure
 import com.aiuta.fashionsdk.internal.analytic.model.StartOnBoarding
 import com.aiuta.fashionsdk.internal.analytic.model.StartSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 // Configure
 @Composable

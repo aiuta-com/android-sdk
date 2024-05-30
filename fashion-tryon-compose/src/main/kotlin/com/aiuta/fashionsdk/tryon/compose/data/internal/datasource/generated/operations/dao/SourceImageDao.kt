@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.SourceImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.SourceImageEntity
 
 @Dao
 internal interface SourceImageDao {

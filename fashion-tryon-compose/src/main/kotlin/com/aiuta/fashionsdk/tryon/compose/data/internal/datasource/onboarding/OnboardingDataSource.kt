@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding
 import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.OnboardingEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.onboarding.OnboardingEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

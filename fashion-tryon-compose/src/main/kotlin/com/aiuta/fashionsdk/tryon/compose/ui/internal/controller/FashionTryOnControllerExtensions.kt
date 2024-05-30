@@ -6,11 +6,12 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationOperation
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.isNotEmpty
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen

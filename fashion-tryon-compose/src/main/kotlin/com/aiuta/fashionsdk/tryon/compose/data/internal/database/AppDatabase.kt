@@ -4,29 +4,41 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.room.withTransaction
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PoweredByStickerFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.ConfigDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.AiutaCodeEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.OnboardingEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.SourceImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.code.AiutaCodeEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.config.ClientConfigEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.GeneratedImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.SourceImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.operations.GeneratedOperationEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.onboarding.OnboardingEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.time.TimestampEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-private const val DATABASE_VERSION = 5
+private const val DATABASE_VERSION = 6
 private const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(
     entities = [
+        // Config
+        ClientConfigEntity::class,
+
+        // Time
+        TimestampEntity::class,
+
         // Generated images
         GeneratedImageEntity::class,
 
@@ -43,7 +55,19 @@ private const val DATABASE_NAME = "fashionsdk-database"
     version = DATABASE_VERSION,
     exportSchema = false,
 )
+@TypeConverters(
+    value = [
+        // Config
+        PoweredByStickerFeatureConverter::class,
+    ],
+)
 internal abstract class AppDatabase : RoomDatabase() {
+    // Remote config
+    abstract fun configDao(): ConfigDao
+
+    // Remote config
+    abstract fun timeDao(): TimeDao
+
     // Generated images
     abstract fun generatedImageDao(): GeneratedImageDao
 
@@ -75,6 +99,8 @@ internal abstract class AppDatabase : RoomDatabase() {
                                 klass = AppDatabase::class.java,
                                 name = DATABASE_NAME,
                             )
+                            // Config
+                            .addTypeConverter(PoweredByStickerFeatureConverter())
                             // Fallback
                             .fallbackToDestructiveMigration()
                             .build()
