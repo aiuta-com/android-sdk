@@ -21,7 +21,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
@@ -45,7 +44,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.sta
 @Composable
 internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val context = LocalContext.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
