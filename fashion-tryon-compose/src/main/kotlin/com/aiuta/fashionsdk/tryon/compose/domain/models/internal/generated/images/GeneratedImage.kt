@@ -1,7 +1,7 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.GeneratedImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.GeneratedImageEntity
 
 @Immutable
 internal class GeneratedImage(

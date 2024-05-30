@@ -31,12 +31,12 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.airbnb.lottie.compose.rememberLottieDynamicProperties
 import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.tryon.compose.R
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.domain.models.imageSource
-import com.aiuta.fashionsdk.tryon.compose.domain.models.size
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable

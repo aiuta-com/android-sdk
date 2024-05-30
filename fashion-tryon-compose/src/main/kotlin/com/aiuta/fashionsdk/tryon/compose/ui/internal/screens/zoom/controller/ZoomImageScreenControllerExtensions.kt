@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Offset
-import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.toggleScale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

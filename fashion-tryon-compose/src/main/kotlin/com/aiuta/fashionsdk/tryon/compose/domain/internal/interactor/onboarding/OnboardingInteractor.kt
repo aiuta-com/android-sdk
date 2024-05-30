@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding
 
 import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.OnboardingDataSource
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.OnboardingEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.onboarding.OnboardingEntity
 
 internal class OnboardingInteractor(
     private val onboardingDataSource: OnboardingDataSource,

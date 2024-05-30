@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images
 
 import androidx.compose.runtime.Immutable
 

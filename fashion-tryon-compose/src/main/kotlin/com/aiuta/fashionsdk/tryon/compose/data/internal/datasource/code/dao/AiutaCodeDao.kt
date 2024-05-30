@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.AiutaCodeEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.code.AiutaCodeEntity
 
 @Dao
 internal interface AiutaCodeDao {

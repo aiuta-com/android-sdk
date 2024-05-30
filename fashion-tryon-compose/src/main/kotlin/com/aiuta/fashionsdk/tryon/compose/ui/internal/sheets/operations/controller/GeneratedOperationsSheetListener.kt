@@ -2,8 +2,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.control
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.tryon.compose.domain.models.LastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 @Composable
 internal fun GeneratedOperationsSheetListener() {

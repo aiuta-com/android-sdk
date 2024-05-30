@@ -9,12 +9,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import com.aiuta.fashionsdk.tryon.compose.domain.models.toLastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadConfig
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun SplashScreen(
@@ -23,8 +26,12 @@ internal fun SplashScreen(
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
+    val dataController = LocalAiutaTryOnDataController.current
 
     LaunchedEffect(Unit) {
+        // Try to preload config
+        launch { dataController.preloadConfig() }
+
         // Validate controller
         validateControllerCache(aiuta = controller.aiuta)
 

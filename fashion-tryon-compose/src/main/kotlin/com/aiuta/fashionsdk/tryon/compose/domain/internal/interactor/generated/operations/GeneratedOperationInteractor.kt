@@ -7,11 +7,10 @@ import androidx.paging.PagingData
 import androidx.paging.filter
 import androidx.paging.map
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.GeneratedOperationDatasource
-import com.aiuta.fashionsdk.tryon.compose.domain.models.GeneratedOperation
-import com.aiuta.fashionsdk.tryon.compose.domain.models.toUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toUiModel
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 
 internal class GeneratedOperationInteractor(

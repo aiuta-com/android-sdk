@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Constraints
-import com.aiuta.fashionsdk.tryon.compose.domain.models.ZoomImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.ZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.rememberZoomState
 

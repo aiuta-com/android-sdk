@@ -7,10 +7,10 @@ import com.aiuta.fashionsdk.internal.analytic.model.SelectMoreToTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.internal.analytic.model.ViewMoreToTryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.size
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToLoadingOperations
 
 @Composable
