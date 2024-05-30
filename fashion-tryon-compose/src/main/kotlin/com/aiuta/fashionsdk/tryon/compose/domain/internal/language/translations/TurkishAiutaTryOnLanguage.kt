@@ -9,8 +9,9 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val appBarSelect: String = "Seç"
 
     // Onboarding
-    override val onboardingButtonNext: String = "Sonraki"
-    override val onboardingButtonStart: String = "Başla"
+    override val onboardingButtonNext: String = "Başla"
+    override val onboardingButtonStart: String = "Devam Et"
+
     override val onboardingPageTryonTopic: String = "Satın almadan önce dene"
     override val onboardingPageTryonSubtopic: String = "Sadece fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
@@ -21,7 +22,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
     override val imageSelectorPoweredByAiuta1: String = "Tarafından desteklenmektedir "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
-    override val imageSelectorGeneratingOutfit: String = "Kıyafet oluşturuluyor"
+    override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
     override val imageSelectorPhotos: Plurals =
         Plurals(
             one = "%d fotoğraf",
@@ -30,19 +31,18 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
 
     // History
     override val historySelectorDisabledButton: String = "Seç"
-    override val historySelectorEnableButtonSelectAll: String = "Hepsini seç"
-    override val historySelectorEnableButtonUnselectAll: String = "Hepsini kaldır"
+    override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"
+    override val historySelectorEnableButtonUnselectAll: String = "Hiçbirini seçmeyin"
     override val historySelectorEnableButtonCancel: String = "İptal"
-    override val historyEmptyDescription: String = "İlk öğeyi denedikten sonra deneme geçmişiniz burada saklanacaktır"
+    override val historyEmptyDescription: String = "İlk öğeyi denediğinizde geçmişiniz burada saklanacaktır"
 
     // Generation Result
     override val generationResultMoreTitle: String = "Denemeniz için daha fazlası"
     override val generationResultSwipeUp: String = "Daha fazlası için yukarı kaydır"
 
-    // Bottom sheets
     // Picker sheet
     override val pickerSheetTakePhoto: String = "Fotoğraf çek"
-    override val pickerSheetChooseLibrary: String = "Fotoğraf ekle"
+    override val pickerSheetChooseLibrary: String = "Galeriden seç"
 
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Önceden yüklenen fotoğraflar"
@@ -51,8 +51,9 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // General
     override val addToWish: String = "Listelerine ekle"
     override val addToCart: String = "Sepete ekle"
-    override val moreDetails: String = "Daha fazla detay"
     override val aiutaUrl: String = "https://aiuta.com/"
-    override val tryOn: String = "Dene"
+    override val moreDetails: String = "Daha fazla detay"
+    override val tryOn: String = "Üzerinde Dene"
     override val share: String = "Paylaş"
+    override val defaultErrorMessage: String = "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin"
 }

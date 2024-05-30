@@ -55,4 +55,5 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Примерить"
     override val share: String = "Поделиться"
+    override val defaultErrorMessage: String = "Что-то пошло не так. Пожалуйста, повторите попытку позже"
 }

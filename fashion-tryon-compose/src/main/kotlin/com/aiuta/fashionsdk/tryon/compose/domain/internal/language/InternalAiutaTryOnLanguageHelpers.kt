@@ -25,7 +25,6 @@ internal fun resolveInternalLanguage(
     }
 }
 
-@Composable
 private fun solveLocale(): AiutaTryOnLanguage? {
     val systemLocaleCode = Locale.current.language
     return when (systemLocaleCode) {

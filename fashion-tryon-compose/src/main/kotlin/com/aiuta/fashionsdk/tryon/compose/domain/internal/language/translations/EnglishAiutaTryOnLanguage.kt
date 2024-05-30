@@ -55,4 +55,5 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Try on"
     override val share: String = "Share"
+    override val defaultErrorMessage: String = "Something went wrong. Please try again later"
 }
