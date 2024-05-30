@@ -4,10 +4,9 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 internal class FashionTryOnErrorState(
-    val message: String = DEFAULT_MESSAGE,
+    val message: String? = null,
 ) {
     companion object {
         val DEFAULT by lazy { FashionTryOnErrorState() }
-        private const val DEFAULT_MESSAGE = "Something went wrong.\nPlease try again later"
     }
 }

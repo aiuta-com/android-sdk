@@ -51,6 +51,7 @@ internal interface InternalAiutaTryOnLanguage {
     val aiutaUrl: String
     val tryOn: String
     val share: String
+    val defaultErrorMessage: String
 }
 
 internal class Plurals(

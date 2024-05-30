@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnErrorState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.hideErrorState
@@ -32,6 +33,7 @@ internal fun NavigationErrorCard(
     errorState: FashionTryOnErrorState,
 ) {
     val controller = LocalController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
     Row(
@@ -55,7 +57,7 @@ internal fun NavigationErrorCard(
 
         Text(
             modifier = Modifier.weight(1f),
-            text = errorState.message,
+            text = errorState.message ?: stringResources.defaultErrorMessage,
             style = MaterialTheme.typography.body1,
             color = theme.colors.onDark,
             overflow = TextOverflow.Ellipsis,
