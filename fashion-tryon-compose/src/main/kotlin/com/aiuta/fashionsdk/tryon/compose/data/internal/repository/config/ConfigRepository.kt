@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.repository.base.BaseRepo
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.time.TimeSaver
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.ClientConfig
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.PoweredByStickerFeature
-import kotlin.time.Duration.Companion.minutes
+import java.util.concurrent.TimeUnit
 
 internal class ConfigRepository(
     private val timeSaver: TimeSaver,
@@ -16,7 +16,7 @@ internal class ConfigRepository(
 ) : BaseRepository(REPOSITORY_KEY, timeSaver) {
     suspend fun loadConfig(forceUpdate: Boolean = false): ClientConfig {
         return updatableLoad(
-            delay = CONFIG_UPDATE_DURATION,
+            delayMilliseconds = CONFIG_UPDATE_DURATION,
             forceUpdate = forceUpdate,
             remoteLoad = {
                 val etag = localDataSource.getEtag()
@@ -37,7 +37,7 @@ internal class ConfigRepository(
 
     companion object {
         private const val REPOSITORY_KEY = "ConfigRepository"
-        private val CONFIG_UPDATE_DURATION = 30.minutes
+        private val CONFIG_UPDATE_DURATION = TimeUnit.MINUTES.toMillis(30)
 
         fun getInstance(aiuta: Aiuta): ConfigRepository {
             return ConfigRepository(
