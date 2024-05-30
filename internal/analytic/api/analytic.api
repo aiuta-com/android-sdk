@@ -17,9 +17,20 @@ public abstract interface class com/aiuta/fashionsdk/internal/analytic/InternalA
 	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent;Lkotlin/jvm/functions/Function1;)V
 }
 
+public final class com/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticFactory {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticFactory;
+	public final fun create (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
+	public final fun getInternalAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
+	public final fun getNetworkClient ()Lcom/aiuta/fashionsdk/network/NetworkClient;
+}
+
 public final class com/aiuta/fashionsdk/internal/analytic/model/Configure : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field HAS_CUSTOM_CONFIGURATION_PARAM Ljava/lang/String;
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/Configure;
+	public static final field IS_HISTORY_ENABLE_PARAM Ljava/lang/String;
+	public static final field IS_LOGO_PROVIDED_PARAM Ljava/lang/String;
+	public static final field IS_POWERED_BY_VISIBLE_PARAM Ljava/lang/String;
+	public static final field IS_WATERMARK_PROVIDED_PARAM Ljava/lang/String;
 	public static final field PHOTO_LIMIT_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
@@ -134,6 +145,7 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/SelectOldPhotos 
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
+	public static final field ADDITIONAL_SHARE_INFO_PARAM Ljava/lang/String;
 	public static final field COUNT_PARAM Ljava/lang/String;
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage;
 	public static final field ORIGIN_PARAM Ljava/lang/String;
@@ -150,6 +162,15 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedIm
 	public final fun getValue ()Ljava/lang/String;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
 	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ShareGeneratedImage$Origin;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareSuccessfully : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field ADDITIONAL_SHARE_INFO_PARAM Ljava/lang/String;
+	public static final field COUNT_PARAM Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ShareSuccessfully;
+	public static final field ORIGIN_PARAM Ljava/lang/String;
+	public static final field TARGET_PARAM Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
@@ -171,10 +192,15 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/StartOnBoarding 
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/StartSession : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field ADDITIONAL_SHARE_INFO_PARAM Ljava/lang/String;
+	public static final field DESCRIPTION_PARAM Ljava/lang/String;
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/StartSession;
+	public static final field PRICE_DISCOUNTED_PARAM Ljava/lang/String;
+	public static final field PRICE_PARAM Ljava/lang/String;
 	public static final field RELATED_SKU_COUNT_PARAM Ljava/lang/String;
 	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
 	public static final field SKU_ID_PARAM Ljava/lang/String;
+	public static final field STORE_PARAM Ljava/lang/String;
 	public fun getName ()Ljava/lang/String;
 }
 
