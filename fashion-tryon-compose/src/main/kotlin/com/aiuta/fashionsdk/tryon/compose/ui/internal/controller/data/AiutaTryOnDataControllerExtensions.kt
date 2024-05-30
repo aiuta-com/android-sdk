@@ -10,13 +10,7 @@ internal suspend fun AiutaTryOnDataController.preloadConfig() {
 
 internal suspend fun AiutaTryOnDataController.providePoweredByUrl(): String? {
     return try {
-        val poweredByStickerFeature = configRepository.getPoweredByStickerFeature()
-
-        if (poweredByStickerFeature.enabled) {
-            poweredByStickerFeature.urlAndroid
-        } else {
-            null
-        }
+        configRepository.getPoweredByStickerFeature()?.urlAndroid
     } catch (e: Exception) {
         // Failed to solve powered by url
         null

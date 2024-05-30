@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal class ClientConfiguration(
     @SerialName("powered_by_sticker")
-    val poweredByStickerFeature: PoweredByStickerFeature,
+    val poweredByStickerFeature: PoweredByStickerFeature? = null,
 )

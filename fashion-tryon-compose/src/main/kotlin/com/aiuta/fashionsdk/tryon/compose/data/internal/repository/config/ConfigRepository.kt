@@ -31,7 +31,7 @@ internal class ConfigRepository(
         )
     }
 
-    suspend fun getPoweredByStickerFeature(forceUpdate: Boolean = false): PoweredByStickerFeature {
+    suspend fun getPoweredByStickerFeature(forceUpdate: Boolean = false): PoweredByStickerFeature? {
         return loadConfig(forceUpdate).clientConfiguration.poweredByStickerFeature
     }
 

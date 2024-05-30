@@ -14,7 +14,7 @@ internal class ClientConfigEntity(
     val id: Int = 0,
     val etag: String? = null,
     @TypeConverters(PoweredByStickerFeatureConverter::class)
-    val poweredByStickerFeature: PoweredByStickerFeature,
+    val poweredByStickerFeature: PoweredByStickerFeature? = null,
 )
 
 internal fun ClientConfigEntity.toDTO() =
