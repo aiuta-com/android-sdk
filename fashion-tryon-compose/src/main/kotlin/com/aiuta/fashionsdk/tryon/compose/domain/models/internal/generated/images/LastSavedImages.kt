@@ -39,7 +39,7 @@ internal val LastSavedImages.size: Int
 
 // Converters
 internal fun GeneratedOperation.toLastSavedImages(): LastSavedImages {
-    return com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages.UrlSource(
+    return LastSavedImages.UrlSource(
         sourceImages = sourceImages,
     )
 }
