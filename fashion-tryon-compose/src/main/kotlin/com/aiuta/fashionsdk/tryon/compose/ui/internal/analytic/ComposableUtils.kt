@@ -7,16 +7,21 @@ import com.aiuta.fashionsdk.internal.analytic.model.StartOnBoarding
 import com.aiuta.fashionsdk.internal.analytic.model.StartSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.providePoweredByUrl
 
 // Configure
 @Composable
 internal fun sendConfigureEvent(theme: (() -> AiutaTryOnTheme)?) {
     val analytic = LocalAnalytic.current
     val configuration = LocalAiutaConfiguration.current
+    val dataController = LocalAiutaTryOnDataController.current
 
     LaunchedEffect(Unit) {
+        val isPoweredByVisible = dataController.providePoweredByUrl() != null
+
         analytic.sendEvent(Configure) {
             put(
                 key = Configure.HAS_CUSTOM_CONFIGURATION_PARAM,
@@ -40,7 +45,7 @@ internal fun sendConfigureEvent(theme: (() -> AiutaTryOnTheme)?) {
             )
             put(
                 key = Configure.IS_POWERED_BY_VISIBLE_PARAM,
-                value = true.toString(), // TODO Unmock with remote config
+                value = isPoweredByVisible.toString(),
             )
         }
     }
