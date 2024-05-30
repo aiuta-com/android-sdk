@@ -62,7 +62,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.Loadin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendOpenHistoryEvent
@@ -257,9 +256,6 @@ private fun BoxScope.HistoryScreenInterface(
             onDeselectAll = {
                 controller.selectorHolder.removeAll()
                 controller.selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
-            },
-            onStartSelectionMode = {
-                controller.activateSelectMode()
             },
             onCancel = {
                 controller.deactivateSelectMode()

@@ -29,7 +29,6 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
         )
 
     // History
-    override val historySelectorDisabledText: String = "Görüntüleri paylaşmak veya silmek için seçebilirsiniz"
     override val historySelectorDisabledButton: String = "Seç"
     override val historySelectorEnableButtonSelectAll: String = "Hepsini seç"
     override val historySelectorEnableButtonUnselectAll: String = "Hepsini kaldır"

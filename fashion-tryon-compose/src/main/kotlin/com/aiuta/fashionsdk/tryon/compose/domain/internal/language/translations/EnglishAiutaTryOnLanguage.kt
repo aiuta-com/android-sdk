@@ -29,7 +29,6 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
         )
 
     // History
-    override val historySelectorDisabledText: String = "You can share or delete images by selecting them"
     override val historySelectorDisabledButton: String = "Select"
     override val historySelectorEnableButtonSelectAll: String = "Select all"
     override val historySelectorEnableButtonUnselectAll: String = "Unselect all"

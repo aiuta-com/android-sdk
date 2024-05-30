@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.component
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -14,8 +13,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -34,18 +31,12 @@ internal fun SelectorCard(
     isActionActive: Boolean,
     onSelectAll: () -> Unit,
     onDeselectAll: () -> Unit,
-    onStartSelectionMode: () -> Unit,
     onCancel: () -> Unit,
     onShare: () -> Unit,
     onDelete: () -> Unit,
 ) {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
-    val transition =
-        updateTransition(
-            targetState = selectionMode.value == SelectorMode.DISABLED,
-            label = "selectorState",
-        )
 
     Row(
         modifier =
@@ -57,79 +48,62 @@ internal fun SelectorCard(
                 .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        transition.AnimatedContent { isDisables ->
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            SmallIconButton(
+                iconRes = FashionIcon.Trash36,
+                isActive = isActionActive,
             ) {
-                if (isDisables) {
-                    Text(
-                        modifier = Modifier.weight(1f),
-                        text = stringResources.historySelectorDisabledText,
-                        style = MaterialTheme.typography.body2,
-                        color = theme.colors.onDark,
-                    )
+                onDelete()
+            }
 
-                    Spacer(Modifier.width(12.dp))
+            Spacer(Modifier.width(16.dp))
 
-                    TextButton(text = stringResources.historySelectorDisabledButton) {
-                        onStartSelectionMode()
-                    }
-                } else {
-                    SmallIconButton(
-                        iconRes = FashionIcon.Trash36,
-                        isActive = isActionActive,
-                    ) {
-                        onDelete()
-                    }
+            SmallIconButton(
+                iconRes = FashionIcon.Share36,
+                isActive = isActionActive,
+            ) {
+                onShare()
+            }
 
-                    Spacer(Modifier.width(16.dp))
+            Spacer(Modifier.weight(1f))
 
-                    SmallIconButton(
-                        iconRes = FashionIcon.Share36,
-                        isActive = isActionActive,
-                    ) {
-                        onShare()
-                    }
-
-                    Spacer(Modifier.weight(1f))
-
-                    AnimatedContent(
-                        targetState = selectionMode.value,
-                        transitionSpec = {
-                            slideInVertically(
-                                animationSpec = tween(durationMillis = 400),
-                                initialOffsetY = { -it },
-                            ) + fadeIn() togetherWith slideOutVertically(
-                                animationSpec = tween(durationMillis = 400),
-                                targetOffsetY = { it },
-                            ) + fadeOut()
+            AnimatedContent(
+                targetState = selectionMode.value,
+                transitionSpec = {
+                    slideInVertically(
+                        animationSpec = tween(durationMillis = 400),
+                        initialOffsetY = { -it },
+                    ) + fadeIn() togetherWith slideOutVertically(
+                        animationSpec = tween(durationMillis = 400),
+                        targetOffsetY = { it },
+                    ) + fadeOut()
+                },
+                label = "selectable button",
+            ) { state ->
+                TextButton(
+                    text =
+                        if (state == SelectorMode.ALL_IS_SELECTED) {
+                            stringResources.historySelectorEnableButtonUnselectAll
+                        } else {
+                            stringResources.historySelectorEnableButtonSelectAll
                         },
-                        label = "selectable button",
-                    ) { state ->
-                        TextButton(
-                            text =
-                                if (state == SelectorMode.ALL_IS_SELECTED) {
-                                    stringResources.historySelectorEnableButtonUnselectAll
-                                } else {
-                                    stringResources.historySelectorEnableButtonSelectAll
-                                },
-                            backgroundColor = Color.Transparent,
-                            textColor = theme.colors.onDark,
-                        ) {
-                            if (state == SelectorMode.ALL_IS_SELECTED) {
-                                onDeselectAll()
-                            } else {
-                                onSelectAll()
-                            }
-                        }
-                    }
-
-                    TextButton(
-                        text = stringResources.historySelectorEnableButtonCancel,
-                    ) {
-                        onCancel()
+                    backgroundColor = Color.Transparent,
+                    textColor = theme.colors.onDark,
+                ) {
+                    if (state == SelectorMode.ALL_IS_SELECTED) {
+                        onDeselectAll()
+                    } else {
+                        onSelectAll()
                     }
                 }
+            }
+
+            TextButton(
+                text = stringResources.historySelectorEnableButtonCancel,
+            ) {
+                onCancel()
             }
         }
     }
