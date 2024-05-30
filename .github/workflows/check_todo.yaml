@@ -1,0 +1,35 @@
+name: Check TODO in project
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: check-todo-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check_todo:
+    name: Check TODO in project
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: ${{ env.USED_LFS }}
+          fetch-depth: 0
+
+      - name: "TODO to Issue"
+        uses: "alstr/todo-to-issue-action@v4"
+        with:
+          CLOSE_ISSUES: true
+          AUTO_ASSIGN: true
+          ACTOR: MishkaV
