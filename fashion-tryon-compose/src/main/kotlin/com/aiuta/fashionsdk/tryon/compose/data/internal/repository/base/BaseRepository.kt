@@ -1,11 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.data.internal.repository.base
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.time.TimeSaver
-import kotlin.time.Duration
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toInstant
 
 internal abstract class BaseRepository(
     private val key: String,
@@ -20,7 +17,7 @@ internal abstract class BaseRepository(
      * and local data is empty
      */
     suspend fun <T> updatableLoad(
-        delay: Duration,
+        delayMilliseconds: Long,
         timeKey: String = key + SAVE_TIME_SUFFIX,
         forceUpdate: Boolean = false,
         remoteLoad: suspend () -> T,
@@ -28,7 +25,7 @@ internal abstract class BaseRepository(
         replaceLocalData: suspend (T) -> Unit,
     ): T {
         mutex.withLock {
-            val timeLimitPassed = isPassedTimeLimit(timeKey, delay)
+            val timeLimitPassed = isPassedTimeLimit(timeKey, delayMilliseconds)
             val timeHasPassed = timeLimitPassed == null || timeLimitPassed == true
 
             return try {
@@ -52,26 +49,25 @@ internal abstract class BaseRepository(
     }
 
     /**
-     * Check is [delay] time passed
+     * Check is [delayMilliseconds] time passed
      *
-     * @return true, if [delay] is LOWER than delta between current time and last saved by [timeKey]
-     * @return false, if [delay] is BIGGER OR EQUAL than delta between current time and last saved by [timeKey]
+     * @return true, if [delayMilliseconds] is LOWER than delta between current time and last saved by [timeKey]
+     * @return false, if [delayMilliseconds] is BIGGER OR EQUAL than delta between current time and last saved by [timeKey]
      * @return null, if time has not saved yet
      */
     private suspend fun isPassedTimeLimit(
         timeKey: String,
-        delay: Duration,
+        delayMilliseconds: Long,
     ): Boolean? {
         val savedTime =
             timeSaver
                 .getLastSavedTime(timeKey)
-                ?.toInstant(TimeZone.currentSystemDefault())
                 ?: return null
 
-        val currentTime = timeSaver.getCurrentTime().toInstant(TimeZone.currentSystemDefault())
-        val delta = currentTime - savedTime
+        val currentTime = timeSaver.getCurrentTime()
+        val delta = currentTime.time - savedTime.time
 
-        return delta > delay
+        return delta > delayMilliseconds
     }
 
     private companion object {

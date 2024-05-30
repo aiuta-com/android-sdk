@@ -2,34 +2,32 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.time
 
 import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.TimeDataSource
-import kotlinx.datetime.Clock
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.toLocalDateTime
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 internal class TimeSaver(
     private val timeDataSource: TimeDataSource,
 ) {
-    fun getCurrentTime(): LocalDateTime {
-        return Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+    private val formatter by lazy { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH) }
+
+    fun getCurrentTime(): Date {
+        return Calendar.getInstance().time
     }
 
     suspend fun saveCurrentTime(key: String) {
         val currentTime = getCurrentTime()
         timeDataSource.insertOrUpdateTimestamp(
             key = key,
-            timestamp = currentTime.toString(),
+            timestamp = formatter.format(currentTime.time),
         )
     }
 
-    suspend fun resetTime(key: String) {
-        timeDataSource.deleteTimestamp(key = key)
-    }
-
-    suspend fun getLastSavedTime(key: String): LocalDateTime? {
+    suspend fun getLastSavedTime(key: String): Date? {
         val lastSavedTime = timeDataSource.getTimestamp(key)?.timestamp
         return try {
-            lastSavedTime?.let { LocalDateTime.parse(it) }
+            lastSavedTime?.let { formatter.parse(it) }
         } catch (e: Exception) {
             null
         }
