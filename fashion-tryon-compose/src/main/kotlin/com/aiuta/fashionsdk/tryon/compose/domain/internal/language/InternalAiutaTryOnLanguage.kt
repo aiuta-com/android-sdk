@@ -25,7 +25,6 @@ internal interface InternalAiutaTryOnLanguage {
     val imageSelectorPhotos: Plurals
 
     // History
-    val historySelectorDisabledText: String
     val historySelectorDisabledButton: String
     val historySelectorEnableButtonSelectAll: String
     val historySelectorEnableButtonUnselectAll: String

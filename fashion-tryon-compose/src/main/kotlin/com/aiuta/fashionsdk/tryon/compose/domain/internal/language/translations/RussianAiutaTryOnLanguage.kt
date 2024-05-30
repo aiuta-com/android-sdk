@@ -29,7 +29,6 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
         )
 
     // History
-    override val historySelectorDisabledText: String = "Вы можете поделиться или удалить изображения, выбрав их"
     override val historySelectorDisabledButton: String = "Выбрать"
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
     override val historySelectorEnableButtonUnselectAll: String = "Отменить выбор всех"
