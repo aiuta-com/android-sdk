@@ -33,6 +33,11 @@ fun Project.androidLibrary(
             configure(AndroidSingleVariantLibrary())
         }
     }
+    if (config) {
+        defaultConfig {
+            buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
+        }
+    }
     action()
 }
 

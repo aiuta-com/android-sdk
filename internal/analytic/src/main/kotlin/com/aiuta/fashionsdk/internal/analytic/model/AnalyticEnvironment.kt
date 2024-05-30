@@ -15,12 +15,15 @@ internal class AnalyticEnvironment(
     val hostId: String,
     @SerialName("host_version")
     val hostVersion: String?,
+    @SerialName("installation_id")
+    val installationId: String?,
 ) {
     companion object {
         val DEFAULT =
             AnalyticEnvironment(
                 hostId = AnalyticConfig.DEFAULT_HOST_ID,
                 hostVersion = null,
+                installationId = null,
             )
     }
 }

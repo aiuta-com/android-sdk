@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.internal.analytic.internal.worker
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.aiuta.fashionsdk.internal.analytic.internal.InternalAiutaAnalyticImpl
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,7 @@ internal class AnalyticWorker(
     private val internalCoroutineContext = Dispatchers.IO
 
     override suspend fun doWork(): Result {
-        val networkClient = InternalAiutaAnalyticImpl.networkClient?.httpClient?.value ?: return Result.failure()
+        val networkClient = InternalAiutaAnalyticFactory.getNetworkClient()?.httpClient?.value ?: return Result.failure()
 
         return withContext(internalCoroutineContext) {
             try {

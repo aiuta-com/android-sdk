@@ -19,6 +19,10 @@ public object Configure : InternalAnalyticEvent {
 
     public const val HAS_CUSTOM_CONFIGURATION_PARAM: String = "has_custom_configuration"
     public const val PHOTO_LIMIT_PARAM: String = "photo_selection_limit"
+    public const val IS_WATERMARK_PROVIDED_PARAM: String = "is_watermark_provided"
+    public const val IS_LOGO_PROVIDED_PARAM: String = "is_logo_provided"
+    public const val IS_HISTORY_ENABLE_PARAM: String = "is_history_enable"
+    public const val IS_POWERED_BY_VISIBLE_PARAM: String = "is_powered_by_visible"
 }
 
 // Session
@@ -28,6 +32,11 @@ public object StartSession : InternalAnalyticEvent {
     public const val SKU_ID_PARAM: String = "sku_id"
     public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
     public const val RELATED_SKU_COUNT_PARAM: String = "related_sku_count"
+    public const val DESCRIPTION_PARAM: String = "description"
+    public const val PRICE_PARAM: String = "price"
+    public const val PRICE_DISCOUNTED_PARAM: String = "price_discounted"
+    public const val STORE_PARAM: String = "store"
+    public const val ADDITIONAL_SHARE_INFO_PARAM: String = "additional_share_info"
 }
 
 public object FinishSession : InternalAnalyticEvent {
@@ -257,6 +266,7 @@ public object ShareGeneratedImage : InternalAnalyticEvent, ShareableAnalyticEven
 
     public const val ORIGIN_PARAM: String = "origin"
     public const val COUNT_PARAM: String = "count"
+    public const val ADDITIONAL_SHARE_INFO_PARAM: String = "additional_share_info"
 
     public enum class Origin(public val value: String) {
         RESULT_SCREEN("ResultsScreen"),
@@ -267,4 +277,14 @@ public object ShareGeneratedImage : InternalAnalyticEvent, ShareableAnalyticEven
     override fun toShared(params: Map<String, String?>): SharedAnalyticEvent {
         return SharedAnalyticEvent(name = publicName)
     }
+}
+
+public object ShareSuccessfully : InternalAnalyticEvent {
+    override val name: String = "ShareSuccessfully"
+
+    // See ShareStarted.Origin
+    public const val ORIGIN_PARAM: String = "origin"
+    public const val COUNT_PARAM: String = "count"
+    public const val TARGET_PARAM: String = "target"
+    public const val ADDITIONAL_SHARE_INFO_PARAM: String = "additional_share_info"
 }

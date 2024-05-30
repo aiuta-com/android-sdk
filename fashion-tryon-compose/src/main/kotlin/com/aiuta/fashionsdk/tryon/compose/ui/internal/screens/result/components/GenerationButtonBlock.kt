@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -20,6 +21,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
 @Composable
 internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -27,17 +29,19 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        FashionButton(
-            modifier = Modifier.weight(1f),
-            text = stringResources.addToWish,
-            style = FashionButtonStyles.outlineStyle(theme),
-            size = FashionButtonSizes.xlSize(),
-            onClick = {
-                controller.clickAddToWishList(origin = FinishSession.Origin.RESULT_SCREEN)
-            },
-        )
+        if (configuration.isWishlistAvailable) {
+            FashionButton(
+                modifier = Modifier.weight(1f),
+                text = stringResources.addToWish,
+                style = FashionButtonStyles.outlineStyle(theme),
+                size = FashionButtonSizes.xlSize(),
+                onClick = {
+                    controller.clickAddToWishList(origin = FinishSession.Origin.RESULT_SCREEN)
+                },
+            )
 
-        Spacer(Modifier.width(8.dp))
+            Spacer(Modifier.width(8.dp))
+        }
 
         FashionButton(
             modifier = Modifier.weight(1f),

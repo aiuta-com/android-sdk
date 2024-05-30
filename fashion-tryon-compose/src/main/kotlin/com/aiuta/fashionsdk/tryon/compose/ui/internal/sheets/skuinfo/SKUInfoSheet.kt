@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishLis
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickMoreDetails
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.LocalTheme
@@ -124,6 +125,7 @@ private fun ButtonsContainer(
     skuInfo: NavigationBottomSheetScreen.SKUInfo,
 ) {
     val controller = LocalController.current
+    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -131,26 +133,28 @@ private fun ButtonsContainer(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        FashionButton(
-            modifier = Modifier.weight(1f),
-            text =
-                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    stringResources.addToWish
-                } else {
-                    stringResources.moreDetails
+        if (configuration.isWishlistAvailable) {
+            FashionButton(
+                modifier = Modifier.weight(1f),
+                text =
+                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                        stringResources.addToWish
+                    } else {
+                        stringResources.moreDetails
+                    },
+                style = FashionButtonStyles.outlineStyle(theme),
+                size = FashionButtonSizes.xlSize(),
+                onClick = {
+                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                        controller.clickAddToWishList(origin = FinishSession.Origin.SKU_POPUP)
+                    } else {
+                        controller.clickMoreDetails(origin = FinishSession.Origin.MORE_TO_TRYON)
+                    }
                 },
-            style = FashionButtonStyles.outlineStyle(theme),
-            size = FashionButtonSizes.xlSize(),
-            onClick = {
-                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.clickAddToWishList(origin = FinishSession.Origin.SKU_POPUP)
-                } else {
-                    controller.clickMoreDetails(origin = FinishSession.Origin.MORE_TO_TRYON)
-                }
-            },
-        )
+            )
 
-        Spacer(Modifier.width(8.dp))
+            Spacer(Modifier.width(8.dp))
+        }
 
         FashionButton(
             modifier = Modifier.weight(1f),

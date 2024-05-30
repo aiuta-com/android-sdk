@@ -74,11 +74,12 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 	public abstract fun getPhotoSelectionLimit ()I
 	public abstract fun isHistoryAvailable ()Z
+	public abstract fun isWishlistAvailable ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (IZLcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (IZLcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;IZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;IZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage : java/lang/Enum {
@@ -93,6 +94,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLa
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners {
 	public static final field $stable I
 	public fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAddToCartClick ()Lkotlin/jvm/functions/Function1;
 	public final fun getAddToWishlistClick ()Lkotlin/jvm/functions/Function1;
 	public final fun getCloseClick ()Lkotlin/jvm/functions/Function1;

@@ -279,6 +279,7 @@ private fun BoxScope.HistoryScreenInterface(
                 shareManager.share(
                     imageUrls = imageUrls,
                     watermarkRes = theme.watermarkRes,
+                    origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
                 )
 
                 controller.deactivateSelectMode()

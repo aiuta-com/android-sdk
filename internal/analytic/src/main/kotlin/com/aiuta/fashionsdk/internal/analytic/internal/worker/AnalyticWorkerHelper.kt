@@ -2,12 +2,13 @@ package com.aiuta.fashionsdk.internal.analytic.internal.worker
 
 import android.content.Context
 import androidx.work.Data
+import com.aiuta.fashionsdk.internal.analytic.internal.installation.Installation
 import com.aiuta.fashionsdk.internal.analytic.model.AnalyticCompletedEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AnalyticEnvironment
 import com.aiuta.fashionsdk.internal.analytic.model.CompletedInternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 
-internal fun createAnalyticEnvironment(context: Context): AnalyticEnvironment {
+internal suspend fun createAnalyticEnvironment(context: Context): AnalyticEnvironment {
     return try {
         val packageName = context.packageName ?: AnalyticConfig.DEFAULT_HOST_ID
         val packageInfo = context.packageManager.getPackageInfo(packageName, 0)
@@ -15,6 +16,7 @@ internal fun createAnalyticEnvironment(context: Context): AnalyticEnvironment {
         AnalyticEnvironment(
             hostId = packageName,
             hostVersion = packageInfo.versionName,
+            installationId = Installation.id(context),
         )
     } catch (e: Exception) {
         // Fallback to default
@@ -22,7 +24,7 @@ internal fun createAnalyticEnvironment(context: Context): AnalyticEnvironment {
     }
 }
 
-internal fun createAnalyticCompletedEvent(
+internal suspend fun createAnalyticCompletedEvent(
     context: Context,
     rawData: Data,
 ): AnalyticCompletedEvent? {

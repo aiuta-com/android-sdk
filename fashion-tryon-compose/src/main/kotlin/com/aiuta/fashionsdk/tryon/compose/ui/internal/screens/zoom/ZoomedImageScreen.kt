@@ -230,11 +230,13 @@ private fun ZoomedImageScreenContent(
                         controller.sendShareGeneratedImageEvent(
                             origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
                             count = imageUrls.size,
+                            additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
                         )
                         shareManager.share(
                             content = screenState.sharedImage.value.additionalShareInfo,
                             imageUrls = imageUrls,
                             watermarkRes = theme.watermarkRes,
+                            origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
                         )
                     },
             text = stringResources.share,

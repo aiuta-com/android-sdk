@@ -47,11 +47,13 @@ internal fun ShareButton(
                     controller.sendShareGeneratedImageEvent(
                         origin = ShareGeneratedImage.Origin.RESULT_SCREEN,
                         count = imageUrls.size,
+                        additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
                     )
                     shareManager.share(
                         content = controller.activeSKUItem.value.additionalShareInfo,
                         imageUrls = imageUrls,
                         watermarkRes = theme.watermarkRes,
+                        origin = ShareGeneratedImage.Origin.RESULT_SCREEN,
                     )
                 },
         contentAlignment = Alignment.Center,

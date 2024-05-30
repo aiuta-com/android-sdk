@@ -1,53 +1,29 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils
 
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Environment
-import androidx.core.content.FileProvider
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
+import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
+import com.aiuta.fashionsdk.internal.analytic.model.ShareSuccessfully
 
-internal fun Context.getUriFromBitmap(
-    bmp: Bitmap,
-    filePrefix: String = "image",
-    qualityPercent: Int = 100,
-    isCache: Boolean,
-): Uri? {
-    var bmpUri: Uri? = null // Initialize the Uri object to null.
-    try {
-        val fileName = "${filePrefix}_${System.currentTimeMillis()}.png"
-        // Create a new file with a unique name in the Pictures directory of the app's external files directory.
-        val file =
-            File(
-                if (isCache) cacheDir else getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-                fileName,
-            )
-        // Create a FileOutputStream object to write the bitmap data to the file.
-        val out = FileOutputStream(file)
-        // Compress the bitmap data and write it to the FileOutputStream object.
-        bmp.compress(Bitmap.CompressFormat.PNG, qualityPercent, out)
-        // Close the FileOutputStream object.
-        out.close()
-        // Use the FileProvider class to get a content URI for the file.
-        bmpUri = FileProvider.getUriForFile(this, "${this.packageName}.fileprovider", file)
-    } catch (e: IOException) {
-        // If an IOException occurs, ignore fallback
-    }
-    // Return the Uri object, which may be null if an exception was caught.
-    return bmpUri
-}
+private const val ORIGIN_KEY = "originKey"
+private const val COUNT_KEY = "countKey"
+private const val SHARE_REQUEST_CODE = 100
 
 /**
  * This function takes a title, content, and contentUri as input parameters
  * and shares the image with the specified title and content on the available
  * sharing platforms.
  */
+
 internal fun Context.shareContent(
     content: String?,
     contentUris: ArrayList<Uri> = arrayListOf(),
+    origin: ShareGeneratedImage.Origin,
 ) {
     // Create a new Intent object with the ACTION_SEND action.
     val action = if (contentUris.size > 1) Intent.ACTION_SEND_MULTIPLE else Intent.ACTION_SEND
@@ -56,9 +32,21 @@ internal fun Context.shareContent(
     intent.type =
         when (contentUris.size) {
             0 -> "text/plain"
-            1 -> "image/png"
-            else -> "*/*"
+            else -> "image/*"
         }
+
+    // Init back receiver
+    val pi =
+        PendingIntent.getBroadcast(
+            this,
+            SHARE_REQUEST_CODE,
+            Intent(this, ShareBroadcastReceiver::class.java).apply {
+                putExtra(COUNT_KEY, contentUris.size)
+                putExtra(ORIGIN_KEY, origin.value)
+                putExtra(Intent.EXTRA_TEXT, content)
+            },
+            PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+        )
 
     // Add the content as extra data to the Intent.
     content?.let {
@@ -74,7 +62,42 @@ internal fun Context.shareContent(
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     // Create a chooser Intent and start the activity.
     val chooserIntent =
-        Intent.createChooser(intent, null)
+        Intent
+            .createChooser(intent, null, pi.intentSender)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     startActivity(chooserIntent)
+}
+
+internal class ShareBroadcastReceiver : BroadcastReceiver() {
+    override fun onReceive(
+        context: Context?,
+        intent: Intent?,
+    ) {
+        val clickedComponent: ComponentName? =
+            intent?.getParcelableExtra(
+                Intent.EXTRA_CHOSEN_COMPONENT,
+            )
+        val count = intent?.getIntExtra(COUNT_KEY, 0)
+        val origin = intent?.getStringExtra(ORIGIN_KEY)
+        val additionalShareInfo = intent?.getStringExtra(Intent.EXTRA_TEXT)
+
+        InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(ShareSuccessfully) {
+            put(
+                key = ShareSuccessfully.ORIGIN_PARAM,
+                value = origin,
+            )
+            put(
+                key = ShareSuccessfully.COUNT_PARAM,
+                value = count.toString(),
+            )
+            put(
+                key = ShareSuccessfully.TARGET_PARAM,
+                value = clickedComponent?.packageName,
+            )
+            put(
+                key = ShareSuccessfully.ADDITIONAL_SHARE_INFO_PARAM,
+                value = additionalShareInfo,
+            )
+        }
+    }
 }
