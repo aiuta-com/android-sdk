@@ -43,8 +43,13 @@ internal class ShareManager(
                     .awaitAll()
                     .filterNotNull()
                     .toCollection(imageUris)
-                context.shareContent(content, imageUris, origin)
-                stateFlow.value = SharingState.Success
+
+                if (imageUris.isNotEmpty()) {
+                    context.shareContent(content, imageUris, origin)
+                    stateFlow.value = SharingState.Success
+                } else {
+                    stateFlow.value = SharingState.Error("There is no images")
+                }
             } catch (ignore: CancellationException) {
                 stateFlow.value = SharingState.Idle
             } catch (e: Exception) {
@@ -60,27 +65,43 @@ internal class ShareManager(
         @DrawableRes watermarkRes: Int? = null,
     ): Uri? {
         val bitmap = getBitmap(imageUrl) ?: return null
-        return withContext(workerDispatcher) {
-            val mutableBitmap = bitmap.copy(bitmap.config, true)
-            val modifierBitmap =
-                watermarkRes?.let {
-                    context.addWatermark(
-                        source = mutableBitmap,
-                        watermarkRes = watermarkRes,
-                    )
-                } ?: mutableBitmap
 
-            context.getUriFromBitmap(bmp = modifierBitmap, isCache = true)
+        return try {
+            withContext(workerDispatcher) {
+                val mutableBitmap = bitmap.copy(bitmap.config, true)
+                val modifierBitmap =
+                    try {
+                        watermarkRes?.let {
+                            context.addWatermark(
+                                source = mutableBitmap,
+                                watermarkRes = watermarkRes,
+                            )
+                        } ?: mutableBitmap
+                    } catch (e: Exception) {
+                        // Failed to add watermark
+                        mutableBitmap
+                    }
+
+                context.getUriFromBitmap(bmp = modifierBitmap, isCache = true)
+            }
+        } catch (e: Exception) {
+            // Failed get bitmap
+            null
         }
     }
 
     private suspend fun getBitmap(imageUrl: String): Bitmap? {
-        val request =
-            ImageRequest.Builder(context)
-                .placeholderMemoryCacheKey(this.hashCode().toString())
-                .data(imageUrl)
-                .allowHardware(false)
-                .build()
-        return Coil.imageLoader(context).execute(request).drawable?.toBitmapOrNull()
+        return try {
+            val request =
+                ImageRequest.Builder(context)
+                    .placeholderMemoryCacheKey(this.hashCode().toString())
+                    .data(imageUrl)
+                    .allowHardware(false)
+                    .build()
+            Coil.imageLoader(context).execute(request).drawable?.toBitmapOrNull()
+        } catch (e: Exception) {
+            // Failed to resolve bitmap
+            null
+        }
     }
 }
