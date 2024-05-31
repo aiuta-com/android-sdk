@@ -44,6 +44,8 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             }
         }
 
+    val generateMoreSKU = controller.activeSKUItem.value.generateMoreSKU.orEmpty()
+
     // Size of generation + meta sku images
     val generationSize = { generationUrlsSize.value }
     val totalPages = { generationSize() + 1 }
@@ -67,10 +69,14 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
                 updateAnchors(
                     DraggableAnchors {
                         GenerateResultState.SHOW_GENERATIONS at 0f
-                        GenerateResultState.SHOW_GENERATE_MORE at
-                            with(
-                                density,
-                            ) { -maxHeight.toPx() + 48.dp.toPx() }
+
+                        // Show generate more only if it is not empty
+                        if (generateMoreSKU.isNotEmpty()) {
+                            GenerateResultState.SHOW_GENERATE_MORE at
+                                with(
+                                    density,
+                                ) { -maxHeight.toPx() + 48.dp.toPx() }
+                        }
                     },
                 )
             }
