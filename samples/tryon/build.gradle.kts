@@ -30,7 +30,6 @@ dependencies {
     api(projects.fashionTryonCore)
     api(projects.fashionTryonCompose)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material)
 
     implementation(libs.androidx.activity)
