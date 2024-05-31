@@ -23,7 +23,6 @@ baselineProfile {
 dependencies {
     baselineProfile(projects.internal.benchmark)
 
-    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.lifecycle.runtime.compose)
 }
