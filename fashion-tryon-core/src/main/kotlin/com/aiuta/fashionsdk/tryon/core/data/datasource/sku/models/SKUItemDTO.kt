@@ -20,7 +20,7 @@ internal data class SKUItemDTO(
     @SerialName("is_ready")
     val isReady: Boolean,
     @SerialName("sku_catalog_name")
-    val skuCatalogName: String,
+    val skuCatalogName: String? = null,
     @SerialName("sku_id")
     val skuId: String,
     @SerialName("title")

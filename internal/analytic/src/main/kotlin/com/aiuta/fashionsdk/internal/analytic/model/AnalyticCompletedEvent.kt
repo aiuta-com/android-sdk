@@ -13,10 +13,10 @@ internal data class AnalyticCompletedEvent(
     @SerialName("env")
     val environment: AnalyticEnvironment,
     @SerialName("local_date_time")
-    val localDateTime: String = currentLocalDateTime(),
+    val localDateTime: String,
 )
 
-private fun currentLocalDateTime(): String {
+internal fun currentLocalDateTime(): String {
     val locale = Locale.getDefault()
     val iso8601Pattern = "yyyy-MM-dd'T'HH:mm:ssZ"
     val format = SimpleDateFormat(iso8601Pattern, locale)

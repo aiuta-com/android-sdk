@@ -23,7 +23,7 @@ public sealed interface SKUGenerationContainer {
 public class SKUGenerationUriContainer(
     public val fileUri: Uri,
     override val skuId: String,
-    override val skuCatalogName: String?,
+    override val skuCatalogName: String? = null,
 ) : SKUGenerationContainer
 
 /**
@@ -37,5 +37,5 @@ public class SKUGenerationUrlContainer(
     public val fileId: String,
     public val fileUrl: String,
     override val skuId: String,
-    override val skuCatalogName: String?,
+    override val skuCatalogName: String? = null,
 ) : SKUGenerationContainer
