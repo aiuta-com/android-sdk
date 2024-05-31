@@ -78,6 +78,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationSt
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUriContainer : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
 	public fun <init> (Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getFileUri ()Landroid/net/Uri;
 	public fun getSkuCatalogName ()Ljava/lang/String;
 	public fun getSkuId ()Ljava/lang/String;
@@ -85,6 +86,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUr
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUrlContainer : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getFileId ()Ljava/lang/String;
 	public final fun getFileUrl ()Ljava/lang/String;
 	public fun getSkuCatalogName ()Ljava/lang/String;
