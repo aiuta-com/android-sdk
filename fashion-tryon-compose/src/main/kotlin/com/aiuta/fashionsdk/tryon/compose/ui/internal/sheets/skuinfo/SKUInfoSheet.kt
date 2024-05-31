@@ -3,9 +3,11 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -130,12 +132,12 @@ private fun ButtonsContainer(
     val stringResources = LocalAiutaTryOnStringResources.current
 
     Row(
-        modifier = modifier,
+        modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (configuration.isWishlistAvailable) {
             FashionButton(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f).fillMaxHeight(),
                 text =
                     if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                         stringResources.addToWish
@@ -157,7 +159,7 @@ private fun ButtonsContainer(
         }
 
         FashionButton(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier.weight(1f).fillMaxHeight(),
             text =
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     stringResources.addToCart
