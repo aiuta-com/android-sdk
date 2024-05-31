@@ -6,7 +6,7 @@
 
         <provider
             android:name=".ui.internal.utils.CameraFileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.aiuta.tryon.compose.fileprovider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

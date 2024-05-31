@@ -33,7 +33,7 @@ internal class CameraFileProvider : FileProvider(R.xml.filepaths) {
                         directory,
                     )
                 // Authority of provider
-                val authority = "${context.packageName}.fileprovider"
+                val authority = "${context.packageName}.aiuta.tryon.compose.fileprovider"
 
                 // Return uri of the file
                 getUriForFile(
