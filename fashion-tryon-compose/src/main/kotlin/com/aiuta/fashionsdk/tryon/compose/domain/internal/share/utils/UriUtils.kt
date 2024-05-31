@@ -31,7 +31,12 @@ internal fun Context.getUriFromBitmap(
         // Close the FileOutputStream object.
         out.close()
         // Use the FileProvider class to get a content URI for the file.
-        bmpUri = FileProvider.getUriForFile(this, "${this.packageName}.fileprovider", file)
+        bmpUri =
+            FileProvider.getUriForFile(
+                this,
+                "${this.packageName}.aiuta.tryon.compose.fileprovider",
+                file,
+            )
     } catch (e: IOException) {
         // If an IOException occurs, ignore fallback
     }
