@@ -12,32 +12,32 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingButtonNext: String = "Далее"
     override val onboardingButtonStart: String = "Начать"
     override val onboardingPageTryonTopic: String = "Примерьте перед покупкой"
-    override val onboardingPageTryonSubtopic: String = "Просто загрузите своё фото и посмотрите, как это выглядит"
-    override val onboardingPageBestResultTopic: String = "Для лучших результатов"
-    override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением, стойте прямо на однотонном фоне"
+    override val onboardingPageTryonSubtopic: String = "Загрузите своё фото и порадуйтесь новому образу"
+    override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
+    override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"
-    override val imageSelectorChangeButton: String = "Изменить фото"
-    override val imageSelectorPoweredByAiuta1: String = "Работает благодаря "
+    override val imageSelectorChangeButton: String = "Заменить фото"
+    override val imageSelectorPoweredByAiuta1: String = "Powered by "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
-    override val imageSelectorGeneratingOutfit: String = "Создание наряда"
+    override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
     override val imageSelectorPhotos: Plurals =
         Plurals(
             one = "%d фото",
-            other = "%d фотографии",
+            other = "%d фото",
         )
 
     // History
     override val historySelectorDisabledButton: String = "Выбрать"
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
-    override val historySelectorEnableButtonUnselectAll: String = "Отменить выбор всех"
+    override val historySelectorEnableButtonUnselectAll: String = "Снять выделение"
     override val historySelectorEnableButtonCancel: String = "Отмена"
-    override val historyEmptyDescription: String = "После первой примерки ваша история примерок будет сохранена здесь"
+    override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "Больше вариантов для примерки"
-    override val generationResultSwipeUp: String = "Проведите вверх для большего"
+    override val generationResultMoreTitle: String = "Больше образов для примерки"
+    override val generationResultSwipeUp: String = "Посмотреть новые образы"
 
     // Bottom sheets
     // Picker sheet
@@ -49,7 +49,7 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val generatedOperationsSheetUploadNewButton: String = "+ Загрузить новое фото"
 
     // General
-    override val addToWish: String = "Добавить в любимое"
+    override val addToWish: String = "В избранное"
     override val addToCart: String = "Добавить в корзину"
     override val moreDetails: String = "Подробнее"
     override val aiutaUrl: String = "https://aiuta.com/"
