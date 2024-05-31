@@ -18,6 +18,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 fun Project.androidLibrary(
     name: String,
     config: Boolean = false,
+    composeLibrary: Boolean = false,
     action: LibraryExtension.() -> Unit = {},
 ) = androidBase<LibraryExtension>(
     name = name,
@@ -25,6 +26,7 @@ fun Project.androidLibrary(
 ) {
     buildFeatures {
         buildConfig = config
+        compose = composeLibrary
     }
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
@@ -36,6 +38,11 @@ fun Project.androidLibrary(
     if (config) {
         defaultConfig {
             buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
+        }
+    }
+    if (composeLibrary) {
+        composeOptions {
+            kotlinCompilerExtensionVersion = "1.5.14"
         }
     }
     action()
@@ -59,6 +66,7 @@ fun Project.setupPublishing(action: MavenPublishBaseExtension.() -> Unit = {}) {
 fun Project.androidApplication(
     name: String,
     shouldBePublic: Boolean = true,
+    composeApp: Boolean = false,
     action: BaseAppModuleExtension.() -> Unit = {},
 ) = androidBase<BaseAppModuleExtension>(
     name = name,
@@ -70,6 +78,14 @@ fun Project.androidApplication(
         versionName = project.versionName
         resourceConfigurations += "en"
         vectorDrawables.useSupportLibrary = true
+    }
+    buildFeatures {
+        compose = composeApp
+    }
+    if (composeApp) {
+        composeOptions {
+            kotlinCompilerExtensionVersion = "1.5.14"
+        }
     }
     action()
 }

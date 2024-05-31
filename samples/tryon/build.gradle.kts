@@ -1,14 +1,13 @@
 import com.aiuta.fashionsdk.androidApplication
-import org.jetbrains.compose.ExperimentalComposeLibrary
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.compose")
     id("kotlin-android")
 }
 
 androidApplication(
     name = "sample.tryon",
+    composeApp = true,
     shouldBePublic = false,
 ) {
     buildTypes {
@@ -31,9 +30,8 @@ dependencies {
     api(projects.fashionTryonCore)
     api(projects.fashionTryonCompose)
 
-    implementation(compose.material)
-    @OptIn(ExperimentalComposeLibrary::class)
-    implementation(compose.components.resources)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.material)
 
     implementation(libs.androidx.activity)
     implementation(libs.androidx.activity.compose)

@@ -5,11 +5,13 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     id("androidx.baselineprofile")
     id("com.android.library")
-    id("org.jetbrains.compose")
     id("kotlin-android")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose")
+androidLibrary(
+    name = "com.aiuta.fashionsdk.tryon.compose",
+    composeLibrary = true,
+)
 
 baselineProfile {
     mergeIntoMain = true
@@ -29,8 +31,10 @@ dependencies {
 
     baselineProfile(projects.internal.benchmark)
 
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

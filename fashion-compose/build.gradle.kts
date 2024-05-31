@@ -3,11 +3,13 @@ import com.aiuta.fashionsdk.androidLibrary
 plugins {
     id("androidx.baselineprofile")
     id("com.android.library")
-    id("org.jetbrains.compose")
     id("kotlin-android")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk.compose")
+androidLibrary(
+    name = "com.aiuta.fashionsdk.compose",
+    composeLibrary = true,
+)
 
 baselineProfile {
     mergeIntoMain = true
@@ -21,6 +23,7 @@ baselineProfile {
 dependencies {
     baselineProfile(projects.internal.benchmark)
 
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.lifecycle.runtime.compose)
 }

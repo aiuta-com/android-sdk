@@ -1,15 +1,12 @@
-import com.aiuta.fashionsdk.enableComposeMetrics
 import com.aiuta.fashionsdk.groupId
 import com.aiuta.fashionsdk.publicModules
 import com.aiuta.fashionsdk.versionName
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import kotlinx.validation.ApiValidationExtension
-import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 buildscript {
@@ -20,7 +17,6 @@ buildscript {
     dependencies {
         classpath(libs.gradlePlugin.android)
         classpath(libs.gradlePlugin.kotlin)
-        classpath(libs.gradlePlugin.jetbrainsCompose)
         classpath(libs.gradlePlugin.mavenPublish)
     }
 }
@@ -85,26 +81,6 @@ allprojects {
         }
     }
 
-    plugins.withId("org.jetbrains.compose") {
-        extensions.configure<ComposeExtension> {
-            kotlinCompilerPlugin = libs.jetbrains.compose.compiler.get().toString()
-        }
-    }
-
-    if (enableComposeMetrics && name in publicModules) {
-        plugins.withId("org.jetbrains.compose") {
-            tasks.withType<KotlinCompile> {
-                val outputDir = layout.buildDirectory.dir("composeMetrics").get().asFile.path
-                compilerOptions.freeCompilerArgs.addAll(
-                    "-P",
-                    "$composePlugin:metricsDestination=$outputDir",
-                    "-P",
-                    "$composePlugin:reportsDestination=$outputDir",
-                )
-            }
-        }
-    }
-
     apply(plugin = "com.diffplug.spotless")
 
     val configureSpotless: SpotlessExtension.() -> Unit = {
@@ -126,5 +102,3 @@ allprojects {
         extensions.configure<SpotlessExtension>(configureSpotless)
     }
 }
-
-private val composePlugin = "plugin:androidx.compose.compiler.plugins.kotlin"
