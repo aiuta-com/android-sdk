@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application>
+
 
         <provider
             android:name=".ui.internal.utils.CameraFileProvider"
             android:authorities="${applicationId}.aiuta.tryon.compose.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
 
-        <receiver android:name=".domain.internal.share.utils.ShareBroadcastReceiver"/>
+        <receiver android:name=".domain.internal.share.utils.ShareBroadcastReceiver" />
     </application>
 </manifest>
