@@ -31,6 +31,7 @@ dependencies {
 
     baselineProfile(projects.internal.benchmark)
 
+    implementation(libs.accompanist.permissions)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.compose.foundation)

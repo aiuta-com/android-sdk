@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker
 
+import android.Manifest
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
@@ -34,16 +35,25 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.analytic.sen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openSettings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideMultipleImagePicker
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.shouldShowRationale
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 internal fun ColumnScope.ImagePickerSheet() {
     val context = LocalContext.current
     val controller = LocalController.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
-    val sharedModifier = Modifier.fillMaxWidth().height(74.dp)
+    val sharedModifier =
+        Modifier
+            .fillMaxWidth()
+            .height(74.dp)
 
     val newImageUri = remember { CameraFileProvider.newImageUri(context = context) }
     val cameraPickerLauncher =
@@ -55,6 +65,21 @@ internal fun ColumnScope.ImagePickerSheet() {
                         imageUris = listOf(newImageUri.toString()),
                     )
                 controller.bottomSheetNavigator.hide()
+            }
+        }
+    val startCameraPickerFlow = {
+        newImageUri?.let { uri ->
+            openCameraPicker(
+                newImageUri = { uri },
+                getLauncher = { cameraPickerLauncher },
+            )
+        }
+    }
+    val cameraPermissionState =
+        rememberPermissionState(Manifest.permission.CAMERA) { isGranted ->
+            // After granting permission, let's open camera
+            if (isGranted) {
+                startCameraPickerFlow()
             }
         }
 
@@ -77,11 +102,15 @@ internal fun ColumnScope.ImagePickerSheet() {
         iconRes = FashionIcon.Camera24,
         text = stringResources.pickerSheetTakePhoto,
         onClick = {
-            newImageUri?.let { uri ->
-                openCameraPicker(
-                    newImageUri = { uri },
-                    getLauncher = { cameraPickerLauncher },
-                )
+            if (cameraPermissionState.status.isGranted) {
+                // Permission granted, let's open camera
+                startCameraPickerFlow()
+            } else {
+                if (cameraPermissionState.status.shouldShowRationale) {
+                    context.openSettings()
+                } else {
+                    cameraPermissionState.launchPermissionRequest()
+                }
             }
         },
     )
@@ -129,7 +158,10 @@ private fun PickerButton(
         Spacer(Modifier.width(16.dp))
 
         Box(
-            modifier = Modifier.weight(1f).fillMaxHeight(),
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
         ) {
             Text(
                 modifier = Modifier.align(Alignment.CenterStart),
@@ -140,7 +172,10 @@ private fun PickerButton(
 
             if (shouldDrawDivider) {
                 Divider(
-                    modifier = Modifier.fillMaxWidth().align(Alignment.BottomCenter),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.BottomCenter),
                     color = theme.colors.gray1,
                 )
             }
