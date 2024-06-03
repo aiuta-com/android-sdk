@@ -133,16 +133,16 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnTh
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Float;Ljava/lang/Float;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Float;Ljava/lang/Float;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAdditionalShareInfo ()Ljava/lang/String;
 	public final fun getCatalogName ()Ljava/lang/String;
 	public final fun getDescription ()Ljava/lang/String;
 	public final fun getGenerateMoreSKU ()Ljava/util/List;
 	public final fun getImageUrls ()Ljava/util/List;
-	public final fun getPrice ()Ljava/lang/Float;
-	public final fun getPriceCurrency ()Ljava/lang/String;
-	public final fun getPriceDiscounted ()Ljava/lang/Float;
+	public final fun getLocalizedDiscount ()Ljava/lang/String;
+	public final fun getLocalizedOldPrice ()Ljava/lang/String;
+	public final fun getLocalizedPrice ()Ljava/lang/String;
 	public final fun getSkuId ()Ljava/lang/String;
 	public final fun getStore ()Ljava/lang/String;
 }

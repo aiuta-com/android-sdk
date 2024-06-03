@@ -74,11 +74,11 @@ internal fun sendStartSessionEvent() {
             )
             put(
                 key = StartSession.PRICE_PARAM,
-                value = skuItem.priceWithCurrency,
+                value = skuItem.localizedPrice,
             )
             put(
                 key = StartSession.PRICE_DISCOUNTED_PARAM,
-                value = skuItem.priceDiscountedWithCurrency,
+                value = skuItem.localizedOldPrice,
             )
             put(
                 key = StartSession.STORE_PARAM,

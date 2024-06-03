@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
-import kotlin.math.roundToInt
 
 @Composable
 internal fun SKUInfo(
@@ -59,9 +58,9 @@ internal fun SKUInfo(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            skuItem.priceWithCurrency?.let { priceWithCurrency ->
+            if (skuItem.localizedPrice.isNotBlank()) {
                 Text(
-                    text = priceWithCurrency,
+                    text = skuItem.localizedPrice,
                     style =
                         MaterialTheme.typography.body1.copy(
                             textDecoration = solveGeneralPriceDecoration(skuItem),
@@ -73,12 +72,11 @@ internal fun SKUInfo(
                 )
             }
 
-            skuItem.priceDiscountedWithCurrency?.let { priceDiscountedWithCurrency ->
-
+            if (skuItem.localizedOldPrice?.isNotBlank() == true) {
                 Spacer(Modifier.width(4.dp))
 
                 Text(
-                    text = priceDiscountedWithCurrency,
+                    text = skuItem.localizedOldPrice,
                     style = MaterialTheme.typography.body1,
                     color = theme.colors.accent,
                     fontWeight = FontWeight.Bold,
@@ -86,12 +84,11 @@ internal fun SKUInfo(
                     overflow = TextOverflow.Ellipsis,
                 )
 
-                if (skuItem.price != null && skuItem.priceDiscounted != null) {
+                if (skuItem.localizedPrice.isNotBlank() && skuItem.localizedDiscount?.isNotBlank() == true) {
                     Spacer(Modifier.width(8.dp))
 
                     DiscountBlock(
-                        price = skuItem.price,
-                        priceWithDiscount = skuItem.priceDiscounted,
+                        localizedDiscount = skuItem.localizedDiscount,
                     )
                 }
             }
@@ -102,11 +99,9 @@ internal fun SKUInfo(
 @Composable
 internal fun DiscountBlock(
     modifier: Modifier = Modifier,
-    price: Float,
-    priceWithDiscount: Float,
+    localizedDiscount: String,
 ) {
     val theme = LocalTheme.current
-    val discount = (priceWithDiscount * 100 / price - 100).roundToInt()
 
     Box(
         modifier =
@@ -122,7 +117,7 @@ internal fun DiscountBlock(
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "$discount%",
+            text = "$localizedDiscount%",
             style = MaterialTheme.typography.body2,
             color = theme.colors.onDark,
             maxLines = 1,
