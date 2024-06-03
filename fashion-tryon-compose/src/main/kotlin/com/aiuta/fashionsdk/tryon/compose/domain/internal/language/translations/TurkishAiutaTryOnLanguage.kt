@@ -13,7 +13,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingButtonStart: String = "Devam Et"
 
     override val onboardingPageTryonTopic: String = "Satın almadan önce dene"
-    override val onboardingPageTryonSubtopic: String = "Sadece fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
+    override val onboardingPageTryonSubtopic: String = "Fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
     override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
 
@@ -32,9 +32,9 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // History
     override val historySelectorDisabledButton: String = "Seç"
     override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"
-    override val historySelectorEnableButtonUnselectAll: String = "Hiçbirini seçmeyin"
+    override val historySelectorEnableButtonUnselectAll: String = "Tümünü Kaldır"
     override val historySelectorEnableButtonCancel: String = "İptal"
-    override val historyEmptyDescription: String = "İlk öğeyi denediğinizde geçmişiniz burada saklanacaktır"
+    override val historyEmptyDescription: String = "İlk ürün denemenizden sonra deneme geçmişiniz burada saklanacaktır"
 
     // Generation Result
     override val generationResultMoreTitle: String = "Denemeniz için daha fazlası"
@@ -49,7 +49,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val generatedOperationsSheetUploadNewButton: String = "+ Yeni fotoğraf yükle"
 
     // General
-    override val addToWish: String = "Listelerine ekle"
+    override val addToWish: String = "Listelerime ekle"
     override val addToCart: String = "Sepete ekle"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val moreDetails: String = "Daha fazla detay"
