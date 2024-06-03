@@ -4,6 +4,7 @@ The following table lists details of the latest Fashion SDK releases.
 
 | Version | Release Date      | Highlights                                                                                                                                                                         |
 |---------|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0.4.1   | June 3, 2024      | Small bug fixes and improvements of UI<br/> [See changelog on Github](https://github.com/aiuta-com/android-sdk/releases/tag/0.4.1)                                                 |
 | 0.4.0   | May 31, 2024      | Improvements in language translations and internal enhancement<br/> [See changelog on Github](https://github.com/aiuta-com/android-sdk/releases/tag/0.4.0)                         |
 | 0.3.6   | May 10, 2024      | Some small api changes of SKUItem<br/> [See changelog on Github](https://github.com/aiuta-com/android-sdk/releases/tag/0.3.6)                                                      |
 | 0.3.5   | April 29, 2024    | Some small UI improvements<br/> [See changelog on Github](https://github.com/aiuta-com/android-sdk/releases/tag/0.3.5)                                                             |
