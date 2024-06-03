@@ -16,11 +16,13 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfigu
 import com.aiuta.fashionsdk.tryon.compose.domain.models.toTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.rememberAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
@@ -64,6 +66,7 @@ internal fun NavigationInitialisation(
                     selectedLanguage = configuration.language,
                 ),
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
+            LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
         ) {
             content()
         }

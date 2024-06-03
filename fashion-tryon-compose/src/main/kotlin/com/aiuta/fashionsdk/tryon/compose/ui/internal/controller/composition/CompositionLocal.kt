@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiuta
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.AiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 
 // Analytic
 internal val LocalAnalytic: ProvidableCompositionLocal<InternalAiutaAnalytic> =
@@ -36,6 +37,12 @@ internal val LocalAiutaTryOnStringResources: ProvidableCompositionLocal<Internal
 internal val LocalAiutaTryOnDataController: ProvidableCompositionLocal<AiutaTryOnDataController> =
     staticCompositionLocalOf {
         noLocalProvidedFor("AiutaTryOnDataController")
+    }
+
+// UI
+internal val LocalAiutaTryOnDialogController: ProvidableCompositionLocal<AiutaTryOnDialogController> =
+    staticCompositionLocalOf {
+        noLocalProvidedFor("AiutaTryOnDialogController")
     }
 
 // Base controller

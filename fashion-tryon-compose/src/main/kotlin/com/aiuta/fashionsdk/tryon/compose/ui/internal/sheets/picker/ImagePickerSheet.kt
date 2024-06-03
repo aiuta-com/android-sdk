@@ -27,9 +27,12 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.analytic.sendSelectNewPhotosEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
@@ -48,6 +51,7 @@ import com.google.accompanist.permissions.shouldShowRationale
 internal fun ColumnScope.ImagePickerSheet() {
     val context = LocalContext.current
     val controller = LocalController.current
+    val dialogController = LocalAiutaTryOnDialogController.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
     val sharedModifier =
@@ -107,7 +111,15 @@ internal fun ColumnScope.ImagePickerSheet() {
                 startCameraPickerFlow()
             } else {
                 if (cameraPermissionState.status.shouldShowRationale) {
-                    context.openSettings()
+                    controller.bottomSheetNavigator.hide()
+                    dialogController.showDialog(
+                        dialogState =
+                            AiutaTryOnDialogState(
+                                title = stringResources.dialogCameraPermissionTitle,
+                                description = stringResources.dialogCameraPermissionDescription,
+                                onConfirm = context::openSettings,
+                            ),
+                    )
                 } else {
                     cameraPermissionState.launchPermissionRequest()
                 }
