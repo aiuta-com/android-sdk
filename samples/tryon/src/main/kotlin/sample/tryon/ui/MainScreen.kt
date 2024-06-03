@@ -36,9 +36,9 @@ fun MainScreen() {
                     skuId = firstActiveSKUItem.skuId,
                     description = "MOCK 90s straight leg jeans in light blue",
                     imageUrls = firstActiveSKUItem.imageUrls,
-                    price = 41.99F,
-                    priceDiscounted = 34.99F,
-                    priceCurrency = "\$",
+                    localizedPrice = "$34.99",
+                    localizedOldPrice = "$41.99",
+                    localizedDiscount = "10",
                     store = "MOCK STORE",
                     generateMoreSKU =
                         activeSKUItems.value?.map { skuItem ->
@@ -47,9 +47,9 @@ fun MainScreen() {
                                 catalogName = skuItem.catalogName,
                                 description = "MOCK 90s straight leg jeans in light blue",
                                 imageUrls = skuItem.imageUrls,
-                                price = 41.99F,
-                                priceDiscounted = 34.99F,
-                                priceCurrency = "\$",
+                                localizedPrice = "$34.99",
+                                localizedOldPrice = "$41.99",
+                                localizedDiscount = "10",
                                 store = "MOCK STORE",
                             )
                         } ?: emptyList(),

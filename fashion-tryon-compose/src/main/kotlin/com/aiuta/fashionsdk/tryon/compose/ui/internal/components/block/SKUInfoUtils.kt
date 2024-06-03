@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 internal fun solveGeneralPriceColor(activeSKUItem: SKUItem): Color {
     val theme = LocalTheme.current
 
-    return if (activeSKUItem.priceDiscounted != null) {
+    return if (activeSKUItem.localizedOldPrice?.isNotBlank() == true && activeSKUItem.localizedDiscount?.isNotBlank() == true) {
         theme.colors.secondary
     } else {
         theme.colors.primary
@@ -18,7 +18,9 @@ internal fun solveGeneralPriceColor(activeSKUItem: SKUItem): Color {
 }
 
 internal fun solveGeneralPriceDecoration(activeSKUItem: SKUItem): TextDecoration? {
-    return activeSKUItem.priceDiscounted?.let {
+    return if (activeSKUItem.localizedOldPrice?.isNotBlank() == true && activeSKUItem.localizedDiscount?.isNotBlank() == true) {
         TextDecoration.LineThrough
+    } else {
+        null
     }
 }

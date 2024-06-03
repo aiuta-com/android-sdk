@@ -10,9 +10,9 @@ import java.util.UUID
  * @param catalogName - Name of catalog with current [skuId]
  * @param description - Small description about provided sku
  * @param imageUrls - List of urls with images of provided sku
- * @param price - Original price per sku
- * @param priceDiscounted - Price with discount of sku, can be optional
- * @param priceCurrency - Local currency of the sku
+ * @param localizedPrice - The price of the SKU. Should be formatted with a currency symbol.
+ * @param localizedOldPrice - The old price of the SKU, if available. Should be formatted with a currency symbol.
+ * @param localizedDiscount - The discount on the SKU, if available.
  * @param store - Name of store
  * @param generateMoreSKU - SKU for continuous generations
  * @param additionalShareInfo - Some additional info for sharing generated item
@@ -23,20 +23,13 @@ public class SKUItem(
     public val catalogName: String? = null,
     public val description: String,
     public val imageUrls: List<String>,
-    public val price: Float? = null,
-    public val priceDiscounted: Float? = null,
-    public val priceCurrency: String,
+    public val localizedPrice: String,
+    public val localizedOldPrice: String? = null,
+    public val localizedDiscount: String? = null,
     public val store: String,
     public val generateMoreSKU: List<SKUItem>? = null,
     public val additionalShareInfo: String? = null,
 ) {
-    internal val priceWithCurrency = price?.let { "$priceCurrency$price" }
-    internal val priceDiscountedWithCurrency =
-        if (price != null && priceDiscounted != null) {
-            "$priceCurrency$priceDiscounted"
-        } else {
-            null
-        }
     internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
 }
 
@@ -45,7 +38,6 @@ internal val defaultSKUItem =
         skuId = "default_sku_id",
         description = "default_description",
         imageUrls = emptyList(),
-        price = 0f,
-        priceCurrency = "\$",
+        localizedPrice = "0",
         store = "default_store",
     )

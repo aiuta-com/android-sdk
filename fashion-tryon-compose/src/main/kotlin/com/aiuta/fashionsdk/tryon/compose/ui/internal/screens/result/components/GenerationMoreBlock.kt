@@ -176,14 +176,13 @@ private fun GenerationMoreBlockItem(
                 contentDescription = null,
             )
 
-            if (skuItem.priceDiscounted != null && skuItem.price != null) {
+            if (skuItem.localizedOldPrice?.isNotBlank() == true && skuItem.localizedDiscount?.isNotBlank() == true) {
                 DiscountBlock(
                     modifier =
                         Modifier
                             .align(Alignment.BottomStart)
                             .padding(8.dp),
-                    price = skuItem.price,
-                    priceWithDiscount = skuItem.priceDiscounted,
+                    localizedDiscount = skuItem.localizedDiscount,
                 )
             }
         }
@@ -214,9 +213,9 @@ private fun GenerationMoreBlockItem(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            skuItem.priceWithCurrency?.let { priceWithCurrency ->
+            if (skuItem.localizedPrice.isNotBlank()) {
                 Text(
-                    text = priceWithCurrency,
+                    text = skuItem.localizedPrice,
                     style =
                         MaterialTheme.typography.body1.copy(
                             textDecoration = solveGeneralPriceDecoration(skuItem),
@@ -228,11 +227,11 @@ private fun GenerationMoreBlockItem(
                 )
             }
 
-            skuItem.priceDiscountedWithCurrency?.let { priceDiscountedWithCurrency ->
+            if (skuItem.localizedOldPrice?.isNotBlank() == true) {
                 Spacer(Modifier.width(4.dp))
 
                 Text(
-                    text = priceDiscountedWithCurrency,
+                    text = skuItem.localizedOldPrice,
                     style = MaterialTheme.typography.body1,
                     color = theme.colors.accent,
                     fontWeight = FontWeight.Bold,
