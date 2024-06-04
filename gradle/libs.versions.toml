@@ -22,7 +22,7 @@ exifinterface = "1.3.7"
 
 gradle-plugin-android = "8.2.2"
 gradle-plugin-jetbrains-compose = "1.5.12"
-gradle-plugin-mavenPublish = "0.27.0"
+gradle-plugin-mavenPublish = "0.28.0"
 
 kotlinx-serialization = "1.6.2"
 ktor = "2.3.11"
