@@ -29,7 +29,7 @@ ktor = "2.3.11"
 
 jetbrains-compose-compiler = "1.5.7.1"
 
-kotlin = "1.9.24"
+kotlin = "2.0.0"
 ktlint = "1.2.0"
 ksp = "1.9.24-1.0.20"
 
