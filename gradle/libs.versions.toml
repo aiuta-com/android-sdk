@@ -31,7 +31,7 @@ jetbrains-compose-compiler = "1.5.7.1"
 
 kotlin = "1.9.24"
 ktlint = "1.2.0"
-ksp = "1.9.24-1.0.20"
+ksp = "2.0.0-1.0.22"
 
 room = "2.6.1"
 
