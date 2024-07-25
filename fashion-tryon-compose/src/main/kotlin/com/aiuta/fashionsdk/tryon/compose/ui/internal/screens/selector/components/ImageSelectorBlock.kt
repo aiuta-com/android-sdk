@@ -25,7 +25,7 @@ internal fun ImageSelectorBlock(
         modifier =
             modifier
                 .background(
-                    color = theme.colors.gray1,
+                    color = theme.colors.neutral,
                     shape = RoundedCornerShape(24.dp),
                 ),
     ) {

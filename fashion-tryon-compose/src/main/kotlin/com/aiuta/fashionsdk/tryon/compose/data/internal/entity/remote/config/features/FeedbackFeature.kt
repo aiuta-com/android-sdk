@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features
+package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

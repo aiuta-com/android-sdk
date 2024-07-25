@@ -4,9 +4,9 @@ import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.ConfigDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.replaceAll
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.config.toDTO
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.config.toEntity
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.ClientConfig
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.toDTO
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.toEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

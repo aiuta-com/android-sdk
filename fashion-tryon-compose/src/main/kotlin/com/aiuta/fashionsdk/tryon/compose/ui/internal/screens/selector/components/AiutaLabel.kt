@@ -79,7 +79,7 @@ private fun AiutaLabelContent(
             modifier
                 .background(
                     shape = RoundedCornerShape(100.dp),
-                    color = theme.colors.gray1,
+                    color = theme.colors.neutral,
                 )
                 .clickableUnindicated { onClick() }
                 .padding(

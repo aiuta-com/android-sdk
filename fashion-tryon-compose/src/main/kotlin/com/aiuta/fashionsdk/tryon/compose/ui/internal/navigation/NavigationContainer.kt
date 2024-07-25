@@ -100,7 +100,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                 Column {
                     Divider(
                         modifier = sharedModifier,
-                        color = theme.colors.gray2,
+                        color = theme.colors.neutral2,
                         thickness = 1.dp,
                     )
 
@@ -119,7 +119,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
 
                     Divider(
                         modifier = sharedModifier,
-                        color = theme.colors.gray2,
+                        color = theme.colors.neutral2,
                         thickness = 1.dp,
                     )
                 }

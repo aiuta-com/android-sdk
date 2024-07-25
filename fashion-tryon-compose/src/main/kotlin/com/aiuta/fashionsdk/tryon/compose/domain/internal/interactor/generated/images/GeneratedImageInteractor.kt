@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.GeneratedImageDatasource
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.images.GeneratedImageEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
 import kotlinx.coroutines.flow.Flow

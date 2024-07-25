@@ -188,7 +188,7 @@ private fun PickerButton(
                         Modifier
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter),
-                    color = theme.colors.gray1,
+                    color = theme.colors.neutral,
                 )
             }
         }

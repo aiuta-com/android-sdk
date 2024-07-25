@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.config.ClientConfigEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.ClientConfigEntity
 
 @Dao
 internal interface ConfigDao {

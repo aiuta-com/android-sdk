@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config
+package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config
 
 import androidx.compose.runtime.Immutable
 

@@ -1,8 +1,8 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config
+package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config
 
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FitDisclaimerFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.PoweredByStickerFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FeedbackFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FitDisclaimerFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.PoweredByStickerFeature
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

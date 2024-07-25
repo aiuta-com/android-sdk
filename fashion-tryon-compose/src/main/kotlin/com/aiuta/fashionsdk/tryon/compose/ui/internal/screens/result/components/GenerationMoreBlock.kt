@@ -136,7 +136,7 @@ private fun GenerationMoreBlockItem(
                 )
                 .border(
                     width = 1.dp,
-                    color = theme.colors.gray1,
+                    color = theme.colors.neutral,
                     shape = sharedCornerShape,
                 )
                 .padding(8.dp)

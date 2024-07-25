@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.NetworkClient
 import com.aiuta.fashionsdk.network.defaultNetworkClient
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.ClientConfig
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfig
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header

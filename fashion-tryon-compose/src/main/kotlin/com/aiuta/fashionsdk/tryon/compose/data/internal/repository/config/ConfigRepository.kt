@@ -3,10 +3,12 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.repository.config
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.ConfigLocalDataSource
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.ConfigRemoteDataSource
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfig
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FeedbackFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FitDisclaimerFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.PoweredByStickerFeature
 import com.aiuta.fashionsdk.tryon.compose.data.internal.repository.base.BaseRepository
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.time.TimeSaver
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.ClientConfig
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.PoweredByStickerFeature
 import java.util.concurrent.TimeUnit
 
 internal class ConfigRepository(
@@ -33,6 +35,14 @@ internal class ConfigRepository(
 
     suspend fun getPoweredByStickerFeature(forceUpdate: Boolean = false): PoweredByStickerFeature? {
         return loadConfig(forceUpdate).clientConfiguration.poweredByStickerFeature
+    }
+
+    suspend fun getFeedbackFeature(forceUpdate: Boolean = false): FeedbackFeature? {
+        return loadConfig(forceUpdate).clientConfiguration.feedbackFeature
+    }
+
+    suspend fun getFitDisclaimerFeature(forceUpdate: Boolean = false): FitDisclaimerFeature? {
+        return loadConfig(forceUpdate).clientConfiguration.fitDisclaimerFeature
     }
 
     companion object {

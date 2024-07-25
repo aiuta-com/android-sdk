@@ -31,6 +31,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isActiveSKUGenerateMoreNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendOpenResultsScreenEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.DisclaimerBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationButtonsBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationCarouselBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationMoreBlock
@@ -97,6 +98,13 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
                     .nestedScroll(connection),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            DisclaimerBlock(
+                modifier =
+                    Modifier
+                        .zIndex(generationResultController.zIndexList)
+                        .fillMaxWidth(),
+            )
+
             GenerationVerticalPagerBlock(
                 modifier =
                     Modifier
