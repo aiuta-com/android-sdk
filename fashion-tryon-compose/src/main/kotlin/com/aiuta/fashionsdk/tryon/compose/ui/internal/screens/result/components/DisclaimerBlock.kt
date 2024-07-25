@@ -19,14 +19,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FitDisclaimerFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFitDisclaimerFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 
 @Composable
 internal fun DisclaimerBlock(modifier: Modifier = Modifier) {
+    val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
 
     val disclaimerData =
@@ -44,9 +48,24 @@ internal fun DisclaimerBlock(modifier: Modifier = Modifier) {
         enter = slideInVertically(),
         exit = slideOutVertically(),
     ) {
-        disclaimerData.value?.title?.toTranslatedString()?.let { title ->
+        val data = disclaimerData.value
+        val disclaimerText = data?.text?.toTranslatedString()
+
+        data?.title?.toTranslatedString()?.let { title ->
             DisclaimerBlockContent(
-                modifier = Modifier.fillMaxWidth(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickableUnindicated(disclaimerText != null) {
+                            disclaimerText?.let {
+                                controller.bottomSheetNavigator.show(
+                                    newSheetScreen =
+                                        NavigationBottomSheetScreen.FitDisclaimer(
+                                            text = disclaimerText,
+                                        ),
+                                )
+                            }
+                        },
                 title = title,
             )
         }
