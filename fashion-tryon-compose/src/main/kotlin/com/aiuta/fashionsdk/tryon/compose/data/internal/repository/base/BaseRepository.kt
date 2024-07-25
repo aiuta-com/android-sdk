@@ -20,7 +20,7 @@ internal abstract class BaseRepository(
         delayMilliseconds: Long,
         timeKey: String = key + SAVE_TIME_SUFFIX,
         forceUpdate: Boolean = false,
-        remoteLoad: suspend () -> T,
+        remoteLoad: suspend (forceLoad: Boolean) -> T,
         localLoad: suspend () -> T?,
         replaceLocalData: suspend (T) -> Unit,
     ): T {
@@ -28,18 +28,27 @@ internal abstract class BaseRepository(
             val timeLimitPassed = isPassedTimeLimit(timeKey, delayMilliseconds)
             val timeHasPassed = timeLimitPassed == null || timeLimitPassed == true
 
+            val backendLoad: suspend (forceLoad: Boolean) -> T = { forceLoad ->
+                val result = remoteLoad(forceLoad)
+                replaceLocalData(result)
+                timeSaver.saveCurrentTime(timeKey)
+                result
+            }
+
             return try {
                 if (timeHasPassed || forceUpdate) {
                     // It is first time or time has passed
                     // Let's load from remote
 
-                    val result = remoteLoad()
-                    replaceLocalData(result)
-                    timeSaver.saveCurrentTime(timeKey)
-                    result
+                    backendLoad(forceUpdate)
                 } else {
-                    // Time has not passed, let's load from local
-                    checkNotNull(localLoad())
+                    try {
+                        // Time has not passed, let's load from local
+                        checkNotNull(localLoad())
+                    } catch (e: Exception) {
+                        // Failed to get local, let's force load from backend
+                        backendLoad(true)
+                    }
                 }
             } catch (e: Exception) {
                 // Fallback to local

@@ -18,9 +18,9 @@ internal class ConfigRepository(
         return updatableLoad(
             delayMilliseconds = CONFIG_UPDATE_DURATION,
             forceUpdate = forceUpdate,
-            remoteLoad = {
+            remoteLoad = { forceLoad ->
                 val etag = localDataSource.getEtag()
-                remoteDataSource.getBackendConfig(etag)
+                remoteDataSource.getBackendConfig(etag.takeIf { !forceLoad })
             },
             localLoad = {
                 localDataSource.getBackendConfig()
