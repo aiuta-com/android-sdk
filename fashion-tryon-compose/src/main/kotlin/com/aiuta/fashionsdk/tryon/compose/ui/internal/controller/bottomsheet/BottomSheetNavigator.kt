@@ -18,6 +18,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.disclaimer.FitDisclaimerSheet
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.ExtraFeedbackSheet
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.FeedbackSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.GeneratedOperationsSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.ImagePickerSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.SKUInfoSheet
@@ -56,6 +58,8 @@ internal class BottomSheetNavigator(
     internal val sheetState: ModalBottomSheetState,
     public val currentBottomSheetScreen: MutableState<NavigationBottomSheetScreen>,
 ) {
+    val lastBottomSheetScreen = mutableStateOf(currentBottomSheetScreen.value)
+
     public val sheetContent: @Composable ColumnScope.() -> Unit = {
         when (val bottomScreen = currentBottomSheetScreen.value) {
             is NavigationBottomSheetScreen.ImagePicker -> {
@@ -65,6 +69,18 @@ internal class BottomSheetNavigator(
             is NavigationBottomSheetScreen.SKUInfo -> {
                 SKUInfoSheet(
                     skuInfo = bottomScreen,
+                )
+            }
+
+            is NavigationBottomSheetScreen.Feedback -> {
+                FeedbackSheet(
+                    feedbackData = bottomScreen,
+                )
+            }
+
+            is NavigationBottomSheetScreen.ExtraFeedback -> {
+                ExtraFeedbackSheet(
+                    data = bottomScreen,
                 )
             }
 
@@ -94,6 +110,7 @@ internal class BottomSheetNavigator(
     public fun hide() {
         scope.launch {
             sheetState.hide()
+            lastBottomSheetScreen.value = currentBottomSheetScreen.value
             currentBottomSheetScreen.value = NavigationBottomSheetScreen.IDLE
         }
     }

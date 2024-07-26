@@ -13,6 +13,21 @@ internal sealed interface NavigationBottomSheetScreen {
         public val text: String,
     ) : NavigationBottomSheetScreen
 
+    public class Feedback(
+        public val title: String,
+        public val options: List<String>,
+        public val itemIndex: Int,
+        public val extraOption: String? = null,
+        public val extraOptionTitle: String? = null,
+    ) : NavigationBottomSheetScreen {
+        val isExtraVisible: Boolean = extraOption != null && extraOptionTitle != null
+    }
+
+    public class ExtraFeedback(
+        public val extraOptionTitle: String,
+        public val itemIndex: Int,
+    ) : NavigationBottomSheetScreen
+
     public class SKUInfo(
         public val primaryButtonState: PrimaryButtonState,
         public val skuItem: SKUItem,

@@ -98,7 +98,7 @@ internal fun NavigationAlertDialog(
 
                 FashionButton(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResources.dialogCameraPermissionCancelButton,
+                    text = stringResources.cancel,
                     style = FashionButtonStyles.outlineStyle(theme),
                     size = FashionButtonSizes.xlSize(),
                     onClick = onDismissRequest,

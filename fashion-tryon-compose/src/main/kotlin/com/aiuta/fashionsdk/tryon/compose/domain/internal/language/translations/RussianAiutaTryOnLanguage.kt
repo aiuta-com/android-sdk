@@ -48,16 +48,21 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val generatedOperationsSheetPreviously: String = "Ранее использованные фото"
     override val generatedOperationsSheetUploadNewButton: String = "+ Загрузить новое фото"
 
+    // Feedback sheet
+    override val feedbackSheetSkip: String = "Пропустить"
+    override val feedbackSheetSend: String = "Отправить"
+    override val feedbackSheetSendFeedback: String = "Отправить отзыв"
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Разрешение использования камеры"
     override val dialogCameraPermissionDescription: String = "Пожалуйста, предоставьте доступ к камере в настройках приложения."
     override val dialogCameraPermissionConfirmButton: String = "Настройки"
-    override val dialogCameraPermissionCancelButton: String = "Отмена"
 
     // General
     override val addToWish: String = "В избранное"
     override val addToCart: String = "Добавить в корзину"
+    override val cancel: String = "Отмена"
     override val moreDetails: String = "Подробнее"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Примерить"

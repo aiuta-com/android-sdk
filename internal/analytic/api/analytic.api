@@ -88,6 +88,15 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/FinishTryOn : co
 	public fun getName ()Ljava/lang/String;
 }
 
+public final class com/aiuta/fashionsdk/internal/analytic/model/GenerationFeedback : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field FEEDBACK_PARAM Ljava/lang/String;
+	public static final field GENERATED_PHOTO_POSITION_PARAM Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/GenerationFeedback;
+	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
+	public static final field SKU_ID_PARAM Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
+}
+
 public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
 	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$Companion;
 	public abstract fun getName ()Ljava/lang/String;

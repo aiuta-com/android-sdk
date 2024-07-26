@@ -117,7 +117,9 @@ internal class GenerationResultController(
     public val imageCarouselState: LazyListState,
     // Swipe state
     public val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
-)
+) {
+    public val isThanksFeedbackBlockVisible = mutableStateOf(false)
+}
 
 // Size calculation
 internal fun GenerationResultController.bodyHeight(maxHeight: Dp) =

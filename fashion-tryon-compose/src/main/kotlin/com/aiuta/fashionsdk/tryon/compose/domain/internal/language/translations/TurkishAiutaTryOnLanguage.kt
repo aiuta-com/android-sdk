@@ -48,16 +48,21 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val generatedOperationsSheetPreviously: String = "Önceden yüklenen fotoğraflar"
     override val generatedOperationsSheetUploadNewButton: String = "+ Yeni fotoğraf yükle"
 
+    // Feedback sheet
+    override val feedbackSheetSkip: String = "Atlamak"
+    override val feedbackSheetSend: String = "Gönder"
+    override val feedbackSheetSendFeedback: String = "Geribildirim gönder"
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Kamera izni"
     override val dialogCameraPermissionDescription: String = "Lütfen uygulama ayarlarından kameraya erişime izin verin."
     override val dialogCameraPermissionConfirmButton: String = "Ayarlar"
-    override val dialogCameraPermissionCancelButton: String = "İptal"
 
     // General
     override val addToWish: String = "Listelerime ekle"
     override val addToCart: String = "Sepete ekle"
+    override val cancel: String = "İptal"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val moreDetails: String = "Daha fazla detay"
     override val tryOn: String = "Üzerinde Dene"

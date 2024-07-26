@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn

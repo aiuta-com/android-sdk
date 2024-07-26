@@ -57,7 +57,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 
 private val horizontalPadding = 32.dp
-private val sharedModifier = Modifier.fillMaxSize().padding(horizontal = horizontalPadding)
+private val sharedModifier =
+    Modifier
+        .fillMaxSize()
+        .padding(horizontal = horizontalPadding)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -86,6 +89,8 @@ internal fun GenerationVerticalPagerBlock(
                 PagerImageContainer(
                     modifier = sharedModifier,
                     imageUrl = generationUrls.getOrNull(index),
+                    itemIndex = index,
+                    generationResultController = generationResultController,
                 )
             }
 
@@ -93,6 +98,7 @@ internal fun GenerationVerticalPagerBlock(
                 // SKU Meta pages
                 HorizontalMetaPager(
                     modifier = Modifier.fillMaxSize(),
+                    generationResultController = generationResultController,
                 )
             }
         }
@@ -101,7 +107,10 @@ internal fun GenerationVerticalPagerBlock(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
+internal fun HorizontalMetaPager(
+    modifier: Modifier = Modifier,
+    generationResultController: GenerationResultController,
+) {
     val controller = LocalController.current
     val skuMetaImages = controller.activeSKUItem.value.imageUrls
 
@@ -121,6 +130,8 @@ internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
             imageUrl = skuMetaImages.getOrNull(index),
             isShareAvailable = false,
             isSwipeTipVisible = controller.isActiveSKUGenerateMoreNotEmpty().value,
+            itemIndex = index,
+            generationResultController = generationResultController,
         )
     }
 }
@@ -131,6 +142,8 @@ internal fun PagerImageContainer(
     imageUrl: String?,
     isShareAvailable: Boolean = true,
     isSwipeTipVisible: Boolean = false,
+    itemIndex: Int,
+    generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
@@ -205,6 +218,19 @@ internal fun PagerImageContainer(
                 imageUrl = imageUrl,
             )
         }
+
+        FeedbackBlock(
+            modifier =
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        horizontal = 8.dp,
+                        vertical = 12.dp,
+                    ),
+            isSwipeTipVisible = isSwipeTipVisible,
+            itemIndex = itemIndex,
+            generationResultController = generationResultController,
+        )
     }
 }
 

@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import com.aiuta.fashionsdk.internal.analytic.model.GenerationFeedback
 import com.aiuta.fashionsdk.internal.analytic.model.OpenResultsScreen
 import com.aiuta.fashionsdk.internal.analytic.model.SelectMoreToTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
@@ -92,6 +93,32 @@ internal fun FashionTryOnController.sendSelectMoreToTryOnEvent(skuItem: SKUItem)
         put(
             key = SelectMoreToTryOn.SKU_CATALOG_NAME_PARAM,
             value = skuItem.catalogName,
+        )
+    }
+}
+
+internal fun FashionTryOnController.sendGenerationFeedback(
+    generationIndex: Int,
+    feedback: String? = null,
+) {
+    val activeSKUItem = activeSKUItem.value
+
+    analytic.sendEvent(GenerationFeedback) {
+        put(
+            key = GenerationFeedback.SKU_ID_PARAM,
+            value = activeSKUItem.skuId,
+        )
+        put(
+            key = GenerationFeedback.SKU_CATALOG_NAME_PARAM,
+            value = activeSKUItem.catalogName,
+        )
+        put(
+            key = GenerationFeedback.GENERATED_PHOTO_POSITION_PARAM,
+            value = generationIndex.toString(),
+        )
+        put(
+            key = GenerationFeedback.FEEDBACK_PARAM,
+            value = feedback,
         )
     }
 }

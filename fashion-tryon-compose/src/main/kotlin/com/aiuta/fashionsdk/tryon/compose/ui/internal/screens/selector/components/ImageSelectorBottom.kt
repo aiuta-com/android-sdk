@@ -32,7 +32,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhot
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.transitionAnimation
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
 @Composable
 internal fun ImageSelectorBottom(
