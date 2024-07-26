@@ -19,6 +19,8 @@ public object FashionIcon {
 
     // x16
     public val Check16: Int = R.drawable.ic_check_16
+    public val Dislike16: Int = R.drawable.ic_dislike_16
+    public val Like16: Int = R.drawable.ic_like_16
 
     // General
     public val AiutaLogo: Int = R.drawable.ic_aiuta_logo

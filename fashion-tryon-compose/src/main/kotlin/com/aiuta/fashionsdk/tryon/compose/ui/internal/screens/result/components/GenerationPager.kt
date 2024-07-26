@@ -57,7 +57,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 
 private val horizontalPadding = 32.dp
-private val sharedModifier = Modifier.fillMaxSize().padding(horizontal = horizontalPadding)
+private val sharedModifier =
+    Modifier
+        .fillMaxSize()
+        .padding(horizontal = horizontalPadding)
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -205,6 +208,17 @@ internal fun PagerImageContainer(
                 imageUrl = imageUrl,
             )
         }
+
+        FeedbackBlock(
+            modifier =
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        horizontal = 8.dp,
+                        vertical = 12.dp,
+                    ),
+            isSwipeTipVisible = isSwipeTipVisible,
+        )
     }
 }
 
