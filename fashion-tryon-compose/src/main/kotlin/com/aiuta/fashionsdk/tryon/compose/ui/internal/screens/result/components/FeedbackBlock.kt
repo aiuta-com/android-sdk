@@ -85,7 +85,7 @@ internal fun FeedbackBlock(
                     ),
             )
         } else {
-            // TODO just show block with thanks
+            generationResultController.showThanksFeedbackBlock(scope)
         }
     }
 
