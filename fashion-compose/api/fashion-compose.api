@@ -57,9 +57,9 @@ public abstract interface class com/aiuta/fashionsdk/compose/tokens/AiutaColors 
 	public abstract fun getBackgroundElevation2-0d7_KjU ()J
 	public abstract fun getBrand-0d7_KjU ()J
 	public abstract fun getError-0d7_KjU ()J
-	public abstract fun getGray1-0d7_KjU ()J
-	public abstract fun getGray2-0d7_KjU ()J
-	public abstract fun getGray3-0d7_KjU ()J
+	public abstract fun getNeutral-0d7_KjU ()J
+	public abstract fun getNeutral2-0d7_KjU ()J
+	public abstract fun getNeutral3-0d7_KjU ()J
 	public abstract fun getOnDark-0d7_KjU ()J
 	public abstract fun getOnLight-0d7_KjU ()J
 	public abstract fun getPrimary-0d7_KjU ()J

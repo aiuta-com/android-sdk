@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.onboarding.OnboardingEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
 
 @Dao
 internal interface OnboardingDao {

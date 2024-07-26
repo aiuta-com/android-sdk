@@ -22,9 +22,9 @@ public interface AiutaColors {
     public val tertiary: Color
     public val onDark: Color
     public val onLight: Color
-    public val gray1: Color
-    public val gray2: Color
-    public val gray3: Color
+    public val neutral: Color
+    public val neutral2: Color
+    public val neutral3: Color
     public val error: Color
 }
 
@@ -66,9 +66,9 @@ private fun defaultAiutaDarkColors(
         override val tertiary: Color = Color(0x4AEFEEEE)
         override val onDark: Color = Color(0xFFFFFFFF)
         override val onLight: Color = Color(0xFF000000)
-        override val gray1: Color = Color(0xFF1D1D1D)
-        override val gray2: Color = Color(0xFF2C2C2E)
-        override val gray3: Color = Color(0xFF48484A)
+        override val neutral: Color = Color(0xFF1D1D1D)
+        override val neutral2: Color = Color(0xFF2C2C2E)
+        override val neutral3: Color = Color(0xFF48484A)
     }
 }
 
@@ -89,8 +89,8 @@ private fun defaultAiutaLightColors(
         override val tertiary: Color = Color(0xFFEEEEEE)
         override val onDark: Color = Color(0xFFFFFFFF)
         override val onLight: Color = Color(0xFF000000)
-        override val gray1: Color = Color(0xFFF2F2F7)
-        override val gray2: Color = Color(0xFFE5E5EA)
-        override val gray3: Color = Color(0xFFC7C7CC)
+        override val neutral: Color = Color(0xFFF2F2F7)
+        override val neutral2: Color = Color(0xFFE5E5EA)
+        override val neutral3: Color = Color(0xFFC7C7CC)
     }
 }

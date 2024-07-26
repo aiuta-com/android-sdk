@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.time.TimestampEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 
 @Dao
 internal interface TimeDao {

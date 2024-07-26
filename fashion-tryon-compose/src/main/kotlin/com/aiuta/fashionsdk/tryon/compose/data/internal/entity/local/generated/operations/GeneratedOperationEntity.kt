@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.generated.operations
+package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

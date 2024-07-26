@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.time
+package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

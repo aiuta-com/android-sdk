@@ -18,7 +18,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/c
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun getCodes (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
-	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/code/AiutaCodeEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/code/AiutaCodeEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -28,7 +28,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/c
 	public fun getAll (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getAllEtags (ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
-	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/config/ClientConfigEntity;)V
+	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/config/ClientConfigEntity;)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/images/dao/GeneratedImageDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/images/dao/GeneratedImageDao {
@@ -46,10 +46,10 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun countGeneratedOperation ()Lkotlinx/coroutines/flow/Flow;
 	public fun deleteOperation (J)V
-	public fun getLastGeneratedOperationWithImages ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/generated/operations/GeneratedOperationWithImages;
-	public fun getOperation (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/generated/operations/GeneratedOperationEntity;
+	public fun getLastGeneratedOperationWithImages ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationWithImages;
+	public fun getOperation (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationEntity;
 	public static fun getRequiredConverters ()Ljava/util/List;
-	public fun insertOperation (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/generated/operations/GeneratedOperationEntity;)J
+	public fun insertOperation (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationEntity;)J
 	public fun pagingGeneratedOperationWithImagesSource ()Landroidx/paging/PagingSource;
 	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -57,9 +57,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao {
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun deleteImages (J)V
-	public fun getImage (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/generated/images/SourceImageEntity;
+	public fun getImage (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/images/SourceImageEntity;
 	public static fun getRequiredConverters ()Ljava/util/List;
-	public fun insertImage (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/generated/images/SourceImageEntity;)J
+	public fun insertImage (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/images/SourceImageEntity;)J
 	public fun removeAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -67,7 +67,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/o
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun count (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
-	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/onboarding/OnboardingEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/onboarding/OnboardingEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/time/dao/TimeDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/time/dao/TimeDao {
@@ -75,7 +75,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/t
 	public fun deleteTimestamp (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun getTimestamps (ILjava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/time/TimestampEntity;)V
+	public fun insert (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/time/TimestampEntity;)V
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnColors {

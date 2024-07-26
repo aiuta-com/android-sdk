@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time
 import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.time.TimestampEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

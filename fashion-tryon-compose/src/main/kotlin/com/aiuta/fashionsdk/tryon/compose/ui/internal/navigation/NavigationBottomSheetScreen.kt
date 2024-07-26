@@ -9,6 +9,10 @@ internal sealed interface NavigationBottomSheetScreen {
 
     public object ImagePicker : NavigationBottomSheetScreen
 
+    public class FitDisclaimer(
+        public val text: String,
+    ) : NavigationBottomSheetScreen
+
     public class SKUInfo(
         public val primaryButtonState: PrimaryButtonState,
         public val skuItem: SKUItem,

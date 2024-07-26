@@ -205,7 +205,7 @@ private fun ImageContainer(
                         .size(24.dp)
                         .border(width = 1.dp, color = theme.colors.onDark, shape = CircleShape)
                         .background(
-                            color = if (isSelectedItem) theme.colors.aiuta else theme.colors.gray1,
+                            color = if (isSelectedItem) theme.colors.aiuta else theme.colors.neutral,
                             shape = CircleShape,
                         ),
                 contentAlignment = Alignment.Center,
