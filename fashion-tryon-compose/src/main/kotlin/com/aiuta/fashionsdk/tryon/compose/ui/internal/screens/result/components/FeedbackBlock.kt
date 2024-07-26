@@ -38,6 +38,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
     isSwipeTipVisible: Boolean,
+    itemIndex: Int,
 ) {
     val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
@@ -67,6 +68,7 @@ internal fun FeedbackBlock(
                 newSheetScreen =
                     NavigationBottomSheetScreen.Feedback(
                         title = feedbackSheetTitle,
+                        itemIndex = itemIndex,
                         options =
                             data.mainOptions.mapNotNull {
                                 it.toTranslatedString(

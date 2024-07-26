@@ -89,6 +89,7 @@ internal fun GenerationVerticalPagerBlock(
                 PagerImageContainer(
                     modifier = sharedModifier,
                     imageUrl = generationUrls.getOrNull(index),
+                    itemIndex = index,
                 )
             }
 
@@ -124,6 +125,7 @@ internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
             imageUrl = skuMetaImages.getOrNull(index),
             isShareAvailable = false,
             isSwipeTipVisible = controller.isActiveSKUGenerateMoreNotEmpty().value,
+            itemIndex = index,
         )
     }
 }
@@ -134,6 +136,7 @@ internal fun PagerImageContainer(
     imageUrl: String?,
     isShareAvailable: Boolean = true,
     isSwipeTipVisible: Boolean = false,
+    itemIndex: Int,
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
@@ -218,6 +221,7 @@ internal fun PagerImageContainer(
                         vertical = 12.dp,
                     ),
             isSwipeTipVisible = isSwipeTipVisible,
+            itemIndex = itemIndex,
         )
     }
 }

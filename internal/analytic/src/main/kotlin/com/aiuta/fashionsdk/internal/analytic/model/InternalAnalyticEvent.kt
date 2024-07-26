@@ -279,6 +279,15 @@ public object ShareGeneratedImage : InternalAnalyticEvent, ShareableAnalyticEven
     }
 }
 
+public object GenerationFeedback : InternalAnalyticEvent {
+    override val name: String = "GenerationFeedback"
+
+    public const val SKU_ID_PARAM: String = "sku_id"
+    public const val SKU_CATALOG_NAME_PARAM: String = "sku_catalog_name"
+    public const val GENERATED_PHOTO_POSITION_PARAM: String = "generated_photo_position"
+    public const val FEEDBACK_PARAM: String = "feedback"
+}
+
 public object ShareSuccessfully : InternalAnalyticEvent {
     override val name: String = "ShareSuccessfully"
 

@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
@@ -105,6 +106,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                             newSheetScreen =
                                 NavigationBottomSheetScreen.ExtraFeedback(
                                     extraOptionTitle = extraOptionTitle,
+                                    itemIndex = feedbackData.itemIndex,
                                 ),
                         )
                     }
@@ -126,7 +128,9 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                     Modifier
                         .fillMaxWidth()
                         .clickableUnindicated {
-                            // TODO
+                            controller.sendGenerationFeedback(
+                                generationIndex = feedbackData.itemIndex,
+                            )
                         },
                 text = stringResources.feedbackSheetSkip,
                 style =
@@ -144,7 +148,10 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.xlSize(),
                 onClick = {
-                    // TODO
+                    controller.sendGenerationFeedback(
+                        generationIndex = feedbackData.itemIndex,
+                        feedback = selectedOption.value,
+                    )
                 },
             )
         }
