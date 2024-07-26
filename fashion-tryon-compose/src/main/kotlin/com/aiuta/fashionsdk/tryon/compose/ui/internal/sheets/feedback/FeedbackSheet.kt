@@ -81,7 +81,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 option = option,
                 isSelected = option == selectedOption.value,
                 onClick = {
-                    selectedOption.value = option
+                    selectedOption.value = option.takeIf { selectedOption.value == null }
                 },
             )
 
@@ -123,9 +123,11 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
         if (!isVisibleButton) {
             Text(
                 modifier =
-                    Modifier.clickableUnindicated {
-                        // TODO
-                    },
+                    Modifier
+                        .fillMaxWidth()
+                        .clickableUnindicated {
+                            // TODO
+                        },
                 text = stringResources.feedbackSheetSkip,
                 style =
                     MaterialTheme.typography.body1.copy(
