@@ -58,6 +58,8 @@ internal class BottomSheetNavigator(
     internal val sheetState: ModalBottomSheetState,
     public val currentBottomSheetScreen: MutableState<NavigationBottomSheetScreen>,
 ) {
+    val lastBottomSheetScreen = mutableStateOf(currentBottomSheetScreen.value)
+
     public val sheetContent: @Composable ColumnScope.() -> Unit = {
         when (val bottomScreen = currentBottomSheetScreen.value) {
             is NavigationBottomSheetScreen.ImagePicker -> {
@@ -108,6 +110,7 @@ internal class BottomSheetNavigator(
     public fun hide() {
         scope.launch {
             sheetState.hide()
+            lastBottomSheetScreen.value = currentBottomSheetScreen.value
             currentBottomSheetScreen.value = NavigationBottomSheetScreen.IDLE
         }
     }

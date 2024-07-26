@@ -131,6 +131,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                             controller.sendGenerationFeedback(
                                 generationIndex = feedbackData.itemIndex,
                             )
+                            controller.bottomSheetNavigator.hide()
                         },
                 text = stringResources.feedbackSheetSkip,
                 style =
@@ -152,6 +153,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                         generationIndex = feedbackData.itemIndex,
                         feedback = selectedOption.value,
                     )
+                    controller.bottomSheetNavigator.hide()
                 },
             )
         }

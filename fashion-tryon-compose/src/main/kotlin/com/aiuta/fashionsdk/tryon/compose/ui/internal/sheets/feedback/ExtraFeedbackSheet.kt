@@ -118,11 +118,11 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
             onClick = {
-                // TODO
                 controller.sendGenerationFeedback(
                     generationIndex = data.itemIndex,
                     feedback = feedbackText.value,
                 )
+                controller.bottomSheetNavigator.hide()
             },
         )
 

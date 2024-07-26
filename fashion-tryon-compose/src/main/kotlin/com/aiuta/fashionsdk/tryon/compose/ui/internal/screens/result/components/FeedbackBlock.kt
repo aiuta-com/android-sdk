@@ -16,6 +16,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,17 +34,21 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
 
 @Composable
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
     isSwipeTipVisible: Boolean,
     itemIndex: Int,
+    generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
+    val scope = rememberCoroutineScope()
     val isFeedbackSelected =
         remember {
             mutableStateOf(false)
@@ -96,13 +101,12 @@ internal fun FeedbackBlock(
     ) {
         FeedbackBlockContent(
             onDislikeClick = {
-                // TODO
-//                isFeedbackSelected.value = true
+                generationResultController.showThanksFeedbackBlock(scope)
+                isFeedbackSelected.value = true
             },
             onLikeClick = {
-                // TODO
                 onFeedbackClick()
-//                isFeedbackSelected.value = true
+                isFeedbackSelected.value = true
             },
         )
     }

@@ -90,6 +90,7 @@ internal fun GenerationVerticalPagerBlock(
                     modifier = sharedModifier,
                     imageUrl = generationUrls.getOrNull(index),
                     itemIndex = index,
+                    generationResultController = generationResultController,
                 )
             }
 
@@ -97,6 +98,7 @@ internal fun GenerationVerticalPagerBlock(
                 // SKU Meta pages
                 HorizontalMetaPager(
                     modifier = Modifier.fillMaxSize(),
+                    generationResultController = generationResultController,
                 )
             }
         }
@@ -105,7 +107,10 @@ internal fun GenerationVerticalPagerBlock(
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
+internal fun HorizontalMetaPager(
+    modifier: Modifier = Modifier,
+    generationResultController: GenerationResultController,
+) {
     val controller = LocalController.current
     val skuMetaImages = controller.activeSKUItem.value.imageUrls
 
@@ -126,6 +131,7 @@ internal fun HorizontalMetaPager(modifier: Modifier = Modifier) {
             isShareAvailable = false,
             isSwipeTipVisible = controller.isActiveSKUGenerateMoreNotEmpty().value,
             itemIndex = index,
+            generationResultController = generationResultController,
         )
     }
 }
@@ -137,6 +143,7 @@ internal fun PagerImageContainer(
     isShareAvailable: Boolean = true,
     isSwipeTipVisible: Boolean = false,
     itemIndex: Int,
+    generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
@@ -222,6 +229,7 @@ internal fun PagerImageContainer(
                     ),
             isSwipeTipVisible = isSwipeTipVisible,
             itemIndex = itemIndex,
+            generationResultController = generationResultController,
         )
     }
 }

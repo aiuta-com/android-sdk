@@ -36,6 +36,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationCarouselBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationMoreBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationVerticalPagerBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.ThanksFeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.connection.rememberGenerationResultNestedScroll
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
@@ -164,6 +165,14 @@ internal fun GenerationResultInterface(
                         .height(generationResultController.bodyHeight(maxHeight))
                         .padding(start = 16.dp)
                         .align(Alignment.TopStart),
+                generationResultController = generationResultController,
+            )
+
+            ThanksFeedbackBlock(
+                modifier =
+                    Modifier
+                        .zIndex(generationResultController.zIndexInterface)
+                        .align(Alignment.Center),
                 generationResultController = generationResultController,
             )
         }
