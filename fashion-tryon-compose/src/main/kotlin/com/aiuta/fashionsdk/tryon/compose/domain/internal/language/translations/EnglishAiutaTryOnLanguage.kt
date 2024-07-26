@@ -51,17 +51,18 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Feedback sheet
     override val feedbackSheetSkip: String = "Skip"
     override val feedbackSheetSend: String = "Send"
+    override val feedbackSheetSendFeedback: String = "Send feedback"
 
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Camera permission"
     override val dialogCameraPermissionDescription: String = "Please allow access to the camera in the application settings."
     override val dialogCameraPermissionConfirmButton: String = "Settings"
-    override val dialogCameraPermissionCancelButton: String = "Cancel"
 
     // General
     override val addToWish: String = "Add to wishlist"
     override val addToCart: String = "Add to cart"
+    override val cancel: String = "Cancel"
     override val moreDetails: String = "More details"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Try on"

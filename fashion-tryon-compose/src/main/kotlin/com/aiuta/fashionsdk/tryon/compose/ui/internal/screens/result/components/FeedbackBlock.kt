@@ -95,11 +95,12 @@ internal fun FeedbackBlock(
         FeedbackBlockContent(
             onDislikeClick = {
                 // TODO
-                isFeedbackSelected.value = true
+//                isFeedbackSelected.value = true
             },
             onLikeClick = {
+                // TODO
                 onFeedbackClick()
-                isFeedbackSelected.value = true
+//                isFeedbackSelected.value = true
             },
         )
     }

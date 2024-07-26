@@ -1,0 +1,126 @@
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback
+
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+
+@Composable
+internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.ExtraFeedback) {
+    val controller = LocalController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
+    val theme = LocalTheme.current
+
+    val feedbackText = remember { mutableStateOf("") }
+
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+                .windowInsetsPadding(WindowInsets.statusBars)
+                .windowInsetsPadding(WindowInsets.navigationBars)
+                .windowInsetsPadding(WindowInsets.ime),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            modifier =
+                Modifier
+                    .align(Alignment.End)
+                    .clickableUnindicated {
+                        controller.bottomSheetNavigator.hide()
+                    },
+            text = stringResources.cancel,
+            style =
+                MaterialTheme.typography.body1.copy(
+                    fontSize = 18.sp,
+                    lineHeight = 22.sp,
+                ),
+            color = theme.colors.primary,
+            textAlign = TextAlign.Center,
+        )
+
+        Spacer(Modifier.height(32.dp))
+
+        Text(
+            modifier = Modifier.align(Alignment.Start),
+            text = data.extraOptionTitle,
+            style =
+                MaterialTheme.typography.h3.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 24.sp,
+                    lineHeight = 28.sp,
+                ),
+            color = theme.colors.primary,
+            textAlign = TextAlign.Start,
+        )
+
+        Spacer(Modifier.height(20.dp))
+
+        TextField(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 160.dp)
+                    .animateContentSize(),
+            value = feedbackText.value,
+            onValueChange = { feedbackText.value = it },
+            shape = RoundedCornerShape(16.dp),
+            colors =
+                TextFieldDefaults.textFieldColors(
+                    textColor = theme.colors.primary,
+                    backgroundColor = theme.colors.neutral,
+                    cursorColor = theme.colors.primary,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                ),
+        )
+
+        Spacer(Modifier.weight(1f))
+
+        FashionButton(
+            modifier = Modifier.fillMaxWidth(),
+            text = stringResources.feedbackSheetSendFeedback,
+            style = FashionButtonStyles.primaryStyle(theme),
+            size = FashionButtonSizes.xlSize(),
+            onClick = {
+                // TODO
+            },
+        )
+
+        Spacer(Modifier.height(16.dp))
+    }
+}

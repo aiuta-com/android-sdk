@@ -27,6 +27,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -34,6 +35,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
 @Composable
 internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen.Feedback) {
+    val controller = LocalController.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -98,7 +100,14 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 option = it,
                 isSelected = false,
                 onClick = {
-                    // TODO
+                    feedbackData.extraOptionTitle?.let { extraOptionTitle ->
+                        controller.bottomSheetNavigator.change(
+                            newSheetScreen =
+                                NavigationBottomSheetScreen.ExtraFeedback(
+                                    extraOptionTitle = extraOptionTitle,
+                                ),
+                        )
+                    }
                 },
             )
         }
@@ -113,6 +122,10 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
     ) { isVisibleButton ->
         if (!isVisibleButton) {
             Text(
+                modifier =
+                    Modifier.clickableUnindicated {
+                        // TODO
+                    },
                 text = stringResources.feedbackSheetSkip,
                 style =
                     MaterialTheme.typography.body1.copy(

@@ -18,6 +18,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.disclaimer.FitDisclaimerSheet
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.ExtraFeedbackSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.FeedbackSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.GeneratedOperationsSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.ImagePickerSheet
@@ -72,6 +73,12 @@ internal class BottomSheetNavigator(
             is NavigationBottomSheetScreen.Feedback -> {
                 FeedbackSheet(
                     feedbackData = bottomScreen,
+                )
+            }
+
+            is NavigationBottomSheetScreen.ExtraFeedback -> {
+                ExtraFeedbackSheet(
+                    data = bottomScreen,
                 )
             }
 

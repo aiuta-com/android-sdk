@@ -22,6 +22,10 @@ internal sealed interface NavigationBottomSheetScreen {
         val isExtraVisible: Boolean = extraOption != null && extraOptionTitle != null
     }
 
+    public class ExtraFeedback(
+        public val extraOptionTitle: String,
+    ) : NavigationBottomSheetScreen
+
     public class SKUInfo(
         public val primaryButtonState: PrimaryButtonState,
         public val skuItem: SKUItem,
