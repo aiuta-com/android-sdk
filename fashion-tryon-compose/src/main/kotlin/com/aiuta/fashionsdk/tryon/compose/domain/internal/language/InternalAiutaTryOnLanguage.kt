@@ -44,6 +44,10 @@ internal interface InternalAiutaTryOnLanguage {
     val generatedOperationsSheetPreviously: String
     val generatedOperationsSheetUploadNewButton: String
 
+    // Feedback sheet
+    val feedbackSheetSkip: String
+    val feedbackSheetSend: String
+
     // Dialog
     // Camera permission
     val dialogCameraPermissionTitle: String

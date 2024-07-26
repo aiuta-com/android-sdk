@@ -48,6 +48,10 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val generatedOperationsSheetPreviously: String = "Previously used photos"
     override val generatedOperationsSheetUploadNewButton: String = "+ Upload new photo"
 
+    // Feedback sheet
+    override val feedbackSheetSkip: String = "Skip"
+    override val feedbackSheetSend: String = "Send"
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Camera permission"

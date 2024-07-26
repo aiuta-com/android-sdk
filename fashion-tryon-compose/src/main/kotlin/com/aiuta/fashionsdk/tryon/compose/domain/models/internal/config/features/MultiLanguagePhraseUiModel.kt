@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.feature
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.MultiLanguagePhrase
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isoCode
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -25,6 +26,13 @@ internal fun MultiLanguagePhrase.toUiModel(): MultiLanguagePhraseUiModel {
 @Composable
 internal fun MultiLanguagePhraseUiModel.toTranslatedString(): String? {
     val stringResources = LocalAiutaTryOnStringResources.current
+
+    return toTranslatedString(stringResources)
+}
+
+internal fun MultiLanguagePhraseUiModel.toTranslatedString(
+    stringResources: InternalAiutaTryOnLanguage,
+): String? {
     val currentIsoCode = stringResources.isoCode()
 
     return when (currentIsoCode) {

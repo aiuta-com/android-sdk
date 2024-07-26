@@ -48,6 +48,10 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val generatedOperationsSheetPreviously: String = "Önceden yüklenen fotoğraflar"
     override val generatedOperationsSheetUploadNewButton: String = "+ Yeni fotoğraf yükle"
 
+    // Feedback sheet
+    override val feedbackSheetSkip: String = "Atlamak"
+    override val feedbackSheetSend: String = "Gönder"
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Kamera izni"

@@ -27,15 +27,21 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFeedbackFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 
 @Composable
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
     isSwipeTipVisible: Boolean,
 ) {
+    val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     val isFeedbackSelected =
         remember {
@@ -51,6 +57,30 @@ internal fun FeedbackBlock(
                 !isFeedbackSelected.value && feedbackData.value != null && !isSwipeTipVisible
             }
         }
+
+    val onFeedbackClick = {
+        val data = feedbackData.value
+        val feedbackSheetTitle = data?.title?.toTranslatedString(stringResources)
+
+        if (feedbackSheetTitle != null) {
+            controller.bottomSheetNavigator.show(
+                newSheetScreen =
+                    NavigationBottomSheetScreen.Feedback(
+                        title = feedbackSheetTitle,
+                        options =
+                            data.mainOptions.mapNotNull {
+                                it.toTranslatedString(
+                                    stringResources,
+                                )
+                            },
+                        extraOption = data.plaintextOption?.toTranslatedString(stringResources),
+                        extraOptionTitle = data.plaintextTitle?.toTranslatedString(stringResources),
+                    ),
+            )
+        } else {
+            // TODO just show block with thanks
+        }
+    }
 
     LaunchedEffect(Unit) {
         feedbackData.value = dataController.provideFeedbackFeature()
@@ -68,7 +98,7 @@ internal fun FeedbackBlock(
                 isFeedbackSelected.value = true
             },
             onLikeClick = {
-                // TODO
+                onFeedbackClick()
                 isFeedbackSelected.value = true
             },
         )
