@@ -2,7 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import com.aiuta.fashionsdk.internal.analytic.model.DislikeGenerationFeedback
 import com.aiuta.fashionsdk.internal.analytic.model.GenerationFeedback
+import com.aiuta.fashionsdk.internal.analytic.model.LikeGenerationFeedback
 import com.aiuta.fashionsdk.internal.analytic.model.OpenResultsScreen
 import com.aiuta.fashionsdk.internal.analytic.model.SelectMoreToTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
@@ -119,6 +121,44 @@ internal fun FashionTryOnController.sendGenerationFeedback(
         put(
             key = GenerationFeedback.FEEDBACK_PARAM,
             value = feedback,
+        )
+    }
+}
+
+internal fun FashionTryOnController.sendLikeGenerationFeedback(generationIndex: Int) {
+    val activeSKUItem = activeSKUItem.value
+
+    analytic.sendEvent(LikeGenerationFeedback) {
+        put(
+            key = LikeGenerationFeedback.SKU_ID_PARAM,
+            value = activeSKUItem.skuId,
+        )
+        put(
+            key = LikeGenerationFeedback.SKU_CATALOG_NAME_PARAM,
+            value = activeSKUItem.catalogName,
+        )
+        put(
+            key = LikeGenerationFeedback.GENERATED_PHOTO_POSITION_PARAM,
+            value = generationIndex.toString(),
+        )
+    }
+}
+
+internal fun FashionTryOnController.sendDislikeGenerationFeedback(generationIndex: Int) {
+    val activeSKUItem = activeSKUItem.value
+
+    analytic.sendEvent(DislikeGenerationFeedback) {
+        put(
+            key = DislikeGenerationFeedback.SKU_ID_PARAM,
+            value = activeSKUItem.skuId,
+        )
+        put(
+            key = DislikeGenerationFeedback.SKU_CATALOG_NAME_PARAM,
+            value = activeSKUItem.catalogName,
+        )
+        put(
+            key = DislikeGenerationFeedback.GENERATED_PHOTO_POSITION_PARAM,
+            value = generationIndex.toString(),
         )
     }
 }
