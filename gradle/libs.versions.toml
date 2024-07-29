@@ -24,7 +24,7 @@ gradle-plugin-android = "8.2.2"
 gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
 
-kotlinx-serialization = "1.6.2"
+kotlinx-serialization = "1.7.1"
 ktor = "2.3.11"
 
 jetbrains-compose-compiler = "1.5.7.1"
