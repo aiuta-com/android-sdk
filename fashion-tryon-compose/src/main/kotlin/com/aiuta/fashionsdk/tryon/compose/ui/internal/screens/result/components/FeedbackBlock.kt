@@ -34,6 +34,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendDislikeGenerationFeedback
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendLikeGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
 
@@ -101,11 +103,13 @@ internal fun FeedbackBlock(
     ) {
         FeedbackBlockContent(
             onDislikeClick = {
-                generationResultController.showThanksFeedbackBlock(scope)
+                controller.sendDislikeGenerationFeedback(itemIndex)
+                onFeedbackClick()
                 isFeedbackSelected.value = true
             },
             onLikeClick = {
-                onFeedbackClick()
+                controller.sendLikeGenerationFeedback(itemIndex)
+                generationResultController.showThanksFeedbackBlock(scope)
                 isFeedbackSelected.value = true
             },
         )

@@ -41,6 +41,14 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/ContinueOnBoardi
 	public fun getName ()Ljava/lang/String;
 }
 
+public final class com/aiuta/fashionsdk/internal/analytic/model/DislikeGenerationFeedback : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field GENERATED_PHOTO_POSITION_PARAM Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/DislikeGenerationFeedback;
+	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
+	public static final field SKU_ID_PARAM Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
+}
+
 public final class com/aiuta/fashionsdk/internal/analytic/model/FinishOnBoarding : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/FinishOnBoarding;
 	public fun getName ()Ljava/lang/String;
@@ -104,6 +112,14 @@ public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/Int
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/LikeGenerationFeedback : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field GENERATED_PHOTO_POSITION_PARAM Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/LikeGenerationFeedback;
+	public static final field SKU_CATALOG_NAME_PARAM Ljava/lang/String;
+	public static final field SKU_ID_PARAM Ljava/lang/String;
+	public fun getName ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/OpenHistoryScreen : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent, com/aiuta/fashionsdk/internal/analytic/model/ShareableAnalyticEvent {
