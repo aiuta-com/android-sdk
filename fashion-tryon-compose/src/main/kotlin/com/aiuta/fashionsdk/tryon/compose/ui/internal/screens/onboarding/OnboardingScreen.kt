@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.BestResultPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.DisclaimerContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
@@ -118,7 +119,18 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             },
         )
 
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(16.dp))
+
+        DisclaimerContent(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(32.dp)
+                    .padding(horizontal = 32.dp),
+            onboardingController = onboardingController,
+        )
+
+        Spacer(Modifier.height(16.dp))
     }
 }
 
@@ -156,7 +168,10 @@ private fun OnboardingScreenContent(
 
                 is BestResultPage -> {
                     BestResultPageContent(
-                        modifier = Modifier.fillMaxSize().padding(32.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(32.dp),
                         state = state,
                     )
                 }
