@@ -91,14 +91,15 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnCo
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration {
 	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
+	public abstract fun getLegalDisclaimerUrl ()Ljava/lang/String;
 	public abstract fun getPhotoSelectionLimit ()I
 	public abstract fun isHistoryAvailable ()Z
 	public abstract fun isWishlistAvailable ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;IZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;IZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Ljava/lang/String;IZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Ljava/lang/String;IZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage : java/lang/Enum {

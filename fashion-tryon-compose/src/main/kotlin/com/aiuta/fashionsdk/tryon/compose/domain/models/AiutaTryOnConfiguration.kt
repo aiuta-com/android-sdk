@@ -19,6 +19,12 @@ public interface AiutaTryOnConfiguration {
     public val language: AiutaTryOnLanguage?
 
     /**
+     * Possible url of legal disclaimer, which will shows in
+     * onboarding flow
+     */
+    public val legalDisclaimerUrl: String?
+
+    /**
      * The maximum number of photos that a user can select
      * in the system picket for virtual try on.
      */
@@ -41,12 +47,14 @@ public interface AiutaTryOnConfiguration {
 
 public fun defaultAiutaTryOnConfiguration(
     language: AiutaTryOnLanguage? = null,
+    legalDisclaimerUrl: String? = null,
     photoSelectionLimit: Int = 10,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage? = language
+        override val legalDisclaimerUrl: String? = legalDisclaimerUrl
         override val photoSelectionLimit: Int = photoSelectionLimit
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
