@@ -93,7 +93,7 @@ internal class KtorHttpClientFactory(
     }
 
     private companion object {
-        const val DEFAULT_BACKEND_ENDPOINT = "api.aiuta.com"
+        const val DEFAULT_BACKEND_ENDPOINT = "api.aiuta.com/digital-try-on/v1"
         const val HEADER_API_KEY = "x-api-key"
 
         const val ERROR_API_KEY_EMPTY_MESSAGE = """
