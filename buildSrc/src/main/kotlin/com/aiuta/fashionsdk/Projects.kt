@@ -10,9 +10,12 @@ import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
+import org.jetbrains.kotlin.gradle.model.ComposeCompiler
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.androidLibrary(
@@ -26,7 +29,6 @@ fun Project.androidLibrary(
 ) {
     buildFeatures {
         buildConfig = config
-        compose = composeLibrary
     }
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
@@ -35,14 +37,15 @@ fun Project.androidLibrary(
             configure(AndroidSingleVariantLibrary())
         }
     }
+    if (composeLibrary) {
+        apply(plugin = "org.jetbrains.kotlin.plugin.compose")
+        extensions.configure<ComposeCompilerGradlePluginExtension> {
+            enableStrongSkippingMode = true
+        }
+    }
     if (config) {
         defaultConfig {
             buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
-        }
-    }
-    if (composeLibrary) {
-        composeOptions {
-            kotlinCompilerExtensionVersion = "1.5.14"
         }
     }
     action()
@@ -83,8 +86,9 @@ fun Project.androidApplication(
         compose = composeApp
     }
     if (composeApp) {
-        composeOptions {
-            kotlinCompilerExtensionVersion = "1.5.14"
+        apply(plugin = "org.jetbrains.kotlin.plugin.compose")
+        extensions.configure<ComposeCompilerGradlePluginExtension> {
+            enableStrongSkippingMode = true
         }
     }
     action()
