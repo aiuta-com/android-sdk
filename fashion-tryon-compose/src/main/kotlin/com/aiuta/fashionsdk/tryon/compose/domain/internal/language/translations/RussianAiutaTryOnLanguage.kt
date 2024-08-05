@@ -15,8 +15,9 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Загрузите своё фото и порадуйтесь новому образу"
     override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
     override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
-    override val onboardingLegalDisclaimerNonClickable: String = "Загружая фото, вы соглашаетесь с"
+    override val onboardingLegalDisclaimerBeforeClickable: String = "Загружая фото, вы соглашаетесь с"
     override val onboardingLegalDisclaimerClickable: String = "условиями"
+    override val onboardingLegalDisclaimerAfterClickable: String = ""
 
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"

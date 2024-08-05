@@ -15,8 +15,9 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Just upload your photo and see how it looks"
     override val onboardingPageBestResultTopic: String = "For best results"
     override val onboardingPageBestResultSubtopic: String = "Use a photo with good lighting, stand straight a plain background"
-    override val onboardingLegalDisclaimerNonClickable: String = "Your photo is processed as per the"
+    override val onboardingLegalDisclaimerBeforeClickable: String = "Your photo is processed as per the"
     override val onboardingLegalDisclaimerClickable: String = "Clarification Text"
+    override val onboardingLegalDisclaimerAfterClickable: String = ""
 
     // Image selector
     override val imageSelectorUploadButton: String = "Upload a photo of you"

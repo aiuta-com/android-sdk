@@ -16,8 +16,9 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
     override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
-    override val onboardingLegalDisclaimerNonClickable: String = "Fotoğrafınız Aydınlatma Metni'nde belirtilen"
-    override val onboardingLegalDisclaimerClickable: String = "kapsamda işlenmektedir"
+    override val onboardingLegalDisclaimerBeforeClickable: String = "Fotoğrafınız"
+    override val onboardingLegalDisclaimerClickable: String = "Aydınlatma Metni'nde"
+    override val onboardingLegalDisclaimerAfterClickable: String = "belirtilen kapsamda işlenmektedir"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Fotoğrafını yükle"
