@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOpera
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.SKUOperationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.GeneratePingController
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.internal.utils.getGenerationDelaySequence
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,7 +27,10 @@ internal class GeneratePingControllerImpl(
             _pingGenerationStatus.emit(PingGenerationStatus.StartPingGenerationStatus)
 
             try {
-                ping(operationId)
+                ping(
+                    operationId = operationId,
+                    delaySequenceIterator = getGenerationDelaySequence().iterator(),
+                )
             } catch (e: Exception) {
                 _pingGenerationStatus.emit(
                     PingGenerationStatus.ErrorPingGenerationStatus(
@@ -38,7 +42,10 @@ internal class GeneratePingControllerImpl(
         }
     }
 
-    private suspend fun ping(operationId: String) {
+    private suspend fun ping(
+        operationId: String,
+        delaySequenceIterator: Iterator<Long>,
+    ) {
         val operation = skuOperationsDataSource.getSKUOperation(operationId)
 
         when (operation.status) {
@@ -71,12 +78,11 @@ internal class GeneratePingControllerImpl(
             }
         }
 
-        delay(DEFAULT_DELAY)
+        delay(delaySequenceIterator.next())
 
-        ping(operationId)
-    }
-
-    private companion object {
-        const val DEFAULT_DELAY = 1000L
+        ping(
+            operationId = operationId,
+            delaySequenceIterator = delaySequenceIterator,
+        )
     }
 }
