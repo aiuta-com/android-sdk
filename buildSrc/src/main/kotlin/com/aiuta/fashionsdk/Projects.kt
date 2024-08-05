@@ -33,9 +33,12 @@ fun Project.androidLibrary(
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
         apply(plugin = "com.vanniktech.maven.publish.base")
-        setupPublishing {
-            configure(AndroidSingleVariantLibrary())
-        }
+        setupPublishing<LibraryExtension>()
+
+////     TODO
+//        setupPublishing {
+//            configure(AndroidSingleVariantLibrary())
+//        }
     }
     if (composeLibrary) {
         apply(plugin = "org.jetbrains.kotlin.plugin.compose")
@@ -183,7 +186,7 @@ private fun <T : BaseExtension> Project.androidBase(
     }
 }
 
-private fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
+internal fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
     extensions.configure("android", action)
 }
 

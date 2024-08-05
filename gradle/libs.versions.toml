@@ -23,6 +23,7 @@ exifinterface = "1.3.7"
 gradle-plugin-android = "8.2.2"
 gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
+gradle-plugin-jreleaser = "1.13.1"
 
 kotlinx-serialization = "1.7.1"
 ktor = "2.3.11"
@@ -71,6 +72,7 @@ gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref 
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-kotlin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-mavenPublish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "gradle-plugin-mavenPublish" }
+gradlePlugin-jreleaser = { module = "org.jreleaser:jreleaser-gradle-plugin", version.ref = "gradle-plugin-jreleaser" }
 
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }
 
