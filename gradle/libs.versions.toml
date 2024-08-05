@@ -24,14 +24,14 @@ gradle-plugin-android = "8.2.2"
 gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
 
-kotlinx-serialization = "1.6.2"
+kotlinx-serialization = "1.7.1"
 ktor = "2.3.11"
 
 jetbrains-compose-compiler = "1.5.7.1"
 
-kotlin = "1.9.24"
+kotlin = "2.0.0"
 ktlint = "1.2.0"
-ksp = "1.9.24-1.0.20"
+ksp = "2.0.0-1.0.24"
 
 room = "2.6.1"
 
@@ -48,8 +48,8 @@ accompanist-permissions = { module = "com.google.accompanist:accompanist-permiss
 androidx-activity = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-benchmark-macro = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "androidx-benchmark" }
-androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose-foundation"}
-androidx-compose-material = { module = "androidx.compose.material:material",  version.ref = "androidx-compose-material"}
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose-foundation" }
+androidx-compose-material = { module = "androidx.compose.material:material", version.ref = "androidx-compose-material" }
 androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
@@ -69,6 +69,7 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin-android" }
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradlePlugin-kotlin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-mavenPublish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "gradle-plugin-mavenPublish" }
 
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }
@@ -94,6 +95,7 @@ binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validat
 
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 
+kotlin-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
