@@ -52,15 +52,19 @@ internal fun DisclaimerContent(
 
     val disclaimerString =
         buildAnnotatedString {
-            append(stringResources.onboardingLegalDisclaimerNonClickable)
+            append(stringResources.onboardingLegalDisclaimerBeforeClickable)
 
-            append("\n")
+            append(" ")
 
             pushStringAnnotation(tag = urlTag, annotation = "${configuration.legalDisclaimerUrl}")
             withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
                 append(stringResources.onboardingLegalDisclaimerClickable)
             }
             pop()
+
+            append(" ")
+
+            append(stringResources.onboardingLegalDisclaimerAfterClickable)
         }
 
     isVisibleTransition.AnimatedContent(
