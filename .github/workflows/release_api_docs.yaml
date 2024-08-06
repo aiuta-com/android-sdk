@@ -30,6 +30,9 @@ jobs:
                     pwd
                     git status
 
+                    echo List tag
+                    git tag
+
                     kek=$(git tag)
                     echo $kek
 
