@@ -26,8 +26,15 @@ jobs:
             -   name: Set release version
                 id: set_release_version
                 run: |
+                    ls
+                    pwd
+                    git status
+
+                    kek=$(git tag)
+                    echo $kek
+
                     LAST_VERSION=$(git tag --sort=committerdate | tail -1)
-                    echo Version is $LAST_VERSION
+                    echo Version is "[$LAST_VERSION]"
 #                    bash ./scripts/update_version.sh $LAST_VERSION
 
 #            -   name: Generate API documentation
