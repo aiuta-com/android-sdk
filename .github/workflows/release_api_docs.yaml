@@ -26,8 +26,13 @@ jobs:
             -   name: Set release version
                 id: set_release_version
                 run: |
+                    echo Just simple git tag
+                    git tag --sort=committerdate
+
+                    echo Just simple git tag with tail
+                    git tag --sort=committerdate | tail -1
+
                     LAST_VERSION=$(git tag --sort=committerdate | tail -1)
-                    echo Version kek is $(git tag --sort=committerdate | tail -1)
                     echo Version is "${LAST_VERSION}"
                     bash ./scripts/update_version.sh "${LAST_VERSION}"
 
