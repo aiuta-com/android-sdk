@@ -8,13 +8,14 @@ plugins {
 repositories {
     google()
     mavenCentral()
+    maven { url = uri("https://plugins.gradle.org/m2/") }
 }
 
 dependencies {
     implementation(libs.gradlePlugin.android)
     implementation(libs.gradlePlugin.kotlin)
     implementation(libs.gradlePlugin.kotlin.compose)
-    implementation(libs.gradlePlugin.mavenPublish)
+    implementation(libs.gradlePlugin.jreleaser)
 }
 
 // Target JVM 17.

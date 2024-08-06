@@ -6,16 +6,12 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.TestExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
-import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
-import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
-import org.jetbrains.kotlin.gradle.model.ComposeCompiler
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun Project.androidLibrary(
@@ -32,10 +28,7 @@ fun Project.androidLibrary(
     }
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
-        apply(plugin = "com.vanniktech.maven.publish.base")
-        setupPublishing {
-            configure(AndroidSingleVariantLibrary())
-        }
+        setupAndroidPublishing<LibraryExtension>()
     }
     if (composeLibrary) {
         apply(plugin = "org.jetbrains.kotlin.plugin.compose")
@@ -49,21 +42,6 @@ fun Project.androidLibrary(
         }
     }
     action()
-}
-
-fun Project.setupPublishing(action: MavenPublishBaseExtension.() -> Unit = {}) {
-    extensions.configure<MavenPublishBaseExtension> {
-        pomFromGradleProperties()
-        publishToMavenCentral()
-        signAllPublications()
-        action()
-
-        coordinates(
-            groupId = project.property("POM_GROUP_ID").toString(),
-            artifactId = project.property("POM_ARTIFACT_ID").toString(),
-            version = project.property("POM_VERSION").toString(),
-        )
-    }
 }
 
 fun Project.androidApplication(
@@ -183,7 +161,7 @@ private fun <T : BaseExtension> Project.androidBase(
     }
 }
 
-private fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
+internal fun <T : BaseExtension> Project.android(action: T.() -> Unit) {
     extensions.configure("android", action)
 }
 

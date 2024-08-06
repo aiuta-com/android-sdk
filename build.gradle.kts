@@ -13,11 +13,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://plugins.gradle.org/m2/") }
     }
     dependencies {
         classpath(libs.gradlePlugin.android)
         classpath(libs.gradlePlugin.kotlin)
-        classpath(libs.gradlePlugin.mavenPublish)
+        classpath(libs.gradlePlugin.jreleaser)
     }
 }
 
