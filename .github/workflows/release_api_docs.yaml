@@ -27,8 +27,8 @@ jobs:
                 id: set_release_version
                 run: |
                     VERSION=$(git tag --sort=committerdate | tail -1)
-                    echo "$VERSION"
-                    bash ./scripts/update_version.sh "$VERSION"
+                    echo Version is ${ VERSION }
+                    bash ./scripts/update_version.sh ${VERSION}
 
 #            -   name: Generate API documentation
 #                run: ./scripts/make_docs.sh
