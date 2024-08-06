@@ -2,8 +2,7 @@ name: Build and deploy API docs
 
 on:
     push:
-#        TODO
-#        branches: [ main ]
+        branches: [ main ]
         paths-ignore: [ 'README.md' ]
     release:
         types: [ published ]
@@ -28,34 +27,20 @@ jobs:
             -   name: Set release version
                 id: set_release_version
                 run: |
-                    ls
-                    pwd
-                    git status
-
-                    echo List tag
-                    git tag
-
-                    kek=$(git tag)
-                    echo $kek
-
-                    latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
-                    echo "Latest tag: $latest_tag"
-
                     LAST_VERSION=$(git tag --sort=committerdate | tail -1)
-                    echo Version is "[$LAST_VERSION]"
-#                    bash ./scripts/update_version.sh $LAST_VERSION
+                    bash ./scripts/update_version.sh $LAST_VERSION
 
-#            -   name: Generate API documentation
-#                run: ./scripts/make_docs.sh
-#
-#            -   name: Setup Pages
-#                uses: actions/configure-pages@v4.0.0
-#
-#            -   name: Upload artifact
-#                uses: actions/upload-pages-artifact@v3.0.1
-#                with:
-#                    path: docs/api
-#
-#            -   name: Deploy to GitHub Pages
-#                id: deployment
-#                uses: actions/deploy-pages@v4.0.4
+            -   name: Generate API documentation
+                run: ./scripts/make_docs.sh
+
+            -   name: Setup Pages
+                uses: actions/configure-pages@v4.0.0
+
+            -   name: Upload artifact
+                uses: actions/upload-pages-artifact@v3.0.1
+                with:
+                    path: docs/api
+
+            -   name: Deploy to GitHub Pages
+                id: deployment
+                uses: actions/deploy-pages@v4.0.4
