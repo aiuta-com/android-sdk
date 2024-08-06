@@ -23,9 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          lfs: ${{ env.USED_LFS }}
-          fetch-depth: 0
 
       - name: "TODO to Issue"
         uses: "alstr/todo-to-issue-action@v5"
