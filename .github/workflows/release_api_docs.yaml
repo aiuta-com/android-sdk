@@ -2,7 +2,8 @@ name: Build and deploy API docs
 
 on:
     push:
-        branches: [ main ]
+#        TODO
+#        branches: [ main ]
         paths-ignore: [ 'README.md' ]
     release:
         types: [ published ]
@@ -26,19 +27,20 @@ jobs:
                 id: set_release_version
                 run: |
                     VERSION=$(git tag --sort=committerdate | tail -1)
+                    echo "$VERSION"
                     bash ./scripts/update_version.sh "$VERSION"
 
-            -   name: Generate API documentation
-                run: ./scripts/make_docs.sh
-
-            -   name: Setup Pages
-                uses: actions/configure-pages@v4.0.0
-
-            -   name: Upload artifact
-                uses: actions/upload-pages-artifact@v3.0.1
-                with:
-                    path: docs/api
-
-            -   name: Deploy to GitHub Pages
-                id: deployment
-                uses: actions/deploy-pages@v4.0.4
+#            -   name: Generate API documentation
+#                run: ./scripts/make_docs.sh
+#
+#            -   name: Setup Pages
+#                uses: actions/configure-pages@v4.0.0
+#
+#            -   name: Upload artifact
+#                uses: actions/upload-pages-artifact@v3.0.1
+#                with:
+#                    path: docs/api
+#
+#            -   name: Deploy to GitHub Pages
+#                id: deployment
+#                uses: actions/deploy-pages@v4.0.4
