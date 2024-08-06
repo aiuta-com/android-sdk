@@ -1,9 +1,6 @@
 name: Build and deploy API docs
 
 on:
-    push:
-        branches: [ main ]
-        paths-ignore: [ 'README.md' ]
     release:
         types: [ published ]
     workflow_dispatch:
@@ -11,6 +8,10 @@ on:
 concurrency:
     group: release-api-docs-${{ github.ref }}
     cancel-in-progress: true
+
+permissions:
+    id-token: write
+    pages: write
 
 jobs:
     build:
