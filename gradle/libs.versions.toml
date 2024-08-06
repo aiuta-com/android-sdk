@@ -71,7 +71,6 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin-android" }
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-kotlin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
-gradlePlugin-mavenPublish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "gradle-plugin-mavenPublish" }
 gradlePlugin-jreleaser = { module = "org.jreleaser:jreleaser-gradle-plugin", version.ref = "gradle-plugin-jreleaser" }
 
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }

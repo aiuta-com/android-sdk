@@ -14,7 +14,15 @@ import org.jreleaser.model.Active
 import com.aiuta.fashionsdk.groupId as currentGroupId
 import com.aiuta.fashionsdk.artifactId as currentArtifactId
 
-internal inline fun <reified T : LibraryExtension> Project.setupPublishing() {
+inline fun <reified T : LibraryExtension> Project.setupBomPublishing() {
+    apply(plugin = "maven-publish")
+    apply(plugin = "org.jreleaser")
+
+    configureMavenPublication(isAndroidLibrary = false)
+    configureJReleaser()
+}
+
+internal inline fun <reified T : LibraryExtension> Project.setupAndroidPublishing() {
     apply(plugin = "maven-publish")
     apply(plugin = "org.jreleaser")
 
@@ -29,15 +37,23 @@ internal inline fun <reified T : LibraryExtension> Project.setupPublishing() {
         }
     }
 
-    configureMavenPublication()
+    configureMavenPublication(isAndroidLibrary = true)
 
     configureJReleaser()
 }
 
-private fun Project.configureMavenPublication() {
+fun Project.configureMavenPublication(
+    isAndroidLibrary: Boolean,
+) {
     extensions.configure<PublishingExtension> {
         publications {
             create<MavenPublication>("release") {
+                if (isAndroidLibrary) {
+                    afterEvaluate {
+                        from(components["release"])
+                    }
+                }
+
                 groupId = currentGroupId
                 artifactId = currentArtifactId
 
@@ -71,10 +87,6 @@ private fun Project.configureMavenPublication() {
                             email.set("mike.vorozhtcov@aiuta.com")
                         }
                     }
-
-                    afterEvaluate {
-                        from(components["release"])
-                    }
                 }
             }
         }
@@ -87,7 +99,7 @@ private fun Project.configureMavenPublication() {
     }
 }
 
-private fun Project.configureJReleaser() {
+fun Project.configureJReleaser() {
     extensions.configure<JReleaserExtension> {
         project {
             inceptionYear = "2024"
@@ -120,7 +132,8 @@ private fun Project.configureJReleaser() {
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepository(layout.buildDirectory.dir("staging-deploy").get().toString())
                     setAuthorization("Basic")
-                    applyMavenCentralRules = false // Wait for fix: https://github.com/kordamp/pomchecker/issues/21
+                    applyMavenCentralRules =
+                        false // Wait for fix: https://github.com/kordamp/pomchecker/issues/21
                     sign = true
                     checksums = true
                     sourceJar = true

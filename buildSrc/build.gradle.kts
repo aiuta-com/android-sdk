@@ -15,7 +15,6 @@ dependencies {
     implementation(libs.gradlePlugin.android)
     implementation(libs.gradlePlugin.kotlin)
     implementation(libs.gradlePlugin.kotlin.compose)
-    implementation(libs.gradlePlugin.mavenPublish)
     implementation(libs.gradlePlugin.jreleaser)
 }
 
