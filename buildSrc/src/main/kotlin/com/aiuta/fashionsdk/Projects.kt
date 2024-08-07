@@ -19,9 +19,6 @@ fun Project.androidLibrary(
     config: Boolean = false,
     composeLibrary: Boolean = false,
     action: LibraryExtension.() -> Unit = {},
-
-    // TODO
-    isNotIncludeToPublish: Boolean = false,
 ) = androidBase<LibraryExtension>(
     name = name,
     config = config,
@@ -29,7 +26,7 @@ fun Project.androidLibrary(
     buildFeatures {
         buildConfig = config
     }
-    if (project.name in publicModules && !isNotIncludeToPublish) {
+    if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
         setupAndroidPublishing<LibraryExtension>()
     }

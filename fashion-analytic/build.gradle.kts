@@ -5,7 +5,7 @@ plugins {
     id("kotlin-android")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk.analytic", isNotIncludeToPublish = true) // TODO
+androidLibrary(name = "com.aiuta.fashionsdk.analytic")
 
 dependencies {
 

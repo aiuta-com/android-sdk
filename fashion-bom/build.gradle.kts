@@ -6,7 +6,7 @@ plugins {
     id("java-platform")
 }
 
-//setupBomPublishing<LibraryExtension>() // TODO
+setupBomPublishing<LibraryExtension>()
 
 dependencies {
     constraints {
