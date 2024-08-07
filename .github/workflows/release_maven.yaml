@@ -1,4 +1,4 @@
-name: Manually publish to Maven central
+name: Publish to Maven central
 
 on:
     workflow_dispatch:
