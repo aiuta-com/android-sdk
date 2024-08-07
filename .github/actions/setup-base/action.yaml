@@ -2,28 +2,32 @@ name: Base setup for all jobs
 description: Base checkout and configure of project
 
 inputs:
-  java-version:
-    description: 'Version of Java'
-    required: false
-    default: '17'
+    java-version:
+        description: 'Version of Java'
+        required: false
+        default: '17'
 
 runs:
-  using: composite
-  steps:
-    - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v3
+    using: composite
+    steps:
+        -   name: Validate Gradle Wrapper
+            uses: gradle/wrapper-validation-action@v3
 
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'zulu'
-        java-version: ${{ inputs.java-version }}
+        -   name: Copy CI gradle.properties
+            shell: bash
+            run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.propertie
 
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
-      with:
-        build-scan-publish: true
-        build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
-        build-scan-terms-of-use-agree: "yes"
-        cache-overwrite-existing: true
-        gradle-home-cache-cleanup: true
+        -   name: Set up JDK
+            uses: actions/setup-java@v4
+            with:
+                distribution: 'zulu'
+                java-version: ${{ inputs.java-version }}
+
+        -   name: Setup Gradle
+            uses: gradle/actions/setup-gradle@v3
+            with:
+                build-scan-publish: true
+                build-scan-terms-of-use-url: "https://gradle.com/terms-of-service"
+                build-scan-terms-of-use-agree: "yes"
+                cache-overwrite-existing: true
+                gradle-home-cache-cleanup: true
