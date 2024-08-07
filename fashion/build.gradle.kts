@@ -5,4 +5,4 @@ plugins {
     id("kotlin-android")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk")
+androidLibrary(name = "com.aiuta.fashionsdk", isNotIncludeToPublish = true) // TODO
