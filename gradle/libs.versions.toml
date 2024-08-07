@@ -13,7 +13,7 @@ androidx-work = "2.9.0"
 
 binaryCompatibility = "0.14.0"
 
-coroutines = "1.7.3"
+coroutines = "1.8.1"
 coil = "2.7.0"
 
 dokka = "1.9.10"
