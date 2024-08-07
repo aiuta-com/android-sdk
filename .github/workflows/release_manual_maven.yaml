@@ -1,10 +1,11 @@
-name: Manually publish to Maven central
+name: Publish to Maven central
 
 on:
-    workflow_dispatch:
+    release:
+        types: [ published ]
 
 concurrency:
-    group: release-manual-maven-${{ github.ref }}
+    group: release-maven-${{ github.ref }}
     cancel-in-progress: true
 
 jobs:
@@ -26,7 +27,9 @@ jobs:
             -   name: Set release version
                 id: set_release_version
                 run: |
-                    bash ./scripts/update_version.sh ${{ github.event.release.name }}
+                    LAST_VERSION=$(git tag --sort=committerdate | tail -1)
+                    echo Last tag is $LAST_VERSION
+                    bash ./scripts/update_version.sh $LAST_VERSION
 
             -   name: Build and publish with Gradle
                 uses: gradle/actions/setup-gradle@v3
