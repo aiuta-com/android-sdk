@@ -18,6 +18,8 @@ inline fun <reified T : LibraryExtension> Project.setupBomPublishing() {
     apply(plugin = "maven-publish")
     apply(plugin = "org.jreleaser")
 
+    createJReleaserDirectory()
+
     configureMavenPublication(isAndroidLibrary = false)
     configureJReleaser()
 }
@@ -25,6 +27,8 @@ inline fun <reified T : LibraryExtension> Project.setupBomPublishing() {
 internal inline fun <reified T : LibraryExtension> Project.setupAndroidPublishing() {
     apply(plugin = "maven-publish")
     apply(plugin = "org.jreleaser")
+
+    createJReleaserDirectory()
 
     android<T> {
         extensions.configure<T> {
@@ -149,7 +153,7 @@ fun Project.configureJReleaser() {
  * JRelease can't create build/jreleaser directory, that is why let's
  * try create it on our side
  */
-internal fun Project.createJReleaserDirectory() {
+fun Project.createJReleaserDirectory() {
     val jreleaserDir = layout.buildDirectory.dir("jreleaser").get().asFile
     if (!jreleaserDir.exists()) {
         jreleaserDir.mkdirs()
