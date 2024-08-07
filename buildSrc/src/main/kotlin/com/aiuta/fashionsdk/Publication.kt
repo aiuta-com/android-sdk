@@ -144,3 +144,15 @@ fun Project.configureJReleaser() {
         }
     }
 }
+
+/**
+ * JRelease can't create build/jreleaser directory, that is why let's
+ * try create it on our side
+ */
+internal fun Project.createJReleaserDirectory() {
+    val jreleaserDir = layout.buildDirectory.dir("jreleaser").get().asFile
+    if (!jreleaserDir.exists()) {
+        jreleaserDir.mkdirs()
+        println("Created directory: ${jreleaserDir.absolutePath}")
+    }
+}

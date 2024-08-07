@@ -28,6 +28,7 @@ fun Project.androidLibrary(
     }
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
+        createJReleaserDirectory()
         setupAndroidPublishing<LibraryExtension>()
     }
     if (composeLibrary) {
