@@ -145,6 +145,7 @@ fun Project.configureJReleaser() {
                     sourceJar = true
                     javadocJar = true
                     retryDelay = 60
+                    maxRetries = 60
                 }
             }
         }

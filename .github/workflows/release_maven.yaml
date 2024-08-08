@@ -13,7 +13,7 @@ jobs:
         name: Release on Maven Central
         runs-on: ubuntu-latest
 
-        timeout-minutes: 60
+        timeout-minutes: 180
 
         steps:
             -   name: Checkout
@@ -32,7 +32,7 @@ jobs:
             -   name: Build and publish with Gradle
                 uses: gradle/actions/setup-gradle@v3
                 with:
-                    arguments: --no-daemon -i jreleaserConfig build publish
+                    arguments: --no-daemon -i jreleaserConfig clean publish
                 env:
                     JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
                     JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
