@@ -52,9 +52,11 @@ fun Project.configureMavenPublication(
     extensions.configure<PublishingExtension> {
         publications {
             create<MavenPublication>("release") {
-                if (isAndroidLibrary) {
-                    afterEvaluate {
+                afterEvaluate {
+                    if (isAndroidLibrary) {
                         from(components["release"])
+                    } else {
+                        from(components["javaPlatform"])
                     }
                 }
 
