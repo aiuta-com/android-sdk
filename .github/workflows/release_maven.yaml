@@ -30,7 +30,7 @@ jobs:
                     bash ./scripts/update_version.sh ${{ github.event.release.name }}
 
             -   name: Build and publish with Gradle
-                uses: gradle/actions/setup-gradle@v3
+                uses: gradle/actions/setup-gradle@v4
                 with:
                     arguments: --no-daemon -i jreleaserConfig clean publish
                 env:
@@ -42,7 +42,7 @@ jobs:
                     JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
 
             -   name: Release with gradle
-                uses: gradle/actions/setup-gradle@v3
+                uses: gradle/actions/setup-gradle@v4
                 with:
                     arguments: --no-daemon -i jreleaserFullRelease
                 env:
