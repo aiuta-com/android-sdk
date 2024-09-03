@@ -1,26 +1,60 @@
 package com.aiuta.fashionsdk
 
 import android.app.Application
+import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
+import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
+import com.aiuta.fashionsdk.authentication.OAuthAuthenticationStrategy
+import java.util.UUID
 
 /**
  * [Aiuta] class is an entry point to Aiuta sdk.
- *
- * @param apiKey for
  */
 public class Aiuta private constructor(
+    @Deprecated(
+        message = "Will be empty, because we can guarantee that this key will be used" +
+            "as way to authenticate SDK, so use authenticationStrategy instead",
+    )
     public val apiKey: String,
+    public val authenticationStrategy: AuthenticationStrategy,
     public val application: Application,
 ) {
+    public val uniqueId: String by lazy {
+        when (authenticationStrategy) {
+            is ApiKeyAuthenticationStrategy -> authenticationStrategy.apiKey
+            is OAuthAuthenticationStrategy -> authenticationStrategy.clientId
+        }
+    }
+
+
     /**
      * Public [Builder] for initialize [Aiuta] class
      */
     public class Builder {
-        private var apiKey: String? = null
         private var application: Application? = null
+        private var authenticationStrategy: AuthenticationStrategy? = null
 
+        @Deprecated(
+            message = "Apply ApiKeyAuthenticationStrategy instead",
+            replaceWith = ReplaceWith(
+                expression = "setAuthenticationStrategy(" +
+                    "authenticationStrategy = ApiKeyAuthenticationStrategy(apiKey = apiKey)" +
+                    ")",
+                imports = arrayOf("com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy"),
+            ),
+        )
         public fun setApiKey(apiKey: String): Builder {
             return apply {
-                this.apiKey = apiKey
+                this.authenticationStrategy = ApiKeyAuthenticationStrategy(
+                    apiKey = apiKey,
+                )
+            }
+        }
+
+        public fun setAuthenticationStrategy(
+            authenticationStrategy: AuthenticationStrategy,
+        ): Builder {
+            return apply {
+                this.authenticationStrategy = authenticationStrategy
             }
         }
 
@@ -31,17 +65,13 @@ public class Aiuta private constructor(
         }
 
         public fun build(): Aiuta {
-            val internalApiKey = apiKey
+            val internalAuthenticationStrategy = authenticationStrategy
             val internalApplication = application
 
-            // Checks for api key
+            // Checks for authentication strategy
             checkNotNull(
-                value = internalApiKey,
+                value = internalAuthenticationStrategy,
                 lazyMessage = { ERROR_MESSAGE_API_KEY_NULL },
-            )
-            check(
-                value = internalApiKey.isNotEmpty(),
-                lazyMessage = { ERROR_MESSAGE_API_KEY_EMPTY },
             )
 
             // Checks for context
@@ -51,7 +81,8 @@ public class Aiuta private constructor(
             )
 
             return Aiuta(
-                apiKey = internalApiKey,
+                apiKey = "",
+                authenticationStrategy = internalAuthenticationStrategy,
                 application = internalApplication,
             )
         }
@@ -59,11 +90,8 @@ public class Aiuta private constructor(
 
     private companion object {
         const val ERROR_MESSAGE_API_KEY_NULL =
-            "Aiuta: api key is null, therefore cannot init Aiuta. " +
-                "Please, call setApiKey() before build()"
-        const val ERROR_MESSAGE_API_KEY_EMPTY =
-            "Aiuta: api key is empty, therefore cannot init Aiuta. " +
-                "Please, call setApiKey() with not empty apiKey param before build()"
+            "Aiuta: authentication strategy is null, therefore cannot init Aiuta. " +
+                "Please, call setAuthenticationStrategy() before build()"
 
         const val ERROR_MESSAGE_CONTEXT_NULL =
             "Aiuta: application context is not applied, therefore cannot init Aiuta. " +

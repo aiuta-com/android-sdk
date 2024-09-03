@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.network.internal
 
+import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 import com.aiuta.fashionsdk.network.NetworkClient
 import io.ktor.client.HttpClient
 
@@ -9,43 +11,43 @@ internal class KtorNetworkClient(
     companion object : NetworkClient.Factory {
         @Volatile
         private var instance: NetworkClient? = null
-        private var cachedApiKey: String? = null
+        private var cachedUniqueId: String? = null
 
         override fun create(
-            apiKey: String,
+            aiuta: Aiuta,
             backendEndpoint: String?,
         ): NetworkClient {
-            validateCacheInstance(newApiKey = apiKey)
+            validateCacheInstance(newUniqueId = aiuta.uniqueId)
 
             return instance ?: synchronized(this) {
                 instance ?: buildKtorNetworkClient(
-                    apiKey = apiKey,
+                    aiuta = aiuta,
                     backendEndpoint = backendEndpoint,
                 ).also {
                     instance = it
-                    cachedApiKey = apiKey
+                    cachedUniqueId = aiuta.uniqueId
                 }
             }
         }
 
         internal fun buildKtorNetworkClient(
-            apiKey: String,
+            aiuta: Aiuta,
             backendEndpoint: String? = null,
         ): NetworkClient {
             return KtorNetworkClient(
                 httpClient =
-                    KtorHttpClientFactory(
-                        apiKey = apiKey,
-                        backendEndpoint = backendEndpoint,
-                    ).create(),
+                KtorHttpClientFactory(
+                    authenticationStrategy = aiuta.authenticationStrategy,
+                    backendEndpoint = backendEndpoint,
+                ).create(),
             )
         }
 
-        private fun validateCacheInstance(newApiKey: String) {
+        private fun validateCacheInstance(newUniqueId: String) {
             // We should remove cache, if we have new instance of api key
-            if (newApiKey != cachedApiKey) {
+            if (newUniqueId != cachedUniqueId) {
                 instance = null
-                cachedApiKey = newApiKey
+                cachedUniqueId = newUniqueId
             }
         }
     }

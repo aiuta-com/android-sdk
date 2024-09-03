@@ -1,13 +1,23 @@
 package com.aiuta.fashionsdk.network.internal
 
 import android.util.Log
+import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
+import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
+import com.aiuta.fashionsdk.authentication.OAuthAuthenticationStrategy
 import com.aiuta.fashionsdk.network.BuildConfig
+import com.aiuta.fashionsdk.network.internal.plugins.installApiKeyAuthenticationHeader
+import com.aiuta.fashionsdk.network.internal.plugins.installAuthenticationHeader
+import com.aiuta.fashionsdk.network.internal.plugins.installOAuthAuthenticationHeader
 import com.aiuta.fashionsdk.network.utils.handleErrors
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpSend
+import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.providers.basic
+import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
@@ -21,14 +31,11 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 internal class KtorHttpClientFactory(
-    private val apiKey: String,
+    private val authenticationStrategy: AuthenticationStrategy,
     backendEndpoint: String? = null,
 ) {
     private val internalBackendEndpoint = backendEndpoint ?: DEFAULT_BACKEND_ENDPOINT
-
-    init {
-        check(apiKey.isNotEmpty()) { ERROR_API_KEY_EMPTY_MESSAGE }
-    }
+    private val internalAuthenticationKey: String? = null
 
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installSerialization() =
         apply {
@@ -59,6 +66,13 @@ internal class KtorHttpClientFactory(
             }
         }
 
+    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installRetryPolicy() =
+        apply {
+            install(HttpRequestRetry) {
+
+            }
+        }
+
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installDefaultRequest() =
         apply {
             install(DefaultRequest) {
@@ -72,15 +86,20 @@ internal class KtorHttpClientFactory(
 
     private fun HttpClient.addDynamicHeader() {
         plugin(HttpSend).intercept { request ->
-            if (request.url.host == internalBackendEndpoint) {
-                request.header(
-                    key = HEADER_API_KEY,
-                    value = apiKey,
+            when (authenticationStrategy) {
+                is ApiKeyAuthenticationStrategy -> request.installApiKeyAuthenticationHeader(
+                    strategy = authenticationStrategy,
+                )
+
+                is OAuthAuthenticationStrategy -> request.installOAuthAuthenticationHeader(
+                    strategy = authenticationStrategy,
                 )
             }
             handleErrors { execute(request) }
         }
+
     }
+
 
     public fun create(): Lazy<HttpClient> {
         return lazy {
@@ -88,16 +107,12 @@ internal class KtorHttpClientFactory(
                 installSerialization()
                 installLogging()
                 installDefaultRequest()
+                installRetryPolicy()
             }.apply { addDynamicHeader() }
         }
     }
 
     private companion object {
         const val DEFAULT_BACKEND_ENDPOINT = "api.aiuta.com/digital-try-on/v1"
-        const val HEADER_API_KEY = "x-api-key"
-
-        const val ERROR_API_KEY_EMPTY_MESSAGE = """
-                Cannot initialize Network client, because api key is empty, please set correct api key
-            """
     }
 }

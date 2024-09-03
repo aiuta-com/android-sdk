@@ -18,11 +18,11 @@ public val Aiuta.internalAiutaAnalytic: InternalAiutaAnalytic
 public object InternalAiutaAnalyticFactory {
     @Volatile
     private var instance: InternalAiutaAnalytic? = null
-    private var cachedApiKey: String? = null
+    private var cachedUniqueId: String? = null
     private var networkClient: NetworkClient? = null
 
     public fun create(aiuta: Aiuta): InternalAiutaAnalytic {
-        validateCacheInstance(newApiKey = aiuta.apiKey)
+        validateCacheInstance(newUniqueId = aiuta.uniqueId)
 
         return instance ?: synchronized(this) {
             instance ?: buildInternalAiutaAnalyticImpl(
@@ -31,7 +31,7 @@ public object InternalAiutaAnalyticFactory {
                 instance = it
                 networkClient =
                     createNetworkClient(
-                        apiKey = aiuta.apiKey,
+                        aiuta = aiuta,
                         backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
                     )
             }
@@ -52,12 +52,12 @@ public object InternalAiutaAnalyticFactory {
         )
     }
 
-    private fun validateCacheInstance(newApiKey: String) {
+    private fun validateCacheInstance(newUniqueId: String) {
         // We should remove cache, if we have new instance of api key
-        if (newApiKey != cachedApiKey) {
+        if (newUniqueId != cachedUniqueId) {
             instance = null
             networkClient = null
-            cachedApiKey = newApiKey
+            cachedUniqueId = newUniqueId
         }
     }
 }

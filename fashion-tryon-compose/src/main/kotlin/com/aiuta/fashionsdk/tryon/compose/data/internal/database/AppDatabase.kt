@@ -30,7 +30,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-private const val DATABASE_VERSION = 8
+private const val DATABASE_VERSION = 9
 private const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(
@@ -122,10 +122,10 @@ internal abstract class AppDatabase : RoomDatabase() {
                 withContext(Dispatchers.IO) {
                     val database = getInstance(aiuta.application)
                     val aiutaCodeDao = database.aiutaCodeDao()
-                    val cachedCode = aiutaCodeDao.getCodes().firstOrNull()?.apiKey
+                    val cachedCode = aiutaCodeDao.getCodes().firstOrNull()?.uniqueGeneratedAiutaId
 
                     // Invalidate all records, if we have new Aiuta instance
-                    if (cachedCode != aiuta.apiKey) {
+                    if (cachedCode != aiuta.uniqueId) {
                         database.withTransaction {
                             // Delete all records
                             database.generatedOperationDao().removeAll()
@@ -136,7 +136,7 @@ internal abstract class AppDatabase : RoomDatabase() {
                             aiutaCodeDao.replaceAll(
                                 aiutaCodeEntity =
                                     AiutaCodeEntity(
-                                        apiKey = aiuta.apiKey,
+                                        uniqueGeneratedAiutaId = aiuta.uniqueId,
                                     ),
                             )
                         }
