@@ -1,6 +1,7 @@
 package sample.tryon.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -24,6 +25,9 @@ fun MainScreen() {
         remember(activeSKUItems.value) {
             activeSKUItems.value?.firstOrNull()
         }
+
+    // TODO
+    MaterialTheme
 
     LaunchedEffect(Unit) {
         viewModel.init()
