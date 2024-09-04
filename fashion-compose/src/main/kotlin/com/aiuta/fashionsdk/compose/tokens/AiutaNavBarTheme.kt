@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.compose.tokens
 import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
 
+@Deprecated("Should delete in new release")
 public interface AiutaNavBarTheme {
     /**
      * A small image of your logo to embed in the navigation bar.
@@ -16,6 +17,7 @@ public interface AiutaNavBarTheme {
     public val foregroundColor: Color?
 }
 
+@Deprecated("Should delete in new release")
 public fun defaultAiutaNavBarTheme(
     navLogo: Int? = null,
     foregroundColor: Color? = null,

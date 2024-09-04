@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history
+package com.aiuta.fashionsdk.tryon.compose.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -14,8 +14,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.zIndex
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
@@ -25,6 +25,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationInitialisation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreenInternal
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.ZoomedImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
@@ -39,7 +40,6 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
  * @see Aiuta
  * @see AiutaTryOn
  * @see AiutaTryOnListeners
- * @see AiutaTryOnTheme
  */
 @Composable
 public fun HistoryFlow(
@@ -47,7 +47,7 @@ public fun HistoryFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    theme: (() -> AiutaTryOnTheme)? = null,
+    theme: AiutaTheme? = null,
 ) {
     NavigationInitialisation(
         modifier = modifier,

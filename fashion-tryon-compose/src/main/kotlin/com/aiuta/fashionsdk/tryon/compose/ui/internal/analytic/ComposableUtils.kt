@@ -2,10 +2,10 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.model.Configure
 import com.aiuta.fashionsdk.internal.analytic.model.StartOnBoarding
 import com.aiuta.fashionsdk.internal.analytic.model.StartSession
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
@@ -14,7 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.providePow
 
 // Configure
 @Composable
-internal fun sendConfigureEvent(theme: (() -> AiutaTryOnTheme)?) {
+internal fun sendConfigureEvent(theme: AiutaTheme?) {
     val analytic = LocalAnalytic.current
     val configuration = LocalAiutaConfiguration.current
     val dataController = LocalAiutaTryOnDataController.current
@@ -33,11 +33,11 @@ internal fun sendConfigureEvent(theme: (() -> AiutaTryOnTheme)?) {
             )
             put(
                 key = Configure.IS_WATERMARK_PROVIDED_PARAM,
-                value = (theme?.invoke()?.watermarkRes != null).toString(),
+                value = (theme?.watermarkRes != null).toString(),
             )
             put(
                 key = Configure.IS_LOGO_PROVIDED_PARAM,
-                value = (theme?.invoke()?.navBarTheme?.navLogo != null).toString(),
+                value = (theme?.navBarTheme?.navLogo != null).toString(),
             )
             put(
                 key = Configure.IS_HISTORY_ENABLE_PARAM,

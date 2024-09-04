@@ -6,14 +6,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
+import com.aiuta.fashionsdk.compose.tokens.aiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.toTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -33,15 +33,15 @@ internal fun NavigationInitialisation(
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)?,
-    theme: (() -> AiutaTryOnTheme)?,
     skuForGeneration: () -> SKUItem,
+    theme: AiutaTheme? = null,
     content: @Composable () -> Unit,
 ) {
     BoxWithConstraints(
         modifier = modifier,
     ) {
         val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
-        val internalTheme = remember { theme?.invoke().toTheme() }
+        val finalTheme = remember { theme ?: aiutaTheme() }
         val configuration =
             remember {
                 aiutaTryOnConfiguration?.invoke() ?: defaultAiutaTryOnConfiguration()
@@ -59,7 +59,7 @@ internal fun NavigationInitialisation(
         CompositionLocalProvider(
             LocalAnalytic provides internalAnalytic,
             LocalController provides controller,
-            LocalTheme provides internalTheme,
+            LocalTheme provides finalTheme,
             LocalAiutaConfiguration provides configuration,
             LocalAiutaTryOnStringResources provides
                 resolveInternalLanguage(
