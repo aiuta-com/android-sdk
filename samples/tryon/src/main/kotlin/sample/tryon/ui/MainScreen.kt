@@ -26,8 +26,6 @@ fun MainScreen() {
             activeSKUItems.value?.firstOrNull()
         }
 
-    // TODO
-    MaterialTheme
 
     LaunchedEffect(Unit) {
         viewModel.init()

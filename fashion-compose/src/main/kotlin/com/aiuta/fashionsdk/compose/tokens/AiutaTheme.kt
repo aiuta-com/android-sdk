@@ -5,6 +5,8 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.tokens.color.AiutaColors
 import com.aiuta.fashionsdk.compose.tokens.color.DefaultAiutaColors
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.shape.AiutaShapes
+import com.aiuta.fashionsdk.compose.tokens.shape.DefaultAiutaShapes
 import com.aiuta.fashionsdk.compose.tokens.typography.AiutaTypography
 import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
 
@@ -18,20 +20,23 @@ public class AiutaTheme(
     public val colors: AiutaColors,
     public val typography: AiutaTypography,
     public val icons: AiutaIcons,
+    public val shapes: AiutaShapes,
     @get:DrawableRes
     public val watermarkRes: Int?,
 )
 
 public fun aiutaTheme(
+    icons: AiutaIcons,
     colors: AiutaColors = DefaultAiutaColors,
     typography: AiutaTypography = DefaultAiutaTypography,
-    icons: AiutaIcons,
+    shapes: AiutaShapes = DefaultAiutaShapes,
     @DrawableRes watermarkRes: Int? = null,
 ): AiutaTheme {
     return AiutaTheme(
+        icons = icons,
         colors = colors,
         typography = typography,
-        icons = icons,
+        shapes = shapes,
         watermarkRes = watermarkRes,
         navBarTheme = defaultAiutaNavBarTheme(),
     )
