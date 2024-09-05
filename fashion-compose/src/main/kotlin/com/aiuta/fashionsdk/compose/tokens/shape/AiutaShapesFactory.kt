@@ -17,10 +17,11 @@ public fun aiutaShapes(
         mainImageShape = RoundedCornerShape(mainImageRadiusDp),
         previewImageShape = RoundedCornerShape(previewImageRadiusDp),
         historyImageShape = RoundedCornerShape(historyImageRadiusDp),
-        bottomSheetShape = RoundedCornerShape(
-            topStart = bottomSheetRadiusDp,
-            topEnd = bottomSheetRadiusDp,
-        ),
+        bottomSheetShape =
+            RoundedCornerShape(
+                topStart = bottomSheetRadiusDp,
+                topEnd = bottomSheetRadiusDp,
+            ),
         buttonLShape = RoundedCornerShape(buttonLRadiusDp),
         buttonMShape = RoundedCornerShape(buttonMRadiusDp),
     )
