@@ -2,7 +2,11 @@ package com.aiuta.fashionsdk.compose.tokens.color
 
 import androidx.compose.ui.graphics.Color
 
-// TODO Add docs
+/**
+ * Implementation of [AiutaColors] for light theme
+ *
+ * @see AiutaColors
+ */
 public fun aiutaLightColors(
     primary: Color = Color(0xFF000000),
     secondary: Color = Color(0xFF9F9F9F),

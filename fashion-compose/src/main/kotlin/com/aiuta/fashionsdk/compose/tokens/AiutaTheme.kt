@@ -15,7 +15,20 @@ import com.aiuta.fashionsdk.compose.tokens.typography.AiutaTypography
 import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
 
 /**
- * Final theme for all UI flows
+ * AiutaTheme class holds the design system tokens for the Aiuta application.
+ *
+ * @property colors The color palette used in the theme.
+ * @property gradients The gradient definitions used in the theme.
+ * @property typography The typography styles used in the theme.
+ * @property icons The icon set used in the theme.
+ * @property shapes The shape definitions used in the theme.
+ * @property watermarkRes Optional watermark resource.
+ *
+ * @see AiutaColors
+ * @see AiutaGradients
+ * @see AiutaTypography
+ * @see AiutaIcons
+ * @see AiutaShapes
  */
 @Immutable
 public class AiutaTheme(
@@ -30,6 +43,11 @@ public class AiutaTheme(
     public val watermarkRes: Int?,
 )
 
+/**
+ * Creates an instance of [AiutaTheme]
+ *
+ * @return An instance of [AiutaTheme]
+ */
 public fun aiutaTheme(
     icons: AiutaIcons,
     colors: AiutaColors = DefaultAiutaColors,
@@ -49,6 +67,11 @@ public fun aiutaTheme(
     )
 }
 
+/**
+ * Composable function to create an instance of [AiutaTheme] with composable remember.
+ *
+ * @return An instance of [AiutaTheme].
+ */
 @Composable
 public fun rememberAiutaTheme(
     icons: AiutaIcons,

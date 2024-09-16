@@ -7,7 +7,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 
-// TODO Add docs
+/**
+ * Class representing the typography styles used in the Aiuta SDK.
+ *
+ * This class provides various text styles for different UI components, allowing
+ * customization of font family, weight.
+ *
+ * @see AiutaTheme
+ */
 @Immutable
 public class AiutaTypography private constructor(
     public val titleXL: TextStyle,
@@ -147,4 +154,9 @@ public class AiutaTypography private constructor(
     }
 }
 
+/**
+ * Default instance of [AiutaTypography] with predefined text styles.
+ *
+ * @see AiutaTypography
+ */
 public val DefaultAiutaTypography: AiutaTypography by lazy { AiutaTypography.build() }

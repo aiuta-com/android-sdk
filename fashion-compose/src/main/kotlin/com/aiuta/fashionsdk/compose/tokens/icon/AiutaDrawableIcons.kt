@@ -2,7 +2,16 @@ package com.aiuta.fashionsdk.compose.tokens.icon
 
 import android.graphics.drawable.Drawable
 
-// TODO Add docs
+/**
+ * Public class for providing drawable icons in the SDK.
+ *
+ * This class allows the host application to override the default drawable icons used by the SDK,
+ * enabling a more personalized user experience.
+ *
+ * The icons are categorized by their sizes (e.g., 82x, 36x, 24x, 20x, 16x).
+ *
+ * @see AiutaIcons
+ */
 public class AiutaDrawableIcons(
     // x82
     public val welcomeScreen82: Drawable,

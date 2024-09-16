@@ -4,7 +4,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-// TODO Add docs
+/**
+ * Creates an instance of [AiutaShapes] with customizable corner radii for various UI components.
+ *
+ * This function provides default values for the corner radii, which can be overridden by the host application.
+ *
+ * @return An instance of [AiutaShapes] with the specified or default corner radii.
+ */
 public fun aiutaShapes(
     mainImageRadiusDp: Dp = 24.dp,
     previewImageRadiusDp: Dp = 16.dp,

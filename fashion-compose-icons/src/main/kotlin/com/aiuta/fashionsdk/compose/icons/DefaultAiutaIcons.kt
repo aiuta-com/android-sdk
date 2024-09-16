@@ -5,6 +5,9 @@ import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcons
 
+/**
+ * Default implementation of [AiutaIcons].
+ */
 public fun defaultAiutaIcons(): AiutaIcons {
     return AiutaResourceIcons(
         welcomeScreen82 = R.drawable.ic_welcome_screen_82,

@@ -2,10 +2,15 @@ package com.aiuta.fashionsdk.compose.tokens.color
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 /**
- * Public interface for implementation of [AiutaColors]
- * for [AiutaTheme]
+ * Public class, which contains all colors used in SDK.
+ * By default, SDK uses [DefaultAiutaColors], but the host
+ * application has the possibility to override it.
+ *
+ * This class provides a comprehensive set of colors for text, brand elements,
+ * backgrounds, and other UI components.
  *
  * @see AiutaTheme
  */
@@ -35,14 +40,10 @@ public class AiutaColors(
     public val onLight: Color,
 )
 
+/**
+ * Default colors for SDK
+ *
+ * @see AiutaTheme
+ * @see AiutaColors
+ */
 public val DefaultAiutaColors: AiutaColors by lazy { aiutaLightColors() }
-
-@Deprecated("Use light, dark or custom colors")
-public fun aiutaColors(
-    accent: Color? = null,
-    background: Color? = null,
-    brand: Color? = null,
-    isDarkTheme: Boolean = false,
-): AiutaColors {
-    return DefaultAiutaColors
-}

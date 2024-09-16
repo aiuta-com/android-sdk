@@ -2,7 +2,16 @@ package com.aiuta.fashionsdk.compose.tokens.icon
 
 import androidx.annotation.DrawableRes
 
-// TODO ADd docs
+/**
+ * Public class for providing resource icons in the SDK.
+ *
+ * This class allows the host application to override the default resource icons used by the SDK,
+ * enabling a more personalized user experience.
+ *
+ * The icons are categorized by their sizes (e.g., 82x, 36x, 24x, 20x, 16x).
+ *
+ * @see AiutaIcons
+ */
 public class AiutaResourceIcons(
     // x82
     @DrawableRes public val welcomeScreen82: Int,
