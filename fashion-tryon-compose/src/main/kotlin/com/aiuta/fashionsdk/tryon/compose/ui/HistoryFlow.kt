@@ -47,7 +47,7 @@ public fun HistoryFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    theme: AiutaTheme, // TODO Rename for better understanding?
+    aiutaTheme: AiutaTheme,
 ) {
     NavigationInitialisation(
         modifier = modifier,
@@ -55,7 +55,7 @@ public fun HistoryFlow(
         aiutaTryOn = aiutaTryOn,
         aiutaTryOnListeners = aiutaTryOnListeners,
         aiutaTryOnConfiguration = null,
-        theme = theme,
+        aiutaTheme = aiutaTheme,
         skuForGeneration = { defaultSKUItem },
     ) {
         val scope = rememberCoroutineScope()

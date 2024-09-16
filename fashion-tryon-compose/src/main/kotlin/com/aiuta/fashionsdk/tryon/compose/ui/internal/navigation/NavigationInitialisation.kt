@@ -32,8 +32,8 @@ internal fun NavigationInitialisation(
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)?,
+    aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
-    theme: AiutaTheme, // TODO Rename for better understanding?
     content: @Composable () -> Unit,
 ) {
     BoxWithConstraints(
@@ -57,7 +57,7 @@ internal fun NavigationInitialisation(
         CompositionLocalProvider(
             LocalAnalytic provides internalAnalytic,
             LocalController provides controller,
-            LocalTheme provides theme,
+            LocalTheme provides aiutaTheme,
             LocalAiutaConfiguration provides configuration,
             LocalAiutaTryOnStringResources provides
                 resolveInternalLanguage(

@@ -42,7 +42,7 @@ public fun AiutaTryOnFlow(
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)? = null,
-    theme: AiutaTheme, // TODO Rename for better understanding?
+    aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()
@@ -53,13 +53,13 @@ public fun AiutaTryOnFlow(
         aiutaTryOn = aiutaTryOn,
         aiutaTryOnListeners = aiutaTryOnListeners,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-        theme = theme,
+        aiutaTheme = aiutaTheme,
         skuForGeneration = skuForGeneration,
     ) {
         val controller = LocalController.current
 
         sendStartSessionEvent()
-        sendConfigureEvent(theme)
+        sendConfigureEvent(aiutaTheme)
 
         NavigationContainer(
             modifier = modifier,

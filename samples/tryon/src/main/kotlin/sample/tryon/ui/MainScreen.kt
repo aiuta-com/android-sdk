@@ -100,7 +100,7 @@ fun MainScreen() {
             aiutaTryOnListeners = { mockAiutaTryOnListeners },
             aiutaTryOnConfiguration = { mockAiutaConfiguration },
             skuForGeneration = { mockSKUItem },
-            theme = mockAiutaTheme,
+            aiutaTheme = mockAiutaTheme,
         )
     }
 }
