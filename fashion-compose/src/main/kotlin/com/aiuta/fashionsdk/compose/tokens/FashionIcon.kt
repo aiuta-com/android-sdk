@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.compose.tokens
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.R
 
+@Deprecated("Use AiutaIcon instead")
 @Immutable
 public object FashionIcon {
     // x36

@@ -1,0 +1,5 @@
+public final class com/aiuta/fashionsdk/compose/icons/DefaultAiutaIconsKt {
+	public static final fun defaultAiutaIcons ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;
+	public static final fun rememberDefaultAiutaIcons (Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;
+}
+

@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendConfigureEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartSessionEvent
@@ -31,7 +31,7 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
  *
  * @see AiutaTryOn
  * @see AiutaTryOnListeners
- * @see AiutaTryOnTheme
+ * @see AiutaTheme
  * @see SKUItem
  */
 @OptIn(ExperimentalMaterialApi::class)
@@ -42,7 +42,7 @@ public fun AiutaTryOnFlow(
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)? = null,
-    theme: (() -> AiutaTryOnTheme)? = null,
+    aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()
@@ -53,13 +53,13 @@ public fun AiutaTryOnFlow(
         aiutaTryOn = aiutaTryOn,
         aiutaTryOnListeners = aiutaTryOnListeners,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-        theme = theme,
+        aiutaTheme = aiutaTheme,
         skuForGeneration = skuForGeneration,
     ) {
         val controller = LocalController.current
 
         sendStartSessionEvent()
-        sendConfigureEvent(theme)
+        sendConfigureEvent(aiutaTheme)
 
         NavigationContainer(
             modifier = modifier,

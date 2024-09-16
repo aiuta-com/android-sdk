@@ -57,7 +57,7 @@ internal fun NavigationAppBar(
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 
-    val actionColor = theme.navBarTheme.foregroundColor ?: theme.colors.primary
+    val actionColor = theme.colors.primary
 
     val appbarTransition =
         updateTransition(
