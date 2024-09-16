@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.compose.icons
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcons
 
@@ -22,4 +24,9 @@ public fun defaultAiutaIcons(): AiutaIcons {
         lock16 = R.drawable.ic_lock_16,
         arrow16 = R.drawable.ic_arrow_16,
     )
+}
+
+@Composable
+public fun rememberDefaultAiutaIcons(): AiutaIcons {
+    return remember { defaultAiutaIcons() }
 }

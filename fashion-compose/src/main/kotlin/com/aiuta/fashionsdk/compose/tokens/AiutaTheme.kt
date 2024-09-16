@@ -1,7 +1,9 @@
 package com.aiuta.fashionsdk.compose.tokens
 
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.compose.tokens.color.AiutaColors
 import com.aiuta.fashionsdk.compose.tokens.color.DefaultAiutaColors
 import com.aiuta.fashionsdk.compose.tokens.gradient.AiutaGradients
@@ -45,4 +47,32 @@ public fun aiutaTheme(
         watermarkRes = watermarkRes,
         navBarTheme = defaultAiutaNavBarTheme(),
     )
+}
+
+@Composable
+public fun rememberAiutaTheme(
+    icons: AiutaIcons,
+    colors: AiutaColors = DefaultAiutaColors,
+    gradients: AiutaGradients = DefaultAiutaGradients,
+    typography: AiutaTypography = DefaultAiutaTypography,
+    shapes: AiutaShapes = DefaultAiutaShapes,
+    @DrawableRes watermarkRes: Int? = null,
+): AiutaTheme {
+    return remember(
+        icons,
+        colors,
+        gradients,
+        typography,
+        shapes,
+        watermarkRes,
+    ) {
+        aiutaTheme(
+            icons = icons,
+            colors = colors,
+            gradients = gradients,
+            typography = typography,
+            shapes = shapes,
+            watermarkRes = watermarkRes,
+        )
+    }
 }
