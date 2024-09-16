@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 // TODO Add docs
 @Immutable
 public class AiutaGradients(
-    public val loadingAnimationGradient: List<Color>,
+    public val loadingAnimation: List<Color>,
 )
 
 public val DefaultAiutaGradients: AiutaGradients by lazy { aiutaGradients() }

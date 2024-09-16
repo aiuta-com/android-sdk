@@ -7,14 +7,14 @@ import androidx.compose.runtime.Immutable
 @Immutable
 public class AiutaShapes internal constructor(
     // Images
-    public val mainImageShape: CornerBasedShape,
-    public val previewImageShape: CornerBasedShape,
-    public val historyImageShape: CornerBasedShape,
+    public val mainImage: CornerBasedShape,
+    public val previewImage: CornerBasedShape,
+    public val historyImage: CornerBasedShape,
     // Bottom sheet
-    public val bottomSheetShape: CornerBasedShape,
+    public val bottomSheet: CornerBasedShape,
     // Buttons
-    public val buttonLShape: CornerBasedShape,
-    public val buttonMShape: CornerBasedShape,
+    public val buttonL: CornerBasedShape,
+    public val buttonM: CornerBasedShape,
 )
 
 public val DefaultAiutaShapes: AiutaShapes by lazy { aiutaShapes() }

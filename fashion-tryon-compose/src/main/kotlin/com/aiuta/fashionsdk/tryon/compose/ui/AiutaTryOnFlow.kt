@@ -42,7 +42,7 @@ public fun AiutaTryOnFlow(
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)? = null,
-    theme: AiutaTheme? = null,
+    theme: AiutaTheme, // TODO Rename for better understanding?
     skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()

@@ -47,7 +47,7 @@ public fun HistoryFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    theme: AiutaTheme? = null,
+    theme: AiutaTheme, // TODO Rename for better understanding?
 ) {
     NavigationInitialisation(
         modifier = modifier,

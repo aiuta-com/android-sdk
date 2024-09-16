@@ -24,6 +24,5 @@ dependencies {
     baselineProfile(projects.internal.benchmark)
 
     implementation(projects.fashionCompose)
-//    implementation(libs.androidx.compose.material)
-//    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 }

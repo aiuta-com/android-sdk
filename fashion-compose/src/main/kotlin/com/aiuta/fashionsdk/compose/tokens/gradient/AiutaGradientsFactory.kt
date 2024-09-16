@@ -11,6 +11,6 @@ public fun aiutaGradients(
         ),
 ): AiutaGradients {
     return AiutaGradients(
-        loadingAnimationGradient = loadingAnimationGradient,
+        loadingAnimation = loadingAnimationGradient,
     )
 }

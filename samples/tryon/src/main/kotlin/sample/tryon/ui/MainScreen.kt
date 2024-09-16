@@ -8,6 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.aiuta.fashionsdk.compose.icons.defaultAiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.aiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
@@ -86,6 +88,13 @@ fun MainScreen() {
                 )
             }
 
+        val mockAiutaTheme =
+            remember {
+                aiutaTheme(
+                    icons = defaultAiutaIcons(),
+                )
+            }
+
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiuta = { viewModel.aiuta },
@@ -93,6 +102,7 @@ fun MainScreen() {
             aiutaTryOnListeners = { mockAiutaTryOnListeners },
             aiutaTryOnConfiguration = { mockAiutaConfiguration },
             skuForGeneration = { mockSKUItem },
+            theme = mockAiutaTheme,
         )
     }
 }

@@ -7,7 +7,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
-import com.aiuta.fashionsdk.compose.tokens.aiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
@@ -34,14 +33,13 @@ internal fun NavigationInitialisation(
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)?,
     skuForGeneration: () -> SKUItem,
-    theme: AiutaTheme? = null,
+    theme: AiutaTheme, // TODO Rename for better understanding?
     content: @Composable () -> Unit,
 ) {
     BoxWithConstraints(
         modifier = modifier,
     ) {
         val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
-        val finalTheme = remember { theme ?: aiutaTheme() }
         val configuration =
             remember {
                 aiutaTryOnConfiguration?.invoke() ?: defaultAiutaTryOnConfiguration()
@@ -59,7 +57,7 @@ internal fun NavigationInitialisation(
         CompositionLocalProvider(
             LocalAnalytic provides internalAnalytic,
             LocalController provides controller,
-            LocalTheme provides finalTheme,
+            LocalTheme provides theme,
             LocalAiutaConfiguration provides configuration,
             LocalAiutaTryOnStringResources provides
                 resolveInternalLanguage(

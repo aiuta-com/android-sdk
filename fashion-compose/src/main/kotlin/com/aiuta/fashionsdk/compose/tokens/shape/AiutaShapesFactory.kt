@@ -14,15 +14,15 @@ public fun aiutaShapes(
     buttonMRadiusDp: Dp = 8.dp,
 ): AiutaShapes {
     return AiutaShapes(
-        mainImageShape = RoundedCornerShape(mainImageRadiusDp),
-        previewImageShape = RoundedCornerShape(previewImageRadiusDp),
-        historyImageShape = RoundedCornerShape(historyImageRadiusDp),
-        bottomSheetShape =
+        mainImage = RoundedCornerShape(mainImageRadiusDp),
+        previewImage = RoundedCornerShape(previewImageRadiusDp),
+        historyImage = RoundedCornerShape(historyImageRadiusDp),
+        bottomSheet =
             RoundedCornerShape(
                 topStart = bottomSheetRadiusDp,
                 topEnd = bottomSheetRadiusDp,
             ),
-        buttonLShape = RoundedCornerShape(buttonLRadiusDp),
-        buttonMShape = RoundedCornerShape(buttonMRadiusDp),
+        buttonL = RoundedCornerShape(buttonLRadiusDp),
+        buttonM = RoundedCornerShape(buttonMRadiusDp),
     )
 }
