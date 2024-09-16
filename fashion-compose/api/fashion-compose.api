@@ -50,28 +50,6 @@ public final class com/aiuta/fashionsdk/compose/molecules/indicator/PagerIndicat
 	public static final fun PagerIndicator-8BndoHw (Landroidx/compose/ui/Modifier;Landroidx/compose/foundation/pager/PagerState;JIIFFFFLcom/aiuta/fashionsdk/compose/molecules/indicator/IndicatorOrientation;Landroidx/compose/runtime/Composer;II)V
 }
 
-public abstract interface class com/aiuta/fashionsdk/compose/tokens/AiutaColors {
-	public abstract fun getAccent-0d7_KjU ()J
-	public abstract fun getAiuta-0d7_KjU ()J
-	public abstract fun getBackground-0d7_KjU ()J
-	public abstract fun getBackgroundElevation2-0d7_KjU ()J
-	public abstract fun getBrand-0d7_KjU ()J
-	public abstract fun getError-0d7_KjU ()J
-	public abstract fun getNeutral-0d7_KjU ()J
-	public abstract fun getNeutral2-0d7_KjU ()J
-	public abstract fun getNeutral3-0d7_KjU ()J
-	public abstract fun getOnDark-0d7_KjU ()J
-	public abstract fun getOnLight-0d7_KjU ()J
-	public abstract fun getPrimary-0d7_KjU ()J
-	public abstract fun getSecondary-0d7_KjU ()J
-	public abstract fun getTertiary-0d7_KjU ()J
-}
-
-public final class com/aiuta/fashionsdk/compose/tokens/AiutaColorsKt {
-	public static final fun defaultAiutaColors-2vFsDN4 (Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Z)Lcom/aiuta/fashionsdk/compose/tokens/AiutaColors;
-	public static synthetic fun defaultAiutaColors-2vFsDN4$default (Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;Landroidx/compose/ui/graphics/Color;ZILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/AiutaColors;
-}
-
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme {
 	public abstract fun getForegroundColor-QN2ZGVo ()Landroidx/compose/ui/graphics/Color;
 	public abstract fun getNavLogo ()I
@@ -82,15 +60,22 @@ public final class com/aiuta/fashionsdk/compose/tokens/AiutaNavBarThemeKt {
 	public static synthetic fun defaultAiutaNavBarTheme-0Yiz4hI$default (Ljava/lang/Integer;Landroidx/compose/ui/graphics/Color;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;
 }
 
-public abstract interface class com/aiuta/fashionsdk/compose/tokens/AiutaTheme {
-	public abstract fun getColors ()Lcom/aiuta/fashionsdk/compose/tokens/AiutaColors;
-	public abstract fun getNavBarTheme ()Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;
-	public abstract fun getWatermarkRes ()Ljava/lang/Integer;
+public final class com/aiuta/fashionsdk/compose/tokens/AiutaTheme {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;Ljava/lang/Integer;)V
+	public final fun getColors ()Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+	public final fun getGradients ()Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;
+	public final fun getNavBarTheme ()Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;
+	public final fun getShapes ()Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
+	public final fun getTypography ()Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
+	public final fun getWatermarkRes ()Ljava/lang/Integer;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/AiutaThemeKt {
-	public static final fun defaultAiutaTheme (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/compose/tokens/AiutaColors;Ljava/lang/Integer;)Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;
-	public static synthetic fun defaultAiutaTheme$default (Lcom/aiuta/fashionsdk/compose/tokens/AiutaNavBarTheme;Lcom/aiuta/fashionsdk/compose/tokens/AiutaColors;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;
+	public static final fun aiutaTheme (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;Ljava/lang/Integer;)Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;
+	public static synthetic fun aiutaTheme$default (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;Ljava/lang/Integer;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;
+	public static final fun rememberAiutaTheme (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;Ljava/lang/Integer;Landroidx/compose/runtime/Composer;II)Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/FashionIcon {
@@ -111,6 +96,155 @@ public final class com/aiuta/fashionsdk/compose/tokens/FashionIcon {
 	public final fun getShare36 ()I
 	public final fun getSwipeUp ()I
 	public final fun getTrash36 ()I
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/color/AiutaColors {
+	public static final field $stable I
+	public synthetic fun <init> (JJJJJJJJJJJJJJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAccent-0d7_KjU ()J
+	public final fun getAiuta-0d7_KjU ()J
+	public final fun getBackground-0d7_KjU ()J
+	public final fun getBackgroundElevation2-0d7_KjU ()J
+	public final fun getBrand-0d7_KjU ()J
+	public final fun getError-0d7_KjU ()J
+	public final fun getNeutral-0d7_KjU ()J
+	public final fun getNeutral2-0d7_KjU ()J
+	public final fun getNeutral3-0d7_KjU ()J
+	public final fun getOnDark-0d7_KjU ()J
+	public final fun getOnLight-0d7_KjU ()J
+	public final fun getPrimary-0d7_KjU ()J
+	public final fun getSecondary-0d7_KjU ()J
+	public final fun getTertiary-0d7_KjU ()J
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/color/AiutaColorsKt {
+	public static final fun getDefaultAiutaColors ()Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/color/AiutaDarkColorsKt {
+	public static final fun aiutaDarkColors-dVHXu7A (JJJJJJJJJJJJJJ)Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+	public static synthetic fun aiutaDarkColors-dVHXu7A$default (JJJJJJJJJJJJJJILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/color/AiutaLightColorsKt {
+	public static final fun aiutaLightColors-dVHXu7A (JJJJJJJJJJJJJJ)Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+	public static synthetic fun aiutaLightColors-dVHXu7A$default (JJJJJJJJJJJJJJILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients {
+	public static final field $stable I
+	public fun <init> (Ljava/util/List;)V
+	public final fun getLoadingAnimation ()Ljava/util/List;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradientsFactoryKt {
+	public static final fun aiutaGradients (Ljava/util/List;)Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
+	public static synthetic fun aiutaGradients$default (Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradientsKt {
+	public static final fun getDefaultAiutaGradients ()Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
+	public static final field $stable I
+	public fun <init> (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
+	public final fun getArrow16 ()Landroid/graphics/drawable/Drawable;
+	public final fun getBack24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getCamera24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getCameraFill24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getClose24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getDislike36 ()Landroid/graphics/drawable/Drawable;
+	public final fun getError36 ()Landroid/graphics/drawable/Drawable;
+	public final fun getHistory24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getLike36 ()Landroid/graphics/drawable/Drawable;
+	public final fun getLock16 ()Landroid/graphics/drawable/Drawable;
+	public final fun getMagic16 ()Landroid/graphics/drawable/Drawable;
+	public final fun getShare24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getTrash24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getWelcomeScreen82 ()Landroid/graphics/drawable/Drawable;
+	public final fun getWishlist20 ()Landroid/graphics/drawable/Drawable;
+	public final fun getWishlistFill20 ()Landroid/graphics/drawable/Drawable;
+}
+
+public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
+	public static final field $stable I
+	public fun <init> (IIIIIIIIIIIIIIII)V
+	public final fun getArrow16 ()I
+	public final fun getBack24 ()I
+	public final fun getCamera24 ()I
+	public final fun getCameraFill24 ()I
+	public final fun getClose24 ()I
+	public final fun getDislike36 ()I
+	public final fun getError36 ()I
+	public final fun getHistory24 ()I
+	public final fun getLike36 ()I
+	public final fun getLock16 ()I
+	public final fun getMagic16 ()I
+	public final fun getShare24 ()I
+	public final fun getTrash24 ()I
+	public final fun getWelcomeScreen82 ()I
+	public final fun getWishlist20 ()I
+	public final fun getWishlistFill20 ()I
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes {
+	public static final field $stable I
+	public final fun getBottomSheet ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun getButtonL ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun getButtonM ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun getHistoryImage ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun getMainImage ()Landroidx/compose/foundation/shape/CornerBasedShape;
+	public final fun getPreviewImage ()Landroidx/compose/foundation/shape/CornerBasedShape;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapesFactoryKt {
+	public static final fun aiutaShapes-erZIsFM (FFFFFF)Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
+	public static synthetic fun aiutaShapes-erZIsFM$default (FFFFFFILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapesKt {
+	public static final fun getDefaultAiutaShapes ()Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaFont {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun <init> (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;)V
+	public synthetic fun <init> (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+	public final fun getFontWeight ()Landroidx/compose/ui/text/font/FontWeight;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography {
+	public static final field $stable I
+	public static final field Companion Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography$Companion;
+	public synthetic fun <init> (Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getBrandName ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getButton ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getCells ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getChips ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getDescription ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getNavbar ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getPrice ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getProductName ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getRegular ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getSmallButton ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getTitleL ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getTitleM ()Landroidx/compose/ui/text/TextStyle;
+	public final fun getTitleXL ()Landroidx/compose/ui/text/TextStyle;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography$Companion {
+	public final fun build (Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;)Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
+	public static synthetic fun build$default (Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography$Companion;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypographyKt {
+	public static final fun getDefaultAiutaTypography ()Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/utils/UtilsKt {
