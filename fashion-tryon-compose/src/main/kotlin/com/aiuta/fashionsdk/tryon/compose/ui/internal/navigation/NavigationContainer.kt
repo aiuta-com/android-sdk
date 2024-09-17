@@ -1,10 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.runtime.Composable
@@ -33,13 +30,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.hideErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isErrorStateVisible
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.DEFAULT_SHOWING_DELAY
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAlertDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationErrorCard
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationSKUItem
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -90,40 +85,6 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                     controller.navigateTo(NavigationScreen.HISTORY)
                 },
             )
-
-            AnimatedVisibility(
-                modifier = sharedModifier.background(theme.colors.background),
-                visible = controller.isSKUItemVisible.value,
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically(),
-            ) {
-                Column {
-                    Divider(
-                        modifier = sharedModifier,
-                        color = theme.colors.neutral2,
-                        thickness = 1.dp,
-                    )
-
-                    NavigationSKUItem(
-                        modifier = Modifier.fillMaxWidth(),
-                        onItemClick = {
-                            controller.bottomSheetNavigator.show(
-                                newSheetScreen =
-                                    NavigationBottomSheetScreen.SKUInfo(
-                                        primaryButtonState = PrimaryButtonState.ADD_TO_CART,
-                                        skuItem = controller.activeSKUItem.value,
-                                    ),
-                            )
-                        },
-                    )
-
-                    Divider(
-                        modifier = sharedModifier,
-                        color = theme.colors.neutral2,
-                        thickness = 1.dp,
-                    )
-                }
-            }
 
             NavigationContent(
                 modifier = Modifier.weight(1f),

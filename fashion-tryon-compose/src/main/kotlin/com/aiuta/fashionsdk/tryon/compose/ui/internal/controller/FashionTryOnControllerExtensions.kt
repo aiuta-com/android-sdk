@@ -87,15 +87,6 @@ internal fun FashionTryOnController.deactivateGeneration() {
     isGenerationActive.value = false
 }
 
-// Active SKU item visibility
-internal fun FashionTryOnController.forceShowActiveSKUItem() {
-    isSKUItemVisible.value = true
-}
-
-internal fun FashionTryOnController.forceHideActiveSKUItem() {
-    isSKUItemVisible.value = false
-}
-
 // Generations
 internal inline fun <reified T : SKUGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> {
     return generationOperations.mapNotNull { it as? T }
