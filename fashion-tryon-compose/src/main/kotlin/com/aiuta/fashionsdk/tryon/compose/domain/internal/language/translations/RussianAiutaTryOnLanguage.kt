@@ -8,6 +8,11 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
 
+    // Pre Onboarding
+    override val preOnboardingTitle: String = "TODO"
+    override val preOnboardingSubtitle: String = "TODO"
+    override val preOnboardingButton: String = "TODO"
+
     // Onboarding
     override val onboardingButtonNext: String = "Далее"
     override val onboardingButtonStart: String = "Начать"

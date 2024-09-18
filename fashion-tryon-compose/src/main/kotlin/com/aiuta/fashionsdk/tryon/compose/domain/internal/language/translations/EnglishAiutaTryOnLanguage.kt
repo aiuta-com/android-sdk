@@ -8,6 +8,11 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val appBarHistory: String = "History"
     override val appBarSelect: String = "Select"
 
+    // Pre Onboarding
+    override val preOnboardingTitle: String = "Try on you"
+    override val preOnboardingSubtitle: String = "Welcome to our Virtual try-on.\nTry on the item directly on your photo"
+    override val preOnboardingButton: String = "Let’s start"
+
     // Onboarding
     override val onboardingButtonNext: String = "Next"
     override val onboardingButtonStart: String = "Start"

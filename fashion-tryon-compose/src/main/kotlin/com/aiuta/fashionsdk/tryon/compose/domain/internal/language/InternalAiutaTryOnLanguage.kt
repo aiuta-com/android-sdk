@@ -8,6 +8,11 @@ internal interface InternalAiutaTryOnLanguage {
     val appBarHistory: String
     val appBarSelect: String
 
+    // Pre Onboarding
+    val preOnboardingTitle: String
+    val preOnboardingSubtitle: String
+    val preOnboardingButton: String
+
     // Onboarding
     val onboardingButtonNext: String
     val onboardingButtonStart: String

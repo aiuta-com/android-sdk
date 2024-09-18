@@ -8,6 +8,11 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
 
+    // Pre Onboarding
+    override val preOnboardingTitle: String = "TODO"
+    override val preOnboardingSubtitle: String = "TODO"
+    override val preOnboardingButton: String = "TODO"
+
     // Onboarding
     override val onboardingButtonNext: String = "Başla"
     override val onboardingButtonStart: String = "Devam Et"

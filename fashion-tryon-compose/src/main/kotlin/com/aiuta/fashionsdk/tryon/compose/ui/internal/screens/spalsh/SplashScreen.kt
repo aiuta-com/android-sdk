@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
@@ -26,6 +27,7 @@ internal fun SplashScreen(
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
+    val configuration = LocalAiutaConfiguration.current
     val dataController = LocalAiutaTryOnDataController.current
 
     LaunchedEffect(Unit) {
@@ -50,7 +52,14 @@ internal fun SplashScreen(
         val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding()
 
         if (shouldShowOnboarding) {
-            navigateTo(NavigationScreen.ONBOARDING)
+            val firstOnboardingScreen =
+                if (configuration.isPreOnboardingAvailable) {
+                    NavigationScreen.PREONBOARDING
+                } else {
+                    NavigationScreen.ONBOARDING
+                }
+
+            navigateTo(firstOnboardingScreen)
         } else {
             navigateTo(NavigationScreen.IMAGE_SELECTOR)
         }

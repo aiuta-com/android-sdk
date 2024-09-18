@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.appBarPadding
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreenInternal
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.preonboarding.PreOnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.GenerationResultScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.ImageSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.spalsh.SplashScreen
@@ -20,7 +20,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.spalsh.SplashScree
 @Composable
 internal fun NavigationContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val sharedModifier = Modifier.fillMaxSize().appBarPadding()
+    val sharedModifier = Modifier.fillMaxSize()
 
     val transition =
         updateTransition(
@@ -46,9 +46,15 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
                 )
             }
 
+            NavigationScreen.PREONBOARDING -> {
+                PreOnboardingScreen(
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
+
             NavigationScreen.ONBOARDING -> {
                 OnboardingScreen(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = sharedModifier,
                 )
             }
 

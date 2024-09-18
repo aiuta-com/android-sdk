@@ -43,6 +43,12 @@ public interface AiutaTryOnConfiguration {
      * Flag which turn on or off possibility to use add to wishlist option
      */
     public val isWishlistAvailable: Boolean
+
+    // //////////////////////
+    // TODO Refactor configuration for AY?
+    public val isPreOnboardingAvailable: Boolean
+
+    public val isOnboardingAppBarExtended: Boolean
 }
 
 public fun defaultAiutaTryOnConfiguration(
@@ -51,6 +57,9 @@ public fun defaultAiutaTryOnConfiguration(
     photoSelectionLimit: Int = 10,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
+    // TODO Refactor configuration for AY?
+    isPreOnboardingAvailable: Boolean = false,
+    isOnboardingAppBarExtended: Boolean = false,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage? = language
@@ -58,5 +67,7 @@ public fun defaultAiutaTryOnConfiguration(
         override val photoSelectionLimit: Int = photoSelectionLimit
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
+        override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable
+        override val isOnboardingAppBarExtended: Boolean = isOnboardingAppBarExtended
     }
 }

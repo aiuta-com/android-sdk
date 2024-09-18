@@ -13,20 +13,16 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.S
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarNavigationState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 
 // Configs
-internal val screensWithSKUItems =
-    setOf(
-        NavigationScreen.IMAGE_SELECTOR,
-        NavigationScreen.GENERATION_RESULT,
-    )
-
 internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.SPLASH,
+        NavigationScreen.PREONBOARDING,
         NavigationScreen.ONBOARDING,
     )
 
@@ -112,9 +108,26 @@ internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> 
     return remember(currentScreen.value) {
         derivedStateOf {
             when (currentScreen.value) {
-                NavigationScreen.SPLASH, NavigationScreen.ONBOARDING -> NavigationAppBarState.EMPTY
+                NavigationScreen.SPLASH,
+                NavigationScreen.PREONBOARDING,
+                NavigationScreen.ONBOARDING,
+                -> NavigationAppBarState.EMPTY
+
                 NavigationScreen.HISTORY -> NavigationAppBarState.HISTORY
+
                 else -> NavigationAppBarState.GENERAL
+            }
+        }
+    }
+}
+
+@Composable
+internal fun FashionTryOnController.appbarNavigationState(): State<NavigationAppBarNavigationState> {
+    return remember(currentScreen.value) {
+        derivedStateOf {
+            when (currentScreen.value) {
+                NavigationScreen.PREONBOARDING -> NavigationAppBarNavigationState.EMPTY
+                else -> NavigationAppBarNavigationState.BACK
             }
         }
     }
@@ -129,7 +142,11 @@ internal fun FashionTryOnController.appbarActionState(): State<NavigationAppBarA
             when (currentScreen.value) {
                 NavigationScreen.HISTORY -> NavigationAppBarActionState.SELECT_PHOTOS
 
-                NavigationScreen.SPLASH, NavigationScreen.ONBOARDING -> NavigationAppBarActionState.EMPTY
+                NavigationScreen.PREONBOARDING -> NavigationAppBarActionState.CLOSE
+
+                NavigationScreen.SPLASH,
+                NavigationScreen.ONBOARDING,
+                -> NavigationAppBarActionState.EMPTY
 
                 NavigationScreen.IMAGE_SELECTOR, NavigationScreen.GENERATION_RESULT -> {
                     if (aiutaConfiguration.isHistoryAvailable) {
