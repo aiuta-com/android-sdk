@@ -5,10 +5,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
@@ -32,9 +32,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.DEFAULT_SHOWING_DELAY
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAlertDialog
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationErrorCard
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.APPBAR_HEIGHT
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.NavigationAppBar
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -72,24 +73,21 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.background(theme.colors.background),
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-        ) {
-            NavigationAppBar(
-                modifier =
-                    sharedModifier.background(
-                        theme.colors.background,
-                    ).windowInsetsPadding(WindowInsets.statusBars),
-                navigateBack = controller::navigateBack,
-                navigateToHistory = {
-                    controller.navigateTo(NavigationScreen.HISTORY)
-                },
-            )
+        NavigationContent(modifier = Modifier.fillMaxSize())
 
-            NavigationContent(
-                modifier = Modifier.weight(1f),
-            )
-        }
+        NavigationAppBar(
+            modifier =
+                sharedModifier
+                    .align(Alignment.TopCenter)
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .height(APPBAR_HEIGHT)
+                    .fillMaxWidth()
+                    .background(theme.colors.background),
+            navigateBack = controller::navigateBack,
+            navigateToHistory = {
+                controller.navigateTo(NavigationScreen.HISTORY)
+            },
+        )
 
         AnimatedVisibility(
             modifier =

@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.appBarPadding
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreenInternal
@@ -19,7 +20,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.spalsh.SplashScree
 @Composable
 internal fun NavigationContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val sharedModifier = Modifier.fillMaxSize()
+    val sharedModifier = Modifier.fillMaxSize().appBarPadding()
 
     val transition =
         updateTransition(
@@ -47,7 +48,7 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
 
             NavigationScreen.ONBOARDING -> {
                 OnboardingScreen(
-                    modifier = sharedModifier,
+                    modifier = Modifier.fillMaxSize(),
                 )
             }
 

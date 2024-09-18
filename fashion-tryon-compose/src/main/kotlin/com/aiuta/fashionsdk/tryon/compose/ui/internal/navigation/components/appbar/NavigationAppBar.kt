@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateColorAsState

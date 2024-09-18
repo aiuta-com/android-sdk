@@ -24,7 +24,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationInitialisation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.NavigationAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreenInternal
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.ZoomedImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageState
