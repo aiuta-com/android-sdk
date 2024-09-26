@@ -9,11 +9,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -23,10 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -34,6 +33,7 @@ internal fun TryOnPageContent(
     modifier: Modifier = Modifier,
     onboardingController: OnboardingController,
 ) {
+    val stringResources = LocalAiutaTryOnStringResources.current
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
             derivedStateOf {
@@ -51,8 +51,6 @@ internal fun TryOnPageContent(
         modifier = modifier,
         horizontalAlignment = Alignment.Start,
     ) {
-        Spacer(Modifier.height(30.dp))
-
         ImagesBlock(
             modifier =
                 Modifier
@@ -66,7 +64,8 @@ internal fun TryOnPageContent(
 
         CentredTextBlock(
             modifier = Modifier.weight(0.3f),
-            onboardingController = onboardingController,
+            title = stringResources.onboardingPageTryonTopic,
+            subtitle = stringResources.onboardingPageTryonSubtopic,
         )
     }
 }

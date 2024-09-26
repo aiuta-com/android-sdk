@@ -1,5 +1,12 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withLink
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.Plurals
 
@@ -10,7 +17,8 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Try on you"
-    override val preOnboardingSubtitle: String = "Welcome to our Virtual try-on.\nTry on the item directly on your photo"
+    override val preOnboardingSubtitle: String =
+        "Welcome to our Virtual try-on.\nTry on the item directly on your photo"
     override val preOnboardingButton: String = "Let’s start"
 
     // Onboarding
@@ -20,6 +28,29 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Upload a photo and see how items look on you"
     override val onboardingPageBestResultTopic: String = "For best results"
     override val onboardingPageBestResultSubtopic: String = "Use a photo with good lighting, stand straight a plain background"
+    override val onboardingPageConsentTopic: String = "Consent"
+    override val onboardingPageConsentBody: AnnotatedString =
+        buildAnnotatedString {
+            append(
+                text =
+                    "In order to try on items digitally, " +
+                        "you agree to allow About You to process your photo. " +
+                        "Your data will be processed according to the ",
+            )
+            append("Brand name ")
+            withLink(
+                LinkAnnotation.Url(
+                    url = "https://aiuta.com/",
+                    styles =
+                        TextLinkStyles(
+                            style = SpanStyle(textDecoration = TextDecoration.Underline),
+                        ),
+                ),
+            ) {
+                append("Terms of Use")
+            }
+        }
+    override val onboardingPageConsentAgreePoint: String = "I agree to allow Brand name to\nprocess my photo"
     override val onboardingLegalDisclaimerBeforeClickable: String = "Your photo is processed as per the"
     override val onboardingLegalDisclaimerClickable: String = "Clarification Text"
     override val onboardingLegalDisclaimerAfterClickable: String = ""
@@ -41,7 +72,8 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historySelectorEnableButtonSelectAll: String = "Select all"
     override val historySelectorEnableButtonUnselectAll: String = "Unselect all"
     override val historySelectorEnableButtonCancel: String = "Cancel"
-    override val historyEmptyDescription: String = "Once you try on first item your try-on history would be stored here"
+    override val historyEmptyDescription: String =
+        "Once you try on first item your try-on history would be stored here"
 
     // Generation Result
     override val generationResultMoreTitle: String = "More for you to try on"
@@ -64,7 +96,8 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Camera permission"
-    override val dialogCameraPermissionDescription: String = "Please allow access to the camera in the application settings."
+    override val dialogCameraPermissionDescription: String =
+        "Please allow access to the camera in the application settings."
     override val dialogCameraPermissionConfirmButton: String = "Settings"
 
     // General

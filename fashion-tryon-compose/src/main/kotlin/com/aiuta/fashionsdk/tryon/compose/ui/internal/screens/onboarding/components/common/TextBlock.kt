@@ -12,12 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 
 @Composable
 internal fun CentredTextBlock(
     modifier: Modifier = Modifier,
-    onboardingController: OnboardingController,
+    title: String,
+    subtitle: String,
 ) {
     Column(
         modifier = modifier,
@@ -29,7 +29,8 @@ internal fun CentredTextBlock(
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
-            onboardingController = onboardingController,
+            title = title,
+            subtitle = subtitle,
         )
 
         Spacer(Modifier.weight(1f))
@@ -39,13 +40,14 @@ internal fun CentredTextBlock(
 @Composable
 internal fun ColumnScope.TextBlock(
     modifier: Modifier = Modifier,
-    onboardingController: OnboardingController,
+    title: String,
+    subtitle: String,
 ) {
     val theme = LocalTheme.current
 
     Text(
         modifier = modifier,
-        text = onboardingController.state.value.topic,
+        text = title,
         style = theme.typography.titleL,
         color = theme.colors.primary,
         textAlign = TextAlign.Start,
@@ -55,7 +57,7 @@ internal fun ColumnScope.TextBlock(
 
     Text(
         modifier = modifier,
-        text = onboardingController.state.value.subtopic,
+        text = subtitle,
         style = theme.typography.regular,
         color = theme.colors.primary,
         textAlign = TextAlign.Start,

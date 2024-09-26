@@ -30,12 +30,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.listenIsPrimaryButtonEnabled
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.nextPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.rememberOnboardingController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
@@ -65,6 +68,8 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth(),
         )
 
+        Spacer(Modifier.height(32.dp))
+
         OnboardingScreenContent(
             modifier =
                 Modifier
@@ -86,10 +91,10 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                 },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.xlSize(),
+            isEnable = onboardingController.listenIsPrimaryButtonEnabled().value,
             onClick = {
                 onboardingController.nextPage(
                     controller = controller,
-                    stringResources = stringResources,
                 )
             },
         )
@@ -134,6 +139,12 @@ private fun OnboardingScreenContent(
                     BestResultPageContent(
                         modifier = Modifier.fillMaxSize(),
                         state = state,
+                    )
+                }
+
+                is ConsentPage -> {
+                    ConsentPageContent(
+                        modifier = Modifier.fillMaxSize(),
                         onboardingController = onboardingController,
                     )
                 }

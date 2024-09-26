@@ -14,22 +14,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.BestResultPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 
 @Composable
 internal fun BestResultPageContent(
     modifier: Modifier = Modifier,
     state: BestResultPage,
-    onboardingController: OnboardingController,
 ) {
+    val stringResources = LocalAiutaTryOnStringResources.current
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Spacer(Modifier.height(30.dp))
-
         BestImagesBlock(
             modifier =
                 Modifier
@@ -44,7 +43,8 @@ internal fun BestResultPageContent(
                 Modifier
                     .weight(0.3f)
                     .fillMaxWidth(),
-            onboardingController = onboardingController,
+            title = stringResources.onboardingPageBestResultTopic,
+            subtitle = stringResources.onboardingPageBestResultSubtopic,
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.text.AnnotatedString
 
 @Immutable
 internal interface InternalAiutaTryOnLanguage {
@@ -20,6 +21,9 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingPageTryonSubtopic: String
     val onboardingPageBestResultTopic: String
     val onboardingPageBestResultSubtopic: String
+    val onboardingPageConsentTopic: String
+    val onboardingPageConsentBody: AnnotatedString
+    val onboardingPageConsentAgreePoint: String
     val onboardingLegalDisclaimerBeforeClickable: String
     val onboardingLegalDisclaimerClickable: String
     val onboardingLegalDisclaimerAfterClickable: String

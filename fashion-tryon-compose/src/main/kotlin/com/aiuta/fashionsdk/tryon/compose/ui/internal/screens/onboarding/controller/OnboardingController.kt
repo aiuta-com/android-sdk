@@ -9,21 +9,16 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.CoroutineScope
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
-    val stringResources = LocalAiutaTryOnStringResources.current
     val defaultState =
         remember {
-            mutableStateOf<OnboardingState>(
-                TryOnPage(
-                    topic = stringResources.onboardingPageTryonTopic,
-                    subtopic = stringResources.onboardingPageTryonSubtopic,
-                ),
-            )
+            mutableStateOf<OnboardingState>(TryOnPage)
         }
 
     // Try on pages + Best result page
@@ -50,4 +45,6 @@ internal class OnboardingController(
     val state: MutableState<OnboardingState>,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
-)
+) {
+    val isAgreementChecked = mutableStateOf(false)
+}
