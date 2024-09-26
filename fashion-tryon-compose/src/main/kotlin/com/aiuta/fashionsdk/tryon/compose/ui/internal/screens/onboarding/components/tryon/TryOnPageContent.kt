@@ -23,7 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.TextBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
@@ -64,21 +64,10 @@ internal fun TryOnPageContent(
             onboardingController = onboardingController,
         )
 
-        Column(
+        CentredTextBlock(
             modifier = Modifier.weight(0.3f),
-        ) {
-            Spacer(Modifier.weight(1f))
-
-            TextBlock(
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
-                onboardingController = onboardingController,
-            )
-
-            Spacer(Modifier.weight(1f))
-        }
+            onboardingController = onboardingController,
+        )
     }
 }
 

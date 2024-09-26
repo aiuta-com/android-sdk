@@ -1,8 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,6 +13,28 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
+
+@Composable
+internal fun CentredTextBlock(
+    modifier: Modifier = Modifier,
+    onboardingController: OnboardingController,
+) {
+    Column(
+        modifier = modifier,
+    ) {
+        Spacer(Modifier.weight(1f))
+
+        TextBlock(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+            onboardingController = onboardingController,
+        )
+
+        Spacer(Modifier.weight(1f))
+    }
+}
 
 @Composable
 internal fun ColumnScope.TextBlock(

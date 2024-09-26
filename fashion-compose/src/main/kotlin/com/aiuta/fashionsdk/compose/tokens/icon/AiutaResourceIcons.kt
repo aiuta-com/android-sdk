@@ -23,9 +23,11 @@ public class AiutaResourceIcons(
     @DrawableRes public val back24: Int,
     @DrawableRes public val camera24: Int,
     @DrawableRes public val cameraFill24: Int,
+    @DrawableRes public val checkCorrect24: Int,
+    @DrawableRes public val checkNotCorrect24: Int,
     @DrawableRes public val close24: Int,
-    @DrawableRes public val trash24: Int,
     @DrawableRes public val history24: Int,
+    @DrawableRes public val trash24: Int,
     @DrawableRes public val share24: Int,
     // x20
     @DrawableRes public val wishlist20: Int,
