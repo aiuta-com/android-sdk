@@ -13,9 +13,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.previousPage
 
 @Composable
-internal fun OnboardingAppBar(modifier: Modifier = Modifier) {
+internal fun OnboardingAppBar(
+    modifier: Modifier = Modifier,
+    onboardingController: OnboardingController,
+) {
     val controller = LocalController.current
     val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
@@ -28,7 +33,7 @@ internal fun OnboardingAppBar(modifier: Modifier = Modifier) {
                 painter = rememberAsyncImagePainter(theme.icons.back24),
                 color = theme.colors.primary,
                 onClick = {
-                    // TODO Back click
+                    onboardingController.previousPage(controller)
                 },
             )
         },

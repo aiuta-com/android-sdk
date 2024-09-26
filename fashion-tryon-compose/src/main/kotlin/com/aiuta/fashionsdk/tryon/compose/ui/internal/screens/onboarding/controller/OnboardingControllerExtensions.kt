@@ -1,52 +1,71 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendContinueOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendFinishOnBoardingEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
 internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
-    val nextPageIndex = pagerState.settledPage + 1
+    scope.launch {
+        val nextPageIndex = pagerState.settledPage + 1
+        val nextState =
+            onboardingStatesQueue.getOrNull(
+                index = (nextPageIndex - TryOnPage.INTERNAL_PAGES.lastIndex).coerceAtLeast(0),
+            )
 
-    when (state.value) {
-        is TryOnPage -> {
+        if (nextState != null) {
             val isLastPageOfTryOn = pagerState.settledPage == TryOnPage.INTERNAL_PAGES.lastIndex
 
-            if (isLastPageOfTryOn) {
-                // Change state to next
-                state.value = BestResultPage
+            // Skip for Try on page case
+            if (state.value !is TryOnPage || isLastPageOfTryOn) {
+                state.value = nextState
             }
 
             controller.sendContinueOnBoardingEvent(newPage = nextPageIndex)
-        }
 
-        is BestResultPage -> {
-            state.value = ConsentPage
-            controller.sendContinueOnBoardingEvent(newPage = nextPageIndex)
-        }
-
-        is ConsentPage -> {
-            scope.launch {
-                controller.onboardingInteractor.setOnboardingAsFinished()
-                controller.sendFinishOnBoardingEvent()
-                controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
-            }
+            pagerState.animateScrollToPage(nextPageIndex)
+        } else {
+            // Close onboarding and move on
+            controller.onboardingInteractor.setOnboardingAsFinished()
+            controller.sendFinishOnBoardingEvent()
+            controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
         }
     }
+}
 
+internal fun OnboardingController.previousPage(controller: FashionTryOnController) {
     scope.launch {
-        pagerState.animateScrollToPage(nextPageIndex)
+        val previousPageIndex = pagerState.settledPage - 1
+        val isFirstPage = pagerState.settledPage == 0
+
+        val previousState =
+            onboardingStatesQueue.getOrNull(
+                index = (previousPageIndex - TryOnPage.INTERNAL_PAGES.lastIndex).coerceAtLeast(0),
+            ).takeIf { !isFirstPage }
+
+        if (previousState != null) {
+            // Skip for Try on page case
+            if (state.value !is TryOnPage) {
+                state.value = previousState
+            }
+
+            controller.sendContinueOnBoardingEvent(newPage = previousPageIndex)
+
+            pagerState.animateScrollToPage(previousPageIndex)
+        } else {
+            // Ask for back stack from host
+            controller.clickClose(FinishSession.Origin.ONBOARDING_SCREEN)
+        }
     }
 }
 

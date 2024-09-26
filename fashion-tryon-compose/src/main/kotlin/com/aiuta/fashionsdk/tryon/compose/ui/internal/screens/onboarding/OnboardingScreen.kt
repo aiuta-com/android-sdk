@@ -66,6 +66,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                 Modifier
                     .padding(horizontal = generalHorizontalPadding)
                     .fillMaxWidth(),
+            onboardingController = onboardingController,
         )
 
         Spacer(Modifier.height(32.dp))
@@ -84,7 +85,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(horizontal = generalHorizontalPadding),
             text =
-                if (onboardingController.state.value is TryOnPage) {
+                if (onboardingController.state.value != onboardingController.onboardingStatesQueue.last()) {
                     stringResources.onboardingButtonNext
                 } else {
                     stringResources.onboardingButtonStart

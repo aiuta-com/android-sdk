@@ -9,30 +9,25 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.CoroutineScope
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
-    val defaultState =
-        remember {
-            mutableStateOf<OnboardingState>(TryOnPage)
-        }
-
     // Try on pages + Best result page
     val pagerState =
         rememberPagerState(
             pageCount = {
-                TryOnPage.INTERNAL_PAGES.size + 1
+                TryOnPage.INTERNAL_PAGES.size + 2
             },
         )
     val scope = rememberCoroutineScope()
 
     return remember {
         OnboardingController(
-            state = defaultState,
             pagerState = pagerState,
             scope = scope,
         )
@@ -42,9 +37,20 @@ internal fun rememberOnboardingController(): OnboardingController {
 @OptIn(ExperimentalFoundationApi::class)
 @Immutable
 internal class OnboardingController(
-    val state: MutableState<OnboardingState>,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
 ) {
+    // Agreement
     val isAgreementChecked = mutableStateOf(false)
+
+    // Onboarding queue
+    val onboardingStatesQueue =
+        listOf(
+            TryOnPage,
+            BestResultPage,
+            ConsentPage,
+        )
+
+    // General state
+    val state: MutableState<OnboardingState> = mutableStateOf(onboardingStatesQueue.first())
 }
