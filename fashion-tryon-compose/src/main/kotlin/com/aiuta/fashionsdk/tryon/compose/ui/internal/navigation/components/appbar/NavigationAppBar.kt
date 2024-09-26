@@ -206,7 +206,7 @@ internal fun AppBar(
     Box(
         modifier =
             modifier
-                .padding(horizontal = 16.dp)
+                .padding(top = 8.dp)
                 .windowInsetsPadding(WindowInsets.statusBars),
     ) {
         navigationIcon()

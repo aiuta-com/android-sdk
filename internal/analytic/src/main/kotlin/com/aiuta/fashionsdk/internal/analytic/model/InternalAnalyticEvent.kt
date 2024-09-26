@@ -61,6 +61,7 @@ public object FinishSession : InternalAnalyticEvent {
         MAIN_SCREEN("MainScreen"),
 
         // TODO Add to analytic
+        ONBOARDING_SCREEN("OnboardingScreen"),
         PREONBOARDING_SCREEN("PreonboardingScreen"),
     }
 }

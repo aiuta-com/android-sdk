@@ -1,40 +1,34 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.TextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun TryOnPageContent(
     modifier: Modifier = Modifier,
@@ -53,8 +47,50 @@ internal fun TryOnPageContent(
             label = "currentPageTransition",
         )
 
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.Start,
+    ) {
+        Spacer(Modifier.height(30.dp))
+
+        ImagesBlock(
+            modifier =
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .fillMaxWidth()
+                    .weight(0.7f)
+                    .padding(horizontal = 20.dp),
+            currentPageTransition = currentPageTransition,
+            onboardingController = onboardingController,
+        )
+
+        Column(
+            modifier = Modifier.weight(0.3f),
+        ) {
+            Spacer(Modifier.weight(1f))
+
+            TextBlock(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                onboardingController = onboardingController,
+            )
+
+            Spacer(Modifier.weight(1f))
+        }
+    }
+}
+
+@OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
+@Composable
+private fun ImagesBlock(
+    modifier: Modifier = Modifier,
+    currentPageTransition: Transition<TryOnPage.InternalPage?>,
+    onboardingController: OnboardingController,
+) {
     Box(
-        modifier = modifier.padding(horizontal = 16.dp),
+        modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
         currentPageTransition.Crossfade(
@@ -84,54 +120,4 @@ internal fun TryOnPageContent(
             }
         }
     }
-}
-
-@Composable
-private fun ItemContent(
-    modifier: Modifier = Modifier,
-    itemImage: Int,
-    isActive: Boolean,
-    onClick: () -> Unit,
-) {
-    val theme = LocalTheme.current
-
-    val widthTransition =
-        animateDpAsState(
-            targetValue = if (isActive) 88.dp else 64.dp,
-            label = "widthTransition",
-        )
-
-    val heightTransition =
-        animateDpAsState(
-            targetValue = if (isActive) 120.dp else 88.dp,
-            label = "heightTransition",
-        )
-
-    val cornerRadiusTransition =
-        animateDpAsState(
-            targetValue = if (isActive) 12.dp else 10.dp,
-            label = "cornerRadiusTransition",
-        )
-
-    Image(
-        modifier =
-            modifier
-                .width(widthTransition.value)
-                .height(heightTransition.value)
-                .shadow(
-                    elevation = 10.dp,
-                    shape = RoundedCornerShape(cornerRadiusTransition.value),
-                    ambientColor = Color.Black,
-                    spotColor = Color.Black,
-                )
-                .background(
-                    color = theme.colors.background,
-                    shape = RoundedCornerShape(cornerRadiusTransition.value),
-                )
-                .clickableUnindicated {
-                    onClick()
-                },
-        painter = painterResource(itemImage),
-        contentDescription = null,
-    )
 }

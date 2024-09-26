@@ -56,7 +56,11 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
         )
 
         AppBar(
-            modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter),
+            modifier =
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
             actions = {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),

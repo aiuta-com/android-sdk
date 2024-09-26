@@ -15,35 +15,28 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.VerticalPager
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.indicator.PagerIndicator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.BestResultPageContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.DisclaimerContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.TryOnPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.nextPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.rememberOnboardingController
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
@@ -51,6 +44,8 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
     val onboardingController = rememberOnboardingController()
+
+    val generalHorizontalPadding = 16.dp
 
     if (!configuration.isPreOnboardingAvailable) {
         sendStartOnBoardingEvent()
@@ -60,33 +55,15 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
         modifier =
             modifier
                 .background(theme.colors.background)
-                .padding(horizontal = 16.dp)
                 .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(Modifier.height(20.dp))
-
-        Text(
-            text = onboardingController.state.value.topic,
-            style = MaterialTheme.typography.h5,
-            color = theme.colors.primary,
-            fontWeight = FontWeight.Bold,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
+        OnboardingAppBar(
+            modifier =
+                Modifier
+                    .padding(horizontal = generalHorizontalPadding)
+                    .fillMaxWidth(),
         )
-
-        Spacer(Modifier.height(20.dp))
-
-        Text(
-            modifier = Modifier.padding(horizontal = 20.dp),
-            text = onboardingController.state.value.subtopic,
-            style = MaterialTheme.typography.h6,
-            color = theme.colors.primary,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(Modifier.height(20.dp))
 
         OnboardingScreenContent(
             modifier =
@@ -96,17 +73,11 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             onboardingController = onboardingController,
         )
 
-        Spacer(Modifier.height(30.dp))
-
-        PagerIndicator(
-            pagerState = onboardingController.pagerState,
-            color = theme.colors.brand,
-        )
-
-        Spacer(Modifier.height(24.dp))
-
         FashionButton(
-            modifier = Modifier.fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = generalHorizontalPadding),
             text =
                 if (onboardingController.state.value is TryOnPage) {
                     stringResources.onboardingButtonNext
@@ -123,18 +94,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             },
         )
 
-        Spacer(Modifier.height(16.dp))
-
-        DisclaimerContent(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .height(32.dp)
-                    .padding(horizontal = 32.dp),
-            onboardingController = onboardingController,
-        )
-
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(12.dp))
     }
 }
 
