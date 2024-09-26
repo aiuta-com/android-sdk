@@ -54,6 +54,9 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingLegalDisclaimerBeforeClickable: String = "Your photo is processed as per the"
     override val onboardingLegalDisclaimerClickable: String = "Clarification Text"
     override val onboardingLegalDisclaimerAfterClickable: String = ""
+    override val onboardingAppbarTryonPage: String = "Step 1/3 - How it works"
+    override val onboardingAppbarBestResultPage: String = "Step 2/3 - For best result"
+    override val onboardingAppbarConsentPage: String = "Step 3/3 - Consent"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Upload a photo of you"

@@ -27,6 +27,9 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingLegalDisclaimerBeforeClickable: String
     val onboardingLegalDisclaimerClickable: String
     val onboardingLegalDisclaimerAfterClickable: String
+    val onboardingAppbarTryonPage: String
+    val onboardingAppbarBestResultPage: String
+    val onboardingAppbarConsentPage: String
 
     // Image selector
     val imageSelectorUploadButton: String

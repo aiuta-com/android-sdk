@@ -34,6 +34,9 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingLegalDisclaimerBeforeClickable: String = "Fotoğrafınız"
     override val onboardingLegalDisclaimerClickable: String = "Aydınlatma Metni'nde"
     override val onboardingLegalDisclaimerAfterClickable: String = "belirtilen kapsamda işlenmektedir"
+    override val onboardingAppbarTryonPage: String = "TODO"
+    override val onboardingAppbarBestResultPage: String = "TODO"
+    override val onboardingAppbarConsentPage: String = "TODO"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Fotoğrafını yükle"

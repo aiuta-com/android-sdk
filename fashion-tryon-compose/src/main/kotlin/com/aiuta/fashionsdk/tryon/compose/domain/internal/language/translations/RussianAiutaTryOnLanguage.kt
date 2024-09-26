@@ -33,6 +33,9 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingLegalDisclaimerBeforeClickable: String = "Загружая фото, вы соглашаетесь с"
     override val onboardingLegalDisclaimerClickable: String = "условиями"
     override val onboardingLegalDisclaimerAfterClickable: String = ""
+    override val onboardingAppbarTryonPage: String = "TODO"
+    override val onboardingAppbarBestResultPage: String = "TODO"
+    override val onboardingAppbarConsentPage: String = "TODO"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"
