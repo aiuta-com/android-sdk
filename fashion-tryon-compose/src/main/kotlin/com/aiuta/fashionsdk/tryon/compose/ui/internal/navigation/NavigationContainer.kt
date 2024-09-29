@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -31,7 +29,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.Navi
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationErrorCard
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun NavigationContainer(modifier: Modifier = Modifier) {
     val currentController = LocalController.current
@@ -40,14 +37,10 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
     ModalBottomSheetLayout(
         modifier = modifier,
         sheetState = currentController.bottomSheetNavigator.sheetState,
-        sheetBackgroundColor = theme.colors.backgroundElevation2,
+        sheetBackgroundColor = theme.colors.background,
         sheetContent = currentController.bottomSheetNavigator.sheetContent,
         sheetContentColor = theme.colors.primary,
-        sheetShape =
-            RoundedCornerShape(
-                topStart = 24.dp,
-                topEnd = 24.dp,
-            ),
+        sheetShape = theme.shapes.bottomSheet,
         content = {
             NavigationContainerContent(
                 modifier = Modifier.fillMaxSize(),
