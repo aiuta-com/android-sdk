@@ -7,9 +7,6 @@ public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonSi
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/compose/molecules/button/FashionButtonSizes;
 	public final fun lSize-5-DNhBc (FFFFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;II)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;
 	public final fun mSize-5-DNhBc (FFFFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;II)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;
-	public final fun sSize-5-DNhBc (FFFFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;II)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;
-	public final fun xlSize-5-DNhBc (FFFFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;II)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;
-	public final fun xsSize-5-DNhBc (FFFFLandroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/runtime/Composer;II)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;
 }
 
 public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonStyles {
@@ -129,6 +126,10 @@ public final class com/aiuta/fashionsdk/compose/tokens/color/AiutaDarkColorsKt {
 public final class com/aiuta/fashionsdk/compose/tokens/color/AiutaLightColorsKt {
 	public static final fun aiutaLightColors-dVHXu7A (JJJJJJJJJJJJJJ)Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
 	public static synthetic fun aiutaLightColors-dVHXu7A$default (JJJJJJJJJJJJJJILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/color/AiutaColors;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/composition/CompositionLocalKt {
+	public static final fun getLocalTheme ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients {
