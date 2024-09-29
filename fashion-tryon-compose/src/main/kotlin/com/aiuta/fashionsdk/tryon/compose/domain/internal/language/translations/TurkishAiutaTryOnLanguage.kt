@@ -43,6 +43,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
     override val imageSelectorPoweredByAiuta1: String = "Tarafından desteklenmektedir "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorProtectionPoint: String = "TODO"
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
     override val imageSelectorPhotos: Plurals =
         Plurals(

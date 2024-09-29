@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition

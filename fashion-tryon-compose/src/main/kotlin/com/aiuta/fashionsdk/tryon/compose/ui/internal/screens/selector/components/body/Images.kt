@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable

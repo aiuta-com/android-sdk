@@ -67,6 +67,7 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val imageSelectorChangeButton: String = "Change photo"
     override val imageSelectorPoweredByAiuta1: String = "Powered by "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorProtectionPoint: String = "Your photos are protected and visible only to you"
     override val imageSelectorGeneratingOutfit: String = "Generating outfit"
     override val imageSelectorPhotos: Plurals =
         Plurals(
