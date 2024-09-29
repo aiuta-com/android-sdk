@@ -36,6 +36,7 @@ internal interface InternalAiutaTryOnLanguage {
     val imageSelectorChangeButton: String
     val imageSelectorPoweredByAiuta1: String
     val imageSelectorPoweredByAiuta2: String
+    val imageSelectorProtectionPoint: String
     val imageSelectorGeneratingOutfit: String
     val imageSelectorPhotos: Plurals
 
@@ -77,6 +78,7 @@ internal interface InternalAiutaTryOnLanguage {
     val moreDetails: String
     val aiutaUrl: String
     val tryOn: String
+    val virtualTryOn: String
     val share: String
     val defaultErrorMessage: String
 }

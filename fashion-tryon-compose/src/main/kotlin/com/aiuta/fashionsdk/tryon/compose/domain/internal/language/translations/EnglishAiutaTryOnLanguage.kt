@@ -25,9 +25,11 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingButtonNext: String = "Next"
     override val onboardingButtonStart: String = "Start"
     override val onboardingPageTryonTopic: String = "Try on before buying"
-    override val onboardingPageTryonSubtopic: String = "Upload a photo and see how items look on you"
+    override val onboardingPageTryonSubtopic: String =
+        "Upload a photo and see how items look on you"
     override val onboardingPageBestResultTopic: String = "For best results"
-    override val onboardingPageBestResultSubtopic: String = "Use a photo with good lighting, stand straight a plain background"
+    override val onboardingPageBestResultSubtopic: String =
+        "Use a photo with good lighting, stand straight a plain background"
     override val onboardingPageConsentTopic: String = "Consent"
     override val onboardingPageConsentBody: AnnotatedString =
         buildAnnotatedString {
@@ -50,8 +52,10 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
                 append("Terms of Use")
             }
         }
-    override val onboardingPageConsentAgreePoint: String = "I agree to allow Brand name to\nprocess my photo"
-    override val onboardingLegalDisclaimerBeforeClickable: String = "Your photo is processed as per the"
+    override val onboardingPageConsentAgreePoint: String =
+        "I agree to allow Brand name to\nprocess my photo"
+    override val onboardingLegalDisclaimerBeforeClickable: String =
+        "Your photo is processed as per the"
     override val onboardingLegalDisclaimerClickable: String = "Clarification Text"
     override val onboardingLegalDisclaimerAfterClickable: String = ""
     override val onboardingAppbarTryonPage: String = "Step 1/3 - How it works"
@@ -63,6 +67,7 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val imageSelectorChangeButton: String = "Change photo"
     override val imageSelectorPoweredByAiuta1: String = "Powered by "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorProtectionPoint: String = "Your photos are protected and visible only to you"
     override val imageSelectorGeneratingOutfit: String = "Generating outfit"
     override val imageSelectorPhotos: Plurals =
         Plurals(
@@ -110,6 +115,7 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val moreDetails: String = "More details"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Try on"
+    override val virtualTryOn: String = "Virtual Try-on"
     override val share: String = "Share"
     override val defaultErrorMessage: String = "Something went wrong. Please try again later"
 }

@@ -46,9 +46,13 @@ public interface AiutaTryOnConfiguration {
 
     // //////////////////////
     // TODO Refactor configuration
+    // Onboarding
     public val isPreOnboardingAvailable: Boolean
 
     public val isOnboardingAppBarExtended: Boolean
+
+    // Main
+    public val isMainAppbarReversed: Boolean
 }
 
 public fun defaultAiutaTryOnConfiguration(
@@ -60,6 +64,7 @@ public fun defaultAiutaTryOnConfiguration(
     // TODO Refactor configuration
     isPreOnboardingAvailable: Boolean = false,
     isOnboardingAppBarExtended: Boolean = false,
+    isMainAppbarReversed: Boolean = false,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage? = language
@@ -69,5 +74,6 @@ public fun defaultAiutaTryOnConfiguration(
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable
         override val isOnboardingAppBarExtended: Boolean = isOnboardingAppBarExtended
+        override val isMainAppbarReversed: Boolean = isMainAppbarReversed
     }
 }

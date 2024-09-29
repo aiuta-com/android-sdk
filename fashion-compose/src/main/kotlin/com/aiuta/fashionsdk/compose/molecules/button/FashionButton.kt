@@ -18,8 +18,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -36,7 +36,38 @@ public fun FashionButton(
             defaultElevation = 0.dp,
             pressedElevation = 0.dp,
         ),
-    @DrawableRes iconRes: Int? = null,
+    @DrawableRes iconRes: Int,
+    isEnable: Boolean = true,
+    isLoading: Boolean = false,
+    text: String? = null,
+    style: FashionButtonStyle,
+    size: FashionButtonSize,
+    onClick: () -> Unit,
+) {
+    FashionButton(
+        modifier = modifier,
+        contentDescription = contentDescription,
+        elevation = elevation,
+        iconPainter = iconRes?.let { painterResource(it) },
+        isEnable = isEnable,
+        isLoading = isLoading,
+        text = text,
+        style = style,
+        size = size,
+        onClick = onClick,
+    )
+}
+
+@Composable
+public fun FashionButton(
+    modifier: Modifier = Modifier,
+    contentDescription: String? = null,
+    elevation: ButtonElevation =
+        elevation(
+            defaultElevation = 0.dp,
+            pressedElevation = 0.dp,
+        ),
+    iconPainter: Painter? = null,
     isEnable: Boolean = true,
     isLoading: Boolean = false,
     text: String? = null,
@@ -71,14 +102,14 @@ public fun FashionButton(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        iconRes?.let {
+                        iconPainter?.let {
                             Icon(
                                 modifier = Modifier.size(size.iconSize),
                                 tint =
                                     style.colors.buttonColors.contentColor(
                                         enabled = isEnable,
                                     ).value,
-                                imageVector = ImageVector.vectorResource(id = iconRes),
+                                painter = iconPainter,
                                 contentDescription = contentDescription,
                             )
                         }
@@ -94,7 +125,7 @@ public fun FashionButton(
                                 modifier =
                                     Modifier.padding(
                                         start =
-                                            if (iconRes != null) {
+                                            if (iconPainter != null) {
                                                 size.iconSpacing
                                             } else {
                                                 0.dp

@@ -16,7 +16,6 @@ public class AiutaShapes internal constructor(
     // Images
     public val mainImage: CornerBasedShape,
     public val previewImage: CornerBasedShape,
-    public val historyImage: CornerBasedShape,
     // Bottom sheet
     public val bottomSheet: CornerBasedShape,
     // Buttons

@@ -43,6 +43,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
     override val imageSelectorPoweredByAiuta1: String = "Tarafından desteklenmektedir "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorProtectionPoint: String = "TODO"
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
     override val imageSelectorPhotos: Plurals =
         Plurals(
@@ -87,6 +88,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val aiutaUrl: String = "https://aiuta.com/"
     override val moreDetails: String = "Daha fazla detay"
     override val tryOn: String = "Üzerinde Dene"
+    override val virtualTryOn: String = "TODO"
     override val share: String = "Paylaş"
     override val defaultErrorMessage: String = "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin"
 }

@@ -42,6 +42,7 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val imageSelectorChangeButton: String = "Заменить фото"
     override val imageSelectorPoweredByAiuta1: String = "Powered by "
     override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorProtectionPoint: String = "TODO"
     override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
     override val imageSelectorPhotos: Plurals =
         Plurals(
@@ -88,6 +89,7 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val moreDetails: String = "Подробнее"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Примерить"
+    override val virtualTryOn: String = "TODO"
     override val share: String = "Поделиться"
     override val defaultErrorMessage: String =
         "Что-то пошло не так. Пожалуйста, повторите попытку позже"
