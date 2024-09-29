@@ -1,5 +1,6 @@
 public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonKt {
-	public static final fun FashionButton (Landroidx/compose/ui/Modifier;Ljava/lang/String;Landroidx/compose/material/ButtonElevation;Ljava/lang/Integer;ZZLjava/lang/String;Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun FashionButton (Landroidx/compose/ui/Modifier;Ljava/lang/String;Landroidx/compose/material/ButtonElevation;IZZLjava/lang/String;Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+	public static final fun FashionButton (Landroidx/compose/ui/Modifier;Ljava/lang/String;Landroidx/compose/material/ButtonElevation;Landroidx/compose/ui/graphics/painter/Painter;ZZLjava/lang/String;Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonSize;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonSizes {
@@ -222,14 +223,13 @@ public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes {
 	public final fun getBottomSheet ()Landroidx/compose/foundation/shape/CornerBasedShape;
 	public final fun getButtonL ()Landroidx/compose/foundation/shape/CornerBasedShape;
 	public final fun getButtonM ()Landroidx/compose/foundation/shape/CornerBasedShape;
-	public final fun getHistoryImage ()Landroidx/compose/foundation/shape/CornerBasedShape;
 	public final fun getMainImage ()Landroidx/compose/foundation/shape/CornerBasedShape;
 	public final fun getPreviewImage ()Landroidx/compose/foundation/shape/CornerBasedShape;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapesFactoryKt {
-	public static final fun aiutaShapes-erZIsFM (FFFFFF)Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
-	public static synthetic fun aiutaShapes-erZIsFM$default (FFFFFFILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
+	public static final fun aiutaShapes-RyVG9vg (FFFFF)Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
+	public static synthetic fun aiutaShapes-RyVG9vg$default (FFFFFILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapesKt {
