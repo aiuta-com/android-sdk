@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,7 +28,7 @@ internal fun BestResultPageItem(
     val theme = LocalTheme.current
 
     Box(
-        modifier = modifier.clip(RoundedCornerShape(24.dp)),
+        modifier = modifier.clip(theme.shapes.previewImage),
     ) {
         Image(
             modifier = modifier.fillMaxSize(),

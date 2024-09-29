@@ -4,7 +4,6 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,15 +18,17 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun TryOnPageContent(
     modifier: Modifier = Modifier,
@@ -70,13 +71,15 @@ internal fun TryOnPageContent(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun ImagesBlock(
     modifier: Modifier = Modifier,
     currentPageTransition: Transition<TryOnPage.InternalPage?>,
     onboardingController: OnboardingController,
 ) {
+    val theme = LocalTheme.current
+
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center,
@@ -85,9 +88,13 @@ private fun ImagesBlock(
             modifier = Modifier.fillMaxHeight().fillMaxWidth(0.85f),
         ) { page ->
             Image(
-                modifier = Modifier.fillMaxSize(),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .clip(theme.shapes.mainImage),
                 painter = rememberAsyncImagePainter(page?.mainImage),
                 contentDescription = null,
+                contentScale = ContentScale.Crop,
             )
         }
 

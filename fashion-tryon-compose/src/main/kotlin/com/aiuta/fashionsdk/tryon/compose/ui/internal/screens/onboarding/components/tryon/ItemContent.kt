@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -36,11 +35,7 @@ internal fun ItemContent(
             label = "heightTransition",
         )
 
-    val cornerRadiusTransition =
-        animateDpAsState(
-            targetValue = if (isActive) 12.dp else 10.dp,
-            label = "cornerRadiusTransition",
-        )
+    val cornerRadius = theme.shapes.previewImage
 
     Image(
         modifier =
@@ -49,13 +44,13 @@ internal fun ItemContent(
                 .height(heightTransition.value)
                 .shadow(
                     elevation = 10.dp,
-                    shape = RoundedCornerShape(cornerRadiusTransition.value),
+                    shape = cornerRadius,
                     ambientColor = Color.Black,
                     spotColor = Color.Black,
                 )
                 .background(
                     color = theme.colors.background,
-                    shape = RoundedCornerShape(cornerRadiusTransition.value),
+                    shape = cornerRadius,
                 )
                 .clickableUnindicated {
                     onClick()
