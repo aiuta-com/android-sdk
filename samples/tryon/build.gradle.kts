@@ -3,6 +3,7 @@ import com.aiuta.fashionsdk.androidApplication
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    alias(libs.plugins.secrets)
 }
 
 androidApplication(
@@ -10,6 +11,10 @@ androidApplication(
     composeApp = true,
     shouldBePublic = false,
 ) {
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             isDebuggable = false
@@ -22,6 +27,10 @@ androidApplication(
             signingConfig = signingConfigs["debug"]
         }
     }
+}
+
+secrets {
+    defaultPropertiesFileName = "secrets.properties"
 }
 
 dependencies {

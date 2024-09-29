@@ -12,14 +12,12 @@ class MainApplication : Application() {
     private fun initFashion() {
         aiuta =
             Aiuta.Builder()
-                .setApiKey(API_KEY)
+                .setApiKey(BuildConfig.SAMPLES_TRYON_API_KEY)
                 .setApplication(this)
                 .build()
     }
 
     companion object {
         lateinit var aiuta: Aiuta
-
-        const val API_KEY = "YOUR_API_KEY_HERE"
     }
 }
