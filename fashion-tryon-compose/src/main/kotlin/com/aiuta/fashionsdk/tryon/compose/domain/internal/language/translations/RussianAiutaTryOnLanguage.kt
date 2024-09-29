@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.buildAnnotatedString
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.Plurals
 
@@ -8,6 +10,11 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
 
+    // Pre Onboarding
+    override val preOnboardingTitle: String = "TODO"
+    override val preOnboardingSubtitle: String = "TODO"
+    override val preOnboardingButton: String = "TODO"
+
     // Onboarding
     override val onboardingButtonNext: String = "Далее"
     override val onboardingButtonStart: String = "Начать"
@@ -15,9 +22,20 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Загрузите своё фото и порадуйтесь новому образу"
     override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
     override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
+    override val onboardingPageConsentTopic: String = "TODO"
+    override val onboardingPageConsentBody: AnnotatedString =
+        buildAnnotatedString {
+            append(
+                "TODO",
+            )
+        }
+    override val onboardingPageConsentAgreePoint: String = "TODO"
     override val onboardingLegalDisclaimerBeforeClickable: String = "Загружая фото, вы соглашаетесь с"
     override val onboardingLegalDisclaimerClickable: String = "условиями"
     override val onboardingLegalDisclaimerAfterClickable: String = ""
+    override val onboardingAppbarTryonPage: String = "TODO"
+    override val onboardingAppbarBestResultPage: String = "TODO"
+    override val onboardingAppbarConsentPage: String = "TODO"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"
@@ -59,7 +77,8 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Разрешение использования камеры"
-    override val dialogCameraPermissionDescription: String = "Пожалуйста, предоставьте доступ к камере в настройках приложения."
+    override val dialogCameraPermissionDescription: String =
+        "Пожалуйста, предоставьте доступ к камере в настройках приложения."
     override val dialogCameraPermissionConfirmButton: String = "Настройки"
 
     // General
@@ -70,5 +89,6 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Примерить"
     override val share: String = "Поделиться"
-    override val defaultErrorMessage: String = "Что-то пошло не так. Пожалуйста, повторите попытку позже"
+    override val defaultErrorMessage: String =
+        "Что-то пошло не так. Пожалуйста, повторите попытку позже"
 }

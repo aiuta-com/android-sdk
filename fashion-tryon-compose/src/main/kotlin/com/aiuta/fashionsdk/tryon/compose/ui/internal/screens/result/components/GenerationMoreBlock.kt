@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.DiscountBlock
@@ -42,9 +43,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.solveGene
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceHideActiveSKUItem
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.forceShowActiveSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendSelectMoreToTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateResultState
@@ -71,11 +69,9 @@ internal fun GenerationMoreBlock(
         LaunchedEffect(currentValue) {
             if (currentValue == GenerateResultState.SHOW_GENERATIONS) {
                 // Show all interface
-                controller.forceShowActiveSKUItem()
                 generationResultController.showInterface()
             } else {
                 // Hide all interface
-                controller.forceHideActiveSKUItem()
                 generationResultController.hideInterface()
             }
         }

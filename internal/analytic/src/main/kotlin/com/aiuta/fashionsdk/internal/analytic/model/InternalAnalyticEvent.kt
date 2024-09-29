@@ -59,6 +59,10 @@ public object FinishSession : InternalAnalyticEvent {
         RESULT_SCREEN("ResultsScreen"),
         MORE_TO_TRYON("MoreToTry"),
         MAIN_SCREEN("MainScreen"),
+
+        // TODO Add to analytic
+        ONBOARDING_SCREEN("OnboardingScreen"),
+        PREONBOARDING_SCREEN("PreonboardingScreen"),
     }
 }
 

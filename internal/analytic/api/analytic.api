@@ -79,6 +79,8 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/FinishSession$Ac
 public final class com/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin : java/lang/Enum {
 	public static final field MAIN_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
 	public static final field MORE_TO_TRYON Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
+	public static final field ONBOARDING_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
+	public static final field PREONBOARDING_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
 	public static final field RESULT_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
 	public static final field SKU_POPUP Lcom/aiuta/fashionsdk/internal/analytic/model/FinishSession$Origin;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;

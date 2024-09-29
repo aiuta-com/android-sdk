@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 
 @Composable
 internal fun LoadingProgress(

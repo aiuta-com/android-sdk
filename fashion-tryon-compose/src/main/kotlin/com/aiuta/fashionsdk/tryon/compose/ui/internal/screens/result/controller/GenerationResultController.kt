@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 
+import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
@@ -62,11 +63,7 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
         remember {
             AnchoredDraggableState(
                 initialValue = GenerateResultState.SHOW_GENERATIONS,
-                positionalThreshold = { distance: Float -> distance * 0.5f },
-                velocityThreshold = { with(density) { (bodyHeight / 2).toPx() } },
-                animationSpec = tween(),
-            ).apply {
-                updateAnchors(
+                anchors =
                     DraggableAnchors {
                         GenerateResultState.SHOW_GENERATIONS at 0f
 
@@ -78,8 +75,11 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
                                 ) { -maxHeight.toPx() + 48.dp.toPx() }
                         }
                     },
-                )
-            }
+                positionalThreshold = { distance: Float -> distance * 0.5f },
+                velocityThreshold = { with(density) { (bodyHeight / 2).toPx() } },
+                snapAnimationSpec = tween(),
+                decayAnimationSpec = exponentialDecay(),
+            )
         }
 
     return remember {

@@ -7,13 +7,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.S
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 
 @Composable
-internal fun FashionTryOnController.skuItemVisibilityListener() {
-    LaunchedEffect(currentScreen.value) {
-        isSKUItemVisible.value = currentScreen.value in screensWithSKUItems
-    }
-}
-
-@Composable
 internal fun FashionTryOnController.generationNavigationListener() {
     // We should clear generation status and list of operation
     // every time, when move back from result to selector screen,

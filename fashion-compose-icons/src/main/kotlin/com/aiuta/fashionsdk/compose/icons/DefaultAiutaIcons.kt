@@ -17,6 +17,8 @@ public fun defaultAiutaIcons(): AiutaIcons {
         back24 = R.drawable.ic_back_24,
         camera24 = R.drawable.ic_camera_24,
         cameraFill24 = R.drawable.ic_camera_fill_24,
+        checkCorrect24 = R.drawable.ic_check_correct_24,
+        checkNotCorrect24 = R.drawable.ic_check_not_correct_24,
         close24 = R.drawable.ic_close_24,
         trash24 = R.drawable.ic_trash_24,
         history24 = R.drawable.ic_history_24,

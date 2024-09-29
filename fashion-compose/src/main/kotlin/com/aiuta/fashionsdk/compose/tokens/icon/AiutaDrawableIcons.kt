@@ -23,6 +23,8 @@ public class AiutaDrawableIcons(
     public val back24: Drawable,
     public val camera24: Drawable,
     public val cameraFill24: Drawable,
+    public val checkCorrect24: Drawable,
+    public val checkNotCorrect24: Drawable,
     public val close24: Drawable,
     public val trash24: Drawable,
     public val history24: Drawable,

@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.buildAnnotatedString
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.Plurals
 
@@ -7,6 +9,11 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
+
+    // Pre Onboarding
+    override val preOnboardingTitle: String = "TODO"
+    override val preOnboardingSubtitle: String = "TODO"
+    override val preOnboardingButton: String = "TODO"
 
     // Onboarding
     override val onboardingButtonNext: String = "Başla"
@@ -16,9 +23,20 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
     override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
+    override val onboardingPageConsentTopic: String = "TODO"
+    override val onboardingPageConsentBody: AnnotatedString =
+        buildAnnotatedString {
+            append(
+                "TODO",
+            )
+        }
+    override val onboardingPageConsentAgreePoint: String = "TODO"
     override val onboardingLegalDisclaimerBeforeClickable: String = "Fotoğrafınız"
     override val onboardingLegalDisclaimerClickable: String = "Aydınlatma Metni'nde"
     override val onboardingLegalDisclaimerAfterClickable: String = "belirtilen kapsamda işlenmektedir"
+    override val onboardingAppbarTryonPage: String = "TODO"
+    override val onboardingAppbarBestResultPage: String = "TODO"
+    override val onboardingAppbarConsentPage: String = "TODO"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Fotoğrafını yükle"

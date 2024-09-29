@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,74 +14,61 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.VerticalPager
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.indicator.PagerIndicator
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.BestResultPageContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.DisclaimerContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.TryOnPageContent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.listenIsPrimaryButtonEnabled
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.nextPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.rememberOnboardingController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
     val onboardingController = rememberOnboardingController()
 
-    sendStartOnBoardingEvent()
+    val generalHorizontalPadding = 16.dp
+
+    if (!configuration.isPreOnboardingAvailable) {
+        sendStartOnBoardingEvent()
+    }
 
     Column(
         modifier =
             modifier
                 .background(theme.colors.background)
-                .padding(horizontal = 16.dp)
                 .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Spacer(Modifier.height(20.dp))
-
-        Text(
-            text = onboardingController.state.value.topic,
-            style = MaterialTheme.typography.h5,
-            color = theme.colors.primary,
-            fontWeight = FontWeight.Bold,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
+        OnboardingAppBar(
+            modifier =
+                Modifier
+                    .padding(horizontal = generalHorizontalPadding)
+                    .fillMaxWidth(),
+            onboardingController = onboardingController,
         )
 
-        Spacer(Modifier.height(20.dp))
-
-        Text(
-            modifier = Modifier.padding(horizontal = 20.dp),
-            text = onboardingController.state.value.subtopic,
-            style = MaterialTheme.typography.h6,
-            color = theme.colors.primary,
-            overflow = TextOverflow.Ellipsis,
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(32.dp))
 
         OnboardingScreenContent(
             modifier =
@@ -92,49 +78,31 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             onboardingController = onboardingController,
         )
 
-        Spacer(Modifier.height(30.dp))
-
-        PagerIndicator(
-            pagerState = onboardingController.pagerState,
-            color = theme.colors.brand,
-        )
-
-        Spacer(Modifier.height(24.dp))
-
         FashionButton(
-            modifier = Modifier.fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = generalHorizontalPadding),
             text =
-                if (onboardingController.state.value is TryOnPage) {
+                if (onboardingController.state.value != onboardingController.onboardingStatesQueue.last()) {
                     stringResources.onboardingButtonNext
                 } else {
                     stringResources.onboardingButtonStart
                 },
             style = FashionButtonStyles.primaryStyle(theme),
-            size = FashionButtonSizes.xlSize(),
+            size = FashionButtonSizes.lSize(),
+            isEnable = onboardingController.listenIsPrimaryButtonEnabled().value,
             onClick = {
                 onboardingController.nextPage(
                     controller = controller,
-                    stringResources = stringResources,
                 )
             },
         )
 
-        Spacer(Modifier.height(16.dp))
-
-        DisclaimerContent(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .height(32.dp)
-                    .padding(horizontal = 32.dp),
-            onboardingController = onboardingController,
-        )
-
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(12.dp))
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun OnboardingScreenContent(
     modifier: Modifier = Modifier,
@@ -168,11 +136,15 @@ private fun OnboardingScreenContent(
 
                 is BestResultPage -> {
                     BestResultPageContent(
-                        modifier =
-                            Modifier
-                                .fillMaxSize()
-                                .padding(32.dp),
+                        modifier = Modifier.fillMaxSize(),
                         state = state,
+                    )
+                }
+
+                is ConsentPage -> {
+                    ConsentPageContent(
+                        modifier = Modifier.fillMaxSize(),
+                        onboardingController = onboardingController,
                     )
                 }
             }
