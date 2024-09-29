@@ -62,7 +62,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(24.dp))
 
         ImageSelectorBlock(
-            modifier = Modifier.fillMaxSize(0.75f),
+            modifier = Modifier.fillMaxSize(0.72f),
             uploadPhoto = {
                 controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
             },
@@ -75,54 +75,5 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                     .fillMaxHeight(),
             isTryOnButtonVisible = isTryOnButtonVisible,
         )
-
-//        Box(
-//            modifier =
-//                Modifier
-//                    .weight(2f)
-//                    .fillMaxWidth()
-//                    .windowInsetsPadding(WindowInsets.navigationBars),
-//            contentAlignment = Alignment.Center,
-//        ) {
-//            AiutaLabel(modifier = Modifier.align(Alignment.Center))
-//
-//            androidx.compose.animation.AnimatedVisibility(
-//                modifier =
-//                    Modifier
-//                        .fillMaxHeight()
-//                        .fillMaxWidth()
-//                        .background(theme.colors.background),
-//                visible = isTryOnButtonVisible.value,
-//                enter = fadeIn() + expandVertically(),
-//                exit = fadeOut() + shrinkVertically(),
-//            ) {
-//                Box(
-//                    modifier =
-//                        Modifier
-//                            .fillMaxSize()
-//                            .clickableUnindicated {
-//                                // Nothing, intercept
-//                            },
-//                    contentAlignment = Alignment.Center,
-//                ) {
-//                    FashionButton(
-//                        modifier =
-//                            Modifier
-//                                .fillMaxWidth()
-//                                .padding(horizontal = 16.dp),
-//                        text = stringResources.tryOn,
-//                        style = FashionButtonStyles.primaryStyle(theme),
-//                        size = FashionButtonSizes.lSize(),
-//                        iconRes = FashionIcon.Magic,
-//                        onClick = {
-//                            controller.startGeneration(
-//                                aiutaConfiguration = aiutaConfiguration,
-//                                origin = StartUITryOn.Origin.TRY_ON_BUTTON,
-//                            )
-//                        },
-//                    )
-//                }
-//            }
-//        }
     }
 }

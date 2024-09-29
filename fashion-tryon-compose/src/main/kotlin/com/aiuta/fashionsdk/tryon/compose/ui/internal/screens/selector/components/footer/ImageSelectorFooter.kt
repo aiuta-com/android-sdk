@@ -22,11 +22,9 @@ internal fun ImageSelectorFooter(
         transitionSpec = { fadeIn() togetherWith fadeOut() },
     ) { isTryOnVisible ->
         if (isTryOnVisible) {
-            // TODO
+            ActiveFooter(modifier = Modifier.fillMaxSize())
         } else {
-            InactiveFooter(
-                modifier = Modifier.fillMaxSize(),
-            )
+            InactiveFooter(modifier = Modifier.fillMaxSize())
         }
     }
 }
