@@ -71,8 +71,7 @@ internal fun OnboardingAppBar(
             }
         },
         actions = {
-            // TODO Is this flag?
-            if (configuration.isPreOnboardingAvailable) {
+            if (configuration.isOnboardingAppBarExtended) {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
                     painter = rememberAsyncImagePainter(theme.icons.close24),

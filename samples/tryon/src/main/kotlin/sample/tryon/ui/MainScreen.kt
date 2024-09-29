@@ -85,7 +85,6 @@ fun MainScreen() {
             remember {
                 defaultAiutaTryOnConfiguration(
                     photoSelectionLimit = 5,
-                    // TODO AY Conf
                     isPreOnboardingAvailable = true,
                     isOnboardingAppBarExtended = true,
                 )
