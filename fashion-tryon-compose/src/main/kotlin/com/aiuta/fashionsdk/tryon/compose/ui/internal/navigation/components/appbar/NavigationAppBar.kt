@@ -49,6 +49,7 @@ private val slideEnterAnimation = fadeIn() + expandVertically()
 private val slideExitAnimation = fadeOut() + shrinkVertically()
 private val slideTransitionAnimation = slideEnterAnimation togetherWith slideExitAnimation
 
+// TODO Delete deprecations
 @Deprecated("Let's use separate app bar")
 @Composable
 internal fun NavigationAppBar(

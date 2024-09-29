@@ -45,7 +45,7 @@ public interface AiutaTryOnConfiguration {
     public val isWishlistAvailable: Boolean
 
     // //////////////////////
-    // TODO Refactor configuration for AY?
+    // TODO Refactor configuration
     public val isPreOnboardingAvailable: Boolean
 
     public val isOnboardingAppBarExtended: Boolean
@@ -57,7 +57,7 @@ public fun defaultAiutaTryOnConfiguration(
     photoSelectionLimit: Int = 10,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
-    // TODO Refactor configuration for AY?
+    // TODO Refactor configuration
     isPreOnboardingAvailable: Boolean = false,
     isOnboardingAppBarExtended: Boolean = false,
 ): AiutaTryOnConfiguration {

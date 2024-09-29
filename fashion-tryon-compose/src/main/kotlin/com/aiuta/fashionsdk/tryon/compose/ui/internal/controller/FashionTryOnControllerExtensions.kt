@@ -43,7 +43,6 @@ internal fun FashionTryOnController.navigateBack() {
 
         currentScreen.value = previousScreen
     } else {
-        // TODO ?
         clickClose(origin = FinishSession.Origin.MAIN_SCREEN)
     }
 }

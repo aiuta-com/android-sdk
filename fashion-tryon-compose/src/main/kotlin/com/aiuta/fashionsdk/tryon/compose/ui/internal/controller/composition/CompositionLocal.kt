@@ -15,7 +15,7 @@ internal val LocalAnalytic: ProvidableCompositionLocal<InternalAiutaAnalytic> =
         noLocalProvidedFor("LocalAnalytic")
     }
 
-// Configuration
+// Configurationn
 internal val LocalAiutaConfiguration: ProvidableCompositionLocal<AiutaTryOnConfiguration> =
     staticCompositionLocalOf {
         noLocalProvidedFor("LocalAiutaConfiguration")
