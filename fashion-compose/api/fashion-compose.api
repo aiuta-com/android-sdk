@@ -148,11 +148,13 @@ public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradientsKt
 
 public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
 	public static final field $stable I
-	public fun <init> (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
+	public fun <init> (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
 	public final fun getArrow16 ()Landroid/graphics/drawable/Drawable;
 	public final fun getBack24 ()Landroid/graphics/drawable/Drawable;
 	public final fun getCamera24 ()Landroid/graphics/drawable/Drawable;
 	public final fun getCameraFill24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getCheckCorrect24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getCheckNotCorrect24 ()Landroid/graphics/drawable/Drawable;
 	public final fun getClose24 ()Landroid/graphics/drawable/Drawable;
 	public final fun getDislike36 ()Landroid/graphics/drawable/Drawable;
 	public final fun getError36 ()Landroid/graphics/drawable/Drawable;
@@ -170,13 +172,36 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons :
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
 }
 
+public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIconsKt {
+	public static final fun getArrow16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getBack24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getCamera24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getCameraFill24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getCheckCorrect24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getCheckNotCorrect24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getClose24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getDislike36 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getError36 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getHistory24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getLike36 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getLock16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getMagic16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getShare24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getTrash24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getWelcomeScreen82 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getWishlist20 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getWishlistFill20 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+}
+
 public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
 	public static final field $stable I
-	public fun <init> (IIIIIIIIIIIIIIII)V
+	public fun <init> (IIIIIIIIIIIIIIIIII)V
 	public final fun getArrow16 ()I
 	public final fun getBack24 ()I
 	public final fun getCamera24 ()I
 	public final fun getCameraFill24 ()I
+	public final fun getCheckCorrect24 ()I
+	public final fun getCheckNotCorrect24 ()I
 	public final fun getClose24 ()I
 	public final fun getDislike36 ()I
 	public final fun getError36 ()I
