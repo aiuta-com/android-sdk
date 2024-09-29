@@ -13,9 +13,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,6 +32,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.arrow16
 import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -149,5 +152,14 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
                 textAlign = TextAlign.Start,
             )
         }
+
+        Spacer(Modifier.width(8.dp))
+
+        Icon(
+            modifier = Modifier.size(16.dp).align(Alignment.CenterVertically),
+            painter = rememberAsyncImagePainter(theme.icons.arrow16),
+            contentDescription = null,
+            tint = theme.colors.neutral3,
+        )
     }
 }

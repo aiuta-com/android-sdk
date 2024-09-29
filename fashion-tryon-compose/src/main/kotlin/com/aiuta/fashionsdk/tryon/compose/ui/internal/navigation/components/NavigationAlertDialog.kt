@@ -99,7 +99,7 @@ internal fun NavigationAlertDialog(
                 FashionButton(
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResources.cancel,
-                    style = FashionButtonStyles.outlineStyle(theme),
+                    style = FashionButtonStyles.secondaryStyle(theme),
                     size = FashionButtonSizes.lSize(),
                     onClick = onDismissRequest,
                 )

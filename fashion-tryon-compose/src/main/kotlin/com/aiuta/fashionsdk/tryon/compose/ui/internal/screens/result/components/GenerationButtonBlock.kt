@@ -47,7 +47,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
                 FashionButton(
                     modifier = Modifier.weight(1f).fillMaxHeight(),
                     text = stringResources.addToWish,
-                    style = FashionButtonStyles.outlineStyle(theme),
+                    style = FashionButtonStyles.secondaryStyle(theme),
                     size = FashionButtonSizes.lSize(),
                     onClick = {
                         controller.clickAddToWishList(origin = FinishSession.Origin.RESULT_SCREEN)

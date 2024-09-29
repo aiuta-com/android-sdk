@@ -31,14 +31,14 @@ internal object FashionButtonColors {
     )
 
     @Composable
-    fun outlineColors(theme: AiutaTheme) =
+    fun secondaryColors(theme: AiutaTheme) =
         OutlineFashionButtonColor(
             buttonColors =
                 ButtonDefaults.outlinedButtonColors(
                     backgroundColor = Color.Transparent,
                     contentColor = theme.colors.primary,
                 ),
-            borderColor = Color(0xFFCCCCCC),
-            rippleColor = Color(0xFFCCCCCC).copy(alpha = 0.15f),
+            borderColor = theme.colors.neutral2,
+            rippleColor = theme.colors.primary.copy(alpha = 0.05f),
         )
 }

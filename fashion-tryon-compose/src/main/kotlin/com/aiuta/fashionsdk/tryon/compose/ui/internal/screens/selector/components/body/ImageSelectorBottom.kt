@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -51,13 +50,8 @@ internal fun ImageSelectorBottom(
 
     val sharedModifier = Modifier.fillMaxWidth()
     val sharedBackground = Color.White.copy(alpha = 0.5f)
-    val sharedCornerSize = RoundedCornerShape(8.dp)
-    val sharedButtonSize =
-        FashionButtonSizes.lSize(
-            shape = sharedCornerSize,
-            verticalPadding = 12.dp,
-            horizontalPadding = 20.dp,
-        )
+
+    val sharedButtonSize = FashionButtonSizes.mSize()
 
     val bottomState =
         updateTransition(
@@ -124,12 +118,9 @@ internal fun ImageSelectorBottom(
                         sharedModifier
                             .background(
                                 color = sharedBackground,
-                                shape = sharedCornerSize,
+                                shape = sharedButtonSize.shape,
                             )
-                            .padding(
-                                horizontal = 20.dp,
-                                vertical = 12.dp,
-                            ),
+                            .padding(sharedButtonSize.paddingValues),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {

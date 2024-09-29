@@ -15,7 +15,7 @@ internal data class DefaultFashionButtonStyle(
     override val border: BorderStroke? = null,
 ) : FashionButtonStyle
 
-internal data class OutlineFashionButtonStyle(
+internal data class SecondaryFashionButtonStyle(
     override val colors: OutlineFashionButtonColor,
     override val border: BorderStroke? =
         BorderStroke(
