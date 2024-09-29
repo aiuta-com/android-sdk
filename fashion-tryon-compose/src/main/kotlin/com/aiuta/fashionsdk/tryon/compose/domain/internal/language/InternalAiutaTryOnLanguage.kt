@@ -77,6 +77,7 @@ internal interface InternalAiutaTryOnLanguage {
     val moreDetails: String
     val aiutaUrl: String
     val tryOn: String
+    val virtualTryOn: String
     val share: String
     val defaultErrorMessage: String
 }

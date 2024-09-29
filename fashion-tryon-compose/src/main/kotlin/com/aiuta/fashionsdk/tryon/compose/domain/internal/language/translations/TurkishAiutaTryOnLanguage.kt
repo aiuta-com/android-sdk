@@ -87,6 +87,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val aiutaUrl: String = "https://aiuta.com/"
     override val moreDetails: String = "Daha fazla detay"
     override val tryOn: String = "Üzerinde Dene"
+    override val virtualTryOn: String = "TODO"
     override val share: String = "Paylaş"
     override val defaultErrorMessage: String = "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin"
 }

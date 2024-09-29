@@ -87,6 +87,7 @@ fun MainScreen() {
                     photoSelectionLimit = 5,
                     isPreOnboardingAvailable = true,
                     isOnboardingAppBarExtended = true,
+                    isMainAppbarReversed = true,
                 )
             }
 

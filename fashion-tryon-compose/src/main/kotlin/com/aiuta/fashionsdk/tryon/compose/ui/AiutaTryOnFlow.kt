@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -34,7 +33,6 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
  * @see AiutaTheme
  * @see SKUItem
  */
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
