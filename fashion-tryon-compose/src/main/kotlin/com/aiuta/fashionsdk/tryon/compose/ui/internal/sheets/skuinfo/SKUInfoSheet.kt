@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
@@ -40,7 +41,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
@@ -145,7 +145,7 @@ private fun ButtonsContainer(
                         stringResources.moreDetails
                     },
                 style = FashionButtonStyles.outlineStyle(theme),
-                size = FashionButtonSizes.xlSize(),
+                size = FashionButtonSizes.lSize(),
                 onClick = {
                     if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                         controller.clickAddToWishList(origin = FinishSession.Origin.SKU_POPUP)
@@ -168,7 +168,7 @@ private fun ButtonsContainer(
                 },
             iconRes = FashionIcon.Magic.takeIf { skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON },
             style = FashionButtonStyles.primaryStyle(theme),
-            size = FashionButtonSizes.xlSize(),
+            size = FashionButtonSizes.lSize(),
             onClick = {
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     controller.clickAddToCart(origin = FinishSession.Origin.SKU_POPUP)

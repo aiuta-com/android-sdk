@@ -29,6 +29,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.back24
 import com.aiuta.fashionsdk.compose.tokens.icon.close24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
@@ -38,7 +39,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.appbarNavigatio
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.appbarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarSelectAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState

@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 
 @Composable
 internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
@@ -48,7 +48,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
                     modifier = Modifier.weight(1f).fillMaxHeight(),
                     text = stringResources.addToWish,
                     style = FashionButtonStyles.outlineStyle(theme),
-                    size = FashionButtonSizes.xlSize(),
+                    size = FashionButtonSizes.lSize(),
                     onClick = {
                         controller.clickAddToWishList(origin = FinishSession.Origin.RESULT_SCREEN)
                     },
@@ -61,7 +61,7 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
                 modifier = Modifier.weight(1f).fillMaxHeight(),
                 text = stringResources.addToCart,
                 style = FashionButtonStyles.primaryStyle(theme),
-                size = FashionButtonSizes.xlSize(),
+                size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.clickAddToCart(origin = FinishSession.Origin.RESULT_SCREEN)
                 },

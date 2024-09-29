@@ -20,9 +20,9 @@ import androidx.compose.ui.window.DialogProperties
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
 
@@ -87,7 +87,7 @@ internal fun NavigationAlertDialog(
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResources.dialogCameraPermissionConfirmButton,
                     style = FashionButtonStyles.primaryStyle(theme),
-                    size = FashionButtonSizes.xlSize(),
+                    size = FashionButtonSizes.lSize(),
                     onClick = {
                         state.onConfirm.invoke()
                         dialogController.hideDialog()
@@ -100,7 +100,7 @@ internal fun NavigationAlertDialog(
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResources.cancel,
                     style = FashionButtonStyles.outlineStyle(theme),
-                    size = FashionButtonSizes.xlSize(),
+                    size = FashionButtonSizes.lSize(),
                     onClick = onDismissRequest,
                 )
 
