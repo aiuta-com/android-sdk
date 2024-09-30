@@ -12,24 +12,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
-import com.airbnb.lottie.LottieProperty
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.LottieConstants
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
-import com.airbnb.lottie.compose.rememberLottieDynamicProperties
-import com.airbnb.lottie.compose.rememberLottieDynamicProperty
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
@@ -57,30 +47,6 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
         updateTransition(
             targetState = generationStatus.value,
             label = "skuGenerationTransition",
-        )
-
-    // Lottie
-    val dynamicProperties =
-        rememberLottieDynamicProperties(
-            rememberLottieDynamicProperty(
-                property = LottieProperty.COLOR_FILTER,
-                value =
-                    BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                        theme.colors.brand.hashCode(),
-                        BlendModeCompat.SRC_ATOP,
-                    ),
-                keyPath =
-                    arrayOf(
-                        "**",
-                    ),
-            ),
-        )
-    val composition =
-        rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.scanning_animation))
-    val progress =
-        animateLottieCompositionAsState(
-            composition = composition.value,
-            iterations = LottieConstants.IterateForever,
         )
 
     Box(
@@ -131,13 +97,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            LottieAnimation(
-                modifier = Modifier.fillMaxSize().clip(sharedCornerShape),
-                contentScale = ContentScale.FillHeight,
-                composition = composition.value,
-                progress = { progress.value },
-                dynamicProperties = dynamicProperties,
-            )
+            ShimmerBlock(modifier = Modifier.fillMaxSize())
         }
     }
 }
