@@ -34,10 +34,12 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.arrow16
 import com.aiuta.fashionsdk.compose.tokens.icon.magic16
+import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 
 @Composable
@@ -111,7 +113,16 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
     val sharedCorner = RoundedCornerShape(size = 8.dp)
 
     Row(
-        modifier = modifier,
+        modifier =
+            modifier
+                .clickableUnindicated {
+                    controller.bottomSheetNavigator.show(
+                        NavigationBottomSheetScreen.SKUInfo(
+                            primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
+                            skuItem = activeSKUItem,
+                        ),
+                    )
+                },
         verticalAlignment = Alignment.Top,
     ) {
         Image(
