@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import com.aiuta.fashionsdk.compose.molecules.button.internal.DefaultFashionButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonColors
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonStyle
-import com.aiuta.fashionsdk.compose.molecules.button.internal.OutlineFashionButtonStyle
+import com.aiuta.fashionsdk.compose.molecules.button.internal.SecondaryFashionButtonStyle
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 @Immutable
@@ -31,8 +31,8 @@ public object FashionButtonStyles {
         )
 
     @Composable
-    public fun outlineStyle(theme: AiutaTheme): FashionButtonStyle =
-        OutlineFashionButtonStyle(
-            colors = FashionButtonColors.outlineColors(theme = theme),
+    public fun secondaryStyle(theme: AiutaTheme): FashionButtonStyle =
+        SecondaryFashionButtonStyle(
+            colors = FashionButtonColors.secondaryColors(theme = theme),
         )
 }

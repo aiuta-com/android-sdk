@@ -28,9 +28,7 @@ internal fun ImageSelectorBlock(
                     shape = theme.shapes.mainImage,
                 ),
     ) {
-        ImageSelectorPhoto(
-            modifier = Modifier.fillMaxSize(),
-        )
+        ImageSelectorPhoto(modifier = Modifier.fillMaxSize())
 
         Spacer(Modifier.height(26.dp))
 

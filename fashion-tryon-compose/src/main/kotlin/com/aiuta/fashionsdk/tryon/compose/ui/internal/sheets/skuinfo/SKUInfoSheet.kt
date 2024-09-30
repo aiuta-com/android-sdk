@@ -145,7 +145,7 @@ private fun ButtonsContainer(
                     } else {
                         stringResources.moreDetails
                     },
-                style = FashionButtonStyles.outlineStyle(theme),
+                style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {

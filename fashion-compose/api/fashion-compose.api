@@ -13,9 +13,9 @@ public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonSi
 public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonStyles {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/compose/molecules/button/FashionButtonStyles;
-	public final fun outlineStyle (Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
 	public final fun primaryStyle (Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
 	public final fun primaryStyle-RFnl5yQ (JJLandroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
+	public final fun secondaryStyle (Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
 }
 
 public abstract interface class com/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonColor {
