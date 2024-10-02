@@ -51,6 +51,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isActiveSKUGenerateMoreNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.FeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isGenerationPagerItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.isMetaInfoPagerItem
@@ -227,7 +228,6 @@ internal fun PagerImageContainer(
                         horizontal = 8.dp,
                         vertical = 12.dp,
                     ),
-            isSwipeTipVisible = isSwipeTipVisible,
             itemIndex = itemIndex,
             generationResultController = generationResultController,
         )

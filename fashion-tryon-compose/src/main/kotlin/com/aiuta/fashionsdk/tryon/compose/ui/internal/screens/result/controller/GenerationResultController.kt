@@ -50,7 +50,7 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
     // Size of generation + meta sku images
     val generationSize = { generationUrlsSize.value }
     val totalPages = { generationSize() + 1 }
-    val pagerState = rememberPagerState(pageCount = totalPages)
+    val pagerState = rememberPagerState(pageCount = { generationUrlsSize.value })
 
     val imageCarouselState = rememberLazyListState()
     val defaultInterfaceVisibility =
@@ -87,7 +87,6 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             generationPagerState = pagerState,
             generationPageSize = generationSize,
             totalPageSize = totalPages,
-            zIndexList = controller.zIndexInterface - 2,
             zIndexInterface = controller.zIndexInterface - 1,
             isInterfaceVisible = defaultInterfaceVisibility,
             imageCarouselState = imageCarouselState,
@@ -102,18 +101,30 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
 @Immutable
 internal class GenerationResultController(
     // General config
+    @Deprecated("Use imagesWeight")
     public val bodyWeight: Float = BODY_WEIGHT,
+    @Deprecated("Use footerSheetWeight")
     public val footerWeight: Float = FOOTER_WEIGHT,
+    @Deprecated("Use totalNewWeight")
     public val totalWeight: Float = TOTAL_WEIGHT,
+    public val imagesWeight: Float = 0.75f,
+    public val disclaimerWeight: Float = 0.05f,
+    public val footerSheetWeight: Float = 0.2f,
+    // TODO Rename
+    public val totalNewWeight: Float = imagesWeight + disclaimerWeight + footerSheetWeight,
     // Generation pager state
     public val generationPagerState: PagerState,
+    @Deprecated("Need to delete")
     public val generationPageSize: () -> Int,
+    @Deprecated("Need to delete")
     public val totalPageSize: () -> Int,
-    public val zIndexList: Float,
+    @Deprecated("Need to delete")
     public val zIndexInterface: Float,
     // Interface visibility
+    @Deprecated("Need to delete")
     public val isInterfaceVisible: MutableState<Boolean>,
     // Carousel state
+    @Deprecated("Need to delete")
     public val imageCarouselState: LazyListState,
     // Swipe state
     public val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
@@ -133,6 +144,9 @@ internal fun GenerationResultController.isGenerationPagerItem(index: Int) =
 
 internal fun GenerationResultController.isMetaInfoPagerItem(index: Int) =
     index == totalPageSize() - 1
+
+internal fun GenerationResultController.imagesHeight(maxHeight: Dp) =
+    maxHeight * (imagesWeight / totalNewWeight)
 
 // Interface visibility
 internal fun GenerationResultController.showInterface() {
