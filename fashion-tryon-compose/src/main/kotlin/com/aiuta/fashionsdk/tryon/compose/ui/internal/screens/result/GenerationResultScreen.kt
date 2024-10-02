@@ -1,35 +1,24 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendOpenResultsScreenEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationButtonsBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.GenerationCarouselBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.ThanksFeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.GenerationResultBody
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.DisclaimerBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.GenerationResultFooter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.bodyHeight
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.footerHeight
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.disclaimerHeight
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.imagesHeight
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.rememberGenerationResultController
 
@@ -64,6 +53,19 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
                     .height(generationResultController.imagesHeight(maxHeight))
                     .fillMaxWidth()
                     .padding(vertical = 24.dp),
+            generationResultController = generationResultController,
+        )
+
+        DisclaimerBlock(
+            modifier =
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = generationResultController.imagesHeight(maxHeight))
+                    .height(generationResultController.disclaimerHeight(maxHeight))
+                    .fillMaxWidth(),
+        )
+
+        GenerationResultFooter(
             generationResultController = generationResultController,
         )
     }
@@ -156,49 +158,49 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
 //    }
 // }
 
-@Composable
-internal fun GenerationResultInterface(
-    modifier: Modifier = Modifier,
-    generationResultController: GenerationResultController,
-) {
-    val theme = LocalTheme.current
-
-    AnimatedVisibility(
-        modifier = modifier,
-        visible = generationResultController.isInterfaceVisible.value,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
-        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
-            GenerationButtonsBlock(
-                modifier =
-                    Modifier
-                        .zIndex(generationResultController.zIndexInterface)
-                        .fillMaxWidth()
-                        .heightIn(min = generationResultController.footerHeight(maxHeight))
-                        .background(theme.colors.backgroundElevation2)
-                        .align(Alignment.BottomCenter)
-                        .windowInsetsPadding(WindowInsets.navigationBars)
-                        .padding(horizontal = 16.dp),
-            )
-
-            GenerationCarouselBlock(
-                modifier =
-                    Modifier
-                        .zIndex(generationResultController.zIndexInterface)
-                        .height(generationResultController.bodyHeight(maxHeight))
-                        .padding(start = 16.dp)
-                        .align(Alignment.TopStart),
-                generationResultController = generationResultController,
-            )
-
-            ThanksFeedbackBlock(
-                modifier =
-                    Modifier
-                        .zIndex(generationResultController.zIndexInterface)
-                        .align(Alignment.Center),
-                generationResultController = generationResultController,
-            )
-        }
-    }
-}
+// @Composable
+// internal fun GenerationResultInterface(
+//    modifier: Modifier = Modifier,
+//    generationResultController: GenerationResultController,
+// ) {
+//    val theme = LocalTheme.current
+//
+//    AnimatedVisibility(
+//        modifier = modifier,
+//        visible = generationResultController.isInterfaceVisible.value,
+//        enter = fadeIn(),
+//        exit = fadeOut(),
+//    ) {
+//        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+//            GenerationButtonsBlock(
+//                modifier =
+//                    Modifier
+//                        .zIndex(generationResultController.zIndexInterface)
+//                        .fillMaxWidth()
+//                        .heightIn(min = generationResultController.footerHeight(maxHeight))
+//                        .background(theme.colors.backgroundElevation2)
+//                        .align(Alignment.BottomCenter)
+//                        .windowInsetsPadding(WindowInsets.navigationBars)
+//                        .padding(horizontal = 16.dp),
+//            )
+//
+//            GenerationCarouselBlock(
+//                modifier =
+//                    Modifier
+//                        .zIndex(generationResultController.zIndexInterface)
+//                        .height(generationResultController.bodyHeight(maxHeight))
+//                        .padding(start = 16.dp)
+//                        .align(Alignment.TopStart),
+//                generationResultController = generationResultController,
+//            )
+//
+//            ThanksFeedbackBlock(
+//                modifier =
+//                    Modifier
+//                        .zIndex(generationResultController.zIndexInterface)
+//                        .align(Alignment.Center),
+//                generationResultController = generationResultController,
+//            )
+//        }
+//    }
+// }
