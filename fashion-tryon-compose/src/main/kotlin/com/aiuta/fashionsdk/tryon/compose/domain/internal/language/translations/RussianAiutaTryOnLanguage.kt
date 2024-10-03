@@ -58,7 +58,8 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "Больше образов для примерки"
+    override val generationResultMoreTitle: String = "TODO"
+    override val generationResultMoreSubtitle: String = "Больше образов для примерки"
     override val generationResultSwipeUp: String = "Посмотреть новые образы"
 
     // Bottom sheets

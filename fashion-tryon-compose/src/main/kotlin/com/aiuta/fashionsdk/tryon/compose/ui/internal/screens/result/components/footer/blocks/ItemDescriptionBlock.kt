@@ -31,7 +31,7 @@ internal fun LazyGridScope.itemDescriptionBlock(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
+internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current

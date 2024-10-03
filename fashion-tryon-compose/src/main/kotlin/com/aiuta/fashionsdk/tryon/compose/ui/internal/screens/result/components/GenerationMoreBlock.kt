@@ -91,7 +91,7 @@ internal fun GenerationMoreBlock(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                text = stringResources.generationResultMoreTitle,
+                text = stringResources.generationResultMoreSubtitle,
                 style = MaterialTheme.typography.h5,
                 color = theme.colors.primary,
                 fontWeight = FontWeight.Bold,

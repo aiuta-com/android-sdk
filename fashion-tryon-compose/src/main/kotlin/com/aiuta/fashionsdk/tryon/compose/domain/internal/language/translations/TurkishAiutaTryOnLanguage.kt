@@ -59,7 +59,8 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historyEmptyDescription: String = "İlk ürün denemenizden sonra deneme geçmişiniz burada saklanacaktır"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "Denemeniz için daha fazlası"
+    override val generationResultMoreTitle: String = "TODO"
+    override val generationResultMoreSubtitle: String = "Denemeniz için daha fazlası"
     override val generationResultSwipeUp: String = "Daha fazlası için yukarı kaydır"
 
     // Picker sheet

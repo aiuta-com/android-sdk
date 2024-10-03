@@ -49,6 +49,7 @@ internal interface InternalAiutaTryOnLanguage {
 
     // Generation Result
     val generationResultMoreTitle: String
+    val generationResultMoreSubtitle: String
     val generationResultSwipeUp: String
 
     // Bottom sheets

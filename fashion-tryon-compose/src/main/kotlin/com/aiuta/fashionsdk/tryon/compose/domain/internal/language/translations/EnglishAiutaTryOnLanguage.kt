@@ -84,7 +84,8 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
         "Once you try on first item your try-on history would be stored here"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "More for you to try on"
+    override val generationResultMoreTitle: String = "You might also like"
+    override val generationResultMoreSubtitle: String = "More for you to try on"
     override val generationResultSwipeUp: String = "Swipe up for more"
 
     // Bottom sheets
