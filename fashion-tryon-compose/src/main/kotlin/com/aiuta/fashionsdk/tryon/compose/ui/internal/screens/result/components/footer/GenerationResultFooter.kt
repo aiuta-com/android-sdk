@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.itemDescriptionBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.itemPhotosBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.connection.rememberGenerationResultConnection
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import kotlin.math.roundToInt
@@ -61,11 +62,7 @@ internal fun BoxWithConstraintsScope.GenerationResultFooter(
                 .nestedScroll(connection),
     ) {
         GenerationResultFooterList(
-            modifier =
-                Modifier
-                    .fillMaxSize(),
-//                .windowInsetsPadding(WindowInsets.statusBars)
-//                .windowInsetsPadding(WindowInsets.navigationBars)
+            modifier = Modifier.fillMaxSize(),
             generationResultController = generationResultController,
         )
     }
@@ -89,6 +86,14 @@ private fun GenerationResultFooterList(
                 Modifier
                     .fillMaxWidth()
                     .padding(top = 4.dp)
+                    .padding(horizontal = 8.dp),
+        )
+
+        itemPhotosBlock(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 24.dp)
                     .padding(horizontal = 8.dp),
         )
     }
