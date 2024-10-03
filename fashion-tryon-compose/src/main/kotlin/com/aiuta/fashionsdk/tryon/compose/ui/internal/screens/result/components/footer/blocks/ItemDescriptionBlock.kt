@@ -1,0 +1,61 @@
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
+
+internal fun LazyGridScope.itemDescriptionBlock(modifier: Modifier = Modifier) {
+    item(
+        key = "ITEM_DESCRIPTION_BLOCK_KEY",
+        span = { GridItemSpan(FOOTER_FULL_SIZE_SPAN) },
+        contentType = "ITEM_DESCRIPTION_BLOCK_TYPE",
+    ) {
+        ItemDescriptionBlock(
+            modifier = modifier,
+        )
+    }
+}
+
+@Composable
+private fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
+    val controller = LocalController.current
+    val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val activeSKUItem = controller.activeSKUItem.value
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.Top,
+    ) {
+        SKUInfo(
+            modifier = Modifier.weight(1f),
+            skuItem = activeSKUItem,
+        )
+
+        Spacer(Modifier.width(16.dp))
+
+        FashionButton(
+            text = stringResources.addToCart,
+            style = FashionButtonStyles.primaryStyle(theme),
+            size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
+            onClick = {
+                controller.aiutaTryOnListeners().addToWishlistClick(activeSKUItem)
+            },
+        )
+    }
+}

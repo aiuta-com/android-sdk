@@ -4,19 +4,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
@@ -36,66 +32,28 @@ internal fun SKUInfo(
     ) {
         Text(
             text = skuItem.store,
-            style = MaterialTheme.typography.body1,
+            style = theme.typography.brandName,
             color = theme.colors.secondary,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
         )
 
-        Spacer(Modifier.height(1.dp))
+        Spacer(Modifier.height(2.dp))
 
         Text(
             text = skuItem.description,
-            style = MaterialTheme.typography.body2,
+            style = theme.typography.productName,
             color = theme.colors.primary,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
         )
 
-        Spacer(Modifier.height(1.dp))
+        Spacer(Modifier.height(4.dp))
 
-        Row(
+        PriceInfo(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            if (skuItem.localizedPrice.isNotBlank()) {
-                Text(
-                    text = skuItem.localizedPrice,
-                    style =
-                        MaterialTheme.typography.body1.copy(
-                            textDecoration = solveGeneralPriceDecoration(skuItem),
-                        ),
-                    color = solveGeneralPriceColor(skuItem),
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
-
-            if (skuItem.localizedOldPrice?.isNotBlank() == true) {
-                Spacer(Modifier.width(4.dp))
-
-                Text(
-                    text = skuItem.localizedOldPrice,
-                    style = MaterialTheme.typography.body1,
-                    color = theme.colors.accent,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-
-                if (skuItem.localizedPrice.isNotBlank() && skuItem.localizedDiscount?.isNotBlank() == true) {
-                    Spacer(Modifier.width(8.dp))
-
-                    DiscountBlock(
-                        localizedDiscount = skuItem.localizedDiscount,
-                    )
-                }
-            }
-        }
+            skuItem = skuItem,
+        )
     }
 }
 
+@Deprecated("Need to delete")
 @Composable
 internal fun DiscountBlock(
     modifier: Modifier = Modifier,
@@ -118,7 +76,7 @@ internal fun DiscountBlock(
     ) {
         Text(
             text = "$localizedDiscount%",
-            style = MaterialTheme.typography.body2,
+            style = theme.typography.price,
             color = theme.colors.onDark,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,

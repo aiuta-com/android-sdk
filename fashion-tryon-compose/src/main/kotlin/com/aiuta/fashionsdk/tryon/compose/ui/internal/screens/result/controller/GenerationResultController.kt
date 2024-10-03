@@ -9,6 +9,8 @@ import androidx.compose.foundation.gestures.DraggableAnchors
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
@@ -130,6 +132,8 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             )
         }
 
+    val footerListState = rememberLazyGridState()
+
     return remember {
         GenerationResultController(
             generationPagerState = pagerState,
@@ -139,6 +143,7 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             imageCarouselState = imageCarouselState,
             verticalSwipeState = verticalSwipeState,
             verticalSwipeStateV2 = verticalSwipeStateV2,
+            footerListState = footerListState,
         )
     }.also {
         GenerationResultControllerListener(it)
@@ -164,6 +169,7 @@ internal class GenerationResultController(
     @Deprecated("Need to delete")
     public val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
     public val verticalSwipeStateV2: AnchoredDraggableState<GenerateResultStatus>,
+    public val footerListState: LazyGridState,
 ) {
     public val isThanksFeedbackBlockVisible = mutableStateOf(false)
 }
