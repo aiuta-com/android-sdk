@@ -75,7 +75,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         },
         title = {
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().align(Alignment.Center),
                 text = stringResources.virtualTryOn,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
