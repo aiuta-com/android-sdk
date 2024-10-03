@@ -1,8 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,7 +16,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.DisclaimerBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.GenerationResultFooter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.appbarHeight
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.disclaimerHeight
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.disclaimerOffset
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.imagesHeight
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.rememberGenerationResultController
 
@@ -30,13 +30,7 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
 
     GenerationResultListener()
 
-    Column(
-        modifier = modifier.background(theme.colors.background),
-    ) {
-        MainAppBar(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp))
-
-        GenerationResultScreenContent(modifier = Modifier.fillMaxSize())
-    }
+    GenerationResultScreenContent(modifier = Modifier.fillMaxSize())
 }
 
 @Composable
@@ -46,11 +40,21 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
     ) {
         val generationResultController = rememberGenerationResultController(maxHeight = maxHeight)
 
+        MainAppBar(
+            modifier =
+                Modifier
+                    .align(Alignment.TopCenter)
+                    .height(appbarHeight(maxHeight))
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+        )
+
         GenerationResultBody(
             modifier =
                 Modifier
                     .align(Alignment.TopCenter)
-                    .height(generationResultController.imagesHeight(maxHeight))
+                    .padding(top = appbarHeight(maxHeight))
+                    .height(imagesHeight(maxHeight))
                     .fillMaxWidth()
                     .padding(vertical = 24.dp),
             generationResultController = generationResultController,
@@ -60,8 +64,8 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
             modifier =
                 Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = generationResultController.imagesHeight(maxHeight))
-                    .height(generationResultController.disclaimerHeight(maxHeight))
+                    .padding(top = disclaimerOffset(maxHeight))
+                    .height(disclaimerHeight())
                     .fillMaxWidth(),
         )
 

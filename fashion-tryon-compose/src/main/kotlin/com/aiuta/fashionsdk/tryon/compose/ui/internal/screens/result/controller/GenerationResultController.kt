@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -45,7 +46,9 @@ private val FOOTER_WEIGHT = 1.5f
 @Deprecated("Need to delete")
 private val TOTAL_WEIGHT = BODY_WEIGHT + FOOTER_WEIGHT
 
-private val imagesWeight: Float = 0.75f
+// Not
+private val appbarWeight: Float = 0.1f
+private val imagesWeight: Float = 0.7f
 private val totalWeight: Float = 1f
 
 private val disclaimerContentHeight: Dp = 30.dp
@@ -103,10 +106,8 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             )
         }
 
-    val imagesHeight = maxHeight * imagesWeight
-
     val statusBarPx = WindowInsets.statusBars.getTop(density).toFloat()
-    val footerOffset = imagesHeight + disclaimerContentHeight
+    val footerOffset = footerOffset(maxHeight)
     val footerOffsetPx = with(density) { footerOffset.toPx() }
 
     val verticalSwipeStateV2 =
@@ -118,9 +119,13 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
                         GenerateResultStatus.MORE_COLLAPSED at footerOffsetPx
                         GenerateResultStatus.MORE_EXPANDED at statusBarPx
                     },
-                positionalThreshold = { distance: Float -> distance * 0.5f },
-                velocityThreshold = { with(density) { (imagesHeight / 2).toPx() } },
-                snapAnimationSpec = tween(),
+                positionalThreshold = { distance: Float -> distance * 0.7f },
+                velocityThreshold = { with(density) { (maxHeight / 2).toPx() } },
+                snapAnimationSpec =
+                    tween(
+                        durationMillis = 500,
+                        easing = LinearOutSlowInEasing,
+                    ),
                 decayAnimationSpec = exponentialDecay(),
             )
         }
@@ -172,19 +177,24 @@ internal fun GenerationResultController.isGenerationPagerItem(index: Int) =
 internal fun GenerationResultController.isMetaInfoPagerItem(index: Int) =
     index == totalPageSize() - 1
 
-internal fun GenerationResultController.imagesHeight(maxHeight: Dp): Dp {
+internal fun appbarHeight(maxHeight: Dp): Dp {
+    return maxHeight * (appbarWeight / totalWeight)
+}
+
+internal fun imagesHeight(maxHeight: Dp): Dp {
     return maxHeight * (imagesWeight / totalWeight)
 }
 
-internal fun GenerationResultController.disclaimerHeight(maxHeight: Dp): Dp {
+internal fun disclaimerHeight(): Dp {
     return disclaimerTotalHeight
 }
 
-internal fun GenerationResultController.footerHeight(maxHeight: Dp): Dp {
-    val rawFooterWeight = totalWeight - imagesWeight
-    val rawFooterHeight = maxHeight * rawFooterWeight
+internal fun disclaimerOffset(maxHeight: Dp): Dp {
+    return appbarHeight(maxHeight) + imagesHeight(maxHeight)
+}
 
-    return rawFooterHeight - disclaimerContentHeight
+internal fun footerOffset(maxHeight: Dp): Dp {
+    return appbarHeight(maxHeight) + imagesHeight(maxHeight) + disclaimerContentHeight
 }
 
 // Interface visibility
