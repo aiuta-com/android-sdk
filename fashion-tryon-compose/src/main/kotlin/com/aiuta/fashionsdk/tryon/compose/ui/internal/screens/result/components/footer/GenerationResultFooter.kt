@@ -46,7 +46,7 @@ internal fun BoxWithConstraintsScope.GenerationResultFooter(
 
     val connection =
         rememberGenerationResultConnection(
-            verticalSwipeState = generationResultController.verticalSwipeStateV2,
+            verticalSwipeState = generationResultController.verticalSwipeState,
         )
 
     Box(
@@ -56,7 +56,7 @@ internal fun BoxWithConstraintsScope.GenerationResultFooter(
                 .offset {
                     IntOffset(
                         0,
-                        (generationResultController.verticalSwipeStateV2.offset).roundToInt(),
+                        (generationResultController.verticalSwipeState.offset).roundToInt(),
                     )
                 }
                 .background(
@@ -64,7 +64,7 @@ internal fun BoxWithConstraintsScope.GenerationResultFooter(
                     shape = theme.shapes.bottomSheet,
                 )
                 .anchoredDraggable(
-                    state = generationResultController.verticalSwipeStateV2,
+                    state = generationResultController.verticalSwipeState,
                     orientation = Orientation.Vertical,
                 )
                 .nestedScroll(connection),

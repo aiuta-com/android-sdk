@@ -30,7 +30,7 @@ internal fun GenerationResultControllerListener(
 
     LaunchedEffect(generationResultController.verticalSwipeState.currentValue) {
         val verticalSwipeState = generationResultController.verticalSwipeState.currentValue
-        if (verticalSwipeState == GenerateResultState.SHOW_GENERATE_MORE) {
+        if (verticalSwipeState == GenerateResultStatus.MORE_EXPANDED) {
             controller.sendViewMoreToTryOnEvent()
         }
     }
