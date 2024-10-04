@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.more
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,9 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.LazyGridScope
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -114,6 +112,16 @@ private fun GenerationMoreItem(
                 },
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
+            )
+
+            TryOnLabel(
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(
+                            horizontal = 8.dp,
+                            vertical = 6.dp,
+                        ),
             )
         }
 

@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.more
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

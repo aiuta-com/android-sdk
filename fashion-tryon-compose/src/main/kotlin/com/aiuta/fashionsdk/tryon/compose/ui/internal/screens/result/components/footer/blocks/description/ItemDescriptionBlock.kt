@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.description
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -54,7 +54,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
             onClick = {
-                controller.aiutaTryOnListeners().addToWishlistClick(activeSKUItem)
+                controller.aiutaTryOnListeners().addToCartClick(activeSKUItem)
             },
         )
     }
