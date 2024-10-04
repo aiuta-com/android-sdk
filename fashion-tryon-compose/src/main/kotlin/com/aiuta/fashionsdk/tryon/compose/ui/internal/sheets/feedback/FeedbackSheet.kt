@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -18,10 +17,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -63,12 +60,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
     Text(
         modifier = sharedModifier,
         text = feedbackData.title,
-        style =
-            MaterialTheme.typography.h3.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-                lineHeight = 28.sp,
-            ),
+        style = theme.typography.titleL,
         color = theme.colors.primary,
         textAlign = TextAlign.Center,
     )
@@ -134,11 +126,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                             controller.bottomSheetNavigator.hide()
                         },
                 text = stringResources.feedbackSheetSkip,
-                style =
-                    MaterialTheme.typography.body1.copy(
-                        fontSize = 15.sp,
-                        lineHeight = 18.sp,
-                    ),
+                style = theme.typography.chips,
                 color = theme.colors.secondary,
                 textAlign = TextAlign.Center,
             )
@@ -192,11 +180,7 @@ private fun OptionItem(
     ) {
         Text(
             text = option,
-            style =
-                MaterialTheme.typography.body2.copy(
-                    fontSize = 15.sp,
-                    lineHeight = 18.sp,
-                ),
+            style = theme.typography.chips,
             color =
                 if (isSelected) {
                     theme.colors.onDark

@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendOpenResultsScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.GenerationResultBody
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.ThanksFeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.DisclaimerBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.GenerationResultFooter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
@@ -70,6 +71,11 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
         )
 
         GenerationResultFooter(
+            generationResultController = generationResultController,
+        )
+
+        ThanksFeedbackBlock(
+            modifier = Modifier.align(Alignment.Center),
             generationResultController = generationResultController,
         )
     }

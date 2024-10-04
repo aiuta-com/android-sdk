@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -25,10 +24,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -65,11 +62,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
                         controller.bottomSheetNavigator.hide()
                     },
             text = stringResources.cancel,
-            style =
-                MaterialTheme.typography.body1.copy(
-                    fontSize = 18.sp,
-                    lineHeight = 22.sp,
-                ),
+            style = theme.typography.regular,
             color = theme.colors.primary,
             textAlign = TextAlign.Center,
         )
@@ -79,12 +72,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
         Text(
             modifier = Modifier.align(Alignment.Start),
             text = data.extraOptionTitle,
-            style =
-                MaterialTheme.typography.h3.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    lineHeight = 28.sp,
-                ),
+            style = theme.typography.titleL,
             color = theme.colors.primary,
             textAlign = TextAlign.Start,
         )
@@ -98,6 +86,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
                     .heightIn(min = 160.dp)
                     .animateContentSize(),
             value = feedbackText.value,
+            textStyle = theme.typography.regular,
             onValueChange = { feedbackText.value = it },
             shape = RoundedCornerShape(16.dp),
             colors =
