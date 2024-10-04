@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,11 +27,13 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendSelectMoreToTryOnEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
 
 internal fun LazyGridScope.generateMoreListBlock(skuItem: SKUItem) {
     skuItem.generateMoreSKU?.let { skus ->
@@ -63,6 +66,7 @@ private fun GenerationMoreItem(
     val context = LocalContext.current
     val controller = LocalController.current
     val theme = LocalTheme.current
+
     val sharedCornerShape = RoundedCornerShape(20.dp)
 
     Column(
@@ -122,6 +126,19 @@ private fun GenerationMoreItem(
                             horizontal = 8.dp,
                             vertical = 6.dp,
                         ),
+            )
+
+            LikeButton(
+                modifier =
+                    Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(6.dp)
+                        .size(28.dp),
+                isLiked = skuItem.inWishlist,
+                iconSize = 16.dp,
+                onClick = {
+                    controller.clickAddToWishList(skuItem)
+                },
             )
         }
 

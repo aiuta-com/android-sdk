@@ -34,7 +34,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickMoreDetails
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
@@ -149,7 +149,9 @@ private fun ButtonsContainer(
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                        controller.clickAddToWishList(origin = FinishSession.Origin.SKU_POPUP)
+                        controller.clickAddToWishListActiveSKU(
+                            origin = FinishSession.Origin.SKU_POPUP,
+                        )
                     } else {
                         controller.clickMoreDetails(origin = FinishSession.Origin.MORE_TO_TRYON)
                     }

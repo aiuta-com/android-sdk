@@ -29,9 +29,8 @@ public class AiutaResourceIcons(
     @DrawableRes public val history24: Int,
     @DrawableRes public val trash24: Int,
     @DrawableRes public val share24: Int,
-    // x20
-    @DrawableRes public val wishlist20: Int,
-    @DrawableRes public val wishlistFill20: Int,
+    @DrawableRes public val wishlist24: Int,
+    @DrawableRes public val wishlistFill24: Int,
     // x16
     @DrawableRes public val magic16: Int,
     @DrawableRes public val lock16: Int,

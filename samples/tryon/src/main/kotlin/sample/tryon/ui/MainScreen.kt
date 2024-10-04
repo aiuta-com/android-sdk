@@ -43,7 +43,7 @@ fun MainScreen() {
                     localizedDiscount = "10",
                     store = "MOCK STORE",
                     generateMoreSKU =
-                        activeSKUItems.value?.map { skuItem ->
+                        activeSKUItems.value?.mapIndexed { index, skuItem ->
                             SKUItem(
                                 skuId = skuItem.skuId,
                                 catalogName = skuItem.catalogName,
@@ -53,8 +53,10 @@ fun MainScreen() {
                                 localizedOldPrice = "$41.99",
                                 localizedDiscount = "10",
                                 store = "MOCK STORE",
+                                inWishlist = index % 2 == 0,
                             )
                         } ?: emptyList(),
+                    inWishlist = false,
                     additionalShareInfo =
                         """
                         You can find more information about this item here:
@@ -66,8 +68,19 @@ fun MainScreen() {
         val mockAiutaTryOnListeners =
             remember {
                 AiutaTryOnListeners(
-                    addToWishlistClick = {
-                        context.makeToast("Rise Add to Wishlist")
+                    addToWishlistClick = { oldSku ->
+                        mockSKUItem.copy(
+                            generateMoreSKU =
+                                mockSKUItem
+                                    .generateMoreSKU
+                                    ?.map { item ->
+                                        if (item.skuId == oldSku.skuId) {
+                                            oldSku.copy(inWishlist = !oldSku.inWishlist)
+                                        } else {
+                                            item
+                                        }
+                                    },
+                        )
                     },
                     addToCartClick = {
                         context.makeToast("Rise Add to cart")

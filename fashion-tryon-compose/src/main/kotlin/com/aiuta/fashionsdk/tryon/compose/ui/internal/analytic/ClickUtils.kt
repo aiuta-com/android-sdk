@@ -6,15 +6,29 @@ import com.aiuta.fashionsdk.internal.analytic.model.OpenHistoryScreen
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
+import kotlinx.coroutines.launch
 
 // Listeners
-internal fun FashionTryOnController.clickAddToWishList(origin: FinishSession.Origin) {
-    analytic.sendFinishSessionEvent(
-        action = FinishSession.Action.ADD_TO_WISHLIST,
-        origin = origin,
-        skuItem = activeSKUItem.value,
-    )
-    aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value)
+internal fun FashionTryOnController.clickAddToWishListActiveSKU(
+    origin: FinishSession.Origin? = null,
+) {
+    generalScope.launch {
+        origin?.let {
+            analytic.sendFinishSessionEvent(
+                action = FinishSession.Action.ADD_TO_WISHLIST,
+                origin = origin,
+                skuItem = activeSKUItem.value,
+            )
+        }
+        changeActiveSKU(aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value))
+    }
+}
+
+internal fun FashionTryOnController.clickAddToWishList(skuItem: SKUItem) {
+    generalScope.launch {
+        changeActiveSKU(aiutaTryOnListeners().addToWishlistClick(skuItem))
+    }
 }
 
 internal fun FashionTryOnController.clickMoreDetails(origin: FinishSession.Origin) {

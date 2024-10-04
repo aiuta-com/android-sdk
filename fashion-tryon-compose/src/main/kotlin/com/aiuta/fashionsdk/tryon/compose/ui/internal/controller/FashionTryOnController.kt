@@ -165,6 +165,8 @@ internal class FashionTryOnController(
             return cancelGenerationScope()
         }
 
+    internal val generalScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
     /**
      * Cancel current generation scope and set new for next generation
      *

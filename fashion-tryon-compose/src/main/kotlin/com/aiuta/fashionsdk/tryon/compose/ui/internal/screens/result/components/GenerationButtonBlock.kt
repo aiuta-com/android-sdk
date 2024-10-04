@@ -19,7 +19,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -50,7 +50,9 @@ internal fun GenerationButtonsBlock(modifier: Modifier = Modifier) {
                     style = FashionButtonStyles.secondaryStyle(theme),
                     size = FashionButtonSizes.lSize(),
                     onClick = {
-                        controller.clickAddToWishList(origin = FinishSession.Origin.RESULT_SCREEN)
+                        controller.clickAddToWishListActiveSKU(
+                            origin = FinishSession.Origin.RESULT_SCREEN,
+                        )
                     },
                 )
 

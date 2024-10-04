@@ -111,18 +111,18 @@ public val AiutaIcons.share24: Any
         }
 
 // x20
-public val AiutaIcons.wishlist20: Any
+public val AiutaIcons.wishlist24: Any
     get() =
         when (this) {
-            is AiutaDrawableIcons -> this.wishlist20
-            is AiutaResourceIcons -> this.wishlist20
+            is AiutaDrawableIcons -> this.wishlist24
+            is AiutaResourceIcons -> this.wishlist24
         }
 
-public val AiutaIcons.wishlistFill20: Any
+public val AiutaIcons.wishlistFill24: Any
     get() =
         when (this) {
-            is AiutaDrawableIcons -> this.wishlistFill20
-            is AiutaResourceIcons -> this.wishlistFill20
+            is AiutaDrawableIcons -> this.wishlistFill24
+            is AiutaResourceIcons -> this.wishlistFill24
         }
 
 // x16

@@ -14,7 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
  */
 @Immutable
 public class AiutaTryOnListeners(
-    public val addToWishlistClick: (skuItem: SKUItem) -> Unit = {},
+    public val addToWishlistClick: suspend (skuItem: SKUItem) -> SKUItem,
     public val addToCartClick: (skuItem: SKUItem) -> Unit,
     public val moreDetailsClick: (skuItem: SKUItem) -> Unit,
     public val closeClick: (skuItem: SKUItem) -> Unit,
