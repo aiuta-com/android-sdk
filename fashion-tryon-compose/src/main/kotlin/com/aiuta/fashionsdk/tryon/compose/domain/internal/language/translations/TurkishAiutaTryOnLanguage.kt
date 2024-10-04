@@ -86,6 +86,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToWish: String = "Listelerime ekle"
     override val addToCart: String = "Sepete ekle"
     override val cancel: String = "Vazgeç"
+    override val close: String = "TODO"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val moreDetails: String = "Daha fazla detay"
     override val tryOn: String = "Üzerinde Dene"

@@ -113,6 +113,7 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToWish: String = "Add to wishlist"
     override val addToCart: String = "Add to cart"
     override val cancel: String = "Cancel"
+    override val close: String = "Close"
     override val moreDetails: String = "More details"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Try on"

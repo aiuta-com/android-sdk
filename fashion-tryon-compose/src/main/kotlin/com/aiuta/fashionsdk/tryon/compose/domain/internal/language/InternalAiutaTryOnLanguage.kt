@@ -76,6 +76,7 @@ internal interface InternalAiutaTryOnLanguage {
     val addToWish: String
     val addToCart: String
     val cancel: String
+    val close: String
     val moreDetails: String
     val aiutaUrl: String
     val tryOn: String
