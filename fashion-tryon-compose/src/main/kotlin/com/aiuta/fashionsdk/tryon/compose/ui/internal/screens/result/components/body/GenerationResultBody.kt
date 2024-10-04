@@ -36,6 +36,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.FeedbackBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.GenerateMoreBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
@@ -127,21 +128,6 @@ private fun PagerItem(
             contentDescription = null,
         )
 
-        // TODO
-//        ShareButton(
-//            modifier =
-//            Modifier
-//                .align(Alignment.TopEnd)
-//                .padding(10.dp)
-//                .size(38.dp)
-//                .shadow(
-//                    elevation = 4.dp,
-//                    spotColor = Color.Black.copy(0.2f),
-//                    ambientColor = Color.Black.copy(0.2f),
-//                ),
-//            imageUrl = imageUrl,
-//        )
-
         PagerItemInterface(
             imageUrl = imageUrl,
             itemIndex = itemIndex,
@@ -160,15 +146,22 @@ internal fun BoxScope.PagerItemInterface(
         modifier =
             Modifier
                 .align(Alignment.TopEnd)
-                .padding(10.dp),
+                .padding(12.dp),
         imageUrl = imageUrl,
+    )
+
+    GenerateMoreBlock(
+        modifier =
+            Modifier
+                .align(Alignment.BottomStart)
+                .padding(12.dp),
     )
 
     FeedbackBlock(
         modifier =
             Modifier
                 .align(Alignment.BottomEnd)
-                .padding(14.dp),
+                .padding(bottom = 12.dp, end = 14.dp),
         itemIndex = itemIndex,
         generationResultController = generationResultController,
     )

@@ -120,7 +120,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }.also {
         it.generationNavigationListener()
-        it.generationOperationListener()
+//        it.generationOperationListener()
         it.historyAvailabilityListener(aiutaTryOnConfiguration)
     }
 }
