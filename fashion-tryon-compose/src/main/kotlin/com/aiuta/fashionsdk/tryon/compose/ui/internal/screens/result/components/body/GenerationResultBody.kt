@@ -2,11 +2,11 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -34,6 +34,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.FeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
@@ -140,13 +142,34 @@ private fun PagerItem(
 //            imageUrl = imageUrl,
 //        )
 
-        FeedbackBlock(
-            modifier =
-                Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(14.dp),
+        PagerItemInterface(
+            imageUrl = imageUrl,
             itemIndex = itemIndex,
             generationResultController = generationResultController,
         )
     }
+}
+
+@Composable
+internal fun BoxScope.PagerItemInterface(
+    imageUrl: String?,
+    itemIndex: Int,
+    generationResultController: GenerationResultController,
+) {
+    ActionBlock(
+        modifier =
+            Modifier
+                .align(Alignment.TopEnd)
+                .padding(10.dp),
+        imageUrl = imageUrl,
+    )
+
+    FeedbackBlock(
+        modifier =
+            Modifier
+                .align(Alignment.BottomEnd)
+                .padding(14.dp),
+        itemIndex = itemIndex,
+        generationResultController = generationResultController,
+    )
 }

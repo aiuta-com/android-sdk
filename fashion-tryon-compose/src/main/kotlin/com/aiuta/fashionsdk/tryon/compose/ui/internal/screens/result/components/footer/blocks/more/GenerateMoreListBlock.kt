@@ -27,7 +27,7 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishList
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListGenerateMoreItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -137,7 +137,7 @@ private fun GenerationMoreItem(
                 isLiked = skuItem.inWishlist,
                 iconSize = 16.dp,
                 onClick = {
-                    controller.clickAddToWishList(skuItem)
+                    controller.clickAddToWishListGenerateMoreItem(skuItem)
                 },
             )
         }

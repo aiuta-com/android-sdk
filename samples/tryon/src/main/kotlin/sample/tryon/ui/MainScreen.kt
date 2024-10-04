@@ -68,7 +68,10 @@ fun MainScreen() {
         val mockAiutaTryOnListeners =
             remember {
                 AiutaTryOnListeners(
-                    addToWishlistClick = { oldSku ->
+                    addToWishlistActiveItemClick = { oldSku ->
+                        oldSku.copy(inWishlist = !oldSku.inWishlist)
+                    },
+                    addToWishlistGenerateMoreItemClick = { oldSku ->
                         mockSKUItem.copy(
                             generateMoreSKU =
                                 mockSKUItem

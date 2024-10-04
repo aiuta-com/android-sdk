@@ -21,13 +21,13 @@ internal fun FashionTryOnController.clickAddToWishListActiveSKU(
                 skuItem = activeSKUItem.value,
             )
         }
-        changeActiveSKU(aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value))
+        changeActiveSKU(aiutaTryOnListeners().addToWishlistActiveItemClick(activeSKUItem.value))
     }
 }
 
-internal fun FashionTryOnController.clickAddToWishList(skuItem: SKUItem) {
+internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: SKUItem) {
     generalScope.launch {
-        changeActiveSKU(aiutaTryOnListeners().addToWishlistClick(skuItem))
+        changeActiveSKU(aiutaTryOnListeners().addToWishlistGenerateMoreItemClick(skuItem))
     }
 }
 

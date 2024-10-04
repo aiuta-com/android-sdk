@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
