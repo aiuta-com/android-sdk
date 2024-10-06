@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk
 
 import android.app.Application
+import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
+import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 
 /**
  * [Aiuta] class is an entry point to Aiuta sdk.
@@ -8,7 +10,12 @@ import android.app.Application
  * @param apiKey for
  */
 public class Aiuta private constructor(
+    @Deprecated(
+        message = "Use authenticationStrategy instead",
+    )
     public val apiKey: String,
+    public val subscriptionId: String,
+    public val authenticationStrategy: AuthenticationStrategy,
     public val application: Application,
 ) {
     /**
@@ -17,10 +24,29 @@ public class Aiuta private constructor(
     public class Builder {
         private var apiKey: String? = null
         private var application: Application? = null
+        private var authenticationStrategy: AuthenticationStrategy? = null
+        private var subscriptionId: String? = null
 
+        @Deprecated(
+            message = "Apply ApiKeyAuthenticationStrategy instead",
+            replaceWith =
+                ReplaceWith(
+                    expression =
+                        "setAuthenticationStrategy(" +
+                            "authenticationStrategy = ApiKeyAuthenticationStrategy(apiKey = apiKey)" +
+                            ")",
+                    imports =
+                        arrayOf(
+                            "com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy",
+                        ),
+                ),
+        )
         public fun setApiKey(apiKey: String): Builder {
             return apply {
-                this.apiKey = apiKey
+                this.authenticationStrategy =
+                    ApiKeyAuthenticationStrategy(
+                        apiKey = apiKey,
+                    )
             }
         }
 
@@ -30,43 +56,93 @@ public class Aiuta private constructor(
             }
         }
 
-        public fun build(): Aiuta {
-            val internalApiKey = apiKey
-            val internalApplication = application
+        public fun setAuthenticationStrategy(
+            authenticationStrategy: AuthenticationStrategy,
+        ): Builder {
+            return apply {
+                this.authenticationStrategy = authenticationStrategy
+            }
+        }
 
-            // Checks for api key
-            checkNotNull(
-                value = internalApiKey,
-                lazyMessage = { ERROR_MESSAGE_API_KEY_NULL },
-            )
-            check(
-                value = internalApiKey.isNotEmpty(),
-                lazyMessage = { ERROR_MESSAGE_API_KEY_EMPTY },
-            )
+        public fun setSubscriptionId(subscriptionId: String): Builder {
+            return apply {
+                this.subscriptionId = subscriptionId
+            }
+        }
+
+        public fun build(): Aiuta {
+            val internalApplication = application
+            val internalAuthenticationStrategy = authenticationStrategy
+            val internalSubscriptionId = subscriptionId
 
             // Checks for context
             checkNotNull(
                 value = internalApplication,
-                lazyMessage = { ERROR_MESSAGE_CONTEXT_NULL },
+                lazyMessage = {
+                    propertyIsNull(
+                        property = "application",
+                        methodToCall = "setApplication()",
+                    )
+                },
             )
 
+            // Checks for authentication strategy
+            checkNotNull(
+                value = internalAuthenticationStrategy,
+                lazyMessage = {
+                    propertyIsNull(
+                        property = "authenticationStrategy",
+                        methodToCall = "setAuthenticationStrategy()",
+                    )
+                },
+            )
+
+            // Checks for subscription id
+            checkNotNull(
+                value = internalSubscriptionId,
+                lazyMessage = {
+                    propertyIsNull(
+                        property = "subscriptionId",
+                        methodToCall = "setSubscriptionId()",
+                    )
+                },
+            )
+
+            check(
+                value = internalSubscriptionId.isNotEmpty(),
+                lazyMessage = {
+                    propertyIsEmpty(
+                        property = "subscriptionId",
+                        methodToCall = "setSubscriptionId()",
+                    )
+                },
+            )
+
+            // TODO Delete api key
             return Aiuta(
-                apiKey = internalApiKey,
+                apiKey = "TODO",
                 application = internalApplication,
+                authenticationStrategy = internalAuthenticationStrategy,
+                subscriptionId = internalSubscriptionId,
             )
         }
     }
 
     private companion object {
-        const val ERROR_MESSAGE_API_KEY_NULL =
-            "Aiuta: api key is null, therefore cannot init Aiuta. " +
-                "Please, call setApiKey() before build()"
-        const val ERROR_MESSAGE_API_KEY_EMPTY =
-            "Aiuta: api key is empty, therefore cannot init Aiuta. " +
-                "Please, call setApiKey() with not empty apiKey param before build()"
+        fun propertyIsEmpty(
+            property: String,
+            methodToCall: String,
+        ): String {
+            return "Aiuta: $property is empty, therefore cannot init Aiuta. " +
+                "Please, call $methodToCall with not empty $property param before build()"
+        }
 
-        const val ERROR_MESSAGE_CONTEXT_NULL =
-            "Aiuta: application context is not applied, therefore cannot init Aiuta. " +
-                "Please, call setApplication() with application context param before build()"
+        fun propertyIsNull(
+            property: String,
+            methodToCall: String,
+        ): String {
+            return "Aiuta: $property is null, therefore cannot init Aiuta. " +
+                "Please, call $methodToCall before build()"
+        }
     }
 }

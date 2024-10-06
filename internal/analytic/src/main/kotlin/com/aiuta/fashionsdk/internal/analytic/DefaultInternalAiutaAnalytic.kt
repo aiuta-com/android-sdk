@@ -31,7 +31,7 @@ public object InternalAiutaAnalyticFactory {
                 instance = it
                 networkClient =
                     createNetworkClient(
-                        apiKey = aiuta.apiKey,
+                        aiuta = aiuta,
                         backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
                     )
             }

@@ -30,7 +30,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-private const val DATABASE_VERSION = 8
+private const val DATABASE_VERSION = 9
 private const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(
@@ -122,21 +122,23 @@ internal abstract class AppDatabase : RoomDatabase() {
                 withContext(Dispatchers.IO) {
                     val database = getInstance(aiuta.application)
                     val aiutaCodeDao = database.aiutaCodeDao()
-                    val cachedCode = aiutaCodeDao.getCodes().firstOrNull()?.apiKey
+                    val cachedSubscriptionId = aiutaCodeDao.getCodes().firstOrNull()?.subscriptionId
 
                     // Invalidate all records, if we have new Aiuta instance
-                    if (cachedCode != aiuta.apiKey) {
+                    if (cachedSubscriptionId != aiuta.subscriptionId) {
                         database.withTransaction {
-                            // Delete all records
-                            database.generatedOperationDao().removeAll()
-                            database.generatedImageDao().removeAll()
-                            database.sourceImageDao().removeAll()
+                            if (cachedSubscriptionId != null) {
+                                // Delete all records
+                                database.generatedOperationDao().removeAll()
+                                database.generatedImageDao().removeAll()
+                                database.sourceImageDao().removeAll()
+                            }
 
                             // Update code
                             aiutaCodeDao.replaceAll(
                                 aiutaCodeEntity =
                                     AiutaCodeEntity(
-                                        apiKey = aiuta.apiKey,
+                                        subscriptionId = aiuta.subscriptionId,
                                     ),
                             )
                         }
