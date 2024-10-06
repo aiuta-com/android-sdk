@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,18 +28,16 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.lerp
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import coil.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.close24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -214,7 +211,7 @@ private fun ZoomedImageScreenContent(
                     .clickableUnindicated {
                         screenState.closeZoomImageScreen(scope)
                     },
-            imageVector = ImageVector.vectorResource(FashionIcon.Cross36),
+            painter = rememberAsyncImagePainter(theme.icons.close24),
             contentDescription = null,
             tint = interfaceColor.value,
         )
@@ -240,7 +237,7 @@ private fun ZoomedImageScreenContent(
                         )
                     },
             text = stringResources.share,
-            style = MaterialTheme.typography.h6,
+            style = theme.typography.button,
             color = interfaceColor.value,
         )
     }

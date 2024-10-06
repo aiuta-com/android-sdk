@@ -13,19 +13,10 @@ internal fun FashionTryOnController.generationNavigationListener() {
     // therefore let's clear it on each navigation to NavigationScreen.IMAGE_SELECTOR
     LaunchedEffect(currentScreen.value) {
         if (currentScreen.value == NavigationScreen.IMAGE_SELECTOR) {
-            generationStatus.value = SKUGenerationUIStatus.IDLE
+            if (!isGenerationActive.value) {
+                generationStatus.value = SKUGenerationUIStatus.IDLE
+            }
             generationOperations.clear()
-        }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.generationOperationListener() {
-    // We should cancel current generation process, if we exit from
-    // result screen back to selector
-    LaunchedEffect(currentScreen.value) {
-        if (currentScreen.value == NavigationScreen.IMAGE_SELECTOR) {
-            cancelGenerationScope()
         }
     }
 }

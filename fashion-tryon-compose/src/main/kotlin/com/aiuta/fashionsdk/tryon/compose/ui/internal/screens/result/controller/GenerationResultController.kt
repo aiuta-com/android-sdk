@@ -1,17 +1,19 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 
+import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.AnchoredDraggableState
 import androidx.compose.foundation.gestures.DraggableAnchors
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,15 +23,20 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 
-internal enum class GenerateResultState {
-    SHOW_GENERATIONS,
+internal enum class GenerateResultStatus {
+    MORE_COLLAPSED,
 
-    SHOW_GENERATE_MORE,
+    MORE_EXPANDED,
 }
 
-private val BODY_WEIGHT = 8.5f
-private val FOOTER_WEIGHT = 1.5f
-private val TOTAL_WEIGHT = BODY_WEIGHT + FOOTER_WEIGHT
+// Weights
+private const val APPBAR_WEIGHT: Float = 0.1f
+private const val IMAGES_WEIGHT: Float = 0.7f
+private const val TOTAL_WEIGHT: Float = 1f
+
+private val disclaimerContentHeight: Dp = 30.dp
+private val disclaimerBottomPaddingHeight: Dp = 12.dp
+private val disclaimerTotalHeight: Dp = disclaimerContentHeight + disclaimerBottomPaddingHeight
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -45,53 +52,39 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
             }
         }
 
-    val generateMoreSKU = controller.activeSKUItem.value.generateMoreSKU.orEmpty()
+    val pagerState = rememberPagerState(pageCount = { generationUrlsSize.value })
 
-    // Size of generation + meta sku images
-    val generationSize = { generationUrlsSize.value }
-    val totalPages = { generationSize() + 1 }
-    val pagerState = rememberPagerState(pageCount = totalPages)
+    val statusBarPx = WindowInsets.statusBars.getTop(density).toFloat()
+    val footerOffset = footerOffset(maxHeight)
+    val footerOffsetPx = with(density) { footerOffset.toPx() }
 
-    val imageCarouselState = rememberLazyListState()
-    val defaultInterfaceVisibility =
-        remember {
-            mutableStateOf(true)
-        }
-
-    val bodyHeight = maxHeight * (BODY_WEIGHT / TOTAL_WEIGHT)
     val verticalSwipeState =
         remember {
             AnchoredDraggableState(
-                initialValue = GenerateResultState.SHOW_GENERATIONS,
+                initialValue = GenerateResultStatus.MORE_COLLAPSED,
                 anchors =
                     DraggableAnchors {
-                        GenerateResultState.SHOW_GENERATIONS at 0f
-
-                        // Show generate more only if it is not empty
-                        if (generateMoreSKU.isNotEmpty()) {
-                            GenerateResultState.SHOW_GENERATE_MORE at
-                                with(
-                                    density,
-                                ) { -maxHeight.toPx() + 48.dp.toPx() }
-                        }
+                        GenerateResultStatus.MORE_COLLAPSED at footerOffsetPx
+                        GenerateResultStatus.MORE_EXPANDED at statusBarPx
                     },
-                positionalThreshold = { distance: Float -> distance * 0.5f },
-                velocityThreshold = { with(density) { (bodyHeight / 2).toPx() } },
-                snapAnimationSpec = tween(),
+                positionalThreshold = { distance: Float -> distance * 0.7f },
+                velocityThreshold = { with(density) { (maxHeight / 2).toPx() } },
+                snapAnimationSpec =
+                    tween(
+                        durationMillis = 500,
+                        easing = LinearOutSlowInEasing,
+                    ),
                 decayAnimationSpec = exponentialDecay(),
             )
         }
 
+    val footerListState = rememberLazyGridState()
+
     return remember {
         GenerationResultController(
             generationPagerState = pagerState,
-            generationPageSize = generationSize,
-            totalPageSize = totalPages,
-            zIndexList = controller.zIndexInterface - 2,
-            zIndexInterface = controller.zIndexInterface - 1,
-            isInterfaceVisible = defaultInterfaceVisibility,
-            imageCarouselState = imageCarouselState,
             verticalSwipeState = verticalSwipeState,
+            footerListState = footerListState,
         )
     }.also {
         GenerationResultControllerListener(it)
@@ -101,44 +94,32 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
 @OptIn(ExperimentalFoundationApi::class)
 @Immutable
 internal class GenerationResultController(
-    // General config
-    public val bodyWeight: Float = BODY_WEIGHT,
-    public val footerWeight: Float = FOOTER_WEIGHT,
-    public val totalWeight: Float = TOTAL_WEIGHT,
     // Generation pager state
     public val generationPagerState: PagerState,
-    public val generationPageSize: () -> Int,
-    public val totalPageSize: () -> Int,
-    public val zIndexList: Float,
-    public val zIndexInterface: Float,
-    // Interface visibility
-    public val isInterfaceVisible: MutableState<Boolean>,
-    // Carousel state
-    public val imageCarouselState: LazyListState,
     // Swipe state
-    public val verticalSwipeState: AnchoredDraggableState<GenerateResultState>,
+    public val verticalSwipeState: AnchoredDraggableState<GenerateResultStatus>,
+    public val footerListState: LazyGridState,
 ) {
     public val isThanksFeedbackBlockVisible = mutableStateOf(false)
 }
 
 // Size calculation
-internal fun GenerationResultController.bodyHeight(maxHeight: Dp) =
-    maxHeight * (bodyWeight / totalWeight)
-
-internal fun GenerationResultController.footerHeight(maxHeight: Dp) =
-    maxHeight * (footerWeight / totalWeight)
-
-internal fun GenerationResultController.isGenerationPagerItem(index: Int) =
-    index < generationPageSize()
-
-internal fun GenerationResultController.isMetaInfoPagerItem(index: Int) =
-    index == totalPageSize() - 1
-
-// Interface visibility
-internal fun GenerationResultController.showInterface() {
-    isInterfaceVisible.value = true
+internal fun appbarHeight(maxHeight: Dp): Dp {
+    return maxHeight * (APPBAR_WEIGHT / TOTAL_WEIGHT)
 }
 
-internal fun GenerationResultController.hideInterface() {
-    isInterfaceVisible.value = false
+internal fun imagesHeight(maxHeight: Dp): Dp {
+    return maxHeight * (IMAGES_WEIGHT / TOTAL_WEIGHT)
+}
+
+internal fun disclaimerHeight(): Dp {
+    return disclaimerTotalHeight
+}
+
+internal fun disclaimerOffset(maxHeight: Dp): Dp {
+    return appbarHeight(maxHeight) + imagesHeight(maxHeight)
+}
+
+internal fun footerOffset(maxHeight: Dp): Dp {
+    return appbarHeight(maxHeight) + imagesHeight(maxHeight) + disclaimerContentHeight
 }

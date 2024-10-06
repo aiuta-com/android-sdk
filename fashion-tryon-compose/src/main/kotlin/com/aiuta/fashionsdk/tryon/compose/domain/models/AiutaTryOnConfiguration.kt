@@ -22,6 +22,7 @@ public interface AiutaTryOnConfiguration {
      * Possible url of legal disclaimer, which will shows in
      * onboarding flow
      */
+    @Deprecated("Will get legal disclaimer text from language settings")
     public val legalDisclaimerUrl: String?
 
     /**

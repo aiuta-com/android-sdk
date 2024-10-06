@@ -29,9 +29,8 @@ public class AiutaDrawableIcons(
     public val trash24: Drawable,
     public val history24: Drawable,
     public val share24: Drawable,
-    // x20
-    public val wishlist20: Drawable,
-    public val wishlistFill20: Drawable,
+    public val wishlist24: Drawable,
+    public val wishlistFill24: Drawable,
     // x16
     public val magic16: Drawable,
     public val lock16: Drawable,

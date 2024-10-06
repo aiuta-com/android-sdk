@@ -58,7 +58,8 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "Больше образов для примерки"
+    override val generationResultMoreTitle: String = "TODO"
+    override val generationResultMoreSubtitle: String = "Больше образов для примерки"
     override val generationResultSwipeUp: String = "Посмотреть новые образы"
 
     // Bottom sheets
@@ -86,6 +87,7 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToWish: String = "В избранное"
     override val addToCart: String = "Добавить в корзину"
     override val cancel: String = "Отмена"
+    override val close: String = "TODO"
     override val moreDetails: String = "Подробнее"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Примерить"

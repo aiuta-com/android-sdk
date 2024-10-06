@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -42,7 +42,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 @Composable
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
-    isSwipeTipVisible: Boolean,
     itemIndex: Int,
     generationResultController: GenerationResultController,
 ) {
@@ -62,7 +61,7 @@ internal fun FeedbackBlock(
     val isFeedbackVisible =
         remember {
             derivedStateOf {
-                !isFeedbackSelected.value && feedbackData.value != null && !isSwipeTipVisible
+                !isFeedbackSelected.value && feedbackData.value != null
             }
         }
 

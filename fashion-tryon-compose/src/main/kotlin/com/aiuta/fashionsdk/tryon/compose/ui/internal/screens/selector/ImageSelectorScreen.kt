@@ -16,23 +16,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendOpenMainScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body.ImageSelectorBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.common.ImageSelectorAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.ImageSelectorFooter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 
 @Composable
 internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val generationStatus = controller.generationStatus
 
@@ -52,7 +49,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         modifier = modifier.background(theme.colors.background),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        ImageSelectorAppBar(
+        MainAppBar(
             modifier =
                 Modifier
                     .fillMaxWidth()
@@ -62,7 +59,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(24.dp))
 
         ImageSelectorBlock(
-            modifier = Modifier.fillMaxSize(0.72f),
+            modifier = Modifier.fillMaxSize(MAIN_IMAGE_SIZE),
             uploadPhoto = {
                 controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
             },

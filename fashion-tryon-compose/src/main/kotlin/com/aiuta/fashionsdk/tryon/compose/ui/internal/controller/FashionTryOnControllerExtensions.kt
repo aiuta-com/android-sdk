@@ -76,6 +76,7 @@ internal fun FashionTryOnController.deactivateSelectMode() {
 
 // Generation helpers
 internal fun FashionTryOnController.activateGeneration() {
+    generationStatus.value = SKUGenerationUIStatus.LOADING
     isGenerationActive.value = true
 }
 

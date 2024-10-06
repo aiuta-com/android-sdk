@@ -167,8 +167,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons :
 	public final fun getShare24 ()Landroid/graphics/drawable/Drawable;
 	public final fun getTrash24 ()Landroid/graphics/drawable/Drawable;
 	public final fun getWelcomeScreen82 ()Landroid/graphics/drawable/Drawable;
-	public final fun getWishlist20 ()Landroid/graphics/drawable/Drawable;
-	public final fun getWishlistFill20 ()Landroid/graphics/drawable/Drawable;
+	public final fun getWishlist24 ()Landroid/graphics/drawable/Drawable;
+	public final fun getWishlistFill24 ()Landroid/graphics/drawable/Drawable;
 }
 
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
@@ -191,8 +191,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIconsKt {
 	public static final fun getShare24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
 	public static final fun getTrash24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
 	public static final fun getWelcomeScreen82 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getWishlist20 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getWishlistFill20 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getWishlist24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+	public static final fun getWishlistFill24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
@@ -214,8 +214,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons :
 	public final fun getShare24 ()I
 	public final fun getTrash24 ()I
 	public final fun getWelcomeScreen82 ()I
-	public final fun getWishlist20 ()I
-	public final fun getWishlistFill20 ()I
+	public final fun getWishlist24 ()I
+	public final fun getWishlistFill24 ()I
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes {

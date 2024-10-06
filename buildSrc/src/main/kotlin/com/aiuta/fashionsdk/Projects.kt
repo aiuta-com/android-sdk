@@ -35,6 +35,9 @@ fun Project.androidLibrary(
         extensions.configure<ComposeCompilerGradlePluginExtension> {
             enableStrongSkippingMode = true
         }
+        buildFeatures {
+            compose = true
+        }
     }
     if (config) {
         defaultConfig {

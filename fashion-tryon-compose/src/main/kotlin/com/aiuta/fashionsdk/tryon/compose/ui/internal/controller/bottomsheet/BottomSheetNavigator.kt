@@ -26,7 +26,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.SKUInfoShee
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun rememberBottomSheetNavigator(): BottomSheetNavigator {
     val defaultScope = rememberCoroutineScope()

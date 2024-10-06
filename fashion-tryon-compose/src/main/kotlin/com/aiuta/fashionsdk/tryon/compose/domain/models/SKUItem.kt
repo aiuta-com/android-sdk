@@ -18,7 +18,7 @@ import java.util.UUID
  * @param additionalShareInfo - Some additional info for sharing generated item
  */
 @Immutable
-public class SKUItem(
+public data class SKUItem(
     public val skuId: String,
     public val catalogName: String? = null,
     public val description: String,
@@ -29,6 +29,7 @@ public class SKUItem(
     public val store: String,
     public val generateMoreSKU: List<SKUItem>? = null,
     public val additionalShareInfo: String? = null,
+    public val inWishlist: Boolean,
 ) {
     internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
 }
@@ -40,4 +41,5 @@ internal val defaultSKUItem =
         imageUrls = emptyList(),
         localizedPrice = "0",
         store = "default_store",
+        inWishlist = false,
     )

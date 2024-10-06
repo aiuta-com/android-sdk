@@ -65,7 +65,7 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
             tint = theme.colors.secondary,
         )
 
-        Spacer(Modifier.width(16.dp))
+        Spacer(Modifier.width(4.dp))
 
         Text(
             modifier = modifier,

@@ -49,6 +49,7 @@ internal interface InternalAiutaTryOnLanguage {
 
     // Generation Result
     val generationResultMoreTitle: String
+    val generationResultMoreSubtitle: String
     val generationResultSwipeUp: String
 
     // Bottom sheets
@@ -75,6 +76,7 @@ internal interface InternalAiutaTryOnLanguage {
     val addToWish: String
     val addToCart: String
     val cancel: String
+    val close: String
     val moreDetails: String
     val aiutaUrl: String
     val tryOn: String

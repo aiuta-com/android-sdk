@@ -120,7 +120,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }.also {
         it.generationNavigationListener()
-        it.generationOperationListener()
         it.historyAvailabilityListener(aiutaTryOnConfiguration)
     }
 }
@@ -164,6 +163,8 @@ internal class FashionTryOnController(
         get() {
             return cancelGenerationScope()
         }
+
+    internal val generalScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     /**
      * Cancel current generation scope and set new for next generation

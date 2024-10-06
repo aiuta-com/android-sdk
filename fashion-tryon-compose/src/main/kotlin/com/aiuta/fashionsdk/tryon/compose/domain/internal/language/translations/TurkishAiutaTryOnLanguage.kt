@@ -59,7 +59,8 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historyEmptyDescription: String = "İlk ürün denemenizden sonra deneme geçmişiniz burada saklanacaktır"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "Denemeniz için daha fazlası"
+    override val generationResultMoreTitle: String = "TODO"
+    override val generationResultMoreSubtitle: String = "Denemeniz için daha fazlası"
     override val generationResultSwipeUp: String = "Daha fazlası için yukarı kaydır"
 
     // Picker sheet
@@ -85,6 +86,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToWish: String = "Listelerime ekle"
     override val addToCart: String = "Sepete ekle"
     override val cancel: String = "Vazgeç"
+    override val close: String = "TODO"
     override val aiutaUrl: String = "https://aiuta.com/"
     override val moreDetails: String = "Daha fazla detay"
     override val tryOn: String = "Üzerinde Dene"

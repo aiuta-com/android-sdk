@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.common
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -26,7 +26,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appb
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 
 @Composable
-internal fun ImageSelectorAppBar(modifier: Modifier = Modifier) {
+internal fun MainAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
@@ -75,7 +75,7 @@ internal fun ImageSelectorAppBar(modifier: Modifier = Modifier) {
         },
         title = {
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().align(Alignment.Center),
                 text = stringResources.virtualTryOn,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
