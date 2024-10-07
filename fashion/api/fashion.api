@@ -1,6 +1,5 @@
 public final class com/aiuta/fashionsdk/Aiuta {
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Landroid/app/Application;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getApiKey ()Ljava/lang/String;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Landroid/app/Application;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getApplication ()Landroid/app/Application;
 	public final fun getAuthenticationStrategy ()Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;
 	public final fun getSubscriptionId ()Ljava/lang/String;

@@ -6,14 +6,8 @@ import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 
 /**
  * [Aiuta] class is an entry point to Aiuta sdk.
- *
- * @param apiKey for
  */
 public class Aiuta private constructor(
-    @Deprecated(
-        message = "Use authenticationStrategy instead",
-    )
-    public val apiKey: String,
     public val subscriptionId: String,
     public val authenticationStrategy: AuthenticationStrategy,
     public val application: Application,
@@ -22,7 +16,6 @@ public class Aiuta private constructor(
      * Public [Builder] for initialize [Aiuta] class
      */
     public class Builder {
-        private var apiKey: String? = null
         private var application: Application? = null
         private var authenticationStrategy: AuthenticationStrategy? = null
         private var subscriptionId: String? = null
@@ -118,9 +111,7 @@ public class Aiuta private constructor(
                 },
             )
 
-            // TODO Delete api key
             return Aiuta(
-                apiKey = "TODO",
                 application = internalApplication,
                 authenticationStrategy = internalAuthenticationStrategy,
                 subscriptionId = internalSubscriptionId,
