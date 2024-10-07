@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.text.AnnotatedString
 
 @Immutable
 internal interface InternalAiutaTryOnLanguage {
@@ -22,11 +21,8 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingPageBestResultTopic: String
     val onboardingPageBestResultSubtopic: String
     val onboardingPageConsentTopic: String
-    val onboardingPageConsentBody: AnnotatedString
+    val onboardingPageConsentBody: String
     val onboardingPageConsentAgreePoint: String
-    val onboardingLegalDisclaimerBeforeClickable: String
-    val onboardingLegalDisclaimerClickable: String
-    val onboardingLegalDisclaimerAfterClickable: String
     val onboardingAppbarTryonPage: String
     val onboardingAppbarBestResultPage: String
     val onboardingAppbarConsentPage: String
@@ -34,11 +30,10 @@ internal interface InternalAiutaTryOnLanguage {
     // Image selector
     val imageSelectorUploadButton: String
     val imageSelectorChangeButton: String
-    val imageSelectorPoweredByAiuta1: String
-    val imageSelectorPoweredByAiuta2: String
+
+    val imageSelectorPoweredByAiuta: String
     val imageSelectorProtectionPoint: String
     val imageSelectorGeneratingOutfit: String
-    val imageSelectorPhotos: Plurals
 
     // History
     val historySelectorDisabledButton: String
@@ -50,7 +45,6 @@ internal interface InternalAiutaTryOnLanguage {
     // Generation Result
     val generationResultMoreTitle: String
     val generationResultMoreSubtitle: String
-    val generationResultSwipeUp: String
 
     // Bottom sheets
     // Picker sheet
@@ -77,8 +71,6 @@ internal interface InternalAiutaTryOnLanguage {
     val addToCart: String
     val cancel: String
     val close: String
-    val moreDetails: String
-    val aiutaUrl: String
     val tryOn: String
     val virtualTryOn: String
     val share: String

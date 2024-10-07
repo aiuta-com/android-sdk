@@ -1,9 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.buildAnnotatedString
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.Plurals
 
 internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // App bar
@@ -23,16 +20,8 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
     override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
     override val onboardingPageConsentTopic: String = "TODO"
-    override val onboardingPageConsentBody: AnnotatedString =
-        buildAnnotatedString {
-            append(
-                "TODO",
-            )
-        }
+    override val onboardingPageConsentBody: String = "TODO"
     override val onboardingPageConsentAgreePoint: String = "TODO"
-    override val onboardingLegalDisclaimerBeforeClickable: String = "Загружая фото, вы соглашаетесь с"
-    override val onboardingLegalDisclaimerClickable: String = "условиями"
-    override val onboardingLegalDisclaimerAfterClickable: String = ""
     override val onboardingAppbarTryonPage: String = "TODO"
     override val onboardingAppbarBestResultPage: String = "TODO"
     override val onboardingAppbarConsentPage: String = "TODO"
@@ -40,15 +29,9 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"
     override val imageSelectorChangeButton: String = "Заменить фото"
-    override val imageSelectorPoweredByAiuta1: String = "Powered by "
-    override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
     override val imageSelectorProtectionPoint: String = "TODO"
     override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
-    override val imageSelectorPhotos: Plurals =
-        Plurals(
-            one = "%d фото",
-            other = "%d фото",
-        )
 
     // History
     override val historySelectorDisabledButton: String = "Выбрать"
@@ -60,7 +43,6 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Generation Result
     override val generationResultMoreTitle: String = "TODO"
     override val generationResultMoreSubtitle: String = "Больше образов для примерки"
-    override val generationResultSwipeUp: String = "Посмотреть новые образы"
 
     // Bottom sheets
     // Picker sheet
@@ -88,8 +70,6 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToCart: String = "Добавить в корзину"
     override val cancel: String = "Отмена"
     override val close: String = "TODO"
-    override val moreDetails: String = "Подробнее"
-    override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Примерить"
     override val virtualTryOn: String = "TODO"
     override val share: String = "Поделиться"

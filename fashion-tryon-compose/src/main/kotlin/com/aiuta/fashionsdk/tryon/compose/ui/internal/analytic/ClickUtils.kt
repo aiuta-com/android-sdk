@@ -31,15 +31,6 @@ internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: 
     }
 }
 
-internal fun FashionTryOnController.clickMoreDetails(origin: FinishSession.Origin) {
-    analytic.sendFinishSessionEvent(
-        action = FinishSession.Action.SHOW_SKU_INFO,
-        origin = origin,
-        skuItem = activeSKUItem.value,
-    )
-    aiutaTryOnListeners().moreDetailsClick(activeSKUItem.value)
-}
-
 internal fun FashionTryOnController.clickAddToCart(origin: FinishSession.Origin) {
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.ADD_TO_CART,

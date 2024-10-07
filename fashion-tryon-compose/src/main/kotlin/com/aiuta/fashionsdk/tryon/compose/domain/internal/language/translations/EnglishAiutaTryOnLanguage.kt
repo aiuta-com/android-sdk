@@ -1,14 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.withLink
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.Plurals
 
 internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // App bar
@@ -31,33 +23,12 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageBestResultSubtopic: String =
         "Use a photo with good lighting, stand straight a plain background"
     override val onboardingPageConsentTopic: String = "Consent"
-    override val onboardingPageConsentBody: AnnotatedString =
-        buildAnnotatedString {
-            append(
-                text =
-                    "In order to try on items digitally, " +
-                        "you agree to allow About You to process your photo. " +
-                        "Your data will be processed according to the ",
-            )
-            append("Brand name ")
-            withLink(
-                LinkAnnotation.Url(
-                    url = "https://aiuta.com/",
-                    styles =
-                        TextLinkStyles(
-                            style = SpanStyle(textDecoration = TextDecoration.Underline),
-                        ),
-                ),
-            ) {
-                append("Terms of Use")
-            }
-        }
+    override val onboardingPageConsentBody: String =
+        "In order to try on items digitally, you agree to allow Aiuta to process your photo." +
+            " Your data will be processed according to the Aiuta <b><a href=\"https://aiuta.com/legal/privacy-policy.html\">Privacy Notice</a></b> " +
+            "and <b><a href=\"https://aiuta.com/legal/terms-of-service.html\">Terms of Use.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
         "I agree to allow Brand name to\nprocess my photo"
-    override val onboardingLegalDisclaimerBeforeClickable: String =
-        "Your photo is processed as per the"
-    override val onboardingLegalDisclaimerClickable: String = "Clarification Text"
-    override val onboardingLegalDisclaimerAfterClickable: String = ""
     override val onboardingAppbarTryonPage: String = "Step 1/3 - How it works"
     override val onboardingAppbarBestResultPage: String = "Step 2/3 - For best result"
     override val onboardingAppbarConsentPage: String = "Step 3/3 - Consent"
@@ -65,15 +36,10 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Image selector
     override val imageSelectorUploadButton: String = "Upload a photo of you"
     override val imageSelectorChangeButton: String = "Change photo"
-    override val imageSelectorPoweredByAiuta1: String = "Powered by "
-    override val imageSelectorPoweredByAiuta2: String = "Aiuta"
-    override val imageSelectorProtectionPoint: String = "Your photos are protected and visible only to you"
+    override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
+    override val imageSelectorProtectionPoint: String =
+        "Your photos are protected and visible only to you"
     override val imageSelectorGeneratingOutfit: String = "Generating outfit"
-    override val imageSelectorPhotos: Plurals =
-        Plurals(
-            one = "%d photo",
-            other = "%d photos",
-        )
 
     // History
     override val historySelectorDisabledButton: String = "Select"
@@ -86,7 +52,6 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Generation Result
     override val generationResultMoreTitle: String = "You might also like"
     override val generationResultMoreSubtitle: String = "More for you to try on"
-    override val generationResultSwipeUp: String = "Swipe up for more"
 
     // Bottom sheets
     // Picker sheet
@@ -114,8 +79,6 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToCart: String = "Add to cart"
     override val cancel: String = "Cancel"
     override val close: String = "Close"
-    override val moreDetails: String = "More details"
-    override val aiutaUrl: String = "https://aiuta.com/"
     override val tryOn: String = "Try on"
     override val virtualTryOn: String = "Virtual Try-on"
     override val share: String = "Share"

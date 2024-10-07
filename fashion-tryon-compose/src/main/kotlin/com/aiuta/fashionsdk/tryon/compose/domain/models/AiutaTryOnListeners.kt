@@ -19,6 +19,5 @@ public class AiutaTryOnListeners(
     public val addToWishlistActiveItemClick: suspend (skuItem: SKUItem) -> SKUItem,
     public val addToWishlistGenerateMoreItemClick: suspend (skuItem: SKUItem) -> SKUItem,
     public val addToCartClick: (skuItem: SKUItem) -> Unit,
-    public val moreDetailsClick: (skuItem: SKUItem) -> Unit,
     public val closeClick: (skuItem: SKUItem) -> Unit,
 )

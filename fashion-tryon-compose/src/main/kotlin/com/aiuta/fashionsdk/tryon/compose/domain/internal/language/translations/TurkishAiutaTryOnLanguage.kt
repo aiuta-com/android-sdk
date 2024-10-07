@@ -1,9 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.buildAnnotatedString
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.Plurals
 
 internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // App bar
@@ -24,16 +21,8 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
     override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
     override val onboardingPageConsentTopic: String = "TODO"
-    override val onboardingPageConsentBody: AnnotatedString =
-        buildAnnotatedString {
-            append(
-                "TODO",
-            )
-        }
+    override val onboardingPageConsentBody: String = "TODO"
     override val onboardingPageConsentAgreePoint: String = "TODO"
-    override val onboardingLegalDisclaimerBeforeClickable: String = "Fotoğrafınız"
-    override val onboardingLegalDisclaimerClickable: String = "Aydınlatma Metni'nde"
-    override val onboardingLegalDisclaimerAfterClickable: String = "belirtilen kapsamda işlenmektedir"
     override val onboardingAppbarTryonPage: String = "TODO"
     override val onboardingAppbarBestResultPage: String = "TODO"
     override val onboardingAppbarConsentPage: String = "TODO"
@@ -41,15 +30,9 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Image selector
     override val imageSelectorUploadButton: String = "Fotoğrafını yükle"
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
-    override val imageSelectorPoweredByAiuta1: String = "Tarafından desteklenmektedir "
-    override val imageSelectorPoweredByAiuta2: String = "Aiuta"
+    override val imageSelectorPoweredByAiuta: String = "Tarafından desteklenmektedir Aiuta"
     override val imageSelectorProtectionPoint: String = "TODO"
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
-    override val imageSelectorPhotos: Plurals =
-        Plurals(
-            one = "%d fotoğraf",
-            other = "%d fotoğraflar",
-        )
 
     // History
     override val historySelectorDisabledButton: String = "Seç"
@@ -61,7 +44,6 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     // Generation Result
     override val generationResultMoreTitle: String = "TODO"
     override val generationResultMoreSubtitle: String = "Denemeniz için daha fazlası"
-    override val generationResultSwipeUp: String = "Daha fazlası için yukarı kaydır"
 
     // Picker sheet
     override val pickerSheetTakePhoto: String = "Fotoğraf çek"
@@ -87,8 +69,6 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToCart: String = "Sepete ekle"
     override val cancel: String = "Vazgeç"
     override val close: String = "TODO"
-    override val aiutaUrl: String = "https://aiuta.com/"
-    override val moreDetails: String = "Daha fazla detay"
     override val tryOn: String = "Üzerinde Dene"
     override val virtualTryOn: String = "TODO"
     override val share: String = "Paylaş"

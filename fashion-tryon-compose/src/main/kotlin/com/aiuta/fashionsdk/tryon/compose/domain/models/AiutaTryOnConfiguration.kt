@@ -14,7 +14,7 @@ public interface AiutaTryOnConfiguration {
      * Language of Aiuta Try on Flow
      *
      * By default, we will look for the language of the device - if SDK supports it,
-     * we will use it, otherwise we will use English.
+     * we will use it, otherwise we will use EnglishLanguage.
      */
     public val language: AiutaTryOnLanguage?
 

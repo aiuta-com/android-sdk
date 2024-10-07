@@ -15,9 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
@@ -64,14 +61,6 @@ private fun AiutaLabelContent(
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
-    val buttonText =
-        buildAnnotatedString {
-            append(stringResources.imageSelectorPoweredByAiuta1)
-            withStyle(style = SpanStyle(color = theme.colors.aiuta)) {
-                append(stringResources.imageSelectorPoweredByAiuta2)
-            }
-        }
-
     Box(
         modifier =
             modifier
@@ -87,7 +76,7 @@ private fun AiutaLabelContent(
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = buttonText,
+            text = stringResources.imageSelectorPoweredByAiuta,
             style = theme.typography.smallButton,
             color = theme.colors.primary,
         )
