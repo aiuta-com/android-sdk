@@ -3,7 +3,6 @@ import com.aiuta.fashionsdk.androidLibrary
 plugins {
     id("com.android.library")
     id("kotlin-android")
-//    alias(libs.plugins.kotlinx.atomicfu)
     alias(libs.plugins.kotlinx.serialization)
 }
 
