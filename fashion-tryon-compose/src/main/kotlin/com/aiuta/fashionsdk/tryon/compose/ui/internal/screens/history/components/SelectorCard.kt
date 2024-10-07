@@ -19,8 +19,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.share24
+import com.aiuta.fashionsdk.compose.tokens.icon.trash24
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 
@@ -42,7 +44,7 @@ internal fun SelectorCard(
         modifier =
             modifier
                 .background(
-                    color = theme.colors.onLight,
+                    color = theme.colors.primary,
                     shape = RoundedCornerShape(16.dp),
                 )
                 .padding(16.dp),
@@ -52,7 +54,7 @@ internal fun SelectorCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             SmallIconButton(
-                iconRes = FashionIcon.Trash36,
+                painter = rememberAsyncImagePainter(theme.icons.trash24),
                 isActive = isActionActive,
             ) {
                 onDelete()
@@ -61,7 +63,7 @@ internal fun SelectorCard(
             Spacer(Modifier.width(16.dp))
 
             SmallIconButton(
-                iconRes = FashionIcon.Share36,
+                painter = rememberAsyncImagePainter(theme.icons.share24),
                 isActive = isActionActive,
             ) {
                 onShare()
@@ -102,6 +104,8 @@ internal fun SelectorCard(
 
             TextButton(
                 text = stringResources.historySelectorEnableButtonCancel,
+                backgroundColor = theme.colors.onDark,
+                textColor = theme.colors.primary,
             ) {
                 onCancel()
             }

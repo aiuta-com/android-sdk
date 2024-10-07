@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,10 +17,12 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 internal fun TextButton(
     modifier: Modifier = Modifier,
     text: String,
-    backgroundColor: Color = LocalTheme.current.colors.onDark,
-    textColor: Color = LocalTheme.current.colors.onLight,
+    backgroundColor: Color,
+    textColor: Color,
     onClick: () -> Unit = {},
 ) {
+    val theme = LocalTheme.current
+
     Box(
         modifier =
             modifier
@@ -38,7 +39,7 @@ internal fun TextButton(
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.body2,
+            style = theme.typography.smallButton,
             color = textColor,
         )
     }

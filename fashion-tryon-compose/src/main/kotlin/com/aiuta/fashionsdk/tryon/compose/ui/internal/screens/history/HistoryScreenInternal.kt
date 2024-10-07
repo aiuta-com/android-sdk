@@ -23,9 +23,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -38,21 +36,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.SubcomposeAsyncImage
+import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.aiuta.fashionsdk.compose.tokens.FashionIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.check16
+import com.aiuta.fashionsdk.compose.tokens.icon.recent100
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -66,22 +65,54 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelec
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendOpenHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 
 private const val FULL_SIZE_SPAN = 3
-private val SHARED_CORNER_RADIUS = 16.dp
 
 @Composable
-internal fun HistoryScreenInternal(modifier: Modifier = Modifier) {
-    val controller = LocalController.current
+internal fun HistoryScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
+
+    Column(
+        modifier = modifier.background(theme.colors.background),
+    ) {
+        HistoryAppBar(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+        )
+
+        Spacer(Modifier.height(16.dp))
+
+        HistoryScreenInternal(
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+}
+
+@Composable
+private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
+    val controller = LocalController.current
+    val density = LocalDensity.current
+    val theme = LocalTheme.current
+
     val generatedImages =
         controller
             .generatedImageInteractor
             .generatedImagesFlow()
             .collectAsLazyPagingItems()
+
+    val sharedRadius =
+        with(density) {
+            theme.shapes.previewImage.topStart.toPx(
+                Size.Unspecified,
+                density,
+            ).toDp()
+        }
 
     sendOpenHistoryEvent()
 
@@ -133,7 +164,7 @@ internal fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                                     model =
                                         ZoomImageUiModel(
                                             imageSize = imageSize,
-                                            initialCornerRadius = SHARED_CORNER_RADIUS,
+                                            initialCornerRadius = sharedRadius,
                                             imageUrl = generatedImage?.imageUrl,
                                             parentImageOffset = parentImageOffset,
                                         ),
@@ -176,7 +207,7 @@ private fun ImageContainer(
                 Modifier
                     .fillMaxWidth()
                     .height(178.dp)
-                    .clip(RoundedCornerShape(SHARED_CORNER_RADIUS))
+                    .clip(theme.shapes.previewImage)
                     .background(color = theme.colors.background),
             model =
                 ImageRequest.Builder(context)
@@ -212,8 +243,8 @@ private fun ImageContainer(
             ) {
                 if (isSelectedItem) {
                     Icon(
-                        modifier = Modifier.size(20.dp),
-                        imageVector = ImageVector.vectorResource(FashionIcon.Check16),
+                        modifier = Modifier.size(16.dp),
+                        painter = rememberAsyncImagePainter(theme.icons.check16),
                         contentDescription = null,
                         tint = theme.colors.onDark,
                     )
@@ -305,7 +336,7 @@ private fun BoxScope.HistoryScreenEmpty(
         ) {
             Icon(
                 modifier = Modifier.size(100.dp),
-                imageVector = ImageVector.vectorResource(FashionIcon.Recent),
+                painter = rememberAsyncImagePainter(theme.icons.recent100),
                 contentDescription = null,
                 tint = theme.colors.tertiary,
             )
@@ -315,7 +346,7 @@ private fun BoxScope.HistoryScreenEmpty(
             Text(
                 modifier = Modifier.padding(horizontal = 30.dp),
                 text = stringResources.historyEmptyDescription,
-                style = MaterialTheme.typography.body1,
+                style = theme.typography.regular,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,
             )
