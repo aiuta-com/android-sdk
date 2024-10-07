@@ -26,12 +26,6 @@ public interface AiutaTryOnConfiguration {
     public val legalDisclaimerUrl: String?
 
     /**
-     * The maximum number of photos that a user can select
-     * in the system picket for virtual try on.
-     */
-    public val photoSelectionLimit: Int
-
-    /**
      * Flag which turn on or off possibility to use history flow
      * inside [AiutaTryOnFlow].
      *
@@ -45,24 +39,30 @@ public interface AiutaTryOnConfiguration {
      */
     public val isWishlistAvailable: Boolean
 
-    // //////////////////////
-    // TODO Refactor configuration
-    // Onboarding
+    /**
+     * Flag which turn on or off possibility to use pre-onboarding flow
+     */
     public val isPreOnboardingAvailable: Boolean
 
+    /**
+     * Flag which turn on or off possibility to extend
+     * the onboarding app bar with close button
+     */
     public val isOnboardingAppBarExtended: Boolean
 
-    // Main
+    /**
+     * Flag which turn on or off possibility to reverse the main app bar
+     *
+     * If true, history will be on the left side and close button on the right
+     */
     public val isMainAppbarReversed: Boolean
 }
 
 public fun defaultAiutaTryOnConfiguration(
     language: AiutaTryOnLanguage? = null,
     legalDisclaimerUrl: String? = null,
-    photoSelectionLimit: Int = 10,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
-    // TODO Refactor configuration
     isPreOnboardingAvailable: Boolean = false,
     isOnboardingAppBarExtended: Boolean = false,
     isMainAppbarReversed: Boolean = false,
@@ -70,7 +70,6 @@ public fun defaultAiutaTryOnConfiguration(
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage? = language
         override val legalDisclaimerUrl: String? = legalDisclaimerUrl
-        override val photoSelectionLimit: Int = photoSelectionLimit
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable

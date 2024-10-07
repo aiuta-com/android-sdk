@@ -30,7 +30,7 @@ internal fun openCameraPicker(
 // Image Picker
 @Composable
 internal fun provideMultipleImagePicker(
-    maxItems: Int = LocalAiutaConfiguration.current.photoSelectionLimit,
+    maxItems: Int = 10,
     success: (uris: List<Uri>) -> Unit,
 ): ManagedActivityResultLauncher<PickVisualMediaRequest, *> {
     return rememberLauncherForActivityResult(

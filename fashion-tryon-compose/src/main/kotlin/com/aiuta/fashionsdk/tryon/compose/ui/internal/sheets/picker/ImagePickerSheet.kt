@@ -41,6 +41,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openSettings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideMultipleImagePicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideSingleImagePicker
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -88,13 +89,15 @@ internal fun ColumnScope.ImagePickerSheet() {
         }
 
     val imagePickerLauncher =
-        provideMultipleImagePicker { uris ->
-            controller.sendSelectNewPhotosEvent(fromGallery = uris.size)
-            controller.lastSavedImages.value =
-                LastSavedImages.UriSource(
-                    imageUris = uris.map { it.toString() },
-                )
-            controller.bottomSheetNavigator.hide()
+        provideSingleImagePicker { uri ->
+            uri?.let {
+                controller.sendSelectNewPhotosEvent(fromGallery = 1)
+                controller.lastSavedImages.value =
+                    LastSavedImages.UriSource(
+                        imageUris = listOf(uri.toString()),
+                    )
+                controller.bottomSheetNavigator.hide()
+            }
         }
 
     SheetDivider()
@@ -114,11 +117,11 @@ internal fun ColumnScope.ImagePickerSheet() {
                     controller.bottomSheetNavigator.hide()
                     dialogController.showDialog(
                         dialogState =
-                            AiutaTryOnDialogState(
-                                title = stringResources.dialogCameraPermissionTitle,
-                                description = stringResources.dialogCameraPermissionDescription,
-                                onConfirm = context::openSettings,
-                            ),
+                        AiutaTryOnDialogState(
+                            title = stringResources.dialogCameraPermissionTitle,
+                            description = stringResources.dialogCameraPermissionDescription,
+                            onConfirm = context::openSettings,
+                        ),
                     )
                 } else {
                     cameraPermissionState.launchPermissionRequest()
@@ -151,13 +154,13 @@ private fun PickerButton(
 
     Row(
         modifier =
-            modifier
-                .clickableUnindicated {
-                    onClick()
-                }
-                .padding(
-                    horizontal = 16.dp,
-                ),
+        modifier
+            .clickableUnindicated {
+                onClick()
+            }
+            .padding(
+                horizontal = 16.dp,
+            ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
@@ -171,9 +174,9 @@ private fun PickerButton(
 
         Box(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
+            Modifier
+                .weight(1f)
+                .fillMaxHeight(),
         ) {
             Text(
                 modifier = Modifier.align(Alignment.CenterStart),
@@ -185,9 +188,9 @@ private fun PickerButton(
             if (shouldDrawDivider) {
                 Divider(
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.BottomCenter),
+                    Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter),
                     color = theme.colors.neutral,
                 )
             }

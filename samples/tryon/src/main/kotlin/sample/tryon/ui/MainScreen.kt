@@ -101,7 +101,6 @@ fun MainScreen() {
         val mockAiutaConfiguration =
             remember {
                 defaultAiutaTryOnConfiguration(
-                    photoSelectionLimit = 5,
                     isPreOnboardingAvailable = true,
                     isOnboardingAppBarExtended = true,
                     isMainAppbarReversed = true,
