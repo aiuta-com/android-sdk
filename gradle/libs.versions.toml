@@ -25,6 +25,7 @@ gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
 gradle-plugin-jreleaser = "1.13.1"
 
+kotlinx-atomicfu = "0.25.0"
 kotlinx-serialization = "1.7.1"
 ktor = "2.3.11"
 
@@ -76,8 +77,10 @@ gradlePlugin-jreleaser = { module = "org.jreleaser:jreleaser-gradle-plugin", ver
 
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }
 
+kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "kotlinx-atomicfu" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+ktor-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-engine-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }

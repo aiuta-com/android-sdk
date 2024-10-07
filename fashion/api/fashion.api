@@ -1,10 +1,8 @@
 public final class com/aiuta/fashionsdk/Aiuta {
-	public static final field ERROR_MESSAGE_API_KEY_EMPTY Ljava/lang/String;
-	public static final field ERROR_MESSAGE_API_KEY_NULL Ljava/lang/String;
-	public static final field ERROR_MESSAGE_CONTEXT_NULL Ljava/lang/String;
-	public synthetic fun <init> (Ljava/lang/String;Landroid/app/Application;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getApiKey ()Ljava/lang/String;
+	public synthetic fun <init> (Ljava/lang/String;Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Landroid/app/Application;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getApplication ()Landroid/app/Application;
+	public final fun getAuthenticationStrategy ()Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;
+	public final fun getSubscriptionId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/Aiuta$Builder {
@@ -12,5 +10,20 @@ public final class com/aiuta/fashionsdk/Aiuta$Builder {
 	public final fun build ()Lcom/aiuta/fashionsdk/Aiuta;
 	public final fun setApiKey (Ljava/lang/String;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
 	public final fun setApplication (Landroid/app/Application;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
+	public final fun setAuthenticationStrategy (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
+	public final fun setSubscriptionId (Ljava/lang/String;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
+}
+
+public final class com/aiuta/fashionsdk/authentication/ApiKeyAuthenticationStrategy : com/aiuta/fashionsdk/authentication/AuthenticationStrategy {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getApiKey ()Ljava/lang/String;
+}
+
+public abstract interface class com/aiuta/fashionsdk/authentication/AuthenticationStrategy {
+}
+
+public final class com/aiuta/fashionsdk/authentication/JWTAuthenticationStrategy : com/aiuta/fashionsdk/authentication/AuthenticationStrategy {
+	public fun <init> (Lkotlin/jvm/functions/Function2;)V
+	public final fun getGetJWT ()Lkotlin/jvm/functions/Function2;
 }
 

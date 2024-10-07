@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "aiuta_codes")
 internal class AiutaCodeEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val apiKey: String,
+    @PrimaryKey
+    val subscriptionId: String,
 )

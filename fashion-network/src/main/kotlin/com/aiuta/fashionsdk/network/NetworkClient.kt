@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.network
 
+import com.aiuta.fashionsdk.Aiuta
 import io.ktor.client.HttpClient
 
 /**
@@ -21,7 +22,7 @@ public interface NetworkClient {
          * @return [NetworkClient] that can fetch data by using [HttpClient]
          */
         public fun create(
-            apiKey: String,
+            aiuta: Aiuta,
             backendEndpoint: String? = null,
         ): NetworkClient
     }

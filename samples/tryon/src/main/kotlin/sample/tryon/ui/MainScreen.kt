@@ -36,6 +36,7 @@ fun MainScreen() {
             remember {
                 SKUItem(
                     skuId = firstActiveSKUItem.skuId,
+                    catalogName = firstActiveSKUItem.catalogName,
                     description = "MOCK 90s straight leg jeans in light blue",
                     imageUrls = firstActiveSKUItem.imageUrls,
                     localizedPrice = "$34.99",

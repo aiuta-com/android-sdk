@@ -12,13 +12,22 @@ import com.aiuta.fashionsdk.network.internal.KtorNetworkClient
  *
  * @return instance of [NetworkClient]
  */
+@Deprecated(
+    message = "This method is not supported yet, please migrate to defaultNetworkClient with Aiuta parameter",
+    replaceWith =
+        ReplaceWith(
+            "defaultNetworkClient(" +
+                "aiuta = aiuta," +
+                "backendEndpoint = backendEndpoint," +
+                ")",
+        ),
+)
 public fun defaultNetworkClient(
     apiKey: String,
     backendEndpoint: String? = null,
 ): NetworkClient {
-    return KtorNetworkClient.create(
-        apiKey = apiKey,
-        backendEndpoint = backendEndpoint,
+    throw IllegalStateException(
+        "defaultNetworkClient: This method is not supported, please migrate to new one",
     )
 }
 
@@ -30,9 +39,13 @@ public fun defaultNetworkClient(
  *
  * @return instance of [NetworkClient]
  */
-public fun defaultNetworkClient(aiuta: Aiuta): NetworkClient {
-    return defaultNetworkClient(
-        apiKey = aiuta.apiKey,
+public fun defaultNetworkClient(
+    aiuta: Aiuta,
+    backendEndpoint: String? = null,
+): NetworkClient {
+    return KtorNetworkClient.create(
+        aiuta = aiuta,
+        backendEndpoint = backendEndpoint,
     )
 }
 
@@ -49,12 +62,46 @@ public fun defaultNetworkClient(aiuta: Aiuta): NetworkClient {
  *
  * @return instance of [NetworkClient]
  */
+@Deprecated(
+    message = "Use createNetworkClient with ApiKeyAuthenticationStrategy instead",
+    replaceWith =
+        ReplaceWith(
+            expression =
+                "createNetworkClient(" +
+                    "aiuta = aiuta," +
+                    "backendEndpoint = backendEndpoint," +
+                    ")",
+            imports = arrayOf("com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy"),
+        ),
+)
 public fun createNetworkClient(
     apiKey: String,
     backendEndpoint: String? = null,
 ): NetworkClient {
+    throw IllegalStateException(
+        "createNetworkClient: This method is not supported, please migrate to new one",
+    )
+}
+
+/**
+ * Creating new instance of [NetworkClient]
+ * without caching.
+ *
+ * Be careful, when use this method, because new instance of [NetworkClient] can
+ * be too expensive.
+ *
+ *
+ * @param aiuta Instance of [Aiuta]
+ * @param backendEndpoint Optional backend endpoint. Otherwise, will use default.
+ *
+ * @return instance of [NetworkClient]
+ */
+public fun createNetworkClient(
+    aiuta: Aiuta,
+    backendEndpoint: String? = null,
+): NetworkClient {
     return KtorNetworkClient.buildKtorNetworkClient(
-        apiKey = apiKey,
+        aiuta = aiuta,
         backendEndpoint = backendEndpoint,
     )
 }

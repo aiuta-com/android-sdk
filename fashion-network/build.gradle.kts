@@ -14,7 +14,9 @@ androidLibrary(
 dependencies {
     api(projects.fashion)
 
+    implementation(libs.kotlinx.atomicfu)
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.ktor.auth)
     implementation(libs.ktor.core)
     implementation(libs.ktor.engine.okhttp)
     implementation(libs.ktor.logging)
