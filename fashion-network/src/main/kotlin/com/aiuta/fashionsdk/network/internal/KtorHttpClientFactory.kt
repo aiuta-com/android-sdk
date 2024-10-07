@@ -4,11 +4,12 @@ import android.util.Log
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.JWTAuthenticationStrategy
-import com.aiuta.fashionsdk.authentication.OAuthAuthenticationStrategy
 import com.aiuta.fashionsdk.network.BuildConfig
-import com.aiuta.fashionsdk.network.internal.plugins.apiKeyAuth
+import com.aiuta.fashionsdk.network.internal.plugins.apiKey
 import com.aiuta.fashionsdk.network.internal.plugins.installSubscriptionIdHeader
+import com.aiuta.fashionsdk.network.internal.plugins.jwt
 import com.aiuta.fashionsdk.network.utils.handleErrors
+import com.aiuta.fashionsdk.network.utils.jsonSerializer
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngineConfig
@@ -25,7 +26,6 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.json.Json
 
 internal class KtorHttpClientFactory(
     private val authenticationStrategy: AuthenticationStrategy,
@@ -37,12 +37,7 @@ internal class KtorHttpClientFactory(
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installSerialization() =
         apply {
             install(ContentNegotiation) {
-                json(
-                    Json {
-                        prettyPrint = true
-                        ignoreUnknownKeys = true
-                    },
-                )
+                json(jsonSerializer)
             }
         }
 
@@ -79,13 +74,14 @@ internal class KtorHttpClientFactory(
             install(Auth) {
                 when (authenticationStrategy) {
                     is ApiKeyAuthenticationStrategy ->
-                        apiKeyAuth {
+                        apiKey {
                             setApiKey(authenticationStrategy.apiKey)
                         }
 
-                    is JWTAuthenticationStrategy -> Unit
-
-                    is OAuthAuthenticationStrategy -> Unit
+                    is JWTAuthenticationStrategy ->
+                        jwt {
+                            loadTokens { authenticationStrategy.getJWT(it) }
+                        }
                 }
             }
         }

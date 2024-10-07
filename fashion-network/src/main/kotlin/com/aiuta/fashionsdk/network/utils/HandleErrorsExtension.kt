@@ -15,6 +15,10 @@ private const val DATE_HEADER = "date"
 internal suspend inline fun handleErrors(getHttpClientCall: () -> HttpClientCall): HttpClientCall {
     return try {
         val httpClientCall = getHttpClientCall()
+
+        // Check for auth
+        if (httpClientCall.response.status == HttpStatusCode.Unauthorized) return httpClientCall
+
         val fashionIOException = getFashionIOException(httpClientCall.response)
         if (fashionIOException != null) {
             throw fashionIOException

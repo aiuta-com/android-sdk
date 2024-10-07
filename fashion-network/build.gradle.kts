@@ -3,6 +3,7 @@ import com.aiuta.fashionsdk.androidLibrary
 plugins {
     id("com.android.library")
     id("kotlin-android")
+//    alias(libs.plugins.kotlinx.atomicfu)
     alias(libs.plugins.kotlinx.serialization)
 }
 
@@ -14,6 +15,7 @@ androidLibrary(
 dependencies {
     api(projects.fashion)
 
+    implementation(libs.kotlinx.atomicfu)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.ktor.auth)
     implementation(libs.ktor.core)

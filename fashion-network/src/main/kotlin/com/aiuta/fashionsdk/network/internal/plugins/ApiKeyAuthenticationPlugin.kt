@@ -6,9 +6,9 @@ import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.header
 import io.ktor.http.auth.HttpAuthHeader
 
-internal fun Auth.apiKeyAuth(block: ApiKeyAuthConfig.() -> Unit) {
+internal fun Auth.apiKey(block: ApiKeyAuthConfig.() -> Unit) {
     with(ApiKeyAuthConfig().apply(block)) {
-        this@apiKeyAuth.providers.add(ApiKeyAuthProvider(apiKey, sendWithoutRequest))
+        this@apiKey.providers.add(ApiKeyAuthProvider(apiKey, sendWithoutRequest))
     }
 }
 
