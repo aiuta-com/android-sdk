@@ -16,6 +16,14 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 @Immutable
 public sealed interface AiutaIcons
 
+// x100
+public val AiutaIcons.recent100: Any
+    get() =
+        when (this) {
+            is AiutaDrawableIcons -> this.recent100
+            is AiutaResourceIcons -> this.recent100
+        }
+
 // x82
 public val AiutaIcons.welcomeScreen82: Any
     get() =
@@ -126,6 +134,13 @@ public val AiutaIcons.wishlistFill24: Any
         }
 
 // x16
+public val AiutaIcons.check16: Any
+    get() =
+        when (this) {
+            is AiutaDrawableIcons -> this.check16
+            is AiutaResourceIcons -> this.check16
+        }
+
 public val AiutaIcons.magic16: Any
     get() =
         when (this) {

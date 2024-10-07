@@ -13,6 +13,8 @@ import android.graphics.drawable.Drawable
  * @see AiutaIcons
  */
 public class AiutaDrawableIcons(
+    // x100
+    public val recent100: Drawable,
     // x82
     public val welcomeScreen82: Drawable,
     // x36
@@ -32,6 +34,7 @@ public class AiutaDrawableIcons(
     public val wishlist24: Drawable,
     public val wishlistFill24: Drawable,
     // x16
+    public val check16: Drawable,
     public val magic16: Drawable,
     public val lock16: Drawable,
     public val arrow16: Drawable,

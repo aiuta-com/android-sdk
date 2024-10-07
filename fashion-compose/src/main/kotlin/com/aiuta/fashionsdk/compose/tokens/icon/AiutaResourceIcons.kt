@@ -13,6 +13,8 @@ import androidx.annotation.DrawableRes
  * @see AiutaIcons
  */
 public class AiutaResourceIcons(
+    // x100
+    @DrawableRes public val recent100: Int,
     // x82
     @DrawableRes public val welcomeScreen82: Int,
     // x36
@@ -32,6 +34,7 @@ public class AiutaResourceIcons(
     @DrawableRes public val wishlist24: Int,
     @DrawableRes public val wishlistFill24: Int,
     // x16
+    @DrawableRes public val check16: Int,
     @DrawableRes public val magic16: Int,
     @DrawableRes public val lock16: Int,
     @DrawableRes public val arrow16: Int,
