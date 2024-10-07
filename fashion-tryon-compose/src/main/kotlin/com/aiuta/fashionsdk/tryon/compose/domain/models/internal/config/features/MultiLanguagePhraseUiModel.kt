@@ -41,6 +41,6 @@ internal fun MultiLanguagePhraseUiModel.toTranslatedString(
         EnglishLanguage.code -> englishTranslation
         RussianLanguage.code -> russianTranslation
         TurkishLanguage.code -> turkishTranslation
-        else -> throw IllegalStateException("Not supported language")
+        else -> null
     }
 }

@@ -83,9 +83,9 @@ public class CustomLanguage(
     override val virtualTryOn: String,
     override val share: String,
     override val defaultErrorMessage: String,
+    // Code in ISO-639
+    override val code: String,
 ) : AiutaTryOnLanguage, InternalAiutaTryOnLanguage {
-    override val code: String = error("Custom language don't handle code")
-
     init {
         // App bar
         appBarHistory.atMost(22)
