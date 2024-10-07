@@ -29,7 +29,7 @@ internal fun sendConfigureEvent(theme: AiutaTheme?) {
             )
             put(
                 key = Configure.PHOTO_LIMIT_PARAM,
-                value = configuration.photoSelectionLimit.toString(),
+                value = "1",
             )
             put(
                 key = Configure.IS_WATERMARK_PROVIDED_PARAM,

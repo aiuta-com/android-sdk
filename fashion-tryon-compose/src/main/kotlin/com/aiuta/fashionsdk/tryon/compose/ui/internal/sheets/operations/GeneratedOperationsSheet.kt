@@ -52,7 +52,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.Loadin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.PhotoLabel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.analytic.sendSelectOldPhotos
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
@@ -177,14 +176,6 @@ private fun OperationItem(
                         .padding(8.dp)
                         .clip(RoundedCornerShape(8.dp)),
                 getImageUrls = { generatedOperation.sourceImageUrls },
-            )
-
-            PhotoLabel(
-                modifier =
-                    Modifier
-                        .align(Alignment.TopStart)
-                        .padding(16.dp),
-                count = generatedOperation.sourceImageUrls.size,
             )
         }
 

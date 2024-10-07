@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -18,14 +17,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.PhotoLabel
 
 @Composable
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
@@ -75,20 +71,6 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
                     getImageUrls = { uploadedImageUris },
                 )
             }
-        }
-
-        lastSavedPhotoUrisTransition.AnimatedVisibility(
-            modifier =
-                Modifier
-                    .align(Alignment.TopStart)
-                    .padding(12.dp),
-            visible = { it.size > 1 },
-            enter = fadeIn(),
-            exit = fadeOut(),
-        ) {
-            PhotoLabel(
-                count = controller.lastSavedImages.value.size,
-            )
         }
 
         skuGenerationTransition.AnimatedVisibility(

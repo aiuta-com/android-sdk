@@ -7,6 +7,10 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.RussianAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.TurkishAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.RussianLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.TurkishLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnLanguage
 
 @Composable
@@ -28,17 +32,18 @@ internal fun resolveInternalLanguage(
 private fun solveLocale(): AiutaTryOnLanguage? {
     val systemLocaleCode = Locale.current.language
     return when (systemLocaleCode) {
-        AiutaTryOnLanguage.ENGLISH.code -> AiutaTryOnLanguage.ENGLISH
-        AiutaTryOnLanguage.TURKISH.code -> AiutaTryOnLanguage.TURKISH
-        AiutaTryOnLanguage.RUSSIAN.code -> AiutaTryOnLanguage.RUSSIAN
+        EnglishLanguage.code -> EnglishLanguage
+        TurkishLanguage.code -> TurkishLanguage
+        RussianLanguage.code -> RussianLanguage
         else -> null
     }
 }
 
 private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTryOnLanguage {
     return when (language) {
-        AiutaTryOnLanguage.ENGLISH -> EnglishAiutaTryOnLanguage
-        AiutaTryOnLanguage.TURKISH -> TurkishAiutaTryOnLanguage
-        AiutaTryOnLanguage.RUSSIAN -> RussianAiutaTryOnLanguage
+        is EnglishLanguage -> EnglishAiutaTryOnLanguage
+        is TurkishLanguage -> TurkishAiutaTryOnLanguage
+        is RussianLanguage -> RussianAiutaTryOnLanguage
+        is CustomLanguage -> language
     }
 }

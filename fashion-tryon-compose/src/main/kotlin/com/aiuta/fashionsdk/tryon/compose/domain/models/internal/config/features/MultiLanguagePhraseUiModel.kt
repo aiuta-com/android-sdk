@@ -5,7 +5,9 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.MultiLanguagePhrase
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isoCode
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.RussianLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.TurkishLanguage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 
 @Immutable
@@ -36,9 +38,9 @@ internal fun MultiLanguagePhraseUiModel.toTranslatedString(
     val currentIsoCode = stringResources.isoCode()
 
     return when (currentIsoCode) {
-        AiutaTryOnLanguage.ENGLISH.code -> englishTranslation
-        AiutaTryOnLanguage.RUSSIAN.code -> russianTranslation
-        AiutaTryOnLanguage.TURKISH.code -> turkishTranslation
-        else -> throw IllegalStateException("Not supported language")
+        EnglishLanguage.code -> englishTranslation
+        RussianLanguage.code -> russianTranslation
+        TurkishLanguage.code -> turkishTranslation
+        else -> null
     }
 }

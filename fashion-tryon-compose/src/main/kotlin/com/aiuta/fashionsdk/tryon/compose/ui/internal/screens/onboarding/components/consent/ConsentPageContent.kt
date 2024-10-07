@@ -23,6 +23,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateAgreementState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 
 @Composable
 internal fun ConsentPageContent(
@@ -47,7 +48,7 @@ internal fun ConsentPageContent(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResources.onboardingPageConsentBody,
+            text = buildAnnotatedStringFromHtml(stringResources.onboardingPageConsentBody),
             style = theme.typography.regular,
             color = theme.colors.primary,
             textAlign = TextAlign.Start,

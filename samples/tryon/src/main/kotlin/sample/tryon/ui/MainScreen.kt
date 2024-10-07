@@ -89,9 +89,6 @@ fun MainScreen() {
                     addToCartClick = {
                         context.makeToast("Rise Add to cart")
                     },
-                    moreDetailsClick = {
-                        context.makeToast("Rise More details")
-                    },
                     closeClick = {
                         context.makeToast("Rise Close")
                     },
@@ -101,7 +98,6 @@ fun MainScreen() {
         val mockAiutaConfiguration =
             remember {
                 defaultAiutaTryOnConfiguration(
-                    photoSelectionLimit = 5,
                     isPreOnboardingAvailable = true,
                     isOnboardingAppBarExtended = true,
                     isMainAppbarReversed = true,

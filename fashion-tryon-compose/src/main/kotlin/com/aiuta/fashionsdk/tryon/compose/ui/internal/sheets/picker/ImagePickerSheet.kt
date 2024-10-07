@@ -40,7 +40,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openSettings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideCameraPicker
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideMultipleImagePicker
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.provideSingleImagePicker
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
@@ -88,13 +88,15 @@ internal fun ColumnScope.ImagePickerSheet() {
         }
 
     val imagePickerLauncher =
-        provideMultipleImagePicker { uris ->
-            controller.sendSelectNewPhotosEvent(fromGallery = uris.size)
-            controller.lastSavedImages.value =
-                LastSavedImages.UriSource(
-                    imageUris = uris.map { it.toString() },
-                )
-            controller.bottomSheetNavigator.hide()
+        provideSingleImagePicker { uri ->
+            uri?.let {
+                controller.sendSelectNewPhotosEvent(fromGallery = 1)
+                controller.lastSavedImages.value =
+                    LastSavedImages.UriSource(
+                        imageUris = listOf(uri.toString()),
+                    )
+                controller.bottomSheetNavigator.hide()
+            }
         }
 
     SheetDivider()
