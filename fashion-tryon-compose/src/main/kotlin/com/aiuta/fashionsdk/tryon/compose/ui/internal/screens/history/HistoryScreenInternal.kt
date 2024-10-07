@@ -66,6 +66,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelec
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendOpenHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
@@ -74,7 +75,26 @@ private const val FULL_SIZE_SPAN = 3
 private val SHARED_CORNER_RADIUS = 16.dp
 
 @Composable
-internal fun HistoryScreenInternal(modifier: Modifier = Modifier) {
+internal fun HistoryScreen(modifier: Modifier = Modifier) {
+    val theme = LocalTheme.current
+
+    Column(
+        modifier = modifier.background(theme.colors.background),
+    ) {
+        HistoryAppBar(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        )
+
+        Spacer(Modifier.height(16.dp))
+
+        HistoryScreenInternal(
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+}
+
+@Composable
+private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
     val generatedImages =

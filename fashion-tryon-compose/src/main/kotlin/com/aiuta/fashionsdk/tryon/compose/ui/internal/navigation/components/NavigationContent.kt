@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreenInternal
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.preonboarding.PreOnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.GenerationResultScreen
@@ -59,7 +59,7 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
             }
 
             NavigationScreen.HISTORY -> {
-                HistoryScreenInternal(
+                HistoryScreen(
                     modifier = sharedModifier,
                 )
             }
