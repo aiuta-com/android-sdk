@@ -19,13 +19,6 @@ public interface AiutaTryOnConfiguration {
     public val language: AiutaTryOnLanguage?
 
     /**
-     * Possible url of legal disclaimer, which will shows in
-     * onboarding flow
-     */
-    @Deprecated("Will get legal disclaimer text from language settings")
-    public val legalDisclaimerUrl: String?
-
-    /**
      * Flag which turn on or off possibility to use history flow
      * inside [AiutaTryOnFlow].
      *
@@ -60,7 +53,6 @@ public interface AiutaTryOnConfiguration {
 
 public fun defaultAiutaTryOnConfiguration(
     language: AiutaTryOnLanguage? = null,
-    legalDisclaimerUrl: String? = null,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
     isPreOnboardingAvailable: Boolean = false,
@@ -69,7 +61,6 @@ public fun defaultAiutaTryOnConfiguration(
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage? = language
-        override val legalDisclaimerUrl: String? = legalDisclaimerUrl
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable
