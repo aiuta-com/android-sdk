@@ -34,11 +34,6 @@ public class AiutaColors(
     public val neutral: Color,
     public val neutral2: Color,
     public val neutral3: Color,
-    // Deprecated
-    @Deprecated("Remove with new release SDK")
-    public val onLight: Color,
-    @Deprecated("Remove with new release SDK")
-    public val backgroundElevation2: Color,
 )
 
 /**

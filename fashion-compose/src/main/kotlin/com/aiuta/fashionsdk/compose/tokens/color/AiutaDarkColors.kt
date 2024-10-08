@@ -21,9 +21,6 @@ public fun aiutaDarkColors(
     neutral: Color = Color(0xFF1D1D1D),
     neutral2: Color = Color(0xFF2C2C2E),
     neutral3: Color = Color(0xFF48484A),
-    // Deprecated
-    backgroundElevation2: Color = Color(0xFFFFFFFF),
-    onLight: Color = Color(0xFF000000),
 ): AiutaColors {
     return AiutaColors(
         primary = primary,
@@ -39,7 +36,5 @@ public fun aiutaDarkColors(
         neutral2 = neutral2,
         neutral3 = neutral3,
         accent = accent,
-        backgroundElevation2 = backgroundElevation2,
-        onLight = onLight,
     )
 }
