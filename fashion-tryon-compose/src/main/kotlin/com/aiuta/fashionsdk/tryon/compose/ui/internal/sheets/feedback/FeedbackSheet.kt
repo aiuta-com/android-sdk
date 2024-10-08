@@ -2,13 +2,13 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -17,12 +17,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -135,6 +138,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.feedbackSheetSend,
                 style = FashionButtonStyles.primaryStyle(theme),
+                iconPainter = rememberAsyncImagePainter(theme.icons.magic16),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.sendGenerationFeedback(
@@ -162,14 +166,24 @@ private fun OptionItem(
     Box(
         modifier =
             modifier
-                .background(
+                .border(
+                    width = 2.dp,
                     color =
                         if (isSelected) {
                             theme.colors.primary
                         } else {
+                            Color.Transparent
+                        },
+                    shape = theme.shapes.buttonM,
+                )
+                .background(
+                    color =
+                        if (isSelected) {
+                            theme.colors.background
+                        } else {
                             theme.colors.neutral
                         },
-                    shape = RoundedCornerShape(32.dp),
+                    shape = theme.shapes.buttonM,
                 )
                 .clickableUnindicated { onClick() }
                 .padding(
@@ -183,9 +197,9 @@ private fun OptionItem(
             style = theme.typography.chips,
             color =
                 if (isSelected) {
-                    theme.colors.onDark
-                } else {
                     theme.colors.primary
+                } else {
+                    theme.colors.secondary
                 },
             textAlign = TextAlign.Center,
         )

@@ -28,7 +28,7 @@ internal fun BestResultPageItem(
     val theme = LocalTheme.current
 
     Box(
-        modifier = modifier.clip(theme.shapes.previewImage),
+        modifier = modifier.clip(theme.shapes.onboardingImage),
     ) {
         Image(
             modifier = modifier.fillMaxSize(),
