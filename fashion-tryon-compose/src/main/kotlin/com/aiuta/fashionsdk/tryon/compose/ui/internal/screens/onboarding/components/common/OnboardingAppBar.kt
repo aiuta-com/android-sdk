@@ -24,6 +24,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 
 @Composable
@@ -58,11 +59,15 @@ internal fun OnboardingAppBar(
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text =
-                            when (state) {
-                                TryOnPage -> stringResources.onboardingAppbarTryonPage
-                                BestResultPage -> stringResources.onboardingAppbarBestResultPage
-                                ConsentPage -> stringResources.onboardingAppbarConsentPage
-                            },
+                            buildAnnotatedStringFromHtml(
+                                input =
+                                    when (state) {
+                                        TryOnPage -> stringResources.onboardingAppbarTryonPage
+                                        BestResultPage -> stringResources.onboardingAppbarBestResultPage
+                                        ConsentPage -> stringResources.onboardingAppbarConsentPage
+                                    },
+                                isClickable = false,
+                            ),
                         style = theme.typography.navbar,
                         color = theme.colors.primary,
                         textAlign = TextAlign.Center,

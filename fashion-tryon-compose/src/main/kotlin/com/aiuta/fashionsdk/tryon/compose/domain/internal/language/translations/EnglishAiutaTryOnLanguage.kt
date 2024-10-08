@@ -29,9 +29,9 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
             "and <b><a href=\"https://aiuta.com/legal/terms-of-service.html\">Terms of Use.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
         "I agree to allow Brand name to\nprocess my photo"
-    override val onboardingAppbarTryonPage: String = "Step 1/3 - How it works"
-    override val onboardingAppbarBestResultPage: String = "Step 2/3 - For best result"
-    override val onboardingAppbarConsentPage: String = "Step 3/3 - Consent"
+    override val onboardingAppbarTryonPage: String = "<b>Step 1/3</b> - How it works"
+    override val onboardingAppbarBestResultPage: String = "<b>Step 2/3</b> - For best result"
+    override val onboardingAppbarConsentPage: String = "<b>Step 3/3</b> - Consent"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Upload a photo of you"
