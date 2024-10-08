@@ -17,14 +17,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.core.text.HtmlCompat
 
-internal fun buildAnnotatedStringFromHtml(input: String): AnnotatedString {
+internal fun buildAnnotatedStringFromHtml(
+    input: String,
+    isClickable: Boolean = true,
+): AnnotatedString {
     val spannableString = SpannableStringBuilder(input).toString()
     val spanned = HtmlCompat.fromHtml(spannableString, HtmlCompat.FROM_HTML_MODE_COMPACT)
 
-    return spanned.toAnnotatedString()
+    return spanned.toAnnotatedString(isClickable)
 }
 
-internal fun Spanned.toAnnotatedString(): AnnotatedString =
+internal fun Spanned.toAnnotatedString(isClickable: Boolean = true): AnnotatedString =
     buildAnnotatedString {
         val spanned = this@toAnnotatedString
         append(spanned.toString())
@@ -33,11 +36,13 @@ internal fun Spanned.toAnnotatedString(): AnnotatedString =
             val end = getSpanEnd(span)
             when (span) {
                 is URLSpan -> {
-                    addLink(
-                        url = LinkAnnotation.Url(url = span.url),
-                        start = start,
-                        end = end,
-                    )
+                    if (isClickable) {
+                        addLink(
+                            url = LinkAnnotation.Url(url = span.url),
+                            start = start,
+                            end = end,
+                        )
+                    }
                 }
 
                 is StyleSpan -> {
