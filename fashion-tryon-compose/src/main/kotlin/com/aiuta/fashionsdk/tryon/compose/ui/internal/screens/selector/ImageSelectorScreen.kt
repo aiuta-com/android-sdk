@@ -56,7 +56,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
                     .padding(horizontal = 16.dp),
         )
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(Modifier.height(16.dp))
 
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(MAIN_IMAGE_SIZE),

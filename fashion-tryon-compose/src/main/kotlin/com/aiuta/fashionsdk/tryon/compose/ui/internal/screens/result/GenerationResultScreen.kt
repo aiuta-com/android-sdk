@@ -57,7 +57,7 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
                     .padding(top = appbarHeight(maxHeight))
                     .height(imagesHeight(maxHeight))
                     .fillMaxWidth()
-                    .padding(vertical = 24.dp),
+                    .padding(vertical = 16.dp),
             generationResultController = generationResultController,
         )
 
