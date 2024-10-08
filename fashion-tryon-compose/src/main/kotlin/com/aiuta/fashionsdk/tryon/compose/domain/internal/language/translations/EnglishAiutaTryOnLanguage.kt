@@ -80,6 +80,7 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val cancel: String = "Cancel"
     override val close: String = "Close"
     override val tryOn: String = "Try on"
+    override val tryAgain: String = "Try again"
     override val virtualTryOn: String = "Virtual Try-on"
     override val share: String = "Share"
     override val defaultErrorMessage: String = "Something went wrong. Please try again later"

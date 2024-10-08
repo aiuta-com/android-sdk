@@ -72,6 +72,7 @@ internal interface InternalAiutaTryOnLanguage {
     val cancel: String
     val close: String
     val tryOn: String
+    val tryAgain: String
     val virtualTryOn: String
     val share: String
     val defaultErrorMessage: String

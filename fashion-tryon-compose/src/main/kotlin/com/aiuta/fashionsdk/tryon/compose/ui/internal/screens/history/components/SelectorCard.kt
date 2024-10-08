@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -45,7 +44,7 @@ internal fun SelectorCard(
             modifier
                 .background(
                     color = theme.colors.primary,
-                    shape = RoundedCornerShape(16.dp),
+                    shape = theme.shapes.buttonM,
                 )
                 .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,

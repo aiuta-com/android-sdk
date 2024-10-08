@@ -19,13 +19,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.dislike36
+import com.aiuta.fashionsdk.compose.tokens.icon.like36
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
@@ -122,12 +122,13 @@ private fun FeedbackBlockContent(
     onLikeClick: () -> Unit,
 ) {
     val haptic = LocalHapticFeedback.current
+    val theme = LocalTheme.current
 
     Row(
         modifier =
             modifier
                 .background(
-                    color = Color.Black.copy(alpha = 0.12f),
+                    color = theme.colors.primary.copy(alpha = 0.12f),
                     shape = RoundedCornerShape(20.dp),
                 )
                 .padding(
@@ -139,14 +140,14 @@ private fun FeedbackBlockContent(
         Icon(
             modifier =
                 Modifier
-                    .size(22.dp)
+                    .size(36.dp)
                     .clickableUnindicated {
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onDislikeClick()
                     },
-            imageVector = ImageVector.vectorResource(FashionIcon.Dislike16),
+            painter = rememberAsyncImagePainter(theme.icons.dislike36),
             contentDescription = null,
-            tint = Color.White.copy(alpha = 0.7f),
+            tint = theme.colors.background.copy(alpha = 0.7f),
         )
 
         Spacer(Modifier.width(26.dp))
@@ -154,14 +155,14 @@ private fun FeedbackBlockContent(
         Icon(
             modifier =
                 Modifier
-                    .size(22.dp)
+                    .size(36.dp)
                     .clickableUnindicated {
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onLikeClick()
                     },
-            imageVector = ImageVector.vectorResource(FashionIcon.Like16),
+            painter = rememberAsyncImagePainter(theme.icons.like36),
             contentDescription = null,
-            tint = Color.White.copy(alpha = 0.7f),
+            tint = theme.colors.background.copy(alpha = 0.7f),
         )
     }
 }

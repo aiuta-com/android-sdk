@@ -107,7 +107,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
 
         Text(
             text = stringResources.preOnboardingSubtitle,
-            style = theme.typography.regular,
+            style = theme.typography.welcomeText,
             color = Color.White,
             textAlign = TextAlign.Center,
         )

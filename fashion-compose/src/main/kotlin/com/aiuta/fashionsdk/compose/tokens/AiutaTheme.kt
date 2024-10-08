@@ -32,8 +32,6 @@ import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
  */
 @Immutable
 public class AiutaTheme(
-    @Deprecated("Should delete in new release")
-    public val navBarTheme: AiutaNavBarTheme,
     public val colors: AiutaColors,
     public val gradients: AiutaGradients,
     public val typography: AiutaTypography,
@@ -63,7 +61,6 @@ public fun aiutaTheme(
         typography = typography,
         shapes = shapes,
         watermarkRes = watermarkRes,
-        navBarTheme = defaultAiutaNavBarTheme(),
     )
 }
 

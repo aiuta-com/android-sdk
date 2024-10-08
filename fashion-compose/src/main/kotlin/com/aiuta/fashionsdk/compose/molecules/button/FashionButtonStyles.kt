@@ -35,4 +35,19 @@ public object FashionButtonStyles {
         SecondaryFashionButtonStyle(
             colors = FashionButtonColors.secondaryColors(theme = theme),
         )
+
+    @Composable
+    public fun secondaryStyle(
+        backgroundColor: Color,
+        contentColor: Color,
+        borderColor: Color,
+    ): FashionButtonStyle =
+        SecondaryFashionButtonStyle(
+            colors =
+                FashionButtonColors.secondaryColors(
+                    backgroundColor = backgroundColor,
+                    contentColor = contentColor,
+                    borderColor = borderColor,
+                ),
+        )
 }

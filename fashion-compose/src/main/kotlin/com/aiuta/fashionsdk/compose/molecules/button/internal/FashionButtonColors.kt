@@ -35,10 +35,25 @@ internal object FashionButtonColors {
         OutlineFashionButtonColor(
             buttonColors =
                 ButtonDefaults.outlinedButtonColors(
-                    backgroundColor = Color.Transparent,
+                    backgroundColor = theme.colors.background,
                     contentColor = theme.colors.primary,
                 ),
             borderColor = theme.colors.neutral2,
             rippleColor = theme.colors.primary.copy(alpha = 0.05f),
         )
+
+    @Composable
+    fun secondaryColors(
+        backgroundColor: Color,
+        contentColor: Color,
+        borderColor: Color,
+    ) = OutlineFashionButtonColor(
+        buttonColors =
+            ButtonDefaults.outlinedButtonColors(
+                backgroundColor = backgroundColor,
+                contentColor = contentColor,
+            ),
+        borderColor = borderColor,
+        rippleColor = contentColor.copy(alpha = 0.05f),
+    )
 }

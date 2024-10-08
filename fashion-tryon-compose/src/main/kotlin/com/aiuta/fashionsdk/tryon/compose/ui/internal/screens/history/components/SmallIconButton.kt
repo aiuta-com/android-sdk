@@ -24,7 +24,7 @@ internal fun SmallIconButton(
 ) {
     val theme = LocalTheme.current
     val iconColor by animateColorAsState(
-        targetValue = if (isActive) theme.colors.onLight else theme.colors.neutral3,
+        targetValue = if (isActive) theme.colors.primary else theme.colors.secondary,
         label = "iconColor",
     )
 

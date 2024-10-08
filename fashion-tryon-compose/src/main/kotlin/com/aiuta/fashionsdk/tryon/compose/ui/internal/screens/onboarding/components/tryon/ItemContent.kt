@@ -35,7 +35,7 @@ internal fun ItemContent(
             label = "heightTransition",
         )
 
-    val cornerRadius = theme.shapes.previewImage
+    val cornerRadius = theme.shapes.onboardingImage
 
     Image(
         modifier =

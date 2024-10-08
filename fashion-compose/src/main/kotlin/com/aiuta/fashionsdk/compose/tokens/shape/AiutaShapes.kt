@@ -15,6 +15,7 @@ import androidx.compose.runtime.Immutable
 public class AiutaShapes internal constructor(
     // Images
     public val mainImage: CornerBasedShape,
+    public val onboardingImage: CornerBasedShape,
     public val previewImage: CornerBasedShape,
     // Bottom sheet
     public val bottomSheet: CornerBasedShape,
