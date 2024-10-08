@@ -41,7 +41,6 @@ fun MainScreen() {
                     imageUrls = firstActiveSKUItem.imageUrls,
                     localizedPrice = "$34.99",
                     localizedOldPrice = "$41.99",
-                    localizedDiscount = "10",
                     store = "MOCK STORE",
                     generateMoreSKU =
                         activeSKUItems.value?.mapIndexed { index, skuItem ->
@@ -52,7 +51,6 @@ fun MainScreen() {
                                 imageUrls = skuItem.imageUrls,
                                 localizedPrice = "$34.99",
                                 localizedOldPrice = "$41.99",
-                                localizedDiscount = "10",
                                 store = "MOCK STORE",
                                 inWishlist = index % 2 == 0,
                             )

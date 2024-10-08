@@ -24,6 +24,19 @@ internal fun PriceInfo(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        if (skuItem.localizedOldPrice?.isNotBlank() == true) {
+            Text(
+                text = skuItem.localizedOldPrice,
+                style = theme.typography.price,
+                color = theme.colors.accent,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+
+            Spacer(Modifier.width(4.dp))
+        }
+
         if (skuItem.localizedPrice.isNotBlank()) {
             Text(
                 text = skuItem.localizedPrice,
@@ -32,19 +45,6 @@ internal fun PriceInfo(
                         textDecoration = solveGeneralPriceDecoration(skuItem),
                     ),
                 color = solveGeneralPriceColor(skuItem),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
-
-        if (skuItem.localizedOldPrice?.isNotBlank() == true) {
-            Spacer(Modifier.width(4.dp))
-
-            Text(
-                text = skuItem.localizedOldPrice,
-                style = theme.typography.price,
-                color = theme.colors.accent,
-                fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )

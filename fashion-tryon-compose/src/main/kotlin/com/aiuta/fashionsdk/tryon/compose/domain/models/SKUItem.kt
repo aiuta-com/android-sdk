@@ -12,7 +12,6 @@ import java.util.UUID
  * @param imageUrls - List of urls with images of provided sku
  * @param localizedPrice - The price of the SKU. Should be formatted with a currency symbol.
  * @param localizedOldPrice - The old price of the SKU, if available. Should be formatted with a currency symbol.
- * @param localizedDiscount - The discount on the SKU, if available.
  * @param store - Name of store
  * @param generateMoreSKU - SKU for continuous generations
  * @param additionalShareInfo - Some additional info for sharing generated item
@@ -25,7 +24,6 @@ public data class SKUItem(
     public val imageUrls: List<String>,
     public val localizedPrice: String,
     public val localizedOldPrice: String? = null,
-    public val localizedDiscount: String? = null,
     public val store: String,
     public val generateMoreSKU: List<SKUItem>? = null,
     public val additionalShareInfo: String? = null,
