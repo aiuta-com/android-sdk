@@ -69,13 +69,6 @@ public val AiutaIcons.camera24: Any
             is AiutaResourceIcons -> this.camera24
         }
 
-public val AiutaIcons.cameraFill24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.cameraFill24
-            is AiutaResourceIcons -> this.cameraFill24
-        }
-
 public val AiutaIcons.checkCorrect24: Any
     get() =
         when (this) {
@@ -97,6 +90,13 @@ public val AiutaIcons.close24: Any
             is AiutaResourceIcons -> this.close24
         }
 
+public val AiutaIcons.takePhoto24: Any
+    get() =
+        when (this) {
+            is AiutaDrawableIcons -> this.takePhoto24
+            is AiutaResourceIcons -> this.takePhoto24
+        }
+
 public val AiutaIcons.trash24: Any
     get() =
         when (this) {
@@ -109,6 +109,13 @@ public val AiutaIcons.history24: Any
         when (this) {
             is AiutaDrawableIcons -> this.history24
             is AiutaResourceIcons -> this.history24
+        }
+
+public val AiutaIcons.photoLibrary24: Any
+    get() =
+        when (this) {
+            is AiutaDrawableIcons -> this.photoLibrary24
+            is AiutaResourceIcons -> this.photoLibrary24
         }
 
 public val AiutaIcons.share24: Any

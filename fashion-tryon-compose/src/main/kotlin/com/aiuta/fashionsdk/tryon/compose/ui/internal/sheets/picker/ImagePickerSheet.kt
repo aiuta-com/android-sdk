@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker
 
 import android.Manifest
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -14,18 +13,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.photoLibrary24
+import com.aiuta.fashionsdk.compose.tokens.icon.takePhoto24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -52,6 +51,7 @@ internal fun ColumnScope.ImagePickerSheet() {
     val context = LocalContext.current
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
+    val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
     val sharedModifier =
@@ -105,7 +105,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 
     PickerButton(
         modifier = sharedModifier,
-        iconRes = FashionIcon.Camera24,
+        iconPainter = rememberAsyncImagePainter(theme.icons.takePhoto24),
         text = stringResources.pickerSheetTakePhoto,
         onClick = {
             if (cameraPermissionState.status.isGranted) {
@@ -131,7 +131,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 
     PickerButton(
         modifier = sharedModifier,
-        iconRes = FashionIcon.Gallery24,
+        iconPainter = rememberAsyncImagePainter(theme.icons.photoLibrary24),
         text = stringResources.pickerSheetChooseLibrary,
         shouldDrawDivider = false,
         onClick = {
@@ -143,8 +143,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 @Composable
 private fun PickerButton(
     modifier: Modifier = Modifier,
-    @DrawableRes
-    iconRes: Int,
+    iconPainter: Painter,
     text: String,
     shouldDrawDivider: Boolean = true,
     onClick: () -> Unit,
@@ -164,7 +163,7 @@ private fun PickerButton(
     ) {
         Icon(
             modifier = Modifier.size(24.dp),
-            imageVector = ImageVector.vectorResource(iconRes),
+            painter = iconPainter,
             contentDescription = null,
             tint = theme.colors.brand,
         )
@@ -180,7 +179,7 @@ private fun PickerButton(
             Text(
                 modifier = Modifier.align(Alignment.CenterStart),
                 text = text,
-                style = MaterialTheme.typography.body1,
+                style = theme.typography.cells,
                 color = theme.colors.primary,
             )
 
