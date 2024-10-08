@@ -80,6 +80,7 @@ public class CustomLanguage(
     override val cancel: String,
     override val close: String,
     override val tryOn: String,
+    override val tryAgain: String,
     override val virtualTryOn: String,
     override val share: String,
     override val defaultErrorMessage: String,
@@ -144,9 +145,10 @@ public class CustomLanguage(
         cancel.atMost(10)
         close.atMost(10)
         tryOn.atMost(20)
+        tryAgain.atMost(13)
         virtualTryOn.atMost(22)
         share.atMost(20)
-        defaultErrorMessage.atMost(60)
+        defaultErrorMessage.atMost(44)
     }
 
     private fun String.atMost(maxNumber: Int) {

@@ -70,6 +70,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val cancel: String = "Vazgeç"
     override val close: String = "TODO"
     override val tryOn: String = "Üzerinde Dene"
+    override val tryAgain: String = "TODO"
     override val virtualTryOn: String = "TODO"
     override val share: String = "Paylaş"
     override val defaultErrorMessage: String = "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin"

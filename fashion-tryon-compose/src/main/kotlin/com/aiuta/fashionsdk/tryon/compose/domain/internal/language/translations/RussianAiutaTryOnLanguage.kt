@@ -71,6 +71,7 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val cancel: String = "Отмена"
     override val close: String = "TODO"
     override val tryOn: String = "Примерить"
+    override val tryAgain: String = "TODO"
     override val virtualTryOn: String = "TODO"
     override val share: String = "Поделиться"
     override val defaultErrorMessage: String =

@@ -21,6 +21,7 @@ public class AiutaColors(
     public val secondary: Color,
     public val tertiary: Color,
     public val onDark: Color,
+    public val onError: Color,
     // Brand
     public val brand: Color,
     public val accent: Color,
@@ -35,9 +36,9 @@ public class AiutaColors(
     public val neutral3: Color,
     // Deprecated
     @Deprecated("Remove with new release SDK")
-    public val backgroundElevation2: Color,
-    @Deprecated("Remove with new release SDK")
     public val onLight: Color,
+    @Deprecated("Remove with new release SDK")
+    public val backgroundElevation2: Color,
 )
 
 /**

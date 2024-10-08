@@ -6,24 +6,27 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.FashionIcon
+import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
+import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.compose.tokens.icon.error36
+import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnErrorState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.hideErrorState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 
 internal const val DEFAULT_SHOWING_DELAY = 4000L
 
@@ -33,6 +36,7 @@ internal fun NavigationErrorCard(
     errorState: FashionTryOnErrorState,
 ) {
     val controller = LocalController.current
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
@@ -41,40 +45,46 @@ internal fun NavigationErrorCard(
             modifier
                 .background(
                     color = theme.colors.error,
-                    shape = RoundedCornerShape(16.dp),
+                    shape = theme.shapes.buttonM,
                 )
                 .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             modifier = Modifier.size(36.dp),
-            imageVector = ImageVector.vectorResource(FashionIcon.Error36),
+            painter = rememberAsyncImagePainter(theme.icons.error36),
             contentDescription = null,
-            tint = theme.colors.onDark,
+            tint = Color.Unspecified,
         )
 
-        Spacer(Modifier.width(12.dp))
+        Spacer(Modifier.width(16.dp))
 
         Text(
             modifier = Modifier.weight(1f),
             text = errorState.message ?: stringResources.defaultErrorMessage,
-            style = MaterialTheme.typography.body1,
-            color = theme.colors.onDark,
+            style = theme.typography.chips,
+            color = theme.colors.onError,
             overflow = TextOverflow.Ellipsis,
         )
 
-        Spacer(Modifier.width(12.dp))
+        Spacer(Modifier.width(16.dp))
 
-        Icon(
-            modifier =
-                Modifier
-                    .size(36.dp)
-                    .clickableUnindicated {
-                        controller.hideErrorState()
-                    },
-            imageVector = ImageVector.vectorResource(FashionIcon.Cross36),
-            contentDescription = null,
-            tint = theme.colors.onDark,
+        FashionButton(
+            text = stringResources.tryAgain,
+            style =
+                FashionButtonStyles.secondaryStyle(
+                    backgroundColor = theme.colors.background,
+                    contentColor = theme.colors.primary,
+                    borderColor = Color.Transparent,
+                ),
+            size = FashionButtonSizes.mSize(),
+            onClick = {
+                controller.startGeneration(
+                    aiutaConfiguration = aiutaConfiguration,
+                    origin = StartUITryOn.Origin.TRY_ON_BUTTON,
+                )
+                controller.hideErrorState()
+            },
         )
     }
 }
