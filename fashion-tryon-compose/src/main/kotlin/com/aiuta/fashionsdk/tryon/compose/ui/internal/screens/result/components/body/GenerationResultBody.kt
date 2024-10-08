@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil.compose.SubcomposeAsyncImage
@@ -81,8 +82,16 @@ private fun PagerItem(
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
+    val density = LocalDensity.current
     val theme = LocalTheme.current
-    val sharedCornerRadius = 24.dp
+
+    val sharedCornerRadius =
+        with(density) {
+            theme.shapes.mainImage.topStart.toPx(
+                Size.Unspecified,
+                density,
+            ).toDp()
+        }
 
     var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
     var imageSize by remember { mutableStateOf(Size.Zero) }
