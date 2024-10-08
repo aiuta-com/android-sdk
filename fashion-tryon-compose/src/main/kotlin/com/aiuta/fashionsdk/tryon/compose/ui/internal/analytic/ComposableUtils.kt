@@ -36,10 +36,6 @@ internal fun sendConfigureEvent(theme: AiutaTheme?) {
                 value = (theme?.watermarkRes != null).toString(),
             )
             put(
-                key = Configure.IS_LOGO_PROVIDED_PARAM,
-                value = (theme?.navBarTheme?.navLogo != null).toString(),
-            )
-            put(
                 key = Configure.IS_HISTORY_ENABLE_PARAM,
                 value = configuration.isHistoryAvailable.toString(),
             )

@@ -1,15 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.spalsh
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -25,7 +19,6 @@ internal fun SplashScreen(
     modifier: Modifier = Modifier,
     navigateTo: (NavigationScreen) -> Unit,
 ) {
-    val theme = LocalTheme.current
     val controller = LocalController.current
     val configuration = LocalAiutaConfiguration.current
     val dataController = LocalAiutaTryOnDataController.current
@@ -65,15 +58,5 @@ internal fun SplashScreen(
         }
     }
 
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center,
-    ) {
-        Image(
-            modifier = Modifier.fillMaxWidth(0.4f),
-            painter = painterResource(theme.navBarTheme.navLogo),
-            contentDescription = null,
-            contentScale = ContentScale.FillWidth,
-        )
-    }
+    Box(modifier = modifier)
 }
