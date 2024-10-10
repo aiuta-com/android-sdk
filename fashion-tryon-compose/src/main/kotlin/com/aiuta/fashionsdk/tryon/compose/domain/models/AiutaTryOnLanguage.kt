@@ -5,21 +5,39 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiuta
 /**
  * One of the languages supported by AiutaTryOn flow
  */
-public sealed interface AiutaTryOnLanguage {
-    // Code in ISO-639
-    public val code: String
+public sealed interface AiutaTryOnLanguage
+
+public class EnglishLanguage(
+    public val brand: String,
+    public val termsOfServiceUrl: String,
+    public val privacyPolicyUrl: String,
+) : AiutaTryOnLanguage {
+    public companion object {
+        // Code in ISO-639
+        public const val CODE: String = "en"
+    }
 }
 
-public object EnglishLanguage : AiutaTryOnLanguage {
-    override val code: String = "en"
+public class TurkishLanguage(
+    public val brand: String,
+    public val termsOfServiceUrl: String,
+    public val privacyPolicyUrl: String,
+) : AiutaTryOnLanguage {
+    public companion object {
+        // Code in ISO-639
+        public const val CODE: String = "tr"
+    }
 }
 
-public object TurkishLanguage : AiutaTryOnLanguage {
-    override val code: String = "tr"
-}
-
-public object RussianLanguage : AiutaTryOnLanguage {
-    override val code: String = "ru"
+public class RussianLanguage(
+    public val brand: String,
+    public val termsOfServiceUrl: String,
+    public val privacyPolicyUrl: String,
+) : AiutaTryOnLanguage {
+    public companion object {
+        // Code in ISO-639
+        public const val CODE: String = "ru"
+    }
 }
 
 public class CustomLanguage(
@@ -85,7 +103,7 @@ public class CustomLanguage(
     override val share: String,
     override val defaultErrorMessage: String,
     // Code in ISO-639
-    override val code: String,
+    public val code: String,
 ) : AiutaTryOnLanguage, InternalAiutaTryOnLanguage {
     init {
         // App bar
@@ -157,8 +175,3 @@ public class CustomLanguage(
         }
     }
 }
-
-/**
- * Default language for AiutaTryOn flow
- */
-internal val defaultAiutaTryOnLanguage: AiutaTryOnLanguage = EnglishLanguage
