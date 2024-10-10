@@ -23,8 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.close24
-import com.aiuta.fashionsdk.compose.tokens.icon.welcomeScreen82
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.R
@@ -64,7 +62,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
             actions = {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    painter = rememberAsyncImagePainter(theme.icons.close24),
+                    painter = rememberAsyncImagePainter(theme.icons.close24.resource),
                     color = Color.White,
                     onClick = {
                         controller.clickClose(FinishSession.Origin.PREONBOARDING_SCREEN)
@@ -89,7 +87,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
     ) {
         Image(
             modifier = Modifier.size(82.dp),
-            painter = rememberAsyncImagePainter(theme.icons.welcomeScreen82),
+            painter = rememberAsyncImagePainter(theme.icons.welcomeScreen82.resource),
             contentScale = ContentScale.Fit,
             contentDescription = null,
         )

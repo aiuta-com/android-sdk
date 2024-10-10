@@ -16,8 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.checkCorrect24
-import com.aiuta.fashionsdk.compose.tokens.icon.checkNotCorrect24
 
 @Composable
 internal fun BestResultPageItem(
@@ -47,9 +45,9 @@ internal fun BestResultPageItem(
                 rememberAsyncImagePainter(
                     model =
                         if (isGoodImage) {
-                            theme.icons.checkCorrect24
+                            theme.icons.checkCorrect24.resource
                         } else {
-                            theme.icons.checkNotCorrect24
+                            theme.icons.checkNotCorrect24.resource
                         },
                 ),
             contentDescription = null,

@@ -6,7 +6,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.camera24
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
@@ -24,7 +23,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
 
     IconButton(
         modifier = modifier,
-        painter = rememberAsyncImagePainter(theme.icons.camera24),
+        painter = rememberAsyncImagePainter(theme.icons.camera24.resource),
         onClick = {
             controller.sendTapChangePhotoEvent()
             controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)

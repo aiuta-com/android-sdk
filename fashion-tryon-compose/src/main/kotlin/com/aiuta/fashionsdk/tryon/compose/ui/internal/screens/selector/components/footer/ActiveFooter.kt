@@ -32,8 +32,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.arrow16
-import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -89,7 +87,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 text = stringResources.tryOn,
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                iconPainter = rememberAsyncImagePainter(theme.icons.magic16),
+                iconPainter = rememberAsyncImagePainter(theme.icons.magic16.resource),
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
@@ -168,7 +166,7 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
         Icon(
             modifier = Modifier.size(16.dp).align(Alignment.CenterVertically),
-            painter = rememberAsyncImagePainter(theme.icons.arrow16),
+            painter = rememberAsyncImagePainter(theme.icons.arrow16.resource),
             contentDescription = null,
             tint = theme.colors.neutral3,
         )

@@ -21,7 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.lock16
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 
@@ -60,7 +59,7 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
     ) {
         Icon(
             modifier = Modifier.size(16.dp),
-            painter = rememberAsyncImagePainter(theme.icons.lock16),
+            painter = rememberAsyncImagePainter(theme.icons.lock16.resource),
             contentDescription = null,
             tint = theme.colors.secondary,
         )

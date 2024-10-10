@@ -12,8 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.wishlist24
-import com.aiuta.fashionsdk.compose.tokens.icon.wishlistFill24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 
 @Composable
@@ -43,9 +41,9 @@ internal fun LikeButton(
                 rememberAsyncImagePainter(
                     model =
                         if (isLiked) {
-                            theme.icons.wishlistFill24
+                            theme.icons.wishlistFill24.resource
                         } else {
-                            theme.icons.wishlist24
+                            theme.icons.wishlist24.resource
                         },
                 ),
             contentDescription = null,

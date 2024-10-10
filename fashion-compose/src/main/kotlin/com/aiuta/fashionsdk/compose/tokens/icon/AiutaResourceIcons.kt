@@ -14,29 +14,34 @@ import androidx.annotation.DrawableRes
  */
 public class AiutaResourceIcons(
     // x100
-    @DrawableRes public val recent100: Int,
+    public override val recent100: AiutaResourceIcon,
     // x82
-    @DrawableRes public val welcomeScreen82: Int,
+    public override val welcomeScreen82: AiutaResourceIcon,
     // x36
-    @DrawableRes public val error36: Int,
-    @DrawableRes public val like36: Int,
-    @DrawableRes public val dislike36: Int,
+    public override val error36: AiutaResourceIcon,
+    public override val like36: AiutaResourceIcon,
+    public override val dislike36: AiutaResourceIcon,
     // x24
-    @DrawableRes public val back24: Int,
-    @DrawableRes public val camera24: Int,
-    @DrawableRes public val checkCorrect24: Int,
-    @DrawableRes public val checkNotCorrect24: Int,
-    @DrawableRes public val close24: Int,
-    @DrawableRes public val history24: Int,
-    @DrawableRes public val photoLibrary24: Int,
-    @DrawableRes public val trash24: Int,
-    @DrawableRes public val takePhoto24: Int,
-    @DrawableRes public val share24: Int,
-    @DrawableRes public val wishlist24: Int,
-    @DrawableRes public val wishlistFill24: Int,
+    public override val back24: AiutaResourceIcon,
+    public override val camera24: AiutaResourceIcon,
+    public override val checkCorrect24: AiutaResourceIcon,
+    public override val checkNotCorrect24: AiutaResourceIcon,
+    public override val close24: AiutaResourceIcon,
+    public override val history24: AiutaResourceIcon,
+    public override val photoLibrary24: AiutaResourceIcon,
+    public override val trash24: AiutaResourceIcon,
+    public override val takePhoto24: AiutaResourceIcon,
+    public override val share24: AiutaResourceIcon,
+    public override val wishlist24: AiutaResourceIcon,
+    public override val wishlistFill24: AiutaResourceIcon,
     // x16
-    @DrawableRes public val check16: Int,
-    @DrawableRes public val magic16: Int,
-    @DrawableRes public val lock16: Int,
-    @DrawableRes public val arrow16: Int,
-) : AiutaIcons
+    public override val check16: AiutaResourceIcon,
+    public override val magic16: AiutaResourceIcon,
+    public override val lock16: AiutaResourceIcon,
+    public override val arrow16: AiutaResourceIcon,
+) : AiutaIcons {
+    public class AiutaResourceIcon(
+        @DrawableRes public override val resource: Int,
+        public override val shouldDrawAsIs: Boolean = true,
+    ) : AiutaIcons.AiutaIcon
+}

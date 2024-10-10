@@ -31,7 +31,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
@@ -160,7 +159,7 @@ private fun ButtonsContainer(
                     stringResources.tryOn
                 },
             iconPainter =
-                rememberAsyncImagePainter(theme.icons.magic16).takeIf {
+                rememberAsyncImagePainter(theme.icons.magic16.resource).takeIf {
                     skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
                 },
             style = FashionButtonStyles.primaryStyle(theme),

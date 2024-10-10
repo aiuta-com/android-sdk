@@ -14,29 +14,34 @@ import android.graphics.drawable.Drawable
  */
 public class AiutaDrawableIcons(
     // x100
-    public val recent100: Drawable,
+    public override val recent100: AiutaDrawableIcon,
     // x82
-    public val welcomeScreen82: Drawable,
+    public override val welcomeScreen82: AiutaDrawableIcon,
     // x36
-    public val error36: Drawable,
-    public val like36: Drawable,
-    public val dislike36: Drawable,
+    public override val error36: AiutaDrawableIcon,
+    public override val like36: AiutaDrawableIcon,
+    public override val dislike36: AiutaDrawableIcon,
     // x24
-    public val back24: Drawable,
-    public val camera24: Drawable,
-    public val checkCorrect24: Drawable,
-    public val checkNotCorrect24: Drawable,
-    public val close24: Drawable,
-    public val trash24: Drawable,
-    public val takePhoto24: Drawable,
-    public val history24: Drawable,
-    public val photoLibrary24: Drawable,
-    public val share24: Drawable,
-    public val wishlist24: Drawable,
-    public val wishlistFill24: Drawable,
+    public override val back24: AiutaDrawableIcon,
+    public override val camera24: AiutaDrawableIcon,
+    public override val checkCorrect24: AiutaDrawableIcon,
+    public override val checkNotCorrect24: AiutaDrawableIcon,
+    public override val close24: AiutaDrawableIcon,
+    public override val trash24: AiutaDrawableIcon,
+    public override val takePhoto24: AiutaDrawableIcon,
+    public override val history24: AiutaDrawableIcon,
+    public override val photoLibrary24: AiutaDrawableIcon,
+    public override val share24: AiutaDrawableIcon,
+    public override val wishlist24: AiutaDrawableIcon,
+    public override val wishlistFill24: AiutaDrawableIcon,
     // x16
-    public val check16: Drawable,
-    public val magic16: Drawable,
-    public val lock16: Drawable,
-    public val arrow16: Drawable,
-) : AiutaIcons
+    public override val check16: AiutaDrawableIcon,
+    public override val magic16: AiutaDrawableIcon,
+    public override val lock16: AiutaDrawableIcon,
+    public override val arrow16: AiutaDrawableIcon,
+) : AiutaIcons {
+    public class AiutaDrawableIcon(
+        public override val resource: Drawable,
+        public override val shouldDrawAsIs: Boolean = true,
+    ) : AiutaIcons.AiutaIcon
+}

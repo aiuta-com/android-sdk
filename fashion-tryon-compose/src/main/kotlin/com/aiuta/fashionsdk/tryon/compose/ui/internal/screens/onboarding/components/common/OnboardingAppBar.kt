@@ -10,8 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.back24
-import com.aiuta.fashionsdk.compose.tokens.icon.close24
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -44,7 +42,7 @@ internal fun OnboardingAppBar(
         navigationIcon = {
             AppBarIcon(
                 modifier = Modifier.align(Alignment.CenterStart),
-                painter = rememberAsyncImagePainter(theme.icons.back24),
+                painter = rememberAsyncImagePainter(theme.icons.back24.resource),
                 color = theme.colors.primary,
                 onClick = {
                     onboardingController.previousPage(controller)
@@ -79,7 +77,7 @@ internal fun OnboardingAppBar(
             if (configuration.isOnboardingAppBarExtended) {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    painter = rememberAsyncImagePainter(theme.icons.close24),
+                    painter = rememberAsyncImagePainter(theme.icons.close24.resource),
                     color = theme.colors.primary,
                     onClick = {
                         controller.clickClose(FinishSession.Origin.ONBOARDING_SCREEN)

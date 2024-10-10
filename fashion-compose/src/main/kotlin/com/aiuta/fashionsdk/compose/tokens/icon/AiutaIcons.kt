@@ -14,157 +14,40 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
  * @see AiutaTheme
  */
 @Immutable
-public sealed interface AiutaIcons
+public sealed interface AiutaIcons {
+    public interface AiutaIcon {
+        public val resource: Any
+        public val shouldDrawAsIs: Boolean // TODO Support on UI
+    }
 
-// x100
-public val AiutaIcons.recent100: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.recent100
-            is AiutaResourceIcons -> this.recent100
-        }
+    // x100
+    public val recent100: AiutaIcon
 
-// x82
-public val AiutaIcons.welcomeScreen82: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.welcomeScreen82
-            is AiutaResourceIcons -> this.welcomeScreen82
-        }
+    // x82
+    public val welcomeScreen82: AiutaIcon
 
-// x36
-public val AiutaIcons.error36: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.error36
-            is AiutaResourceIcons -> this.error36
-        }
+    // x36
+    public val error36: AiutaIcon
+    public val like36: AiutaIcon
+    public val dislike36: AiutaIcon
 
-public val AiutaIcons.like36: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.like36
-            is AiutaResourceIcons -> this.like36
-        }
+    // x24
+    public val back24: AiutaIcon
+    public val camera24: AiutaIcon
+    public val checkCorrect24: AiutaIcon
+    public val checkNotCorrect24: AiutaIcon
+    public val close24: AiutaIcon
+    public val history24: AiutaIcon
+    public val photoLibrary24: AiutaIcon
+    public val trash24: AiutaIcon
+    public val takePhoto24: AiutaIcon
+    public val share24: AiutaIcon
+    public val wishlist24: AiutaIcon
+    public val wishlistFill24: AiutaIcon
 
-public val AiutaIcons.dislike36: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.dislike36
-            is AiutaResourceIcons -> this.dislike36
-        }
-
-// x24
-public val AiutaIcons.back24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.back24
-            is AiutaResourceIcons -> this.back24
-        }
-
-public val AiutaIcons.camera24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.camera24
-            is AiutaResourceIcons -> this.camera24
-        }
-
-public val AiutaIcons.checkCorrect24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.checkCorrect24
-            is AiutaResourceIcons -> this.checkCorrect24
-        }
-
-public val AiutaIcons.checkNotCorrect24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.checkNotCorrect24
-            is AiutaResourceIcons -> this.checkNotCorrect24
-        }
-
-public val AiutaIcons.close24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.close24
-            is AiutaResourceIcons -> this.close24
-        }
-
-public val AiutaIcons.takePhoto24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.takePhoto24
-            is AiutaResourceIcons -> this.takePhoto24
-        }
-
-public val AiutaIcons.trash24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.trash24
-            is AiutaResourceIcons -> this.trash24
-        }
-
-public val AiutaIcons.history24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.history24
-            is AiutaResourceIcons -> this.history24
-        }
-
-public val AiutaIcons.photoLibrary24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.photoLibrary24
-            is AiutaResourceIcons -> this.photoLibrary24
-        }
-
-public val AiutaIcons.share24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.share24
-            is AiutaResourceIcons -> this.share24
-        }
-
-// x20
-public val AiutaIcons.wishlist24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.wishlist24
-            is AiutaResourceIcons -> this.wishlist24
-        }
-
-public val AiutaIcons.wishlistFill24: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.wishlistFill24
-            is AiutaResourceIcons -> this.wishlistFill24
-        }
-
-// x16
-public val AiutaIcons.check16: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.check16
-            is AiutaResourceIcons -> this.check16
-        }
-
-public val AiutaIcons.magic16: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.magic16
-            is AiutaResourceIcons -> this.magic16
-        }
-
-public val AiutaIcons.lock16: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.lock16
-            is AiutaResourceIcons -> this.lock16
-        }
-
-public val AiutaIcons.arrow16: Any
-    get() =
-        when (this) {
-            is AiutaDrawableIcons -> this.arrow16
-            is AiutaResourceIcons -> this.arrow16
-        }
+    // x16
+    public val check16: AiutaIcon
+    public val magic16: AiutaIcon
+    public val lock16: AiutaIcon
+    public val arrow16: AiutaIcon
+}
