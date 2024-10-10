@@ -83,7 +83,7 @@ internal abstract class AppDatabase : RoomDatabase() {
     // Onboarding saver
     abstract fun onboardingDao(): OnboardingDao
 
-    // Aiuta CODE checker
+    // Aiuta code checker
     abstract fun aiutaCodeDao(): AiutaCodeDao
 
     companion object {
@@ -134,7 +134,7 @@ internal abstract class AppDatabase : RoomDatabase() {
                                 database.sourceImageDao().removeAll()
                             }
 
-                            // Update CODE
+                            // Update code
                             aiutaCodeDao.replaceAll(
                                 aiutaCodeEntity =
                                     AiutaCodeEntity(
