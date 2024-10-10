@@ -67,22 +67,8 @@ fun MainScreen() {
         val mockAiutaTryOnListeners =
             remember {
                 AiutaTryOnListeners(
-                    addToWishlistActiveItemClick = { oldSku ->
-                        oldSku.copy(inWishlist = !oldSku.inWishlist)
-                    },
-                    addToWishlistGenerateMoreItemClick = { oldSku ->
-                        mockSKUItem.copy(
-                            generateMoreSKU =
-                                mockSKUItem
-                                    .generateMoreSKU
-                                    ?.map { item ->
-                                        if (item.skuId == oldSku.skuId) {
-                                            oldSku.copy(inWishlist = !oldSku.inWishlist)
-                                        } else {
-                                            item
-                                        }
-                                    },
-                        )
+                    addToWishlistClick = {
+                        context.makeToast("Rise Add to wishlist")
                     },
                     addToCartClick = {
                         context.makeToast("Rise Add to cart")

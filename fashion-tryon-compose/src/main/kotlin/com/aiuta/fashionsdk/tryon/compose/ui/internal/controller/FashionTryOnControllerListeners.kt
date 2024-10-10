@@ -5,6 +5,9 @@ import androidx.compose.runtime.LaunchedEffect
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @Composable
 internal fun FashionTryOnController.generationNavigationListener() {
@@ -31,4 +34,17 @@ internal fun FashionTryOnController.historyAvailabilityListener(
             generatedImageInteractor.removeAll()
         }
     }
+}
+
+internal fun FashionTryOnController.updationActiveSKUItemListener() {
+    val externalListeners = aiutaTryOnListeners()
+
+    // Observe external changes of current sku
+    externalListeners
+        .updatedActiveSKUItem
+        .filterNotNull()
+        .onEach { updatedSKUItem ->
+            changeActiveSKU(updatedSKUItem)
+        }
+        .launchIn(generalScope)
 }
