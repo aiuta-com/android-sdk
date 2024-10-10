@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 public fun aiutaShapes(
     mainImageRadiusDp: Dp = 24.dp,
     previewImageRadiusDp: Dp = 16.dp,
-    onboardingImage: Dp = 8.dp,
+    onboardingImageRadiusDp: Dp = 8.dp,
     bottomSheetRadiusDp: Dp = 16.dp,
     buttonLRadiusDp: Dp = 8.dp,
     buttonMRadiusDp: Dp = 8.dp,
@@ -22,7 +22,7 @@ public fun aiutaShapes(
     return AiutaShapes(
         mainImage = RoundedCornerShape(mainImageRadiusDp),
         previewImage = RoundedCornerShape(previewImageRadiusDp),
-        onboardingImage = RoundedCornerShape(onboardingImage),
+        onboardingImage = RoundedCornerShape(onboardingImageRadiusDp),
         bottomSheet =
             RoundedCornerShape(
                 topStart = bottomSheetRadiusDp,
