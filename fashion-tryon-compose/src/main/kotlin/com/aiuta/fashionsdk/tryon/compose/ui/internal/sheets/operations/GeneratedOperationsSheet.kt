@@ -37,8 +37,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.magic16
-import com.aiuta.fashionsdk.compose.tokens.icon.trash24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
@@ -131,7 +129,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         text = stringResources.generatedOperationsSheetUploadNewButton,
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
-        iconPainter = rememberAsyncImagePainter(theme.icons.magic16),
+        iconPainter = rememberAsyncImagePainter(theme.icons.magic16.resource),
         onClick = {
             controller.bottomSheetNavigator.change(NavigationBottomSheetScreen.ImagePicker)
         },
@@ -197,7 +195,7 @@ private fun OperationItem(
                             }
                         }
                     },
-            painter = rememberAsyncImagePainter(theme.icons.trash24),
+            painter = rememberAsyncImagePainter(theme.icons.trash24.resource),
             contentDescription = null,
             tint = theme.colors.background,
         )

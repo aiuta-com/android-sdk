@@ -119,81 +119,143 @@ public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradientsKt
 
 public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
 	public static final field $stable I
-	public fun <init> (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
-	public final fun getArrow16 ()Landroid/graphics/drawable/Drawable;
-	public final fun getBack24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getCamera24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getCheck16 ()Landroid/graphics/drawable/Drawable;
-	public final fun getCheckCorrect24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getCheckNotCorrect24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getClose24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getDislike36 ()Landroid/graphics/drawable/Drawable;
-	public final fun getError36 ()Landroid/graphics/drawable/Drawable;
-	public final fun getHistory24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getLike36 ()Landroid/graphics/drawable/Drawable;
-	public final fun getLock16 ()Landroid/graphics/drawable/Drawable;
-	public final fun getMagic16 ()Landroid/graphics/drawable/Drawable;
-	public final fun getPhotoLibrary24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getRecent100 ()Landroid/graphics/drawable/Drawable;
-	public final fun getShare24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getTakePhoto24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getTrash24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getWelcomeScreen82 ()Landroid/graphics/drawable/Drawable;
-	public final fun getWishlist24 ()Landroid/graphics/drawable/Drawable;
-	public final fun getWishlistFill24 ()Landroid/graphics/drawable/Drawable;
+	public fun <init> (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;)V
+	public fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getClose24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getClose24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getDislike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getDislike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getError36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getError36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getLike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getLike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getShare24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getShare24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getTakePhoto24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getTakePhoto24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getTrash24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getTrash24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getWelcomeScreen82 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getWelcomeScreen82 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getWishlist24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getWishlist24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getWishlistFill24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getWishlistFill24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon {
+	public static final field $stable I
+	public fun <init> (Landroid/graphics/drawable/Drawable;Z)V
+	public synthetic fun <init> (Landroid/graphics/drawable/Drawable;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getResource ()Landroid/graphics/drawable/Drawable;
+	public synthetic fun getResource ()Ljava/lang/Object;
+	public fun getShouldDrawAsIs ()Z
 }
 
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
+	public abstract fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getClose24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getDislike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getError36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getLike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getShare24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getTakePhoto24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getTrash24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getWelcomeScreen82 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getWishlist24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getWishlistFill24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 }
 
-public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIconsKt {
-	public static final fun getArrow16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getBack24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getCamera24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getCheck16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getCheckCorrect24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getCheckNotCorrect24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getClose24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getDislike36 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getError36 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getHistory24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getLike36 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getLock16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getMagic16 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getPhotoLibrary24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getRecent100 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getShare24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getTakePhoto24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getTrash24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getWelcomeScreen82 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getWishlist24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
-	public static final fun getWishlistFill24 (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons;)Ljava/lang/Object;
+public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon {
+	public abstract fun getResource ()Ljava/lang/Object;
+	public abstract fun getShouldDrawAsIs ()Z
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons {
 	public static final field $stable I
-	public fun <init> (IIIIIIIIIIIIIIIIIIIII)V
-	public final fun getArrow16 ()I
-	public final fun getBack24 ()I
-	public final fun getCamera24 ()I
-	public final fun getCheck16 ()I
-	public final fun getCheckCorrect24 ()I
-	public final fun getCheckNotCorrect24 ()I
-	public final fun getClose24 ()I
-	public final fun getDislike36 ()I
-	public final fun getError36 ()I
-	public final fun getHistory24 ()I
-	public final fun getLike36 ()I
-	public final fun getLock16 ()I
-	public final fun getMagic16 ()I
-	public final fun getPhotoLibrary24 ()I
-	public final fun getRecent100 ()I
-	public final fun getShare24 ()I
-	public final fun getTakePhoto24 ()I
-	public final fun getTrash24 ()I
-	public final fun getWelcomeScreen82 ()I
-	public final fun getWishlist24 ()I
-	public final fun getWishlistFill24 ()I
+	public fun <init> (Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;)V
+	public synthetic fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getClose24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getClose24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getDislike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getDislike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getError36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getError36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getLike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getLike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getShare24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getShare24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getTakePhoto24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getTakePhoto24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getTrash24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getTrash24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getWelcomeScreen82 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getWelcomeScreen82 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getWishlist24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getWishlist24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getWishlistFill24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getWishlistFill24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+}
+
+public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon : com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon {
+	public static final field $stable I
+	public fun <init> (IZ)V
+	public synthetic fun <init> (IZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getResource ()Ljava/lang/Integer;
+	public synthetic fun getResource ()Ljava/lang/Object;
+	public fun getShouldDrawAsIs ()Z
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes {
@@ -215,19 +277,9 @@ public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapesKt {
 	public static final fun getDefaultAiutaShapes ()Lcom/aiuta/fashionsdk/compose/tokens/shape/AiutaShapes;
 }
 
-public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaFont {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun <init> (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;)V
-	public synthetic fun <init> (Landroidx/compose/ui/text/font/FontFamily;Landroidx/compose/ui/text/font/FontWeight;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
-	public final fun getFontWeight ()Landroidx/compose/ui/text/font/FontWeight;
-}
-
 public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography {
 	public static final field $stable I
-	public static final field Companion Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography$Companion;
-	public synthetic fun <init> (Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;)V
 	public final fun getBrandName ()Landroidx/compose/ui/text/TextStyle;
 	public final fun getButton ()Landroidx/compose/ui/text/TextStyle;
 	public final fun getCells ()Landroidx/compose/ui/text/TextStyle;
@@ -244,9 +296,9 @@ public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypograph
 	public final fun getWelcomeText ()Landroidx/compose/ui/text/TextStyle;
 }
 
-public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography$Companion {
-	public final fun build (Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;)Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
-	public static synthetic fun build$default (Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography$Companion;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaFont;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
+public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypographyFactoryKt {
+	public static final fun aiutaTypography (Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;)Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
+	public static synthetic fun aiutaTypography$default (Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;Landroidx/compose/ui/text/TextStyle;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/typography/AiutaTypography;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/typography/AiutaTypographyKt {

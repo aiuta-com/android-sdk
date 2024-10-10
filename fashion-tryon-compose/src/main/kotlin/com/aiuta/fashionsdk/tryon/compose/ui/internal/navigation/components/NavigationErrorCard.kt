@@ -19,7 +19,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.error36
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -52,7 +51,7 @@ internal fun NavigationErrorCard(
     ) {
         Icon(
             modifier = Modifier.size(36.dp),
-            painter = rememberAsyncImagePainter(theme.icons.error36),
+            painter = rememberAsyncImagePainter(theme.icons.error36.resource),
             contentDescription = null,
             tint = Color.Unspecified,
         )

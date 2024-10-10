@@ -23,8 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.photoLibrary24
-import com.aiuta.fashionsdk.compose.tokens.icon.takePhoto24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -105,7 +103,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 
     PickerButton(
         modifier = sharedModifier,
-        iconPainter = rememberAsyncImagePainter(theme.icons.takePhoto24),
+        iconPainter = rememberAsyncImagePainter(theme.icons.takePhoto24.resource),
         text = stringResources.pickerSheetTakePhoto,
         onClick = {
             if (cameraPermissionState.status.isGranted) {
@@ -131,7 +129,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 
     PickerButton(
         modifier = sharedModifier,
-        iconPainter = rememberAsyncImagePainter(theme.icons.photoLibrary24),
+        iconPainter = rememberAsyncImagePainter(theme.icons.photoLibrary24.resource),
         text = stringResources.pickerSheetChooseLibrary,
         shouldDrawDivider = false,
         onClick = {

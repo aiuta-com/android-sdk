@@ -24,8 +24,6 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.dislike36
-import com.aiuta.fashionsdk.compose.tokens.icon.like36
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
@@ -145,7 +143,7 @@ private fun FeedbackBlockContent(
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onDislikeClick()
                     },
-            painter = rememberAsyncImagePainter(theme.icons.dislike36),
+            painter = rememberAsyncImagePainter(theme.icons.dislike36.resource),
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),
         )
@@ -160,7 +158,7 @@ private fun FeedbackBlockContent(
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onLikeClick()
                     },
-            painter = rememberAsyncImagePainter(theme.icons.like36),
+            painter = rememberAsyncImagePainter(theme.icons.like36.resource),
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),
         )

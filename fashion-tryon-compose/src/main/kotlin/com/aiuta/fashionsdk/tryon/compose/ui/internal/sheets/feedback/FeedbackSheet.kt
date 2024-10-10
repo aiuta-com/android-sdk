@@ -25,7 +25,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -138,7 +137,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.feedbackSheetSend,
                 style = FashionButtonStyles.primaryStyle(theme),
-                iconPainter = rememberAsyncImagePainter(theme.icons.magic16),
+                iconPainter = rememberAsyncImagePainter(theme.icons.magic16.resource),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.sendGenerationFeedback(

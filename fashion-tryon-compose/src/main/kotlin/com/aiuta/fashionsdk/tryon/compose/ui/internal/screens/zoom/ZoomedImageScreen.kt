@@ -37,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.close24
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -211,7 +210,7 @@ private fun ZoomedImageScreenContent(
                     .clickableUnindicated {
                         screenState.closeZoomImageScreen(scope)
                     },
-            painter = rememberAsyncImagePainter(theme.icons.close24),
+            painter = rememberAsyncImagePainter(theme.icons.close24.resource),
             contentDescription = null,
             tint = interfaceColor.value,
         )

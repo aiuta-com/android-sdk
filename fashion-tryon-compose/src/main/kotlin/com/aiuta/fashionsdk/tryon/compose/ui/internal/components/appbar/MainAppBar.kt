@@ -12,8 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.close24
-import com.aiuta.fashionsdk.compose.tokens.icon.history24
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -42,7 +40,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
             exit = fadeOut(),
         ) {
             AppBarIcon(
-                painter = rememberAsyncImagePainter(theme.icons.history24),
+                painter = rememberAsyncImagePainter(theme.icons.history24.resource),
                 color = theme.colors.primary,
                 onClick = {
                     controller.navigateTo(NavigationScreen.HISTORY)
@@ -54,7 +52,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
     val closeButton: @Composable BoxScope.(modifier: Modifier) -> Unit = { innerModifier ->
         AppBarIcon(
             modifier = innerModifier,
-            painter = rememberAsyncImagePainter(theme.icons.close24),
+            painter = rememberAsyncImagePainter(theme.icons.close24.resource),
             color = theme.colors.primary,
             onClick = {
                 controller.clickClose(FinishSession.Origin.MAIN_SCREEN)

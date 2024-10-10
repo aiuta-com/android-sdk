@@ -50,8 +50,6 @@ import coil.compose.SubcomposeAsyncImage
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.check16
-import com.aiuta.fashionsdk.compose.tokens.icon.recent100
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -244,7 +242,7 @@ private fun ImageContainer(
                 if (isSelectedItem) {
                     Icon(
                         modifier = Modifier.size(16.dp),
-                        painter = rememberAsyncImagePainter(theme.icons.check16),
+                        painter = rememberAsyncImagePainter(theme.icons.check16.resource),
                         contentDescription = null,
                         tint = theme.colors.onDark,
                     )
@@ -336,7 +334,7 @@ private fun BoxScope.HistoryScreenEmpty(
         ) {
             Icon(
                 modifier = Modifier.size(100.dp),
-                painter = rememberAsyncImagePainter(theme.icons.recent100),
+                painter = rememberAsyncImagePainter(theme.icons.recent100.resource),
                 contentDescription = null,
                 tint = theme.colors.tertiary,
             )

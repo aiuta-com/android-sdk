@@ -12,7 +12,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.share24
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
@@ -38,7 +37,7 @@ internal fun ActionBlock(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         IconButton(
-            painter = rememberAsyncImagePainter(theme.icons.share24),
+            painter = rememberAsyncImagePainter(theme.icons.share24.resource),
             onClick = {
                 val imageUrls = listOfNotNull(imageUrl)
                 controller.sendShareGeneratedImageEvent(

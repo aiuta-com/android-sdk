@@ -16,7 +16,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.magic16
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 
 @Composable
@@ -39,7 +38,7 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
     ) {
         Icon(
             modifier = Modifier.size(16.dp),
-            painter = rememberAsyncImagePainter(theme.icons.magic16),
+            painter = rememberAsyncImagePainter(theme.icons.magic16.resource),
             contentDescription = null,
             tint = theme.colors.onDark,
         )
