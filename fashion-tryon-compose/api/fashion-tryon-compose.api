@@ -98,11 +98,11 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners {
 	public static final field $stable I
-	public fun <init> (Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 	public final fun getAddToCartClick ()Lkotlin/jvm/functions/Function1;
-	public final fun getAddToWishlistActiveItemClick ()Lkotlin/jvm/functions/Function2;
-	public final fun getAddToWishlistGenerateMoreItemClick ()Lkotlin/jvm/functions/Function2;
+	public final fun getAddToWishlistClick ()Lkotlin/jvm/functions/Function1;
 	public final fun getCloseClick ()Lkotlin/jvm/functions/Function1;
+	public final fun updateActiveSKUItem (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/CustomLanguage : com/aiuta/fashionsdk/tryon/compose/domain/internal/language/InternalAiutaTryOnLanguage, com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {

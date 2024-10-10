@@ -121,6 +121,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     }.also {
         it.generationNavigationListener()
         it.historyAvailabilityListener(aiutaTryOnConfiguration)
+        it.updationActiveSKUItemListener()
     }
 }
 
