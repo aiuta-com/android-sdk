@@ -39,7 +39,7 @@ public fun AiutaTryOnFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)? = null,
+    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
     aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
 ) {

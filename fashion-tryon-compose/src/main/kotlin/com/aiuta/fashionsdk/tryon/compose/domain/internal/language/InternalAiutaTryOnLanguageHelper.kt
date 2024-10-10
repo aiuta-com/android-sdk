@@ -10,9 +10,9 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.TurkishLanguage
 
 internal fun InternalAiutaTryOnLanguage.isoCode(): String? {
     return when (this) {
-        is EnglishAiutaTryOnLanguage -> EnglishLanguage.code
-        is RussianAiutaTryOnLanguage -> RussianLanguage.code
-        is TurkishAiutaTryOnLanguage -> TurkishLanguage.code
+        is EnglishAiutaTryOnLanguage -> EnglishLanguage.CODE
+        is RussianAiutaTryOnLanguage -> RussianLanguage.CODE
+        is TurkishAiutaTryOnLanguage -> TurkishLanguage.CODE
         else -> (this as? CustomLanguage)?.code
     }
 }

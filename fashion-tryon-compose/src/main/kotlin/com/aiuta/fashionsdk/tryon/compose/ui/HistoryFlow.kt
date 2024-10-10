@@ -8,6 +8,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultSKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -38,6 +39,7 @@ public fun HistoryFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
+    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
     aiutaTheme: AiutaTheme,
 ) {
     NavigationInitialisation(
@@ -45,7 +47,7 @@ public fun HistoryFlow(
         aiuta = aiuta,
         aiutaTryOn = aiutaTryOn,
         aiutaTryOnListeners = aiutaTryOnListeners,
-        aiutaTryOnConfiguration = null,
+        aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTheme = aiutaTheme,
         skuForGeneration = { defaultSKUItem },
     ) {

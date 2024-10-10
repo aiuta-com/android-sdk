@@ -12,11 +12,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 public interface AiutaTryOnConfiguration {
     /**
      * Language of Aiuta Try on Flow
-     *
-     * By default, we will look for the language of the device - if SDK supports it,
-     * we will use it, otherwise we will use EnglishLanguage.
      */
-    public val language: AiutaTryOnLanguage?
+    public val language: AiutaTryOnLanguage
 
     /**
      * Flag which turn on or off possibility to use history flow
@@ -52,7 +49,7 @@ public interface AiutaTryOnConfiguration {
 }
 
 public fun defaultAiutaTryOnConfiguration(
-    language: AiutaTryOnLanguage? = null,
+    language: AiutaTryOnLanguage,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
     isPreOnboardingAvailable: Boolean = false,
@@ -60,7 +57,7 @@ public fun defaultAiutaTryOnConfiguration(
     isMainAppbarReversed: Boolean = false,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
-        override val language: AiutaTryOnLanguage? = language
+        override val language: AiutaTryOnLanguage = language
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable

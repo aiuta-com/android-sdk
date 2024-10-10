@@ -38,9 +38,9 @@ internal fun MultiLanguagePhraseUiModel.toTranslatedString(
     val currentIsoCode = stringResources.isoCode()
 
     return when (currentIsoCode) {
-        EnglishLanguage.code -> englishTranslation
-        RussianLanguage.code -> russianTranslation
-        TurkishLanguage.code -> turkishTranslation
+        EnglishLanguage.CODE -> englishTranslation
+        RussianLanguage.CODE -> russianTranslation
+        TurkishLanguage.CODE -> turkishTranslation
         else -> null
     }
 }

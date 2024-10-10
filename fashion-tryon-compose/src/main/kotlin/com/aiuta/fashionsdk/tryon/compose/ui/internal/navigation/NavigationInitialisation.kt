@@ -13,7 +13,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveIntern
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -31,7 +30,7 @@ internal fun NavigationInitialisation(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration)?,
+    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
     aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
     content: @Composable () -> Unit,
@@ -40,10 +39,7 @@ internal fun NavigationInitialisation(
         modifier = modifier,
     ) {
         val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
-        val configuration =
-            remember {
-                aiutaTryOnConfiguration?.invoke() ?: defaultAiutaTryOnConfiguration()
-            }
+        val configuration = remember { aiutaTryOnConfiguration() }
         val controller =
             rememberFashionTryOnController(
                 analytic = { internalAnalytic },

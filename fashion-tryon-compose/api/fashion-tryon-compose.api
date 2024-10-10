@@ -93,7 +93,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnCo
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
-	public abstract fun getCode ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnListeners {
@@ -114,7 +113,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/CustomLangua
 	public fun getAppBarSelect ()Ljava/lang/String;
 	public fun getCancel ()Ljava/lang/String;
 	public fun getClose ()Ljava/lang/String;
-	public fun getCode ()Ljava/lang/String;
+	public final fun getCode ()Ljava/lang/String;
 	public fun getDefaultErrorMessage ()Ljava/lang/String;
 	public fun getDialogCameraPermissionConfirmButton ()Ljava/lang/String;
 	public fun getDialogCameraPermissionDescription ()Ljava/lang/String;
@@ -161,14 +160,28 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/CustomLangua
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/EnglishLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
 	public static final field $stable I
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/domain/models/EnglishLanguage;
-	public fun getCode ()Ljava/lang/String;
+	public static final field CODE Ljava/lang/String;
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/EnglishLanguage$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getBrand ()Ljava/lang/String;
+	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
+	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/EnglishLanguage$Companion {
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/RussianLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
 	public static final field $stable I
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/domain/models/RussianLanguage;
-	public fun getCode ()Ljava/lang/String;
+	public static final field CODE Ljava/lang/String;
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/RussianLanguage$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getBrand ()Ljava/lang/String;
+	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
+	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/RussianLanguage$Companion {
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
@@ -204,8 +217,15 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
 	public static final field $stable I
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage;
-	public fun getCode ()Ljava/lang/String;
+	public static final field CODE Ljava/lang/String;
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage$Companion;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getBrand ()Ljava/lang/String;
+	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
+	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage$Companion {
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
@@ -213,7 +233,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
-	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;II)V
+	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {
