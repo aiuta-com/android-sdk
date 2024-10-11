@@ -82,15 +82,13 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 	public abstract fun getDimensions ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;
 	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 	public abstract fun isHistoryAvailable ()Z
-	public abstract fun isMainAppbarReversed ()Z
-	public abstract fun isOnboardingAppBarExtended ()Z
 	public abstract fun isPreOnboardingAvailable ()Z
 	public abstract fun isWishlistAvailable ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
