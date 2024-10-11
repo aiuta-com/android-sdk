@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateAgreementState
@@ -82,11 +83,11 @@ private fun AgreePoint(
                 checked = onboardingController.isAgreementChecked.value,
                 onCheckedChange = { onboardingController.updateAgreementState(it) },
                 colors =
-                    CheckboxDefaults.colors(
-                        checkedColor = theme.colors.brand,
-                        uncheckedColor = theme.colors.neutral,
-                        checkmarkColor = theme.colors.onDark,
-                    ),
+                CheckboxDefaults.colors(
+                    checkedColor = theme.colors.brand,
+                    uncheckedColor = theme.colors.neutral,
+                    checkmarkColor = theme.colors.onDark,
+                ),
             )
         }
 

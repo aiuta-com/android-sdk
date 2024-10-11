@@ -2,7 +2,11 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 
-internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
+internal class RussianAiutaTryOnLanguage(
+    brand: String,
+    termsOfServiceUrl: String,
+    privacyPolicyUrl: String,
+) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
