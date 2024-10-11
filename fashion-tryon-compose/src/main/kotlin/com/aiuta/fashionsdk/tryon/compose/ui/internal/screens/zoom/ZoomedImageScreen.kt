@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,6 +35,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
@@ -201,7 +201,7 @@ private fun ZoomedImageScreenContent(
             contentDescription = null,
         )
 
-        Icon(
+        AiutaIcon(
             modifier =
                 Modifier
                     .align(Alignment.TopStart)
@@ -210,7 +210,7 @@ private fun ZoomedImageScreenContent(
                     .clickableUnindicated {
                         screenState.closeZoomImageScreen(scope)
                     },
-            painter = rememberAsyncImagePainter(theme.icons.close24.resource),
+            icon = theme.icons.close24,
             contentDescription = null,
             tint = interfaceColor.value,
         )

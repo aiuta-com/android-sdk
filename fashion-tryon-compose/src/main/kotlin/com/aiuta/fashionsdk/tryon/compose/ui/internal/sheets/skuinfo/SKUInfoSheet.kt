@@ -25,7 +25,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
@@ -136,7 +135,10 @@ private fun ButtonsContainer(
     ) {
         if (configuration.isWishlistAvailable) {
             FashionButton(
-                modifier = Modifier.weight(1f).fillMaxHeight(),
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .fillMaxHeight(),
                 text = stringResources.addToWish,
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
@@ -149,15 +151,18 @@ private fun ButtonsContainer(
         }
 
         FashionButton(
-            modifier = Modifier.weight(1f).fillMaxHeight(),
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
             text =
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     stringResources.addToCart
                 } else {
                     stringResources.tryOn
                 },
-            iconPainter =
-                rememberAsyncImagePainter(theme.icons.magic16.resource).takeIf {
+            icon =
+                theme.icons.magic16.takeIf {
                     skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
                 },
             style = FashionButtonStyles.primaryStyle(theme),

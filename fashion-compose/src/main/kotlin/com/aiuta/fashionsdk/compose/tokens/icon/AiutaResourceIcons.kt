@@ -42,6 +42,6 @@ public class AiutaResourceIcons(
 ) : AiutaIcons {
     public class AiutaResourceIcon(
         @DrawableRes public override val resource: Int,
-        public override val shouldDrawAsIs: Boolean = true,
+        public override val shouldDrawAsIs: Boolean = false,
     ) : AiutaIcons.AiutaIcon
 }

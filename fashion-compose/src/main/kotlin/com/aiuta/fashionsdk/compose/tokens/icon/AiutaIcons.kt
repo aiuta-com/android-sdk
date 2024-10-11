@@ -15,9 +15,10 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
  */
 @Immutable
 public sealed interface AiutaIcons {
+    @Immutable
     public interface AiutaIcon {
         public val resource: Any
-        public val shouldDrawAsIs: Boolean // TODO Support on UI
+        public val shouldDrawAsIs: Boolean
     }
 
     // x100

@@ -7,12 +7,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 
 @Composable
@@ -39,16 +39,16 @@ internal fun AppBar(
 @Composable
 internal fun AppBarIcon(
     modifier: Modifier = Modifier,
-    painter: Painter,
+    icon: AiutaIcons.AiutaIcon,
     color: Color,
     onClick: () -> Unit,
 ) {
-    Icon(
+    AiutaIcon(
         modifier =
             modifier
                 .size(24.dp)
                 .clickableUnindicated { onClick() },
-        painter = painter,
+        icon = icon,
         tint = color,
         contentDescription = null,
     )

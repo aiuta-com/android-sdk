@@ -7,14 +7,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 
@@ -36,9 +35,9 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
                 ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(
+        AiutaIcon(
             modifier = Modifier.size(16.dp),
-            painter = rememberAsyncImagePainter(theme.icons.magic16.resource),
+            icon = theme.icons.magic16,
             contentDescription = null,
             tint = theme.colors.onDark,
         )

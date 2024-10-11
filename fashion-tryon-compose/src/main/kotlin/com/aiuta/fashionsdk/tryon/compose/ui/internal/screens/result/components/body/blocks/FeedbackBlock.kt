@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -22,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
@@ -135,7 +134,7 @@ private fun FeedbackBlockContent(
                 ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(
+        AiutaIcon(
             modifier =
                 Modifier
                     .size(36.dp)
@@ -143,14 +142,14 @@ private fun FeedbackBlockContent(
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onDislikeClick()
                     },
-            painter = rememberAsyncImagePainter(theme.icons.dislike36.resource),
+            icon = theme.icons.dislike36,
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),
         )
 
         Spacer(Modifier.width(26.dp))
 
-        Icon(
+        AiutaIcon(
             modifier =
                 Modifier
                     .size(36.dp)
@@ -158,7 +157,7 @@ private fun FeedbackBlockContent(
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onLikeClick()
                     },
-            painter = rememberAsyncImagePainter(theme.icons.like36.resource),
+            icon = theme.icons.like36,
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),
         )

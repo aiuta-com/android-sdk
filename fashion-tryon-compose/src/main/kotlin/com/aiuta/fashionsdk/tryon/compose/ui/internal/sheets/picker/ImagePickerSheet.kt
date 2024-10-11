@@ -12,17 +12,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -103,7 +102,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 
     PickerButton(
         modifier = sharedModifier,
-        iconPainter = rememberAsyncImagePainter(theme.icons.takePhoto24.resource),
+        icon = theme.icons.takePhoto24,
         text = stringResources.pickerSheetTakePhoto,
         onClick = {
             if (cameraPermissionState.status.isGranted) {
@@ -129,7 +128,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 
     PickerButton(
         modifier = sharedModifier,
-        iconPainter = rememberAsyncImagePainter(theme.icons.photoLibrary24.resource),
+        icon = theme.icons.photoLibrary24,
         text = stringResources.pickerSheetChooseLibrary,
         shouldDrawDivider = false,
         onClick = {
@@ -141,7 +140,7 @@ internal fun ColumnScope.ImagePickerSheet() {
 @Composable
 private fun PickerButton(
     modifier: Modifier = Modifier,
-    iconPainter: Painter,
+    icon: AiutaIcons.AiutaIcon,
     text: String,
     shouldDrawDivider: Boolean = true,
     onClick: () -> Unit,
@@ -159,9 +158,9 @@ private fun PickerButton(
                 ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Icon(
+        AiutaIcon(
             modifier = Modifier.size(24.dp),
-            painter = iconPainter,
+            icon = icon,
             contentDescription = null,
             tint = theme.colors.brand,
         )

@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -31,11 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import coil.compose.SubcomposeAsyncImage
-import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
@@ -129,7 +128,6 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         text = stringResources.generatedOperationsSheetUploadNewButton,
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
-        iconPainter = rememberAsyncImagePainter(theme.icons.magic16.resource),
         onClick = {
             controller.bottomSheetNavigator.change(NavigationBottomSheetScreen.ImagePicker)
         },
@@ -175,7 +173,7 @@ private fun OperationItem(
             )
         }
 
-        Icon(
+        AiutaIcon(
             modifier =
                 Modifier
                     .align(Alignment.BottomEnd)
@@ -195,7 +193,7 @@ private fun OperationItem(
                             }
                         }
                     },
-            painter = rememberAsyncImagePainter(theme.icons.trash24.resource),
+            icon = theme.icons.trash24,
             contentDescription = null,
             tint = theme.colors.background,
         )

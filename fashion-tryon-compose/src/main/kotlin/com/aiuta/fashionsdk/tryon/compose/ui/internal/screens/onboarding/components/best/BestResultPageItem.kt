@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 
 @Composable
@@ -35,21 +34,18 @@ internal fun BestResultPageItem(
             contentScale = ContentScale.FillWidth,
         )
 
-        Icon(
+        AiutaIcon(
             modifier =
                 Modifier
                     .align(Alignment.TopStart)
                     .padding(10.dp)
                     .size(24.dp),
-            painter =
-                rememberAsyncImagePainter(
-                    model =
-                        if (isGoodImage) {
-                            theme.icons.checkCorrect24.resource
-                        } else {
-                            theme.icons.checkNotCorrect24.resource
-                        },
-                ),
+            icon =
+                if (isGoodImage) {
+                    theme.icons.checkCorrect24
+                } else {
+                    theme.icons.checkNotCorrect24
+                },
             contentDescription = null,
             tint = Color.Unspecified,
         )
