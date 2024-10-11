@@ -79,6 +79,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/t
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration {
+	public abstract fun getDimensions ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;
 	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 	public abstract fun isHistoryAvailable ()Z
 	public abstract fun isMainAppbarReversed ()Z
@@ -88,8 +89,8 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;ZZZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;ZZZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
@@ -226,6 +227,14 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLangu
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage$Companion {
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions {
+	public static final field $stable I
+	public synthetic fun <init> (Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getGrabberPaddingTop-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun getGrabberWidth-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
