@@ -30,10 +30,11 @@ jobs:
                     echo Last tag is $LAST_VERSION
                     bash ./scripts/update_version.sh $LAST_VERSION
 
-            -   name: Build and publish with Gradle
+            -   name: Setup gradle
                 uses: gradle/actions/setup-gradle@v4
-                with:
-                    arguments: --no-daemon -i jreleaserConfig clean publish
+
+            -   name: Build and publish
+                run: ./gradlew --no-daemon -i jreleaserConfig clean publish
                 env:
                     JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
                     JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
@@ -43,9 +44,7 @@ jobs:
                     JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
 
             -   name: Release with gradle
-                uses: gradle/actions/setup-gradle@v4
-                with:
-                    arguments: --no-daemon -i jreleaserFullRelease
+                run: ./gradlew --no-daemon -i jreleaserFullRelease
                 env:
                     JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
                     JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
