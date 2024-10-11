@@ -18,16 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
-import com.aiuta.fashionsdk.tryon.compose.R
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -46,9 +45,15 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
         modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
-        Image(
+        AiutaImage(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(R.drawable.preonboarding_background),
+            image =
+                checkNotNull(theme.images?.preonboardingImage) {
+                    """
+                    PreOnboardingScreen: preonboarding image is not provided.
+                    Please, push it through rememberAiutaTheme(images = ...)
+                    """.trimIndent()
+                },
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.compose.tokens.gradient.AiutaGradients
 import com.aiuta.fashionsdk.compose.tokens.gradient.DefaultAiutaGradients
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
 import com.aiuta.fashionsdk.compose.tokens.shape.AiutaShapes
 import com.aiuta.fashionsdk.compose.tokens.shape.DefaultAiutaShapes
 import com.aiuta.fashionsdk.compose.tokens.typography.AiutaTypography
@@ -28,6 +29,7 @@ import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
  * @see AiutaGradients
  * @see AiutaTypography
  * @see AiutaIcons
+ * @see AiutaImages
  * @see AiutaShapes
  */
 @Immutable
@@ -36,6 +38,7 @@ public class AiutaTheme(
     public val gradients: AiutaGradients,
     public val typography: AiutaTypography,
     public val icons: AiutaIcons,
+    public val images: AiutaImages?,
     public val shapes: AiutaShapes,
     public val watermark: AiutaImage?,
 )
@@ -50,6 +53,7 @@ public fun aiutaTheme(
     colors: AiutaColors = DefaultAiutaColors,
     gradients: AiutaGradients = DefaultAiutaGradients,
     typography: AiutaTypography = DefaultAiutaTypography,
+    images: AiutaImages? = null,
     shapes: AiutaShapes = DefaultAiutaShapes,
     watermark: AiutaImage? = null,
 ): AiutaTheme {
@@ -57,6 +61,7 @@ public fun aiutaTheme(
         icons = icons,
         colors = colors,
         gradients = gradients,
+        images = images,
         typography = typography,
         shapes = shapes,
         watermark = watermark,
@@ -74,6 +79,7 @@ public fun rememberAiutaTheme(
     colors: AiutaColors = DefaultAiutaColors,
     gradients: AiutaGradients = DefaultAiutaGradients,
     typography: AiutaTypography = DefaultAiutaTypography,
+    images: AiutaImages? = null,
     shapes: AiutaShapes = DefaultAiutaShapes,
     watermark: AiutaImage? = null,
 ): AiutaTheme {
@@ -90,6 +96,7 @@ public fun rememberAiutaTheme(
             colors = colors,
             gradients = gradients,
             typography = typography,
+            images = images,
             shapes = shapes,
             watermark = watermark,
         )
