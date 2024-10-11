@@ -146,16 +146,16 @@ private fun PickerButton(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
+    val rawModifier = modifier.clickableUnindicated { onClick() }
+    val finalModifier =
+        if (theme.toggles.isDelimitersExtended) {
+            rawModifier.padding(start = 16.dp)
+        } else {
+            rawModifier.padding(horizontal = 16.dp)
+        }
 
     Row(
-        modifier =
-            modifier
-                .clickableUnindicated {
-                    onClick()
-                }
-                .padding(
-                    horizontal = 16.dp,
-                ),
+        modifier = finalModifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AiutaIcon(
