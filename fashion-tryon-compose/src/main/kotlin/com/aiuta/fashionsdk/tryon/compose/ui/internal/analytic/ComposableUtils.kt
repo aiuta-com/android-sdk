@@ -33,7 +33,7 @@ internal fun sendConfigureEvent(theme: AiutaTheme?) {
             )
             put(
                 key = Configure.IS_WATERMARK_PROVIDED_PARAM,
-                value = (theme?.watermarkRes != null).toString(),
+                value = (theme?.watermark != null).toString(),
             )
             put(
                 key = Configure.IS_HISTORY_ENABLE_PARAM,

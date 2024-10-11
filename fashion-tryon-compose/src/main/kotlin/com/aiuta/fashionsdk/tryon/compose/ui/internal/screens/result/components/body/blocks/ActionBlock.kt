@@ -48,7 +48,7 @@ internal fun ActionBlock(
                 shareManager.share(
                     content = activeSKUItem.additionalShareInfo,
                     imageUrls = imageUrls,
-                    watermarkRes = theme.watermarkRes,
+                    watermark = theme.watermark,
                     origin = ShareGeneratedImage.Origin.RESULT_SCREEN,
                 )
             },

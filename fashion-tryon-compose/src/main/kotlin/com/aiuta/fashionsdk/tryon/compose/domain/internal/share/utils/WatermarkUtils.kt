@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import kotlin.math.min
 
@@ -17,67 +18,67 @@ private const val PADDING_COEF = 0.05f
 
 internal fun Context.addWatermark(
     source: Bitmap,
-    watermarkRes: Int,
+    watermark: Drawable,
 ): Bitmap {
     val canvas = Canvas(source)
-    val watermark =
+    val proceedWatermark =
         getBitmapFromVectorDrawable(
             source = source,
-            watermarkRes = watermarkRes,
+            watermark = watermark,
         )
 
     val padding = min(source.width, source.height) * PADDING_COEF
 
-    watermark?.let {
-        val watermarkX = source.width - it.width - padding
-        val watermarkY = source.height - it.height - padding
-        val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG or Paint.FILTER_BITMAP_FLAG)
-        canvas.drawBitmap(it, watermarkX, watermarkY, paint)
-        watermark.recycle()
-    }
+    val watermarkX = source.width - proceedWatermark.width - padding
+    val watermarkY = source.height - proceedWatermark.height - padding
+    val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG or Paint.FILTER_BITMAP_FLAG)
+    canvas.drawBitmap(proceedWatermark, watermarkX, watermarkY, paint)
+    proceedWatermark.recycle()
+
     return source
 }
 
 private fun Context.getBitmapFromVectorDrawable(
     source: Bitmap,
-    watermarkRes: Int,
-): Bitmap? {
-    ContextCompat.getDrawable(this, watermarkRes)?.let { watermark ->
-        val isPortrait = source.height > source.width
+    watermark: Drawable,
+): Bitmap {
+    val isPortrait = source.height > source.width
 
-        // Decide coefficient for scale
-        val widthCoef = if (isPortrait) PORTRAIT_WIDTH_COEF else LANDSCAPE_WIDTH_COEF
-        val heightCoef = if (isPortrait) PORTRAIT_HEIGHT_COEF else LANDSCAPE_HEIGHT_COEF
+    // Decide coefficient for scale
+    val widthCoef = if (isPortrait) PORTRAIT_WIDTH_COEF else LANDSCAPE_WIDTH_COEF
+    val heightCoef = if (isPortrait) PORTRAIT_HEIGHT_COEF else LANDSCAPE_HEIGHT_COEF
 
-        val sourceWidthWithCoef = source.width * widthCoef
-        val sourceHeightWithCoef = source.height * heightCoef
+    val sourceWidthWithCoef = source.width * widthCoef
+    val sourceHeightWithCoef = source.height * heightCoef
 
-        // Decide should scale or not, if watermark is bigger than possible width
-        // No more than 1, because we don't want to make watermark
-        val scaleWidthCoef =
-            (sourceWidthWithCoef / watermark.intrinsicWidth).coerceAtMost(
-                maximumValue = 1f,
-            )
-        val scaleHeightCoef =
-            (sourceHeightWithCoef / watermark.intrinsicHeight).coerceAtMost(
-                maximumValue = 1f,
-            )
+    // Decide should scale or not, if watermark is bigger than possible width
+    // No more than 1, because we don't want to make watermark
+    val scaleWidthCoef =
+        (sourceWidthWithCoef / watermark.intrinsicWidth).coerceAtMost(
+            maximumValue = 1f,
+        )
+    val scaleHeightCoef =
+        (sourceHeightWithCoef / watermark.intrinsicHeight).coerceAtMost(
+            maximumValue = 1f,
+        )
 
-        val scaleCoef = min(scaleWidthCoef, scaleHeightCoef)
+    val scaleCoef = min(scaleWidthCoef, scaleHeightCoef)
 
-        val watermarkWidth = (watermark.intrinsicWidth * scaleCoef).toInt()
-        val watermarkHeight = (watermark.intrinsicHeight * scaleCoef).toInt()
+    val watermarkWidth = (watermark.intrinsicWidth * scaleCoef).toInt()
+    val watermarkHeight = (watermark.intrinsicHeight * scaleCoef).toInt()
 
-        watermark.setBounds(0, 0, watermarkWidth, watermarkHeight)
-        val bitmap =
-            Bitmap.createBitmap(
-                watermarkWidth,
-                watermarkHeight,
-                Bitmap.Config.ARGB_8888,
-            )
-        val canvas = Canvas(bitmap)
-        watermark.draw(canvas)
-        return bitmap
-    }
-    return null
+    watermark.setBounds(0, 0, watermarkWidth, watermarkHeight)
+    val bitmap =
+        Bitmap.createBitmap(
+            watermarkWidth,
+            watermarkHeight,
+            Bitmap.Config.ARGB_8888,
+        )
+    val canvas = Canvas(bitmap)
+    watermark.draw(canvas)
+    return bitmap
+}
+
+internal fun Context.solveDrawableFromWatermark(watermarkRes: Int?): Drawable? {
+    return watermarkRes?.let { ContextCompat.getDrawable(this, it) }
 }
