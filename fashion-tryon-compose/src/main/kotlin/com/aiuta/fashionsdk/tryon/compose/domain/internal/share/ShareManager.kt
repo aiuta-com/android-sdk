@@ -2,15 +2,20 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toBitmapOrNull
 import coil.Coil
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaDrawableImage
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.solveDrawableFromWatermark
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,14 +37,59 @@ internal class ShareManager(
     public fun share(
         content: String? = null,
         imageUrls: List<String>,
+        watermark: AiutaImage? = null,
+        origin: ShareGeneratedImage.Origin,
+    ): StateFlow<SharingState> {
+        return share(
+            content = content,
+            imageUrls = imageUrls,
+            watermark =
+                watermark?.let {
+                    when (watermark) {
+                        is AiutaDrawableImage -> watermark.resource
+
+                        is AiutaResourceImage ->
+                            context.solveDrawableFromWatermark(
+                                watermark.resource,
+                            )
+                    }
+                },
+            origin = origin,
+        )
+    }
+
+    public fun share(
+        content: String? = null,
+        imageUrls: List<String>,
         @DrawableRes watermarkRes: Int? = null,
+        origin: ShareGeneratedImage.Origin,
+    ): StateFlow<SharingState> {
+        return share(
+            content = content,
+            imageUrls = imageUrls,
+            watermark = context.solveDrawableFromWatermark(watermarkRes),
+            origin = origin,
+        )
+    }
+
+    public fun share(
+        content: String? = null,
+        imageUrls: List<String>,
+        watermark: Drawable? = null,
         origin: ShareGeneratedImage.Origin,
     ): StateFlow<SharingState> {
         innerScope.launch {
             try {
                 val imageUris = ArrayList<Uri>()
                 imageUrls
-                    .map { image -> async { getUri(image, watermarkRes) } }
+                    .map { image ->
+                        async {
+                            getUri(
+                                imageUrl = image,
+                                watermark = watermark,
+                            )
+                        }
+                    }
                     .awaitAll()
                     .filterNotNull()
                     .toCollection(imageUris)
@@ -62,7 +112,7 @@ internal class ShareManager(
 
     private suspend fun getUri(
         imageUrl: String,
-        @DrawableRes watermarkRes: Int? = null,
+        watermark: Drawable? = null,
     ): Uri? {
         val bitmap = getBitmap(imageUrl) ?: return null
 
@@ -71,10 +121,10 @@ internal class ShareManager(
                 val mutableBitmap = bitmap.copy(bitmap.config, true)
                 val modifierBitmap =
                     try {
-                        watermarkRes?.let {
+                        watermark?.let {
                             context.addWatermark(
                                 source = mutableBitmap,
-                                watermarkRes = watermarkRes,
+                                watermark = watermark,
                             )
                         } ?: mutableBitmap
                     } catch (e: Exception) {

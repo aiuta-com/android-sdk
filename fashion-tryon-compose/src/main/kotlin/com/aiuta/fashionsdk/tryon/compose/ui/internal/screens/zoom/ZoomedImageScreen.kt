@@ -231,7 +231,7 @@ private fun ZoomedImageScreenContent(
                         shareManager.share(
                             content = screenState.sharedImage.value.additionalShareInfo,
                             imageUrls = imageUrls,
-                            watermarkRes = theme.watermarkRes,
+                            watermark = theme.watermark,
                             origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
                         )
                     },

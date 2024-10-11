@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.compose.tokens
 
-import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
@@ -9,6 +8,7 @@ import com.aiuta.fashionsdk.compose.tokens.color.DefaultAiutaColors
 import com.aiuta.fashionsdk.compose.tokens.gradient.AiutaGradients
 import com.aiuta.fashionsdk.compose.tokens.gradient.DefaultAiutaGradients
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.shape.AiutaShapes
 import com.aiuta.fashionsdk.compose.tokens.shape.DefaultAiutaShapes
 import com.aiuta.fashionsdk.compose.tokens.typography.AiutaTypography
@@ -22,7 +22,7 @@ import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
  * @property typography The typography styles used in the theme.
  * @property icons The icon set used in the theme.
  * @property shapes The shape definitions used in the theme.
- * @property watermarkRes Optional watermark resource.
+ * @property watermark Optional watermark resource.
  *
  * @see AiutaColors
  * @see AiutaGradients
@@ -37,8 +37,7 @@ public class AiutaTheme(
     public val typography: AiutaTypography,
     public val icons: AiutaIcons,
     public val shapes: AiutaShapes,
-    @get:DrawableRes
-    public val watermarkRes: Int?,
+    public val watermark: AiutaImage?,
 )
 
 /**
@@ -52,7 +51,7 @@ public fun aiutaTheme(
     gradients: AiutaGradients = DefaultAiutaGradients,
     typography: AiutaTypography = DefaultAiutaTypography,
     shapes: AiutaShapes = DefaultAiutaShapes,
-    @DrawableRes watermarkRes: Int? = null,
+    watermark: AiutaImage? = null,
 ): AiutaTheme {
     return AiutaTheme(
         icons = icons,
@@ -60,7 +59,7 @@ public fun aiutaTheme(
         gradients = gradients,
         typography = typography,
         shapes = shapes,
-        watermarkRes = watermarkRes,
+        watermark = watermark,
     )
 }
 
@@ -76,7 +75,7 @@ public fun rememberAiutaTheme(
     gradients: AiutaGradients = DefaultAiutaGradients,
     typography: AiutaTypography = DefaultAiutaTypography,
     shapes: AiutaShapes = DefaultAiutaShapes,
-    @DrawableRes watermarkRes: Int? = null,
+    watermark: AiutaImage? = null,
 ): AiutaTheme {
     return remember(
         icons,
@@ -84,7 +83,7 @@ public fun rememberAiutaTheme(
         gradients,
         typography,
         shapes,
-        watermarkRes,
+        watermark,
     ) {
         aiutaTheme(
             icons = icons,
@@ -92,7 +91,7 @@ public fun rememberAiutaTheme(
             gradients = gradients,
             typography = typography,
             shapes = shapes,
-            watermarkRes = watermarkRes,
+            watermark = watermark,
         )
     }
 }

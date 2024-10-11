@@ -303,7 +303,7 @@ private fun BoxScope.HistoryScreenInterface(
                 )
                 shareManager.share(
                     imageUrls = imageUrls,
-                    watermarkRes = theme.watermarkRes,
+                    watermark = theme.watermark,
                     origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
                 )
 
