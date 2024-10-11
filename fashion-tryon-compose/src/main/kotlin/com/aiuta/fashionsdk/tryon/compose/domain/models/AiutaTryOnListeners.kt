@@ -5,14 +5,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-// TODO Update docs
-
 /**
  * Callback listeners for handling specific actions
- * inside [AiutaTryOnFlow]
+ * inside [AiutaTryOnFlow].
  *
- * @param addToCartClick - use click on 'Add to cart' button
- * @param closeClick - use click close button or make back press, which should also
+ * @param addToWishlistClick - user click on 'Add to wishlist' button
+ * @param addToCartClick - user click on 'Add to cart' button
+ * @param closeClick - user click close button or make back press, which should also
  * navigate back to host app
  */
 @Immutable
