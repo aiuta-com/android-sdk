@@ -17,11 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.providePoweredByUrl
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.openUri
 
 @Composable
 internal fun AiutaLabel(modifier: Modifier = Modifier) {
@@ -43,21 +41,14 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
         enter = fadeIn(),
         exit = fadeOut(),
     ) {
-        poweredByUrl.value?.let { url ->
-            AiutaLabelContent(
-                onClick = {
-                    context.openUri(url)
-                },
-            )
+        poweredByUrl.value?.let {
+            AiutaLabelContent()
         }
     }
 }
 
 @Composable
-private fun AiutaLabelContent(
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit,
-) {
+private fun AiutaLabelContent(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -68,7 +59,6 @@ private fun AiutaLabelContent(
                     shape = RoundedCornerShape(100.dp),
                     color = theme.colors.neutral,
                 )
-                .clickableUnindicated { onClick() }
                 .padding(
                     horizontal = 12.dp,
                     vertical = 8.dp,
