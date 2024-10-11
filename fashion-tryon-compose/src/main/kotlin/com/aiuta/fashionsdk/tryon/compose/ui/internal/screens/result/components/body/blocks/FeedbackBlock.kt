@@ -4,12 +4,12 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
@@ -118,21 +119,48 @@ private fun FeedbackBlockContent(
     onDislikeClick: () -> Unit,
     onLikeClick: () -> Unit,
 ) {
-    val haptic = LocalHapticFeedback.current
     val theme = LocalTheme.current
 
     Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        ReactionIcon(
+            icon = theme.icons.like36,
+            onClick = {
+                onLikeClick()
+            },
+        )
+
+        Spacer(Modifier.width(8.dp))
+
+        ReactionIcon(
+            icon = theme.icons.dislike36,
+            onClick = {
+                onDislikeClick()
+            },
+        )
+    }
+}
+
+@Composable
+private fun ReactionIcon(
+    modifier: Modifier = Modifier,
+    icon: AiutaIcons.AiutaIcon,
+    onClick: () -> Unit,
+) {
+    val haptic = LocalHapticFeedback.current
+    val theme = LocalTheme.current
+
+    Box(
         modifier =
             modifier
+                .size(38.dp)
                 .background(
                     color = theme.colors.primary.copy(alpha = 0.12f),
-                    shape = RoundedCornerShape(20.dp),
-                )
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 10.dp,
+                    shape = CircleShape,
                 ),
-        verticalAlignment = Alignment.CenterVertically,
+        contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(
             modifier =
@@ -140,24 +168,9 @@ private fun FeedbackBlockContent(
                     .size(36.dp)
                     .clickableUnindicated {
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                        onDislikeClick()
+                        onClick()
                     },
-            icon = theme.icons.dislike36,
-            contentDescription = null,
-            tint = theme.colors.background.copy(alpha = 0.7f),
-        )
-
-        Spacer(Modifier.width(26.dp))
-
-        AiutaIcon(
-            modifier =
-                Modifier
-                    .size(36.dp)
-                    .clickableUnindicated {
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                        onLikeClick()
-                    },
-            icon = theme.icons.like36,
+            icon = icon,
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),
         )

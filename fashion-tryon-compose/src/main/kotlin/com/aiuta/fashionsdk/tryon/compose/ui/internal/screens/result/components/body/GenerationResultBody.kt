@@ -170,7 +170,7 @@ internal fun BoxScope.PagerItemInterface(
         modifier =
             Modifier
                 .align(Alignment.BottomEnd)
-                .padding(bottom = 12.dp, end = 14.dp),
+                .padding(12.dp),
         itemIndex = itemIndex,
         generationResultController = generationResultController,
     )
