@@ -54,7 +54,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
             }
         }
 
-    SheetDivider(topPadding = 18.dp)
+    SheetDivider()
 
     Spacer(Modifier.height(30.dp))
 

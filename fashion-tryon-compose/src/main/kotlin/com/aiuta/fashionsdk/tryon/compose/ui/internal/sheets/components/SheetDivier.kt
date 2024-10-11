@@ -11,17 +11,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 
 @Composable
-internal fun ColumnScope.SheetDivider(topPadding: Dp = 8.dp) {
-    Spacer(Modifier.height(topPadding))
+internal fun ColumnScope.SheetDivider() {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
+    val dividerWidth = aiutaConfiguration.dimensions?.grabberWidth ?: 36.dp
+    val dividerTopPadding = aiutaConfiguration.dimensions?.grabberPaddingTop ?: 8.dp
+
+    Spacer(Modifier.height(dividerTopPadding))
 
     Divider(
         modifier =
             Modifier
-                .width(36.dp)
+                .width(dividerWidth)
                 .height(4.dp)
                 .clip(RoundedCornerShape(6.dp))
                 .align(Alignment.CenterHorizontally),

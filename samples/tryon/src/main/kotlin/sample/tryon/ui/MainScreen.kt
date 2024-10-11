@@ -83,7 +83,7 @@ fun MainScreen() {
         val mockAiutaConfiguration =
             remember {
                 defaultAiutaTryOnConfiguration(
-                    isPreOnboardingAvailable = true,
+                    isPreOnboardingAvailable = false,
                     isOnboardingAppBarExtended = true,
                     isMainAppbarReversed = true,
                     language =

@@ -29,7 +29,7 @@ internal fun ColumnScope.FitDisclaimerSheet(text: String) {
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
 
-    SheetDivider(topPadding = 18.dp)
+    SheetDivider()
 
     Spacer(Modifier.height(30.dp))
 
