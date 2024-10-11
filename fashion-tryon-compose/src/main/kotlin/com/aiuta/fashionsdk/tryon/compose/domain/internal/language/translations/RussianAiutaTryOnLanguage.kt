@@ -2,15 +2,20 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 
-internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
+internal class RussianAiutaTryOnLanguage(
+    brand: String,
+    termsOfServiceUrl: String,
+    privacyPolicyUrl: String,
+) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
 
     // Pre Onboarding
-    override val preOnboardingTitle: String = "TODO"
-    override val preOnboardingSubtitle: String = "TODO"
-    override val preOnboardingButton: String = "TODO"
+    override val preOnboardingTitle: String = "Примерьте на себе"
+    override val preOnboardingSubtitle: String =
+        "Добро пожаловать в виртуальную примерочную.\nПримерьте вещь прямо на своём фото"
+    override val preOnboardingButton: String = "Начать"
 
     // Onboarding
     override val onboardingButtonNext: String = "Далее"
@@ -19,18 +24,22 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Загрузите своё фото и порадуйтесь новому образу"
     override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
     override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
-    override val onboardingPageConsentTopic: String = "TODO"
-    override val onboardingPageConsentBody: String = "TODO"
-    override val onboardingPageConsentAgreePoint: String = "TODO"
-    override val onboardingAppbarTryonPage: String = "TODO"
-    override val onboardingAppbarBestResultPage: String = "TODO"
-    override val onboardingAppbarConsentPage: String = "TODO"
+    override val onboardingPageConsentTopic: String = "Согласие"
+    override val onboardingPageConsentBody: String =
+        "Чтобы примерить товары виртуально, вы соглашаетесь на обработку вашего фото c $brand." +
+            " Ваши данные будут обработаны в соответствии с <b><a href=\"$termsOfServiceUrl\">Политикой конфиденциальности</a></b> " +
+            "и <b><a href=\"$privacyPolicyUrl\">Условиями использования.</a></b>"
+    override val onboardingPageConsentAgreePoint: String =
+        "Я соглашаюсь на обработку моего фото c $brand"
+    override val onboardingAppbarTryonPage: String = "<b>Шаг 1/3</b> - Как это работает"
+    override val onboardingAppbarBestResultPage: String = "<b>Шаг 2/3</b> - Лучшие результаты"
+    override val onboardingAppbarConsentPage: String = "<b>Шаг 3/3</b> - Согласие"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"
     override val imageSelectorChangeButton: String = "Заменить фото"
     override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
-    override val imageSelectorProtectionPoint: String = "TODO"
+    override val imageSelectorProtectionPoint: String = "Ваши фото защищены и видны только вам"
     override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
 
     // History
@@ -41,7 +50,7 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "TODO"
+    override val generationResultMoreTitle: String = "Вам может понравиться"
     override val generationResultMoreSubtitle: String = "Больше образов для примерки"
 
     // Bottom sheets
@@ -69,10 +78,10 @@ internal object RussianAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToWish: String = "В избранное"
     override val addToCart: String = "Добавить в корзину"
     override val cancel: String = "Отмена"
-    override val close: String = "TODO"
+    override val close: String = "Закрыть"
     override val tryOn: String = "Примерить"
-    override val tryAgain: String = "TODO"
-    override val virtualTryOn: String = "TODO"
+    override val tryAgain: String = "Попробовать снова"
+    override val virtualTryOn: String = "Виртуальная примерка"
     override val share: String = "Поделиться"
     override val defaultErrorMessage: String =
         "Что-то пошло не так. Пожалуйста, повторите попытку позже"

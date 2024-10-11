@@ -22,9 +22,27 @@ internal fun resolveInternalLanguage(
 
 private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTryOnLanguage {
     return when (language) {
-        is EnglishLanguage -> EnglishAiutaTryOnLanguage
-        is TurkishLanguage -> TurkishAiutaTryOnLanguage
-        is RussianLanguage -> RussianAiutaTryOnLanguage
+        is EnglishLanguage ->
+            EnglishAiutaTryOnLanguage(
+                brand = language.brand,
+                termsOfServiceUrl = language.termsOfServiceUrl,
+                privacyPolicyUrl = language.privacyPolicyUrl,
+            )
+
+        is TurkishLanguage ->
+            TurkishAiutaTryOnLanguage(
+                brand = language.brand,
+                termsOfServiceUrl = language.termsOfServiceUrl,
+                privacyPolicyUrl = language.privacyPolicyUrl,
+            )
+
+        is RussianLanguage ->
+            RussianAiutaTryOnLanguage(
+                brand = language.brand,
+                termsOfServiceUrl = language.termsOfServiceUrl,
+                privacyPolicyUrl = language.privacyPolicyUrl,
+            )
+
         is CustomLanguage -> language
     }
 }

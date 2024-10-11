@@ -2,15 +2,20 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 
-internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
+internal class TurkishAiutaTryOnLanguage(
+    brand: String,
+    termsOfServiceUrl: String,
+    privacyPolicyUrl: String,
+) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
 
     // Pre Onboarding
-    override val preOnboardingTitle: String = "TODO"
-    override val preOnboardingSubtitle: String = "TODO"
-    override val preOnboardingButton: String = "TODO"
+    override val preOnboardingTitle: String = "Üzerinde Dene"
+    override val preOnboardingSubtitle: String =
+        "Sanal Deneme'ye hoş geldiniz.\nÜrünü fotoğrafınızın üzerinde deneyin"
+    override val preOnboardingButton: String = "Başlayalım"
 
     // Onboarding
     override val onboardingButtonNext: String = "Başla"
@@ -20,18 +25,22 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val onboardingPageTryonSubtopic: String = "Fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
     override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
-    override val onboardingPageConsentTopic: String = "TODO"
-    override val onboardingPageConsentBody: String = "TODO"
-    override val onboardingPageConsentAgreePoint: String = "TODO"
-    override val onboardingAppbarTryonPage: String = "TODO"
-    override val onboardingAppbarBestResultPage: String = "TODO"
-    override val onboardingAppbarConsentPage: String = "TODO"
+    override val onboardingPageConsentTopic: String = "Onay"
+    override val onboardingPageConsentBody: String =
+        "Ürünleri dijital olarak denemek için, $brand fotoğrafınızı işlemesine izin verirsiniz." +
+            " Verileriniz $brand <b><a href=\"$termsOfServiceUrl\">Gizlilik Bildirimi</a></b> " +
+            "ve <b><a href=\"$privacyPolicyUrl\">Kullanım Koşulları</a></b> doğrultusunda işlenecektir."
+    override val onboardingPageConsentAgreePoint: String =
+        "$brand'ın fotoğrafımı işlemesine izin veriyorum"
+    override val onboardingAppbarTryonPage: String = "<b>Adım 1/3</b> - Nasıl çalışır"
+    override val onboardingAppbarBestResultPage: String = "<b>Adım 2/3</b> - En iyi sonuçlar"
+    override val onboardingAppbarConsentPage: String = "<b>Adım 3/3</b> - Onay"
 
     // Image selector
     override val imageSelectorUploadButton: String = "Fotoğrafını yükle"
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
     override val imageSelectorPoweredByAiuta: String = "Tarafından desteklenmektedir Aiuta"
-    override val imageSelectorProtectionPoint: String = "TODO"
+    override val imageSelectorProtectionPoint: String = "Fotoğraflarınız koruma altındadır ve yalnızca size görünür"
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
 
     // History
@@ -42,7 +51,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val historyEmptyDescription: String = "İlk ürün denemenizden sonra deneme geçmişiniz burada saklanacaktır"
 
     // Generation Result
-    override val generationResultMoreTitle: String = "TODO"
+    override val generationResultMoreTitle: String = "Hoşunuza gidebilecek ürünler"
     override val generationResultMoreSubtitle: String = "Denemeniz için daha fazlası"
 
     // Picker sheet
@@ -68,10 +77,10 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
     override val addToWish: String = "Listelerime ekle"
     override val addToCart: String = "Sepete ekle"
     override val cancel: String = "Vazgeç"
-    override val close: String = "TODO"
+    override val close: String = "Kapat"
     override val tryOn: String = "Üzerinde Dene"
-    override val tryAgain: String = "TODO"
-    override val virtualTryOn: String = "TODO"
+    override val tryAgain: String = "Tekrar dene"
+    override val virtualTryOn: String = "Sanal Deneme"
     override val share: String = "Paylaş"
     override val defaultErrorMessage: String = "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin"
 }

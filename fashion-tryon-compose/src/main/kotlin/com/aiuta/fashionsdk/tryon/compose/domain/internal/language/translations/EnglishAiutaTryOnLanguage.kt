@@ -2,7 +2,11 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 
-internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
+internal class EnglishAiutaTryOnLanguage(
+    brand: String,
+    termsOfServiceUrl: String,
+    privacyPolicyUrl: String,
+) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "History"
     override val appBarSelect: String = "Select"
@@ -24,11 +28,11 @@ internal object EnglishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
         "Use a photo with good lighting, stand straight a plain background"
     override val onboardingPageConsentTopic: String = "Consent"
     override val onboardingPageConsentBody: String =
-        "In order to try on items digitally, you agree to allow Aiuta to process your photo." +
-            " Your data will be processed according to the Aiuta <b><a href=\"https://aiuta.com/legal/privacy-policy.html\">Privacy Notice</a></b> " +
-            "and <b><a href=\"https://aiuta.com/legal/terms-of-service.html\">Terms of Use.</a></b>"
+        "In order to try on items digitally, you agree to allow $brand to process your photo." +
+            " Your data will be processed according to the $brand <b><a href=\"$termsOfServiceUrl\">Privacy Notice</a></b> " +
+            "and <b><a href=\"$privacyPolicyUrl\">Terms of Use.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
-        "I agree to allow Brand name to\nprocess my photo"
+        "I agree to allow $brand to\nprocess my photo"
     override val onboardingAppbarTryonPage: String = "<b>Step 1/3</b> - How it works"
     override val onboardingAppbarBestResultPage: String = "<b>Step 2/3</b> - For best result"
     override val onboardingAppbarConsentPage: String = "<b>Step 3/3</b> - Consent"
