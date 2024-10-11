@@ -23,7 +23,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -47,8 +46,8 @@ import androidx.compose.ui.unit.toSize
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.SubcomposeAsyncImage
-import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
@@ -240,9 +239,9 @@ private fun ImageContainer(
                 contentAlignment = Alignment.Center,
             ) {
                 if (isSelectedItem) {
-                    Icon(
+                    AiutaIcon(
                         modifier = Modifier.size(16.dp),
-                        painter = rememberAsyncImagePainter(theme.icons.check16.resource),
+                        icon = theme.icons.check16,
                         contentDescription = null,
                         tint = theme.colors.onDark,
                     )
@@ -332,9 +331,9 @@ private fun BoxScope.HistoryScreenEmpty(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Icon(
+            AiutaIcon(
                 modifier = Modifier.size(100.dp),
-                painter = rememberAsyncImagePainter(theme.icons.recent100.resource),
+                icon = theme.icons.recent100,
                 contentDescription = null,
                 tint = theme.colors.tertiary,
             )

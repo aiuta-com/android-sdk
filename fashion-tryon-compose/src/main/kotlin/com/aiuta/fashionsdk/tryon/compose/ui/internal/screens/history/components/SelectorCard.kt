@@ -18,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
@@ -51,7 +50,7 @@ internal fun SelectorCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             SmallIconButton(
-                painter = rememberAsyncImagePainter(theme.icons.trash24.resource),
+                icon = theme.icons.trash24,
                 isActive = isActionActive,
             ) {
                 onDelete()
@@ -60,7 +59,7 @@ internal fun SelectorCard(
             Spacer(Modifier.width(16.dp))
 
             SmallIconButton(
-                painter = rememberAsyncImagePainter(theme.icons.share24.resource),
+                icon = theme.icons.share24,
                 isActive = isActionActive,
             ) {
                 onShare()

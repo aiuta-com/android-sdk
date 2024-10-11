@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images
+package com.aiuta.fashionsdk.compose.molecules.images
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,7 +13,7 @@ import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 
 @Composable
-internal fun AiutaImage(
+public fun AiutaImage(
     image: AiutaImage,
     contentDescription: String?,
     modifier: Modifier = Modifier,

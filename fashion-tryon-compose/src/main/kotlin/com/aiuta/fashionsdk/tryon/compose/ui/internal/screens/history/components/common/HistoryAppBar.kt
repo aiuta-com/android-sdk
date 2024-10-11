@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
@@ -46,7 +45,7 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
         navigationIcon = {
             AppBarIcon(
                 modifier = Modifier.align(Alignment.CenterStart),
-                painter = rememberAsyncImagePainter(theme.icons.back24.resource),
+                icon = theme.icons.back24,
                 color = theme.colors.primary,
                 onClick = { controller.navigateBack() },
             )

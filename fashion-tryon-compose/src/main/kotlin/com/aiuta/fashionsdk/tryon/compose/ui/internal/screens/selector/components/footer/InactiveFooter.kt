@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
@@ -57,9 +56,9 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
         modifier = modifier,
         verticalAlignment = Alignment.Top,
     ) {
-        Icon(
+        AiutaIcon(
             modifier = Modifier.size(16.dp),
-            painter = rememberAsyncImagePainter(theme.icons.lock16.resource),
+            icon = theme.icons.lock16,
             contentDescription = null,
             tint = theme.colors.secondary,
         )

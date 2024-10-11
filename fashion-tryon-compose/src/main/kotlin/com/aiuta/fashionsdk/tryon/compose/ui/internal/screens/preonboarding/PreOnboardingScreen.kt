@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.preonboarding
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,13 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -67,7 +66,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
             actions = {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    painter = rememberAsyncImagePainter(theme.icons.close24.resource),
+                    icon = theme.icons.close24,
                     color = Color.White,
                     onClick = {
                         controller.clickClose(FinishSession.Origin.PREONBOARDING_SCREEN)
@@ -90,11 +89,11 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
         modifier = modifier.padding(horizontal = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Image(
+        AiutaIcon(
             modifier = Modifier.size(82.dp),
-            painter = rememberAsyncImagePainter(theme.icons.welcomeScreen82.resource),
-            contentScale = ContentScale.Fit,
+            icon = theme.icons.welcomeScreen82,
             contentDescription = null,
+            tint = Color.Unspecified,
         )
 
         Spacer(Modifier.height(16.dp))

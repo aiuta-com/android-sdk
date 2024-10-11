@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -137,7 +136,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.feedbackSheetSend,
                 style = FashionButtonStyles.primaryStyle(theme),
-                iconPainter = rememberAsyncImagePainter(theme.icons.magic16.resource),
+                icon = theme.icons.magic16,
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.sendGenerationFeedback(

@@ -10,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -37,7 +36,7 @@ internal fun ActionBlock(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         IconButton(
-            painter = rememberAsyncImagePainter(theme.icons.share24.resource),
+            icon = theme.icons.share24,
             onClick = {
                 val imageUrls = listOfNotNull(imageUrl)
                 controller.sendShareGeneratedImageEvent(

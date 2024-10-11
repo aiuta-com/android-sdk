@@ -2,7 +2,6 @@
 
 package com.aiuta.fashionsdk.compose.molecules.button
 
-import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.Arrangement
@@ -13,19 +12,18 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.elevation
 import androidx.compose.material.ButtonElevation
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonLoadingAnimation
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonSize
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonStyle
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 
 @Composable
 public fun FashionButton(
@@ -36,38 +34,7 @@ public fun FashionButton(
             defaultElevation = 0.dp,
             pressedElevation = 0.dp,
         ),
-    @DrawableRes iconRes: Int,
-    isEnable: Boolean = true,
-    isLoading: Boolean = false,
-    text: String? = null,
-    style: FashionButtonStyle,
-    size: FashionButtonSize,
-    onClick: () -> Unit,
-) {
-    FashionButton(
-        modifier = modifier,
-        contentDescription = contentDescription,
-        elevation = elevation,
-        iconPainter = iconRes?.let { painterResource(it) },
-        isEnable = isEnable,
-        isLoading = isLoading,
-        text = text,
-        style = style,
-        size = size,
-        onClick = onClick,
-    )
-}
-
-@Composable
-public fun FashionButton(
-    modifier: Modifier = Modifier,
-    contentDescription: String? = null,
-    elevation: ButtonElevation =
-        elevation(
-            defaultElevation = 0.dp,
-            pressedElevation = 0.dp,
-        ),
-    iconPainter: Painter? = null,
+    icon: AiutaIcons.AiutaIcon? = null,
     isEnable: Boolean = true,
     isLoading: Boolean = false,
     text: String? = null,
@@ -102,14 +69,14 @@ public fun FashionButton(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        iconPainter?.let {
-                            Icon(
+                        icon?.let {
+                            AiutaIcon(
                                 modifier = Modifier.size(size.iconSize),
                                 tint =
                                     style.colors.buttonColors.contentColor(
                                         enabled = isEnable,
                                     ).value,
-                                painter = iconPainter,
+                                icon = icon,
                                 contentDescription = contentDescription,
                             )
                         }
@@ -125,7 +92,7 @@ public fun FashionButton(
                                 modifier =
                                     Modifier.padding(
                                         start =
-                                            if (iconPainter != null) {
+                                            if (icon != null) {
                                                 size.iconSpacing
                                             } else {
                                                 0.dp

@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,6 +30,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
@@ -87,7 +87,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 text = stringResources.tryOn,
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                iconPainter = rememberAsyncImagePainter(theme.icons.magic16.resource),
+                icon = theme.icons.magic16,
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
@@ -164,9 +164,9 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
         Spacer(Modifier.width(8.dp))
 
-        Icon(
+        AiutaIcon(
             modifier = Modifier.size(16.dp).align(Alignment.CenterVertically),
-            painter = rememberAsyncImagePainter(theme.icons.arrow16.resource),
+            icon = theme.icons.arrow16,
             contentDescription = null,
             tint = theme.colors.neutral3,
         )
