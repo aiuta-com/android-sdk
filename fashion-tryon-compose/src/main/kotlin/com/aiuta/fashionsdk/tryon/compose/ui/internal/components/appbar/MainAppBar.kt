@@ -13,7 +13,6 @@ import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
@@ -25,7 +24,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appb
 @Composable
 internal fun MainAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -64,7 +62,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         navigationIcon = {
             val navigationIconModifier = Modifier.align(Alignment.CenterStart)
 
-            if (configuration.isMainAppbarReversed) {
+            if (theme.toggles.isMainAppbarReversed) {
                 historyButton(navigationIconModifier)
             } else {
                 closeButton(navigationIconModifier)
@@ -82,7 +80,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         actions = {
             val actionModifier = Modifier.align(Alignment.CenterEnd)
 
-            if (configuration.isMainAppbarReversed) {
+            if (theme.toggles.isMainAppbarReversed) {
                 closeButton(actionModifier)
             } else {
                 historyButton(actionModifier)

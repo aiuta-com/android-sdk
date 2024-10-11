@@ -12,6 +12,8 @@ import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
 import com.aiuta.fashionsdk.compose.tokens.shape.AiutaShapes
 import com.aiuta.fashionsdk.compose.tokens.shape.DefaultAiutaShapes
+import com.aiuta.fashionsdk.compose.tokens.toggles.AiutaThemeToggles
+import com.aiuta.fashionsdk.compose.tokens.toggles.DefaultAiutaThemeToggles
 import com.aiuta.fashionsdk.compose.tokens.typography.AiutaTypography
 import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
 
@@ -36,6 +38,7 @@ import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
 public class AiutaTheme(
     public val colors: AiutaColors,
     public val gradients: AiutaGradients,
+    public val toggles: AiutaThemeToggles,
     public val typography: AiutaTypography,
     public val icons: AiutaIcons,
     public val images: AiutaImages?,
@@ -52,6 +55,7 @@ public fun aiutaTheme(
     icons: AiutaIcons,
     colors: AiutaColors = DefaultAiutaColors,
     gradients: AiutaGradients = DefaultAiutaGradients,
+    toggles: AiutaThemeToggles = DefaultAiutaThemeToggles,
     typography: AiutaTypography = DefaultAiutaTypography,
     images: AiutaImages? = null,
     shapes: AiutaShapes = DefaultAiutaShapes,
@@ -62,6 +66,7 @@ public fun aiutaTheme(
         colors = colors,
         gradients = gradients,
         images = images,
+        toggles = toggles,
         typography = typography,
         shapes = shapes,
         watermark = watermark,
@@ -78,6 +83,7 @@ public fun rememberAiutaTheme(
     icons: AiutaIcons,
     colors: AiutaColors = DefaultAiutaColors,
     gradients: AiutaGradients = DefaultAiutaGradients,
+    toggles: AiutaThemeToggles = DefaultAiutaThemeToggles,
     typography: AiutaTypography = DefaultAiutaTypography,
     images: AiutaImages? = null,
     shapes: AiutaShapes = DefaultAiutaShapes,
@@ -95,6 +101,7 @@ public fun rememberAiutaTheme(
             icons = icons,
             colors = colors,
             gradients = gradients,
+            toggles = toggles,
             typography = typography,
             images = images,
             shapes = shapes,

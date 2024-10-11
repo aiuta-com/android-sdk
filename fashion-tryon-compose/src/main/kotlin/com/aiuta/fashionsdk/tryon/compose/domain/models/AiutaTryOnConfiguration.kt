@@ -39,19 +39,6 @@ public interface AiutaTryOnConfiguration {
      * Flag which turn on or off possibility to use pre-onboarding flow
      */
     public val isPreOnboardingAvailable: Boolean
-
-    /**
-     * Flag which turn on or off possibility to extend
-     * the onboarding app bar with close button
-     */
-    public val isOnboardingAppBarExtended: Boolean
-
-    /**
-     * Flag which turn on or off possibility to reverse the main app bar
-     *
-     * If true, history will be on the left side and close button on the right
-     */
-    public val isMainAppbarReversed: Boolean
 }
 
 public fun defaultAiutaTryOnConfiguration(
@@ -60,8 +47,6 @@ public fun defaultAiutaTryOnConfiguration(
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
     isPreOnboardingAvailable: Boolean = false,
-    isOnboardingAppBarExtended: Boolean = false,
-    isMainAppbarReversed: Boolean = false,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage = language
@@ -69,7 +54,5 @@ public fun defaultAiutaTryOnConfiguration(
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable
-        override val isOnboardingAppBarExtended: Boolean = isOnboardingAppBarExtended
-        override val isMainAppbarReversed: Boolean = isMainAppbarReversed
     }
 }
