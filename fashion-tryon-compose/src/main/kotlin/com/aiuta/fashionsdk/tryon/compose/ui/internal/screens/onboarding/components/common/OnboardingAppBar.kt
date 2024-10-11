@@ -11,7 +11,6 @@ import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
@@ -30,7 +29,6 @@ internal fun OnboardingAppBar(
     onboardingController: OnboardingController,
 ) {
     val controller = LocalController.current
-    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -49,7 +47,7 @@ internal fun OnboardingAppBar(
             )
         },
         title = {
-            if (configuration.isOnboardingAppBarExtended) {
+            if (theme.toggles.isOnboardingAppBarExtended) {
                 titleTransition.AnimatedContent(
                     transitionSpec = { transitionAnimation },
                 ) { state ->
@@ -73,7 +71,7 @@ internal fun OnboardingAppBar(
             }
         },
         actions = {
-            if (configuration.isOnboardingAppBarExtended) {
+            if (theme.toggles.isOnboardingAppBarExtended) {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
                     icon = theme.icons.close24,

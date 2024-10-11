@@ -84,8 +84,6 @@ fun MainScreen() {
             remember {
                 defaultAiutaTryOnConfiguration(
                     isPreOnboardingAvailable = false,
-                    isOnboardingAppBarExtended = true,
-                    isMainAppbarReversed = true,
                     language =
                         EnglishLanguage(
                             brand = "YOUR brand",
