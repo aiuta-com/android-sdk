@@ -1,12 +1,10 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.photos
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -60,12 +58,11 @@ private fun ItemPhotosBlock(modifier: Modifier = Modifier) {
 
     val activeSKUItem = controller.activeSKUItem.value
 
-    val baseSharedModifier =
+    val sharedSharedModifier =
         Modifier
             .height(226.dp)
             .width(170.dp)
             .clip(theme.shapes.previewImage)
-            .background(theme.colors.neutral)
 
     val sharedRadius =
         with(density) {
@@ -86,15 +83,8 @@ private fun ItemPhotosBlock(modifier: Modifier = Modifier) {
             var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
             var imageSize by remember { mutableStateOf(Size.Zero) }
 
-            val finalModifier =
-                if (index == 0) {
-                    baseSharedModifier.padding(24.dp)
-                } else {
-                    baseSharedModifier
-                }
-
             Box(
-                modifier = finalModifier,
+                modifier = sharedSharedModifier,
                 contentAlignment = Alignment.Center,
             ) {
                 SubcomposeAsyncImage(

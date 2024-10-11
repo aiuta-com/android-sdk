@@ -3,7 +3,12 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.dimensions
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
 
-// TODO Add docs
+/**
+ * Represents the dimensions used in the Aiuta fashion try-on application.
+ *
+ * @property grabberPaddingTop The top padding for the grabber element.
+ * @property grabberWidth The width of the grabber element.
+ */
 @Immutable
 public class AiutaDimensions(
     // Grabber
