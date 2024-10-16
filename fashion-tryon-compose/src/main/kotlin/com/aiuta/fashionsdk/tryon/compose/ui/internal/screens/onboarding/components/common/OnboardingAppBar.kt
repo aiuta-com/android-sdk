@@ -49,10 +49,11 @@ internal fun OnboardingAppBar(
         title = {
             if (theme.toggles.isOnboardingAppBarExtended) {
                 titleTransition.AnimatedContent(
+                    modifier = Modifier.fillMaxWidth().align(Alignment.Center),
                     transitionSpec = { transitionAnimation },
                 ) { state ->
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().align(Alignment.Center),
                         text =
                             buildAnnotatedStringFromHtml(
                                 input =
