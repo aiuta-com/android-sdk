@@ -4,6 +4,5 @@ import kotlinx.serialization.json.Json
 
 internal val jsonSerializer =
     Json {
-        prettyPrint = true
         ignoreUnknownKeys = true
     }
