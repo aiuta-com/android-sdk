@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
@@ -43,7 +44,10 @@ internal fun FashionTryOnController.navigateBack() {
 
         currentScreen.value = previousScreen
     } else {
-        clickClose(origin = FinishSession.Origin.MAIN_SCREEN)
+        clickClose(
+            origin = FinishSession.Origin.MAIN_SCREEN,
+            pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+        )
     }
 }
 

@@ -8,56 +8,28 @@ import androidx.work.WorkRequest
 import androidx.work.workDataOf
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internal.worker.AnalyticWorker
+import com.aiuta.fashionsdk.internal.analytic.model.ExternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.model.ShareableAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.model.SharedAnalyticEvent
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 internal class InternalAiutaAnalyticImpl(
     private val context: Context,
 ) : InternalAiutaAnalytic {
-    private val _analyticFlow = MutableStateFlow<SharedAnalyticEvent?>(null)
-    override val analyticFlow: Flow<SharedAnalyticEvent> = _analyticFlow.mapNotNull { it }
+    private val _analyticFlow = MutableStateFlow<ExternalAnalyticEvent?>(null)
+    override val analyticFlow: Flow<ExternalAnalyticEvent> = _analyticFlow.mapNotNull { it }
 
     override fun sendEvent(event: InternalAnalyticEvent) {
-        resolveLog(
-            event = event,
-            params = emptyMap(),
-        )
+        resolveLog(event = event)
     }
 
-    override fun sendEvent(
-        event: InternalAnalyticEvent,
-        params: Map<String, String?>,
-    ) {
-        resolveLog(
-            event = event,
-            params = params,
-        )
-    }
-
-    override fun sendEvent(
-        event: InternalAnalyticEvent,
-        fillMap: MutableMap<String, String?>.() -> Unit,
-    ) {
-        val map = mutableMapOf<String, String?>()
-        map.fillMap()
-        resolveLog(
-            event = event,
-            params = map,
-        )
-    }
-
-    private fun resolveLog(
-        event: InternalAnalyticEvent,
-        params: Map<String, String?>,
-    ) {
+    private fun resolveLog(event: InternalAnalyticEvent) {
         // Notify external listeners
-        _analyticFlow.value = (event as? ShareableAnalyticEvent)?.toShared(params)
+        _analyticFlow.value = (event as? ExternalAnalyticEvent)
 
         // Build request
         val analyticWorkRequest: WorkRequest =
@@ -68,14 +40,12 @@ internal class InternalAiutaAnalyticImpl(
                     timeUnit = TimeUnit.MILLISECONDS,
                 )
                 .setInputData(
-                    // Let's pass event name + all event params
+                    // Let's pass event data as json
                     workDataOf(
-                        AnalyticWorker.EVENT_NAME_KEY to event.name,
-                        *params
-                            .map {
-                                it.key to it.value
-                            }
-                            .toTypedArray(),
+                        AnalyticWorker.EVENT_KEY to
+                            Json.encodeToString<InternalAnalyticEvent>(
+                                event,
+                            ),
                     ),
                 )
                 .build()

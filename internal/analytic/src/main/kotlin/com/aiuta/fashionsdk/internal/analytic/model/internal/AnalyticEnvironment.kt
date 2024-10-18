@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.internal.analytic.model
+package com.aiuta.fashionsdk.internal.analytic.model.internal
 
 import com.aiuta.fashionsdk.internal.analytic.BuildConfig
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig

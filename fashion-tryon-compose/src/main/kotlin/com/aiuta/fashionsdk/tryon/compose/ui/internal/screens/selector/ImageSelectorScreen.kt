@@ -15,7 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
@@ -42,6 +44,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         }
 
     sendOpenMainScreenEvent()
+    sendPageEvent(pageId = AiutaAnalyticPageId.IMAGE_PICKER)
 
     ImageSelectorListener(enable = controller.isGenerationActive.value)
 
@@ -61,7 +64,12 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(MAIN_IMAGE_SIZE),
             uploadPhoto = {
-                controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
+                controller.bottomSheetNavigator.show(
+                    newSheetScreen =
+                        NavigationBottomSheetScreen.ImagePicker(
+                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                        ),
+                )
             },
         )
 

@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.analytic
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytic.events.AnalyticEvent
 import com.aiuta.fashionsdk.analytic.internal.AiutaAnalyticImpl
+import com.aiuta.fashionsdk.internal.analytic.model.ExternalAnalyticEvent
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -18,5 +18,5 @@ public interface AiutaAnalytic {
     /**
      * Flow for listening all events from internals of SDK
      */
-    public val analyticFlow: Flow<AnalyticEvent>
+    public val analyticFlow: Flow<ExternalAnalyticEvent>
 }

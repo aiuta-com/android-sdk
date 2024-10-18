@@ -5,8 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateMoreListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
@@ -16,6 +19,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
+    val activeSKUItem = controller.activeSKUItem.value
     val isGenerateMoreFlowActive = remember { mutableStateOf(false) }
 
     GenerateMoreListener(isActive = isGenerateMoreFlowActive)
@@ -24,8 +28,17 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
         modifier = modifier,
         icon = theme.icons.camera24,
         onClick = {
+            controller.sendResultEvent(
+                event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
+                productId = activeSKUItem.skuId,
+            )
             controller.sendTapChangePhotoEvent()
-            controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
+            controller.bottomSheetNavigator.show(
+                newSheetScreen =
+                    NavigationBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticPageId.RESULTS,
+                    ),
+            )
             isGenerateMoreFlowActive.value = true
         },
     )

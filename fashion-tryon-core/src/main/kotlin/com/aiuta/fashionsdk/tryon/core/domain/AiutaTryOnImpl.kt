@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSK
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
@@ -98,6 +99,7 @@ internal class AiutaTryOnImpl(
                         ) {
                             solveUploadingImage(container)
                         }
+                    analytic.sendTryOnPhotoUploadedEvent()
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
                             sourceImageId = uploadedImage.id,

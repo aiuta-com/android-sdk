@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendOpenResultsScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.GenerationResultBody
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.ThanksFeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.DisclaimerBlock
@@ -25,9 +25,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
-    val theme = LocalTheme.current
-
-    sendOpenResultsScreenEvent()
+    sendPageEvent(pageId = AiutaAnalyticPageId.RESULTS)
 
     GenerationResultListener()
 

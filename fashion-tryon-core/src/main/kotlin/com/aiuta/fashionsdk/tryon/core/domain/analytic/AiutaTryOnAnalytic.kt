@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.internal.analytic.model.FinishTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
@@ -9,16 +11,14 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 private const val MILLISECONDS_IN_SECOND = 1000L
 
 internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationContainer) {
-    sendEvent(StartTryOn) {
-        put(
-            key = StartTryOn.SKU_ID_PARAM,
-            value = container.skuId,
-        )
-        put(
-            key = StartTryOn.SKU_CATALOG_NAME_PARAM,
-            value = container.skuCatalogName,
-        )
-    }
+    sendEvent(
+        event =
+            StartTryOn(
+                skuId = container.skuId,
+                skuCatalogName = container.skuCatalogName,
+            ),
+    )
+    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED))
 }
 
 internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
@@ -27,27 +27,24 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
 ) {
     val loadingTimeSeconds = loadingTimeMillis / MILLISECONDS_IN_SECOND
 
-    sendEvent(FinishTryOn) {
-        put(
-            key = FinishTryOn.SKU_ID_PARAM,
-            value = container.skuId,
-        )
-        put(
-            key = FinishTryOn.SKU_CATALOG_NAME_PARAM,
-            value = container.skuCatalogName,
-        )
-        put(
-            key = FinishTryOn.GENERATION_TIME_PARAM,
-            value = loadingTimeSeconds.toString(),
-        )
-    }
+    sendEvent(
+        event =
+            FinishTryOn(
+                skuId = container.skuId,
+                skuCatalogName = container.skuCatalogName,
+                generationTime = loadingTimeSeconds.toString(),
+            ),
+    )
+    sendEvent(
+        event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED),
+    )
 }
 
 internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(type: TryOnError.Type) {
-    sendEvent(TryOnError) {
-        put(
-            key = TryOnError.TYPE_PARAM,
-            value = type.value,
-        )
-    }
+    sendEvent(event = TryOnError(type = type.value))
+    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR))
+}
+
+internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent() {
+    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED))
 }

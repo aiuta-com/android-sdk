@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -49,11 +50,17 @@ internal fun OnboardingAppBar(
         title = {
             if (theme.toggles.isOnboardingAppBarExtended) {
                 titleTransition.AnimatedContent(
-                    modifier = Modifier.fillMaxWidth().align(Alignment.Center),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Center),
                     transitionSpec = { transitionAnimation },
                 ) { state ->
                     Text(
-                        modifier = Modifier.fillMaxWidth().align(Alignment.Center),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.Center),
                         text =
                             buildAnnotatedStringFromHtml(
                                 input =
@@ -78,7 +85,15 @@ internal fun OnboardingAppBar(
                     icon = theme.icons.close24,
                     color = theme.colors.primary,
                     onClick = {
-                        controller.clickClose(FinishSession.Origin.ONBOARDING_SCREEN)
+                        controller.clickClose(
+                            origin = FinishSession.Origin.ONBOARDING_SCREEN,
+                            pageId =
+                                when (onboardingController.state.value) {
+                                    is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS
+                                    is BestResultPage -> AiutaAnalyticPageId.BEST_RESULTS
+                                    is ConsentPage -> AiutaAnalyticPageId.CONSENT
+                                },
+                        )
                     },
                 )
             }

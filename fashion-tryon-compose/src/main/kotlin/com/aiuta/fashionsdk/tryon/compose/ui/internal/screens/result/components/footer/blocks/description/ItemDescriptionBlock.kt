@@ -13,6 +13,9 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -54,7 +57,11 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
             onClick = {
-                controller.aiutaTryOnListeners().addToCartClick(activeSKUItem)
+                controller.clickAddToCart(
+                    origin = FinishSession.Origin.RESULT_SCREEN,
+                    pageId = AiutaAnalyticPageId.RESULTS,
+                    skuId = activeSKUItem.skuId,
+                )
             },
         )
     }

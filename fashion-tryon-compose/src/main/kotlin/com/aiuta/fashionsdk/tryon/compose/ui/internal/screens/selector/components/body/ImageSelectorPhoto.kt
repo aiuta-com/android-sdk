@@ -18,8 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
@@ -79,6 +81,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
+            sendPageEvent(pageId = AiutaAnalyticPageId.LOADING)
             ShimmerBlock(modifier = Modifier.fillMaxSize())
         }
     }

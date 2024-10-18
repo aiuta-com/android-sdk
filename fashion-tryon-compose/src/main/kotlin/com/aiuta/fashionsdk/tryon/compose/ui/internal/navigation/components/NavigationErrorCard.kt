@@ -18,7 +18,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -79,7 +78,6 @@ internal fun NavigationErrorCard(
             onClick = {
                 controller.startGeneration(
                     aiutaConfiguration = aiutaConfiguration,
-                    origin = StartUITryOn.Origin.TRY_ON_BUTTON,
                 )
                 controller.hideErrorState()
             },

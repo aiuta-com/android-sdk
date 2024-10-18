@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateAgreementState
@@ -32,6 +34,8 @@ internal fun ConsentPageContent(
 ) {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
+
+    sendPageEvent(pageId = AiutaAnalyticPageId.CONSENT)
 
     Column(
         modifier = modifier.padding(horizontal = 24.dp),

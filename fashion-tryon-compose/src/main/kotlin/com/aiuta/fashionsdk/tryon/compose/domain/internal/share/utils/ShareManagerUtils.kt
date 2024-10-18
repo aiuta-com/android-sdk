@@ -81,23 +81,14 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
         val origin = intent?.getStringExtra(ORIGIN_KEY)
         val additionalShareInfo = intent?.getStringExtra(Intent.EXTRA_TEXT)
 
-        InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(ShareSuccessfully) {
-            put(
-                key = ShareSuccessfully.ORIGIN_PARAM,
-                value = origin,
-            )
-            put(
-                key = ShareSuccessfully.COUNT_PARAM,
-                value = count.toString(),
-            )
-            put(
-                key = ShareSuccessfully.TARGET_PARAM,
-                value = clickedComponent?.packageName,
-            )
-            put(
-                key = ShareSuccessfully.ADDITIONAL_SHARE_INFO_PARAM,
-                value = additionalShareInfo,
-            )
-        }
+        InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(
+            event =
+                ShareSuccessfully(
+                    origin = origin,
+                    count = count.toString(),
+                    target = clickedComponent?.packageName,
+                    additionalShareInfo = additionalShareInfo,
+                ),
+        )
     }
 }

@@ -23,14 +23,16 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.analytic.sendSelectNewPhotosEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
@@ -44,7 +46,7 @@ import com.google.accompanist.permissions.shouldShowRationale
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-internal fun ColumnScope.ImagePickerSheet() {
+internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScreen.ImagePicker) {
     val context = LocalContext.current
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
@@ -60,7 +62,10 @@ internal fun ColumnScope.ImagePickerSheet() {
     val cameraPickerLauncher =
         provideCameraPicker { hasImage ->
             if (hasImage && newImageUri != null) {
-                controller.sendSelectNewPhotosEvent(fromCamera = 1)
+                controller.sendPickerAnalytic(
+                    event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
+                    pageId = pickerData.originPageId,
+                )
                 controller.lastSavedImages.value =
                     LastSavedImages.UriSource(
                         imageUris = listOf(newImageUri.toString()),
@@ -70,6 +75,10 @@ internal fun ColumnScope.ImagePickerSheet() {
         }
     val startCameraPickerFlow = {
         newImageUri?.let { uri ->
+            controller.sendPickerAnalytic(
+                event = AiutaAnalyticsPickerEventType.CAMERA_OPENED,
+                pageId = pickerData.originPageId,
+            )
             openCameraPicker(
                 newImageUri = { uri },
                 getLauncher = { cameraPickerLauncher },
@@ -87,7 +96,10 @@ internal fun ColumnScope.ImagePickerSheet() {
     val imagePickerLauncher =
         provideSingleImagePicker { uri ->
             uri?.let {
-                controller.sendSelectNewPhotosEvent(fromGallery = 1)
+                controller.sendPickerAnalytic(
+                    event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
+                    pageId = pickerData.originPageId,
+                )
                 controller.lastSavedImages.value =
                     LastSavedImages.UriSource(
                         imageUris = listOf(uri.toString()),
@@ -132,6 +144,10 @@ internal fun ColumnScope.ImagePickerSheet() {
         text = stringResources.pickerSheetChooseLibrary,
         shouldDrawDivider = false,
         onClick = {
+            controller.sendPickerAnalytic(
+                event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
+                pageId = pickerData.originPageId,
+            )
             openMultipleImagePicker { imagePickerLauncher }
         },
     )

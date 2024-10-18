@@ -22,28 +22,16 @@ internal fun sendConfigureEvent(theme: AiutaTheme?) {
     LaunchedEffect(Unit) {
         val isPoweredByVisible = dataController.providePoweredByUrl() != null
 
-        analytic.sendEvent(Configure) {
-            put(
-                key = Configure.HAS_CUSTOM_CONFIGURATION_PARAM,
-                value = (theme != null).toString(),
-            )
-            put(
-                key = Configure.PHOTO_LIMIT_PARAM,
-                value = "1",
-            )
-            put(
-                key = Configure.IS_WATERMARK_PROVIDED_PARAM,
-                value = (theme?.watermark != null).toString(),
-            )
-            put(
-                key = Configure.IS_HISTORY_ENABLE_PARAM,
-                value = configuration.isHistoryAvailable.toString(),
-            )
-            put(
-                key = Configure.IS_POWERED_BY_VISIBLE_PARAM,
-                value = isPoweredByVisible.toString(),
-            )
-        }
+        analytic.sendEvent(
+            event =
+                Configure(
+                    hasCustomConfiguration = (theme != null).toString(),
+                    photoSelectionLimit = "1",
+                    isWatermarkProvided = (theme?.watermark != null).toString(),
+                    isHistoryEnable = configuration.isHistoryAvailable.toString(),
+                    isPoweredByVisible = isPoweredByVisible.toString(),
+                ),
+        )
     }
 }
 
@@ -55,36 +43,18 @@ internal fun sendStartSessionEvent() {
     val skuItem = controller.activeSKUItem.value
 
     LaunchedEffect(Unit) {
-        analytic.sendEvent(StartSession) {
-            put(
-                key = StartSession.SKU_ID_PARAM,
-                value = skuItem.skuId,
-            )
-            put(
-                key = StartSession.SKU_CATALOG_NAME_PARAM,
-                value = skuItem.catalogName,
-            )
-            put(
-                key = StartSession.RELATED_SKU_COUNT_PARAM,
-                value = (skuItem.generateMoreSKU?.size ?: 0).toString(),
-            )
-            put(
-                key = StartSession.PRICE_PARAM,
-                value = skuItem.localizedPrice,
-            )
-            put(
-                key = StartSession.PRICE_DISCOUNTED_PARAM,
-                value = skuItem.localizedOldPrice,
-            )
-            put(
-                key = StartSession.STORE_PARAM,
-                value = skuItem.store,
-            )
-            put(
-                key = StartSession.ADDITIONAL_SHARE_INFO_PARAM,
-                value = skuItem.additionalShareInfo,
-            )
-        }
+        analytic.sendEvent(
+            event =
+                StartSession(
+                    skuId = skuItem.skuId,
+                    skuCatalogName = skuItem.catalogName,
+                    relatedSkuCount = (skuItem.generateMoreSKU?.size ?: 0).toString(),
+                    price = skuItem.localizedPrice,
+                    priceDiscounted = skuItem.localizedOldPrice,
+                    store = skuItem.store,
+                    additionalShareInfo = skuItem.additionalShareInfo,
+                ),
+        )
     }
 }
 
@@ -93,6 +63,6 @@ internal fun sendStartSessionEvent() {
 internal fun sendStartOnBoardingEvent() {
     val analytic = LocalAnalytic.current
     LaunchedEffect(Unit) {
-        analytic.sendEvent(StartOnBoarding)
+        analytic.sendEvent(StartOnBoarding())
     }
 }

@@ -4,7 +4,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
-import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -46,7 +45,6 @@ internal fun GenerateMoreListener(isActive: State<Boolean>) {
         if (isActive.value) {
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
-                origin = StartUITryOn.Origin.SELECT_PHOTOS,
             )
             controller.navigateBack()
         }
