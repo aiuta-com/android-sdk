@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.internal.analytic.model.FinishTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
@@ -16,6 +18,7 @@ internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationC
                 skuCatalogName = container.skuCatalogName,
             ),
     )
+    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED))
 }
 
 internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
@@ -32,13 +35,16 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
                 generationTime = loadingTimeSeconds.toString(),
             ),
     )
+    sendEvent(
+        event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED),
+    )
 }
 
 internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(type: TryOnError.Type) {
-    sendEvent(
-        event =
-            TryOnError(
-                type = type.value,
-            ),
-    )
+    sendEvent(event = TryOnError(type = type.value))
+    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR))
+}
+
+internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent() {
+    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED))
 }
