@@ -39,12 +39,14 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -56,6 +58,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ColumnScope.GeneratedOperationsSheet() {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
@@ -117,12 +120,22 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     generatedOperation = generatedOperation,
                     onClick = {
                         with(controller) {
+                            // Analytic
                             sendSelectOldPhotos(generatedOperation.sourceImageUrls.size)
                             sendPickerAnalytic(
                                 event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
                                 pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                             )
 
+                            // Host notification
+                            val image = generatedOperation.sourceImages.firstOrNull()
+                            image?.let {
+                                aiutaConfiguration.dataProvider?.selectUploadedImageAction?.invoke(
+                                    AiutaUploadedImage(id = image.imageId, url = image.imageUrl),
+                                )
+                            }
+
+                            // Change
                             lastSavedOperation.value = generatedOperation
                             lastSavedImages.value = generatedOperation.toLastSavedImages()
                             bottomSheetNavigator.hide()

@@ -37,12 +37,14 @@ internal fun SplashScreen(
                 .first()
 
         if (countGeneratedOperation > 0) {
-            val lastOperation = controller.generatedOperationInteractor.getLastGeneratedOperation()
+            val lastOperation = controller.generatedOperationInteractor.getFirstGeneratedOperation()
             controller.lastSavedImages.value = lastOperation.toLastSavedImages()
         }
 
         // Solve should show onboarding or not
-        val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding()
+        val isUserConsentObtainedFlowRaw = configuration.dataProvider?.isUserConsentObtainedFlow?.value
+        val shouldShowOnboardingFromHost = isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
+        val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding() || shouldShowOnboardingFromHost
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =

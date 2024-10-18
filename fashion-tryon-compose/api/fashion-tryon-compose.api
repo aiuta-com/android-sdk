@@ -46,7 +46,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun countGeneratedOperation ()Lkotlinx/coroutines/flow/Flow;
 	public fun deleteOperation (J)V
-	public fun getLastGeneratedOperationWithImages ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationWithImages;
+	public fun getFirstGeneratedOperationWithImages ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationWithImages;
 	public fun getOperation (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationEntity;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insertOperation (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationEntity;)J
@@ -79,6 +79,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/t
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration {
+	public abstract fun getDataProvider ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;
 	public abstract fun getDimensions ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;
 	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 	public abstract fun isHistoryAvailable ()Z
@@ -87,8 +88,8 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;ZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;ZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;ZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
@@ -225,6 +226,33 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLangu
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage$Companion {
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider {
+	public static final field $stable I
+	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public final fun getAddGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
+	public final fun getAddUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
+	public final fun getDeleteGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
+	public final fun getDeleteUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
+	public final fun getGeneratedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun getObtainUserConsentAction ()Lkotlin/jvm/functions/Function0;
+	public final fun getSelectUploadedImageAction ()Lkotlin/jvm/functions/Function1;
+	public final fun getUploadedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun isUserConsentObtainedFlow ()Lkotlinx/coroutines/flow/StateFlow;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaGeneratedImage {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaUploadedImage {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getId ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions {

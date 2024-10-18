@@ -14,12 +14,12 @@ import kotlinx.coroutines.flow.Flow
 internal interface GeneratedOperationDao {
     // Combined operation
     @Transaction
-    @Query("SELECT * FROM generated_operation ORDER BY id DESC")
+    @Query("SELECT * FROM generated_operation ORDER BY id ASC")
     fun pagingGeneratedOperationWithImagesSource(): PagingSource<Int, GeneratedOperationWithImages>
 
     @Transaction
-    @Query("SELECT * FROM generated_operation ORDER BY id DESC LIMIT 1")
-    fun getLastGeneratedOperationWithImages(): GeneratedOperationWithImages
+    @Query("SELECT * FROM generated_operation ORDER BY id ASC LIMIT 1")
+    fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages
 
     // Raw operation
     @Insert(onConflict = OnConflictStrategy.REPLACE)

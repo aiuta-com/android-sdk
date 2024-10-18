@@ -75,6 +75,20 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             mutableStateOf(false)
         }
 
+    // Data providers
+    val generatedImageInteractor =
+        remember {
+            aiutaTryOnConfiguration.dataProvider?.let { dataProvider ->
+                GeneratedImageInteractor.getInstance(dataProvider)
+            } ?: GeneratedImageInteractor.getInstance(context)
+        }
+    val generatedOperationInteractor =
+        remember {
+            aiutaTryOnConfiguration.dataProvider?.let { dataProvider ->
+                GeneratedOperationInteractor.getInstance(dataProvider)
+            } ?: GeneratedOperationInteractor.getInstance(context)
+        }
+
     val defaultSelectorState =
         remember {
             mutableStateOf(SelectorMode.DISABLED)
@@ -113,8 +127,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             aiutaTryOn = aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
-            generatedImageInteractor = GeneratedImageInteractor.getInstance(context),
-            generatedOperationInteractor = GeneratedOperationInteractor.getInstance(context),
+            generatedImageInteractor = generatedImageInteractor,
+            generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = OnboardingInteractor.getInstance(context),
             analytic = analytic(),
         )
