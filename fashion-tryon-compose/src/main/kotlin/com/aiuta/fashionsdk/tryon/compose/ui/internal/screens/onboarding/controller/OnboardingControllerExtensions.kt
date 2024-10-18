@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
@@ -18,7 +19,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.launch
 
-internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
+internal fun OnboardingController.nextPage(
+    controller: FashionTryOnController,
+    configuration: AiutaTryOnConfiguration,
+) {
     scope.launch {
         val nextPageIndex = pagerState.settledPage + 1
         val nextState =
@@ -40,7 +44,12 @@ internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
         } else {
             // Close onboarding and move on
             controller.onboardingInteractor.setOnboardingAsFinished()
+
+            // Consent
             controller.sendOnboardingEvent(AiutaAnalyticOnboardingEventType.CONSENT_GIVEN)
+            configuration.dataProvider?.obtainUserConsentAction?.invoke()
+
+            // Finish
             controller.sendOnboardingEvent(AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED)
             controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
         }

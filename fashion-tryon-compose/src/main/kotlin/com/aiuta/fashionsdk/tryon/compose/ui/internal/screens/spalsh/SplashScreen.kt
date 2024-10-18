@@ -42,7 +42,9 @@ internal fun SplashScreen(
         }
 
         // Solve should show onboarding or not
-        val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding()
+        val isUserConsentObtainedFlowRaw = configuration.dataProvider?.isUserConsentObtainedFlow?.value
+        val shouldShowOnboardingFromHost = isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
+        val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding() || shouldShowOnboardingFromHost
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =
