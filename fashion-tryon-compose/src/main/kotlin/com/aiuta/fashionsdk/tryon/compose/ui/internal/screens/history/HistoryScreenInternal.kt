@@ -51,6 +51,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
@@ -62,6 +63,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendOpenHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
@@ -300,6 +302,7 @@ private fun BoxScope.HistoryScreenInterface(
                         .getList()
                         .map { it.imageUrl }
 
+                controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED)
                 controller.sendShareGeneratedImageEvent(
                     origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
                     count = imageUrls.size,
@@ -313,6 +316,7 @@ private fun BoxScope.HistoryScreenInterface(
                 controller.deactivateSelectMode()
             },
             onDelete = {
+                controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)
                 controller.deleteGeneratedImages(scope)
             },
         )
