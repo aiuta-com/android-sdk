@@ -21,9 +21,9 @@ internal class GeneratedOperationDatasource(
         return generatedOperationDao.pagingGeneratedOperationWithImagesSource()
     }
 
-    suspend fun getLastGeneratedOperationWithImages(): GeneratedOperationWithImages {
+    suspend fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages {
         return withContext(Dispatchers.IO) {
-            generatedOperationDao.getLastGeneratedOperationWithImages()
+            generatedOperationDao.getFirstGeneratedOperationWithImages()
         }
     }
 

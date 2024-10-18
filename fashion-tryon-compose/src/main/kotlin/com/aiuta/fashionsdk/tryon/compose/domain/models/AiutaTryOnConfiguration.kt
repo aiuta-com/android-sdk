@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 
@@ -20,6 +21,12 @@ public interface AiutaTryOnConfiguration {
      * Dimensions configuration for [AiutaTryOnFlow]
      */
     public val dimensions: AiutaDimensions?
+
+    /**
+     * Data provider for dynamic data from host like
+     * generated/uploaded images
+     */
+    public val dataProvider: AiutaDataProvider?
 
     /**
      * Flag which turn on or off possibility to use history flow
@@ -44,6 +51,7 @@ public interface AiutaTryOnConfiguration {
 public fun defaultAiutaTryOnConfiguration(
     language: AiutaTryOnLanguage,
     dimensions: AiutaDimensions? = null,
+    dataProvider: AiutaDataProvider? = null,
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
     isPreOnboardingAvailable: Boolean = false,
@@ -51,6 +59,7 @@ public fun defaultAiutaTryOnConfiguration(
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage = language
         override val dimensions: AiutaDimensions? = dimensions
+        override val dataProvider: AiutaDataProvider? = dataProvider
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable

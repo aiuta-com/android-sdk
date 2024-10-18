@@ -37,7 +37,7 @@ internal fun SplashScreen(
                 .first()
 
         if (countGeneratedOperation > 0) {
-            val lastOperation = controller.generatedOperationInteractor.getLastGeneratedOperation()
+            val lastOperation = controller.generatedOperationInteractor.getFirstGeneratedOperation()
             controller.lastSavedImages.value = lastOperation.toLastSavedImages()
         }
 
