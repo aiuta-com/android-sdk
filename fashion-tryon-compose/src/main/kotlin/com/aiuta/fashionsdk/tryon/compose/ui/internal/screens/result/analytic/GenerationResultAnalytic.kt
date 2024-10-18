@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsFeedbackEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsFeedbackEventType
 import com.aiuta.fashionsdk.internal.analytic.model.DislikeGenerationFeedback
 import com.aiuta.fashionsdk.internal.analytic.model.GenerationFeedback
 import com.aiuta.fashionsdk.internal.analytic.model.LikeGenerationFeedback
@@ -66,6 +68,7 @@ internal fun FashionTryOnController.sendSelectMoreToTryOnEvent(skuItem: SKUItem)
 
 internal fun FashionTryOnController.sendGenerationFeedback(
     generationIndex: Int,
+    optionIndex: Int,
     feedback: String? = null,
 ) {
     val activeSKUItem = activeSKUItem.value
@@ -77,6 +80,14 @@ internal fun FashionTryOnController.sendGenerationFeedback(
                 skuCatalogName = activeSKUItem.catalogName,
                 generatedPhotoPosition = generationIndex.toString(),
                 feedback = feedback,
+            ),
+    )
+    analytic.sendEvent(
+        event =
+            AiutaAnalyticsFeedbackEvent(
+                event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
+                negativeFeedbackOptionIndex = optionIndex,
+                negativeFeedbackText = feedback,
             ),
     )
 }
@@ -91,6 +102,9 @@ internal fun FashionTryOnController.sendLikeGenerationFeedback(generationIndex: 
                 skuCatalogName = activeSKUItem.catalogName,
                 generatedPhotoPosition = generationIndex.toString(),
             ),
+    )
+    analytic.sendEvent(
+        event = AiutaAnalyticsFeedbackEvent(event = AiutaAnalyticsFeedbackEventType.POSITIVE),
     )
 }
 

@@ -109,6 +109,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
             onClick = {
                 controller.sendGenerationFeedback(
                     generationIndex = data.itemIndex,
+                    optionIndex = data.optionIndex,
                     feedback = feedbackText.value,
                 )
                 controller.bottomSheetNavigator.hide()
