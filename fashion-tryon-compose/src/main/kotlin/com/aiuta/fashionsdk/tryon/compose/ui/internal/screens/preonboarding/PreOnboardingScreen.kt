@@ -23,9 +23,11 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -123,6 +125,9 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
         StartButton(
             modifier = Modifier.fillMaxWidth(),
             onClick = {
+                controller.sendOnboardingEvent(
+                    AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED,
+                )
                 controller.navigateTo(NavigationScreen.ONBOARDING)
             },
         )

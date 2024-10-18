@@ -4,14 +4,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendContinueOnBoardingEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendFinishOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
@@ -39,7 +40,8 @@ internal fun OnboardingController.nextPage(controller: FashionTryOnController) {
         } else {
             // Close onboarding and move on
             controller.onboardingInteractor.setOnboardingAsFinished()
-            controller.sendFinishOnBoardingEvent()
+            controller.sendOnboardingEvent(AiutaAnalyticOnboardingEventType.CONSENT_GIVEN)
+            controller.sendOnboardingEvent(AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED)
             controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
         }
     }
