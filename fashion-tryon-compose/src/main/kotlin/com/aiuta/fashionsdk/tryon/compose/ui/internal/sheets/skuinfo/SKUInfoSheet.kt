@@ -130,6 +130,8 @@ private fun ButtonsContainer(
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
+    val activeSKUItem = controller.activeSKUItem.value
+
     Row(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
@@ -144,7 +146,7 @@ private fun ButtonsContainer(
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    controller.clickAddToWishListActiveSKU()
+                    controller.clickAddToWishListActiveSKU(skuId = activeSKUItem.skuId)
                 },
             )
 
@@ -173,6 +175,7 @@ private fun ButtonsContainer(
                     controller.clickAddToCart(
                         origin = FinishSession.Origin.SKU_POPUP,
                         pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                        skuId = skuInfo.skuItem.skuId,
                     )
                 } else {
                     controller.sendTapMoreToTryOnEvent(skuInfo.skuItem)
