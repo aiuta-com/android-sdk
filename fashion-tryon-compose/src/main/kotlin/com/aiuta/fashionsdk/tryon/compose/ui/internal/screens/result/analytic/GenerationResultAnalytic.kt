@@ -1,9 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsFeedbackEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsFeedbackEventType
 import com.aiuta.fashionsdk.internal.analytic.model.DislikeGenerationFeedback
@@ -14,21 +10,6 @@ import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.internal.analytic.model.ViewMoreToTryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
-
-@Composable
-internal fun sendOpenResultsScreenEvent() {
-    val analytic = LocalAnalytic.current
-
-    LaunchedEffect(Unit) {
-        analytic.sendEvent(
-            event =
-                AiutaAnalyticPageEvent(
-                    pageId = AiutaAnalyticPageId.RESULTS,
-                ),
-        )
-    }
-}
 
 private var lastScrolledImageIndex = 0
 

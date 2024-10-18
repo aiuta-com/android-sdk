@@ -64,7 +64,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendHistoryEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendOpenHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
@@ -116,8 +115,6 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 density,
             ).toDp()
         }
-
-    sendOpenHistoryEvent()
 
     Box(
         modifier =

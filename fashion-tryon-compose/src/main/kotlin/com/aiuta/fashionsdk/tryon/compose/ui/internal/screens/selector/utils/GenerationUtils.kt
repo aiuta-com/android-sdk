@@ -13,7 +13,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendStartUITryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
@@ -28,8 +27,6 @@ import kotlinx.coroutines.launch
 
 internal fun FashionTryOnController.startGeneration(aiutaConfiguration: AiutaTryOnConfiguration) {
     generationScope.launch {
-        sendStartUITryOnEvent()
-
         activateGeneration()
 
         val errorCount = AtomicInteger()

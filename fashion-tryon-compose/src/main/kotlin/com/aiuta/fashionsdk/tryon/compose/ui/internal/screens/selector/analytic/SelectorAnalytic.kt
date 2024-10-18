@@ -2,8 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.internal.analytic.model.OpenMainScreen
 import com.aiuta.fashionsdk.internal.analytic.model.TapChangePhoto
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
@@ -35,15 +33,6 @@ internal fun FashionTryOnController.sendTapChangePhotoEvent(
             TapChangePhoto(
                 hasCurrentPhotos = lastSavedImages.value.isNotEmpty().toString(),
                 hasHistoryPhotos = isHistorySheetOpened.toString(),
-            ),
-    )
-}
-
-internal fun FashionTryOnController.sendStartUITryOnEvent() {
-    analytic.sendEvent(
-        event =
-            AiutaAnalyticsTryOnEvent(
-                event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
             ),
     )
 }

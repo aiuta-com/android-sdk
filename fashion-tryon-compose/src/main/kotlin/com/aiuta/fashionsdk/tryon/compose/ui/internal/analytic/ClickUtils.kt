@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
@@ -60,15 +59,6 @@ internal fun FashionTryOnController.clickClose(
 }
 
 // Senders
-internal fun FashionTryOnController.sendOpenHistoryScreen() {
-    analytic.sendEvent(
-        event =
-            AiutaAnalyticPageEvent(
-                pageId = AiutaAnalyticPageId.HISTORY,
-            ),
-    )
-}
-
 internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
     action: FinishSession.Action,
     origin: FinishSession.Origin,
