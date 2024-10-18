@@ -28,6 +28,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -42,6 +43,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     sendStartOnBoardingEvent()
+    sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
     Box(
         modifier = modifier,

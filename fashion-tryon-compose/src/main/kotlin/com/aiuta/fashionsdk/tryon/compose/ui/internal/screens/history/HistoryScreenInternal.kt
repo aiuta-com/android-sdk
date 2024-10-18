@@ -50,10 +50,12 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -72,6 +74,8 @@ private const val FULL_SIZE_SPAN = 3
 @Composable
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
+
+    sendPageEvent(pageId = AiutaAnalyticPageId.HISTORY)
 
     Column(
         modifier = modifier.background(theme.colors.background),
