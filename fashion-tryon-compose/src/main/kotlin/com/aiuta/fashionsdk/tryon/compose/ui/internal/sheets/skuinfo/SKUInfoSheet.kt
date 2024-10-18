@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
@@ -169,7 +170,10 @@ private fun ButtonsContainer(
             size = FashionButtonSizes.lSize(),
             onClick = {
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.clickAddToCart(origin = FinishSession.Origin.SKU_POPUP)
+                    controller.clickAddToCart(
+                        origin = FinishSession.Origin.SKU_POPUP,
+                        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    )
                 } else {
                     controller.sendTapMoreToTryOnEvent(skuInfo.skuItem)
                     controller.changeActiveSKU(skuInfo.skuItem)

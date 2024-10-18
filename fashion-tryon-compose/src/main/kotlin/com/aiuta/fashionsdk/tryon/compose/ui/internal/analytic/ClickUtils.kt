@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
@@ -17,19 +18,27 @@ internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: 
     aiutaTryOnListeners().addToWishlistClick(skuItem)
 }
 
-internal fun FashionTryOnController.clickAddToCart(origin: FinishSession.Origin) {
+internal fun FashionTryOnController.clickAddToCart(
+    origin: FinishSession.Origin,
+    pageId: AiutaAnalyticPageId,
+) {
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.ADD_TO_CART,
         origin = origin,
+        pageId = pageId,
         skuItem = activeSKUItem.value,
     )
     aiutaTryOnListeners().addToCartClick(activeSKUItem.value)
 }
 
-internal fun FashionTryOnController.clickClose(origin: FinishSession.Origin) {
+internal fun FashionTryOnController.clickClose(
+    origin: FinishSession.Origin,
+    pageId: AiutaAnalyticPageId,
+) {
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.NONE,
         origin = origin,
+        pageId = pageId,
         skuItem = activeSKUItem.value,
     )
     aiutaTryOnListeners().closeClick(activeSKUItem.value)
@@ -48,6 +57,7 @@ internal fun FashionTryOnController.sendOpenHistoryScreen() {
 internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
     action: FinishSession.Action,
     origin: FinishSession.Origin,
+    pageId: AiutaAnalyticPageId,
     skuItem: SKUItem,
 ) {
     sendEvent(
@@ -59,6 +69,7 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
                 skuCatalogName = skuItem.catalogName,
             ),
     )
+    sendEvent(event = AiutaAnalyticExitEvent(pageId = pageId))
 }
 
 internal fun FashionTryOnController.sendShareGeneratedImageEvent(

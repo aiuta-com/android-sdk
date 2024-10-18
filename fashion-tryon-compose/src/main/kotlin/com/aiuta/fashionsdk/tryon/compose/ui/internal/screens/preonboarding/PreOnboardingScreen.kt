@@ -23,6 +23,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
@@ -69,7 +70,10 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
                     icon = theme.icons.close24,
                     color = Color.White,
                     onClick = {
-                        controller.clickClose(FinishSession.Origin.PREONBOARDING_SCREEN)
+                        controller.clickClose(
+                            origin = FinishSession.Origin.PREONBOARDING_SCREEN,
+                            pageId = AiutaAnalyticPageId.WELCOME,
+                        )
                     },
                 )
             },

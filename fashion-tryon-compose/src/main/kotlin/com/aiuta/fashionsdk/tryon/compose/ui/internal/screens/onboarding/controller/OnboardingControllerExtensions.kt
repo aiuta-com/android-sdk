@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
@@ -11,6 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendContinueOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendFinishOnBoardingEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.launch
@@ -64,7 +66,15 @@ internal fun OnboardingController.previousPage(controller: FashionTryOnControlle
             pagerState.animateScrollToPage(previousPageIndex)
         } else {
             // Ask for back stack from host
-            controller.clickClose(FinishSession.Origin.ONBOARDING_SCREEN)
+            controller.clickClose(
+                origin = FinishSession.Origin.ONBOARDING_SCREEN,
+                pageId =
+                    when (state.value) {
+                        is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS
+                        is BestResultPage -> AiutaAnalyticPageId.BEST_RESULTS
+                        is ConsentPage -> AiutaAnalyticPageId.CONSENT
+                    },
+            )
         }
     }
 }
