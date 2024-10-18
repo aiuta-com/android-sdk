@@ -19,24 +19,15 @@ internal fun GenerationResultListener() {
 
     LaunchedEffect(successOperations.value, loadingOperations.value) {
         if (successOperations.value.isNotEmpty() || loadingOperations.value.isNotEmpty()) {
-            analytic.sendEvent(UpdateResultsScreen) {
-                put(
-                    key = UpdateResultsScreen.SKU_ID_PARAM,
-                    value = activeSKUItem.skuId,
-                )
-                put(
-                    key = UpdateResultsScreen.SKU_CATALOG_NAME_PARAM,
-                    value = activeSKUItem.catalogName,
-                )
-                put(
-                    key = UpdateResultsScreen.PHOTOS_IN_PROGRESS_PARAM,
-                    value = loadingOperations.value.size.toString(),
-                )
-                put(
-                    key = UpdateResultsScreen.GENERATED_PHOTOS_PARAM,
-                    value = successOperations.value.flatMap { it.generatedImageUrls }.size.toString(),
-                )
-            }
+            analytic.sendEvent(
+                event =
+                    UpdateResultsScreen(
+                        skuId = activeSKUItem.skuId,
+                        skuCatalogName = activeSKUItem.catalogName,
+                        photosInProgress = loadingOperations.value.size.toString(),
+                        generatedPhotos = successOperations.value.flatMap { it.generatedImageUrls }.size.toString(),
+                    ),
+            )
         }
     }
 }

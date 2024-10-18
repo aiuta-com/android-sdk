@@ -1,8 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
-import com.aiuta.fashionsdk.internal.analytic.model.OpenHistoryScreen
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
@@ -36,7 +37,12 @@ internal fun FashionTryOnController.clickClose(origin: FinishSession.Origin) {
 
 // Senders
 internal fun FashionTryOnController.sendOpenHistoryScreen() {
-    analytic.sendEvent(OpenHistoryScreen)
+    analytic.sendEvent(
+        event =
+            AiutaAnalyticPageEvent(
+                pageId = AiutaAnalyticPageId.HISTORY,
+            ),
+    )
 }
 
 internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
@@ -44,24 +50,15 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
     origin: FinishSession.Origin,
     skuItem: SKUItem,
 ) {
-    sendEvent(FinishSession) {
-        put(
-            key = FinishSession.ACTION_PARAM,
-            value = action.value,
-        )
-        put(
-            key = FinishSession.ORIGIN_PARAM,
-            value = origin.value,
-        )
-        put(
-            key = FinishSession.SKU_ID_PARAM,
-            value = skuItem.skuId,
-        )
-        put(
-            key = FinishSession.SKU_CATALOG_NAME_PARAM,
-            value = skuItem.catalogName,
-        )
-    }
+    sendEvent(
+        event =
+            FinishSession(
+                action = action.value,
+                origin = origin.value,
+                skuId = skuItem.skuId,
+                skuCatalogName = skuItem.catalogName,
+            ),
+    )
 }
 
 internal fun FashionTryOnController.sendShareGeneratedImageEvent(
@@ -69,18 +66,12 @@ internal fun FashionTryOnController.sendShareGeneratedImageEvent(
     count: Int,
     additionalShareInfo: String? = null,
 ) {
-    analytic.sendEvent(ShareGeneratedImage) {
-        put(
-            key = ShareGeneratedImage.ORIGIN_PARAM,
-            value = origin.value,
-        )
-        put(
-            key = ShareGeneratedImage.COUNT_PARAM,
-            value = count.toString(),
-        )
-        put(
-            key = ShareGeneratedImage.ADDITIONAL_SHARE_INFO_PARAM,
-            value = additionalShareInfo,
-        )
-    }
+    analytic.sendEvent(
+        event =
+            ShareGeneratedImage(
+                origin = origin.value,
+                count = count.toString(),
+                additionalShareInfo = additionalShareInfo,
+            ),
+    )
 }

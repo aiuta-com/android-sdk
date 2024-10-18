@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.work.Data
 import com.aiuta.fashionsdk.internal.analytic.BuildConfig
 import com.aiuta.fashionsdk.internal.analytic.internal.installation.Installation
-import com.aiuta.fashionsdk.internal.analytic.model.AnalyticCompletedEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AnalyticEnvironment
-import com.aiuta.fashionsdk.internal.analytic.model.CompletedInternalAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.model.currentLocalDateTime
+import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
+import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticCompletedEvent
+import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticEnvironment
+import com.aiuta.fashionsdk.internal.analytic.model.internal.currentLocalDateTime
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
+import kotlinx.serialization.json.Json
 
 internal suspend fun createAnalyticEnvironment(context: Context): AnalyticEnvironment {
     return try {
@@ -32,19 +33,12 @@ internal suspend fun createAnalyticCompletedEvent(
     context: Context,
     rawData: Data,
 ): AnalyticCompletedEvent? {
-    return rawData.getString(AnalyticWorker.EVENT_NAME_KEY)?.let { eventName ->
+    return rawData.getString(AnalyticWorker.EVENT_KEY)?.let { rawEvent ->
         // Remove event name key
-        val filteredMap =
-            rawData.keyValueMap
-                .filter { it.key != AnalyticWorker.EVENT_NAME_KEY }
-                .mapValues { it.value?.toString() }
+        val event = Json.decodeFromString<InternalAnalyticEvent>(rawEvent)
 
         AnalyticCompletedEvent(
-            event =
-                CompletedInternalAnalyticEvent(
-                    name = eventName,
-                    params = filteredMap,
-                ),
+            event = event,
             environment = createAnalyticEnvironment(context),
             localDateTime = currentLocalDateTime(),
         )

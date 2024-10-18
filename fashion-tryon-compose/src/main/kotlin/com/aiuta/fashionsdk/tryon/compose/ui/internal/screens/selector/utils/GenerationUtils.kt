@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.net.Uri
-import com.aiuta.fashionsdk.internal.analytic.model.StartUITryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
@@ -27,12 +26,9 @@ import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-internal fun FashionTryOnController.startGeneration(
-    aiutaConfiguration: AiutaTryOnConfiguration,
-    origin: StartUITryOn.Origin,
-) {
+internal fun FashionTryOnController.startGeneration(aiutaConfiguration: AiutaTryOnConfiguration) {
     generationScope.launch {
-        sendStartUITryOnEvent(origin)
+        sendStartUITryOnEvent()
 
         activateGeneration()
 

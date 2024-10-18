@@ -43,5 +43,6 @@ internal class AnalyticWorker(
 
     companion object {
         const val EVENT_NAME_KEY = "EVENT_NAME_KEY"
+        const val EVENT_KEY = "EVENT_KEY"
     }
 }
