@@ -62,7 +62,7 @@ internal class BottomSheetNavigator(
     public val sheetContent: @Composable ColumnScope.() -> Unit = {
         when (val bottomScreen = currentBottomSheetScreen.value) {
             is NavigationBottomSheetScreen.ImagePicker -> {
-                ImagePickerSheet()
+                ImagePickerSheet(pickerData = bottomScreen)
             }
 
             is NavigationBottomSheetScreen.SKUInfo -> {

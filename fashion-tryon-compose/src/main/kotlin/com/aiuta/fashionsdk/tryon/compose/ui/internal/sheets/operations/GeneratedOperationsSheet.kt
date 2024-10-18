@@ -37,9 +37,12 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -73,6 +76,11 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         controller.generatedOperationInteractor
             .getGeneratedOperationFlow()
             .collectAsLazyPagingItems()
+
+    sendPickerAnalytic(
+        event = AiutaAnalyticsPickerEventType.UPLOADS_HISTORY_OPENED,
+        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+    )
 
     GeneratedOperationsSheetListener()
 
@@ -110,6 +118,10 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     onClick = {
                         with(controller) {
                             sendSelectOldPhotos(generatedOperation.sourceImageUrls.size)
+                            sendPickerAnalytic(
+                                event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
+                                pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                            )
 
                             lastSavedOperation.value = generatedOperation
                             lastSavedImages.value = generatedOperation.toLastSavedImages()
@@ -124,12 +136,20 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     Spacer(Modifier.height(24.dp))
 
     FashionButton(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = sharedHorizontalPadding),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = sharedHorizontalPadding),
         text = stringResources.generatedOperationsSheetUploadNewButton,
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
         onClick = {
-            controller.bottomSheetNavigator.change(NavigationBottomSheetScreen.ImagePicker)
+            controller.bottomSheetNavigator.change(
+                newSheetScreen =
+                    NavigationBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    ),
+            )
         },
     )
 }
@@ -150,7 +170,10 @@ private fun OperationItem(
     ) {
         if (generatedOperation.sourceImageUrls.size == 1) {
             SubcomposeAsyncImage(
-                modifier = Modifier.clipToBounds().fillMaxSize(),
+                modifier =
+                    Modifier
+                        .clipToBounds()
+                        .fillMaxSize(),
                 model =
                     ImageRequest.Builder(context)
                         .data(generatedOperation.sourceImageUrls.firstOrNull())
@@ -185,6 +208,10 @@ private fun OperationItem(
                     .clickableUnindicated {
                         scope.launch {
                             with(controller) {
+                                sendPickerAnalytic(
+                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
+                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                )
                                 generatedOperationInteractor.deleteOperation(generatedOperation)
                                 if (lastSavedOperation.value == generatedOperation) {
                                     lastSavedOperation.value = null

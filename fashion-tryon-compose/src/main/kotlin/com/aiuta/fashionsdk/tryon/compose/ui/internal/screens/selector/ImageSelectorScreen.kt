@@ -64,7 +64,12 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(MAIN_IMAGE_SIZE),
             uploadPhoto = {
-                controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
+                controller.bottomSheetNavigator.show(
+                    newSheetScreen =
+                        NavigationBottomSheetScreen.ImagePicker(
+                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                        ),
+                )
             },
         )
 

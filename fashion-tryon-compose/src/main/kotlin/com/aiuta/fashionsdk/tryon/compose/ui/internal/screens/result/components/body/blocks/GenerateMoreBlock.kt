@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
@@ -25,7 +26,12 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
         icon = theme.icons.camera24,
         onClick = {
             controller.sendTapChangePhotoEvent()
-            controller.bottomSheetNavigator.show(NavigationBottomSheetScreen.ImagePicker)
+            controller.bottomSheetNavigator.show(
+                newSheetScreen =
+                    NavigationBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticPageId.RESULTS,
+                    ),
+            )
             isGenerateMoreFlowActive.value = true
         },
     )
