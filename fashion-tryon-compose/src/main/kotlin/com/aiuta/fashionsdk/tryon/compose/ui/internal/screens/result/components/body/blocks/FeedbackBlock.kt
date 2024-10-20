@@ -25,6 +25,8 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isCustomLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -59,29 +61,46 @@ internal fun FeedbackBlock(
     val isFeedbackVisible =
         remember {
             derivedStateOf {
-                !isFeedbackSelected.value && feedbackData.value != null
+                val selectionCondition = !isFeedbackSelected.value
+                val backendCondition = feedbackData.value != null
+                val customLanguageCondition = stringResources.isCustomLanguage() &&
+                    (stringResources as? CustomLanguage)?.feedbackSheetTitle != null
+
+                selectionCondition && (backendCondition || customLanguageCondition)
             }
         }
 
     val onFeedbackClick = {
-        val data = feedbackData.value
-        val feedbackSheetTitle = data?.title?.toTranslatedString(stringResources)
+        val title: String?
+        val options: List<String>
+        val extraOption: String?
+        val extraOptionTitle: String?
 
-        if (feedbackSheetTitle != null) {
+        // In priority custom language
+        if (stringResources.isCustomLanguage()) {
+            title = (stringResources as? CustomLanguage)?.feedbackSheetTitle
+            options = (stringResources as? CustomLanguage)?.feedbackSheetOptions.orEmpty()
+            extraOption = (stringResources as? CustomLanguage)?.feedbackSheetExtraOption
+            extraOptionTitle = (stringResources as? CustomLanguage)?.feedbackSheetExtraOptionTitle
+        } else {
+            val data = feedbackData.value
+
+            title = data?.title?.toTranslatedString(stringResources)
+            options = data?.mainOptions?.mapNotNull { it.toTranslatedString(stringResources) }.orEmpty()
+            extraOption = data?.plaintextOption?.toTranslatedString(stringResources)
+            extraOptionTitle = data?.plaintextTitle?.toTranslatedString(stringResources)
+        }
+
+        if (title != null) {
             controller.bottomSheetNavigator.show(
                 newSheetScreen =
-                    NavigationBottomSheetScreen.Feedback(
-                        title = feedbackSheetTitle,
-                        itemIndex = itemIndex,
-                        options =
-                            data.mainOptions.mapNotNull {
-                                it.toTranslatedString(
-                                    stringResources,
-                                )
-                            },
-                        extraOption = data.plaintextOption?.toTranslatedString(stringResources),
-                        extraOptionTitle = data.plaintextTitle?.toTranslatedString(stringResources),
-                    ),
+                NavigationBottomSheetScreen.Feedback(
+                    title = title,
+                    itemIndex = itemIndex,
+                    options = options,
+                    extraOption = extraOption,
+                    extraOptionTitle = extraOptionTitle,
+                ),
             )
         } else {
             generationResultController.showThanksFeedbackBlock(scope)
@@ -89,7 +108,10 @@ internal fun FeedbackBlock(
     }
 
     LaunchedEffect(Unit) {
-        feedbackData.value = dataController.provideFeedbackFeature()
+        // Don't call it, because in custom language you should provide feedback
+        if (!stringResources.isCustomLanguage()) {
+            feedbackData.value = dataController.provideFeedbackFeature()
+        }
     }
 
     AnimatedVisibility(
@@ -154,22 +176,22 @@ private fun ReactionIcon(
 
     Box(
         modifier =
-            modifier
-                .size(38.dp)
-                .background(
-                    color = theme.colors.primary.copy(alpha = 0.12f),
-                    shape = CircleShape,
-                ),
+        modifier
+            .size(38.dp)
+            .background(
+                color = theme.colors.primary.copy(alpha = 0.12f),
+                shape = CircleShape,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(36.dp)
-                    .clickableUnindicated {
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                        onClick()
-                    },
+            Modifier
+                .size(36.dp)
+                .clickableUnindicated {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onClick()
+                },
             icon = icon,
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),

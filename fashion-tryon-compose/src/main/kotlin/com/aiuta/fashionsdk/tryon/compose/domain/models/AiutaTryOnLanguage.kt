@@ -87,6 +87,10 @@ public class CustomLanguage(
     override val feedbackSheetSkip: String,
     override val feedbackSheetSend: String,
     override val feedbackSheetSendFeedback: String,
+    public val feedbackSheetTitle: String? = null,
+    public val feedbackSheetOptions: List<String>? = null,
+    public val feedbackSheetExtraOption: String? = null,
+    public val feedbackSheetExtraOptionTitle: String? = null,
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String,
@@ -103,6 +107,7 @@ public class CustomLanguage(
     override val share: String,
     override val defaultErrorMessage: String,
     // Code in ISO-639
+    @Deprecated("Will be deleted in new version")
     public val code: String,
 ) : AiutaTryOnLanguage, InternalAiutaTryOnLanguage {
     init {
