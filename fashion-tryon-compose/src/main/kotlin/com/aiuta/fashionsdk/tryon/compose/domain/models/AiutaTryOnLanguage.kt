@@ -106,9 +106,6 @@ public class CustomLanguage(
     override val virtualTryOn: String,
     override val share: String,
     override val defaultErrorMessage: String,
-    // Code in ISO-639
-    @Deprecated("Will be deleted in new version")
-    public val code: String,
 ) : AiutaTryOnLanguage, InternalAiutaTryOnLanguage {
     init {
         // App bar
