@@ -87,6 +87,10 @@ public class CustomLanguage(
     override val feedbackSheetSkip: String,
     override val feedbackSheetSend: String,
     override val feedbackSheetSendFeedback: String,
+    public val feedbackSheetTitle: String? = null,
+    public val feedbackSheetOptions: List<String>? = null,
+    public val feedbackSheetExtraOption: String? = null,
+    public val feedbackSheetExtraOptionTitle: String? = null,
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String,
@@ -102,8 +106,6 @@ public class CustomLanguage(
     override val virtualTryOn: String,
     override val share: String,
     override val defaultErrorMessage: String,
-    // Code in ISO-639
-    public val code: String,
 ) : AiutaTryOnLanguage, InternalAiutaTryOnLanguage {
     init {
         // App bar
@@ -152,6 +154,10 @@ public class CustomLanguage(
         feedbackSheetSkip.atMost(30)
         feedbackSheetSend.atMost(20)
         feedbackSheetSendFeedback.atMost(20)
+        feedbackSheetTitle?.atMost(44)
+        feedbackSheetOptions?.forEach { option -> option.atMost(30) }
+        feedbackSheetExtraOption?.atMost(30)
+        feedbackSheetExtraOptionTitle?.atMost(44)
         // Dialog
         // Camera permission
         dialogCameraPermissionTitle.atMost(20)
