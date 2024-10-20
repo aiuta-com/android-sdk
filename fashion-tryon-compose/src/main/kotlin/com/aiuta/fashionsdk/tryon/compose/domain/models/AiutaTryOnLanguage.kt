@@ -157,6 +157,10 @@ public class CustomLanguage(
         feedbackSheetSkip.atMost(30)
         feedbackSheetSend.atMost(20)
         feedbackSheetSendFeedback.atMost(20)
+        feedbackSheetTitle?.atMost(44)
+        feedbackSheetOptions?.forEach { option -> option.atMost(30) }
+        feedbackSheetExtraOption?.atMost(30)
+        feedbackSheetExtraOptionTitle?.atMost(44)
         // Dialog
         // Camera permission
         dialogCameraPermissionTitle.atMost(20)

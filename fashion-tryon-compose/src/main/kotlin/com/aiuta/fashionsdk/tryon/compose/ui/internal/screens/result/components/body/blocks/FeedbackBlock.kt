@@ -63,8 +63,9 @@ internal fun FeedbackBlock(
             derivedStateOf {
                 val selectionCondition = !isFeedbackSelected.value
                 val backendCondition = feedbackData.value != null
-                val customLanguageCondition = stringResources.isCustomLanguage() &&
-                    (stringResources as? CustomLanguage)?.feedbackSheetTitle != null
+                val customLanguageCondition =
+                    stringResources.isCustomLanguage() &&
+                        (stringResources as? CustomLanguage)?.feedbackSheetTitle != null
 
                 selectionCondition && (backendCondition || customLanguageCondition)
             }
@@ -86,7 +87,12 @@ internal fun FeedbackBlock(
             val data = feedbackData.value
 
             title = data?.title?.toTranslatedString(stringResources)
-            options = data?.mainOptions?.mapNotNull { it.toTranslatedString(stringResources) }.orEmpty()
+            options =
+                data?.mainOptions?.mapNotNull {
+                    it.toTranslatedString(
+                        stringResources,
+                    )
+                }.orEmpty()
             extraOption = data?.plaintextOption?.toTranslatedString(stringResources)
             extraOptionTitle = data?.plaintextTitle?.toTranslatedString(stringResources)
         }
@@ -94,13 +100,13 @@ internal fun FeedbackBlock(
         if (title != null) {
             controller.bottomSheetNavigator.show(
                 newSheetScreen =
-                NavigationBottomSheetScreen.Feedback(
-                    title = title,
-                    itemIndex = itemIndex,
-                    options = options,
-                    extraOption = extraOption,
-                    extraOptionTitle = extraOptionTitle,
-                ),
+                    NavigationBottomSheetScreen.Feedback(
+                        title = title,
+                        itemIndex = itemIndex,
+                        options = options,
+                        extraOption = extraOption,
+                        extraOptionTitle = extraOptionTitle,
+                    ),
             )
         } else {
             generationResultController.showThanksFeedbackBlock(scope)
@@ -176,22 +182,22 @@ private fun ReactionIcon(
 
     Box(
         modifier =
-        modifier
-            .size(38.dp)
-            .background(
-                color = theme.colors.primary.copy(alpha = 0.12f),
-                shape = CircleShape,
-            ),
+            modifier
+                .size(38.dp)
+                .background(
+                    color = theme.colors.primary.copy(alpha = 0.12f),
+                    shape = CircleShape,
+                ),
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(
             modifier =
-            Modifier
-                .size(36.dp)
-                .clickableUnindicated {
-                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                    onClick()
-                },
+                Modifier
+                    .size(36.dp)
+                    .clickableUnindicated {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                        onClick()
+                    },
             icon = icon,
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),
