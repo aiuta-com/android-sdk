@@ -142,11 +142,12 @@ private fun ButtonsContainer(
                     Modifier
                         .weight(1f)
                         .fillMaxHeight(),
-                icon = if (activeSKUItem.inWishlist) {
-                    theme.icons.wishlistFill24
-                } else {
-                    theme.icons.wishlist24
-                },
+                icon =
+                    if (activeSKUItem.inWishlist) {
+                        theme.icons.wishlistFill24
+                    } else {
+                        theme.icons.wishlist24
+                    },
                 text = stringResources.addToWish,
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
