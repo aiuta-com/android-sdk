@@ -268,7 +268,9 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsRe
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
 	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent$Companion;
-	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getErrorMessage ()Ljava/lang/String;
 	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
 }
 
