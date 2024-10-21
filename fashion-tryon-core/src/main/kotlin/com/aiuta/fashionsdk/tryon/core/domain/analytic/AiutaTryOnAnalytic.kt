@@ -13,10 +13,10 @@ private const val MILLISECONDS_IN_SECOND = 1000L
 internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationContainer) {
     sendEvent(
         event =
-            StartTryOn(
-                skuId = container.skuId,
-                skuCatalogName = container.skuCatalogName,
-            ),
+        StartTryOn(
+            skuId = container.skuId,
+            skuCatalogName = container.skuCatalogName,
+        ),
     )
     sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED))
 }
@@ -29,20 +29,28 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
 
     sendEvent(
         event =
-            FinishTryOn(
-                skuId = container.skuId,
-                skuCatalogName = container.skuCatalogName,
-                generationTime = loadingTimeSeconds.toString(),
-            ),
+        FinishTryOn(
+            skuId = container.skuId,
+            skuCatalogName = container.skuCatalogName,
+            generationTime = loadingTimeSeconds.toString(),
+        ),
     )
     sendEvent(
         event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED),
     )
 }
 
-internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(type: TryOnError.Type) {
+internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(
+    type: TryOnError.Type,
+    errorMessage: String? = null,
+) {
     sendEvent(event = TryOnError(type = type.value))
-    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR))
+    sendEvent(
+        event = AiutaAnalyticsTryOnEvent(
+            event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
+            errorMessage = "${type.value}: $errorMessage"
+        )
+    )
 }
 
 internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent() {

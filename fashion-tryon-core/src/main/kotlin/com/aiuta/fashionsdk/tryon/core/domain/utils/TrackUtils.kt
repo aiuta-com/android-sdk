@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
+import android.util.Log
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
@@ -29,7 +30,10 @@ internal suspend fun <T> trackException(
         action()
     } catch (e: Exception) {
         // Logging exception
-        analytic.sendTryOnErrorEvent(type)
+        analytic.sendTryOnErrorEvent(
+            type = type,
+            errorMessage = e.message,
+        )
         throw e
     }
 }

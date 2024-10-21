@@ -194,7 +194,7 @@ public class FinishTryOn(
 public class TryOnError(
     @SerialName("name")
     public val name: String = "TryOnError",
-    @SerialName("type")
+    @SerialName("error_type")
     public val type: String,
 ) : InternalAnalyticEvent {
     public enum class Type(public val value: String) {
