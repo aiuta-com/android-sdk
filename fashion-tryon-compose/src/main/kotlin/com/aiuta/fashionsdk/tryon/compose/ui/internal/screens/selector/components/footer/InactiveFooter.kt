@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
@@ -53,7 +52,6 @@ internal fun InactiveFooter(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(20.dp))
 
         skuGenerationTransition.AnimatedVisibility(
-            modifier = Modifier.fillMaxSize(),
             visible = { it != SKUGenerationUIStatus.LOADING },
             enter = fadeIn(),
             exit = fadeOut(),
