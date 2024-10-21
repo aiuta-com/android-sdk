@@ -46,21 +46,17 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
     Box(
-        modifier = modifier,
+        modifier = modifier.background(theme.colors.background),
         contentAlignment = Alignment.Center,
     ) {
-        AiutaImage(
-            modifier = Modifier.fillMaxSize(),
-            image =
-                checkNotNull(theme.images?.preonboardingImage) {
-                    """
-                    PreOnboardingScreen: preonboarding image is not provided.
-                    Please, push it through rememberAiutaTheme(images = ...)
-                    """.trimIndent()
-                },
-            contentScale = ContentScale.Crop,
-            contentDescription = null,
-        )
+        theme.images?.preonboardingImage?.let { preonboardingImage ->
+            AiutaImage(
+                modifier = Modifier.fillMaxSize(),
+                image = preonboardingImage,
+                contentScale = ContentScale.Crop,
+                contentDescription = null,
+            )
+        }
 
         AppBar(
             modifier =
