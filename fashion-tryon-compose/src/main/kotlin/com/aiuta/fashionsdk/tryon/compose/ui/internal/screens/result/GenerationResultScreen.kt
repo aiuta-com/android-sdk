@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result
 
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,7 +28,7 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
 
     GenerationResultListener()
 
-    GenerationResultScreenContent(modifier = Modifier.fillMaxSize())
+    GenerationResultScreenContent(modifier = modifier)
 }
 
 @Composable

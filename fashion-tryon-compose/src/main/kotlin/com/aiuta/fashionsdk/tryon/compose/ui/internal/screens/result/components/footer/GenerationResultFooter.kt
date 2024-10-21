@@ -7,18 +7,19 @@ import androidx.compose.foundation.gestures.anchoredDraggable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -72,8 +73,13 @@ internal fun BoxWithConstraintsScope.GenerationResultFooter(
         GenerationResultFooterList(
             modifier =
                 Modifier
-                    .fillMaxSize()
-                    .windowInsetsPadding(WindowInsets.navigationBars),
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .windowInsetsPadding(WindowInsets.navigationBars)
+                    .onGloballyPositioned { coordination ->
+                        generationResultController.footerHeightPx.floatValue =
+                            coordination.size.height.toFloat()
+                    },
             generationResultController = generationResultController,
         )
     }
@@ -86,7 +92,8 @@ private fun GenerationResultFooterList(
 ) {
     val controller = LocalController.current
     val density = LocalDensity.current
-    val statusBars = WindowInsets.statusBars.getTop(density).dp
+    val statusBarsPx = WindowInsets.statusBars.getTop(density)
+    val statusBars = with(density) { statusBarsPx.toDp() }
 
     val activeSKUItem = controller.activeSKUItem.value
 
@@ -125,8 +132,8 @@ private fun GenerationResultFooterList(
             spacerBlock(index = 4, height = 32.dp)
 
             generateMoreListBlock(skuItem = activeSKUItem)
-        }
 
-        spacerBlock(index = 5, height = statusBars)
+            spacerBlock(index = 5, height = statusBars)
+        }
     }
 }

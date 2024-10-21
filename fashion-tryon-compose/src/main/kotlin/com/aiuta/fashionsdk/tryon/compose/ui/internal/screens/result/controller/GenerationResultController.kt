@@ -14,9 +14,13 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableFloatState
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -43,6 +47,7 @@ private val disclaimerTotalHeight: Dp = disclaimerContentHeight + disclaimerBott
 internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResultController {
     val density = LocalDensity.current
     val controller = LocalController.current
+    val configuration = LocalConfiguration.current
 
     val successGenerationOperations = controller.subscribeToSuccessOperations()
     val generationUrlsSize =
@@ -54,7 +59,11 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
 
     val pagerState = rememberPagerState(pageCount = { generationUrlsSize.value })
 
+    val screenHeight = configuration.screenHeightDp.dp
+    val screenHeightPx = with(density) { screenHeight.toPx() }
+
     val statusBarPx = WindowInsets.statusBars.getTop(density).toFloat()
+    val footerHeightPx = remember { mutableFloatStateOf(0f) }
     val footerOffset = footerOffset(maxHeight)
     val footerOffsetPx = with(density) { footerOffset.toPx() }
 
@@ -71,20 +80,34 @@ internal fun rememberGenerationResultController(maxHeight: Dp): GenerationResult
                 velocityThreshold = { with(density) { (maxHeight / 2).toPx() } },
                 snapAnimationSpec =
                     tween(
-                        durationMillis = 500,
+                        durationMillis = 1000,
                         easing = LinearOutSlowInEasing,
                     ),
                 decayAnimationSpec = exponentialDecay(),
             )
         }
 
+    LaunchedEffect(footerHeightPx.floatValue) {
+        verticalSwipeState.updateAnchors(
+            newAnchors =
+                DraggableAnchors {
+                    GenerateResultStatus.MORE_COLLAPSED at footerOffsetPx
+                    GenerateResultStatus.MORE_EXPANDED at
+                        (screenHeightPx - footerHeightPx.floatValue).coerceAtLeast(
+                            statusBarPx,
+                        )
+                },
+        )
+    }
+
     val footerListState = rememberLazyGridState()
 
-    return remember {
+    return remember(density, configuration) {
         GenerationResultController(
             generationPagerState = pagerState,
             verticalSwipeState = verticalSwipeState,
             footerListState = footerListState,
+            footerHeightPx = footerHeightPx,
         )
     }.also {
         GenerationResultControllerListener(it)
@@ -99,6 +122,7 @@ internal class GenerationResultController(
     // Swipe state
     public val verticalSwipeState: AnchoredDraggableState<GenerateResultStatus>,
     public val footerListState: LazyGridState,
+    public val footerHeightPx: MutableFloatState,
 ) {
     public val isThanksFeedbackBlockVisible = mutableStateOf(false)
 }
