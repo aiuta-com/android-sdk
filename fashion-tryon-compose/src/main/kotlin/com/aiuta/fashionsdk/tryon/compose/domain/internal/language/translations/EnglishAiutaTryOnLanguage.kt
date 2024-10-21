@@ -79,7 +79,7 @@ internal class EnglishAiutaTryOnLanguage(
     override val dialogCameraPermissionConfirmButton: String = "Settings"
 
     // General
-    override val addToWish: String = "Add to wishlist"
+    override val addToWish: String = "Wishlist"
     override val addToCart: String = "Add to cart"
     override val cancel: String = "Cancel"
     override val close: String = "Close"

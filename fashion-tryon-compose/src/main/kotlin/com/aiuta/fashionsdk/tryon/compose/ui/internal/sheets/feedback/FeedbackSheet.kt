@@ -152,7 +152,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
         }
     }
 
-    Spacer(Modifier.height(24.dp))
+    Spacer(Modifier.height(16.dp))
 }
 
 @Composable

@@ -41,6 +41,7 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
         sheetContent = currentController.bottomSheetNavigator.sheetContent,
         sheetContentColor = theme.colors.primary,
         sheetShape = theme.shapes.bottomSheet,
+        scrimColor = theme.colors.primary.copy(alpha = 0.6f),
         content = {
             NavigationContainerContent(
                 modifier = Modifier.fillMaxSize(),

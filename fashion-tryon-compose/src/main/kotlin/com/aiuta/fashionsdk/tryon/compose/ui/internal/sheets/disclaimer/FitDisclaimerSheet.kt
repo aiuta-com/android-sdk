@@ -52,6 +52,4 @@ internal fun ColumnScope.FitDisclaimerSheet(text: String) {
             controller.bottomSheetNavigator.hide()
         },
     )
-
-    Spacer(Modifier.height(10.dp))
 }

@@ -356,6 +356,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/select
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
+public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$InactiveFooterKt {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$InactiveFooterKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function3;
+	public fun <init> ()V
+	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+}
+
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;

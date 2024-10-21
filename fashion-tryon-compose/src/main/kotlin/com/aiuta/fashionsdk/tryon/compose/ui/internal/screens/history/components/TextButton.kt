@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +27,7 @@ internal fun TextButton(
             modifier
                 .background(
                     color = backgroundColor,
-                    shape = RoundedCornerShape(26.dp),
+                    shape = theme.shapes.buttonM,
                 )
                 .clickableUnindicated { onClick() }
                 .padding(

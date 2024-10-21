@@ -1,5 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,13 +24,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
 
 @Composable
 internal fun InactiveFooter(modifier: Modifier = Modifier) {
+    val controller = LocalController.current
     val configuration = LocalConfiguration.current
     val horizontalPadding = configuration.screenWidthDp.dp * 0.25f
+
+    val generationStatus = controller.generationStatus
+    val skuGenerationTransition =
+        updateTransition(
+            targetState = generationStatus.value,
+            label = "skuGenerationTransition",
+        )
 
     Column(
         modifier =
@@ -37,7 +51,13 @@ internal fun InactiveFooter(modifier: Modifier = Modifier) {
     ) {
         Spacer(Modifier.height(20.dp))
 
-        ProtectionPoint(modifier = Modifier.fillMaxWidth())
+        skuGenerationTransition.AnimatedVisibility(
+            visible = { it != SKUGenerationUIStatus.LOADING },
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            ProtectionPoint(modifier = Modifier.fillMaxWidth())
+        }
 
         Spacer(Modifier.weight(1f))
 
