@@ -88,7 +88,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
                     .padding(horizontal = 16.dp),
         )
 
-        Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(8.dp))
 
         HistoryScreenInternal(
             modifier = Modifier.fillMaxSize(),

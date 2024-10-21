@@ -49,23 +49,13 @@ internal fun SelectorCard(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            SmallIconButton(
-                icon = theme.icons.trash24,
-                isActive = isActionActive,
+            TextButton(
+                text = stringResources.historySelectorEnableButtonCancel,
+                backgroundColor = theme.colors.onDark,
+                textColor = theme.colors.primary,
             ) {
-                onDelete()
+                onCancel()
             }
-
-            Spacer(Modifier.width(16.dp))
-
-            SmallIconButton(
-                icon = theme.icons.share24,
-                isActive = isActionActive,
-            ) {
-                onShare()
-            }
-
-            Spacer(Modifier.weight(1f))
 
             AnimatedContent(
                 targetState = selectionMode.value,
@@ -98,12 +88,22 @@ internal fun SelectorCard(
                 }
             }
 
-            TextButton(
-                text = stringResources.historySelectorEnableButtonCancel,
-                backgroundColor = theme.colors.onDark,
-                textColor = theme.colors.primary,
+            Spacer(Modifier.weight(1f))
+
+            SmallIconButton(
+                icon = theme.icons.trash24,
+                isActive = isActionActive,
             ) {
-                onCancel()
+                onDelete()
+            }
+
+            Spacer(Modifier.width(16.dp))
+
+            SmallIconButton(
+                icon = theme.icons.share24,
+                isActive = isActionActive,
+            ) {
+                onShare()
             }
         }
     }
