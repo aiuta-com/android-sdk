@@ -6,10 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -47,7 +47,7 @@ internal fun ImageSelectorBottom(
             .countGeneratedOperation()
             .collectAsStateWithLifecycle(0)
 
-    val sharedModifier = Modifier.fillMaxWidth()
+    val sharedModifier = Modifier.wrapContentWidth()
     val sharedBackground = Color.White.copy(alpha = 0.5f)
 
     val sharedButtonSize = FashionButtonSizes.mSize()
@@ -120,14 +120,14 @@ internal fun ImageSelectorBottom(
                                 shape = sharedButtonSize.shape,
                             )
                             .padding(
-                                horizontal = 16.dp,
-                                vertical = 8.dp,
+                                horizontal = 24.dp,
+                                vertical = 12.dp,
                             ),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(14.dp),
                         color = theme.colors.primary,
                         strokeWidth = 2.dp,
                     )

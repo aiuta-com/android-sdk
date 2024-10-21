@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -58,11 +59,14 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
             modifier =
                 Modifier
                     .shadow(
-                        elevation = 4.dp,
+                        elevation = 15.dp,
                         shape = theme.shapes.bottomSheet,
                         ambientColor = shadowColor,
                         spotColor = shadowColor,
                     )
+                    .graphicsLayer {
+                        translationY = 10.dp.toPx()
+                    }
                     .background(
                         color = theme.colors.background,
                         shape = theme.shapes.bottomSheet,
@@ -70,7 +74,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                     .padding(horizontal = 16.dp)
                     .windowInsetsPadding(WindowInsets.navigationBars),
         ) {
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(6.dp))
 
             SKUBlock(
                 modifier =
@@ -119,7 +123,7 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
                         ),
                     )
                 },
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             modifier =
