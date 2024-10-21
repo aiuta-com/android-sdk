@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
-import android.util.Log
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
