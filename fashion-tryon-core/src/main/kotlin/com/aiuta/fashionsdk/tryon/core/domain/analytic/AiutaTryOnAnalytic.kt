@@ -40,9 +40,18 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
     )
 }
 
-internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(type: TryOnError.Type) {
+internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(
+    type: TryOnError.Type,
+    errorMessage: String? = null,
+) {
     sendEvent(event = TryOnError(type = type.value))
-    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR))
+    sendEvent(
+        event =
+            AiutaAnalyticsTryOnEvent(
+                event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
+                errorMessage = "${type.value}: $errorMessage",
+            ),
+    )
 }
 
 internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent() {

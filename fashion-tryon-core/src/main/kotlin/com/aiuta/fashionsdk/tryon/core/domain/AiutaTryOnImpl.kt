@@ -109,14 +109,19 @@ internal class AiutaTryOnImpl(
 
                     // Secondly, create sku generation operation
                     val newOperation =
-                        skuOperationsDataSource.createSKUOperation(
-                            request =
-                                CreateSKUOperationRequest(
-                                    skuCatalogName = container.skuCatalogName,
-                                    skuId = container.skuId,
-                                    uploadedImageId = uploadedImage.id,
-                                ),
-                        )
+                        trackException(
+                            analytic = analytic,
+                            type = TryOnError.Type.TRY_ON_START_FAILED,
+                        ) {
+                            skuOperationsDataSource.createSKUOperation(
+                                request =
+                                    CreateSKUOperationRequest(
+                                        skuCatalogName = container.skuCatalogName,
+                                        skuId = container.skuId,
+                                        uploadedImageId = uploadedImage.id,
+                                    ),
+                            )
+                        }
 
                     // Finally, wait for the operation, until it is completed
                     emit(

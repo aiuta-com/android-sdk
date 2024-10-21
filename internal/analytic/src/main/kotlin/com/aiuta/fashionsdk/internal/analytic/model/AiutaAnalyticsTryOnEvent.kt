@@ -8,6 +8,8 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticsTryOnEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsTryOnEventType,
+    @SerialName("errorMessage")
+    public val errorMessage: String? = null,
 ) : ExternalAnalyticEvent
 
 @Serializable

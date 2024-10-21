@@ -29,7 +29,10 @@ internal suspend fun <T> trackException(
         action()
     } catch (e: Exception) {
         // Logging exception
-        analytic.sendTryOnErrorEvent(type)
+        analytic.sendTryOnErrorEvent(
+            type = type,
+            errorMessage = e.message,
+        )
         throw e
     }
 }
