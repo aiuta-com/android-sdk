@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,15 +9,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.BottomSheetValue.Expanded
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
@@ -47,7 +53,10 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
         scaffoldState = generationResultController.bottomSheetScaffoldState,
         sheetContent = {
             GenerationResultFooterList(
-                modifier = Modifier.fillMaxSize(),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
                 generationResultController = generationResultController,
             )
         },
@@ -123,14 +132,15 @@ private fun BottomSheetScaffoldScrim(
 ) {
     val theme = LocalTheme.current
 
-    val sheetProgress =
+    val bottomSheetState =
         generationResultController
             .bottomSheetScaffoldState
             .bottomSheetState
-            .progress(
-                from = BottomSheetValue.Collapsed,
-                to = BottomSheetValue.Expanded,
-            )
+    val sheetProgress =
+        bottomSheetState.progress(
+            from = BottomSheetValue.Collapsed,
+            to = BottomSheetValue.Expanded,
+        )
     val scrimColor =
         lerp(
             start = Color.Transparent,
@@ -138,7 +148,22 @@ private fun BottomSheetScaffoldScrim(
             fraction = sheetProgress,
         )
 
-    Box(
-        modifier = modifier.background(scrimColor),
-    )
+    Log.d("TAG_CHECK", "sheetProgress - $sheetProgress")
+    val isClicable =
+        remember(sheetProgress) {
+            derivedStateOf {
+                sheetProgress == 1f
+            }
+        }
+
+    val finalModifier =
+        if (isClicable.value) {
+            modifier
+                .background(scrimColor)
+                .clickableUnindicated { }
+        } else {
+            modifier.background(scrimColor)
+        }
+
+    Box(modifier = finalModifier)
 }
