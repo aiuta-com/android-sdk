@@ -34,7 +34,6 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.FeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.GenerateMoreBlock
@@ -49,14 +48,9 @@ internal fun GenerationResultBody(
 ) {
     val controller = LocalController.current
 
-    val successOperations = controller.subscribeToSuccessOperations()
-    val generationUrls =
-        remember(successOperations.value) {
-            successOperations.value.flatMap { it.generatedImageUrls }
-        }
+    val generationUrls = controller.sessionGenerationInteractor.sessionGenerationsUrls
 
     val horizontalPaddingWeight = 1 - MAIN_IMAGE_SIZE
-//    val contentHorizontalPadding = (maxWidth * horizontalPaddingWeight) / 2
     val configuration = LocalConfiguration.current
     val contentHorizontalPadding = (configuration.screenWidthDp.dp * horizontalPaddingWeight) / 2
 

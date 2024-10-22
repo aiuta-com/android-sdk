@@ -137,8 +137,14 @@ private fun FashionTryOnController.solveOperationCollecting(operation: SKUGenera
         }
 
         is SKUGenerationOperation.SuccessOperation -> {
-            generationStatus.value = SKUGenerationUIStatus.SUCCESS
-            refreshOperation(operation)
+            generalScope.launch {
+                // Try warm up first
+                addSuccessGenerations(operation)
+
+                // Then move to result screen
+                generationStatus.value = SKUGenerationUIStatus.SUCCESS
+                refreshOperation(operation)
+            }
         }
 
         is SKUGenerationOperation.ErrorOperation -> {
@@ -154,4 +160,10 @@ private fun FashionTryOnController.refreshOperation(newOperation: SKUGenerationO
             generationOperations[index] = newOperation
         }
     }
+}
+
+private suspend fun FashionTryOnController.addSuccessGenerations(
+    newOperation: SKUGenerationOperation.SuccessOperation,
+) {
+    sessionGenerationInteractor.addGenerations(newOperation.generatedImageUrls)
 }

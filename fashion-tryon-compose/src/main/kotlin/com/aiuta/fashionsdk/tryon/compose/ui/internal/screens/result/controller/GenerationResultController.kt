@@ -10,13 +10,11 @@ import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.subscribeToSuccessOperations
 
 @Composable
 internal fun rememberGenerationResultController(): GenerationResultController {
@@ -24,15 +22,10 @@ internal fun rememberGenerationResultController(): GenerationResultController {
     val controller = LocalController.current
     val configuration = LocalConfiguration.current
 
-    val successGenerationOperations = controller.subscribeToSuccessOperations()
-    val generationUrlsSize =
-        remember(successGenerationOperations.value) {
-            derivedStateOf {
-                successGenerationOperations.value.flatMap { it.generatedImageUrls }.size
-            }
-        }
-
-    val pagerState = rememberPagerState(pageCount = { generationUrlsSize.value })
+    val pagerState =
+        rememberPagerState(pageCount = {
+            controller.sessionGenerationInteractor.sessionGenerationsUrls.size
+        })
     val footerListState = rememberLazyGridState()
     val bottomSheetScaffoldState =
         rememberBottomSheetScaffoldState(

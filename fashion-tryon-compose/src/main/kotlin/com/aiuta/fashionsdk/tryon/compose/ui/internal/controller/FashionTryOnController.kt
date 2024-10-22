@@ -14,6 +14,7 @@ import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session.SessionGenerationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
@@ -130,6 +131,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = OnboardingInteractor.getInstance(context),
+            sessionGenerationInteractor = SessionGenerationInteractor(context),
             analytic = analytic(),
         )
     }.also {
@@ -169,6 +171,7 @@ internal class FashionTryOnController(
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val generatedOperationInteractor: GeneratedOperationInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
+    internal val sessionGenerationInteractor: SessionGenerationInteractor,
     // Analytic
     internal val analytic: InternalAiutaAnalytic,
 ) {
