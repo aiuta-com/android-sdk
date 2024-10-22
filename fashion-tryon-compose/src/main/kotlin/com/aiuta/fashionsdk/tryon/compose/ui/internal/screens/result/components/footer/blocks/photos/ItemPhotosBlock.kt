@@ -90,7 +90,7 @@ private fun ItemPhotosBlock(
         remember(sheetProgress) {
             derivedStateOf {
                 lerp(
-                    start = 0.3f,
+                    start = 0.1f,
                     stop = 1f,
                     fraction = sheetProgress,
                 )
