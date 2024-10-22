@@ -64,12 +64,18 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
                     contentAlignment = Alignment.Center,
                 ) {
                     DefaultImage(
-                        modifier = Modifier.fillMaxHeight(0.55f).fillMaxWidth(),
+                        modifier =
+                            Modifier
+                                .fillMaxHeight(0.55f)
+                                .fillMaxWidth(),
                     )
                 }
             } else {
                 ImagesContainer(
-                    modifier = Modifier.fillMaxSize().clip(sharedCornerShape),
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .clip(sharedCornerShape),
                     getImageUrls = { uploadedImageUris },
                 )
             }
