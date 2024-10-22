@@ -206,7 +206,9 @@ private fun ZoomedImageScreenContent(
                 Modifier
                     .align(Alignment.TopStart)
                     .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(12.dp)
+                    .padding(top = 14.dp)
+                    .padding(horizontal = 16.dp)
+                    .size(24.dp)
                     .clickableUnindicated {
                         screenState.closeZoomImageScreen(scope)
                     },
@@ -220,7 +222,8 @@ private fun ZoomedImageScreenContent(
                 Modifier
                     .align(Alignment.TopEnd)
                     .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(16.dp)
+                    .padding(top = 14.dp)
+                    .padding(horizontal = 16.dp)
                     .clickableUnindicated {
                         val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
                         controller.sendShareGeneratedImageEvent(
