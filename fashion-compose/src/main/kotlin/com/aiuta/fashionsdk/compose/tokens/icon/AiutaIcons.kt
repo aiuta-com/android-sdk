@@ -46,6 +46,9 @@ public sealed interface AiutaIcons {
     public val wishlist24: AiutaIcon
     public val wishlistFill24: AiutaIcon
 
+    // x20
+    public val info20: AiutaIcon
+
     // x16
     public val check16: AiutaIcon
     public val magic16: AiutaIcon
