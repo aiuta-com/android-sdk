@@ -78,7 +78,7 @@ private fun AgreePoint(
 
     Row(
         modifier = modifier,
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             Checkbox(
