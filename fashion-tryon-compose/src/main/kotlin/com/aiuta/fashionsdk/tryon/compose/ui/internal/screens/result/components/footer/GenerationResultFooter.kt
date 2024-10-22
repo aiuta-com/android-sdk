@@ -21,55 +21,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 
 internal const val FOOTER_FULL_SIZE_SPAN = 2
 
-// TODO DElete
-// @OptIn(ExperimentalFoundationApi::class)
-// @Composable
-// internal fun BoxWithConstraintsScope.GenerationResultFooter(
-//    modifier: Modifier = Modifier,
-//    generationResultController: GenerationResultController,
-// ) {
-//    val theme = LocalTheme.current
-//
-//    val connection =
-//        rememberGenerationResultConnection(
-//            verticalSwipeState = generationResultController.verticalSwipeState,
-//        )
-//
-//    Box(
-//        modifier =
-//            modifier
-//                .fillMaxWidth()
-//                .offset {
-//                    IntOffset(
-//                        0,
-//                        (generationResultController.verticalSwipeState.offset).roundToInt(),
-//                    )
-//                }
-//                .background(
-//                    color = theme.colors.background,
-//                    shape = theme.shapes.bottomSheet,
-//                )
-//                .anchoredDraggable(
-//                    state = generationResultController.verticalSwipeState,
-//                    orientation = Orientation.Vertical,
-//                )
-//                .nestedScroll(connection),
-//    ) {
-//        GenerationResultFooterList(
-//            modifier =
-//                Modifier
-//                    .fillMaxWidth()
-//                    .wrapContentHeight()
-//                    .windowInsetsPadding(WindowInsets.navigationBars)
-//                    .onGloballyPositioned { coordination ->
-//                        generationResultController.footerHeightPx.floatValue =
-//                            coordination.size.height.toFloat()
-//                    },
-//            generationResultController = generationResultController,
-//        )
-//    }
-// }
-
 @Composable
 internal fun GenerationResultFooterList(
     modifier: Modifier = Modifier,
@@ -87,7 +38,7 @@ internal fun GenerationResultFooterList(
         state = generationResultController.footerListState,
         columns = GridCells.Fixed(FOOTER_FULL_SIZE_SPAN),
     ) {
-        spacerBlock(index = 0, height = 12.dp)
+        spacerBlock(index = 0, height = 20.dp)
 
         itemDescriptionBlock(
             modifier =
@@ -117,8 +68,8 @@ internal fun GenerationResultFooterList(
             spacerBlock(index = 4, height = 32.dp)
 
             generateMoreListBlock(skuItem = activeSKUItem)
-
-            spacerBlock(index = 5, height = statusBars)
         }
+
+        spacerBlock(index = 5, height = statusBars)
     }
 }
