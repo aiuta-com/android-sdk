@@ -10,10 +10,10 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -22,7 +22,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 @Composable
 internal fun ShimmerBlock(
     modifier: Modifier = Modifier,
-    durationMillis: Int = 1500,
+    durationMillis: Int = 3000,
     lineHeight: Dp = 4.dp,
 ) {
     val theme = LocalTheme.current
@@ -31,8 +31,8 @@ internal fun ShimmerBlock(
     val transition = rememberInfiniteTransition()
     val translateAnimation =
         transition.animateFloat(
-            initialValue = 0f,
-            targetValue = 1f,
+            initialValue = 1f,
+            targetValue = -1f,
             animationSpec =
                 infiniteRepeatable(
                     animation =
@@ -40,43 +40,17 @@ internal fun ShimmerBlock(
                             durationMillis = durationMillis,
                             easing = LinearEasing,
                         ),
-                    repeatMode = RepeatMode.Reverse,
+                    repeatMode = RepeatMode.Restart,
                 ),
             label = "Shimmer loading animation",
         )
 
     val loadingAnimationGradient =
         remember {
-            theme.gradients.loadingAnimation.map {
-                if (it != Color.Transparent) {
-                    it.copy(alpha = 0.5f)
-                } else {
-                    it
-                }
-            }
-        }
-    val reversedLoadingAnimationGradient =
-        remember {
-            loadingAnimationGradient.reversed()
+            theme.gradients.loadingAnimation
         }
 
-    Canvas(modifier = modifier) {
-        // Up gradient
-        drawRect(
-            brush =
-                Brush.verticalGradient(
-                    reversedLoadingAnimationGradient,
-                    startY = 0f,
-                    endY = size.height * translateAnimation.value,
-                ),
-            topLeft = Offset(0f, 0f),
-            size =
-                Size(
-                    width = size.width,
-                    height = size.height * translateAnimation.value,
-                ),
-        )
-
+    Canvas(modifier = modifier.alpha(0.5f)) {
         // Main line
         drawRect(
             color = loadingAnimationGradient.first(),
@@ -89,18 +63,22 @@ internal fun ShimmerBlock(
         )
 
         // Down gradient
+        val rectHeight =
+            (size.height * (1 - translateAnimation.value)).coerceAtMost(
+                maximumValue = size.height * 0.4f,
+            )
         drawRect(
             brush =
                 Brush.verticalGradient(
                     loadingAnimationGradient,
                     startY = size.height * translateAnimation.value,
-                    endY = size.height * translateAnimation.value + size.height * (1 - translateAnimation.value),
+                    endY = size.height * translateAnimation.value + rectHeight,
                 ),
             topLeft = Offset(0f, size.height * translateAnimation.value),
             size =
                 Size(
                     width = size.width,
-                    height = size.height * (1 - translateAnimation.value),
+                    height = rectHeight,
                 ),
         )
     }

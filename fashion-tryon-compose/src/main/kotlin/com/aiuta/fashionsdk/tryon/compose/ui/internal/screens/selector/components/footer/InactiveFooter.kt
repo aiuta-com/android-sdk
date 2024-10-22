@@ -33,7 +33,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.component
 internal fun InactiveFooter(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val configuration = LocalConfiguration.current
-    val horizontalPadding = configuration.screenWidthDp.dp * 0.25f
+    val horizontalPadding = configuration.screenWidthDp.dp * 0.2f
 
     val generationStatus = controller.generationStatus
     val skuGenerationTransition =

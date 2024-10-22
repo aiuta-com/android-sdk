@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
@@ -12,7 +11,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.se
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendViewMoreToTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun GenerationResultControllerListener(
     generationResultController: GenerationResultController,
@@ -27,9 +25,11 @@ internal fun GenerationResultControllerListener(
         )
     }
 
-    LaunchedEffect(generationResultController.verticalSwipeState.currentValue) {
-        val verticalSwipeState = generationResultController.verticalSwipeState.currentValue
-        if (verticalSwipeState == GenerateResultStatus.MORE_EXPANDED) {
+    LaunchedEffect(
+        generationResultController.bottomSheetScaffoldState.bottomSheetState.isExpanded,
+    ) {
+        val bottomSheetState = generationResultController.bottomSheetScaffoldState.bottomSheetState
+        if (bottomSheetState.isExpanded) {
             controller.sendViewMoreToTryOnEvent()
         }
     }

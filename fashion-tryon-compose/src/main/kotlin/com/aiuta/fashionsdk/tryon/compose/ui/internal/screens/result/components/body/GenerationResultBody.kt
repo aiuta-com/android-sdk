@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -23,6 +22,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -43,7 +43,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.op
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 
 @Composable
-internal fun BoxWithConstraintsScope.GenerationResultBody(
+internal fun GenerationResultBody(
     modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
@@ -56,7 +56,9 @@ internal fun BoxWithConstraintsScope.GenerationResultBody(
         }
 
     val horizontalPaddingWeight = 1 - MAIN_IMAGE_SIZE
-    val contentHorizontalPadding = (maxWidth * horizontalPaddingWeight) / 2
+//    val contentHorizontalPadding = (maxWidth * horizontalPaddingWeight) / 2
+    val configuration = LocalConfiguration.current
+    val contentHorizontalPadding = (configuration.screenWidthDp.dp * horizontalPaddingWeight) / 2
 
     HorizontalPager(
         modifier = modifier,
