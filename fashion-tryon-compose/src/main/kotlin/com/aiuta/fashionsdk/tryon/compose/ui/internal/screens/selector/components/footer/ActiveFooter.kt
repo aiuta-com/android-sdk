@@ -22,8 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -39,6 +37,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
 
 @Composable
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
@@ -46,8 +45,6 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
-
-    val shadowColor = theme.colors.primary
 
     Column(
         modifier = modifier,
@@ -58,15 +55,12 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
         Column(
             modifier =
                 Modifier
-                    .shadow(
-                        elevation = 15.dp,
+                    .dropShadow(
                         shape = theme.shapes.bottomSheet,
-                        ambientColor = shadowColor,
-                        spotColor = shadowColor,
+                        color = theme.colors.primary.copy(alpha = 0.04f),
+                        blur = 15.dp,
+                        offsetY = (-10).dp,
                     )
-                    .graphicsLayer {
-                        translationY = 10.dp.toPx()
-                    }
                     .background(
                         color = theme.colors.background,
                         shape = theme.shapes.bottomSheet,
@@ -74,7 +68,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                     .padding(horizontal = 16.dp)
                     .windowInsetsPadding(WindowInsets.navigationBars),
         ) {
-            Spacer(Modifier.height(6.dp))
+            Spacer(Modifier.height(16.dp))
 
             SKUBlock(
                 modifier =
