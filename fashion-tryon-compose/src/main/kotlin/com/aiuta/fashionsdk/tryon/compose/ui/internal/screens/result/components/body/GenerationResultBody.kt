@@ -4,11 +4,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
@@ -40,6 +44,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
+import kotlin.math.absoluteValue
 
 @Composable
 internal fun GenerationResultBody(
@@ -47,6 +53,7 @@ internal fun GenerationResultBody(
     generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
+    val pagerState = generationResultController.generationPagerState
 
     val generationUrls = controller.sessionGenerationInteractor.sessionGenerationsUrls
 
@@ -56,12 +63,39 @@ internal fun GenerationResultBody(
 
     HorizontalPager(
         modifier = modifier,
-        state = generationResultController.generationPagerState,
+        state = pagerState,
         contentPadding = PaddingValues(horizontal = contentHorizontalPadding),
         pageSpacing = 16.dp,
     ) { index ->
+        val pageOffset =
+            remember {
+                derivedStateOf {
+                    pagerState.calculateCurrentOffsetForPage(index).absoluteValue
+                }
+            }
+
+        val alphaItem =
+            remember {
+                derivedStateOf {
+                    (1 - pageOffset.value).coerceAtLeast(0.3f)
+                }
+            }
+
+        val heightFraction =
+            remember {
+                derivedStateOf {
+                    (1 - pageOffset.value).coerceAtLeast(0.9f)
+                }
+            }
+
         PagerItem(
-            modifier = Modifier.fillMaxSize(),
+            modifier =
+                Modifier
+                    .graphicsLayer {
+                        alpha = alphaItem.value
+                    }
+                    .fillMaxWidth()
+                    .fillMaxHeight(heightFraction.value),
             imageUrl = generationUrls.getOrNull(index),
             itemIndex = index,
             generationResultController = generationResultController,
