@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -54,17 +56,19 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
                 .windowInsetsPadding(WindowInsets.ime),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
+        Spacer(Modifier.height(14.dp))
+
+        AiutaIcon(
             modifier =
                 Modifier
+                    .size(24.dp)
                     .align(Alignment.End)
                     .clickableUnindicated {
                         controller.bottomSheetNavigator.hide()
                     },
-            text = stringResources.cancel,
-            style = theme.typography.regular,
-            color = theme.colors.primary,
-            textAlign = TextAlign.Center,
+            icon = theme.icons.close24,
+            contentDescription = null,
+            tint = theme.colors.primary,
         )
 
         Spacer(Modifier.height(32.dp))
@@ -102,7 +106,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
         Spacer(Modifier.weight(1f))
 
         FashionButton(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.ime),
             text = stringResources.feedbackSheetSendFeedback,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
