@@ -73,6 +73,10 @@ internal fun GenerationResultFooterList(
             generateMoreListBlock(skuItem = activeSKUItem)
         }
 
-        spacerBlock(index = 5, height = statusBars)
+        if (activeSKUItem.generateMoreSKU?.isNotEmpty() == false) {
+            spacerBlock(index = 5, height = 50.dp)
+        }
+
+        spacerBlock(index = 6, height = statusBars)
     }
 }
