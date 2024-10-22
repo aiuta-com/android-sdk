@@ -32,7 +32,7 @@ internal class EnglishAiutaTryOnLanguage(
             " Your data will be processed according to the $brand <b><a href=\"$termsOfServiceUrl\">Privacy Notice</a></b> " +
             "and <b><a href=\"$privacyPolicyUrl\">Terms of Use.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
-        "I agree to allow $brand to\nprocess my photo"
+        "I agree to allow $brand to process my photo"
     override val onboardingAppbarTryonPage: String = "<b>Step 1/3</b> - How it works"
     override val onboardingAppbarBestResultPage: String = "<b>Step 2/3</b> - For best result"
     override val onboardingAppbarConsentPage: String = "<b>Step 3/3</b> - Consent"
