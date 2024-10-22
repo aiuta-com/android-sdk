@@ -7,6 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
@@ -71,7 +72,10 @@ internal fun OnboardingAppBar(
                                     },
                                 isClickable = false,
                             ),
-                        style = theme.typography.navbar,
+                        style =
+                            theme.typography.navbar.copy(
+                                fontSynthesis = FontSynthesis.All,
+                            ),
                         color = theme.colors.primary,
                         textAlign = TextAlign.Center,
                     )
