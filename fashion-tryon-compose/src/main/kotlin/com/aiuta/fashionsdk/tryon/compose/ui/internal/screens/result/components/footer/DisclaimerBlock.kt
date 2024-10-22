@@ -37,32 +37,34 @@ internal fun DisclaimerBlock(modifier: Modifier = Modifier) {
         disclaimerData.value = dataController.provideFitDisclaimerFeature()
     }
 
-    AnimatedVisibility(
-        modifier = modifier,
-        visible = disclaimerData.value != null,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
-        val data = disclaimerData.value
-        val disclaimerText = data?.text?.toTranslatedString()
+    Box(modifier = modifier) {
+        AnimatedVisibility(
+            modifier = modifier,
+            visible = disclaimerData.value != null,
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            val data = disclaimerData.value
+            val disclaimerText = data?.text?.toTranslatedString()
 
-        data?.title?.toTranslatedString()?.let { title ->
-            DisclaimerBlockContent(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clickableUnindicated(disclaimerText != null) {
-                            disclaimerText?.let {
-                                controller.bottomSheetNavigator.show(
-                                    newSheetScreen =
-                                        NavigationBottomSheetScreen.FitDisclaimer(
-                                            text = disclaimerText,
-                                        ),
-                                )
-                            }
-                        },
-                title = title,
-            )
+            data?.title?.toTranslatedString()?.let { title ->
+                DisclaimerBlockContent(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .clickableUnindicated(disclaimerText != null) {
+                                disclaimerText?.let {
+                                    controller.bottomSheetNavigator.show(
+                                        newSheetScreen =
+                                            NavigationBottomSheetScreen.FitDisclaimer(
+                                                text = disclaimerText,
+                                            ),
+                                    )
+                                }
+                            },
+                    title = title,
+                )
+            }
         }
     }
 }

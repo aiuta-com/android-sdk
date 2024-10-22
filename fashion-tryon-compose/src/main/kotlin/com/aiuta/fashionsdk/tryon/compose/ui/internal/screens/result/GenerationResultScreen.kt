@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
@@ -33,6 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.rememberGenerationResultController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
@@ -45,8 +47,16 @@ internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
 
 @Composable
 private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
+    val configuration = LocalConfiguration.current
     val theme = LocalTheme.current
+
     val generationResultController = rememberGenerationResultController()
+
+    val screenHeight = configuration.screenHeightDp.dp
+
+    val imageHeight = screenHeight * MAIN_IMAGE_SIZE
+    val disclaimerHeight = 25.dp
+    val sheetHeight = screenHeight - 8.dp - imageHeight - 32.dp - disclaimerHeight
 
     BottomSheetScaffold(
         modifier = modifier,
@@ -63,7 +73,7 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
         sheetBackgroundColor = theme.colors.background,
         backgroundColor = theme.colors.neutral,
         sheetShape = theme.shapes.bottomSheet,
-        sheetPeekHeight = 180.dp,
+        sheetPeekHeight = sheetHeight,
     ) { paddings ->
         Box(
             modifier =
@@ -119,7 +129,7 @@ private fun BottomSheetScaffoldContent(
         DisclaimerBlock(
             modifier =
                 Modifier
-                    .height(34.dp)
+                    .height(25.dp)
                     .fillMaxWidth(),
         )
     }
