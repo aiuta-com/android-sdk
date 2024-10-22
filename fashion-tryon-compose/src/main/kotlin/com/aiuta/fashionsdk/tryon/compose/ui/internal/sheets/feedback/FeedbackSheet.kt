@@ -42,6 +42,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
         Modifier
             .padding(horizontal = 16.dp)
             .align(Alignment.CenterHorizontally)
+            .height(50.dp)
 
     val selectedOption =
         remember {
@@ -61,7 +62,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
     Text(
         modifier = sharedModifier,
         text = feedbackData.title,
-        style = theme.typography.titleL,
+        style = theme.typography.titleM,
         color = theme.colors.primary,
         textAlign = TextAlign.Center,
     )
@@ -138,7 +139,6 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.feedbackSheetSend,
                 style = FashionButtonStyles.primaryStyle(theme),
-                icon = theme.icons.magic16,
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.sendGenerationFeedback(
