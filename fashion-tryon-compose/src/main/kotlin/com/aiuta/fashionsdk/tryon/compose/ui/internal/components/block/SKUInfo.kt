@@ -28,7 +28,7 @@ internal fun SKUInfo(
         Text(
             text = skuItem.store,
             style = theme.typography.brandName,
-            color = theme.colors.secondary,
+            color = theme.colors.primary,
         )
 
         Spacer(Modifier.height(2.dp))

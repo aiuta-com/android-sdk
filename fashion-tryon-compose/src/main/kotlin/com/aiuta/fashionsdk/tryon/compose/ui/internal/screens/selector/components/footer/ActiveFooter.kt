@@ -150,7 +150,7 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
             Text(
                 text = activeSKUItem.store,
                 style = theme.typography.brandName,
-                color = theme.colors.secondary,
+                color = theme.colors.primary,
                 textAlign = TextAlign.Start,
             )
 
