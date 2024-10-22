@@ -4,8 +4,11 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -201,46 +204,50 @@ private fun ZoomedImageScreenContent(
             contentDescription = null,
         )
 
-        AiutaIcon(
+        Row(
             modifier =
                 Modifier
                     .align(Alignment.TopStart)
+                    .fillMaxWidth()
                     .windowInsetsPadding(WindowInsets.statusBars)
                     .padding(top = 14.dp)
-                    .padding(horizontal = 16.dp)
-                    .size(24.dp)
-                    .clickableUnindicated {
-                        screenState.closeZoomImageScreen(scope)
-                    },
-            icon = theme.icons.close24,
-            contentDescription = null,
-            tint = interfaceColor.value,
-        )
+                    .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            AiutaIcon(
+                modifier =
+                    Modifier
+                        .size(24.dp)
+                        .clickableUnindicated {
+                            screenState.closeZoomImageScreen(scope)
+                        },
+                icon = theme.icons.close24,
+                contentDescription = null,
+                tint = interfaceColor.value,
+            )
 
-        Text(
-            modifier =
-                Modifier
-                    .align(Alignment.TopEnd)
-                    .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(top = 14.dp)
-                    .padding(horizontal = 16.dp)
-                    .clickableUnindicated {
-                        val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
-                        controller.sendShareGeneratedImageEvent(
-                            origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
-                            count = imageUrls.size,
-                            additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
-                        )
-                        shareManager.share(
-                            content = screenState.sharedImage.value.additionalShareInfo,
-                            imageUrls = imageUrls,
-                            watermark = theme.watermark,
-                            origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
-                        )
-                    },
-            text = stringResources.share,
-            style = theme.typography.button,
-            color = interfaceColor.value,
-        )
+            Text(
+                modifier =
+                    Modifier
+                        .clickableUnindicated {
+                            val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
+                            controller.sendShareGeneratedImageEvent(
+                                origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
+                                count = imageUrls.size,
+                                additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
+                            )
+                            shareManager.share(
+                                content = screenState.sharedImage.value.additionalShareInfo,
+                                imageUrls = imageUrls,
+                                watermark = theme.watermark,
+                                origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
+                            )
+                        },
+                text = stringResources.share,
+                style = theme.typography.button,
+                color = interfaceColor.value,
+            )
+        }
     }
 }

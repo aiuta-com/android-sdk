@@ -49,7 +49,10 @@ internal fun GenerationResultFooterList(
 
         spacerBlock(index = 1, height = 32.dp)
 
-        itemPhotosBlock(modifier = Modifier.fillMaxWidth())
+        itemPhotosBlock(
+            modifier = Modifier.fillMaxWidth(),
+            generationResultController = generationResultController,
+        )
 
         if (activeSKUItem.generateMoreSKU?.isNotEmpty() == true) {
             spacerBlock(index = 2, height = 32.dp)
@@ -70,6 +73,10 @@ internal fun GenerationResultFooterList(
             generateMoreListBlock(skuItem = activeSKUItem)
         }
 
-        spacerBlock(index = 5, height = statusBars)
+        if (activeSKUItem.generateMoreSKU?.isNotEmpty() == false) {
+            spacerBlock(index = 5, height = 50.dp)
+        }
+
+        spacerBlock(index = 6, height = statusBars)
     }
 }
