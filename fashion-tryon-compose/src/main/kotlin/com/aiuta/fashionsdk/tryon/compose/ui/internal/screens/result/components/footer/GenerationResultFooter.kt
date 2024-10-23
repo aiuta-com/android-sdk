@@ -73,7 +73,7 @@ internal fun GenerationResultFooterList(
             generateMoreListBlock(skuItem = activeSKUItem)
         }
 
-        if (activeSKUItem.generateMoreSKU?.isNotEmpty() == false) {
+        if (activeSKUItem.generateMoreSKU.isNullOrEmpty()) {
             spacerBlock(index = 5, height = 50.dp)
         }
 
