@@ -71,6 +71,10 @@ internal class EnglishAiutaTryOnLanguage(
     override val feedbackSheetSend: String = "Send"
     override val feedbackSheetSendFeedback: String = "Send feedback"
 
+    // Disclaimer
+    override val fitDisclaimerTitle: String = "Results may vary from real-life fit"
+    override val fitDisclaimerBody: String = "Virtual try-on is a visualization tool that shows how items might look and may not perfectly represent how the item will fit in reality"
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Camera permission"

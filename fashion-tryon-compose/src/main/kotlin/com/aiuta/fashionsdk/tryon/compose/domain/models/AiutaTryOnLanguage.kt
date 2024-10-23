@@ -91,6 +91,9 @@ public class CustomLanguage(
     public val feedbackSheetOptions: List<String>? = null,
     public val feedbackSheetExtraOption: String? = null,
     public val feedbackSheetExtraOptionTitle: String? = null,
+    // Disclaimer
+    override val fitDisclaimerTitle: String,
+    override val fitDisclaimerBody: String,
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String,
@@ -158,6 +161,9 @@ public class CustomLanguage(
         feedbackSheetOptions?.forEach { option -> option.atMost(30) }
         feedbackSheetExtraOption?.atMost(30)
         feedbackSheetExtraOptionTitle?.atMost(44)
+        // Disclaimer
+        fitDisclaimerTitle.atMost(64)
+        fitDisclaimerTitle.atMost(180)
         // Dialog
         // Camera permission
         dialogCameraPermissionTitle.atMost(20)

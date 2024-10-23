@@ -67,6 +67,10 @@ internal class RussianAiutaTryOnLanguage(
     override val feedbackSheetSend: String = "Отправить"
     override val feedbackSheetSendFeedback: String = "Отправить отзыв"
 
+    // Disclaimer
+    override val fitDisclaimerTitle: String = "Результат может отличаться от реальной посадки"
+    override val fitDisclaimerBody: String = "Виртуальная примерка - это инструмент визуализации, который помогает представить, как вещь будет выглядеть на вас. Реальная посадка может отличаться."
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Разрешение использования камеры"
