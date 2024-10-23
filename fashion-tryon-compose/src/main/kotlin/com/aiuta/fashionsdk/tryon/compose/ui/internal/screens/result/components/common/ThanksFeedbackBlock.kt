@@ -27,9 +27,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -43,6 +45,7 @@ internal fun ThanksFeedbackBlock(
 ) {
     val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
     val scope = rememberCoroutineScope()
 
     val bottomSheetNavigator = controller.bottomSheetNavigator
@@ -50,7 +53,9 @@ internal fun ThanksFeedbackBlock(
         remember {
             mutableStateOf<FeedbackFeatureUiModel?>(null)
         }
-    val gratitudeMessage = feedbackData.value?.gratitudeMessage?.toTranslatedString()
+    val gratitudeMessage =
+        (stringResources as? CustomLanguage)?.feedbackSheetGratitude
+            ?: feedbackData.value?.gratitudeMessage?.toTranslatedString()
 
     LaunchedEffect(Unit) {
         feedbackData.value = dataController.provideFeedbackFeature()

@@ -91,6 +91,7 @@ public class CustomLanguage(
     public val feedbackSheetOptions: List<String>? = null,
     public val feedbackSheetExtraOption: String? = null,
     public val feedbackSheetExtraOptionTitle: String? = null,
+    public val feedbackSheetGratitude: String? = null,
     // Disclaimer
     override val fitDisclaimerTitle: String,
     override val fitDisclaimerBody: String,
