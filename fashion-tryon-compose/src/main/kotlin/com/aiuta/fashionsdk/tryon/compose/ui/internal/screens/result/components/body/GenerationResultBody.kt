@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -99,6 +100,7 @@ internal fun GenerationResultBody(
             imageUrl = generationUrls.getOrNull(index),
             itemIndex = index,
             generationResultController = generationResultController,
+            pageOffset = pageOffset,
         )
     }
 }
@@ -109,6 +111,7 @@ private fun PagerItem(
     imageUrl: String?,
     itemIndex: Int,
     generationResultController: GenerationResultController,
+    pageOffset: State<Float>,
 ) {
     val controller = LocalController.current
     val context = LocalContext.current
@@ -171,6 +174,7 @@ private fun PagerItem(
             imageUrl = imageUrl,
             itemIndex = itemIndex,
             generationResultController = generationResultController,
+            pageOffset = pageOffset,
         )
     }
 }
@@ -180,6 +184,7 @@ internal fun BoxScope.PagerItemInterface(
     imageUrl: String?,
     itemIndex: Int,
     generationResultController: GenerationResultController,
+    pageOffset: State<Float>,
 ) {
     ActionBlock(
         modifier =
@@ -194,6 +199,7 @@ internal fun BoxScope.PagerItemInterface(
             Modifier
                 .align(Alignment.BottomStart)
                 .padding(12.dp),
+        pageOffset = pageOffset,
     )
 
     FeedbackBlock(
