@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
@@ -22,6 +23,11 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
     val activeSKUItem = controller.activeSKUItem.value
     val isGenerateMoreFlowActive = remember { mutableStateOf(false) }
 
+    val countGeneratedOperation =
+        controller.generatedOperationInteractor
+            .countGeneratedOperation()
+            .collectAsStateWithLifecycle(0)
+
     GenerateMoreListener(isActive = isGenerateMoreFlowActive)
 
     IconButton(
@@ -33,11 +39,16 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
                 productId = activeSKUItem.skuId,
             )
             controller.sendTapChangePhotoEvent()
+
             controller.bottomSheetNavigator.show(
                 newSheetScreen =
-                    NavigationBottomSheetScreen.ImagePicker(
-                        originPageId = AiutaAnalyticPageId.RESULTS,
-                    ),
+                    if (countGeneratedOperation.value > 1) {
+                        NavigationBottomSheetScreen.GeneratedOperations
+                    } else {
+                        NavigationBottomSheetScreen.ImagePicker(
+                            originPageId = AiutaAnalyticPageId.RESULTS,
+                        )
+                    },
             )
             isGenerateMoreFlowActive.value = true
         },
