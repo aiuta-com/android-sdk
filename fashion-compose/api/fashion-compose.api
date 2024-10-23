@@ -135,8 +135,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons :
 	public synthetic fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
 	public synthetic fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
-	public fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
-	public synthetic fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheck20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getCheck20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
 	public synthetic fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
@@ -190,7 +190,7 @@ public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIc
 	public abstract fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
-	public abstract fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getCheck20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getClose24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
@@ -226,8 +226,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons :
 	public fun getBack24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
 	public synthetic fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
-	public synthetic fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
-	public fun getCheck16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getCheck20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getCheck20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
 	public synthetic fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getCheckCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
 	public synthetic fun getCheckNotCorrect24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
