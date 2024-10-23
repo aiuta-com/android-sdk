@@ -54,4 +54,7 @@ public sealed interface AiutaIcons {
     public val magic16: AiutaIcon
     public val lock16: AiutaIcon
     public val arrow16: AiutaIcon
+
+    // x14
+    public val loading14: AiutaIcon
 }
