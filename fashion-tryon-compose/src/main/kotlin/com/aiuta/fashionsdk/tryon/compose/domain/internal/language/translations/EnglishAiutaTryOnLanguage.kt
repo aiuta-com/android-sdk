@@ -29,8 +29,8 @@ internal class EnglishAiutaTryOnLanguage(
     override val onboardingPageConsentTopic: String = "Consent"
     override val onboardingPageConsentBody: String =
         "In order to try on items digitally, you agree to allow $brand to process your photo." +
-            " Your data will be processed according to the $brand <b><a href=\"$termsOfServiceUrl\">Privacy Notice</a></b> " +
-            "and <b><a href=\"$privacyPolicyUrl\">Terms of Use.</a></b>"
+            " Your data will be processed according to the $brand <b><a href=\"$privacyPolicyUrl\">Privacy Notice</a></b> " +
+            "and <b><a href=\"$termsOfServiceUrl\">Terms of Use.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
         "I agree to allow $brand to process my photo"
     override val onboardingAppbarTryonPage: String = "<b>Step 1/3</b> - How it works"
