@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +26,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendOpenMainScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.ImageSelectorFooter
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorAutoTryOnListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 
@@ -35,6 +37,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
 
     val generationStatus = controller.generationStatus
 
+    val isAutoTryOnEnabled = remember { mutableStateOf(false) }
     val isLastSavedPhotoAvailable = controller.isLastSavedPhotoAvailable()
     val isTryOnButtonVisible =
         remember {
@@ -47,6 +50,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticPageId.IMAGE_PICKER)
 
     ImageSelectorListener(enable = controller.isGenerationActive.value)
+    ImageSelectorAutoTryOnListener(isAutoTryOnEnabled = isAutoTryOnEnabled)
 
     Column(
         modifier = modifier.background(theme.colors.background),
@@ -63,7 +67,9 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
 
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(MAIN_IMAGE_SIZE),
+            enableAutoTryOn = { isAutoTryOnEnabled.value = true },
             uploadPhoto = {
+                isAutoTryOnEnabled.value = true
                 controller.bottomSheetNavigator.show(
                     newSheetScreen =
                         NavigationBottomSheetScreen.ImagePicker(

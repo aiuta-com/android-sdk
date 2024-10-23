@@ -15,6 +15,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 internal fun ImageSelectorBlock(
     modifier: Modifier = Modifier,
     uploadPhoto: () -> Unit,
+    enableAutoTryOn: () -> Unit,
 ) {
     val theme = LocalTheme.current
 
@@ -36,6 +37,7 @@ internal fun ImageSelectorBlock(
                     .padding(bottom = 24.dp)
                     .align(Alignment.BottomCenter),
             uploadPhoto = uploadPhoto,
+            enableAutoTryOn = enableAutoTryOn,
         )
     }
 }
