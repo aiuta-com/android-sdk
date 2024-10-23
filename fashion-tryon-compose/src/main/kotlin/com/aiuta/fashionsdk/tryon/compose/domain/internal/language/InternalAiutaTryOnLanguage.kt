@@ -60,6 +60,10 @@ internal interface InternalAiutaTryOnLanguage {
     val feedbackSheetSend: String
     val feedbackSheetSendFeedback: String
 
+    // Disclaimer
+    val fitDisclaimerTitle: String
+    val fitDisclaimerBody: String
+
     // Dialog
     // Camera permission
     val dialogCameraPermissionTitle: String

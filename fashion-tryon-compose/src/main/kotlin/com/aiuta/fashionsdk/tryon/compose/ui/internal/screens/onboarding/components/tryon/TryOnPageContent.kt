@@ -64,7 +64,7 @@ internal fun TryOnPageContent(
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .fillMaxWidth()
-                    .weight(0.75f)
+                    .weight(0.65f)
                     .padding(horizontal = 20.dp),
             currentPageTransition = currentPageTransition,
             onboardingController = onboardingController,
@@ -74,7 +74,7 @@ internal fun TryOnPageContent(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .weight(0.25f),
+                    .weight(0.35f),
             title = stringResources.onboardingPageTryonTopic,
             subtitle = stringResources.onboardingPageTryonSubtopic,
         )

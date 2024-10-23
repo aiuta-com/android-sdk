@@ -84,7 +84,7 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
                 Modifier
                     .size(16.dp)
                     .graphicsLayer {
-                        translationY = -3f
+                        translationY = -5f
                     },
             icon = theme.icons.lock16,
             contentDescription = null,

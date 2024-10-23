@@ -67,6 +67,10 @@ internal class TurkishAiutaTryOnLanguage(
     override val feedbackSheetSend: String = "Göndermek"
     override val feedbackSheetSendFeedback: String = "Geri bildirimi gönder"
 
+    // Disclaimer
+    override val fitDisclaimerTitle: String = "Sonuçlar gerçek hayattaki beden uyumu ile farklılık gösterebilir"
+    override val fitDisclaimerBody: String = "Üzerinde Gör, ürünün üzerinizde nasıl gözükeceğini gösteren bir görselleştirme aracıdır. Ancak beden ölçüleriniz dikkate alınmadığı için gerçek hayattaki beden uyumu farklılık gösterebilir."
+
     // Dialog
     // Camera permission
     override val dialogCameraPermissionTitle: String = "Kamera izni"
