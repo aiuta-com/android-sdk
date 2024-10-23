@@ -27,6 +27,10 @@ public class AiutaThemeToggles(
      * in picker bottom sheet
      */
     public val isDelimitersExtended: Boolean,
+    /**
+     * Is product first image extended padding applied
+     */
+    public val isProductFistImageExtendedPaddingApplied: Boolean,
 )
 
 public val DefaultAiutaThemeToggles: AiutaThemeToggles by lazy { aiutaThemeToggles() }

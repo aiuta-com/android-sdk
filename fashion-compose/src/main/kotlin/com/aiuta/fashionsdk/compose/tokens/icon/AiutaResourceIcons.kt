@@ -35,9 +35,9 @@ public class AiutaResourceIcons(
     public override val wishlist24: AiutaResourceIcon,
     public override val wishlistFill24: AiutaResourceIcon,
     // x20
+    public override val check20: AiutaResourceIcon,
     public override val info20: AiutaResourceIcon,
     // x16
-    public override val check16: AiutaResourceIcon,
     public override val magic16: AiutaResourceIcon,
     public override val lock16: AiutaResourceIcon,
     public override val arrow16: AiutaResourceIcon,

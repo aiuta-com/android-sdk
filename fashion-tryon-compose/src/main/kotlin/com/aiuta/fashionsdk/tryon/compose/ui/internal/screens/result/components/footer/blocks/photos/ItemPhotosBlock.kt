@@ -1,10 +1,12 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.photos
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -102,10 +104,11 @@ private fun ItemPhotosBlock(
             .height(226.dp)
             .width(170.dp)
             .clip(theme.shapes.previewImage)
-            .alpha(alphaRow.value)
+            .background(theme.colors.neutral)
+    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.shapes.previewImage)
 
     LazyRow(
-        modifier = modifier,
+        modifier = modifier.alpha(alphaRow.value),
         verticalAlignment = Alignment.CenterVertically,
         contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -118,15 +121,25 @@ private fun ItemPhotosBlock(
             var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
             var imageSize by remember { mutableStateOf(Size.Zero) }
 
+            val finalImageModifier =
+                if (theme.toggles.isProductFistImageExtendedPaddingApplied && index == 0) {
+                    sharedImageModifier.padding(
+                        top = 24.dp,
+                        start = 32.dp,
+                        end = 32.dp,
+                        bottom = 40.dp,
+                    )
+                } else {
+                    sharedImageModifier
+                }
+
             Box(
                 modifier = sharedSharedModifier,
                 contentAlignment = Alignment.Center,
             ) {
                 SubcomposeAsyncImage(
                     modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .clip(theme.shapes.previewImage)
+                        finalImageModifier
                             .onGloballyPositioned { coordinates ->
                                 parentImageOffset = coordinates.positionInRoot()
                                 imageSize = coordinates.size.toSize()

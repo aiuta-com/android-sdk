@@ -22,7 +22,7 @@ public sealed interface AiutaIcons {
     }
 
     // x100
-    public val recent100: AiutaIcon
+    public val recent100: AiutaIcon?
 
     // x82
     public val welcomeScreen82: AiutaIcon
@@ -47,10 +47,10 @@ public sealed interface AiutaIcons {
     public val wishlistFill24: AiutaIcon
 
     // x20
+    public val check20: AiutaIcon
     public val info20: AiutaIcon
 
     // x16
-    public val check16: AiutaIcon
     public val magic16: AiutaIcon
     public val lock16: AiutaIcon
     public val arrow16: AiutaIcon

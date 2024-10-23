@@ -11,11 +11,13 @@ public fun aiutaThemeToggles(
     isMainAppbarReversed: Boolean = false,
     isShadowsReduced: Boolean = false,
     isDelimitersExtended: Boolean = false,
+    isProductFistImageExtendedPaddingApplied: Boolean = false,
 ): AiutaThemeToggles {
     return AiutaThemeToggles(
         isOnboardingAppBarExtended = isOnboardingAppBarExtended,
         isMainAppbarReversed = isMainAppbarReversed,
         isShadowsReduced = isShadowsReduced,
         isDelimitersExtended = isDelimitersExtended,
+        isProductFistImageExtendedPaddingApplied = isProductFistImageExtendedPaddingApplied,
     )
 }

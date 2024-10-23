@@ -35,9 +35,9 @@ public class AiutaDrawableIcons(
     public override val wishlist24: AiutaDrawableIcon,
     public override val wishlistFill24: AiutaDrawableIcon,
     // x20
+    public override val check20: AiutaDrawableIcon,
     public override val info20: AiutaDrawableIcon,
     // x16
-    public override val check16: AiutaDrawableIcon,
     public override val magic16: AiutaDrawableIcon,
     public override val lock16: AiutaDrawableIcon,
     public override val arrow16: AiutaDrawableIcon,

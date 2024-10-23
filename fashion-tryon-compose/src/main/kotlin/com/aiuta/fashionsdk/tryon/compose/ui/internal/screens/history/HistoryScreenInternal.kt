@@ -241,8 +241,8 @@ private fun ImageContainer(
             ) {
                 if (isSelectedItem) {
                     AiutaIcon(
-                        modifier = Modifier.size(16.dp),
-                        icon = theme.icons.check16,
+                        modifier = Modifier.size(20.dp),
+                        icon = theme.icons.check20,
                         contentDescription = null,
                         tint = theme.colors.onDark,
                     )
@@ -335,14 +335,16 @@ private fun BoxScope.HistoryScreenEmpty(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            AiutaIcon(
-                modifier = Modifier.size(100.dp),
-                icon = theme.icons.recent100,
-                contentDescription = null,
-                tint = theme.colors.tertiary,
-            )
+            theme.icons.recent100?.let {
+                AiutaIcon(
+                    modifier = Modifier.size(100.dp),
+                    icon = it,
+                    contentDescription = null,
+                    tint = theme.colors.tertiary,
+                )
 
-            Spacer(Modifier.height(36.dp))
+                Spacer(Modifier.height(36.dp))
+            }
 
             Text(
                 modifier = Modifier.padding(horizontal = 30.dp),
