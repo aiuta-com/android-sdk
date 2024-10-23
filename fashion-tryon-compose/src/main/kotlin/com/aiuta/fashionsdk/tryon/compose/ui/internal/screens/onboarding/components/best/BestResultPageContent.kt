@@ -36,7 +36,7 @@ internal fun BestResultPageContent(
         BestImagesBlock(
             modifier =
                 Modifier
-                    .weight(0.7f)
+                    .weight(0.75f)
                     .fillMaxWidth()
                     .padding(horizontal = 32.dp),
             state = state,
@@ -45,7 +45,7 @@ internal fun BestResultPageContent(
         CentredTextBlock(
             modifier =
                 Modifier
-                    .weight(0.3f)
+                    .weight(0.25f)
                     .fillMaxWidth(),
             title = stringResources.onboardingPageBestResultTopic,
             subtitle = stringResources.onboardingPageBestResultSubtopic,

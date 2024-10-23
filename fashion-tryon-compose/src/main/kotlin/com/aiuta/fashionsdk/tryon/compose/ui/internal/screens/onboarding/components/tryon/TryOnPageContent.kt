@@ -1,9 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon
 
-import androidx.compose.animation.Crossfade
-import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.key
@@ -61,21 +64,23 @@ internal fun TryOnPageContent(
                 Modifier
                     .align(Alignment.CenterHorizontally)
                     .fillMaxWidth()
-                    .weight(0.7f)
+                    .weight(0.75f)
                     .padding(horizontal = 20.dp),
             currentPageTransition = currentPageTransition,
             onboardingController = onboardingController,
         )
 
         CentredTextBlock(
-            modifier = Modifier.weight(0.3f),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(0.25f),
             title = stringResources.onboardingPageTryonTopic,
             subtitle = stringResources.onboardingPageTryonSubtopic,
         )
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun ImagesBlock(
     modifier: Modifier = Modifier,
@@ -88,8 +93,9 @@ private fun ImagesBlock(
         modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
-        currentPageTransition.Crossfade(
-            modifier = Modifier.fillMaxHeight().fillMaxWidth(0.85f),
+        currentPageTransition.AnimatedContent(
+            modifier = Modifier.fillMaxHeight().fillMaxWidth(0.8f),
+            transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { page ->
             Image(
                 modifier =
@@ -103,8 +109,9 @@ private fun ImagesBlock(
         }
 
         Column(
-            modifier = Modifier.align(Alignment.CenterStart),
+            modifier = Modifier.align(Alignment.CenterStart).width(90.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             TryOnPage.INTERNAL_PAGES.forEachIndexed { index, page ->
                 key(page.uniqueGeneratedId) {
