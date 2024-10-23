@@ -193,7 +193,7 @@ private fun ReactionIcon(
         AiutaIcon(
             modifier =
                 Modifier
-                    .size(36.dp)
+                    .size(24.dp)
                     .clickableUnindicated {
                         haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onClick()

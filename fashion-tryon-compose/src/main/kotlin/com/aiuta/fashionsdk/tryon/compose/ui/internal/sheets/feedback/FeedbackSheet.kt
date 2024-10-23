@@ -42,7 +42,6 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
         Modifier
             .padding(horizontal = 16.dp)
             .align(Alignment.CenterHorizontally)
-            .height(50.dp)
 
     val selectedOption =
         remember {
@@ -113,7 +112,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
     Spacer(Modifier.height(40.dp))
 
     AnimatedContent(
-        modifier = sharedModifier,
+        modifier = sharedModifier.height(50.dp),
         targetState = isSendButtonVisible.value,
         transitionSpec = { transitionAnimation },
     ) { isVisibleButton ->
@@ -188,7 +187,7 @@ private fun OptionItem(
                 )
                 .clickableUnindicated { onClick() }
                 .padding(
-                    horizontal = 16.dp,
+                    horizontal = 12.dp,
                     vertical = 10.dp,
                 ),
         contentAlignment = Alignment.Center,

@@ -27,6 +27,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardi
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
@@ -126,6 +128,16 @@ private fun OnboardingScreenContent(
 
         onboardingState.AnimatedContent(
             modifier = modifier,
+            transitionSpec = {
+                val initialIndex = onboardingController.onboardingStatesQueue.indexOf(initialState)
+                val targetIndex = onboardingController.onboardingStatesQueue.indexOf(targetState)
+
+                if (initialIndex < targetIndex) {
+                    rightToLeftTransition
+                } else {
+                    leftToRightTransition
+                }
+            },
         ) { state ->
             when (state) {
                 is TryOnPage -> {
