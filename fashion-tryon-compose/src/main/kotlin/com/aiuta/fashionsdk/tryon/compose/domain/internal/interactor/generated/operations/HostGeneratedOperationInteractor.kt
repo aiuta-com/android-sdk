@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUpload
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
-import java.util.UUID
+import kotlin.random.Random
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -48,7 +48,7 @@ internal class HostGeneratedOperationInteractor(
 
     override suspend fun createOperation(): Long {
         // Can use random, because operation is not used in host control mode
-        return UUID.randomUUID().node()
+        return Random.nextLong()
     }
 
     override suspend fun deleteOperation(operation: GeneratedOperation) {
