@@ -1,6 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,11 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -22,6 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -128,10 +135,22 @@ internal fun ImageSelectorBottom(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(14.dp),
-                        color = theme.colors.primary,
-                        strokeWidth = 2.dp,
+                    val infiniteTransition = rememberInfiniteTransition()
+                    val angle =
+                        infiniteTransition.animateFloat(
+                            initialValue = 0F,
+                            targetValue = 360F,
+                            animationSpec =
+                                infiniteRepeatable(
+                                    animation = tween(2000, easing = LinearEasing),
+                                ),
+                        )
+
+                    AiutaIcon(
+                        modifier = Modifier.size(14.dp).rotate(angle.value),
+                        icon = theme.icons.loading14,
+                        tint = theme.colors.primary,
+                        contentDescription = null,
                     )
 
                     Spacer(Modifier.width(8.dp))

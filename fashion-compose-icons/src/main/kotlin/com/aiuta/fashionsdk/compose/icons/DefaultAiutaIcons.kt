@@ -35,6 +35,7 @@ public fun defaultAiutaIcons(): AiutaIcons {
         magic16 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_magic_16),
         lock16 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_lock_16),
         arrow16 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_arrow_16),
+        loading14 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_loader_14),
     )
 }
 

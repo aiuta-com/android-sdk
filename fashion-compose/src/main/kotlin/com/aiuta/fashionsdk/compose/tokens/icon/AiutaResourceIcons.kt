@@ -41,6 +41,8 @@ public class AiutaResourceIcons(
     public override val magic16: AiutaResourceIcon,
     public override val lock16: AiutaResourceIcon,
     public override val arrow16: AiutaResourceIcon,
+    // x14
+    public override val loading14: AiutaResourceIcon,
 ) : AiutaIcons {
     public class AiutaResourceIcon(
         @DrawableRes public override val resource: Int,
