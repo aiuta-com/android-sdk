@@ -88,8 +88,6 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
                     .padding(horizontal = 16.dp),
         )
 
-        Spacer(Modifier.height(8.dp))
-
         HistoryScreenInternal(
             modifier = Modifier.fillMaxSize(),
         )
@@ -269,7 +267,8 @@ private fun BoxScope.HistoryScreenInterface(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
                 .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(horizontal = 8.dp),
+                .padding(horizontal = 8.dp)
+                .padding(bottom = 8.dp),
         visible = controller.isSelectModeActive().value,
         enter = fadeIn(),
         exit = fadeOut(),
