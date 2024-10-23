@@ -14,7 +14,7 @@ import androidx.annotation.DrawableRes
  */
 public class AiutaResourceIcons(
     // x100
-    public override val recent100: AiutaResourceIcon,
+    public override val recent100: AiutaResourceIcon?,
     // x82
     public override val welcomeScreen82: AiutaResourceIcon,
     // x36

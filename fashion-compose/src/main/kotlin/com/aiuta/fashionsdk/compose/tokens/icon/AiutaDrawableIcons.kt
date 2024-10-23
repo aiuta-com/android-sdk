@@ -14,7 +14,7 @@ import android.graphics.drawable.Drawable
  */
 public class AiutaDrawableIcons(
     // x100
-    public override val recent100: AiutaDrawableIcon,
+    public override val recent100: AiutaDrawableIcon?,
     // x82
     public override val welcomeScreen82: AiutaDrawableIcon,
     // x36
