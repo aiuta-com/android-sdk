@@ -27,8 +27,8 @@ internal class RussianAiutaTryOnLanguage(
     override val onboardingPageConsentTopic: String = "Согласие"
     override val onboardingPageConsentBody: String =
         "Чтобы примерить товары виртуально, вы соглашаетесь на обработку вашего фото c $brand." +
-            " Ваши данные будут обработаны в соответствии с <b><a href=\"$termsOfServiceUrl\">Политикой конфиденциальности</a></b> " +
-            "и <b><a href=\"$privacyPolicyUrl\">Условиями использования.</a></b>"
+            " Ваши данные будут обработаны в соответствии с <b><a href=\"$privacyPolicyUrl\">Политикой конфиденциальности</a></b> " +
+            "и <b><a href=\"$termsOfServiceUrl\">Условиями использования.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
         "Я соглашаюсь на обработку моего фото c $brand"
     override val onboardingAppbarTryonPage: String = "<b>Шаг 1/3</b> - Как это работает"

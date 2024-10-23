@@ -28,8 +28,8 @@ internal class TurkishAiutaTryOnLanguage(
     override val onboardingPageConsentTopic: String = "Onay"
     override val onboardingPageConsentBody: String =
         "Ürünleri dijital olarak denemek için, $brand fotoğrafınızı işlemesine izin verirsiniz." +
-            " Verileriniz $brand <b><a href=\"$termsOfServiceUrl\">Gizlilik Bildirimi</a></b> " +
-            "ve <b><a href=\"$privacyPolicyUrl\">Kullanım Koşulları</a></b> doğrultusunda işlenecektir."
+            " Verileriniz $brand <b><a href=\"$privacyPolicyUrl\">Gizlilik Bildirimi</a></b> " +
+            "ve <b><a href=\"$termsOfServiceUrl\">Kullanım Koşulları</a></b> doğrultusunda işlenecektir."
     override val onboardingPageConsentAgreePoint: String =
         "$brand'ın fotoğrafımı işlemesine izin veriyorum"
     override val onboardingAppbarTryonPage: String = "<b>Adım 1/3</b> - Nasıl çalışır"
