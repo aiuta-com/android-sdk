@@ -66,6 +66,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeAct
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.analytic.sendHistoryEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.SelectorCard
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller.HistoryScreenListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
@@ -114,6 +115,8 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
             ).toDp()
         }
 
+    HistoryScreenListeners(generatedImages = generatedImages)
+
     Box(
         modifier =
             modifier
@@ -142,6 +145,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 ImageContainer(
                     modifier =
                         Modifier
+                            .animateItem()
                             .onGloballyPositioned { coordinates ->
                                 parentImageOffset = coordinates.positionInRoot()
                                 imageSize = coordinates.size.toSize()

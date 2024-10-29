@@ -3,17 +3,16 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session
 import android.content.Context
 import coil.imageLoader
 import coil.request.ImageRequest
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 
 internal class SessionGenerationInteractor(
     val context: Context,
 ) {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
     private val _sessionGenerationsUrls: ArrayDeque<String> = ArrayDeque()
     val sessionGenerationsUrls: List<String> = _sessionGenerationsUrls
+
+    fun deleteGenerations(urls: List<String>) {
+        _sessionGenerationsUrls.removeAll(urls)
+    }
 
     suspend fun addGeneration(url: String) {
         warmUp(url)
