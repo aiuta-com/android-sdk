@@ -43,6 +43,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -130,6 +131,9 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                             // Change
                             lastSavedOperation.value = generatedOperation
                             lastSavedImages.value = generatedOperation.toLastSavedImages()
+                            // Activate auto try on
+                            activateAutoTryOn()
+                            // Move back
                             bottomSheetNavigator.hide()
                         }
                     },
