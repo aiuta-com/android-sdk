@@ -1,8 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,7 +20,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -55,7 +53,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.analytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 internal fun ColumnScope.GeneratedOperationsSheet() {
     val aiutaConfiguration = LocalAiutaConfiguration.current
@@ -66,14 +63,9 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =
         Modifier
-            .width(150.dp)
+            .width(148.dp)
             .height(254.dp)
             .clip(theme.shapes.previewImage)
-            .border(
-                width = 1.dp,
-                color = Color(0xFFEEEEEE),
-                shape = theme.shapes.previewImage,
-            )
 
     val generatedOperations =
         controller.generatedOperationInteractor
@@ -106,6 +98,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(horizontal = sharedHorizontalPadding),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(
             count = generatedOperations.itemCount,
@@ -116,7 +109,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
             generatedOperation?.let {
                 OperationItem(
-                    modifier = sharedOperationsModifier.animateItemPlacement(),
+                    modifier = sharedOperationsModifier.animateItem(),
                     generatedOperation = generatedOperation,
                     onClick = {
                         with(controller) {
@@ -203,7 +196,6 @@ private fun OperationItem(
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .padding(8.dp)
                         .clip(theme.shapes.previewImage),
                 getImageUrls = { generatedOperation.sourceImageUrls },
             )
@@ -213,10 +205,7 @@ private fun OperationItem(
             modifier =
                 Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(
-                        end = 6.dp,
-                        bottom = 8.dp,
-                    )
+                    .padding(8.dp)
                     .size(24.dp)
                     .clickableUnindicated {
                         scope.launch {
