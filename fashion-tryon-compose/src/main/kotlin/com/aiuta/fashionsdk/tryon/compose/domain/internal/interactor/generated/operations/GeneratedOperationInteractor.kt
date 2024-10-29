@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 internal interface GeneratedOperationInteractor {
     fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperation>>
 
-    suspend fun getFirstGeneratedOperation(): GeneratedOperation
+    suspend fun getFirstGeneratedOperation(): GeneratedOperation?
 
     // Raw operation
     suspend fun createOperation(): Long

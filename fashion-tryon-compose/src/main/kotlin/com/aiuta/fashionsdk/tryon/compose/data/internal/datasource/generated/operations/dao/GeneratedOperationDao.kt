@@ -19,7 +19,7 @@ internal interface GeneratedOperationDao {
 
     @Transaction
     @Query("SELECT * FROM generated_operation ORDER BY id ASC LIMIT 1")
-    fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages
+    fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages?
 
     // Raw operation
     @Insert(onConflict = OnConflictStrategy.REPLACE)

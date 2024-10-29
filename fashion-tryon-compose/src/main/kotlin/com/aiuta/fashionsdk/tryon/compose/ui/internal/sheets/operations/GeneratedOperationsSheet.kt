@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
@@ -215,9 +214,22 @@ private fun OperationItem(
                                     pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                                 )
                                 generatedOperationInteractor.deleteOperation(generatedOperation)
+
+                                // If active images is deleted
                                 if (lastSavedOperation.value == generatedOperation) {
-                                    lastSavedOperation.value = null
-                                    lastSavedImages.value = LastSavedImages.Empty
+                                    // Try to get new first
+                                    val newFirstOperation =
+                                        generatedOperationInteractor
+                                            .getFirstGeneratedOperation()
+
+                                    // Try to update with new or set as empty
+                                    if (newFirstOperation != null) {
+                                        lastSavedOperation.value = newFirstOperation
+                                        lastSavedImages.value = newFirstOperation.toLastSavedImages()
+                                    } else {
+                                        lastSavedOperation.value = null
+                                        lastSavedImages.value = LastSavedImages.Empty
+                                    }
                                 }
                             }
                         }

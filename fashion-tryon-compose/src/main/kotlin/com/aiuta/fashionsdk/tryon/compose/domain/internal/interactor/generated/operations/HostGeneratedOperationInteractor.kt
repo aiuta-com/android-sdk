@@ -32,18 +32,20 @@ internal class HostGeneratedOperationInteractor(
             .map { images -> PagingData.from(images) }
     }
 
-    override suspend fun getFirstGeneratedOperation(): GeneratedOperation {
-        val firstImage = dataProvider.uploadedImagesFlow.value.first()
-        return GeneratedOperation(
-            operationId = firstImage.id.hashCode().toLong(),
-            sourceImages =
-                listOf(
-                    SourceImage(
-                        imageId = firstImage.id,
-                        imageUrl = firstImage.url,
+    override suspend fun getFirstGeneratedOperation(): GeneratedOperation? {
+        val firstImage = dataProvider.uploadedImagesFlow.value.firstOrNull()
+        return firstImage?.let {
+            GeneratedOperation(
+                operationId = firstImage.id.hashCode().toLong(),
+                sourceImages =
+                    listOf(
+                        SourceImage(
+                            imageId = firstImage.id,
+                            imageUrl = firstImage.url,
+                        ),
                     ),
-                ),
-        )
+            )
+        }
     }
 
     override suspend fun createOperation(): Long {

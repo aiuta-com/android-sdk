@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.imag
 import androidx.compose.runtime.Immutable
 
 @Immutable
-internal class SourceImage(
+internal data class SourceImage(
     val imageId: String,
     val imageUrl: String,
 )

@@ -35,8 +35,8 @@ internal class LocalGeneratedOperationInteractor(
             }
     }
 
-    override suspend fun getFirstGeneratedOperation(): GeneratedOperation {
-        return generatedOperationDatasource.getFirstGeneratedOperationWithImages().toUiModel()
+    override suspend fun getFirstGeneratedOperation(): GeneratedOperation? {
+        return generatedOperationDatasource.getFirstGeneratedOperationWithImages()?.toUiModel()
     }
 
     // Raw operation
