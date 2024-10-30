@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -37,14 +36,14 @@ internal fun GenerationResultControllerListener(
 }
 
 @Composable
-internal fun GenerateMoreListener(isActive: State<Boolean>) {
+internal fun GenerateMoreListener() {
     val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
 
     // Wait for bottom sheet changes and start generation
-    LaunchedEffect(controller.lastSavedImages.value) {
-        if (isActive.value) {
+    LaunchedEffect(controller.isAutoTryOnEnabled.value) {
+        if (controller.isAutoTryOnEnabled.value) {
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
                 context = context,

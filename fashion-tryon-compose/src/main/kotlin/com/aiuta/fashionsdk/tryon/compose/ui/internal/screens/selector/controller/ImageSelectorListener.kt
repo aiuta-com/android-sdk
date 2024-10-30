@@ -31,7 +31,7 @@ internal fun ImageSelectorAutoTryOnListener() {
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
 
-    LaunchedEffect(controller.lastSavedImages.value) {
+    LaunchedEffect(controller.isAutoTryOnEnabled.value) {
         if (controller.isAutoTryOnEnabled.value) {
             controller.disableAutoTryOn()
             controller.startGeneration(
