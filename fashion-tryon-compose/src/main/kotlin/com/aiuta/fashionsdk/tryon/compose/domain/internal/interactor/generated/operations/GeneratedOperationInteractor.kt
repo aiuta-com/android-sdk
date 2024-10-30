@@ -13,7 +13,7 @@ internal interface GeneratedOperationInteractor {
     suspend fun getFirstGeneratedOperation(): GeneratedOperation?
 
     // Raw operation
-    suspend fun createOperation(): Long
+    suspend fun createOperation(imageId: String): Long
 
     suspend fun deleteOperation(operation: GeneratedOperation)
 

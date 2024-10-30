@@ -131,7 +131,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = OnboardingInteractor.getInstance(context),
-            sessionGenerationInteractor = SessionGenerationInteractor(context),
+            sessionGenerationInteractor = SessionGenerationInteractor.getInstance(context),
             analytic = analytic(),
         )
     }.also {

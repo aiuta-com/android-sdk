@@ -220,7 +220,7 @@ private fun OperationItem(
                                 generatedOperationInteractor.deleteOperation(generatedOperation)
 
                                 // If active images is deleted
-                                if (lastSavedOperation.value == generatedOperation) {
+                                if (lastSavedOperation.value?.operationId == generatedOperation.operationId) {
                                     // Try to get new first
                                     val newFirstOperation =
                                         generatedOperationInteractor

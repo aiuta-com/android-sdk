@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
+import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -37,6 +38,7 @@ internal fun GenerationResultControllerListener(
 
 @Composable
 internal fun GenerateMoreListener(isActive: State<Boolean>) {
+    val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
 
@@ -45,6 +47,7 @@ internal fun GenerateMoreListener(isActive: State<Boolean>) {
         if (isActive.value) {
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
+                context = context,
             )
             controller.navigateBack()
         }

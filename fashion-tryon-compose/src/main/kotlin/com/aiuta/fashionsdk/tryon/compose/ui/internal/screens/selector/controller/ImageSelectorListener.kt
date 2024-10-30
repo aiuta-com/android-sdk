@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controll
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -26,6 +27,7 @@ internal fun ImageSelectorListener(enable: Boolean) {
 
 @Composable
 internal fun ImageSelectorAutoTryOnListener() {
+    val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
 
@@ -34,6 +36,7 @@ internal fun ImageSelectorAutoTryOnListener() {
             controller.disableAutoTryOn()
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
+                context = context,
             )
         }
     }

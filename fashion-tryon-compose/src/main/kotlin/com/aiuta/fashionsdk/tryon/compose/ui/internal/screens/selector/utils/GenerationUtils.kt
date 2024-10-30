@@ -1,11 +1,15 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
+import android.content.Context
 import android.net.Uri
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.toOperation
@@ -25,13 +29,16 @@ import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
-internal fun FashionTryOnController.startGeneration(aiutaConfiguration: AiutaTryOnConfiguration) {
+internal fun FashionTryOnController.startGeneration(
+    aiutaConfiguration: AiutaTryOnConfiguration,
+    context: Context,
+) {
     generationScope.launch {
         activateGeneration()
 
         val errorCount = AtomicInteger()
 
-        val rawGenerationFlows = solveStartGenerationFlows()
+        val rawGenerationFlows = solveStartGenerationFlows(context = context)
         val generationFlows =
             rawGenerationFlows.mapIndexed { index, generationFlow ->
                 generationFlow
@@ -62,10 +69,12 @@ internal fun FashionTryOnController.startGeneration(aiutaConfiguration: AiutaTry
     }
 }
 
-private fun FashionTryOnController.solveStartGenerationFlows(): List<Flow<SKUGenerationStatus>> {
+private fun FashionTryOnController.solveStartGenerationFlows(
+    context: Context,
+): List<Flow<SKUGenerationStatus>> {
     return when (val activeImages = lastSavedImages.value) {
         is LastSavedImages.UriSource -> {
-            startGenerationWithUriSource(uriSource = activeImages)
+            startGenerationWithUriSource(context = context, uriSource = activeImages)
         }
 
         is LastSavedImages.UrlSource -> {
@@ -77,9 +86,11 @@ private fun FashionTryOnController.solveStartGenerationFlows(): List<Flow<SKUGen
 }
 
 private fun FashionTryOnController.startGenerationWithUriSource(
+    context: Context,
     uriSource: LastSavedImages.UriSource,
 ): List<Flow<SKUGenerationStatus>> {
     val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
+    val warmUpInteractor = WarmUpInteractor(context)
 
     return uriSource.imageUris.map { uri ->
         aiutaTryOn()
@@ -93,10 +104,36 @@ private fun FashionTryOnController.startGenerationWithUriSource(
             )
             .onEach { status ->
                 if (status is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage) {
+                    val currentOperationId =
+                        generatedOperationFactory.getOperationId(
+                            imageId = status.sourceImageId,
+                        )
+
                     generatedOperationInteractor.createImage(
                         status = status,
-                        operationId = generatedOperationFactory.getOperationId(),
+                        operationId = currentOperationId,
                     )
+
+                    if (lastSavedOperation.value?.operationId != currentOperationId) {
+                        val images =
+                            listOf(
+                                SourceImage(
+                                    imageId = status.sourceImageId,
+                                    imageUrl = status.sourceImageUrl,
+                                ),
+                            )
+
+                        // Warm up for smooth change
+                        warmUpInteractor.warmUp(status.sourceImageUrl)
+
+                        // Change to new
+                        lastSavedImages.value = LastSavedImages.UrlSource(sourceImages = images)
+                        lastSavedOperation.value =
+                            GeneratedOperation(
+                                operationId = currentOperationId,
+                                sourceImages = images,
+                            )
+                    }
                 }
             }
     }

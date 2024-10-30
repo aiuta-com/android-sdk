@@ -40,7 +40,7 @@ internal class LocalGeneratedOperationInteractor(
     }
 
     // Raw operation
-    override suspend fun createOperation(): Long {
+    override suspend fun createOperation(imageId: String): Long {
         return generatedOperationDatasource.createOperation().id
     }
 
