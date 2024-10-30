@@ -164,10 +164,9 @@ internal fun ImageSelectorBottom(
                                 ),
                         )
                     val activeColor =
-                        if (theme.toggles.isBlurOutlinesEnabled)
-                            {
-                                theme.colors.onDark
-                            } else {
+                        if (theme.toggles.isBlurOutlinesEnabled) {
+                            theme.colors.onDark
+                        } else {
                             theme.colors.primary
                         }
 

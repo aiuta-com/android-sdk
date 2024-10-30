@@ -84,12 +84,13 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 	public abstract fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;
 	public abstract fun isHistoryAvailable ()Z
 	public abstract fun isPreOnboardingAvailable ()Z
+	public abstract fun isShareAvailable ()Z
 	public abstract fun isWishlistAvailable ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfigurationKt {
-	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;ZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
-	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;ZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static final fun defaultAiutaTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;ZZZZ)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
+	public static synthetic fun defaultAiutaTryOnConfiguration$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider;ZZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnConfiguration;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {

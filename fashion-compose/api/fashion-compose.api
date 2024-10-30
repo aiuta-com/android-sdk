@@ -319,7 +319,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/shape/AiutaShapesKt {
 
 public final class com/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeToggles {
 	public static final field $stable I
-	public fun <init> (ZZZZZ)V
+	public fun <init> (ZZZZZZ)V
+	public final fun isBlurOutlinesEnabled ()Z
 	public final fun isDelimitersExtended ()Z
 	public final fun isMainAppbarReversed ()Z
 	public final fun isOnboardingAppBarExtended ()Z
@@ -328,8 +329,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeToggles
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeTogglesFactoryKt {
-	public static final fun aiutaThemeToggles (ZZZZZ)Lcom/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeToggles;
-	public static synthetic fun aiutaThemeToggles$default (ZZZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeToggles;
+	public static final fun aiutaThemeToggles (ZZZZZZ)Lcom/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeToggles;
+	public static synthetic fun aiutaThemeToggles$default (ZZZZZZILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeToggles;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/toggles/AiutaThemeTogglesKt {
