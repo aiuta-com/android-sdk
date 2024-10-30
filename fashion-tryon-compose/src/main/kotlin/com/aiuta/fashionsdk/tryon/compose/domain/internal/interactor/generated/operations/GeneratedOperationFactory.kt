@@ -9,9 +9,9 @@ internal class GeneratedOperationFactory(
     private val mutex = Mutex()
     private var operationId: Long? = null
 
-    suspend fun getOperationId(): Long {
+    suspend fun getOperationId(imageId: String): Long {
         return mutex.withLock {
-            operationId ?: generatedOperationInteractor.createOperation().also {
+            operationId ?: generatedOperationInteractor.createOperation(imageId).also {
                 operationId = it
             }
         }

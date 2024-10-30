@@ -6,7 +6,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -48,14 +47,12 @@ internal fun GenerateMoreBlockContent(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     val activeSKUItem = controller.activeSKUItem.value
-    val isGenerateMoreFlowActive = remember { mutableStateOf(false) }
-
     val countGeneratedOperation =
         controller.generatedOperationInteractor
             .countGeneratedOperation()
             .collectAsStateWithLifecycle(0)
 
-    GenerateMoreListener(isActive = isGenerateMoreFlowActive)
+    GenerateMoreListener()
 
     IconButton(
         modifier = modifier,
@@ -77,7 +74,6 @@ internal fun GenerateMoreBlockContent(modifier: Modifier = Modifier) {
                         )
                     },
             )
-            isGenerateMoreFlowActive.value = true
         },
     )
 }

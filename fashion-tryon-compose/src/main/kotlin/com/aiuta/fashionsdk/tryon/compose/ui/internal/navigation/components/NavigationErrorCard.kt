@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
@@ -32,6 +33,7 @@ internal fun NavigationErrorCard(
     modifier: Modifier = Modifier,
     errorState: FashionTryOnErrorState,
 ) {
+    val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val stringResources = LocalAiutaTryOnStringResources.current
@@ -78,6 +80,7 @@ internal fun NavigationErrorCard(
             onClick = {
                 controller.startGeneration(
                     aiutaConfiguration = aiutaConfiguration,
+                    context = context,
                 )
                 controller.hideErrorState()
             },

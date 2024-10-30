@@ -5,11 +5,11 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 
 @Immutable
 internal sealed interface LastSavedImages {
-    class UriSource(
+    data class UriSource(
         val imageUris: List<String>,
     ) : LastSavedImages
 
-    class UrlSource(
+    data class UrlSource(
         val sourceImages: List<SourceImage>,
     ) : LastSavedImages
 

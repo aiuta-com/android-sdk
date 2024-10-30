@@ -38,7 +38,10 @@ internal fun SplashScreen(
 
         if (countGeneratedOperation > 0) {
             val lastOperation = controller.generatedOperationInteractor.getFirstGeneratedOperation()
-            controller.lastSavedImages.value = lastOperation.toLastSavedImages()
+            lastOperation?.let {
+                controller.lastSavedOperation.value = lastOperation
+                controller.lastSavedImages.value = lastOperation.toLastSavedImages()
+            }
         }
 
         // Solve should show onboarding or not

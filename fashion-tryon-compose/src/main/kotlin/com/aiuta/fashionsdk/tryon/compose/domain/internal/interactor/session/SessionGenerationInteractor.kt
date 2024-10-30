@@ -1,22 +1,20 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session
 
 import android.content.Context
-import coil.imageLoader
-import coil.request.ImageRequest
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 
 internal class SessionGenerationInteractor(
-    val context: Context,
+    private val warmUpInteractor: WarmUpInteractor,
 ) {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
     private val _sessionGenerationsUrls: ArrayDeque<String> = ArrayDeque()
     val sessionGenerationsUrls: List<String> = _sessionGenerationsUrls
 
+    fun deleteGenerations(urls: List<String>) {
+        _sessionGenerationsUrls.removeAll(urls)
+    }
+
     suspend fun addGeneration(url: String) {
-        warmUp(url)
+        warmUpInteractor.warmUp(url)
         _sessionGenerationsUrls.addFirst(url)
     }
 
@@ -24,12 +22,11 @@ internal class SessionGenerationInteractor(
         urls.forEach { url -> addGeneration(url) }
     }
 
-    suspend fun warmUp(url: String) {
-        val request =
-            ImageRequest.Builder(context)
-                .data(url)
-                .build()
-
-        context.imageLoader.execute(request)
+    companion object {
+        fun getInstance(context: Context): SessionGenerationInteractor {
+            return SessionGenerationInteractor(
+                warmUpInteractor = WarmUpInteractor(context),
+            )
+        }
     }
 }

@@ -107,6 +107,15 @@ internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<S
     }
 }
 
+// Auto try on mode
+internal fun FashionTryOnController.activateAutoTryOn() {
+    isAutoTryOnEnabled.value = true
+}
+
+internal fun FashionTryOnController.disableAutoTryOn() {
+    isAutoTryOnEnabled.value = false
+}
+
 // Checks
 @Composable
 internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> {

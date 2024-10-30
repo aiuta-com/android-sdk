@@ -131,7 +131,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = OnboardingInteractor.getInstance(context),
-            sessionGenerationInteractor = SessionGenerationInteractor(context),
+            sessionGenerationInteractor = SessionGenerationInteractor.getInstance(context),
             analytic = analytic(),
         )
     }.also {
@@ -183,6 +183,9 @@ internal class FashionTryOnController(
         }
 
     internal val generalScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    // Try on auto enabling
+    val isAutoTryOnEnabled: MutableState<Boolean> = mutableStateOf(false)
 
     /**
      * Cancel current generation scope and set new for next generation

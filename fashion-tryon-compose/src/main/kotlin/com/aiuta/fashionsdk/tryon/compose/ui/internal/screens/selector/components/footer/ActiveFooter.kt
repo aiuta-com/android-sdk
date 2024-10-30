@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
@@ -41,6 +42,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
 
 @Composable
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
@@ -88,6 +90,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
+                        context = context,
                     )
                 },
             )

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,7 +36,6 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
 
     val generationStatus = controller.generationStatus
 
-    val isAutoTryOnEnabled = remember { mutableStateOf(false) }
     val isLastSavedPhotoAvailable = controller.isLastSavedPhotoAvailable()
     val isTryOnButtonVisible =
         remember {
@@ -50,7 +48,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticPageId.IMAGE_PICKER)
 
     ImageSelectorListener(enable = controller.isGenerationActive.value)
-    ImageSelectorAutoTryOnListener(isAutoTryOnEnabled = isAutoTryOnEnabled)
+    ImageSelectorAutoTryOnListener()
 
     Column(
         modifier = modifier.background(theme.colors.background),
@@ -67,9 +65,7 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
 
         ImageSelectorBlock(
             modifier = Modifier.fillMaxSize(MAIN_IMAGE_SIZE),
-            enableAutoTryOn = { isAutoTryOnEnabled.value = true },
             uploadPhoto = {
-                isAutoTryOnEnabled.value = true
                 controller.bottomSheetNavigator.show(
                     newSheetScreen =
                         NavigationBottomSheetScreen.ImagePicker(

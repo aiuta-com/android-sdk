@@ -2,11 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controll
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
+import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.disableAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
@@ -25,15 +26,17 @@ internal fun ImageSelectorListener(enable: Boolean) {
 }
 
 @Composable
-internal fun ImageSelectorAutoTryOnListener(isAutoTryOnEnabled: MutableState<Boolean>) {
+internal fun ImageSelectorAutoTryOnListener() {
+    val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
 
-    LaunchedEffect(controller.lastSavedImages.value) {
-        if (isAutoTryOnEnabled.value) {
-            isAutoTryOnEnabled.value = false
+    LaunchedEffect(controller.isAutoTryOnEnabled.value) {
+        if (controller.isAutoTryOnEnabled.value) {
+            controller.disableAutoTryOn()
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
+                context = context,
             )
         }
     }

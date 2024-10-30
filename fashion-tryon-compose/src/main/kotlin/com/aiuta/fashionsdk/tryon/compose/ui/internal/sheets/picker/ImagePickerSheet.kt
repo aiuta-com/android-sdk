@@ -26,6 +26,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -70,6 +71,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     LastSavedImages.UriSource(
                         imageUris = listOf(newImageUri.toString()),
                     )
+                // Activate try on
+                controller.activateAutoTryOn()
+                // Move back
                 controller.bottomSheetNavigator.hide()
             }
         }
@@ -104,6 +108,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     LastSavedImages.UriSource(
                         imageUris = listOf(uri.toString()),
                     )
+                // Activate try on
+                controller.activateAutoTryOn()
+                // Move back
                 controller.bottomSheetNavigator.hide()
             }
         }

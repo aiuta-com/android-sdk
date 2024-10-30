@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
 
 @Immutable
-internal class GeneratedOperation(
+internal data class GeneratedOperation(
     val operationId: Long,
     val sourceImages: List<SourceImage>,
 ) {

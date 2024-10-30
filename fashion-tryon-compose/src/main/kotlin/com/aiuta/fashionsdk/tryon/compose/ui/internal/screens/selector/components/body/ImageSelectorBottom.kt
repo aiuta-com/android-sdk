@@ -43,7 +43,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 internal fun ImageSelectorBottom(
     modifier: Modifier = Modifier,
     uploadPhoto: () -> Unit,
-    enableAutoTryOn: () -> Unit,
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
@@ -111,7 +110,6 @@ internal fun ImageSelectorBottom(
                             uploadPhoto()
                         } else {
                             controller.sendTapChangePhotoEvent(isHistorySheetOpened = true)
-                            enableAutoTryOn()
                             controller.bottomSheetNavigator.show(
                                 NavigationBottomSheetScreen.GeneratedOperations,
                             )
