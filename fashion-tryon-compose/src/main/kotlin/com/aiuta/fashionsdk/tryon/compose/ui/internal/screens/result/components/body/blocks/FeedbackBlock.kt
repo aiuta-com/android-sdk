@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -180,12 +181,24 @@ private fun ReactionIcon(
     val haptic = LocalHapticFeedback.current
     val theme = LocalTheme.current
 
+    val sizeModifier = modifier.size(38.dp)
+    val finalModifier =
+        if (theme.toggles.isBlurOutlinesEnabled) {
+            sizeModifier
+                .border(
+                    width = 1.dp,
+                    color = theme.colors.neutral2,
+                    shape = CircleShape,
+                )
+        } else {
+            sizeModifier
+        }
+
     Box(
         modifier =
-            modifier
-                .size(38.dp)
+            finalModifier
                 .background(
-                    color = theme.colors.primary.copy(alpha = 0.12f),
+                    color = theme.colors.background.copy(alpha = 0.4f),
                     shape = CircleShape,
                 ),
         contentAlignment = Alignment.Center,

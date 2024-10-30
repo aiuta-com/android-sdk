@@ -12,6 +12,7 @@ public fun aiutaThemeToggles(
     isShadowsReduced: Boolean = false,
     isDelimitersExtended: Boolean = false,
     isProductFistImageExtendedPaddingApplied: Boolean = false,
+    isBlurOutlinesEnabled: Boolean = false,
 ): AiutaThemeToggles {
     return AiutaThemeToggles(
         isOnboardingAppBarExtended = isOnboardingAppBarExtended,
@@ -19,5 +20,6 @@ public fun aiutaThemeToggles(
         isShadowsReduced = isShadowsReduced,
         isDelimitersExtended = isDelimitersExtended,
         isProductFistImageExtendedPaddingApplied = isProductFistImageExtendedPaddingApplied,
+        isBlurOutlinesEnabled = isBlurOutlinesEnabled,
     )
 }

@@ -8,6 +8,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -55,7 +56,7 @@ internal fun ImageSelectorBottom(
             .collectAsStateWithLifecycle(0)
 
     val sharedModifier = Modifier.wrapContentWidth()
-    val sharedBackground = Color.White.copy(alpha = 0.5f)
+    val sharedBackground = Color.White.copy(alpha = 0.4f)
 
     val sharedButtonSize = FashionButtonSizes.mSize()
 
@@ -99,10 +100,18 @@ internal fun ImageSelectorBottom(
                     modifier = sharedModifier,
                     text = stringResources.imageSelectorChangeButton,
                     style =
-                        FashionButtonStyles.primaryStyle(
-                            backgroundColor = sharedBackground,
-                            contentColor = Color.Black,
-                        ),
+                        if (theme.toggles.isBlurOutlinesEnabled) {
+                            FashionButtonStyles.secondaryStyle(
+                                backgroundColor = sharedBackground,
+                                contentColor = theme.colors.onDark,
+                                borderColor = theme.colors.neutral2,
+                            )
+                        } else {
+                            FashionButtonStyles.primaryStyle(
+                                backgroundColor = sharedBackground,
+                                contentColor = Color.Black,
+                            )
+                        },
                     size = sharedButtonSize,
                     onClick = {
                         if (countGeneratedOperation.value == 0) {
@@ -119,9 +128,20 @@ internal fun ImageSelectorBottom(
             }
 
             ImageSelectorState.GENERATION_LOADING -> {
+                val finalModifier =
+                    if (theme.toggles.isBlurOutlinesEnabled) {
+                        sharedModifier.border(
+                            width = 1.dp,
+                            color = theme.colors.neutral2,
+                            shape = sharedButtonSize.shape,
+                        )
+                    } else {
+                        sharedModifier
+                    }
+
                 Row(
                     modifier =
-                        sharedModifier
+                        finalModifier
                             .background(
                                 color = sharedBackground,
                                 shape = sharedButtonSize.shape,
@@ -143,11 +163,20 @@ internal fun ImageSelectorBottom(
                                     animation = tween(2000, easing = LinearEasing),
                                 ),
                         )
+                    val activeColor =
+                        if (theme.toggles.isBlurOutlinesEnabled) {
+                            theme.colors.onDark
+                        } else {
+                            theme.colors.primary
+                        }
 
                     AiutaIcon(
-                        modifier = Modifier.size(14.dp).rotate(angle.value),
+                        modifier =
+                            Modifier
+                                .size(14.dp)
+                                .rotate(angle.value),
                         icon = theme.icons.loading14,
-                        tint = theme.colors.primary,
+                        tint = activeColor,
                         contentDescription = null,
                     )
 
@@ -156,7 +185,7 @@ internal fun ImageSelectorBottom(
                     Text(
                         text = stringResources.imageSelectorGeneratingOutfit,
                         style = theme.typography.smallButton,
-                        color = theme.colors.primary,
+                        color = activeColor,
                         textAlign = TextAlign.Center,
                     )
                 }

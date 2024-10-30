@@ -45,6 +45,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
@@ -167,6 +168,7 @@ private fun ZoomedImageScreenContent(
     imageOffset: State<IntOffset>,
     imageSize: State<Size>,
 ) {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val context = LocalContext.current
     val controller = LocalController.current
     val theme = LocalTheme.current
@@ -227,27 +229,32 @@ private fun ZoomedImageScreenContent(
                 tint = interfaceColor.value,
             )
 
-            Text(
-                modifier =
-                    Modifier
-                        .clickableUnindicated {
-                            val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
-                            controller.sendShareGeneratedImageEvent(
-                                origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
-                                count = imageUrls.size,
-                                additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
-                            )
-                            shareManager.share(
-                                content = screenState.sharedImage.value.additionalShareInfo,
-                                imageUrls = imageUrls,
-                                watermark = theme.watermark,
-                                origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
-                            )
-                        },
-                text = stringResources.share,
-                style = theme.typography.button,
-                color = interfaceColor.value,
-            )
+            if (aiutaConfiguration.isShareAvailable) {
+                Text(
+                    modifier =
+                        Modifier
+                            .clickableUnindicated {
+                                val imageUrls =
+                                    listOfNotNull(
+                                        screenState.sharedImage.value.imageUrl,
+                                    )
+                                controller.sendShareGeneratedImageEvent(
+                                    origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
+                                    count = imageUrls.size,
+                                    additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
+                                )
+                                shareManager.share(
+                                    content = screenState.sharedImage.value.additionalShareInfo,
+                                    imageUrls = imageUrls,
+                                    watermark = theme.watermark,
+                                    origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
+                                )
+                            },
+                    text = stringResources.share,
+                    style = theme.typography.button,
+                    color = interfaceColor.value,
+                )
+            }
         }
     }
 }

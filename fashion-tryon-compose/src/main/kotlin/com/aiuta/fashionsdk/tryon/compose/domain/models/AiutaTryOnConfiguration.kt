@@ -46,6 +46,11 @@ public interface AiutaTryOnConfiguration {
      * Flag which turn on or off possibility to use pre-onboarding flow
      */
     public val isPreOnboardingAvailable: Boolean
+
+    /**
+     * Flag which turn on or off possibility to use share option
+     */
+    public val isShareAvailable: Boolean
 }
 
 public fun defaultAiutaTryOnConfiguration(
@@ -55,6 +60,7 @@ public fun defaultAiutaTryOnConfiguration(
     isHistoryAvailable: Boolean = true,
     isWishlistAvailable: Boolean = true,
     isPreOnboardingAvailable: Boolean = false,
+    isShareAvailable: Boolean = true,
 ): AiutaTryOnConfiguration {
     return object : AiutaTryOnConfiguration {
         override val language: AiutaTryOnLanguage = language
@@ -63,5 +69,6 @@ public fun defaultAiutaTryOnConfiguration(
         override val isHistoryAvailable: Boolean = isHistoryAvailable
         override val isWishlistAvailable: Boolean = isWishlistAvailable
         override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable
+        override val isShareAvailable: Boolean = isShareAvailable
     }
 }

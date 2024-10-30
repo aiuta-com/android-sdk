@@ -31,6 +31,10 @@ public class AiutaThemeToggles(
      * Is product first image extended padding applied
      */
     public val isProductFistImageExtendedPaddingApplied: Boolean,
+    /**
+     * Flag which turn on or off possibility to blur outlines
+     */
+    public val isBlurOutlinesEnabled: Boolean,
 )
 
 public val DefaultAiutaThemeToggles: AiutaThemeToggles by lazy { aiutaThemeToggles() }
