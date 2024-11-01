@@ -6,6 +6,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
@@ -15,9 +16,8 @@ internal fun LoadingProgress(
     modifier: Modifier = Modifier,
     circleSize: Dp = 24.dp,
     circleWidth: Dp = 2.dp,
+    circleColor: Color = LocalTheme.current.colors.brand,
 ) {
-    val theme = LocalTheme.current
-
     Box(
         modifier = modifier,
         contentAlignment = Alignment.Center,
@@ -27,7 +27,7 @@ internal fun LoadingProgress(
                 Modifier
                     .size(circleSize)
                     .align(Alignment.Center),
-            color = theme.colors.brand,
+            color = circleColor,
             strokeWidth = circleWidth,
         )
     }
