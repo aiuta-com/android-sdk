@@ -206,6 +206,10 @@ private fun OperationItem(
         )
 
         AnimatedVisibility(
+            modifier =
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(8.dp),
             visible = imageState.value !is AsyncImagePainter.State.Error,
             enter = fadeIn(),
             exit = fadeOut(),
@@ -213,8 +217,6 @@ private fun OperationItem(
             AiutaIcon(
                 modifier =
                     Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(8.dp)
                         .size(24.dp)
                         .clickableUnindicated {
                             scope.launch {

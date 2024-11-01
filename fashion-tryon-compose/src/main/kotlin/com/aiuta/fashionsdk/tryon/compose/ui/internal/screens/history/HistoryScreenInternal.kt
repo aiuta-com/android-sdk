@@ -58,6 +58,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -216,9 +217,8 @@ private fun ImageContainer(
                     .data(imageUrl)
                     .crossfade(true)
                     .build(),
-            loading = {
-                LoadingProgress(modifier = Modifier.fillMaxSize())
-            },
+            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
