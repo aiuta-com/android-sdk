@@ -15,6 +15,7 @@ public fun defaultAiutaIcons(): AiutaIcons {
         error36 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_error_36),
         like36 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_like_36),
         dislike36 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_dislike_36),
+        imageError36 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_image_error_36),
         back24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_back_24),
         camera24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_camera_24),
         checkCorrect24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_check_correct_24),

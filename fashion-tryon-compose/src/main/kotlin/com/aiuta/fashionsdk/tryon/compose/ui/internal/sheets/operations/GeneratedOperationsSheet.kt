@@ -1,5 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
@@ -14,6 +17,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
+import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
@@ -41,7 +47,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -174,73 +180,75 @@ private fun OperationItem(
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
+    val imageState =
+        remember {
+            mutableStateOf<AsyncImagePainter.State>(AsyncImagePainter.State.Empty)
+        }
+
     Box(
         modifier = modifier.clickableUnindicated { onClick() },
     ) {
-        if (generatedOperation.sourceImageUrls.size == 1) {
-            SubcomposeAsyncImage(
-                modifier =
-                    Modifier
-                        .clipToBounds()
-                        .fillMaxSize(),
-                model =
-                    ImageRequest.Builder(context)
-                        .data(generatedOperation.sourceImageUrls.firstOrNull())
-                        .crossfade(true)
-                        .build(),
-                loading = {
-                    LoadingProgress(modifier = Modifier.fillMaxSize())
-                },
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-        } else {
-            ImagesContainer(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clip(theme.shapes.previewImage),
-                getImageUrls = { generatedOperation.sourceImageUrls },
-            )
-        }
-
-        AiutaIcon(
+        SubcomposeAsyncImage(
             modifier =
                 Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(8.dp)
-                    .size(24.dp)
-                    .clickableUnindicated {
-                        scope.launch {
-                            with(controller) {
-                                sendPickerAnalytic(
-                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
-                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                                )
-                                generatedOperationInteractor.deleteOperation(generatedOperation)
+                    .clipToBounds()
+                    .fillMaxSize(),
+            model =
+                ImageRequest.Builder(context)
+                    .data(generatedOperation.sourceImageUrls.firstOrNull())
+                    .crossfade(true)
+                    .build(),
+            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+            onError = { imageState.value = it },
+            contentScale = ContentScale.Crop,
+            contentDescription = null,
+        )
 
-                                // If active images is deleted
-                                if (lastSavedOperation.value?.operationId == generatedOperation.operationId) {
-                                    // Try to get new first
-                                    val newFirstOperation =
-                                        generatedOperationInteractor
-                                            .getFirstGeneratedOperation()
+        AnimatedVisibility(
+            visible = imageState.value !is AsyncImagePainter.State.Error,
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            AiutaIcon(
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(8.dp)
+                        .size(24.dp)
+                        .clickableUnindicated {
+                            scope.launch {
+                                with(controller) {
+                                    sendPickerAnalytic(
+                                        event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
+                                        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                    )
+                                    generatedOperationInteractor.deleteOperation(generatedOperation)
 
-                                    // Try to update with new or set as empty
-                                    if (newFirstOperation != null) {
-                                        lastSavedOperation.value = newFirstOperation
-                                        lastSavedImages.value = newFirstOperation.toLastSavedImages()
-                                    } else {
-                                        lastSavedOperation.value = null
-                                        lastSavedImages.value = LastSavedImages.Empty
+                                    // If active images is deleted
+                                    if (lastSavedOperation.value?.operationId == generatedOperation.operationId) {
+                                        // Try to get new first
+                                        val newFirstOperation =
+                                            generatedOperationInteractor
+                                                .getFirstGeneratedOperation()
+
+                                        // Try to update with new or set as empty
+                                        if (newFirstOperation != null) {
+                                            lastSavedOperation.value = newFirstOperation
+                                            lastSavedImages.value =
+                                                newFirstOperation.toLastSavedImages()
+                                        } else {
+                                            lastSavedOperation.value = null
+                                            lastSavedImages.value = LastSavedImages.Empty
+                                        }
                                     }
                                 }
                             }
-                        }
-                    },
-            icon = theme.icons.trash24,
-            contentDescription = null,
-            tint = theme.colors.background,
-        )
+                        },
+                icon = theme.icons.trash24,
+                contentDescription = null,
+                tint = theme.colors.background,
+            )
+        }
     }
 }

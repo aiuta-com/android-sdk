@@ -31,6 +31,7 @@ public sealed interface AiutaIcons {
     public val error36: AiutaIcon
     public val like36: AiutaIcon
     public val dislike36: AiutaIcon
+    public val imageError36: AiutaIcon
 
     // x24
     public val back24: AiutaIcon
