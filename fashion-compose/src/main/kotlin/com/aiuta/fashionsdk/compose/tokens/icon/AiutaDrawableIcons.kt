@@ -21,6 +21,7 @@ public class AiutaDrawableIcons(
     public override val error36: AiutaDrawableIcon,
     public override val like36: AiutaDrawableIcon,
     public override val dislike36: AiutaDrawableIcon,
+    public override val imageError36: AiutaDrawableIcon,
     // x24
     public override val back24: AiutaDrawableIcon,
     public override val camera24: AiutaDrawableIcon,

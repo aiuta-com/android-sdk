@@ -2,13 +2,15 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,6 +27,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.lerp
@@ -37,13 +40,16 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import coil.compose.rememberAsyncImagePainter
+import coil.compose.SubcomposeAsyncImage
+import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -183,7 +189,7 @@ private fun ZoomedImageScreenContent(
     Box(
         modifier = modifier.background(color = backgroundColor.value),
     ) {
-        Image(
+        SubcomposeAsyncImage(
             modifier =
                 Modifier
                     .offset { imageOffset.value }
@@ -198,10 +204,36 @@ private fun ZoomedImageScreenContent(
                             screenState.closeZoomImageScreen(scope)
                         },
                     ),
-            painter =
-                rememberAsyncImagePainter(
-                    model = screenState.sharedImage.value.imageUrl,
-                ),
+            model =
+                ImageRequest.Builder(context)
+                    .data(screenState.sharedImage.value.imageUrl)
+                    .crossfade(true)
+                    .build(),
+            loading = {
+                LoadingProgress(
+                    modifier = Modifier.fillMaxSize(),
+                    circleColor = interfaceColor.value,
+                )
+            },
+            error = {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .clipToBounds()
+                            .background(backgroundColor.value),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    ErrorProgress(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight(0.7f),
+                        background = Color.White.copy(0.1f),
+                        iconTint = interfaceColor.value,
+                    )
+                }
+            },
             contentScale = contentScale,
             contentDescription = null,
         )
