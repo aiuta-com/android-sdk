@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import kotlinx.coroutines.flow.Flow
@@ -15,36 +15,14 @@ internal class HostGeneratedOperationInteractor(
     override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperation>> {
         return dataProvider.uploadedImagesFlow
             .map { images ->
-                images.map { image ->
-                    GeneratedOperation(
-                        operationId = image.id.hashCode().toLong(),
-                        sourceImages =
-                            listOf(
-                                SourceImage(
-                                    imageId = image.id,
-                                    imageUrl = image.url,
-                                ),
-                            ),
-                    )
-                }
+                images.map { image -> image.toGeneratedOperation() }
             }
             .map { images -> PagingData.from(images) }
     }
 
     override suspend fun getFirstGeneratedOperation(): GeneratedOperation? {
         val firstImage = dataProvider.uploadedImagesFlow.value.firstOrNull()
-        return firstImage?.let {
-            GeneratedOperation(
-                operationId = firstImage.id.hashCode().toLong(),
-                sourceImages =
-                    listOf(
-                        SourceImage(
-                            imageId = firstImage.id,
-                            imageUrl = firstImage.url,
-                        ),
-                    ),
-            )
-        }
+        return firstImage?.let { firstImage.toGeneratedOperation() }
     }
 
     override suspend fun createOperation(imageId: String): Long {

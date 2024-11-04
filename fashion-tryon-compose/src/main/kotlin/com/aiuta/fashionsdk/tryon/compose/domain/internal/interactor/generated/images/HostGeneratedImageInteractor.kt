@@ -25,10 +25,7 @@ internal class HostGeneratedImageInteractor(
             .map { images -> PagingData.from(images) }
     }
 
-    override suspend fun remove(
-        generatedImages: List<GeneratedImage>,
-        afterDeletionAction: (() -> Unit)?,
-    ) {
+    override suspend fun remove(generatedImages: List<GeneratedImage>) {
         dataProvider.deleteGeneratedImagesAction(
             generatedImages.map { image -> AiutaGeneratedImage(image.imageUrl) },
         )

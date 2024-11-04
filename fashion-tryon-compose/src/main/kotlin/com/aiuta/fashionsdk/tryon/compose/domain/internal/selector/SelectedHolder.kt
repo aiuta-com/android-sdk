@@ -44,6 +44,12 @@ internal class SelectedHolder<T> {
         itemsMap.remove(item)
     }
 
+    fun remove(items: List<T>) {
+        items.forEach { item ->
+            itemsMap.remove(item)
+        }
+    }
+
     private fun add(item: T) {
         itemsMap.put(item, 1)
     }

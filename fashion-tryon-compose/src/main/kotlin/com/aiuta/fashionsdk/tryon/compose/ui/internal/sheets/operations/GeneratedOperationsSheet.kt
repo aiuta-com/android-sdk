@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -24,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +45,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
@@ -51,6 +55,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorP
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -177,6 +182,7 @@ private fun OperationItem(
 ) {
     val context = LocalContext.current
     val controller = LocalController.current
+    val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
@@ -205,12 +211,26 @@ private fun OperationItem(
             contentDescription = null,
         )
 
+        val isLoadingScrimVisible =
+            remember {
+                derivedStateOf {
+                    loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
+                }
+            }
+
+        val isTrashVisible =
+            remember {
+                derivedStateOf {
+                    imageState.value !is AsyncImagePainter.State.Error && !isLoadingScrimVisible.value
+                }
+            }
+
         AnimatedVisibility(
             modifier =
                 Modifier
                     .align(Alignment.BottomEnd)
                     .padding(8.dp),
-            visible = imageState.value !is AsyncImagePainter.State.Error,
+            visible = isTrashVisible.value,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
@@ -225,7 +245,22 @@ private fun OperationItem(
                                         event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
                                         pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                                     )
+
+                                    // Add operation to loading list
+                                    loadingActionsController.loadingUploadsHolder.putOrRemove(
+                                        generatedOperation,
+                                    )
+
+                                    // Delete operations
                                     generatedOperationInteractor.deleteOperation(generatedOperation)
+                                    // If local mode - let's remove from loading
+                                    generatedOperationInteractor.cleanLoadingUploads(
+                                        cleanAction = {
+                                            loadingActionsController.loadingUploadsHolder.remove(
+                                                generatedOperation,
+                                            )
+                                        },
+                                    )
 
                                     // If active images is deleted
                                     if (lastSavedOperation.value?.operationId == generatedOperation.operationId) {
@@ -250,6 +285,24 @@ private fun OperationItem(
                 icon = theme.icons.trash24,
                 contentDescription = null,
                 tint = theme.colors.background,
+            )
+        }
+
+        AnimatedVisibility(
+            modifier =
+                Modifier
+                    .clipToBounds()
+                    .fillMaxSize(),
+            visible = isLoadingScrimVisible.value,
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            LoadingProgress(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.5f)),
+                circleColor = Color.White,
             )
         }
     }

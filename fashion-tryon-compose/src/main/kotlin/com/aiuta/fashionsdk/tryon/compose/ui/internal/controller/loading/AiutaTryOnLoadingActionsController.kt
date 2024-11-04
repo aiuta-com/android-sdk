@@ -5,6 +5,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -18,6 +19,8 @@ internal fun rememberAiutaTryOnLoadingActionsController(): AiutaTryOnLoadingActi
 internal class AiutaTryOnLoadingActionsController(
     // Generated images
     val loadingGenerationsHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
+    // Uploaded images
+    val loadingUploadsHolder: SelectedHolder<GeneratedOperation> = SelectedHolder(),
 ) {
     internal val generalScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 }

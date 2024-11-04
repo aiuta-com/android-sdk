@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils
 
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.cleanLoadingGenerations
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
@@ -20,10 +21,12 @@ internal fun FashionTryOnController.deleteGeneratedImages(
             loadingActionsController.loadingGenerationsHolder.putAll(images)
 
             // Delete in db
-            generatedImageInteractor.remove(
-                generatedImages = images,
-                // Will execute only in local mode
-                afterDeletionAction = loadingActionsController.loadingGenerationsHolder::removeAll,
+            generatedImageInteractor.remove(images)
+            // Clean, if it local mode
+            generatedImageInteractor.cleanLoadingGenerations(
+                cleanAction = {
+                    loadingActionsController.loadingGenerationsHolder.remove(images)
+                },
             )
 
             // Also delete in session

@@ -11,10 +11,7 @@ internal interface GeneratedImageInteractor {
 
     fun generatedImagesFlow(): Flow<PagingData<GeneratedImage>>
 
-    suspend fun remove(
-        generatedImages: List<GeneratedImage>,
-        afterDeletionAction: (() -> Unit)? = null,
-    )
+    suspend fun remove(generatedImages: List<GeneratedImage>)
 
     suspend fun removeAll()
 
