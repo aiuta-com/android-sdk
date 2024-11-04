@@ -61,6 +61,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -290,7 +291,9 @@ private fun ImageContainer(
 private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImage>,
 ) {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
+    val context = LocalContext.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
     val generatedImages = getGeneratedImages()
@@ -307,8 +310,6 @@ private fun BoxScope.HistoryScreenInterface(
         enter = fadeIn(),
         exit = fadeOut(),
     ) {
-        val context = LocalContext.current
-
         SelectorCard(
             modifier = Modifier.fillMaxWidth(),
             selectionMode = controller.selectorState,
@@ -348,7 +349,11 @@ private fun BoxScope.HistoryScreenInterface(
             },
             onDelete = {
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)
-                controller.deleteGeneratedImages(loadingActionsController)
+                controller.deleteGeneratedImages(
+                    aiutaConfiguration = aiutaConfiguration,
+                    context = context,
+                    loadingActionsController = loadingActionsController,
+                )
             },
         )
     }

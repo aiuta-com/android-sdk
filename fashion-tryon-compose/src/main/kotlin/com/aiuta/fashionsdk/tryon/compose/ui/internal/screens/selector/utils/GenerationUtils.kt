@@ -14,6 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.S
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.toOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
@@ -58,7 +59,14 @@ internal fun FashionTryOnController.startGeneration(
                         if (errorCount.incrementAndGet() == lastSavedImages.value.size) {
                             generationStatus.value = SKUGenerationUIStatus.IDLE
                             deactivateGeneration()
-                            showErrorState()
+                            showErrorState(
+                                errorState =
+                                    TryOnToastErrorState(
+                                        aiutaConfiguration = aiutaConfiguration,
+                                        controller = this@startGeneration,
+                                        context = context,
+                                    ),
+                            )
                         }
                     }
             }
@@ -66,7 +74,13 @@ internal fun FashionTryOnController.startGeneration(
         generationFlows
             .merge()
             .cancellable()
-            .collect { operation -> solveOperationCollecting(operation) }
+            .collect { operation ->
+                solveOperationCollecting(
+                    aiutaConfiguration = aiutaConfiguration,
+                    context = context,
+                    operation = operation,
+                )
+            }
     }
 }
 
@@ -158,7 +172,11 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 }
 
 // Collecting
-private fun FashionTryOnController.solveOperationCollecting(operation: SKUGenerationOperation) {
+private fun FashionTryOnController.solveOperationCollecting(
+    aiutaConfiguration: AiutaTryOnConfiguration,
+    context: Context,
+    operation: SKUGenerationOperation,
+) {
     when (operation) {
         is SKUGenerationOperation.LoadingOperation -> {
             if (generationStatus.value != SKUGenerationUIStatus.SUCCESS) {
@@ -186,7 +204,14 @@ private fun FashionTryOnController.solveOperationCollecting(operation: SKUGenera
         }
 
         is SKUGenerationOperation.ErrorOperation -> {
-            showErrorState()
+            showErrorState(
+                errorState =
+                    TryOnToastErrorState(
+                        aiutaConfiguration = aiutaConfiguration,
+                        controller = this@solveOperationCollecting,
+                        context = context,
+                    ),
+            )
             refreshOperation(operation)
         }
     }

@@ -45,6 +45,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.LocalGeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
@@ -245,7 +246,7 @@ private fun OperationItem(
                                     )
 
                                     // Add operation to loading list
-                                    loadingActionsController.loadingUploadsHolder.putOrRemove(
+                                    loadingActionsController.loadingUploadsHolder.put(
                                         generatedOperation,
                                     )
 
@@ -260,8 +261,12 @@ private fun OperationItem(
                                         },
                                     )
 
-                                    // If active images is deleted
-                                    if (lastSavedOperation.value?.operationId == generatedOperation.operationId) {
+                                    // If active images is deleted and it's local mode - let's get new first
+                                    val isLocalMode =
+                                        generatedOperationInteractor is LocalGeneratedOperationInteractor
+                                    val isActiveOperationDeleted =
+                                        lastSavedOperation.value?.operationId == generatedOperation.operationId
+                                    if (isActiveOperationDeleted && isLocalMode) {
                                         // Try to get new first
                                         val newFirstOperation =
                                             generatedOperationInteractor

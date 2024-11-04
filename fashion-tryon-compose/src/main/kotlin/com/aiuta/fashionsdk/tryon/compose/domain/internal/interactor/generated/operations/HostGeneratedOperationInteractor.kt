@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toAiutaUploadedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
@@ -31,13 +32,14 @@ internal class HostGeneratedOperationInteractor(
     }
 
     override suspend fun deleteOperation(operation: GeneratedOperation) {
+        dataProvider.deleteUploadedImagesAction(operation.toAiutaUploadedImage())
+    }
+
+    override suspend fun deleteOperations(operations: List<GeneratedOperation>) {
         dataProvider.deleteUploadedImagesAction(
-            operation.sourceImages.map { image ->
-                AiutaUploadedImage(
-                    id = image.imageId,
-                    url = image.imageUrl,
-                )
-            },
+            operations
+                .map { it.toAiutaUploadedImage() }
+                .flatten(),
         )
     }
 

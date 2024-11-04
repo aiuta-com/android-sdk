@@ -80,7 +80,7 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                 }
 
                 NavigationErrorCard(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                     errorState = state,
                 )
             }

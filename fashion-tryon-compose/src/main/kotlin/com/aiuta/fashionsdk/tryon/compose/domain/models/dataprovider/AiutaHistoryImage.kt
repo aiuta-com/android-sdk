@@ -20,6 +20,15 @@ internal fun AiutaUploadedImage.toGeneratedOperation(): GeneratedOperation {
     )
 }
 
+internal fun GeneratedOperation.toAiutaUploadedImage(): List<AiutaUploadedImage> {
+    return sourceImages.map { image ->
+        AiutaUploadedImage(
+            id = image.imageId,
+            url = image.imageUrl,
+        )
+    }
+}
+
 internal fun AiutaGeneratedImage.toGeneratedImage(): GeneratedImage {
     return GeneratedImage(
         id = url.hashCode().toLong(),

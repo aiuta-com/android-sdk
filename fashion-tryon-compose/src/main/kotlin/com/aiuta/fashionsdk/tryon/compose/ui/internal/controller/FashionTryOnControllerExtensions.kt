@@ -57,9 +57,7 @@ internal fun FashionTryOnController.changeActiveSKU(newSkuItem: SKUItem) {
 
 // Error State
 
-internal fun FashionTryOnController.showErrorState(
-    errorState: FashionTryOnErrorState = FashionTryOnErrorState.DEFAULT,
-) {
+internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
     fashionTryOnErrorState.value = errorState
 }
 

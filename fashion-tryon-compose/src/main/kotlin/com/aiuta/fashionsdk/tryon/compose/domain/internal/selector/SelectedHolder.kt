@@ -22,6 +22,12 @@ internal class SelectedHolder<T> {
         }
     }
 
+    fun put(item: T) {
+        if (!contain(item)) {
+            add(item)
+        }
+    }
+
     fun putAll(items: List<T>) {
         itemsMap.putAll(items.map { it to 1 })
     }

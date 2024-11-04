@@ -22,8 +22,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.rememberAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingGeneratedImagesListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingUploadedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.updateDeletingGeneratedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
@@ -68,7 +69,8 @@ internal fun NavigationInitialisation(
         ) {
             // Init listeners
             val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-            loadingActionsController.updateDeletingGeneratedImagesListener()
+            loadingActionsController.deletingGeneratedImagesListener(controller)
+            loadingActionsController.deletingUploadedImagesListener(controller)
 
             // Actual content
             content()

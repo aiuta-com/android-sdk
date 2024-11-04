@@ -48,6 +48,10 @@ internal class LocalGeneratedOperationInteractor(
         generatedOperationDatasource.deleteOperation(operation.operationId)
     }
 
+    override suspend fun deleteOperations(operations: List<GeneratedOperation>) {
+        operations.forEach { operation -> deleteOperation(operation) }
+    }
+
     override fun countGeneratedOperation(): Flow<Int> {
         return generatedOperationDatasource.countGeneratedOperation()
     }

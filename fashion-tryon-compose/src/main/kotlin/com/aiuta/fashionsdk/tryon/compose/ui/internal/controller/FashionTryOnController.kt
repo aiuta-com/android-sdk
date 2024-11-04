@@ -97,7 +97,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     val defaultFashionTryOnErrorState =
         remember {
-            mutableStateOf<FashionTryOnErrorState?>(null)
+            mutableStateOf<ToastErrorState?>(null)
         }
 
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
@@ -153,7 +153,7 @@ internal class FashionTryOnController(
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
     // Error state
-    public val fashionTryOnErrorState: MutableState<FashionTryOnErrorState?>,
+    public val fashionTryOnErrorState: MutableState<ToastErrorState?>,
     // Edit mode
     internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
