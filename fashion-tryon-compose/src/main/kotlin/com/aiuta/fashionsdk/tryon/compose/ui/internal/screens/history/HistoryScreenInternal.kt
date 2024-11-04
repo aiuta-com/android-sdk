@@ -33,8 +33,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
@@ -154,6 +156,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                     imageUrl = generatedImage?.imageUrl,
                     isEdit = isSelectModeActive.value,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
+                    isLoading = controller.loadingGenerationsHolder.contain(generatedImage),
                     onClick = {
                         when {
                             isSelectModeActive.value -> {
@@ -196,22 +199,27 @@ private fun ImageContainer(
     imageUrl: String?,
     isEdit: Boolean = false,
     isSelectedItem: Boolean = false,
+    isLoading: Boolean = false,
     onClick: () -> Unit,
 ) {
     val context = LocalContext.current
     val theme = LocalTheme.current
 
     Box(
-        modifier = modifier.clickableUnindicated { onClick() },
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .height(178.dp)
+                .clip(theme.shapes.previewImage)
+                .background(color = theme.colors.background)
+                .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
     ) {
         SubcomposeAsyncImage(
             modifier =
                 Modifier
-                    .fillMaxWidth()
-                    .height(178.dp)
-                    .clip(theme.shapes.previewImage)
-                    .background(color = theme.colors.background),
+                    .clipToBounds()
+                    .fillMaxSize(),
             model =
                 ImageRequest.Builder(context)
                     .data(imageUrl)
@@ -252,6 +260,24 @@ private fun ImageContainer(
                     )
                 }
             }
+        }
+
+        AnimatedVisibility(
+            modifier =
+                Modifier
+                    .clipToBounds()
+                    .fillMaxSize(),
+            visible = isLoading,
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            LoadingProgress(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.5f)),
+                circleColor = Color.White,
+            )
         }
     }
 }
@@ -302,6 +328,9 @@ private fun BoxScope.HistoryScreenInterface(
                         .getList()
                         .map { it.imageUrl }
 
+                // After get list, let's deactivate select mode
+                controller.deactivateSelectMode()
+
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED)
                 controller.sendShareGeneratedImageEvent(
                     origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
@@ -312,8 +341,6 @@ private fun BoxScope.HistoryScreenInterface(
                     watermark = theme.watermark,
                     origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
                 )
-
-                controller.deactivateSelectMode()
             },
             onDelete = {
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)

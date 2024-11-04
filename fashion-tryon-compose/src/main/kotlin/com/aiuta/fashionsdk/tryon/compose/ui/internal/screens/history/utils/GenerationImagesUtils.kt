@@ -11,12 +11,20 @@ internal fun FashionTryOnController.deleteGeneratedImages(scope: CoroutineScope)
         try {
             val images = selectorHolder.getList()
 
+            // After getting list, let's deactivate select mode
+            deactivateSelectMode()
+
+            // Show as loading
+            loadingGenerationsHolder.putAll(images)
+
             // Delete in db
-            generatedImageInteractor.remove(images)
+            generatedImageInteractor.remove(
+                generatedImages = images,
+                afterDeletionAction = loadingGenerationsHolder::removeAll, // Will execute only in local mode
+            )
+
             // Also delete in session
             sessionGenerationInteractor.deleteGenerations(images.map { it.imageUrl })
-
-            deactivateSelectMode()
         } catch (e: Exception) {
             showErrorState()
         }
