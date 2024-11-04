@@ -17,6 +17,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
@@ -127,12 +128,12 @@ private fun FashionTryOnController.startGenerationWithUriSource(
                         warmUpInteractor.warmUp(status.sourceImageUrl)
 
                         // Change to new
-                        lastSavedImages.value = LastSavedImages.UrlSource(sourceImages = images)
-                        lastSavedOperation.value =
+                        val newOperation =
                             GeneratedOperation(
                                 operationId = currentOperationId,
                                 sourceImages = images,
                             )
+                        updateActiveOperationOrSetEmpty(newOperation)
                     }
                 }
             }

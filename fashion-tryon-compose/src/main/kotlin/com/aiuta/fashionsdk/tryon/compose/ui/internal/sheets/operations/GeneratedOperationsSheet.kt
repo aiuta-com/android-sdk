@@ -47,8 +47,6 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
@@ -58,6 +56,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.analytic.sendSelectOldPhotos
@@ -140,8 +139,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                             }
 
                             // Change
-                            lastSavedOperation.value = generatedOperation
-                            lastSavedImages.value = generatedOperation.toLastSavedImages()
+                            updateActiveOperationOrSetEmpty(generatedOperation)
                             // Activate auto try on
                             activateAutoTryOn()
                             // Move back
@@ -270,14 +268,7 @@ private fun OperationItem(
                                                 .getFirstGeneratedOperation()
 
                                         // Try to update with new or set as empty
-                                        if (newFirstOperation != null) {
-                                            lastSavedOperation.value = newFirstOperation
-                                            lastSavedImages.value =
-                                                newFirstOperation.toLastSavedImages()
-                                        } else {
-                                            lastSavedOperation.value = null
-                                            lastSavedImages.value = LastSavedImages.Empty
-                                        }
+                                        updateActiveOperationOrSetEmpty(newFirstOperation)
                                     }
                                 }
                             }

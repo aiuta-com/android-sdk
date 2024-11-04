@@ -2,8 +2,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.control
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 
 @Composable
 internal fun GeneratedOperationsSheetListener() {
@@ -14,7 +14,7 @@ internal fun GeneratedOperationsSheetListener() {
             .countGeneratedOperation()
             .collect { countGeneratedOperation ->
                 if (countGeneratedOperation == 0) {
-                    controller.lastSavedImages.value = LastSavedImages.Empty
+                    controller.updateActiveOperationOrSetEmpty(null)
                     controller.bottomSheetNavigator.hide()
                 }
             }
