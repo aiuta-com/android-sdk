@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -62,6 +61,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -101,6 +101,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
+    val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val density = LocalDensity.current
     val theme = LocalTheme.current
 
@@ -156,7 +157,10 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                     imageUrl = generatedImage?.imageUrl,
                     isEdit = isSelectModeActive.value,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
-                    isLoading = controller.loadingGenerationsHolder.contain(generatedImage),
+                    isLoading =
+                        loadingActionsController.loadingGenerationsHolder.contain(
+                            generatedImage,
+                        ),
                     onClick = {
                         when {
                             isSelectModeActive.value -> {
@@ -287,8 +291,8 @@ private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImage>,
 ) {
     val controller = LocalController.current
+    val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
-    val scope = rememberCoroutineScope()
     val generatedImages = getGeneratedImages()
 
     AnimatedVisibility(
@@ -344,7 +348,7 @@ private fun BoxScope.HistoryScreenInterface(
             },
             onDelete = {
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)
-                controller.deleteGeneratedImages(scope)
+                controller.deleteGeneratedImages(loadingActionsController)
             },
         )
     }

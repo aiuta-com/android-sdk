@@ -157,8 +157,6 @@ internal class FashionTryOnController(
     // Edit mode
     internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
-    // Loading progress
-    val loadingGenerationsHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
     // Data
     public val lastSavedImages: MutableState<LastSavedImages>,
     public val lastSavedOperation: MutableState<GeneratedOperation?>,

@@ -2,12 +2,14 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils
 
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-internal fun FashionTryOnController.deleteGeneratedImages(scope: CoroutineScope) {
-    scope.launch {
+internal fun FashionTryOnController.deleteGeneratedImages(
+    loadingActionsController: AiutaTryOnLoadingActionsController,
+) {
+    generalScope.launch {
         try {
             val images = selectorHolder.getList()
 
@@ -15,12 +17,13 @@ internal fun FashionTryOnController.deleteGeneratedImages(scope: CoroutineScope)
             deactivateSelectMode()
 
             // Show as loading
-            loadingGenerationsHolder.putAll(images)
+            loadingActionsController.loadingGenerationsHolder.putAll(images)
 
             // Delete in db
             generatedImageInteractor.remove(
                 generatedImages = images,
-                afterDeletionAction = loadingGenerationsHolder::removeAll, // Will execute only in local mode
+                // Will execute only in local mode
+                afterDeletionAction = loadingActionsController.loadingGenerationsHolder::removeAll,
             )
 
             // Also delete in session

@@ -16,13 +16,15 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.rememberAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.updateDeletingGeneratedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateDeletingGeneratedImagesListener
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 @Composable
@@ -62,9 +64,11 @@ internal fun NavigationInitialisation(
                 ),
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
+            LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
         ) {
             // Init listeners
-            controller.updateDeletingGeneratedImagesListener()
+            val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
+            loadingActionsController.updateDeletingGeneratedImagesListener()
 
             // Actual content
             content()
