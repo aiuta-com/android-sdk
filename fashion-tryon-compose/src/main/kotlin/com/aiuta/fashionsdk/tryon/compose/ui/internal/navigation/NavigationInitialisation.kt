@@ -22,6 +22,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.rememberAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateDeletingGeneratedImagesListener
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 @Composable
@@ -62,6 +63,10 @@ internal fun NavigationInitialisation(
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
         ) {
+            // Init listeners
+            controller.updateDeletingGeneratedImagesListener()
+
+            // Actual content
             content()
         }
     }

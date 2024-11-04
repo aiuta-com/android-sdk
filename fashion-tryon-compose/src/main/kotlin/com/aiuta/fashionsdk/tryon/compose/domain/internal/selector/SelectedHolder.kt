@@ -40,11 +40,11 @@ internal class SelectedHolder<T> {
         return itemsMap.contains(item)
     }
 
-    private fun add(item: T) {
-        itemsMap.put(item, 1)
+    fun remove(item: T) {
+        itemsMap.remove(item)
     }
 
-    private fun remove(item: T) {
-        itemsMap.remove(item)
+    private fun add(item: T) {
+        itemsMap.put(item, 1)
     }
 }

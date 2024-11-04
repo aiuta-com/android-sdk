@@ -3,10 +3,13 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
 @Composable
@@ -47,4 +50,29 @@ internal fun FashionTryOnController.updationActiveSKUItemListener() {
             changeActiveSKU(updatedSKUItem)
         }
         .launchIn(generalScope)
+}
+
+@Composable
+internal fun FashionTryOnController.updateDeletingGeneratedImagesListener() {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
+    val loadingActiveGenerations = loadingGenerationsHolder.getList()
+
+    // Observe external changes of generated images and delete
+    LaunchedEffect(Unit) {
+        aiutaConfiguration
+            .dataProvider
+            ?.generatedImagesFlow
+            ?.map { images ->
+                // Make as list to compensate forEach with inner contains
+                images.map { image -> image.toGeneratedImage() }.toSet()
+            }
+            ?.onEach { images ->
+                loadingActiveGenerations.forEach { activeGeneration ->
+                    if (!images.contains(activeGeneration)) {
+                        loadingGenerationsHolder.remove(activeGeneration)
+                    }
+                }
+            }
+            ?.launchIn(generalScope)
+    }
 }
