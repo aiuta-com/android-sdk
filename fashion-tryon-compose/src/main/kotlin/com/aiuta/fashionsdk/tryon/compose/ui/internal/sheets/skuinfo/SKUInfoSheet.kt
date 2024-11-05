@@ -35,6 +35,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -112,9 +113,8 @@ private fun ImageContainer(
                 .data(imageUrl)
                 .crossfade(true)
                 .build(),
-        loading = {
-            LoadingProgress(modifier = Modifier.fillMaxSize())
-        },
+        loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+        error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
         contentScale = ContentScale.Crop,
         contentDescription = null,
     )

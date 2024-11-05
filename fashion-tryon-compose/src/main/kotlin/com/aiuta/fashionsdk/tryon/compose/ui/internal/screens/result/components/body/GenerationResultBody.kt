@@ -37,6 +37,7 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
@@ -163,9 +164,8 @@ private fun PagerItem(
                     .data(imageUrl)
                     .crossfade(true)
                     .build(),
-            loading = {
-                LoadingProgress(modifier = Modifier.fillMaxSize())
-            },
+            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

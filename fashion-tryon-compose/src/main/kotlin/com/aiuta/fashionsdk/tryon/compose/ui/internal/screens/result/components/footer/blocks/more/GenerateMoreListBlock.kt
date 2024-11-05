@@ -29,6 +29,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListGenerateMoreItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -111,9 +112,8 @@ private fun GenerationMoreItem(
                         .data(skuItem.imageUrls.firstOrNull())
                         .crossfade(true)
                         .build(),
-                loading = {
-                    LoadingProgress(modifier = Modifier.fillMaxSize())
-                },
+                loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+                error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
             )

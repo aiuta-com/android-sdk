@@ -4,14 +4,17 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 
 @Composable
 internal fun ImagesContainer(
@@ -57,13 +60,15 @@ private fun ImagesContainerSmall(
         modifier = modifier.background(theme.colors.background),
     ) {
         imageUrls.forEach { url ->
-            AsyncImage(
+            SubcomposeAsyncImage(
                 modifier = Modifier.fillMaxHeight().weight(1f),
                 model =
                     ImageRequest.Builder(context)
                         .data(url)
                         .build(),
                 contentDescription = null,
+                loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+                error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
                 contentScale = ContentScale.Crop,
             )
         }
@@ -82,13 +87,15 @@ private fun ImagesContainerMedium(
     Row(
         modifier = modifier.background(theme.colors.background),
     ) {
-        AsyncImage(
+        SubcomposeAsyncImage(
             modifier = Modifier.fillMaxHeight().weight(1f),
             model =
                 ImageRequest.Builder(context)
                     .data(imageUrls.firstOrNull())
                     .build(),
             contentDescription = null,
+            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             contentScale = ContentScale.Crop,
         )
 
@@ -96,13 +103,15 @@ private fun ImagesContainerMedium(
             modifier = Modifier.fillMaxHeight().weight(1f),
         ) {
             for (index in 1..imageUrls.lastIndex) {
-                AsyncImage(
+                SubcomposeAsyncImage(
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                     model =
                         ImageRequest.Builder(context)
                             .data(imageUrls.getOrNull(index))
                             .build(),
                     contentDescription = null,
+                    loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+                    error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
                     contentScale = ContentScale.Crop,
                 )
             }
@@ -130,13 +139,15 @@ private fun ImagesContainerBig(
                 modifier = Modifier.weight(1f).fillMaxHeight(),
             ) {
                 (0 until columnSize).forEach { columnIndex ->
-                    AsyncImage(
+                    SubcomposeAsyncImage(
                         modifier = Modifier.weight(1f).fillMaxWidth(),
                         model =
                             ImageRequest.Builder(context)
                                 .data(imageUrls.getOrNull(rowIndex * rowSize + columnIndex))
                                 .build(),
                         contentDescription = null,
+                        loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+                        error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
                         contentScale = ContentScale.Crop,
                     )
                 }
