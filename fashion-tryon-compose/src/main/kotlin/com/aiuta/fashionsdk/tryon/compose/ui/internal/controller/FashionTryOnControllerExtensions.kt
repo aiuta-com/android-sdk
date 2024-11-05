@@ -58,7 +58,10 @@ internal fun FashionTryOnController.changeActiveSKU(newSkuItem: SKUItem) {
 // Error State
 
 internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
-    fashionTryOnErrorState.value = errorState
+    // Check if toast already visible
+    if (fashionTryOnErrorState.value == null) {
+        fashionTryOnErrorState.value = errorState
+    }
 }
 
 internal fun FashionTryOnController.hideErrorState() {

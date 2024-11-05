@@ -27,7 +27,6 @@ internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener(
 @Composable
 private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesListener() {
     val aiutaConfiguration = LocalAiutaConfiguration.current
-    val loadingActiveGenerations = loadingGenerationsHolder.getList()
 
     // Observe external changes of generated images and delete
     LaunchedEffect(Unit) {
@@ -39,6 +38,18 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                 images.map { image -> image.toGeneratedImage() }.toSet()
             }
             ?.onEach { images ->
+                // Get current loadings & retries
+                val loadingActiveGenerations = loadingGenerationsHolder.getList()
+                val retryActiveGenerations = retryGenerationsHolder.getList()
+
+                // Clean retries, because they can executed a little bit later
+                retryActiveGenerations.forEach { activeGeneration ->
+                    if (!images.contains(activeGeneration)) {
+                        retryGenerationsHolder.remove(activeGeneration)
+                    }
+                }
+
+                // Clean loadings
                 loadingActiveGenerations.forEach { activeGeneration ->
                     if (!images.contains(activeGeneration)) {
                         loadingGenerationsHolder.remove(activeGeneration)
@@ -64,6 +75,13 @@ private fun AiutaTryOnLoadingActionsController.showErrorDeletingGeneratedImagesL
 
         LaunchedEffect(isHostErrorDeletingGenerated.value) {
             if (isHostErrorDeletingGenerated.value) {
+                // Move from loading to retry
+                val retryGenerations = loadingGenerationsHolder.getList()
+                retryGenerationsHolder.putAll(retryGenerations)
+
+                // Clean loading
+                loadingGenerationsHolder.removeAll()
+
                 controller.showErrorState(
                     errorState =
                         DeleteGeneratedImagesToastErrorState(
@@ -90,7 +108,6 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
     controller: FashionTryOnController,
 ) {
     val aiutaConfiguration = LocalAiutaConfiguration.current
-    val loadingActiveUploads = loadingUploadsHolder.getList()
 
     // Observe external changes of generated images and delete
     LaunchedEffect(Unit) {
@@ -102,14 +119,25 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
                 operations.map { operation -> operation.toGeneratedOperation() }.toSet()
             }
             ?.onEach { operations ->
-                // 1. Delete active loading uploads
+                // Get current loadings & retries
+                val loadingActiveUploads = loadingUploadsHolder.getList()
+                val retryActiveUploads = retryUploadsHolder.getList()
+
+                // Clean retries, because they can executed a little bit later
+                retryActiveUploads.forEach { activeUpload ->
+                    if (!operations.contains(activeUpload)) {
+                        retryUploadsHolder.remove(activeUpload)
+                    }
+                }
+
+                // Delete active loading uploads
                 loadingActiveUploads.forEach { activeUpload ->
                     if (!operations.contains(activeUpload)) {
                         loadingUploadsHolder.remove(activeUpload)
                     }
                 }
 
-                // 2. Update active operation
+                // Update active operation
                 controller.updateActiveOperationOrSetEmpty(operations.firstOrNull())
             }
             ?.launchIn(generalScope)
@@ -131,6 +159,13 @@ private fun AiutaTryOnLoadingActionsController.showErrorDeletingUploadedImagesLi
 
         LaunchedEffect(isHostErrorDeletingUploaded.value) {
             if (isHostErrorDeletingUploaded.value) {
+                // Move from loading to retry
+                val retryOperations = loadingUploadsHolder.getList()
+                retryUploadsHolder.putAll(retryOperations)
+
+                // Clean loading
+                loadingUploadsHolder.removeAll()
+
                 controller.showErrorState(
                     errorState =
                         DeleteUploadedImagesToastErrorState(

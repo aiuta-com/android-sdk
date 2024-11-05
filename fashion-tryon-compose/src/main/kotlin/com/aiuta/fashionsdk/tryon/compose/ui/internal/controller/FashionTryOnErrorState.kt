@@ -35,9 +35,17 @@ internal class DeleteGeneratedImagesToastErrorState(
 ) : ToastErrorState {
     override val message: String? = null
     override val onRetry: () -> Unit = {
-        loadingActionsController.generalScope.launch {
-            val retryGenerations = loadingActionsController.loadingGenerationsHolder.getList()
-            controller.generatedImageInteractor.remove(retryGenerations)
+        with(loadingActionsController) {
+            generalScope.launch {
+                // Get retries generations
+                val retryGenerations = retryGenerationsHolder.getList()
+                // Clean retries and mark them as loading
+                retryGenerationsHolder.removeAll()
+                loadingGenerationsHolder.putAll(retryGenerations)
+
+                // Execute retry
+                controller.generatedImageInteractor.remove(retryGenerations)
+            }
         }
     }
 }
@@ -49,9 +57,17 @@ internal class DeleteUploadedImagesToastErrorState(
 ) : ToastErrorState {
     override val message: String? = null
     override val onRetry: () -> Unit = {
-        loadingActionsController.generalScope.launch {
-            val retryOperations = loadingActionsController.loadingUploadsHolder.getList()
-            controller.generatedOperationInteractor.deleteOperations(retryOperations)
+        with(loadingActionsController) {
+            generalScope.launch {
+                // Get retries uploads
+                val retryOperations = retryUploadsHolder.getList()
+                // Clean retries and mark them as loading
+                retryUploadsHolder.removeAll()
+                loadingUploadsHolder.putAll(retryOperations)
+
+                // Execute retry
+                controller.generatedOperationInteractor.deleteOperations(retryOperations)
+            }
         }
     }
 }

@@ -19,8 +19,10 @@ internal fun rememberAiutaTryOnLoadingActionsController(): AiutaTryOnLoadingActi
 internal class AiutaTryOnLoadingActionsController(
     // Generated images
     val loadingGenerationsHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
+    val retryGenerationsHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
     // Uploaded images
     val loadingUploadsHolder: SelectedHolder<GeneratedOperation> = SelectedHolder(),
+    val retryUploadsHolder: SelectedHolder<GeneratedOperation> = SelectedHolder(),
 ) {
     internal val generalScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 }
