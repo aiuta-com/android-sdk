@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 internal interface ToastErrorState {
     val message: String?
     val onRetry: () -> Unit
+    val onClose: (() -> Unit)?
 }
 
 @Immutable
@@ -26,6 +27,7 @@ internal class TryOnToastErrorState(
             context = context,
         )
     }
+    override val onClose: (() -> Unit)? = null
 }
 
 @Immutable
@@ -48,6 +50,10 @@ internal class DeleteGeneratedImagesToastErrorState(
             }
         }
     }
+    override val onClose: (() -> Unit) = {
+        // Clean retries
+        loadingActionsController.retryGenerationsHolder.removeAll()
+    }
 }
 
 @Immutable
@@ -69,5 +75,9 @@ internal class DeleteUploadedImagesToastErrorState(
                 controller.generatedOperationInteractor.deleteOperations(retryOperations)
             }
         }
+    }
+    override val onClose: (() -> Unit) = {
+        // Clean retries
+        loadingActionsController.retryUploadsHolder.removeAll()
     }
 }
