@@ -8,14 +8,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarActionState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarNavigationState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationAppBarState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 
@@ -58,10 +57,11 @@ internal fun FashionTryOnController.changeActiveSKU(newSkuItem: SKUItem) {
 
 // Error State
 
-internal fun FashionTryOnController.showErrorState(
-    errorState: FashionTryOnErrorState = FashionTryOnErrorState.DEFAULT,
-) {
-    fashionTryOnErrorState.value = errorState
+internal fun FashionTryOnController.showErrorState(errorState: ToastErrorState) {
+    // Check if toast already visible
+    if (fashionTryOnErrorState.value == null) {
+        fashionTryOnErrorState.value = errorState
+    }
 }
 
 internal fun FashionTryOnController.hideErrorState() {
@@ -116,64 +116,20 @@ internal fun FashionTryOnController.disableAutoTryOn() {
     isAutoTryOnEnabled.value = false
 }
 
+internal fun FashionTryOnController.updateActiveOperationOrSetEmpty(
+    operation: GeneratedOperation?,
+) {
+    // Try to update with new or set as empty
+    if (operation != null) {
+        lastSavedOperation.value = operation
+        lastSavedImages.value = operation.toLastSavedImages()
+    } else {
+        lastSavedOperation.value = null
+        lastSavedImages.value = LastSavedImages.Empty
+    }
+}
+
 // Checks
-@Composable
-internal fun FashionTryOnController.appbarState(): State<NavigationAppBarState> {
-    return remember(currentScreen.value) {
-        derivedStateOf {
-            when (currentScreen.value) {
-                NavigationScreen.SPLASH,
-                NavigationScreen.PREONBOARDING,
-                NavigationScreen.ONBOARDING,
-                -> NavigationAppBarState.EMPTY
-
-                NavigationScreen.HISTORY -> NavigationAppBarState.HISTORY
-
-                else -> NavigationAppBarState.GENERAL
-            }
-        }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.appbarNavigationState(): State<NavigationAppBarNavigationState> {
-    return remember(currentScreen.value) {
-        derivedStateOf {
-            when (currentScreen.value) {
-                NavigationScreen.PREONBOARDING -> NavigationAppBarNavigationState.EMPTY
-                else -> NavigationAppBarNavigationState.BACK
-            }
-        }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.appbarActionState(): State<NavigationAppBarActionState> {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-
-    return remember(currentScreen.value) {
-        derivedStateOf {
-            when (currentScreen.value) {
-                NavigationScreen.HISTORY -> NavigationAppBarActionState.SELECT_PHOTOS
-
-                NavigationScreen.PREONBOARDING -> NavigationAppBarActionState.CLOSE
-
-                NavigationScreen.SPLASH,
-                NavigationScreen.ONBOARDING,
-                -> NavigationAppBarActionState.EMPTY
-
-                NavigationScreen.IMAGE_SELECTOR, NavigationScreen.GENERATION_RESULT -> {
-                    if (aiutaConfiguration.isHistoryAvailable) {
-                        NavigationAppBarActionState.HISTORY
-                    } else {
-                        NavigationAppBarActionState.EMPTY
-                    }
-                }
-            }
-        }
-    }
-}
-
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsStateWithLifecycle(0)
@@ -217,15 +173,6 @@ internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> {
     return remember(fashionTryOnErrorState.value) {
         derivedStateOf {
             fashionTryOnErrorState.value != null
-        }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.isActiveSKUGenerateMoreNotEmpty(): State<Boolean> {
-    return remember(activeSKUItem.value) {
-        derivedStateOf {
-            activeSKUItem.value.generateMoreSKU.orEmpty().isNotEmpty()
         }
     }
 }

@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
@@ -19,23 +18,19 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnErrorState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.ToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.hideErrorState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 
-internal const val DEFAULT_SHOWING_DELAY = 4000L
+internal const val DEFAULT_SHOWING_DELAY = 3000L
 
 @Composable
 internal fun NavigationErrorCard(
     modifier: Modifier = Modifier,
-    errorState: FashionTryOnErrorState,
+    errorState: ToastErrorState,
 ) {
-    val context = LocalContext.current
     val controller = LocalController.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
@@ -78,10 +73,7 @@ internal fun NavigationErrorCard(
                 ),
             size = FashionButtonSizes.mSize(),
             onClick = {
-                controller.startGeneration(
-                    aiutaConfiguration = aiutaConfiguration,
-                    context = context,
-                )
+                errorState.onRetry()
                 controller.hideErrorState()
             },
         )

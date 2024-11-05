@@ -31,27 +31,6 @@ import kotlinx.coroutines.delay
 
 @Composable
 internal fun NavigationContainer(modifier: Modifier = Modifier) {
-    val currentController = LocalController.current
-    val theme = LocalTheme.current
-
-    ModalBottomSheetLayout(
-        modifier = modifier,
-        sheetState = currentController.bottomSheetNavigator.sheetState,
-        sheetBackgroundColor = theme.colors.background,
-        sheetContent = currentController.bottomSheetNavigator.sheetContent,
-        sheetContentColor = theme.colors.primary,
-        sheetShape = theme.shapes.bottomSheet,
-        scrimColor = theme.colors.primary.copy(alpha = 0.6f),
-        content = {
-            NavigationContainerContent(
-                modifier = Modifier.fillMaxSize(),
-            )
-        },
-    )
-}
-
-@Composable
-private fun NavigationContainerContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
@@ -59,7 +38,20 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.background(theme.colors.background),
     ) {
-        NavigationContent(modifier = Modifier.fillMaxSize())
+        ModalBottomSheetLayout(
+            modifier = Modifier.fillMaxSize(),
+            sheetState = controller.bottomSheetNavigator.sheetState,
+            sheetBackgroundColor = theme.colors.background,
+            sheetContent = controller.bottomSheetNavigator.sheetContent,
+            sheetContentColor = theme.colors.primary,
+            sheetShape = theme.shapes.bottomSheet,
+            scrimColor = theme.colors.primary.copy(alpha = 0.6f),
+            content = {
+                NavigationContent(
+                    modifier = Modifier.fillMaxSize(),
+                )
+            },
+        )
 
         AnimatedVisibility(
             modifier =
@@ -76,11 +68,16 @@ private fun NavigationContainerContent(modifier: Modifier = Modifier) {
                 LaunchedEffect(Unit) {
                     delay(DEFAULT_SHOWING_DELAY)
 
-                    controller.hideErrorState()
+                    controller.hideErrorState().also {
+                        state.onClose?.invoke()
+                    }
                 }
 
                 NavigationErrorCard(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp),
                     errorState = state,
                 )
             }

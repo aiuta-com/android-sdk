@@ -238,7 +238,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLangu
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider {
 	public static final field $stable I
-	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 	public final fun getAddGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getAddUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getDeleteGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
@@ -247,6 +247,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider
 	public final fun getObtainUserConsentAction ()Lkotlin/jvm/functions/Function0;
 	public final fun getSelectUploadedImageAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getUploadedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun isErrorDeletingGeneratedImagesFlow ()Lkotlinx/coroutines/flow/SharedFlow;
+	public final fun isErrorDeletingUploadedImagesFlow ()Lkotlinx/coroutines/flow/SharedFlow;
 	public final fun isUserConsentObtainedFlow ()Lkotlinx/coroutines/flow/StateFlow;
 }
 
@@ -301,9 +303,11 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/histor
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;
 	public static field lambda-2 Lkotlin/jvm/functions/Function4;
+	public static field lambda-3 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda-3$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt {
@@ -373,9 +377,11 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operati
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function4;
 	public static field lambda-2 Lkotlin/jvm/functions/Function4;
+	public static field lambda-3 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda-3$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/skuinfo/ComposableSingletons$SKUInfoSheetKt {

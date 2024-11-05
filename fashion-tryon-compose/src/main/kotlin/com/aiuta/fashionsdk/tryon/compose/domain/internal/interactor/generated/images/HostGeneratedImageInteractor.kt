@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaGeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -19,9 +20,7 @@ internal class HostGeneratedImageInteractor(
     override fun generatedImagesFlow(): Flow<PagingData<GeneratedImage>> {
         return dataProvider.generatedImagesFlow
             .map { images ->
-                images.map { image ->
-                    GeneratedImage(id = image.url.hashCode().toLong(), imageUrl = image.url)
-                }
+                images.map { image -> image.toGeneratedImage() }
             }
             .map { images -> PagingData.from(images) }
     }

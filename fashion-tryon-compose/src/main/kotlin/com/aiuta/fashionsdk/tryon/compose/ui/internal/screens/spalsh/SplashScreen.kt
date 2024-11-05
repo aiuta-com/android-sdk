@@ -4,11 +4,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadConfig
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.first
@@ -38,16 +38,16 @@ internal fun SplashScreen(
 
         if (countGeneratedOperation > 0) {
             val lastOperation = controller.generatedOperationInteractor.getFirstGeneratedOperation()
-            lastOperation?.let {
-                controller.lastSavedOperation.value = lastOperation
-                controller.lastSavedImages.value = lastOperation.toLastSavedImages()
-            }
+            controller.updateActiveOperationOrSetEmpty(lastOperation)
         }
 
         // Solve should show onboarding or not
-        val isUserConsentObtainedFlowRaw = configuration.dataProvider?.isUserConsentObtainedFlow?.value
-        val shouldShowOnboardingFromHost = isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
-        val shouldShowOnboarding = controller.onboardingInteractor.shouldShowOnboarding() || shouldShowOnboardingFromHost
+        val isUserConsentObtainedFlowRaw =
+            configuration.dataProvider?.isUserConsentObtainedFlow?.value
+        val shouldShowOnboardingFromHost =
+            isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
+        val shouldShowOnboarding =
+            controller.onboardingInteractor.shouldShowOnboarding() || shouldShowOnboardingFromHost
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =

@@ -22,6 +22,12 @@ internal class SelectedHolder<T> {
         }
     }
 
+    fun put(item: T) {
+        if (!contain(item)) {
+            add(item)
+        }
+    }
+
     fun putAll(items: List<T>) {
         itemsMap.putAll(items.map { it to 1 })
     }
@@ -40,11 +46,17 @@ internal class SelectedHolder<T> {
         return itemsMap.contains(item)
     }
 
-    private fun add(item: T) {
-        itemsMap.put(item, 1)
+    fun remove(item: T) {
+        itemsMap.remove(item)
     }
 
-    private fun remove(item: T) {
-        itemsMap.remove(item)
+    fun remove(items: List<T>) {
+        items.forEach { item ->
+            itemsMap.remove(item)
+        }
+    }
+
+    private fun add(item: T) {
+        itemsMap.put(item, 1)
     }
 }

@@ -43,7 +43,7 @@ internal class LocalGeneratedImageInteractor(
     }
 
     override suspend fun remove(generatedImages: List<GeneratedImage>) {
-        return generatedImageDatasource.remove(
+        generatedImageDatasource.remove(
             generatedImageIds = generatedImages.map { it.id },
         )
     }

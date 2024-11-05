@@ -16,11 +16,15 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.rememberAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingGeneratedImagesListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingUploadedImagesListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
@@ -61,7 +65,14 @@ internal fun NavigationInitialisation(
                 ),
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
+            LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
         ) {
+            // Init listeners
+            val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
+            loadingActionsController.deletingGeneratedImagesListener(controller)
+            loadingActionsController.deletingUploadedImagesListener(controller)
+
+            // Actual content
             content()
         }
     }

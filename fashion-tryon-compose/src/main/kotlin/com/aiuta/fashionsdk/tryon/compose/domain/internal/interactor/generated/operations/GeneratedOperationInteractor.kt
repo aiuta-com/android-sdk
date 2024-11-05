@@ -17,6 +17,8 @@ internal interface GeneratedOperationInteractor {
 
     suspend fun deleteOperation(operation: GeneratedOperation)
 
+    suspend fun deleteOperations(operations: List<GeneratedOperation>)
+
     fun countGeneratedOperation(): Flow<Int>
 
     suspend fun createImage(

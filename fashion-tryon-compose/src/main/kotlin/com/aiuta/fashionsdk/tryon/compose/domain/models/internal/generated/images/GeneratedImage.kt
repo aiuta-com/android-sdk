@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 
 @Immutable
-internal class GeneratedImage(
+internal data class GeneratedImage(
     val id: Long,
     val imageUrl: String,
 )
