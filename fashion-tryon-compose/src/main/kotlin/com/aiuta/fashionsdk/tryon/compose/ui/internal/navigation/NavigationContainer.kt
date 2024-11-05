@@ -58,6 +58,7 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
                 Modifier
                     .align(Alignment.BottomCenter)
                     .windowInsetsPadding(WindowInsets.navigationBars)
+                    .padding(bottom = 16.dp)
                     .fillMaxWidth(),
             visible = controller.isErrorStateVisible().value,
             enter = fadeIn(),
