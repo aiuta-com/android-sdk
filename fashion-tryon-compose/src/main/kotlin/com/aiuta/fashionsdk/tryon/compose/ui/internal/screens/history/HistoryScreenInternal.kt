@@ -360,8 +360,6 @@ private fun BoxScope.HistoryScreenInterface(
             onDelete = {
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED)
                 controller.deleteGeneratedImages(
-                    aiutaConfiguration = aiutaConfiguration,
-                    context = context,
                     loadingActionsController = loadingActionsController,
                 )
             },

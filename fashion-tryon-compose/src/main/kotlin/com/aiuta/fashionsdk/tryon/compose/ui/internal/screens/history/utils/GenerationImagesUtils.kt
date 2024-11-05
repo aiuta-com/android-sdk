@@ -1,18 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils
 
-import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.cleanLoadingGenerations
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGeneratedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import kotlinx.coroutines.launch
 
 internal fun FashionTryOnController.deleteGeneratedImages(
-    aiutaConfiguration: AiutaTryOnConfiguration,
-    context: Context,
     loadingActionsController: AiutaTryOnLoadingActionsController,
 ) {
     generalScope.launch {
@@ -39,10 +35,9 @@ internal fun FashionTryOnController.deleteGeneratedImages(
         } catch (e: Exception) {
             showErrorState(
                 errorState =
-                    TryOnToastErrorState(
-                        aiutaConfiguration = aiutaConfiguration,
+                    DeleteGeneratedImagesToastErrorState(
                         controller = this@deleteGeneratedImages,
-                        context = context,
+                        loadingActionsController = loadingActionsController,
                     ),
             )
         }
