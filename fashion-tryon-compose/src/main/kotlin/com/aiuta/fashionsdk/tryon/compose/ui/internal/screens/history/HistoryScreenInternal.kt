@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -142,10 +143,19 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 contentType = { generatedImages.itemSnapshotList.getOrNull(it) },
             ) { index ->
                 val generatedImage = generatedImages[index]
-                val isSelectModeActive = controller.isSelectModeActive()
 
                 var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
                 var imageSize by remember { mutableStateOf(Size.Zero) }
+
+                val isLoading =
+                    remember {
+                        derivedStateOf {
+                            loadingActionsController.loadingGenerationsHolder.contain(
+                                generatedImage,
+                            )
+                        }
+                    }
+                val isSelectModeActive = controller.isSelectModeActive().value && !isLoading.value
 
                 ImageContainer(
                     modifier =
@@ -156,15 +166,15 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                                 imageSize = coordinates.size.toSize()
                             },
                     imageUrl = generatedImage?.imageUrl,
-                    isEdit = isSelectModeActive.value,
+                    isEdit = isSelectModeActive,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
-                    isLoading =
-                        loadingActionsController.loadingGenerationsHolder.contain(
-                            generatedImage,
-                        ),
+                    isLoading = isLoading.value,
                     onClick = {
                         when {
-                            isSelectModeActive.value -> {
+                            // Don't click if loading
+                            isLoading.value -> Unit
+
+                            isSelectModeActive -> {
                                 generatedImage?.let {
                                     controller.selectorHolder.putOrRemove(generatedImage)
                                 }

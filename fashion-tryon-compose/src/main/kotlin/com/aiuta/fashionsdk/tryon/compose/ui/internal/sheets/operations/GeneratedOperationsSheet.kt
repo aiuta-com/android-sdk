@@ -190,8 +190,22 @@ private fun OperationItem(
             mutableStateOf<AsyncImagePainter.State>(AsyncImagePainter.State.Empty)
         }
 
+    val isLoadingScrimVisible =
+        remember {
+            derivedStateOf {
+                loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
+            }
+        }
+
+    val isTrashVisible =
+        remember {
+            derivedStateOf {
+                imageState.value !is AsyncImagePainter.State.Error && !isLoadingScrimVisible.value
+            }
+        }
+
     Box(
-        modifier = modifier.clickableUnindicated { onClick() },
+        modifier = modifier.clickableUnindicated(!isLoadingScrimVisible.value) { onClick() },
     ) {
         SubcomposeAsyncImage(
             modifier =
@@ -209,20 +223,6 @@ private fun OperationItem(
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
-
-        val isLoadingScrimVisible =
-            remember {
-                derivedStateOf {
-                    loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
-                }
-            }
-
-        val isTrashVisible =
-            remember {
-                derivedStateOf {
-                    imageState.value !is AsyncImagePainter.State.Error && !isLoadingScrimVisible.value
-                }
-            }
 
         AnimatedVisibility(
             modifier =
