@@ -18,6 +18,8 @@ internal sealed interface SKUGenerationOperation {
 
     class ErrorOperation(
         override val sourceImage: String,
+        public val errorMessage: String? = null,
+        public val exception: Exception? = null,
     ) : SKUGenerationOperation
 }
 
@@ -31,6 +33,8 @@ internal fun SKUGenerationStatus.toOperation(sourceImage: String): SKUGeneration
         is SKUGenerationStatus.ErrorGenerationStatus ->
             SKUGenerationOperation.ErrorOperation(
                 sourceImage = sourceImage,
+                errorMessage = errorMessage,
+                exception = exception,
             )
 
         is SKUGenerationStatus.SuccessGenerationStatus ->

@@ -5,6 +5,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.disableAutoTryOn
@@ -30,6 +32,8 @@ internal fun ImageSelectorAutoTryOnListener() {
     val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
+    val dialogController = LocalAiutaTryOnDialogController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     LaunchedEffect(controller.isAutoTryOnEnabled.value) {
         if (controller.isAutoTryOnEnabled.value) {
@@ -37,6 +41,8 @@ internal fun ImageSelectorAutoTryOnListener() {
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
                 context = context,
+                dialogController = dialogController,
+                stringResources = stringResources,
             )
         }
     }

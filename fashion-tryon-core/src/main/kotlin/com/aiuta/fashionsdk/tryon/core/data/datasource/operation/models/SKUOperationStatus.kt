@@ -14,6 +14,9 @@ internal enum class SKUOperationStatus {
     @SerialName("SUCCESS")
     SUCCESS,
 
+    @SerialName("ABORTED")
+    ABORTED,
+
     @SerialName("FAILED")
     FAILED,
 }

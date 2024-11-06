@@ -93,3 +93,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUr
 	public fun getSkuId ()Ljava/lang/String;
 }
 
+public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/controller/exception/AbortedPingGenerationException : java/lang/RuntimeException {
+	public fun <init> ()V
+}
+

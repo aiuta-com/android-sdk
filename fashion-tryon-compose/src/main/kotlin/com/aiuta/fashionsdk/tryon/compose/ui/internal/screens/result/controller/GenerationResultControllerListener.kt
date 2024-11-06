@@ -5,6 +5,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import com.aiuta.fashionsdk.internal.analytic.model.ViewGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendViewGeneratedImageEvent
@@ -40,6 +42,8 @@ internal fun GenerateMoreListener() {
     val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
+    val dialogController = LocalAiutaTryOnDialogController.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     // Wait for bottom sheet changes and start generation
     LaunchedEffect(controller.isAutoTryOnEnabled.value) {
@@ -47,6 +51,8 @@ internal fun GenerateMoreListener() {
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
                 context = context,
+                dialogController = dialogController,
+                stringResources = stringResources,
             )
             controller.navigateBack()
         }

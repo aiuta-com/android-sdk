@@ -33,7 +33,6 @@ internal fun NavigationAlertDialog(
     val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
-    val onDismissRequest = state.onDismiss ?: dialogController::hideDialog
     val sharedModifier =
         Modifier
             .fillMaxWidth()
@@ -41,28 +40,31 @@ internal fun NavigationAlertDialog(
 
     AlertDialog(
         modifier = modifier.padding(horizontal = 16.dp),
-        onDismissRequest = onDismissRequest,
+        onDismissRequest = dialogController::hideDialog,
         backgroundColor = theme.colors.background,
         contentColor = theme.colors.primary,
         shape = RoundedCornerShape(32.dp),
         properties = DialogProperties(usePlatformDefaultWidth = false),
-        title = {
-            Column(
-                modifier = sharedModifier,
-                verticalArrangement = Arrangement.Center,
-            ) {
-                Spacer(Modifier.height(24.dp))
+        title =
+            state.title?.let {
+                {
+                    Column(
+                        modifier = sharedModifier,
+                        verticalArrangement = Arrangement.Center,
+                    ) {
+                        Spacer(Modifier.height(24.dp))
 
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = state.title,
-                    style = theme.typography.titleL,
-                    color = theme.colors.primary,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Center,
-                )
-            }
-        },
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = state.title,
+                            style = theme.typography.titleL,
+                            color = theme.colors.primary,
+                            overflow = TextOverflow.Ellipsis,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                }
+            },
         text = {
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -80,7 +82,7 @@ internal fun NavigationAlertDialog(
             ) {
                 FashionButton(
                     modifier = Modifier.fillMaxWidth(),
-                    text = stringResources.dialogCameraPermissionConfirmButton,
+                    text = state.confirmButton,
                     style = FashionButtonStyles.primaryStyle(theme),
                     size = FashionButtonSizes.lSize(),
                     onClick = {
@@ -89,15 +91,17 @@ internal fun NavigationAlertDialog(
                     },
                 )
 
-                Spacer(Modifier.height(8.dp))
+                state.onDismiss?.let {
+                    Spacer(Modifier.height(8.dp))
 
-                FashionButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = stringResources.cancel,
-                    style = FashionButtonStyles.secondaryStyle(theme),
-                    size = FashionButtonSizes.lSize(),
-                    onClick = onDismissRequest,
-                )
+                    FashionButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = stringResources.cancel,
+                        style = FashionButtonStyles.secondaryStyle(theme),
+                        size = FashionButtonSizes.lSize(),
+                        onClick = state.onDismiss,
+                    )
+                }
 
                 Spacer(Modifier.height(24.dp))
             }
