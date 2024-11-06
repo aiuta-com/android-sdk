@@ -36,7 +36,7 @@ secrets {
 dependencies {
     api(projects.fashion)
     api(projects.fashionAnalytic)
-    api(projects.fashionComposeIcons)
+    api(projects.fashionTryonIcons)
     api(projects.fashionTryonCore)
     api(projects.fashionTryonCompose)
 

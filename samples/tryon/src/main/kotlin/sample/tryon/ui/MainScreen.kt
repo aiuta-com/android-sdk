@@ -8,13 +8,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aiuta.fashionsdk.compose.icons.rememberDefaultAiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
+import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
 import sample.tryon.MainViewModel
 
 @Composable
