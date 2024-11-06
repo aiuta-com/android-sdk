@@ -27,11 +27,11 @@ internal fun OnboardingController.nextPage(
         val nextPageIndex = pagerState.settledPage + 1
         val nextState =
             onboardingStatesQueue.getOrNull(
-                index = (nextPageIndex - TryOnPage.INTERNAL_PAGES.lastIndex).coerceAtLeast(0),
+                index = (nextPageIndex - TryOnPage.INTERNAL_PAGES_LAST_INDEX).coerceAtLeast(0),
             )
 
         if (nextState != null) {
-            val isLastPageOfTryOn = pagerState.settledPage == TryOnPage.INTERNAL_PAGES.lastIndex
+            val isLastPageOfTryOn = pagerState.settledPage == TryOnPage.INTERNAL_PAGES_LAST_INDEX
 
             // Skip for Try on page case
             if (state.value !is TryOnPage || isLastPageOfTryOn) {
@@ -63,7 +63,7 @@ internal fun OnboardingController.previousPage(controller: FashionTryOnControlle
 
         val previousState =
             onboardingStatesQueue.getOrNull(
-                index = (previousPageIndex - TryOnPage.INTERNAL_PAGES.lastIndex).coerceAtLeast(0),
+                index = (previousPageIndex - TryOnPage.INTERNAL_PAGES_LAST_INDEX).coerceAtLeast(0),
             ).takeIf { !isFirstPage }
 
         if (previousState != null) {

@@ -15,6 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
+import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
 import sample.tryon.MainViewModel
 
 @Composable
@@ -96,6 +97,7 @@ fun MainScreen() {
         val mockAiutaTheme =
             rememberAiutaTheme(
                 icons = rememberDefaultAiutaIcons(),
+                images = rememberDefaultAiutaImages(),
             )
 
         AiutaTryOnFlow(

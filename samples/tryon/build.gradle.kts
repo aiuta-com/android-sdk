@@ -36,9 +36,10 @@ secrets {
 dependencies {
     api(projects.fashion)
     api(projects.fashionAnalytic)
-    api(projects.fashionTryonIcons)
-    api(projects.fashionTryonCore)
     api(projects.fashionTryonCompose)
+    api(projects.fashionTryonCore)
+    api(projects.fashionTryonIcons)
+    api(projects.fashionTryonImages)
 
     implementation(libs.androidx.compose.material)
 

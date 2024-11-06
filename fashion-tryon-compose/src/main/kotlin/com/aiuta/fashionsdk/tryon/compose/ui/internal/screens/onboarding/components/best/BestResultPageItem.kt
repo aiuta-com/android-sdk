@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,15 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 
 @Composable
 internal fun BestResultPageItem(
     modifier: Modifier = Modifier,
-    image: Int,
+    image: AiutaImage,
     isGoodImage: Boolean,
 ) {
     val theme = LocalTheme.current
@@ -27,9 +27,9 @@ internal fun BestResultPageItem(
     Box(
         modifier = modifier.clip(theme.shapes.onboardingImage),
     ) {
-        Image(
+        AiutaImage(
             modifier = modifier.fillMaxSize(),
-            painter = painterResource(image),
+            image = image,
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
         )

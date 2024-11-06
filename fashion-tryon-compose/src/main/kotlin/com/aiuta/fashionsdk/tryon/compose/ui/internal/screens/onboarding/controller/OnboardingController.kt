@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
@@ -9,6 +8,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
@@ -17,26 +18,29 @@ import kotlinx.coroutines.CoroutineScope
 
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
+    val theme = LocalTheme.current
+
     // Try on pages + Best result page
     val pagerState =
         rememberPagerState(
             pageCount = {
-                TryOnPage.INTERNAL_PAGES.size + 2
+                TryOnPage(theme.images).internalPages.size + 2
             },
         )
     val scope = rememberCoroutineScope()
 
     return remember {
         OnboardingController(
+            aiutaImages = theme.images,
             pagerState = pagerState,
             scope = scope,
         )
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Immutable
 internal class OnboardingController(
+    aiutaImages: AiutaImages,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
 ) {
@@ -46,8 +50,8 @@ internal class OnboardingController(
     // Onboarding queue
     val onboardingStatesQueue =
         listOf(
-            TryOnPage,
-            BestResultPage,
+            TryOnPage(aiutaImages),
+            BestResultPage(aiutaImages),
             ConsentPage,
         )
 

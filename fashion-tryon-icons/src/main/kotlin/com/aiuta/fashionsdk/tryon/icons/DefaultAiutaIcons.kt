@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.icons
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.compose.icons.R
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcons
 

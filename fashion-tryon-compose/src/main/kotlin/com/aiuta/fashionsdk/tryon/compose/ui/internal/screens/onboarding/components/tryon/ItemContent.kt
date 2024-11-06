@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon
 
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -9,15 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 
 @Composable
 internal fun ItemContent(
     modifier: Modifier = Modifier,
-    itemImage: Int,
+    itemImage: AiutaImage,
     isActive: Boolean,
     onClick: () -> Unit,
 ) {
@@ -37,7 +37,7 @@ internal fun ItemContent(
 
     val cornerRadius = theme.shapes.onboardingImage
 
-    Image(
+    AiutaImage(
         modifier =
             modifier
                 .width(widthTransition.value)
@@ -55,7 +55,7 @@ internal fun ItemContent(
                 .clickableUnindicated {
                     onClick()
                 },
-        painter = painterResource(itemImage),
+        image = itemImage,
         contentDescription = null,
     )
 }

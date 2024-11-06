@@ -7,6 +7,7 @@ val publicModules =
         "fashion-analytic",
         "fashion-compose",
         "fashion-tryon-icons",
+        "fashion-tryon-images",
         "fashion-network",
         "fashion-network-paging",
         "fashion-tryon-compose",

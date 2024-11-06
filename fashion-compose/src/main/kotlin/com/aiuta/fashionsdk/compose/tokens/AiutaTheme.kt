@@ -41,7 +41,7 @@ public class AiutaTheme(
     public val toggles: AiutaThemeToggles,
     public val typography: AiutaTypography,
     public val icons: AiutaIcons,
-    public val images: AiutaImages?,
+    public val images: AiutaImages,
     public val shapes: AiutaShapes,
     public val watermark: AiutaImage?,
 )
@@ -57,7 +57,7 @@ public fun aiutaTheme(
     gradients: AiutaGradients = DefaultAiutaGradients,
     toggles: AiutaThemeToggles = DefaultAiutaThemeToggles,
     typography: AiutaTypography = DefaultAiutaTypography,
-    images: AiutaImages? = null,
+    images: AiutaImages,
     shapes: AiutaShapes = DefaultAiutaShapes,
     watermark: AiutaImage? = null,
 ): AiutaTheme {
@@ -85,7 +85,7 @@ public fun rememberAiutaTheme(
     gradients: AiutaGradients = DefaultAiutaGradients,
     toggles: AiutaThemeToggles = DefaultAiutaThemeToggles,
     typography: AiutaTypography = DefaultAiutaTypography,
-    images: AiutaImages? = null,
+    images: AiutaImages,
     shapes: AiutaShapes = DefaultAiutaShapes,
     watermark: AiutaImage? = null,
 ): AiutaTheme {
