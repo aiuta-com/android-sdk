@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
-import com.aiuta.fashionsdk.compose.tokens.images.onboarding.AiutaOnboadringImages
+import com.aiuta.fashionsdk.compose.tokens.images.onboarding.AiutaOnboardingImages
 
 /**
  * Default implementation of [AiutaImages].
@@ -13,7 +13,7 @@ public fun defaultAiutaImages(): AiutaImages {
     return AiutaImages(
         preonboardingImage = null,
         onboardingImages =
-            AiutaOnboadringImages(
+            AiutaOnboardingImages(
                 onboardingTryOnMainImage1 = AiutaResourceImage(R.drawable.onboarding_main_1),
                 onboardingTryOnMainImage2 = AiutaResourceImage(R.drawable.onboarding_main_2),
                 onboardingTryOnMainImage3 = AiutaResourceImage(R.drawable.onboarding_main_3),
