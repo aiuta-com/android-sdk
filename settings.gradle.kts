@@ -25,7 +25,7 @@ include(
     ":fashion-analytic",
     ":fashion-bom",
     ":fashion-compose",
-    ":fashion-compose-icons",
+    ":fashion-tryon-icons",
     ":fashion-network",
     ":fashion-network-paging",
     ":fashion-tryon-compose",
