@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -45,6 +46,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
+    val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -91,6 +93,8 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
                         context = context,
+                        dialogController = dialogController,
+                        stringResources = stringResources,
                     )
                 },
             )

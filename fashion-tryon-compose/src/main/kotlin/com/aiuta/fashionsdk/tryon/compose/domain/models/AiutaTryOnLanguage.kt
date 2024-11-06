@@ -100,6 +100,8 @@ public class CustomLanguage(
     override val dialogCameraPermissionTitle: String,
     override val dialogCameraPermissionDescription: String,
     override val dialogCameraPermissionConfirmButton: String,
+    // Invalid image
+    override val dialogInvalidImageDescription: String,
     // General
     override val addToWish: String,
     override val addToCart: String,

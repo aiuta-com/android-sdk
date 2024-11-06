@@ -4,8 +4,9 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 internal class AiutaTryOnDialogState(
-    val title: String,
+    val title: String? = null,
     val description: String,
+    val confirmButton: String,
     val onConfirm: () -> Unit,
     val onDismiss: (() -> Unit)? = null,
 )

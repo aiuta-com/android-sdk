@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOpera
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.SKUOperationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.GeneratePingController
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.exception.AbortedPingGenerationException
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.internal.utils.getGenerationDelaySequence
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -53,6 +54,16 @@ internal class GeneratePingControllerImpl(
                 _pingGenerationStatus.emit(
                     PingGenerationStatus.ErrorPingGenerationStatus(
                         errorMessage = operation.error,
+                    ),
+                )
+                return
+            }
+
+            SKUOperationStatus.ABORTED -> {
+                _pingGenerationStatus.emit(
+                    PingGenerationStatus.ErrorPingGenerationStatus(
+                        errorMessage = operation.error,
+                        exception = AbortedPingGenerationException(),
                     ),
                 )
                 return

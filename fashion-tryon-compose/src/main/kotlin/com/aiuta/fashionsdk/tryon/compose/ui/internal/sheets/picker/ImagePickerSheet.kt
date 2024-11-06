@@ -31,6 +31,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -135,7 +136,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             AiutaTryOnDialogState(
                                 title = stringResources.dialogCameraPermissionTitle,
                                 description = stringResources.dialogCameraPermissionDescription,
+                                confirmButton = stringResources.dialogCameraPermissionConfirmButton,
                                 onConfirm = context::openSettings,
+                                onDismiss = dialogController::hideDialog,
                             ),
                     )
                 } else {

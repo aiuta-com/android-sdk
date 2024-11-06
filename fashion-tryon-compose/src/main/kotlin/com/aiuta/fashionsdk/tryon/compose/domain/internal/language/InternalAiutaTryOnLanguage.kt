@@ -70,6 +70,9 @@ internal interface InternalAiutaTryOnLanguage {
     val dialogCameraPermissionDescription: String
     val dialogCameraPermissionConfirmButton: String
 
+    // Invalid image
+    val dialogInvalidImageDescription: String
+
     // General
     val addToWish: String
     val addToCart: String

@@ -77,6 +77,9 @@ internal class TurkishAiutaTryOnLanguage(
     override val dialogCameraPermissionDescription: String = "Lütfen uygulama ayarlarından kameraya erişime izin verin."
     override val dialogCameraPermissionConfirmButton: String = "Ayarlar"
 
+    // Invalid image
+    override val dialogInvalidImageDescription: String = "Bu fotoğrafta kimseyi tespit edemedik"
+
     // General
     override val addToWish: String = "Listelerime ekle"
     override val addToCart: String = "Sepete ekle"

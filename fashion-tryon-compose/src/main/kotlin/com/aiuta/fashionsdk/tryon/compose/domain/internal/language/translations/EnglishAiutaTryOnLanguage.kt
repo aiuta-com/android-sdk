@@ -82,6 +82,9 @@ internal class EnglishAiutaTryOnLanguage(
         "Please allow access to the camera in the application settings."
     override val dialogCameraPermissionConfirmButton: String = "Settings"
 
+    // Invalid image
+    override val dialogInvalidImageDescription: String = "We couldn’t detect anyone in this photo"
+
     // General
     override val addToWish: String = "Wishlist"
     override val addToCart: String = "Add to cart"

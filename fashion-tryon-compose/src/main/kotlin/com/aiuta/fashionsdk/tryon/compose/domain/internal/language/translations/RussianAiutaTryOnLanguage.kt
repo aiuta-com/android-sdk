@@ -78,6 +78,9 @@ internal class RussianAiutaTryOnLanguage(
         "Пожалуйста, предоставьте доступ к камере в настройках приложения."
     override val dialogCameraPermissionConfirmButton: String = "Настройки"
 
+    // Invalid image
+    override val dialogInvalidImageDescription: String = "Мы не смогли обнаружить никого на этом фото"
+
     // General
     override val addToWish: String = "В избранное"
     override val addToCart: String = "Добавить в корзину"

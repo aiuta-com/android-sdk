@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
@@ -17,11 +18,16 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateGeneration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.exception.AbortedPingGenerationException
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
@@ -34,6 +40,8 @@ import kotlinx.coroutines.launch
 internal fun FashionTryOnController.startGeneration(
     aiutaConfiguration: AiutaTryOnConfiguration,
     context: Context,
+    dialogController: AiutaTryOnDialogController,
+    stringResources: InternalAiutaTryOnLanguage,
 ) {
     generationScope.launch {
         activateGeneration()
@@ -64,7 +72,9 @@ internal fun FashionTryOnController.startGeneration(
                                     TryOnToastErrorState(
                                         aiutaConfiguration = aiutaConfiguration,
                                         controller = this@startGeneration,
+                                        dialogController = dialogController,
                                         context = context,
+                                        stringResources = stringResources,
                                     ),
                             )
                         }
@@ -78,7 +88,9 @@ internal fun FashionTryOnController.startGeneration(
                 solveOperationCollecting(
                     aiutaConfiguration = aiutaConfiguration,
                     context = context,
+                    dialogController = dialogController,
                     operation = operation,
+                    stringResources = stringResources,
                 )
             }
     }
@@ -175,7 +187,9 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 private fun FashionTryOnController.solveOperationCollecting(
     aiutaConfiguration: AiutaTryOnConfiguration,
     context: Context,
+    dialogController: AiutaTryOnDialogController,
     operation: SKUGenerationOperation,
+    stringResources: InternalAiutaTryOnLanguage,
 ) {
     when (operation) {
         is SKUGenerationOperation.LoadingOperation -> {
@@ -204,14 +218,37 @@ private fun FashionTryOnController.solveOperationCollecting(
         }
 
         is SKUGenerationOperation.ErrorOperation -> {
-            showErrorState(
-                errorState =
-                    TryOnToastErrorState(
-                        aiutaConfiguration = aiutaConfiguration,
-                        controller = this@solveOperationCollecting,
-                        context = context,
-                    ),
-            )
+            // Deactivate generation
+            deactivateGeneration()
+            generationStatus.value = SKUGenerationUIStatus.IDLE
+
+            when (operation.exception) {
+                is AbortedPingGenerationException -> {
+                    // Need to change photo from user
+                    dialogController.showDialog(
+                        dialogState =
+                            AiutaTryOnDialogState(
+                                description = stringResources.dialogInvalidImageDescription,
+                                confirmButton = stringResources.imageSelectorChangeButton,
+                                onConfirm = dialogController::hideDialog,
+                            ),
+                    )
+                }
+
+                else -> {
+                    showErrorState(
+                        errorState =
+                            TryOnToastErrorState(
+                                aiutaConfiguration = aiutaConfiguration,
+                                controller = this@solveOperationCollecting,
+                                dialogController = dialogController,
+                                context = context,
+                                stringResources = stringResources,
+                            ),
+                    )
+                }
+            }
+
             refreshOperation(operation)
         }
     }
