@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 
 @Immutable
-public class AiutaOnboadringImages(
+public class AiutaOnboardingImages(
     // Try on
     public val onboardingTryOnMainImage1: AiutaImage,
     public val onboardingTryOnMainImage2: AiutaImage,
