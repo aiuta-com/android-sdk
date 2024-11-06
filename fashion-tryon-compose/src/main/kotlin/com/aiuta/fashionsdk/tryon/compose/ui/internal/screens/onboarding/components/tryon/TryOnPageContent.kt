@@ -6,7 +6,6 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -38,12 +37,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 internal fun TryOnPageContent(
     modifier: Modifier = Modifier,
     onboardingController: OnboardingController,
+    state: TryOnPage,
 ) {
     val stringResources = LocalAiutaTryOnStringResources.current
+
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
             derivedStateOf {
-                TryOnPage.INTERNAL_PAGES.getOrNull(onboardingController.pagerState.settledPage)
+                state.internalPages.getOrNull(onboardingController.pagerState.settledPage)
             }
         }
 
@@ -68,6 +69,7 @@ internal fun TryOnPageContent(
                     .padding(horizontal = 20.dp),
             currentPageTransition = currentPageTransition,
             onboardingController = onboardingController,
+            state = state,
         )
 
         CentredTextBlock(
@@ -86,6 +88,7 @@ private fun ImagesBlock(
     modifier: Modifier = Modifier,
     currentPageTransition: Transition<TryOnPage.InternalPage?>,
     onboardingController: OnboardingController,
+    state: TryOnPage,
 ) {
     val theme = LocalTheme.current
 
@@ -97,15 +100,17 @@ private fun ImagesBlock(
             modifier = Modifier.fillMaxHeight().fillMaxWidth(0.8f),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { page ->
-            Image(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clip(theme.shapes.mainImage),
-                painter = rememberAsyncImagePainter(page?.mainImage),
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-            )
+            page?.let {
+                AiutaImage(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .clip(theme.shapes.mainImage),
+                    image = page.mainImage,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                )
+            }
         }
 
         Column(
@@ -113,7 +118,7 @@ private fun ImagesBlock(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            TryOnPage.INTERNAL_PAGES.forEachIndexed { index, page ->
+            state.forEachIndexed { index, page ->
                 key(page.uniqueGeneratedId) {
                     ItemContent(
                         itemImage = page.itemImage,

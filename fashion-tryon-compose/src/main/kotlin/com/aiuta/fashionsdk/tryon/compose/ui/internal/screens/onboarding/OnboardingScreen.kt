@@ -144,6 +144,7 @@ private fun OnboardingScreenContent(
                     TryOnPageContent(
                         modifier = Modifier.fillMaxSize(),
                         onboardingController = onboardingController,
+                        state = state,
                     )
                 }
 

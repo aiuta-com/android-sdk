@@ -7,7 +7,7 @@ plugins {
 }
 
 androidLibrary(
-    name = "com.aiuta.fashionsdk.tryon.icons",
+    name = "com.aiuta.fashionsdk.tryon.images",
     composeLibrary = true,
 )
 

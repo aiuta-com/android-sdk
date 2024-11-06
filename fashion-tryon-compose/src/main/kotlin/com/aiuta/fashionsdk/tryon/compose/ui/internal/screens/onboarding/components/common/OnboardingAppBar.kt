@@ -66,9 +66,9 @@ internal fun OnboardingAppBar(
                             buildAnnotatedStringFromHtml(
                                 input =
                                     when (state) {
-                                        TryOnPage -> stringResources.onboardingAppbarTryonPage
-                                        BestResultPage -> stringResources.onboardingAppbarBestResultPage
-                                        ConsentPage -> stringResources.onboardingAppbarConsentPage
+                                        is TryOnPage -> stringResources.onboardingAppbarTryonPage
+                                        is BestResultPage -> stringResources.onboardingAppbarBestResultPage
+                                        is ConsentPage -> stringResources.onboardingAppbarConsentPage
                                     },
                                 isClickable = false,
                             ),

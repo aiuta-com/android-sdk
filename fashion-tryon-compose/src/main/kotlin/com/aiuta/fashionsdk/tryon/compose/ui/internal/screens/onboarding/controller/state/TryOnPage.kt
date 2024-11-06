@@ -1,39 +1,44 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state
 
-import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.R
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
 import java.util.UUID
 
-internal object TryOnPage : OnboardingState, Iterable<TryOnPage.InternalPage> {
+internal class TryOnPage(
+    aiutaImages: AiutaImages,
+) : OnboardingState, Iterable<TryOnPage.InternalPage> {
     @Immutable
     data class InternalPage(
-        @DrawableRes
-        val mainImage: Int,
-        @DrawableRes
-        val itemImage: Int,
+        val mainImage: AiutaImage,
+        val itemImage: AiutaImage,
     ) {
         internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
     }
 
-    val INTERNAL_PAGES by lazy {
+    val internalPages by lazy {
         listOf(
             InternalPage(
-                mainImage = R.drawable.onboarding_main_1,
-                itemImage = R.drawable.onboarding_item_1,
+                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage1,
+                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage1,
             ),
             InternalPage(
-                mainImage = R.drawable.onboarding_main_2,
-                itemImage = R.drawable.onboarding_item_2,
+                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage2,
+                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage2,
             ),
             InternalPage(
-                mainImage = R.drawable.onboarding_main_3,
-                itemImage = R.drawable.onboarding_item_3,
+                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage3,
+                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage3,
             ),
         )
     }
 
     override fun iterator(): Iterator<InternalPage> {
-        return INTERNAL_PAGES.iterator()
+        return internalPages.iterator()
+    }
+
+    companion object {
+        const val INTERNAL_PAGES_SIZE = 3
+        const val INTERNAL_PAGES_LAST_INDEX = INTERNAL_PAGES_SIZE - 1
     }
 }
