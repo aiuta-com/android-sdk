@@ -34,7 +34,7 @@ private fun GenerationResultUpdateScreenListener() {
                         skuId = activeSKUItem.skuId,
                         skuCatalogName = activeSKUItem.catalogName,
                         photosInProgress = loadingOperations.value.size.toString(),
-                        generatedPhotos = successOperations.value.flatMap { it.generatedImageUrls }.size.toString(),
+                        generatedPhotos = successOperations.value.flatMap { it.generatedImages }.size.toString(),
                     ),
             )
         }

@@ -11,7 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
@@ -117,7 +117,7 @@ internal fun FashionTryOnController.disableAutoTryOn() {
 }
 
 internal fun FashionTryOnController.updateActiveOperationOrSetEmpty(
-    operation: GeneratedOperation?,
+    operation: GeneratedOperationUIModel?,
 ) {
     // Try to update with new or set as empty
     if (operation != null) {

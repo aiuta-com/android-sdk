@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class GeneratedImage(
-    @SerialName("image_url")
-    val imageUrl: String,
+    @SerialName("id")
+    val id: String,
+    @SerialName("url")
+    val url: String,
 )

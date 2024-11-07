@@ -2,8 +2,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGeneratedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteUploadedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
@@ -35,7 +35,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                 .generatedImagesFlow
                 .map { images ->
                     // Make as list to compensate forEach with inner contains
-                    images.map { image -> image.toGeneratedImage() }.toSet()
+                    images.map { image -> image.toImageUiModel() }.toSet()
                 }
                 .onEach { images ->
                     // Get current loadings & retries
@@ -118,7 +118,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
                 .uploadedImagesFlow
                 .map { operations ->
                     // Make as list to compensate forEach with inner contains
-                    operations.map { operation -> operation.toGeneratedOperation() }.toSet()
+                    operations.map { operation -> operation.toOperationUiModel() }.toSet()
                 }
                 .onEach { operations ->
                     // Get current loadings & retries

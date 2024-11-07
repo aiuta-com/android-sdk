@@ -190,7 +190,7 @@ internal class AiutaTryOnImpl(
                 emit(
                     SKUGenerationStatus.SuccessGenerationStatus(
                         sourceImageUrl = sourceImageUrl,
-                        imageUrls = terminatedOperation.imageUrls,
+                        images = terminatedOperation.images.map { it.toPublic() },
                     ),
                 )
             }

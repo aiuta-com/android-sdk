@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models
 
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.GeneratedImage
+
 /**
  * Current status of ping operation
  */
@@ -18,21 +20,21 @@ internal sealed interface PingGenerationStatus {
      * Successfully generate all images
      */
     public data class SuccessPingGenerationStatus(
-        val imageUrls: List<String> = emptyList(),
+        val images: List<GeneratedImage> = emptyList(),
     ) : PingGenerationStatus
 
     /**
      * Generation is in progress
      */
     public data class LoadingPingGenerationStatus(
-        val imageUrls: List<String> = emptyList(),
+        val images: List<GeneratedImage> = emptyList(),
     ) : PingGenerationStatus
 
     /**
      * Failed to make generation
      */
     public data class ErrorPingGenerationStatus(
-        val imageUrls: List<String> = emptyList(),
+        val images: List<GeneratedImage> = emptyList(),
         val errorMessage: String? = null,
         val exception: Exception? = null,
     ) : PingGenerationStatus

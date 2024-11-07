@@ -24,7 +24,7 @@ internal class GeneratedImageDatasource(
         return generatedImageDao.pagingSource()
     }
 
-    suspend fun remove(generatedImageIds: List<Long>) {
+    suspend fun remove(generatedImageIds: List<String>) {
         withContext(Dispatchers.IO) {
             if (generatedImageDao.count() == 0) return@withContext
 

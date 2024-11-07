@@ -10,7 +10,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.toOperation
@@ -55,7 +56,7 @@ internal fun FashionTryOnController.startGeneration(
                     .onEach { status ->
                         // Save generations for history, if operation is success and history available
                         if (status is SKUGenerationStatus.SuccessGenerationStatus && aiutaConfiguration.isHistoryAvailable) {
-                            generatedImageInteractor.insertAll(status.imageUrls)
+                            generatedImageInteractor.insertAll(status.images.map { it.toUiModel() })
                         }
                     }
                     .mapNotNull { status ->
@@ -155,7 +156,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
 
                         // Change to new
                         val newOperation =
-                            GeneratedOperation(
+                            GeneratedOperationUIModel(
                                 operationId = currentOperationId,
                                 sourceImages = images,
                             )
@@ -265,5 +266,5 @@ private fun FashionTryOnController.refreshOperation(newOperation: SKUGenerationO
 private suspend fun FashionTryOnController.addSuccessGenerations(
     newOperation: SKUGenerationOperation.SuccessOperation,
 ) {
-    sessionGenerationInteractor.addGenerations(newOperation.generatedImageUrls)
+    sessionGenerationInteractor.addGenerations(newOperation.generatedImages)
 }

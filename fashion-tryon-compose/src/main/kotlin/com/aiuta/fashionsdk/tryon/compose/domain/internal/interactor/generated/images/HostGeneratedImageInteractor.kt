@@ -2,32 +2,32 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaGeneratedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toPublic
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class HostGeneratedImageInteractor(
     private val dataProvider: AiutaDataProvider,
 ) : GeneratedImageInteractor {
-    override suspend fun insertAll(imageUrls: List<String>) {
+    override suspend fun insertAll(images: List<GeneratedImageUIModel>) {
         dataProvider.addGeneratedImagesAction(
-            imageUrls.map { url -> AiutaGeneratedImage(url) },
+            images.map { image -> image.toPublic() },
         )
     }
 
-    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImage>> {
+    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> {
         return dataProvider.generatedImagesFlow
             .map { images ->
-                images.map { image -> image.toGeneratedImage() }
+                images.map { image -> image.toImageUiModel() }
             }
             .map { images -> PagingData.from(images) }
     }
 
-    override suspend fun remove(generatedImages: List<GeneratedImage>) {
+    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
         dataProvider.deleteGeneratedImagesAction(
-            generatedImages.map { image -> AiutaGeneratedImage(image.imageUrl) },
+            generatedImages.map { image -> image.toPublic() },
         )
     }
 

@@ -9,7 +9,7 @@ public sealed interface SKUGenerationStatus {
      */
     public class SuccessGenerationStatus(
         public val sourceImageUrl: String,
-        public val imageUrls: List<String> = emptyList(),
+        public val images: List<SKUGeneratedImage> = emptyList(),
     ) : SKUGenerationStatus
 
     /**

@@ -31,7 +31,7 @@ internal fun FashionTryOnController.deleteGeneratedImages(
             )
 
             // Also delete in session
-            sessionGenerationInteractor.deleteGenerations(images.map { it.imageUrl })
+            sessionGenerationInteractor.deleteGenerations(images)
         } catch (e: Exception) {
             showErrorState(
                 errorState =
