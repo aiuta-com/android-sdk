@@ -1,37 +1,40 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider
 
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 
-public class AiutaUploadedImage(
+public class AiutaHistoryImage(
     public val id: String,
     public val url: String,
 )
 
-public class AiutaGeneratedImage(
-    public val url: String,
-)
+internal fun AiutaHistoryImage.toImageUiModel(): GeneratedImageUIModel {
+    return GeneratedImageUIModel(
+        id = id,
+        imageUrl = url,
+    )
+}
 
-internal fun AiutaUploadedImage.toGeneratedOperation(): GeneratedOperation {
-    return GeneratedOperation(
-        operationId = id.hashCode().toLong(),
+internal fun AiutaHistoryImage.toOperationUiModel(): GeneratedOperationUIModel {
+    return GeneratedOperationUIModel(
+        operationId = id,
         sourceImages = listOf(SourceImage(imageId = id, imageUrl = url)),
     )
 }
 
-internal fun GeneratedOperation.toAiutaUploadedImage(): List<AiutaUploadedImage> {
+internal fun GeneratedImageUIModel.toPublic(): AiutaHistoryImage {
+    return AiutaHistoryImage(
+        id = id,
+        url = imageUrl,
+    )
+}
+
+internal fun GeneratedOperationUIModel.toPublic(): List<AiutaHistoryImage> {
     return sourceImages.map { image ->
-        AiutaUploadedImage(
+        AiutaHistoryImage(
             id = image.imageId,
             url = image.imageUrl,
         )
     }
-}
-
-internal fun AiutaGeneratedImage.toGeneratedImage(): GeneratedImage {
-    return GeneratedImage(
-        id = url.hashCode().toLong(),
-        imageUrl = url,
-    )
 }

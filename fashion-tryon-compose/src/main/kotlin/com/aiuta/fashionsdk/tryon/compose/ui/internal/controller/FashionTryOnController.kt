@@ -19,9 +19,9 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolde
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.BottomSheetNavigator
@@ -69,7 +69,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         }
     val defaultSavedOperation =
         remember {
-            mutableStateOf<GeneratedOperation?>(null)
+            mutableStateOf<GeneratedOperationUIModel?>(null)
         }
     val defaultIsGenerationActive =
         remember {
@@ -156,10 +156,10 @@ internal class FashionTryOnController(
     public val fashionTryOnErrorState: MutableState<ToastErrorState?>,
     // Edit mode
     internal val selectorState: MutableState<SelectorMode>,
-    val selectorHolder: SelectedHolder<GeneratedImage> = SelectedHolder(),
+    val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder(),
     // Data
     public val lastSavedImages: MutableState<LastSavedImages>,
-    public val lastSavedOperation: MutableState<GeneratedOperation?>,
+    public val lastSavedOperation: MutableState<GeneratedOperationUIModel?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
     public val aiuta: () -> Aiuta,

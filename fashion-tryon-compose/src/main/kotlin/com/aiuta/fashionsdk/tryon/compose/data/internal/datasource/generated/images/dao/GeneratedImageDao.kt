@@ -17,7 +17,7 @@ internal interface GeneratedImageDao {
     fun pagingSource(): PagingSource<Int, GeneratedImageEntity>
 
     @Query("DELETE FROM generated_images WHERE id in (:generatedImageIds)")
-    suspend fun remove(generatedImageIds: List<Long>)
+    suspend fun remove(generatedImageIds: List<String>)
 
     @Query("DELETE from generated_images")
     suspend fun removeAll()

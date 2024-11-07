@@ -2,9 +2,10 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.UUID
 
 @Entity(tableName = "generated_operation")
 internal class GeneratedOperationEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    @PrimaryKey
+    val id: String = UUID.randomUUID().toString(),
 )

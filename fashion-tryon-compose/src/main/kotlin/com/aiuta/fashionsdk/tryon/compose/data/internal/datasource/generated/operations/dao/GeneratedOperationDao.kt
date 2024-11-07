@@ -25,14 +25,11 @@ internal interface GeneratedOperationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOperation(newOperation: GeneratedOperationEntity): Long
 
-    @Query("SELECT * FROM generated_operation WHERE rowid = :operationRowId LIMIT 1")
-    fun getOperation(operationRowId: Long): GeneratedOperationEntity
-
     @Query("SELECT count(id) FROM generated_operation")
     fun countGeneratedOperation(): Flow<Int>
 
     @Query("DELETE FROM generated_operation WHERE id = :operationId")
-    fun deleteOperation(operationId: Long)
+    fun deleteOperation(operationId: String)
 
     @Query("DELETE from generated_operation")
     suspend fun removeAll()

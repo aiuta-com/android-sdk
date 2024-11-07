@@ -57,7 +57,7 @@ internal fun GenerationResultBody(
     val controller = LocalController.current
     val pagerState = generationResultController.generationPagerState
 
-    val generationUrls = controller.sessionGenerationInteractor.sessionGenerationsUrls
+    val generations = controller.sessionGenerationInteractor.sessionGenerations
 
     val horizontalPaddingWeight = 1 - MAIN_IMAGE_SIZE
     val configuration = LocalConfiguration.current
@@ -98,7 +98,7 @@ internal fun GenerationResultBody(
                     }
                     .fillMaxWidth()
                     .fillMaxHeight(heightFraction.value),
-            imageUrl = generationUrls.getOrNull(index),
+            imageUrl = generations.getOrNull(index)?.imageUrl,
             itemIndex = index,
             generationResultController = generationResultController,
             pageOffset = pageOffset,

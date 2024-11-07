@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 
 @Immutable
@@ -13,7 +15,7 @@ internal sealed interface SKUGenerationOperation {
 
     class SuccessOperation(
         override val sourceImage: String,
-        val generatedImageUrls: List<String>,
+        val generatedImages: List<GeneratedImageUIModel>,
     ) : SKUGenerationOperation
 
     class ErrorOperation(
@@ -40,7 +42,7 @@ internal fun SKUGenerationStatus.toOperation(sourceImage: String): SKUGeneration
         is SKUGenerationStatus.SuccessGenerationStatus ->
             SKUGenerationOperation.SuccessOperation(
                 sourceImage = sourceImage,
-                generatedImageUrls = imageUrls,
+                generatedImages = images.map { it.toUiModel() },
             )
     }
 }

@@ -6,8 +6,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.GeneratedImageDatasource
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toEntity
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -15,18 +15,13 @@ import kotlinx.coroutines.flow.map
 internal class LocalGeneratedImageInteractor(
     private val generatedImageDatasource: GeneratedImageDatasource,
 ) : GeneratedImageInteractor {
-    override suspend fun insertAll(imageUrls: List<String>) {
+    override suspend fun insertAll(images: List<GeneratedImageUIModel>) {
         return generatedImageDatasource.insertAll(
-            generatedImages =
-                imageUrls.map { imageUrl ->
-                    GeneratedImageEntity(
-                        imageUrl = imageUrl,
-                    )
-                },
+            generatedImages = images.map { it.toEntity() },
         )
     }
 
-    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImage>> {
+    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> {
         return Pager(
             config =
                 PagingConfig(
@@ -42,7 +37,7 @@ internal class LocalGeneratedImageInteractor(
             }
     }
 
-    override suspend fun remove(generatedImages: List<GeneratedImage>) {
+    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
         generatedImageDatasource.remove(
             generatedImageIds = generatedImages.map { it.id },
         )

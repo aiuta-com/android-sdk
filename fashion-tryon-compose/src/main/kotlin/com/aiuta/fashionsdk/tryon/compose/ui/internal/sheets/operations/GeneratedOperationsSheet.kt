@@ -47,8 +47,8 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.LocalGeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaHistoryImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
@@ -135,7 +135,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                             val image = generatedOperation.sourceImages.firstOrNull()
                             image?.let {
                                 aiutaConfiguration.dataProvider?.selectUploadedImageAction?.invoke(
-                                    AiutaUploadedImage(id = image.imageId, url = image.imageUrl),
+                                    AiutaHistoryImage(id = image.imageId, url = image.imageUrl),
                                 )
                             }
 
@@ -176,7 +176,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 @Composable
 private fun OperationItem(
     modifier: Modifier = Modifier,
-    generatedOperation: GeneratedOperation,
+    generatedOperation: GeneratedOperationUIModel,
     onClick: () -> Unit,
 ) {
     val context = LocalContext.current

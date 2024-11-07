@@ -73,7 +73,7 @@ internal class GeneratePingControllerImpl(
                 if (currentImageCount != operation.generatedImages.size) {
                     _pingGenerationStatus.emit(
                         PingGenerationStatus.LoadingPingGenerationStatus(
-                            imageUrls = operation.generatedImages.map { it.imageUrl },
+                            images = operation.generatedImages,
                         ),
                     )
                 }
@@ -82,7 +82,7 @@ internal class GeneratePingControllerImpl(
             SKUOperationStatus.SUCCESS -> {
                 _pingGenerationStatus.emit(
                     PingGenerationStatus.SuccessPingGenerationStatus(
-                        imageUrls = operation.generatedImages.map { it.imageUrl },
+                        images = operation.generatedImages,
                     ),
                 )
                 return

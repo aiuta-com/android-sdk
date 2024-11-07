@@ -2,43 +2,41 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaUploadedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toAiutaUploadedImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toGeneratedOperation
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaHistoryImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toOperationUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toPublic
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class HostGeneratedOperationInteractor(
     private val dataProvider: AiutaDataProvider,
 ) : GeneratedOperationInteractor {
-    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperation>> {
+    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> {
         return dataProvider.uploadedImagesFlow
             .map { images ->
-                images.map { image -> image.toGeneratedOperation() }
+                images.map { image -> image.toOperationUiModel() }
             }
             .map { images -> PagingData.from(images) }
     }
 
-    override suspend fun getFirstGeneratedOperation(): GeneratedOperation? {
+    override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? {
         val firstImage = dataProvider.uploadedImagesFlow.value.firstOrNull()
-        return firstImage?.let { firstImage.toGeneratedOperation() }
+        return firstImage?.let { firstImage.toOperationUiModel() }
     }
 
-    override suspend fun createOperation(imageId: String): Long {
-        // Can use hashcode, because operation is not used in host control mode
-        return imageId.hashCode().toLong()
+    override suspend fun createOperation(imageId: String): String {
+        return imageId
     }
 
-    override suspend fun deleteOperation(operation: GeneratedOperation) {
-        dataProvider.deleteUploadedImagesAction(operation.toAiutaUploadedImage())
+    override suspend fun deleteOperation(operation: GeneratedOperationUIModel) {
+        dataProvider.deleteUploadedImagesAction(operation.toPublic())
     }
 
-    override suspend fun deleteOperations(operations: List<GeneratedOperation>) {
+    override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>) {
         dataProvider.deleteUploadedImagesAction(
             operations
-                .map { it.toAiutaUploadedImage() }
+                .map { it.toPublic() }
                 .flatten(),
         )
     }
@@ -48,14 +46,15 @@ internal class HostGeneratedOperationInteractor(
     }
 
     override suspend fun createImage(
-        status: SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage,
-        operationId: Long,
+        sourceImageId: String,
+        sourceImageUrl: String,
+        operationId: String,
     ) {
         dataProvider.addUploadedImagesAction(
             listOf(
-                AiutaUploadedImage(
-                    id = status.sourceImageId,
-                    url = status.sourceImageUrl,
+                AiutaHistoryImage(
+                    id = sourceImageId,
+                    url = sourceImageUrl,
                 ),
             ),
         )

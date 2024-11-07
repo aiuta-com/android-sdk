@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 internal class SourceImageEntity(
     @PrimaryKey
     val id: String,
-    val operationId: Long,
+    val operationId: String,
     val imageUrl: String,
 )

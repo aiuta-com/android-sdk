@@ -5,8 +5,8 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
 
 @Immutable
-internal data class GeneratedOperation(
-    val operationId: Long,
+internal data class GeneratedOperationUIModel(
+    val operationId: String,
     val sourceImages: List<SourceImage>,
 ) {
     val sourceImageUrls by lazy {
@@ -14,8 +14,8 @@ internal data class GeneratedOperation(
     }
 }
 
-internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperation {
-    return GeneratedOperation(
+internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel {
+    return GeneratedOperationUIModel(
         operationId = operation.id,
         sourceImages =
             sourceImages.map {

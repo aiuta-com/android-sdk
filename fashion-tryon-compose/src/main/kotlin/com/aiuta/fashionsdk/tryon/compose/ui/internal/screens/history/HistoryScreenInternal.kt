@@ -56,13 +56,12 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -299,9 +298,8 @@ private fun ImageContainer(
 
 @Composable
 private fun BoxScope.HistoryScreenInterface(
-    getGeneratedImages: () -> LazyPagingItems<GeneratedImage>,
+    getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val context = LocalContext.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
@@ -370,7 +368,7 @@ private fun BoxScope.HistoryScreenInterface(
 @Composable
 private fun BoxScope.HistoryScreenEmpty(
     modifier: Modifier = Modifier,
-    getGeneratedImages: () -> LazyPagingItems<GeneratedImage>,
+    getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
 ) {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current

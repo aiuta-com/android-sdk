@@ -8,14 +8,14 @@ public class AiutaDataProvider(
     public val isUserConsentObtainedFlow: StateFlow<Boolean>,
     public val obtainUserConsentAction: () -> Unit,
     // Generated images
-    public val generatedImagesFlow: StateFlow<List<AiutaGeneratedImage>>,
-    public val addGeneratedImagesAction: (List<AiutaGeneratedImage>) -> Unit,
+    public val generatedImagesFlow: StateFlow<List<AiutaHistoryImage>>,
+    public val addGeneratedImagesAction: (List<AiutaHistoryImage>) -> Unit,
     public val isErrorDeletingGeneratedImagesFlow: SharedFlow<Boolean>,
-    public val deleteGeneratedImagesAction: (List<AiutaGeneratedImage>) -> Unit,
+    public val deleteGeneratedImagesAction: (List<AiutaHistoryImage>) -> Unit,
     // Uploaded images
-    public val uploadedImagesFlow: StateFlow<List<AiutaUploadedImage>>,
-    public val addUploadedImagesAction: (List<AiutaUploadedImage>) -> Unit,
+    public val uploadedImagesFlow: StateFlow<List<AiutaHistoryImage>>,
+    public val addUploadedImagesAction: (List<AiutaHistoryImage>) -> Unit,
     public val isErrorDeletingUploadedImagesFlow: SharedFlow<Boolean>,
-    public val deleteUploadedImagesAction: (List<AiutaUploadedImage>) -> Unit,
-    public val selectUploadedImageAction: (AiutaUploadedImage) -> Unit,
+    public val deleteUploadedImagesAction: (List<AiutaHistoryImage>) -> Unit,
+    public val selectUploadedImageAction: (AiutaHistoryImage) -> Unit,
 )

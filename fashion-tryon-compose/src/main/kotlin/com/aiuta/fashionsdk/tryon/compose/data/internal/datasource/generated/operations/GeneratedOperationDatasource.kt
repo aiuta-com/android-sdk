@@ -31,13 +31,13 @@ internal class GeneratedOperationDatasource(
     suspend fun createOperation(): GeneratedOperationEntity {
         return withContext(Dispatchers.IO) {
             val newOperation = GeneratedOperationEntity()
-            val rowId = generatedOperationDao.insertOperation(newOperation)
+            generatedOperationDao.insertOperation(newOperation)
 
-            generatedOperationDao.getOperation(operationRowId = rowId)
+            newOperation
         }
     }
 
-    suspend fun deleteOperation(operationId: Long) {
+    suspend fun deleteOperation(operationId: String) {
         return withContext(Dispatchers.IO) {
             generatedOperationDao.deleteOperation(operationId)
             sourceImageDao.deleteImages(operationId)
@@ -52,7 +52,7 @@ internal class GeneratedOperationDatasource(
     suspend fun createImage(
         imageId: String,
         imageUrl: String,
-        operationId: Long,
+        operationId: String,
     ): SourceImageEntity {
         return withContext(Dispatchers.IO) {
             val newSourceImage =

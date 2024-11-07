@@ -24,7 +24,7 @@ internal fun rememberGenerationResultController(): GenerationResultController {
 
     val pagerState =
         rememberPagerState(pageCount = {
-            controller.sessionGenerationInteractor.sessionGenerationsUrls.size
+            controller.sessionGenerationInteractor.sessionGenerations.size
         })
     val footerListState = rememberLazyGridState()
     val bottomSheetScaffoldState =

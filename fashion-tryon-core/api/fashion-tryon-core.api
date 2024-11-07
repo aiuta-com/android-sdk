@@ -16,6 +16,12 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUCatalog {
 	public final fun getId ()Ljava/lang/String;
 }
 
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGeneratedImage {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getId ()Ljava/lang/String;
+	public final fun getUrl ()Ljava/lang/String;
+}
+
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
 	public abstract fun getSkuCatalogName ()Ljava/lang/String;
 	public abstract fun getSkuId ()Ljava/lang/String;
@@ -70,9 +76,10 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationSt
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
-	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getImageUrls ()Ljava/util/List;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getImages ()Ljava/util/List;
+	public final fun getSourceImageId ()Ljava/lang/String;
 	public final fun getSourceImageUrl ()Ljava/lang/String;
 }
 

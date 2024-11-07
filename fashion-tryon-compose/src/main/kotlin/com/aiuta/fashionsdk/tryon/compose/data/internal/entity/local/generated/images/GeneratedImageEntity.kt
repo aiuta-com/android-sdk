@@ -2,10 +2,11 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.UUID
 
 @Entity(tableName = "generated_images")
 internal class GeneratedImageEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    @PrimaryKey
+    val id: String = UUID.randomUUID().toString(),
     val imageUrl: String,
 )

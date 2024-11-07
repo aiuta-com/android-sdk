@@ -15,7 +15,7 @@ internal interface SourceImageDao {
     fun getImage(sourceImageRowId: Long): SourceImageEntity
 
     @Query("DELETE FROM source_images WHERE operationId = :operationId")
-    fun deleteImages(operationId: Long)
+    fun deleteImages(operationId: String)
 
     @Query("DELETE from source_images")
     suspend fun removeAll()

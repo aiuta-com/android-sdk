@@ -3,15 +3,15 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 import android.content.Context
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import kotlinx.coroutines.flow.Flow
 
 internal interface GeneratedImageInteractor {
-    suspend fun insertAll(imageUrls: List<String>)
+    suspend fun insertAll(images: List<GeneratedImageUIModel>)
 
-    fun generatedImagesFlow(): Flow<PagingData<GeneratedImage>>
+    fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>>
 
-    suspend fun remove(generatedImages: List<GeneratedImage>)
+    suspend fun remove(generatedImages: List<GeneratedImageUIModel>)
 
     suspend fun removeAll()
 

@@ -7,16 +7,15 @@ import androidx.paging.PagingData
 import androidx.paging.filter
 import androidx.paging.map
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.GeneratedOperationDatasource
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toUiModel
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class LocalGeneratedOperationInteractor(
     private val generatedOperationDatasource: GeneratedOperationDatasource,
 ) : GeneratedOperationInteractor {
-    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperation>> {
+    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> {
         return Pager(
             config =
                 PagingConfig(
@@ -35,20 +34,20 @@ internal class LocalGeneratedOperationInteractor(
             }
     }
 
-    override suspend fun getFirstGeneratedOperation(): GeneratedOperation? {
+    override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? {
         return generatedOperationDatasource.getFirstGeneratedOperationWithImages()?.toUiModel()
     }
 
     // Raw operation
-    override suspend fun createOperation(imageId: String): Long {
+    override suspend fun createOperation(imageId: String): String {
         return generatedOperationDatasource.createOperation().id
     }
 
-    override suspend fun deleteOperation(operation: GeneratedOperation) {
+    override suspend fun deleteOperation(operation: GeneratedOperationUIModel) {
         generatedOperationDatasource.deleteOperation(operation.operationId)
     }
 
-    override suspend fun deleteOperations(operations: List<GeneratedOperation>) {
+    override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>) {
         operations.forEach { operation -> deleteOperation(operation) }
     }
 
@@ -57,12 +56,13 @@ internal class LocalGeneratedOperationInteractor(
     }
 
     override suspend fun createImage(
-        status: SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage,
-        operationId: Long,
+        sourceImageId: String,
+        sourceImageUrl: String,
+        operationId: String,
     ) {
         generatedOperationDatasource.createImage(
-            imageId = status.sourceImageId,
-            imageUrl = status.sourceImageUrl,
+            imageId = sourceImageId,
+            imageUrl = sourceImageUrl,
             operationId = operationId,
         )
     }
