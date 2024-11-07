@@ -267,7 +267,7 @@ private fun ImageContainer(
             ) {
                 if (isSelectedItem) {
                     AiutaIcon(
-                        modifier = Modifier.size(20.dp),
+                        modifier = Modifier.size(10.dp),
                         icon = theme.icons.check20,
                         contentDescription = null,
                         tint = theme.colors.onDark,
