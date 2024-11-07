@@ -45,9 +45,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/GeneratedOperationDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/GeneratedOperationDao {
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun countGeneratedOperation ()Lkotlinx/coroutines/flow/Flow;
-	public fun deleteOperation (J)V
+	public fun deleteOperation (Ljava/lang/String;)V
 	public fun getFirstGeneratedOperationWithImages ()Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationWithImages;
-	public fun getOperation (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationEntity;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insertOperation (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/operations/GeneratedOperationEntity;)J
 	public fun pagingGeneratedOperationWithImagesSource ()Landroidx/paging/PagingSource;
@@ -56,7 +55,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/g
 
 public final class com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao_Impl : com/aiuta/fashionsdk/tryon/compose/data/internal/datasource/generated/operations/dao/SourceImageDao {
 	public fun <init> (Landroidx/room/RoomDatabase;)V
-	public fun deleteImages (J)V
+	public fun deleteImages (Ljava/lang/String;)V
 	public fun getImage (J)Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/images/SourceImageEntity;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insertImage (Lcom/aiuta/fashionsdk/tryon/compose/data/internal/entity/local/generated/images/SourceImageEntity;)J
@@ -253,13 +252,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider
 	public final fun isUserConsentObtainedFlow ()Lkotlinx/coroutines/flow/StateFlow;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaGeneratedImage {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;)V
-	public final fun getUrl ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaUploadedImage {
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaHistoryImage {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun getId ()Ljava/lang/String;
