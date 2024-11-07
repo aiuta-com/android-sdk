@@ -23,6 +23,9 @@ public enum class AiutaAnalyticsTryOnEventType {
     @SerialName("tryOnFinished")
     TRY_ON_FINISHED,
 
+    @SerialName("tryOnAborted")
+    TRY_ON_ABORTED,
+
     @SerialName("tryOnError")
     TRY_ON_ERROR,
 }

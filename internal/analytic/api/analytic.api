@@ -292,6 +292,7 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTr
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType : java/lang/Enum {
 	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType$Companion;
 	public static final field PHOTO_UPLOADED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_ABORTED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
 	public static final field TRY_ON_ERROR Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
 	public static final field TRY_ON_FINISHED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
 	public static final field TRY_ON_STARTED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
