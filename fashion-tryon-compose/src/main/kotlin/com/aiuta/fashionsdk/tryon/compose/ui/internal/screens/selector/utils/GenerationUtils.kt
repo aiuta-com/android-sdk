@@ -48,31 +48,11 @@ internal fun FashionTryOnController.startGeneration(
         activateGeneration()
 
         val errorCount = AtomicInteger()
-        val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
 
-        val rawGenerationFlows =
-            solveStartGenerationFlows(
-                context = context,
-                generatedOperationFactory = generatedOperationFactory,
-            )
+        val rawGenerationFlows = solveStartGenerationFlows(context = context)
         val generationFlows =
             rawGenerationFlows.mapIndexed { index, generationFlow ->
                 generationFlow
-                    .onEach { status ->
-                        // Notify (or create locally) about new operation, after success
-                        if (status is SKUGenerationStatus.SuccessGenerationStatus) {
-                            val currentOperationId =
-                                generatedOperationFactory.getOperationId(
-                                    imageId = status.sourceImageId,
-                                )
-
-                            generatedOperationInteractor.createImage(
-                                sourceImageId = status.sourceImageId,
-                                sourceImageUrl = status.sourceImageUrl,
-                                operationId = currentOperationId,
-                            )
-                        }
-                    }
                     .onEach { status ->
                         // Save generations for history, if operation is success and history available
                         if (status is SKUGenerationStatus.SuccessGenerationStatus && aiutaConfiguration.isHistoryAvailable) {
@@ -119,14 +99,12 @@ internal fun FashionTryOnController.startGeneration(
 
 private fun FashionTryOnController.solveStartGenerationFlows(
     context: Context,
-    generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
     return when (val activeImages = lastSavedImages.value) {
         is LastSavedImages.UriSource -> {
             startGenerationWithUriSource(
                 context = context,
                 uriSource = activeImages,
-                generatedOperationFactory = generatedOperationFactory,
             )
         }
 
@@ -141,9 +119,9 @@ private fun FashionTryOnController.solveStartGenerationFlows(
 private fun FashionTryOnController.startGenerationWithUriSource(
     context: Context,
     uriSource: LastSavedImages.UriSource,
-    generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
     val warmUpInteractor = WarmUpInteractor(context)
+    val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
 
     return uriSource.imageUris.map { uri ->
         aiutaTryOn()
@@ -155,6 +133,21 @@ private fun FashionTryOnController.startGenerationWithUriSource(
                         skuCatalogName = activeSKUItem.value.catalogName,
                     ),
             )
+            .onEach { status ->
+                // Notify (or create locally) about new operation, after success
+                if (status is SKUGenerationStatus.SuccessGenerationStatus) {
+                    val currentOperationId =
+                        generatedOperationFactory.getOperationId(
+                            imageId = status.sourceImageId,
+                        )
+
+                    generatedOperationInteractor.createImage(
+                        sourceImageId = status.sourceImageId,
+                        sourceImageUrl = status.sourceImageUrl,
+                        operationId = currentOperationId,
+                    )
+                }
+            }
             .onEach { status ->
                 // Need update active operation, if we change local URI to backend URL
                 if (status is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage) {
