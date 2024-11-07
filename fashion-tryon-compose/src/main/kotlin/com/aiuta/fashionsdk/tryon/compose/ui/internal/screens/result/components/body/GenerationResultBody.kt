@@ -1,5 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -171,6 +174,7 @@ private fun PagerItem(
         )
 
         PagerItemInterface(
+            modifier = Modifier.fillMaxSize(),
             imageUrl = imageUrl,
             itemIndex = itemIndex,
             generationResultController = generationResultController,
@@ -181,33 +185,49 @@ private fun PagerItem(
 
 @Composable
 internal fun BoxScope.PagerItemInterface(
+    modifier: Modifier = Modifier,
     imageUrl: String?,
     itemIndex: Int,
     generationResultController: GenerationResultController,
     pageOffset: State<Float>,
 ) {
-    ActionBlock(
-        modifier =
-            Modifier
-                .align(Alignment.TopEnd)
-                .padding(12.dp),
-        imageUrl = imageUrl,
-    )
+    val isVisible =
+        remember {
+            derivedStateOf {
+                pageOffset.value == 0f
+            }
+        }
 
-    GenerateMoreBlock(
-        modifier =
-            Modifier
-                .align(Alignment.BottomStart)
-                .padding(12.dp),
-        pageOffset = pageOffset,
-    )
+    AnimatedVisibility(
+        modifier = modifier,
+        visible = isVisible.value,
+        enter = fadeIn(),
+        exit = fadeOut(),
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            ActionBlock(
+                modifier =
+                    Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(12.dp),
+                imageUrl = imageUrl,
+            )
 
-    FeedbackBlock(
-        modifier =
-            Modifier
-                .align(Alignment.BottomEnd)
-                .padding(12.dp),
-        itemIndex = itemIndex,
-        generationResultController = generationResultController,
-    )
+            GenerateMoreBlock(
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(12.dp),
+            )
+
+            FeedbackBlock(
+                modifier =
+                    Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(12.dp),
+                itemIndex = itemIndex,
+                generationResultController = generationResultController,
+            )
+        }
+    }
 }
