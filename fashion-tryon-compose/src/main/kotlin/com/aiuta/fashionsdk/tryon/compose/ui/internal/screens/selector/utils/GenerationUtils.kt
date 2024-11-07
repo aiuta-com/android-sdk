@@ -69,16 +69,6 @@ internal fun FashionTryOnController.startGeneration(
                         if (errorCount.incrementAndGet() == lastSavedImages.value.size) {
                             generationStatus.value = SKUGenerationUIStatus.IDLE
                             deactivateGeneration()
-                            showErrorState(
-                                errorState =
-                                    TryOnToastErrorState(
-                                        aiutaConfiguration = aiutaConfiguration,
-                                        controller = this@startGeneration,
-                                        dialogController = dialogController,
-                                        context = context,
-                                        stringResources = stringResources,
-                                    ),
-                            )
                         }
                     }
             }

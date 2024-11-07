@@ -4,9 +4,11 @@ import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnAbortedErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.exception.AbortedPingGenerationException
 import kotlin.system.measureTimeMillis
 import kotlinx.coroutines.flow.FlowCollector
 
@@ -27,8 +29,15 @@ internal suspend fun <T> trackException(
 ): T {
     return try {
         action()
+    } catch (e: AbortedPingGenerationException) {
+        // Logging aborted exception
+        analytic.sendTryOnAbortedErrorEvent(
+            type = type,
+            errorMessage = e.message,
+        )
+        throw e
     } catch (e: Exception) {
-        // Logging exception
+        // Logging general exception
         analytic.sendTryOnErrorEvent(
             type = type,
             errorMessage = e.message,

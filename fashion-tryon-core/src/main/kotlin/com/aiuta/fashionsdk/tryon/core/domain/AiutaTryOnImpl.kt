@@ -196,15 +196,19 @@ internal class AiutaTryOnImpl(
                 )
             }
 
-            else -> {
-                // Fallback with last success generation result
+            is PingGenerationStatus.ErrorPingGenerationStatus -> {
+                // Rethrow exception
+                terminatedOperation.exception?.let { throw terminatedOperation.exception }
+                // If no exception, just set error status
                 emit(
                     SKUGenerationStatus.ErrorGenerationStatus(
-                        errorMessage = (terminatedOperation as? PingGenerationStatus.ErrorPingGenerationStatus)?.errorMessage,
-                        exception = (terminatedOperation as? PingGenerationStatus.ErrorPingGenerationStatus)?.exception,
+                        errorMessage = terminatedOperation.errorMessage,
+                        exception = terminatedOperation.exception,
                     ),
                 )
             }
+
+            else -> Unit
         }
     }
 
