@@ -200,7 +200,7 @@ private fun OperationItem(
     val isTrashVisible =
         remember {
             derivedStateOf {
-                imageState.value !is AsyncImagePainter.State.Error && !isLoadingScrimVisible.value
+                !isLoadingScrimVisible.value
             }
         }
 
