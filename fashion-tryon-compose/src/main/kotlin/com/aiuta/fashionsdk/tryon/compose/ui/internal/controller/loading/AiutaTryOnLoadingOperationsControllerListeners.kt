@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGenerated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteUploadedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import kotlinx.coroutines.flow.launchIn
@@ -25,6 +26,7 @@ internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener(
 
 @Composable
 private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesListener() {
+    val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val dataProvider = aiutaConfiguration.dataProvider
 
@@ -41,6 +43,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                     // Get current loadings & retries
                     val loadingActiveGenerations = loadingGenerationsHolder.getList()
                     val retryActiveGenerations = retryGenerationsHolder.getList()
+                    val sessionGenerations = controller.sessionGenerationInteractor.sessionGenerations
 
                     // Clean retries, because they can executed a little bit later
                     retryActiveGenerations.forEach { activeGeneration ->
@@ -53,6 +56,13 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                     loadingActiveGenerations.forEach { activeGeneration ->
                         if (!images.contains(activeGeneration)) {
                             loadingGenerationsHolder.remove(activeGeneration)
+                        }
+                    }
+
+                    // Clean session history
+                    sessionGenerations.forEach { generation ->
+                        if (!images.contains(generation)) {
+                            controller.sessionGenerationInteractor.deleteGeneration(generation)
                         }
                     }
                 }

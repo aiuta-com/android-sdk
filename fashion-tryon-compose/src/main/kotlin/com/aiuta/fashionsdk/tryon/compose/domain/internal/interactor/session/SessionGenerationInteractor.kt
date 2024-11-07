@@ -16,6 +16,10 @@ internal class SessionGenerationInteractor(
         _sessionGenerations.removeAll { it.id in imagesIds }
     }
 
+    fun deleteGeneration(image: GeneratedImageUIModel) {
+        _sessionGenerations.removeAll { it.id == image.id }
+    }
+
     suspend fun addGeneration(image: GeneratedImageUIModel) {
         warmUpInteractor.warmUp(image.imageUrl)
         _sessionGenerations.addFirst(image)
