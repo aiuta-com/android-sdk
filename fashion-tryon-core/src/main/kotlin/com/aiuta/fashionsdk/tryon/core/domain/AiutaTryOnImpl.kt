@@ -148,7 +148,7 @@ internal class AiutaTryOnImpl(
                             ?.first { it.isTerminate() }
                             .also {
                                 solveTerminatedOperationResult(
-                                    sourceImageUrl = uploadedImage.url,
+                                    uploadedImage = uploadedImage,
                                     terminatedOperation = it,
                                 )
                             }
@@ -177,7 +177,7 @@ internal class AiutaTryOnImpl(
     }
 
     private suspend fun FlowCollector<SKUGenerationStatus>.solveTerminatedOperationResult(
-        sourceImageUrl: String,
+        uploadedImage: UploadedImage,
         terminatedOperation: PingGenerationStatus?,
     ) {
         // Check, if last operation is finished and we got it
@@ -189,7 +189,8 @@ internal class AiutaTryOnImpl(
                 // Add new image urls to current generation
                 emit(
                     SKUGenerationStatus.SuccessGenerationStatus(
-                        sourceImageUrl = sourceImageUrl,
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
                         images = terminatedOperation.images.map { it.toPublic() },
                     ),
                 )

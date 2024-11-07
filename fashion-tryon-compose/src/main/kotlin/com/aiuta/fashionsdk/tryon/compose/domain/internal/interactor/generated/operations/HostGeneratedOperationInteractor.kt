@@ -6,7 +6,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaHistor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toPublic
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -47,14 +46,15 @@ internal class HostGeneratedOperationInteractor(
     }
 
     override suspend fun createImage(
-        status: SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage,
+        sourceImageId: String,
+        sourceImageUrl: String,
         operationId: String,
     ) {
         dataProvider.addUploadedImagesAction(
             listOf(
                 AiutaHistoryImage(
-                    id = status.sourceImageId,
-                    url = status.sourceImageUrl,
+                    id = sourceImageId,
+                    url = sourceImageUrl,
                 ),
             ),
         )

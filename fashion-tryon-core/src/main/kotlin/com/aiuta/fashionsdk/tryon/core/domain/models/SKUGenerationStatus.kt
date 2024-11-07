@@ -8,6 +8,7 @@ public sealed interface SKUGenerationStatus {
      * Successfully generate all images
      */
     public class SuccessGenerationStatus(
+        public val sourceImageId: String,
         public val sourceImageUrl: String,
         public val images: List<SKUGeneratedImage> = emptyList(),
     ) : SKUGenerationStatus
