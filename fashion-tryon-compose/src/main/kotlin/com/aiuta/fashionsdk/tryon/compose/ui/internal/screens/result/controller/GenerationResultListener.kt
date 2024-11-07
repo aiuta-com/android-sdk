@@ -46,8 +46,8 @@ private fun GenerationResultSessionListener() {
     val controller = LocalController.current
 
     // If we delete all session images, we should navigate back to picker
-    LaunchedEffect(controller.sessionGenerationInteractor.sessionGenerationsUrls.size) {
-        if (controller.sessionGenerationInteractor.sessionGenerationsUrls.isEmpty()) {
+    LaunchedEffect(controller.sessionGenerationInteractor.sessionGenerations.size) {
+        if (controller.sessionGenerationInteractor.sessionGenerations.isEmpty()) {
             controller.navigateBack()
         }
     }

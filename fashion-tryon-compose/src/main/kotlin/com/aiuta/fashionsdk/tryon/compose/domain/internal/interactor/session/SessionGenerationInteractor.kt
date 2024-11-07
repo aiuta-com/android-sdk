@@ -7,16 +7,18 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 internal class SessionGenerationInteractor(
     private val warmUpInteractor: WarmUpInteractor,
 ) {
-    private val _sessionGenerationsUrls: ArrayDeque<GeneratedImageUIModel> = ArrayDeque()
-    val sessionGenerationsUrls: List<GeneratedImageUIModel> = _sessionGenerationsUrls
+    private val _sessionGenerations: ArrayDeque<GeneratedImageUIModel> = ArrayDeque()
+    val sessionGenerations: List<GeneratedImageUIModel> = _sessionGenerations
 
-    fun deleteGenerations(urls: List<GeneratedImageUIModel>) {
-        _sessionGenerationsUrls.removeAll(urls)
+    fun deleteGenerations(images: List<GeneratedImageUIModel>) {
+        // Check by id, because urls can be different
+        val imagesIds = images.map { it.id }.toSet()
+        _sessionGenerations.removeAll { it.id in imagesIds }
     }
 
     suspend fun addGeneration(image: GeneratedImageUIModel) {
         warmUpInteractor.warmUp(image.imageUrl)
-        _sessionGenerationsUrls.addFirst(image)
+        _sessionGenerations.addFirst(image)
     }
 
     suspend fun addGenerations(images: List<GeneratedImageUIModel>) {

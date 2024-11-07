@@ -57,7 +57,7 @@ internal fun GenerationResultBody(
     val controller = LocalController.current
     val pagerState = generationResultController.generationPagerState
 
-    val generations = controller.sessionGenerationInteractor.sessionGenerationsUrls
+    val generations = controller.sessionGenerationInteractor.sessionGenerations
 
     val horizontalPaddingWeight = 1 - MAIN_IMAGE_SIZE
     val configuration = LocalConfiguration.current
