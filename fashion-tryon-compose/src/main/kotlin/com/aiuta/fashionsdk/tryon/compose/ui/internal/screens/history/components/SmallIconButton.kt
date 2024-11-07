@@ -23,9 +23,9 @@ internal fun SmallIconButton(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val iconColor by animateColorAsState(
-        targetValue = if (isActive) theme.colors.primary else theme.colors.secondary,
-        label = "iconColor",
+    val backgroundColor by animateColorAsState(
+        targetValue = if (isActive) theme.colors.onDark else theme.colors.onDark.copy(alpha = 0.4f),
+        label = "backgroundColor",
     )
 
     Box(
@@ -33,7 +33,7 @@ internal fun SmallIconButton(
             modifier
                 .size(36.dp)
                 .background(
-                    color = theme.colors.onDark,
+                    color = backgroundColor,
                     shape = CircleShape,
                 )
                 .clickableUnindicated {
@@ -47,7 +47,7 @@ internal fun SmallIconButton(
             modifier = Modifier.size(24.dp),
             icon = icon,
             contentDescription = null,
-            tint = iconColor,
+            tint = theme.colors.primary,
         )
     }
 }

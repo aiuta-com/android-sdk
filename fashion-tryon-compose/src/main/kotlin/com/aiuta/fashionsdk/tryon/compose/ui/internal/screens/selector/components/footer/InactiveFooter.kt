@@ -18,11 +18,13 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
@@ -31,6 +33,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.S
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.AiutaLabel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmentLine
 
 @Composable
 internal fun InactiveFooter(modifier: Modifier = Modifier) {
@@ -75,28 +79,38 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
+    val lineIndexToCenter = 0
+    var topTextPosition by remember { mutableFloatStateOf(0f) }
+    var bottomTextPosition by remember { mutableFloatStateOf(0f) }
+
     Row(
         modifier = modifier,
-        verticalAlignment = Alignment.Top,
     ) {
         AiutaIcon(
             modifier =
                 Modifier
                     .size(16.dp)
-                    .graphicsLayer {
-                        translationY = -5f
-                    },
+                    .alignBy(CenterAlignmentLine)
+                    .createCenterAlignmentLine(),
             icon = theme.icons.lock16,
             contentDescription = null,
             tint = theme.colors.secondary,
         )
 
         Text(
-            modifier = Modifier.wrapContentWidth(),
+            modifier =
+                Modifier
+                    .wrapContentWidth()
+                    .alignBy(CenterAlignmentLine)
+                    .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
             text = stringResources.imageSelectorProtectionPoint,
             style = theme.typography.description,
             color = theme.colors.secondary,
             textAlign = TextAlign.Center,
+            onTextLayout = { textLayout: TextLayoutResult ->
+                topTextPosition = textLayout.getLineTop(lineIndexToCenter)
+                bottomTextPosition = textLayout.getLineBottom(lineIndexToCenter)
+            },
         )
     }
 }

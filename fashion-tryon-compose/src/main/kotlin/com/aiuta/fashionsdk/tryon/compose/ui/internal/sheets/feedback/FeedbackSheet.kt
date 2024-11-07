@@ -75,7 +75,7 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 option = option,
                 isSelected = option == selectedOption.value,
                 onClick = {
-                    selectedOption.value = option.takeIf { selectedOption.value == null }
+                    selectedOption.value = option
                 },
             )
 

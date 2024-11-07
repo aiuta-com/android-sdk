@@ -1,12 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
@@ -20,29 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 
 @Composable
-internal fun GenerateMoreBlock(
-    modifier: Modifier = Modifier,
-    pageOffset: State<Float>,
-) {
-    val isVisible =
-        remember {
-            derivedStateOf {
-                pageOffset.value == 0f
-            }
-        }
-
-    AnimatedVisibility(
-        modifier = modifier,
-        visible = isVisible.value,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
-        GenerateMoreBlockContent()
-    }
-}
-
-@Composable
-internal fun GenerateMoreBlockContent(modifier: Modifier = Modifier) {
+internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
