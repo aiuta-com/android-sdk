@@ -129,6 +129,18 @@ internal fun FashionTryOnController.updateActiveOperationOrSetEmpty(
     }
 }
 
+internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetEmpty() {
+    val firstOperation = generatedOperationInteractor.getFirstGeneratedOperation()
+    // Try to update with new or set as empty
+    if (firstOperation != null) {
+        lastSavedOperation.value = firstOperation
+        lastSavedImages.value = firstOperation.toLastSavedImages()
+    } else {
+        lastSavedOperation.value = null
+        lastSavedImages.value = LastSavedImages.Empty
+    }
+}
+
 // Checks
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {

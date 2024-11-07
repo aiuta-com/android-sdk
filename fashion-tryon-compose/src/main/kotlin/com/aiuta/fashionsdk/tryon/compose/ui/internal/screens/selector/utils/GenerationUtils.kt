@@ -25,6 +25,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDial
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
@@ -135,6 +136,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
             )
             .onEach { status ->
                 // Notify (or create locally) about new operation, after success
+                // Also need update active operation, if we change local URI to backend URL
                 if (status is SKUGenerationStatus.SuccessGenerationStatus) {
                     val currentOperationId =
                         generatedOperationFactory.getOperationId(
@@ -146,15 +148,6 @@ private fun FashionTryOnController.startGenerationWithUriSource(
                         sourceImageUrl = status.sourceImageUrl,
                         operationId = currentOperationId,
                     )
-                }
-            }
-            .onEach { status ->
-                // Need update active operation, if we change local URI to backend URL
-                if (status is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage) {
-                    val currentOperationId =
-                        generatedOperationFactory.getOperationId(
-                            imageId = status.sourceImageId,
-                        )
 
                     if (lastSavedOperation.value?.operationId != currentOperationId) {
                         val images =
@@ -199,7 +192,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 }
 
 // Collecting
-private fun FashionTryOnController.solveOperationCollecting(
+private suspend fun FashionTryOnController.solveOperationCollecting(
     aiutaConfiguration: AiutaTryOnConfiguration,
     context: Context,
     dialogController: AiutaTryOnDialogController,
@@ -239,6 +232,9 @@ private fun FashionTryOnController.solveOperationCollecting(
 
             when (operation.exception) {
                 is AbortedPingGenerationException -> {
+                    // Change to last success or empty operation
+                    updateActiveOperationWithFirstOrSetEmpty()
+
                     // Need to change photo from user
                     dialogController.showDialog(
                         dialogState =

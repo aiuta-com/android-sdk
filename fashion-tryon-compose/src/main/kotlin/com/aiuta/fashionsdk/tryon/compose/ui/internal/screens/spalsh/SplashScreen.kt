@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadConfig
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.first
@@ -37,8 +37,7 @@ internal fun SplashScreen(
                 .first()
 
         if (countGeneratedOperation > 0) {
-            val lastOperation = controller.generatedOperationInteractor.getFirstGeneratedOperation()
-            controller.updateActiveOperationOrSetEmpty(lastOperation)
+            controller.updateActiveOperationWithFirstOrSetEmpty()
         }
 
         // Solve should show onboarding or not
