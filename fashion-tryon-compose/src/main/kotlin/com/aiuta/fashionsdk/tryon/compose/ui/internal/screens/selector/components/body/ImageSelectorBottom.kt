@@ -56,8 +56,6 @@ internal fun ImageSelectorBottom(
             .collectAsStateWithLifecycle(0)
 
     val sharedModifier = Modifier.wrapContentWidth()
-    val sharedBackground = Color.White.copy(alpha = 0.4f)
-
     val sharedButtonSize = FashionButtonSizes.mSize()
 
     val bottomState =
@@ -99,19 +97,7 @@ internal fun ImageSelectorBottom(
                 FashionButton(
                     modifier = sharedModifier,
                     text = stringResources.imageSelectorChangeButton,
-                    style =
-                        if (theme.toggles.isBlurOutlinesEnabled) {
-                            FashionButtonStyles.secondaryStyle(
-                                backgroundColor = sharedBackground,
-                                contentColor = theme.colors.onDark,
-                                borderColor = theme.colors.neutral2,
-                            )
-                        } else {
-                            FashionButtonStyles.primaryStyle(
-                                backgroundColor = sharedBackground,
-                                contentColor = Color.Black,
-                            )
-                        },
+                    style = FashionButtonStyles.primaryStyle(theme),
                     size = sharedButtonSize,
                     onClick = {
                         if (countGeneratedOperation.value == 0) {
@@ -143,7 +129,7 @@ internal fun ImageSelectorBottom(
                     modifier =
                         finalModifier
                             .background(
-                                color = sharedBackground,
+                                color = Color.White.copy(alpha = 0.4f),
                                 shape = sharedButtonSize.shape,
                             )
                             .padding(
