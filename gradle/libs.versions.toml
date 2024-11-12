@@ -25,6 +25,8 @@ gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
 gradle-plugin-jreleaser = "1.13.1"
 
+haze = "1.0.1"
+
 kotlinx-atomicfu = "0.25.0"
 kotlinx-serialization = "1.7.1"
 ktor = "2.3.11"
@@ -74,6 +76,8 @@ gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref 
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-kotlin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-jreleaser = { module = "org.jreleaser:jreleaser-gradle-plugin", version.ref = "gradle-plugin-jreleaser" }
+
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }
 

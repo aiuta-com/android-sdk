@@ -43,6 +43,17 @@ internal object FashionButtonColors {
         )
 
     @Composable
+    fun transparentColors(contentColor: Color) =
+        DefaultFashionButtonColor(
+            buttonColors =
+                ButtonDefaults.buttonColors(
+                    backgroundColor = Color.Transparent,
+                    contentColor = contentColor,
+                ),
+            rippleColor = Color.Black.copy(alpha = 0.05f),
+        )
+
+    @Composable
     fun secondaryColors(
         backgroundColor: Color,
         contentColor: Color,

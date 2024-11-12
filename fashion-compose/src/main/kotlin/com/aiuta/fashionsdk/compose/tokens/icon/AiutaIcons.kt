@@ -40,6 +40,7 @@ public sealed interface AiutaIcons {
     public val checkNotCorrect24: AiutaIcon
     public val close24: AiutaIcon
     public val history24: AiutaIcon
+    public val magic20: AiutaIcon
     public val photoLibrary24: AiutaIcon
     public val trash24: AiutaIcon
     public val takePhoto24: AiutaIcon
@@ -52,7 +53,6 @@ public sealed interface AiutaIcons {
     public val info20: AiutaIcon
 
     // x16
-    public val magic16: AiutaIcon
     public val lock16: AiutaIcon
     public val arrow16: AiutaIcon
 

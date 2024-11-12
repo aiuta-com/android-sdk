@@ -4,6 +4,7 @@ package com.aiuta.fashionsdk.compose.molecules.button
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -22,8 +23,10 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonLoadingAnimation
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonSize
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonStyle
+import com.aiuta.fashionsdk.compose.molecules.button.internal.GradientButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.utils.conditional
 
 @Composable
 public fun FashionButton(
@@ -45,7 +48,16 @@ public fun FashionButton(
     val transition = updateTransition(isLoading, label = "loading button state")
 
     Button(
-        modifier = modifier,
+        modifier =
+            modifier
+                .conditional(style is GradientButtonStyle) {
+                    (style as? GradientButtonStyle)?.gradientBackground?.let {
+                        background(
+                            brush = it,
+                            shape = size.shape,
+                        )
+                    } ?: this
+                },
         shape = size.shape,
         border = style.border,
         colors = style.colors.buttonColors,

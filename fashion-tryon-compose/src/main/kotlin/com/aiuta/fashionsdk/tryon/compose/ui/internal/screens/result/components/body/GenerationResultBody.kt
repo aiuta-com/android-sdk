@@ -50,6 +50,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.haze
 import kotlin.math.absoluteValue
 
 @Composable
@@ -130,6 +132,7 @@ private fun PagerItem(
             ).toDp()
         }
 
+    val hazeState = remember { HazeState() }
     var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
     var imageSize by remember { mutableStateOf(Size.Zero) }
 
@@ -146,6 +149,7 @@ private fun PagerItem(
                 Modifier
                     .clipToBounds()
                     .fillMaxSize()
+                    .haze(hazeState)
                     .onGloballyPositioned { coordinates ->
                         parentImageOffset = coordinates.positionInRoot()
                         imageSize = coordinates.size.toSize()
@@ -178,6 +182,7 @@ private fun PagerItem(
             imageUrl = imageUrl,
             itemIndex = itemIndex,
             generationResultController = generationResultController,
+            hazeState = hazeState,
             pageOffset = pageOffset,
         )
     }
@@ -189,6 +194,7 @@ internal fun BoxScope.PagerItemInterface(
     imageUrl: String?,
     itemIndex: Int,
     generationResultController: GenerationResultController,
+    hazeState: HazeState,
     pageOffset: State<Float>,
 ) {
     val isVisible =
@@ -226,6 +232,7 @@ internal fun BoxScope.PagerItemInterface(
                         .align(Alignment.BottomEnd)
                         .padding(12.dp),
                 itemIndex = itemIndex,
+                hazeState = hazeState,
                 generationResultController = generationResultController,
             )
         }

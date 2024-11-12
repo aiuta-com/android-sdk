@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +32,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.utils.conditional
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -39,10 +41,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeTint
+import dev.chrisbanes.haze.hazeChild
 
 @Composable
 internal fun ImageSelectorBottom(
     modifier: Modifier = Modifier,
+    hazeState: HazeState,
     uploadPhoto: () -> Unit,
 ) {
     val controller = LocalController.current
@@ -56,9 +62,18 @@ internal fun ImageSelectorBottom(
             .collectAsStateWithLifecycle(0)
 
     val sharedModifier = Modifier.wrapContentWidth()
-    val sharedBackground = Color.White.copy(alpha = 0.4f)
-
     val sharedButtonSize = FashionButtonSizes.mSize()
+
+    val sharedColor = theme.colors.background.copy(alpha = 0.4f)
+    val sharedBlurModifer =
+        Modifier
+            .clip(sharedButtonSize.shape)
+            .hazeChild(hazeState) {
+                blurRadius = 10.dp
+                backgroundColor = sharedColor
+                tints = listOf(HazeTint(sharedColor))
+                fallbackTint = HazeTint(sharedColor)
+            }
 
     val bottomState =
         updateTransition(
@@ -97,19 +112,19 @@ internal fun ImageSelectorBottom(
 
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
-                    modifier = sharedModifier,
+                    modifier =
+                        sharedModifier.conditional(!theme.toggles.isBlurOutlinesEnabled) {
+                            sharedBlurModifer
+                        },
                     text = stringResources.imageSelectorChangeButton,
                     style =
                         if (theme.toggles.isBlurOutlinesEnabled) {
-                            FashionButtonStyles.secondaryStyle(
-                                backgroundColor = sharedBackground,
-                                contentColor = theme.colors.onDark,
-                                borderColor = theme.colors.neutral2,
-                            )
+                            FashionButtonStyles.primaryStyle(theme)
                         } else {
-                            FashionButtonStyles.primaryStyle(
-                                backgroundColor = sharedBackground,
-                                contentColor = Color.Black,
+                            FashionButtonStyles.secondaryStyle(
+                                backgroundColor = Color.Transparent,
+                                contentColor = theme.colors.primary,
+                                borderColor = Color.Transparent,
                             )
                         },
                     size = sharedButtonSize,
@@ -142,10 +157,7 @@ internal fun ImageSelectorBottom(
                 Row(
                     modifier =
                         finalModifier
-                            .background(
-                                color = sharedBackground,
-                                shape = sharedButtonSize.shape,
-                            )
+                            .then(sharedBlurModifer)
                             .padding(
                                 horizontal = 24.dp,
                                 vertical = 12.dp,
@@ -163,12 +175,6 @@ internal fun ImageSelectorBottom(
                                     animation = tween(2000, easing = LinearEasing),
                                 ),
                         )
-                    val activeColor =
-                        if (theme.toggles.isBlurOutlinesEnabled) {
-                            theme.colors.onDark
-                        } else {
-                            theme.colors.primary
-                        }
 
                     AiutaIcon(
                         modifier =
@@ -176,7 +182,7 @@ internal fun ImageSelectorBottom(
                                 .size(14.dp)
                                 .rotate(angle.value),
                         icon = theme.icons.loading14,
-                        tint = activeColor,
+                        tint = theme.colors.primary,
                         contentDescription = null,
                     )
 
@@ -185,7 +191,7 @@ internal fun ImageSelectorBottom(
                     Text(
                         text = stringResources.imageSelectorGeneratingOutfit,
                         style = theme.typography.smallButton,
-                        color = activeColor,
+                        color = theme.colors.primary,
                         textAlign = TextAlign.Center,
                     )
                 }

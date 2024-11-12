@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.haze
 
 @Composable
 internal fun ImageSelectorBlock(
@@ -17,6 +20,7 @@ internal fun ImageSelectorBlock(
     uploadPhoto: () -> Unit,
 ) {
     val theme = LocalTheme.current
+    val hazeState = remember { HazeState() }
 
     Box(
         modifier =
@@ -26,7 +30,12 @@ internal fun ImageSelectorBlock(
                     shape = theme.shapes.mainImage,
                 ),
     ) {
-        ImageSelectorPhoto(modifier = Modifier.fillMaxSize())
+        ImageSelectorPhoto(
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .haze(hazeState),
+        )
 
         ImageSelectorBottom(
             modifier =
@@ -35,6 +44,7 @@ internal fun ImageSelectorBlock(
                     .padding(horizontal = 12.dp)
                     .padding(bottom = 24.dp)
                     .align(Alignment.BottomCenter),
+            hazeState = hazeState,
             uploadPhoto = uploadPhoto,
         )
     }

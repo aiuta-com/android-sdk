@@ -16,8 +16,10 @@ public fun aiutaGradients(
             DefaultAiutaColors.brand,
             Color.Transparent,
         ),
+    tryOnButtonBackground: List<Color> = emptyList(),
 ): AiutaGradients {
     return AiutaGradients(
         loadingAnimation = loadingAnimationGradient,
+        tryOnButtonBackground = tryOnButtonBackground,
     )
 }

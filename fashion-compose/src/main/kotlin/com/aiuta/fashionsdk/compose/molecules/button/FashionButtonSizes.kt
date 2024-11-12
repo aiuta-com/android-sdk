@@ -13,8 +13,8 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 
 @Immutable
 public object FashionButtonSizes {
-    private val IconSize = 14.dp
-    private val IconSpacing = 8.dp
+    private val IconSize = 20.dp
+    private val IconSpacing = 4.dp
 
     @Composable
     public fun lSize(

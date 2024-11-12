@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.compose.molecules.button.internal
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Brush
 
 @Immutable
 public interface FashionButtonStyle {
@@ -22,4 +23,10 @@ internal data class SecondaryFashionButtonStyle(
             ButtonDefaults.OutlinedBorderSize,
             colors.borderColor,
         ),
+) : FashionButtonStyle
+
+internal data class GradientButtonStyle(
+    override val colors: DefaultFashionButtonColor,
+    override val border: BorderStroke? = null,
+    val gradientBackground: Brush? = null,
 ) : FashionButtonStyle
