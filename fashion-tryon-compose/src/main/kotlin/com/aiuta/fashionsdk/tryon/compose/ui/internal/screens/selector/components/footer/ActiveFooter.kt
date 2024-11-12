@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
@@ -86,7 +87,18 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.tryOn,
-                style = FashionButtonStyles.primaryStyle(theme),
+                style =
+                    if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
+                        FashionButtonStyles.gradientColors(
+                            contentColor = theme.colors.onDark,
+                            gradientBackground =
+                                Brush.horizontalGradient(
+                                    theme.gradients.tryOnButtonBackground,
+                                ),
+                        )
+                    } else {
+                        FashionButtonStyles.primaryStyle(theme)
+                    },
                 size = FashionButtonSizes.lSize(),
                 icon = theme.icons.magic20,
                 onClick = {
@@ -168,7 +180,10 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
         Spacer(Modifier.width(8.dp))
 
         AiutaIcon(
-            modifier = Modifier.size(16.dp).align(Alignment.CenterVertically),
+            modifier =
+                Modifier
+                    .size(16.dp)
+                    .align(Alignment.CenterVertically),
             icon = theme.icons.arrow16,
             contentDescription = null,
             tint = theme.colors.neutral3,

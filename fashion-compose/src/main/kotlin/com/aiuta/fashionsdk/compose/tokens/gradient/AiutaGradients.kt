@@ -12,6 +12,7 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 @Immutable
 public class AiutaGradients(
     public val loadingAnimation: List<Color>,
+    public val tryOnButtonBackground: List<Color>,
 )
 
 /**
