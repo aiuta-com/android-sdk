@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
@@ -39,11 +40,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.se
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendLikeGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeTint
+import dev.chrisbanes.haze.hazeChild
 
 @Composable
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
     itemIndex: Int,
+    hazeState: HazeState,
     generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
@@ -128,6 +133,7 @@ internal fun FeedbackBlock(
         exit = fadeOut(),
     ) {
         FeedbackBlockContent(
+            hazeState = hazeState,
             onDislikeClick = {
                 controller.sendDislikeGenerationFeedback(itemIndex)
                 onFeedbackClick()
@@ -145,6 +151,7 @@ internal fun FeedbackBlock(
 @Composable
 private fun FeedbackBlockContent(
     modifier: Modifier = Modifier,
+    hazeState: HazeState,
     onDislikeClick: () -> Unit,
     onLikeClick: () -> Unit,
 ) {
@@ -156,6 +163,7 @@ private fun FeedbackBlockContent(
     ) {
         ReactionIcon(
             icon = theme.icons.like36,
+            hazeState = hazeState,
             onClick = {
                 onLikeClick()
             },
@@ -165,6 +173,7 @@ private fun FeedbackBlockContent(
 
         ReactionIcon(
             icon = theme.icons.dislike36,
+            hazeState = hazeState,
             onClick = {
                 onDislikeClick()
             },
@@ -176,6 +185,7 @@ private fun FeedbackBlockContent(
 private fun ReactionIcon(
     modifier: Modifier = Modifier,
     icon: AiutaIcons.AiutaIcon,
+    hazeState: HazeState,
     onClick: () -> Unit,
 ) {
     val haptic = LocalHapticFeedback.current
@@ -197,10 +207,15 @@ private fun ReactionIcon(
     Box(
         modifier =
             finalModifier
-                .background(
-                    color = theme.colors.background.copy(alpha = 0.4f),
-                    shape = CircleShape,
-                ),
+                .clip(CircleShape)
+                .hazeChild(hazeState) {
+                    val sharedColor = theme.colors.background.copy(alpha = 0.4f)
+
+                    blurRadius = 10.dp
+                    backgroundColor = sharedColor
+                    tints = listOf(HazeTint(sharedColor))
+                    fallbackTint = HazeTint(sharedColor)
+                },
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(

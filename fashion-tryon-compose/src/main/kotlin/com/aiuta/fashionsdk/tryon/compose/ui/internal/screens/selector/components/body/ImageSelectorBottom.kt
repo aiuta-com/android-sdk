@@ -21,8 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -39,10 +39,14 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.HazeTint
+import dev.chrisbanes.haze.hazeChild
 
 @Composable
 internal fun ImageSelectorBottom(
     modifier: Modifier = Modifier,
+    hazeState: HazeState,
     uploadPhoto: () -> Unit,
 ) {
     val controller = LocalController.current
@@ -128,10 +132,15 @@ internal fun ImageSelectorBottom(
                 Row(
                     modifier =
                         finalModifier
-                            .background(
-                                color = Color.White.copy(alpha = 0.4f),
-                                shape = sharedButtonSize.shape,
-                            )
+                            .clip(sharedButtonSize.shape)
+                            .hazeChild(hazeState) {
+                                val sharedColor = theme.colors.background.copy(alpha = 0.4f)
+
+                                blurRadius = 10.dp
+                                backgroundColor = sharedColor
+                                tints = listOf(HazeTint(sharedColor))
+                                fallbackTint = HazeTint(sharedColor)
+                            }
                             .padding(
                                 horizontal = 24.dp,
                                 vertical = 12.dp,
