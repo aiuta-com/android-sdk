@@ -36,8 +36,8 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AiutaIcon(
-            modifier = Modifier.size(16.dp),
-            icon = theme.icons.magic16,
+            modifier = Modifier.size(20.dp),
+            icon = theme.icons.magic20,
             contentDescription = null,
             tint = theme.colors.onDark,
         )

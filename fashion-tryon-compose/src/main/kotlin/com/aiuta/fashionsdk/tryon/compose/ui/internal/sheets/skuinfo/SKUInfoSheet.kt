@@ -171,7 +171,7 @@ private fun ButtonsContainer(
                     stringResources.tryOn
                 },
             icon =
-                theme.icons.magic16.takeIf {
+                theme.icons.magic20.takeIf {
                     skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
                 },
             style = FashionButtonStyles.primaryStyle(theme),

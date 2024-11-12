@@ -88,7 +88,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 text = stringResources.tryOn,
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                icon = theme.icons.magic16,
+                icon = theme.icons.magic20,
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
