@@ -12,6 +12,7 @@ public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonSi
 public final class com/aiuta/fashionsdk/compose/molecules/button/FashionButtonStyles {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/compose/molecules/button/FashionButtonStyles;
+	public final fun gradientColors-Iv8Zu3U (JLandroidx/compose/ui/graphics/Brush;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
 	public final fun primaryStyle (Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
 	public final fun primaryStyle-RFnl5yQ (JJLandroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
 	public final fun secondaryStyle (Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/molecules/button/internal/FashionButtonStyle;
@@ -113,13 +114,14 @@ public final class com/aiuta/fashionsdk/compose/tokens/composition/CompositionLo
 
 public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients {
 	public static final field $stable I
-	public fun <init> (Ljava/util/List;)V
+	public fun <init> (Ljava/util/List;Ljava/util/List;)V
 	public final fun getLoadingAnimation ()Ljava/util/List;
+	public final fun getTryOnButtonBackground ()Ljava/util/List;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradientsFactoryKt {
-	public static final fun aiutaGradients (Ljava/util/List;)Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
-	public static synthetic fun aiutaGradients$default (Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
+	public static final fun aiutaGradients (Ljava/util/List;Ljava/util/List;)Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
+	public static synthetic fun aiutaGradients$default (Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lcom/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradients;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/gradient/AiutaGradientsKt {
@@ -159,8 +161,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons :
 	public synthetic fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
 	public synthetic fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
-	public fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
-	public synthetic fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getMagic20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
+	public synthetic fun getMagic20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
 	public synthetic fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$AiutaDrawableIcon;
@@ -204,7 +206,7 @@ public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIc
 	public abstract fun getLike36 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
-	public abstract fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public abstract fun getMagic20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public abstract fun getShare24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
@@ -253,8 +255,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons :
 	public fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
 	public synthetic fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getLock16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
-	public synthetic fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
-	public fun getMagic16 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
+	public synthetic fun getMagic20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
+	public fun getMagic20 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
 	public synthetic fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
 	public fun getPhotoLibrary24 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$AiutaResourceIcon;
 	public synthetic fun getRecent100 ()Lcom/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon;
