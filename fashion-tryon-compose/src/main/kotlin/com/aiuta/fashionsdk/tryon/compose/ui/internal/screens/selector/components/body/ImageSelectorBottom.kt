@@ -149,12 +149,6 @@ internal fun ImageSelectorBottom(
                                     animation = tween(2000, easing = LinearEasing),
                                 ),
                         )
-                    val activeColor =
-                        if (theme.toggles.isBlurOutlinesEnabled) {
-                            theme.colors.onDark
-                        } else {
-                            theme.colors.primary
-                        }
 
                     AiutaIcon(
                         modifier =
@@ -162,7 +156,7 @@ internal fun ImageSelectorBottom(
                                 .size(14.dp)
                                 .rotate(angle.value),
                         icon = theme.icons.loading14,
-                        tint = activeColor,
+                        tint = theme.colors.primary,
                         contentDescription = null,
                     )
 
@@ -171,7 +165,7 @@ internal fun ImageSelectorBottom(
                     Text(
                         text = stringResources.imageSelectorGeneratingOutfit,
                         style = theme.typography.smallButton,
-                        color = activeColor,
+                        color = theme.colors.primary,
                         textAlign = TextAlign.Center,
                     )
                 }
