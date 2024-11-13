@@ -33,6 +33,9 @@ internal interface InternalAiutaTryOnLanguage {
 
     val imageSelectorPoweredByAiuta: String
     val imageSelectorProtectionPoint: String
+
+    val imageSelectorUploadingImage: String
+    val imageSelectorScanningBody: String
     val imageSelectorGeneratingOutfit: String
 
     // History

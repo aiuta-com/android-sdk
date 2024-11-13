@@ -9,9 +9,19 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 internal sealed interface SKUGenerationOperation {
     val sourceImage: String
 
-    class LoadingOperation(
-        override val sourceImage: String,
-    ) : SKUGenerationOperation
+    sealed interface LoadingOperation : SKUGenerationOperation {
+        public class StartGenerationOperation(
+            override val sourceImage: String,
+        ) : LoadingOperation
+
+        public class UploadedSourceImageOperation(
+            override val sourceImage: String,
+        ) : LoadingOperation
+
+        public class GenerationProcessingOperation(
+            override val sourceImage: String,
+        ) : LoadingOperation
+    }
 
     class SuccessOperation(
         override val sourceImage: String,
@@ -27,8 +37,18 @@ internal sealed interface SKUGenerationOperation {
 
 internal fun SKUGenerationStatus.toOperation(sourceImage: String): SKUGenerationOperation {
     return when (this) {
-        is SKUGenerationStatus.LoadingGenerationStatus ->
-            SKUGenerationOperation.LoadingOperation(
+        is SKUGenerationStatus.LoadingGenerationStatus.StartGeneration ->
+            SKUGenerationOperation.LoadingOperation.StartGenerationOperation(
+                sourceImage = sourceImage,
+            )
+
+        is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage ->
+            SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation(
+                sourceImage = sourceImage,
+            )
+
+        is SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing ->
+            SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation(
                 sourceImage = sourceImage,
             )
 

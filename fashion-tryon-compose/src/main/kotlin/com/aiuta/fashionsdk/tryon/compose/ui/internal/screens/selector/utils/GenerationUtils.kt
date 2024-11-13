@@ -197,10 +197,20 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
 
             // Check is this operation already exist
             // Should think about optimization for O(n)
-            val existedOperation =
-                generationOperations.find { it.sourceImage == operation.sourceImage }
-            if (existedOperation == null) {
+            val existedOperation = generationOperations.find { it.sourceImage == operation.sourceImage }
+            val existedOperationIndex =
+                existedOperation?.let {
+                    generationOperations.indexOf(
+                        existedOperation,
+                    )
+                }
+
+            if (existedOperationIndex == null) {
+                // Add as last
                 generationOperations.add(operation)
+            } else {
+                // Just update existed
+                generationOperations[existedOperationIndex] = operation
             }
         }
 

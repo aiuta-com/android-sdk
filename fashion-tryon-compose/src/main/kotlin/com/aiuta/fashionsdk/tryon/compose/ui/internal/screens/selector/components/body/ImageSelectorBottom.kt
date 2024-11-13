@@ -40,6 +40,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhot
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
@@ -154,6 +155,9 @@ internal fun ImageSelectorBottom(
                         sharedModifier
                     }
 
+                val solvedText = solveLoadingGenerationText()
+                val textTransition = updateTransition(solvedText.value)
+
                 Row(
                     modifier =
                         finalModifier
@@ -188,12 +192,16 @@ internal fun ImageSelectorBottom(
 
                     Spacer(Modifier.width(8.dp))
 
-                    Text(
-                        text = stringResources.imageSelectorGeneratingOutfit,
-                        style = theme.typography.smallButton,
-                        color = theme.colors.primary,
-                        textAlign = TextAlign.Center,
-                    )
+                    textTransition.AnimatedContent(
+                        transitionSpec = { transitionAnimation },
+                    ) { text ->
+                        Text(
+                            text = text,
+                            style = theme.typography.smallButton,
+                            color = theme.colors.primary,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
                 }
             }
         }
