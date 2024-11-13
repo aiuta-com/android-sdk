@@ -16,7 +16,7 @@ public sealed interface SKUGenerationStatus {
     /**
      * Generation is in progress
      */
-    public interface LoadingGenerationStatus : SKUGenerationStatus {
+    public sealed interface LoadingGenerationStatus : SKUGenerationStatus {
         /**
          * Only start generation process
          */
