@@ -7,5 +7,7 @@ import kotlinx.serialization.Serializable
 @SerialName(InternalAnalyticEvent.EventType.EXIT_EVENT)
 public class AiutaAnalyticExitEvent(
     @SerialName("pageId")
-    public val pageId: AiutaAnalyticPageId,
+    public override val pageId: AiutaAnalyticPageId,
+    @SerialName("productId")
+    public override val productId: String,
 ) : ExternalAnalyticEvent

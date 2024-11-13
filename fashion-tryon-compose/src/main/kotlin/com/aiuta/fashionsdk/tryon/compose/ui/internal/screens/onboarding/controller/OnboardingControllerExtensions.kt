@@ -42,15 +42,25 @@ internal fun OnboardingController.nextPage(
 
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
+            val skuItem = controller.activeSKUItem.value
+
             // Close onboarding and move on
             controller.onboardingInteractor.setOnboardingAsFinished()
 
             // Consent
-            controller.sendOnboardingEvent(AiutaAnalyticOnboardingEventType.CONSENT_GIVEN)
+            controller.sendOnboardingEvent(
+                eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
+                pageId = AiutaAnalyticPageId.CONSENT,
+                productId = skuItem.skuId,
+            )
             configuration.dataProvider?.obtainUserConsentAction?.invoke()
 
             // Finish
-            controller.sendOnboardingEvent(AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED)
+            controller.sendOnboardingEvent(
+                eventType = AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED,
+                pageId = AiutaAnalyticPageId.CONSENT,
+                productId = skuItem.skuId,
+            )
             controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
         }
     }

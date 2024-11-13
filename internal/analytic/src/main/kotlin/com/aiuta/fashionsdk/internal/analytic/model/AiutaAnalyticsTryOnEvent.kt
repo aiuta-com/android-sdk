@@ -10,6 +10,10 @@ public class AiutaAnalyticsTryOnEvent(
     public val event: AiutaAnalyticsTryOnEventType,
     @SerialName("errorMessage")
     public val errorMessage: String? = null,
+    @SerialName("pageId")
+    public override val pageId: AiutaAnalyticPageId,
+    @SerialName("productId")
+    public override val productId: String,
 ) : ExternalAnalyticEvent
 
 @Serializable

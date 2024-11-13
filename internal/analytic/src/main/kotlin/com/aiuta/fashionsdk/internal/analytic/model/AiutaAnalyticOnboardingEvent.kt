@@ -8,6 +8,10 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticOnboardingEvent(
     @SerialName("event")
     public val event: AiutaAnalyticOnboardingEventType,
+    @SerialName("pageId")
+    public override val pageId: AiutaAnalyticPageId,
+    @SerialName("productId")
+    public override val productId: String,
 ) : ExternalAnalyticEvent
 
 @Serializable

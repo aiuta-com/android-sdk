@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
@@ -52,6 +53,7 @@ internal fun ActionBlock(
                     )
                     controller.sendResultEvent(
                         event = AiutaAnalyticsResultsEventType.RESULT_SHARED,
+                        pageId = AiutaAnalyticPageId.RESULTS,
                         productId = activeSKUItem.skuId,
                     )
 
@@ -72,7 +74,10 @@ internal fun ActionBlock(
             isLiked = activeSKUItem.inWishlist,
             iconSize = 24.dp,
             onClick = {
-                controller.clickAddToWishListActiveSKU(skuId = activeSKUItem.skuId)
+                controller.clickAddToWishListActiveSKU(
+                    pageId = AiutaAnalyticPageId.RESULTS,
+                    skuId = activeSKUItem.skuId,
+                )
             },
         )
     }

@@ -26,6 +26,7 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListGenerateMoreItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
@@ -89,6 +90,7 @@ private fun GenerationMoreItem(
                         newSheetScreen =
                             NavigationBottomSheetScreen.SKUInfo(
                                 primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.TRY_ON,
+                                originPageId = AiutaAnalyticPageId.RESULTS,
                                 skuItem = skuItem,
                             ),
                     )
