@@ -152,7 +152,10 @@ private fun ButtonsContainer(
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
                 onClick = {
-                    controller.clickAddToWishListActiveSKU(skuId = activeSKUItem.skuId)
+                    controller.clickAddToWishListActiveSKU(
+                        pageId = skuInfo.originPageId,
+                        skuId = activeSKUItem.skuId,
+                    )
                 },
             )
 

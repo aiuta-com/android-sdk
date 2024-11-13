@@ -11,9 +11,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 
 // Listeners
-internal fun FashionTryOnController.clickAddToWishListActiveSKU(skuId: String) {
+internal fun FashionTryOnController.clickAddToWishListActiveSKU(
+    pageId: AiutaAnalyticPageId,
+    skuId: String,
+) {
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST,
+        pageId = pageId,
         productId = skuId,
     )
     aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value)
@@ -22,6 +26,7 @@ internal fun FashionTryOnController.clickAddToWishListActiveSKU(skuId: String) {
 internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: SKUItem) {
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST,
+        pageId = AiutaAnalyticPageId.RESULTS,
         productId = skuItem.skuId,
     )
     aiutaTryOnListeners().addToWishlistClick(skuItem)
@@ -34,6 +39,7 @@ internal fun FashionTryOnController.clickAddToCart(
 ) {
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_CART,
+        pageId = pageId,
         productId = skuId,
     )
     analytic.sendFinishSessionEvent(
@@ -74,7 +80,7 @@ internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
                 skuCatalogName = skuItem.catalogName,
             ),
     )
-    sendEvent(event = AiutaAnalyticExitEvent(pageId = pageId))
+    sendEvent(event = AiutaAnalyticExitEvent(pageId = pageId, productId = skuItem.skuId))
 }
 
 internal fun FashionTryOnController.sendShareGeneratedImageEvent(

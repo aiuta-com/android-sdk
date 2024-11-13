@@ -124,7 +124,9 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth(),
             onClick = {
                 controller.sendOnboardingEvent(
-                    AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED,
+                    eventType = AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED,
+                    pageId = AiutaAnalyticPageId.WELCOME,
+                    productId = controller.activeSKUItem.value.skuId,
                 )
                 controller.navigateTo(NavigationScreen.ONBOARDING)
             },

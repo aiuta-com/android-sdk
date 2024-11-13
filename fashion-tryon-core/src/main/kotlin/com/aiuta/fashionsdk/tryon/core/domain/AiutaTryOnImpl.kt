@@ -95,11 +95,12 @@ internal class AiutaTryOnImpl(
                     val uploadedImage =
                         trackException(
                             analytic = analytic,
+                            container = container,
                             type = TryOnError.Type.UPLOAD_FAILED,
                         ) {
                             solveUploadingImage(container)
                         }
-                    analytic.sendTryOnPhotoUploadedEvent()
+                    analytic.sendTryOnPhotoUploadedEvent(container)
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
                             sourceImageId = uploadedImage.id,
@@ -111,6 +112,7 @@ internal class AiutaTryOnImpl(
                     val newOperation =
                         trackException(
                             analytic = analytic,
+                            container = container,
                             type = TryOnError.Type.TRY_ON_START_FAILED,
                         ) {
                             skuOperationsDataSource.createSKUOperation(
@@ -132,6 +134,7 @@ internal class AiutaTryOnImpl(
                     )
                     trackException(
                         analytic = analytic,
+                        container = container,
                         type = TryOnError.Type.TRY_ON_START_FAILED,
                     ) {
                         pingOperationSlice.startOperationTypeListening(
@@ -141,6 +144,7 @@ internal class AiutaTryOnImpl(
 
                     trackException(
                         analytic = analytic,
+                        container = container,
                         type = TryOnError.Type.TRY_ON_OPERATION_FAILED,
                     ) {
                         pingOperationSlice

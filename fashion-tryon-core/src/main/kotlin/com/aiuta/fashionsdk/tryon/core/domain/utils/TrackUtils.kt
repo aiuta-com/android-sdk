@@ -25,6 +25,7 @@ internal suspend fun measureTryOn(
 internal suspend fun <T> trackException(
     analytic: InternalAiutaAnalytic,
     type: TryOnError.Type,
+    container: SKUGenerationContainer,
     action: suspend () -> T,
 ): T {
     return try {
@@ -33,6 +34,7 @@ internal suspend fun <T> trackException(
         // Logging aborted exception
         analytic.sendTryOnAbortedErrorEvent(
             type = type,
+            container = container,
             errorMessage = e.message,
         )
         throw e
@@ -40,6 +42,7 @@ internal suspend fun <T> trackException(
         // Logging general exception
         analytic.sendTryOnErrorEvent(
             type = type,
+            container = container,
             errorMessage = e.message,
         )
         throw e

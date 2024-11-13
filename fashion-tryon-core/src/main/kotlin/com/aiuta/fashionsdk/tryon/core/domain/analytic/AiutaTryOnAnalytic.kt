@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.internal.analytic.model.FinishTryOn
@@ -18,7 +19,14 @@ internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationC
                 skuCatalogName = container.skuCatalogName,
             ),
     )
-    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED))
+    sendEvent(
+        event =
+            AiutaAnalyticsTryOnEvent(
+                event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
+                pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                productId = container.skuId,
+            ),
+    )
 }
 
 internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
@@ -36,12 +44,18 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
             ),
     )
     sendEvent(
-        event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED),
+        event =
+            AiutaAnalyticsTryOnEvent(
+                event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
+                pageId = AiutaAnalyticPageId.LOADING,
+                productId = container.skuId,
+            ),
     )
 }
 
 internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(
     type: TryOnError.Type,
+    container: SKUGenerationContainer,
     errorMessage: String? = null,
 ) {
     sendEvent(event = TryOnError(type = type.value))
@@ -50,12 +64,15 @@ internal fun InternalAiutaAnalytic.sendTryOnErrorEvent(
             AiutaAnalyticsTryOnEvent(
                 event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
                 errorMessage = "${type.value}: $errorMessage",
+                pageId = AiutaAnalyticPageId.LOADING,
+                productId = container.skuId,
             ),
     )
 }
 
 internal fun InternalAiutaAnalytic.sendTryOnAbortedErrorEvent(
     type: TryOnError.Type,
+    container: SKUGenerationContainer,
     errorMessage: String? = null,
 ) {
     sendEvent(event = TryOnError(type = type.value))
@@ -64,10 +81,19 @@ internal fun InternalAiutaAnalytic.sendTryOnAbortedErrorEvent(
             AiutaAnalyticsTryOnEvent(
                 event = AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED,
                 errorMessage = "${type.value}: $errorMessage",
+                pageId = AiutaAnalyticPageId.LOADING,
+                productId = container.skuId,
             ),
     )
 }
 
-internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent() {
-    sendEvent(event = AiutaAnalyticsTryOnEvent(event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED))
+internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent(container: SKUGenerationContainer) {
+    sendEvent(
+        event =
+            AiutaAnalyticsTryOnEvent(
+                event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED,
+                pageId = AiutaAnalyticPageId.LOADING,
+                productId = container.skuId,
+            ),
+    )
 }

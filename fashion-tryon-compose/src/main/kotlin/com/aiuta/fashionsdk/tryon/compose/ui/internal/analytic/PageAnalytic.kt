@@ -8,7 +8,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 internal fun FashionTryOnController.sendPageEvent(pageId: AiutaAnalyticPageId) {
-    analytic.sendEvent(event = AiutaAnalyticPageEvent(pageId = pageId))
+    analytic.sendEvent(
+        event =
+            AiutaAnalyticPageEvent(
+                pageId = pageId,
+                productId = activeSKUItem.value.skuId,
+            ),
+    )
 }
 
 @Composable

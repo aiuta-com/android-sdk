@@ -32,6 +32,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
         onClick = {
             controller.sendResultEvent(
                 event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
+                pageId = AiutaAnalyticPageId.RESULTS,
                 productId = activeSKUItem.skuId,
             )
             controller.sendTapChangePhotoEvent()

@@ -35,6 +35,7 @@ internal sealed interface NavigationBottomSheetScreen {
     public class SKUInfo(
         public val primaryButtonState: PrimaryButtonState,
         public val skuItem: SKUItem,
+        public val originPageId: AiutaAnalyticPageId,
     ) : NavigationBottomSheetScreen {
         public enum class PrimaryButtonState {
             ADD_TO_CART,
