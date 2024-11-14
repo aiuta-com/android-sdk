@@ -34,10 +34,10 @@ public data class SKUItem(
 
 internal val defaultSKUItem =
     SKUItem(
-        skuId = "default_sku_id",
-        description = "default_description",
+        skuId = "",
+        description = "",
         imageUrls = emptyList(),
-        localizedPrice = "0",
-        store = "default_store",
+        localizedPrice = "",
+        store = "",
         inWishlist = false,
     )
