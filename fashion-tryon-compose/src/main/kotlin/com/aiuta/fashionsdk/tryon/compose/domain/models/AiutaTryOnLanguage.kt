@@ -70,10 +70,8 @@ public class CustomLanguage(
     override val imageSelectorScanningBody: String,
     override val imageSelectorGeneratingOutfit: String,
     // History
-    override val historySelectorDisabledButton: String,
     override val historySelectorEnableButtonSelectAll: String,
     override val historySelectorEnableButtonUnselectAll: String,
-    override val historySelectorEnableButtonCancel: String,
     override val historyEmptyDescription: String,
     // Generation Result
     override val generationResultMoreTitle: String,

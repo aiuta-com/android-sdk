@@ -39,10 +39,8 @@ internal interface InternalAiutaTryOnLanguage {
     val imageSelectorGeneratingOutfit: String
 
     // History
-    val historySelectorDisabledButton: String
     val historySelectorEnableButtonSelectAll: String
     val historySelectorEnableButtonUnselectAll: String
-    val historySelectorEnableButtonCancel: String
     val historyEmptyDescription: String
 
     // Generation Result

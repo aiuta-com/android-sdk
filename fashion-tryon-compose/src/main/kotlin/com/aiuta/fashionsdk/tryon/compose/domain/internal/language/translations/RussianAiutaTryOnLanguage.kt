@@ -46,10 +46,8 @@ internal class RussianAiutaTryOnLanguage(
     override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
 
     // History
-    override val historySelectorDisabledButton: String = "Выбрать"
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
     override val historySelectorEnableButtonUnselectAll: String = "Снять выделение"
-    override val historySelectorEnableButtonCancel: String = "Отмена"
     override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // Generation Result
