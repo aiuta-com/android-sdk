@@ -52,7 +52,7 @@ internal fun SelectorCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             TextButton(
-                text = stringResources.historySelectorEnableButtonCancel,
+                text = stringResources.cancel,
                 backgroundColor = theme.colors.onDark,
                 textColor = theme.colors.primary,
             ) {

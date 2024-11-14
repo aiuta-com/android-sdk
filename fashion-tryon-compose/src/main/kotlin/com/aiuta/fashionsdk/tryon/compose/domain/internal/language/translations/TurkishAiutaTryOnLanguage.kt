@@ -47,10 +47,8 @@ internal class TurkishAiutaTryOnLanguage(
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
 
     // History
-    override val historySelectorDisabledButton: String = "Seç"
     override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"
     override val historySelectorEnableButtonUnselectAll: String = "Tümünü Kaldır"
-    override val historySelectorEnableButtonCancel: String = "İptal"
     override val historyEmptyDescription: String = "İlk ürün denemenizden sonra deneme geçmişiniz burada saklanacaktır"
 
     // Generation Result

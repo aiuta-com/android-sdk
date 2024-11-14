@@ -49,10 +49,8 @@ internal class EnglishAiutaTryOnLanguage(
     override val imageSelectorGeneratingOutfit: String = "Generating outfit"
 
     // History
-    override val historySelectorDisabledButton: String = "Select"
     override val historySelectorEnableButtonSelectAll: String = "Select all"
     override val historySelectorEnableButtonUnselectAll: String = "Unselect all"
-    override val historySelectorEnableButtonCancel: String = "Cancel"
     override val historyEmptyDescription: String =
         "Once you try on first item your try-on history would be stored here"
 
