@@ -33,6 +33,7 @@ internal class EnglishAiutaTryOnLanguage(
             "and <b><a href=\"$termsOfServiceUrl\">Terms of Use.</a></b>"
     override val onboardingPageConsentAgreePoint: String =
         "I agree to allow $brand to process my photo"
+    override val onboardingPageConsentSupplementaryPoints: List<String> = emptyList()
     override val onboardingAppbarTryonPage: String = "<b>Step 1/3</b> - How it works"
     override val onboardingAppbarBestResultPage: String = "<b>Step 2/3</b> - For best result"
     override val onboardingAppbarConsentPage: String = "<b>Step 3/3</b> - Consent"

@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.SupplementaryConsent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
@@ -53,7 +54,14 @@ internal fun OnboardingController.nextPage(
                 pageId = AiutaAnalyticPageId.CONSENT,
                 productId = skuItem.skuId,
             )
-            configuration.dataProvider?.obtainUserConsentAction?.invoke()
+            configuration.dataProvider?.obtainUserConsentAction?.invoke(
+                supplementPointsMap.map { item ->
+                    SupplementaryConsent(
+                        consentText = item.key,
+                        isObtained = item.value,
+                    )
+                },
+            )
 
             // Finish
             controller.sendOnboardingEvent(
@@ -107,16 +115,23 @@ internal fun OnboardingController.changeInternalTryOnPage(newPage: Int) {
 }
 
 // Agreement
-internal fun OnboardingController.updateAgreementState(newState: Boolean) {
-    isAgreementChecked.value = newState
+internal fun OnboardingController.updateMandatoryAgreementState(newState: Boolean) {
+    isMandatoryAgreementChecked.value = newState
+}
+
+internal fun OnboardingController.updateSupplementAgreementState(
+    point: String,
+    newState: Boolean,
+) {
+    supplementPointsMap[point] = newState
 }
 
 @Composable
 internal fun OnboardingController.listenIsPrimaryButtonEnabled(): State<Boolean> {
     return remember(
         state.value,
-        isAgreementChecked.value,
+        isMandatoryAgreementChecked.value,
     ) {
-        mutableStateOf(state.value !is ConsentPage || isAgreementChecked.value)
+        mutableStateOf(state.value !is ConsentPage || isMandatoryAgreementChecked.value)
     }
 }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 public class AiutaDataProvider(
     // Consent
     public val isUserConsentObtainedFlow: StateFlow<Boolean>,
-    public val obtainUserConsentAction: () -> Unit,
+    public val obtainUserConsentAction: (List<SupplementaryConsent>) -> Unit,
     // Generated images
     public val generatedImagesFlow: StateFlow<List<AiutaHistoryImage>>,
     public val addGeneratedImagesAction: (List<AiutaHistoryImage>) -> Unit,
