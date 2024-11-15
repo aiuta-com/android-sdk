@@ -106,8 +106,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLi
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/CustomLanguage : com/aiuta/fashionsdk/tryon/compose/domain/internal/language/InternalAiutaTryOnLanguage, com/aiuta/fashionsdk/tryon/compose/domain/models/AiutaTryOnLanguage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun getAddToCart ()Ljava/lang/String;
 	public fun getAddToWish ()Ljava/lang/String;
 	public fun getAppBarHistory ()Ljava/lang/String;
@@ -152,6 +152,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/CustomLangua
 	public fun getOnboardingPageBestResultTopic ()Ljava/lang/String;
 	public fun getOnboardingPageConsentAgreePoint ()Ljava/lang/String;
 	public fun getOnboardingPageConsentBody ()Ljava/lang/String;
+	public fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
 	public fun getOnboardingPageConsentTopic ()Ljava/lang/String;
 	public fun getOnboardingPageTryonSubtopic ()Ljava/lang/String;
 	public fun getOnboardingPageTryonTopic ()Ljava/lang/String;
@@ -238,13 +239,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLangu
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/AiutaDataProvider {
 	public static final field $stable I
-	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function0;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 	public final fun getAddGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getAddUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getDeleteGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getDeleteUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getGeneratedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
-	public final fun getObtainUserConsentAction ()Lkotlin/jvm/functions/Function0;
+	public final fun getObtainUserConsentAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getSelectUploadedImageAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getUploadedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
 	public final fun isErrorDeletingGeneratedImagesFlow ()Lkotlinx/coroutines/flow/SharedFlow;
@@ -257,6 +258,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun getId ()Ljava/lang/String;
 	public final fun getUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dataprovider/SupplementaryConsent {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Z)V
+	public final fun getConsentText ()Ljava/lang/String;
+	public final fun isObtained ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/dimensions/AiutaDimensions {

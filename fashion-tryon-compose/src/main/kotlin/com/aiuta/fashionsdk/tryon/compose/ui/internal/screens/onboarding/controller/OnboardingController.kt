@@ -5,11 +5,13 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
@@ -19,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
     val theme = LocalTheme.current
+    val stringResources = LocalAiutaTryOnStringResources.current
 
     // Try on pages + Best result page
     val pagerState =
@@ -32,6 +35,7 @@ internal fun rememberOnboardingController(): OnboardingController {
     return remember {
         OnboardingController(
             aiutaImages = theme.images,
+            supplementPoint = stringResources.onboardingPageConsentSupplementaryPoints,
             pagerState = pagerState,
             scope = scope,
         )
@@ -41,11 +45,18 @@ internal fun rememberOnboardingController(): OnboardingController {
 @Immutable
 internal class OnboardingController(
     aiutaImages: AiutaImages,
+    supplementPoint: List<String>,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
 ) {
     // Agreement
-    val isAgreementChecked = mutableStateOf(false)
+    val isMandatoryAgreementChecked = mutableStateOf(false)
+    val supplementPointsMap =
+        mutableStateMapOf<String, Boolean>(
+            *supplementPoint.map {
+                it to false
+            }.toTypedArray(),
+        )
 
     // Onboarding queue
     val onboardingStatesQueue =

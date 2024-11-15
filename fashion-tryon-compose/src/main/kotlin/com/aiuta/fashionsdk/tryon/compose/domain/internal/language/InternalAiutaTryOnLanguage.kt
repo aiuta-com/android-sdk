@@ -23,6 +23,7 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingPageConsentTopic: String
     val onboardingPageConsentBody: String
     val onboardingPageConsentAgreePoint: String
+    val onboardingPageConsentSupplementaryPoints: List<String>
     val onboardingAppbarTryonPage: String
     val onboardingAppbarBestResultPage: String
     val onboardingAppbarConsentPage: String
