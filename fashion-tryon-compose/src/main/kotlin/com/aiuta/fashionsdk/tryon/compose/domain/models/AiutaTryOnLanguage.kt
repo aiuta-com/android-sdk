@@ -11,6 +11,7 @@ public class EnglishLanguage(
     public val brand: String,
     public val termsOfServiceUrl: String,
     public val privacyPolicyUrl: String,
+    public val onboardingPageConsentSupplementaryPoints: List<String>,
 ) : AiutaTryOnLanguage {
     public companion object {
         // Code in ISO-639
@@ -22,6 +23,7 @@ public class TurkishLanguage(
     public val brand: String,
     public val termsOfServiceUrl: String,
     public val privacyPolicyUrl: String,
+    public val onboardingPageConsentSupplementaryPoints: List<String>,
 ) : AiutaTryOnLanguage {
     public companion object {
         // Code in ISO-639
@@ -33,6 +35,7 @@ public class RussianLanguage(
     public val brand: String,
     public val termsOfServiceUrl: String,
     public val privacyPolicyUrl: String,
+    public val onboardingPageConsentSupplementaryPoints: List<String>,
 ) : AiutaTryOnLanguage {
     public companion object {
         // Code in ISO-639

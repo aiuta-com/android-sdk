@@ -6,6 +6,7 @@ internal class TurkishAiutaTryOnLanguage(
     brand: String,
     termsOfServiceUrl: String,
     privacyPolicyUrl: String,
+    override val onboardingPageConsentSupplementaryPoints: List<String>,
 ) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "Geçmiş"
@@ -32,7 +33,6 @@ internal class TurkishAiutaTryOnLanguage(
             "ve <b><a href=\"$termsOfServiceUrl\">Kullanım Koşulları</a></b> doğrultusunda işlenecektir."
     override val onboardingPageConsentAgreePoint: String =
         "$brand'ın fotoğrafımı işlemesine izin veriyorum"
-    override val onboardingPageConsentSupplementaryPoints: List<String> = emptyList()
     override val onboardingAppbarTryonPage: String = "<b>Adım 1/3</b> - Nasıl çalışır"
     override val onboardingAppbarBestResultPage: String = "<b>Adım 2/3</b> - En iyi sonuçlar"
     override val onboardingAppbarConsentPage: String = "<b>Adım 3/3</b> - Onay"
