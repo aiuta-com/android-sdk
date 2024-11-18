@@ -171,8 +171,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/EnglishLangu
 	public static final field $stable I
 	public static final field CODE Ljava/lang/String;
 	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/EnglishLanguage$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public final fun getBrand ()Ljava/lang/String;
+	public final fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
 	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
 	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
 }
@@ -184,8 +185,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/RussianLangu
 	public static final field $stable I
 	public static final field CODE Ljava/lang/String;
 	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/RussianLanguage$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public final fun getBrand ()Ljava/lang/String;
+	public final fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
 	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
 	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
 }
@@ -228,8 +230,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLangu
 	public static final field $stable I
 	public static final field CODE Ljava/lang/String;
 	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/TurkishLanguage$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public final fun getBrand ()Ljava/lang/String;
+	public final fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
 	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
 	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
 }

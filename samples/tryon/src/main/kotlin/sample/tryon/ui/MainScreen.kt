@@ -90,6 +90,7 @@ fun MainScreen() {
                             brand = "YOUR brand",
                             termsOfServiceUrl = "https://brand.com/tos",
                             privacyPolicyUrl = "https://brand.com/pp",
+                            onboardingPageConsentSupplementaryPoints = emptyList(),
                         ),
                 )
             }
