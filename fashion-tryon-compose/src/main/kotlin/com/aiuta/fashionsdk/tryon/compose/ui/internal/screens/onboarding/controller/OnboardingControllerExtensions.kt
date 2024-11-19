@@ -49,25 +49,27 @@ internal fun OnboardingController.nextPage(
             controller.onboardingInteractor.setOnboardingAsFinished()
 
             // Consent
-            controller.sendOnboardingEvent(
-                eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
-                pageId = AiutaAnalyticPageId.CONSENT,
-                productId = skuItem.skuId,
-            )
-            configuration.dataProvider?.obtainUserConsentAction?.invoke(
+            val supplementaryConsents =
                 supplementPointsMap.map { item ->
                     SupplementaryConsent(
                         consentText = item.key,
                         isObtained = item.value,
                     )
-                },
+                }
+            controller.sendOnboardingEvent(
+                eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
+                pageId = AiutaAnalyticPageId.CONSENT,
+                productId = skuItem.skuId,
+                supplementaryConsents = supplementaryConsents,
             )
+            configuration.dataProvider?.obtainUserConsentAction?.invoke(supplementaryConsents)
 
             // Finish
             controller.sendOnboardingEvent(
                 eventType = AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED,
                 pageId = AiutaAnalyticPageId.CONSENT,
                 productId = skuItem.skuId,
+                supplementaryConsents = null,
             )
             controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
         }

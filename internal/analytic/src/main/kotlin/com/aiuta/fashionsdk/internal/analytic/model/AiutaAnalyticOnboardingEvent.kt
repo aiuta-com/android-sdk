@@ -12,6 +12,8 @@ public class AiutaAnalyticOnboardingEvent(
     public override val pageId: AiutaAnalyticPageId,
     @SerialName("productId")
     public override val productId: String,
+    @SerialName("supplementaryConsents")
+    public val supplementaryConsents: List<AiutaSupplementaryConsent>? = null,
 ) : ExternalAnalyticEvent
 
 @Serializable
@@ -25,3 +27,11 @@ public enum class AiutaAnalyticOnboardingEventType {
     @SerialName("onboardingFinished")
     ONBOARDING_FINISHED,
 }
+
+@Serializable
+public class AiutaSupplementaryConsent(
+    @SerialName("consentText")
+    public val consentText: String,
+    @SerialName("isObtained")
+    public val isObtained: Boolean,
+)
