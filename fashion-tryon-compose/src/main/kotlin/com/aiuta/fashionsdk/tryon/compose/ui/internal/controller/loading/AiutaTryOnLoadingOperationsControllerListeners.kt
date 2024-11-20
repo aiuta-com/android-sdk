@@ -2,6 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGeneratedImagesToastErrorState
@@ -11,6 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -43,7 +47,8 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                     // Get current loadings & retries
                     val loadingActiveGenerations = loadingGenerationsHolder.getList()
                     val retryActiveGenerations = retryGenerationsHolder.getList()
-                    val sessionGenerations = controller.sessionGenerationInteractor.sessionGenerations
+                    val sessionGenerations =
+                        controller.sessionGenerationInteractor.sessionGenerations
 
                     // Clean retries, because they can executed a little bit later
                     retryActiveGenerations.forEach { activeGeneration ->
@@ -123,6 +128,9 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
 
     // Observe external changes of generated images and delete
     dataProvider?.let {
+        val context = LocalContext.current
+        val warmUpInteractor = remember { WarmUpInteractor(context) }
+
         LaunchedEffect(Unit) {
             dataProvider
                 .uploadedImagesFlow
@@ -149,8 +157,17 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
                         }
                     }
 
+                    // Warm up image
+                    val operation = operations.firstOrNull()
+                    val imageUrl = operation?.sourceImageUrls?.firstOrNull()
+
+                    imageUrl?.let { warmUpInteractor.warmUp(it) }
+
+                    // Save delay for smooth changing
+                    delay(700)
+
                     // Update active operation
-                    controller.updateActiveOperationOrSetEmpty(operations.firstOrNull())
+                    controller.updateActiveOperationOrSetEmpty(operation)
                 }
                 .launchIn(generalScope)
         }
