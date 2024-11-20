@@ -53,7 +53,7 @@ internal object TurkishAiutaTryOnLanguage : InternalAiutaTryOnLanguage {
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Atla"
-    override val feedbackSheetSend: String = "Göndermek"
+    override val feedbackSheetSend: String = "Gönder"
     override val feedbackSheetSendFeedback: String = "Geri bildirimi gönder"
 
     // Dialog
