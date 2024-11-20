@@ -24,6 +24,7 @@ internal sealed interface SKUGenerationOperation {
     }
 
     class SuccessOperation(
+        public val sourceImageId: String,
         override val sourceImage: String,
         val generatedImages: List<GeneratedImageUIModel>,
     ) : SKUGenerationOperation
@@ -61,6 +62,7 @@ internal fun SKUGenerationStatus.toOperation(sourceImage: String): SKUGeneration
 
         is SKUGenerationStatus.SuccessGenerationStatus ->
             SKUGenerationOperation.SuccessOperation(
+                sourceImageId = sourceImageId,
                 sourceImage = sourceImage,
                 generatedImages = images.map { it.toUiModel() },
             )

@@ -26,7 +26,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.ImageSelectorFooter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorAutoTryOnListener
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 
 @Composable
@@ -47,7 +46,6 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
     sendOpenMainScreenEvent()
     sendPageEvent(pageId = AiutaAnalyticPageId.IMAGE_PICKER)
 
-    ImageSelectorListener(enable = controller.isGenerationActive.value)
     ImageSelectorAutoTryOnListener()
 
     Column(

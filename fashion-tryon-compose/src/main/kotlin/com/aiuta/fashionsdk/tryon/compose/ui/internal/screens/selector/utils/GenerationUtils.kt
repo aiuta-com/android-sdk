@@ -23,9 +23,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTry
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
@@ -49,8 +51,12 @@ internal fun FashionTryOnController.startGeneration(
         activateGeneration()
 
         val errorCount = AtomicInteger()
+        val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
 
-        val rawGenerationFlows = solveStartGenerationFlows(context = context)
+        val rawGenerationFlows =
+            solveStartGenerationFlows(
+                generatedOperationFactory = generatedOperationFactory,
+            )
         val generationFlows =
             rawGenerationFlows.mapIndexed { index, generationFlow ->
                 generationFlow
@@ -83,19 +89,20 @@ internal fun FashionTryOnController.startGeneration(
                     dialogController = dialogController,
                     operation = operation,
                     stringResources = stringResources,
+                    generatedOperationFactory = generatedOperationFactory,
                 )
             }
     }
 }
 
 private fun FashionTryOnController.solveStartGenerationFlows(
-    context: Context,
+    generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
     return when (val activeImages = lastSavedImages.value) {
         is LastSavedImages.UriSource -> {
             startGenerationWithUriSource(
-                context = context,
                 uriSource = activeImages,
+                generatedOperationFactory = generatedOperationFactory,
             )
         }
 
@@ -108,12 +115,9 @@ private fun FashionTryOnController.solveStartGenerationFlows(
 }
 
 private fun FashionTryOnController.startGenerationWithUriSource(
-    context: Context,
     uriSource: LastSavedImages.UriSource,
+    generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
-    val warmUpInteractor = WarmUpInteractor(context)
-    val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
-
     return uriSource.imageUris.map { uri ->
         aiutaTryOn()
             .startSKUGeneration(
@@ -138,27 +142,6 @@ private fun FashionTryOnController.startGenerationWithUriSource(
                         sourceImageUrl = status.sourceImageUrl,
                         operationId = currentOperationId,
                     )
-
-                    if (lastSavedOperation.value?.operationId != currentOperationId) {
-                        val images =
-                            listOf(
-                                SourceImage(
-                                    imageId = status.sourceImageId,
-                                    imageUrl = status.sourceImageUrl,
-                                ),
-                            )
-
-                        // Warm up for smooth change
-                        warmUpInteractor.warmUp(status.sourceImageUrl)
-
-                        // Change to new
-                        val newOperation =
-                            GeneratedOperationUIModel(
-                                operationId = currentOperationId,
-                                sourceImages = images,
-                            )
-                        updateActiveOperationOrSetEmpty(newOperation)
-                    }
                 }
             }
     }
@@ -188,6 +171,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
     dialogController: AiutaTryOnDialogController,
     operation: SKUGenerationOperation,
     stringResources: InternalAiutaTryOnLanguage,
+    generatedOperationFactory: GeneratedOperationFactory,
 ) {
     when (operation) {
         is SKUGenerationOperation.LoadingOperation -> {
@@ -197,7 +181,8 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
 
             // Check is this operation already exist
             // Should think about optimization for O(n)
-            val existedOperation = generationOperations.find { it.sourceImage == operation.sourceImage }
+            val existedOperation =
+                generationOperations.find { it.sourceImage == operation.sourceImage }
             val existedOperationIndex =
                 existedOperation?.let {
                     generationOperations.indexOf(
@@ -219,9 +204,20 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                 // Try warm up first
                 addSuccessGenerations(operation)
 
-                // Then move to result screen
+                // Set state as success
                 generationStatus.value = SKUGenerationUIStatus.SUCCESS
                 refreshOperation(operation)
+
+                // Navigate to results
+                navigateTo(NavigationScreen.GenerationResult)
+                deactivateGeneration()
+
+                // Only after navigation, let's change if need active image to backend
+                refreshActiveImage(
+                    context = context,
+                    generatedOperationFactory = generatedOperationFactory,
+                    operation = operation,
+                )
             }
         }
 
@@ -261,6 +257,42 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
             }
 
             refreshOperation(operation)
+        }
+    }
+}
+
+private suspend fun FashionTryOnController.refreshActiveImage(
+    context: Context,
+    generatedOperationFactory: GeneratedOperationFactory,
+    operation: SKUGenerationOperation.SuccessOperation,
+) {
+    // Refresh only if active operation with local image
+    if (lastSavedImages.value is LastSavedImages.UriSource) {
+        val warmUpInteractor = WarmUpInteractor(context)
+
+        val currentOperationId =
+            generatedOperationFactory.getOperationId(
+                imageId = operation.sourceImageId,
+            )
+        if (lastSavedOperation.value?.operationId != currentOperationId) {
+            val images =
+                listOf(
+                    SourceImage(
+                        imageId = operation.sourceImageId,
+                        imageUrl = operation.sourceImage,
+                    ),
+                )
+
+            // Warm up for smooth change
+            warmUpInteractor.warmUp(operation.sourceImage)
+
+            // Change to new
+            val newOperation =
+                GeneratedOperationUIModel(
+                    operationId = currentOperationId,
+                    sourceImages = images,
+                )
+            updateActiveOperationOrSetEmpty(newOperation)
         }
     }
 }
