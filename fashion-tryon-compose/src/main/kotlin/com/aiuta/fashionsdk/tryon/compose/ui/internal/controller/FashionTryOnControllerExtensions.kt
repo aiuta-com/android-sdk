@@ -41,6 +41,10 @@ internal fun FashionTryOnController.popUpAndNavigateTo(
 ) {
     // Remove all screens including popUpScreen
     while (true) {
+        if (backStack.isEmpty()) {
+            break
+        }
+
         val previousScreen = backStack.pop()
         if (popUpScreen == null || previousScreen == popUpScreen) {
             break
