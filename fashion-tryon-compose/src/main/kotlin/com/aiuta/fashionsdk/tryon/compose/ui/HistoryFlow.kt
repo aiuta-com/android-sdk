@@ -55,7 +55,7 @@ public fun HistoryFlow(
         val controller = LocalController.current
 
         LaunchedEffect(Unit) {
-            controller.navigateTo(NavigationScreen.HISTORY)
+            controller.navigateTo(NavigationScreen.History)
         }
 
         HistoryScreen(modifier = Modifier.fillMaxSize())
@@ -80,7 +80,7 @@ public fun HistoryFlow(
                     controller.zoomImageController.closeZoomImageScreen(scope)
                 }
 
-                controller.currentScreen.value == NavigationScreen.HISTORY -> {
+                controller.currentScreen.value == NavigationScreen.History -> {
                     // Use custom, because we need deactivate select mode first
                     controller.deactivateSelectMode()
                     controller.navigateBack()

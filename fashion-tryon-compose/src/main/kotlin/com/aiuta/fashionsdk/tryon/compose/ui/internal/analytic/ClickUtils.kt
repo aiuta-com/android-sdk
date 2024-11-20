@@ -53,12 +53,12 @@ internal fun FashionTryOnController.clickAddToCart(
 
 internal fun FashionTryOnController.clickClose(
     origin: FinishSession.Origin,
-    pageId: AiutaAnalyticPageId,
+    pageId: AiutaAnalyticPageId? = null,
 ) {
     analytic.sendFinishSessionEvent(
         action = FinishSession.Action.NONE,
         origin = origin,
-        pageId = pageId,
+        pageId = pageId ?: currentScreen.value.exitPageId,
         skuItem = activeSKUItem.value,
     )
     aiutaTryOnListeners().closeClick(activeSKUItem.value)

@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
@@ -36,6 +37,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.compone
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.listenIsPrimaryButtonEnabled
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.nextPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.previousPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.rememberOnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
@@ -53,6 +55,10 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
     if (!configuration.isPreOnboardingAvailable) {
         sendStartOnBoardingEvent()
+    }
+
+    BackHandler {
+        onboardingController.previousPage(controller)
     }
 
     Column(

@@ -88,7 +88,7 @@ public fun AiutaTryOnFlow(
                     controller.bottomSheetNavigator.hide()
                 }
 
-                controller.currentScreen.value == NavigationScreen.HISTORY -> {
+                controller.currentScreen.value == NavigationScreen.History -> {
                     // Use custom, because we need deactivate select mode first
                     controller.deactivateSelectMode()
                     controller.navigateBack()

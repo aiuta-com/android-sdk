@@ -21,7 +21,7 @@ internal fun ImageSelectorListener(enable: Boolean) {
 
     LaunchedEffect(generationStatus) {
         if (generationStatus == SKUGenerationUIStatus.SUCCESS && enable) {
-            controller.navigateTo(NavigationScreen.GENERATION_RESULT)
+            controller.navigateTo(NavigationScreen.GenerationResult)
             controller.deactivateGeneration()
         }
     }

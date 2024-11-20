@@ -13,9 +13,9 @@ import kotlinx.coroutines.flow.onEach
 internal fun FashionTryOnController.generationNavigationListener() {
     // We should clear generation status and list of operation
     // every time, when move back from result to selector screen,
-    // therefore let's clear it on each navigation to NavigationScreen.IMAGE_SELECTOR
+    // therefore let's clear it on each navigation to NavigationScreen.ImageSelector
     LaunchedEffect(currentScreen.value) {
-        if (currentScreen.value == NavigationScreen.IMAGE_SELECTOR) {
+        if (currentScreen.value == NavigationScreen.ImageSelector) {
             if (!isGenerationActive.value) {
                 generationStatus.value = SKUGenerationUIStatus.IDLE
             }

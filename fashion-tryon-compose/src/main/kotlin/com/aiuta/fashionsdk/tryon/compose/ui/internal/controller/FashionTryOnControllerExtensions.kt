@@ -5,7 +5,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
@@ -21,8 +20,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.Sel
 // Configs
 internal val skippedBackStackScreens =
     setOf(
-        NavigationScreen.SPLASH,
-        NavigationScreen.ONBOARDING,
+        NavigationScreen.Splash,
+        NavigationScreen.Onboarding,
     )
 
 // Navigation
@@ -51,16 +50,15 @@ internal fun FashionTryOnController.popUpAndNavigateTo(
     navigateTo(navigateToScreen)
 }
 
-internal fun FashionTryOnController.navigateBack() {
+internal fun FashionTryOnController.navigateBack(
+    origin: FinishSession.Origin = FinishSession.Origin.MAIN_SCREEN,
+) {
     if (backStack.isNotEmpty()) {
         val previousScreen = backStack.pop()
 
         currentScreen.value = previousScreen
     } else {
-        clickClose(
-            origin = FinishSession.Origin.MAIN_SCREEN,
-            pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-        )
+        clickClose(origin = origin)
     }
 }
 
