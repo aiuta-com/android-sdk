@@ -22,7 +22,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.Sel
 internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.SPLASH,
-        NavigationScreen.PREONBOARDING,
         NavigationScreen.ONBOARDING,
     )
 
@@ -35,6 +34,21 @@ internal fun FashionTryOnController.navigateTo(newScreen: NavigationScreen) {
 
     // Set new screen
     currentScreen.value = newScreen
+}
+
+internal fun FashionTryOnController.popUpAndNavigateTo(
+    navigateToScreen: NavigationScreen,
+    popUpScreen: NavigationScreen? = null,
+) {
+    // Remove all screens including popUpScreen
+    while (true) {
+        val previousScreen = backStack.pop()
+        if (popUpScreen == null || previousScreen == popUpScreen) {
+            break
+        }
+    }
+
+    navigateTo(navigateToScreen)
 }
 
 internal fun FashionTryOnController.navigateBack() {

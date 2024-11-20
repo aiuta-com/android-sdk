@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.Supplementa
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.popUpAndNavigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendContinueOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
@@ -71,7 +71,7 @@ internal fun OnboardingController.nextPage(
                 productId = skuItem.skuId,
                 supplementaryConsents = null,
             )
-            controller.navigateTo(NavigationScreen.IMAGE_SELECTOR)
+            controller.popUpAndNavigateTo(NavigationScreen.IMAGE_SELECTOR)
         }
     }
 }
