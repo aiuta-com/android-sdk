@@ -45,6 +45,7 @@ internal fun TryOnPageContent(
         remember(onboardingController.pagerState.settledPage) {
             derivedStateOf {
                 state.internalPages.getOrNull(onboardingController.pagerState.settledPage)
+                    ?: state.internalPages.last()
             }
         }
 
@@ -86,7 +87,7 @@ internal fun TryOnPageContent(
 @Composable
 private fun ImagesBlock(
     modifier: Modifier = Modifier,
-    currentPageTransition: Transition<TryOnPage.InternalPage?>,
+    currentPageTransition: Transition<TryOnPage.InternalPage>,
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
@@ -97,24 +98,28 @@ private fun ImagesBlock(
         contentAlignment = Alignment.Center,
     ) {
         currentPageTransition.AnimatedContent(
-            modifier = Modifier.fillMaxHeight().fillMaxWidth(0.8f),
+            modifier =
+                Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(0.8f),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { page ->
-            page?.let {
-                AiutaImage(
-                    modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .clip(theme.shapes.mainImage),
-                    image = page.mainImage,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                )
-            }
+            AiutaImage(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .clip(theme.shapes.mainImage),
+                image = page.mainImage,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+            )
         }
 
         Column(
-            modifier = Modifier.align(Alignment.CenterStart).width(90.dp),
+            modifier =
+                Modifier
+                    .align(Alignment.CenterStart)
+                    .width(90.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

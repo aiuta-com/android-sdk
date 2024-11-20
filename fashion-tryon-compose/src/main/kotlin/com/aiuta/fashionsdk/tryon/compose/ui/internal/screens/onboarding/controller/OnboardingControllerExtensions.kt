@@ -9,13 +9,12 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.SupplementaryConsent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.popUpAndNavigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendContinueOnBoardingEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.launch
@@ -71,7 +70,7 @@ internal fun OnboardingController.nextPage(
                 productId = skuItem.skuId,
                 supplementaryConsents = null,
             )
-            controller.popUpAndNavigateTo(NavigationScreen.IMAGE_SELECTOR)
+            controller.popUpAndNavigateTo(NavigationScreen.ImageSelector)
         }
     }
 }
@@ -96,15 +95,9 @@ internal fun OnboardingController.previousPage(controller: FashionTryOnControlle
 
             pagerState.animateScrollToPage(previousPageIndex)
         } else {
-            // Ask for back stack from host
-            controller.clickClose(
+            // Try to navigate back
+            controller.navigateBack(
                 origin = FinishSession.Origin.ONBOARDING_SCREEN,
-                pageId =
-                    when (state.value) {
-                        is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS
-                        is BestResultPage -> AiutaAnalyticPageId.BEST_RESULTS
-                        is ConsentPage -> AiutaAnalyticPageId.CONSENT
-                    },
             )
         }
     }

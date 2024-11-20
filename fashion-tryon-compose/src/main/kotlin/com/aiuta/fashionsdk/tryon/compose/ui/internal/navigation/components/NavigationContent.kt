@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.screenPosition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
@@ -31,7 +32,7 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
     transition.AnimatedContent(
         modifier = modifier,
         transitionSpec = {
-            if (initialState.ordinal < targetState.ordinal) {
+            if (screenPosition(initialState) < screenPosition(targetState)) {
                 rightToLeftTransition
             } else {
                 leftToRightTransition
@@ -39,38 +40,38 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
         },
     ) { targetScreen ->
         when (targetScreen) {
-            NavigationScreen.SPLASH -> {
+            NavigationScreen.Splash -> {
                 SplashScreen(
                     modifier = sharedModifier,
                     navigateTo = controller::navigateTo,
                 )
             }
 
-            NavigationScreen.PREONBOARDING -> {
+            NavigationScreen.Preonboarding -> {
                 PreOnboardingScreen(
                     modifier = Modifier.fillMaxSize(),
                 )
             }
 
-            NavigationScreen.ONBOARDING -> {
+            NavigationScreen.Onboarding -> {
                 OnboardingScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.HISTORY -> {
+            NavigationScreen.History -> {
                 HistoryScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.IMAGE_SELECTOR -> {
+            NavigationScreen.ImageSelector -> {
                 ImageSelectorScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.GENERATION_RESULT -> {
+            NavigationScreen.GenerationResult -> {
                 GenerationResultScreen(
                     modifier = sharedModifier,
                 )

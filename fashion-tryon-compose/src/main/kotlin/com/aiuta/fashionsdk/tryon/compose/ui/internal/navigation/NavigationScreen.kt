@@ -1,23 +1,54 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+
 /**
  * Be careful, order is matter for animation transitions,
  */
-internal enum class NavigationScreen {
-    SPLASH,
+internal interface NavigationScreen {
+    val exitPageId: AiutaAnalyticPageId
 
-    PREONBOARDING,
+    object Splash : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.WELCOME
+    }
 
-    ONBOARDING,
+    object Preonboarding : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.WELCOME
+    }
 
-    IMAGE_SELECTOR,
+    object Onboarding : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.HOW_IT_WORKS
+    }
 
-    GENERATION_RESULT,
+    object ImageSelector : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.IMAGE_PICKER
+    }
+
+    object GenerationResult : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.RESULTS
+    }
 
     // Utility screens
-    HISTORY,
+    object History : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.HISTORY
+    }
 }
 
 internal fun defaultStartScreen(): NavigationScreen {
-    return NavigationScreen.SPLASH
+    return NavigationScreen.Splash
+}
+
+// Stack
+private val screenStacks =
+    listOf(
+        NavigationScreen.Splash,
+        NavigationScreen.Preonboarding,
+        NavigationScreen.Onboarding,
+        NavigationScreen.ImageSelector,
+        NavigationScreen.GenerationResult,
+        NavigationScreen.History,
+    )
+
+internal fun screenPosition(screen: NavigationScreen): Int {
+    return screenStacks.indexOf(screen)
 }

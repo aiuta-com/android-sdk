@@ -72,7 +72,6 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
                     onClick = {
                         controller.clickClose(
                             origin = FinishSession.Origin.PREONBOARDING_SCREEN,
-                            pageId = AiutaAnalyticPageId.WELCOME,
                         )
                     },
                 )
@@ -129,7 +128,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
                     productId = controller.activeSKUItem.value.skuId,
                     supplementaryConsents = null,
                 )
-                controller.navigateTo(NavigationScreen.ONBOARDING)
+                controller.navigateTo(NavigationScreen.Onboarding)
             },
         )
     }
