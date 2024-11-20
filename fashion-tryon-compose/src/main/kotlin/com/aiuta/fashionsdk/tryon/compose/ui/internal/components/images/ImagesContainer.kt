@@ -53,26 +53,19 @@ private fun ImagesContainerSmall(
     getImageUrls: () -> List<String>,
 ) {
     val context = LocalContext.current
-    val theme = LocalTheme.current
     val imageUrls = getImageUrls()
 
-    Row(
-        modifier = modifier.background(theme.colors.background),
-    ) {
-        imageUrls.forEach { url ->
-            SubcomposeAsyncImage(
-                modifier = Modifier.fillMaxHeight().weight(1f),
-                model =
-                    ImageRequest.Builder(context)
-                        .data(url)
-                        .build(),
-                contentDescription = null,
-                loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
-                error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
-                contentScale = ContentScale.Crop,
-            )
-        }
-    }
+    SubcomposeAsyncImage(
+        modifier = modifier,
+        model =
+            ImageRequest.Builder(context)
+                .data(imageUrls.firstOrNull())
+                .build(),
+        contentDescription = null,
+        loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+        error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+        contentScale = ContentScale.Crop,
+    )
 }
 
 @Composable
