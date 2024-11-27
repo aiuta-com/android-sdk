@@ -3,11 +3,12 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session
 import android.content.Context
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
+import java.util.concurrent.CopyOnWriteArrayList
 
 internal class SessionGenerationInteractor(
     private val warmUpInteractor: WarmUpInteractor,
 ) {
-    private val _sessionGenerations: ArrayDeque<GeneratedImageUIModel> = ArrayDeque()
+    private val _sessionGenerations: CopyOnWriteArrayList<GeneratedImageUIModel> = CopyOnWriteArrayList()
     val sessionGenerations: List<GeneratedImageUIModel> = _sessionGenerations
 
     fun deleteGenerations(images: List<GeneratedImageUIModel>) {
@@ -22,7 +23,7 @@ internal class SessionGenerationInteractor(
 
     suspend fun addGeneration(image: GeneratedImageUIModel) {
         warmUpInteractor.warmUp(image.imageUrl)
-        _sessionGenerations.addFirst(image)
+        _sessionGenerations.add(0, image)
     }
 
     suspend fun addGenerations(images: List<GeneratedImageUIModel>) {
