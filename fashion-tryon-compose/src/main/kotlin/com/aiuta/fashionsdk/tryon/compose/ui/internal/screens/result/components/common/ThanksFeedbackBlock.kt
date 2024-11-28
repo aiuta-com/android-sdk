@@ -16,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,7 +43,6 @@ internal fun ThanksFeedbackBlock(
     val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
     val stringResources = LocalAiutaTryOnStringResources.current
-    val scope = rememberCoroutineScope()
 
     val bottomSheetNavigator = controller.bottomSheetNavigator
     val feedbackData =
@@ -66,7 +64,7 @@ internal fun ThanksFeedbackBlock(
             lastBottomSheetScreen is NavigationBottomSheetScreen.Feedback ||
             lastBottomSheetScreen is NavigationBottomSheetScreen.ExtraFeedback
         ) {
-            generationResultController.showThanksFeedbackBlock(scope)
+            generationResultController.showThanksFeedbackBlock()
             bottomSheetNavigator.lastBottomSheetScreen.value = NavigationBottomSheetScreen.IDLE
         }
     }

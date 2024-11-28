@@ -16,7 +16,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -55,7 +54,6 @@ internal fun FeedbackBlock(
     val dataController = LocalAiutaTryOnDataController.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
-    val scope = rememberCoroutineScope()
     val isFeedbackSelected =
         remember {
             mutableStateOf(false)
@@ -115,7 +113,7 @@ internal fun FeedbackBlock(
                     ),
             )
         } else {
-            generationResultController.showThanksFeedbackBlock(scope)
+            generationResultController.showThanksFeedbackBlock()
         }
     }
 
@@ -141,7 +139,7 @@ internal fun FeedbackBlock(
             },
             onLikeClick = {
                 controller.sendLikeGenerationFeedback(itemIndex)
-                generationResultController.showThanksFeedbackBlock(scope)
+                generationResultController.showThanksFeedbackBlock()
                 isFeedbackSelected.value = true
             },
         )
