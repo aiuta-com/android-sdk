@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,7 +28,6 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isCustomLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -49,6 +49,7 @@ internal fun FeedbackBlock(
     itemIndex: Int,
     hazeState: HazeState,
     generationResultController: GenerationResultController,
+    isInterfaceVisible: State<Boolean>,
 ) {
     val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
@@ -69,9 +70,11 @@ internal fun FeedbackBlock(
                 val backendCondition = feedbackData.value != null
                 val customLanguageCondition =
                     stringResources.isCustomLanguage() &&
-                        (stringResources as? CustomLanguage)?.feedbackSheetTitle != null
+                        stringResources.feedbackSheetTitle != null
 
-                selectionCondition && (backendCondition || customLanguageCondition)
+                selectionCondition &&
+                    isInterfaceVisible.value &&
+                    (backendCondition || customLanguageCondition)
             }
         }
 
@@ -83,10 +86,10 @@ internal fun FeedbackBlock(
 
         // In priority custom language
         if (stringResources.isCustomLanguage()) {
-            title = (stringResources as? CustomLanguage)?.feedbackSheetTitle
-            options = (stringResources as? CustomLanguage)?.feedbackSheetOptions.orEmpty()
-            extraOption = (stringResources as? CustomLanguage)?.feedbackSheetExtraOption
-            extraOptionTitle = (stringResources as? CustomLanguage)?.feedbackSheetExtraOptionTitle
+            title = stringResources.feedbackSheetTitle
+            options = stringResources.feedbackSheetOptions.orEmpty()
+            extraOption = stringResources.feedbackSheetExtraOption
+            extraOptionTitle = stringResources.feedbackSheetExtraOptionTitle
         } else {
             val data = feedbackData.value
 

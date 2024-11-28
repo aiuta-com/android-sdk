@@ -225,16 +225,17 @@ internal fun BoxScope.PagerItemInterface(
                         .align(Alignment.BottomStart)
                         .padding(12.dp),
             )
-
-            FeedbackBlock(
-                modifier =
-                    Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(12.dp),
-                itemIndex = itemIndex,
-                hazeState = hazeState,
-                generationResultController = generationResultController,
-            )
         }
     }
+
+    FeedbackBlock(
+        modifier =
+            Modifier
+                .align(Alignment.BottomEnd)
+                .padding(12.dp),
+        itemIndex = itemIndex,
+        hazeState = hazeState,
+        generationResultController = generationResultController,
+        isInterfaceVisible = isVisible,
+    )
 }
