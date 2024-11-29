@@ -66,7 +66,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
 
                     // Clean session history
                     sessionGenerations.forEach { generation ->
-                        if (!images.contains(generation)) {
+                        if (images.indexOfFirst { it.id == generation.id } >= 0) {
                             controller.sessionGenerationInteractor.deleteGeneration(generation)
                         }
                     }

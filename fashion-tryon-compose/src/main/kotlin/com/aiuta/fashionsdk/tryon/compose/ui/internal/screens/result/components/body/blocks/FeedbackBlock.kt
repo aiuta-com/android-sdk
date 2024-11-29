@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isCustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -46,6 +47,7 @@ import dev.chrisbanes.haze.hazeChild
 @Composable
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
+    sessionImage: SessionImageUIModel,
     itemIndex: Int,
     hazeState: HazeState,
     generationResultController: GenerationResultController,
@@ -55,24 +57,20 @@ internal fun FeedbackBlock(
     val dataController = LocalAiutaTryOnDataController.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
-    val isFeedbackSelected =
-        remember {
-            mutableStateOf(false)
-        }
     val feedbackData =
         remember {
             mutableStateOf<FeedbackFeatureUiModel?>(null)
         }
     val isFeedbackVisible =
-        remember {
+        remember(sessionImage, feedbackData, stringResources) {
             derivedStateOf {
-                val selectionCondition = !isFeedbackSelected.value
+                val isFeedbackNotProvided = !sessionImage.isFeedbackProvided
                 val backendCondition = feedbackData.value != null
                 val customLanguageCondition =
                     stringResources.isCustomLanguage() &&
                         stringResources.feedbackSheetTitle != null
 
-                selectionCondition &&
+                isFeedbackNotProvided &&
                     isInterfaceVisible.value &&
                     (backendCondition || customLanguageCondition)
             }
@@ -138,12 +136,12 @@ internal fun FeedbackBlock(
             onDislikeClick = {
                 controller.sendDislikeGenerationFeedback(itemIndex)
                 onFeedbackClick()
-                isFeedbackSelected.value = true
+                controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
             },
             onLikeClick = {
                 controller.sendLikeGenerationFeedback(itemIndex)
                 generationResultController.showThanksFeedbackBlock()
-                isFeedbackSelected.value = true
+                controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
             },
         )
     }

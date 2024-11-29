@@ -24,6 +24,13 @@ internal fun GeneratedImageUIModel.toEntity(): GeneratedImageEntity {
     )
 }
 
+internal fun GeneratedImageUIModel.toSessionUiModel(): SessionImageUIModel {
+    return SessionImageUIModel(
+        id = id,
+        imageUrl = imageUrl,
+    )
+}
+
 internal fun SKUGeneratedImage.toUiModel(): GeneratedImageUIModel {
     return GeneratedImageUIModel(
         id = id,
