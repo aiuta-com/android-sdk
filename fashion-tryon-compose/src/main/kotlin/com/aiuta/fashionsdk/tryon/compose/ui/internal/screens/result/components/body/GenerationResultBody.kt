@@ -39,6 +39,7 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
@@ -95,26 +96,28 @@ internal fun GenerationResultBody(
                 }
             }
 
-        PagerItem(
-            modifier =
-                Modifier
-                    .graphicsLayer {
-                        alpha = alphaItem.value
-                    }
-                    .fillMaxWidth()
-                    .fillMaxHeight(heightFraction.value),
-            imageUrl = generations.getOrNull(index)?.imageUrl,
-            itemIndex = index,
-            generationResultController = generationResultController,
-            pageOffset = pageOffset,
-        )
+        generations.getOrNull(index)?.let { sessionImage ->
+            PagerItem(
+                modifier =
+                    Modifier
+                        .graphicsLayer {
+                            alpha = alphaItem.value
+                        }
+                        .fillMaxWidth()
+                        .fillMaxHeight(heightFraction.value),
+                sessionImage = sessionImage,
+                itemIndex = index,
+                generationResultController = generationResultController,
+                pageOffset = pageOffset,
+            )
+        }
     }
 }
 
 @Composable
 private fun PagerItem(
     modifier: Modifier = Modifier,
-    imageUrl: String?,
+    sessionImage: SessionImageUIModel,
     itemIndex: Int,
     generationResultController: GenerationResultController,
     pageOffset: State<Float>,
@@ -160,7 +163,7 @@ private fun PagerItem(
                                 ZoomImageUiModel(
                                     imageSize = imageSize,
                                     initialCornerRadius = sharedCornerRadius,
-                                    imageUrl = imageUrl,
+                                    imageUrl = sessionImage.imageUrl,
                                     parentImageOffset = parentImageOffset,
                                     additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
                                 ),
@@ -168,7 +171,7 @@ private fun PagerItem(
                     },
             model =
                 ImageRequest.Builder(context)
-                    .data(imageUrl)
+                    .data(sessionImage.imageUrl)
                     .crossfade(true)
                     .build(),
             loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
@@ -179,7 +182,7 @@ private fun PagerItem(
 
         PagerItemInterface(
             modifier = Modifier.fillMaxSize(),
-            imageUrl = imageUrl,
+            sessionImage = sessionImage,
             itemIndex = itemIndex,
             generationResultController = generationResultController,
             hazeState = hazeState,
@@ -191,7 +194,7 @@ private fun PagerItem(
 @Composable
 internal fun BoxScope.PagerItemInterface(
     modifier: Modifier = Modifier,
-    imageUrl: String?,
+    sessionImage: SessionImageUIModel,
     itemIndex: Int,
     generationResultController: GenerationResultController,
     hazeState: HazeState,
@@ -216,7 +219,7 @@ internal fun BoxScope.PagerItemInterface(
                     Modifier
                         .align(Alignment.TopEnd)
                         .padding(12.dp),
-                imageUrl = imageUrl,
+                imageUrl = sessionImage.imageUrl,
             )
 
             GenerateMoreBlock(
@@ -225,16 +228,18 @@ internal fun BoxScope.PagerItemInterface(
                         .align(Alignment.BottomStart)
                         .padding(12.dp),
             )
-
-            FeedbackBlock(
-                modifier =
-                    Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(12.dp),
-                itemIndex = itemIndex,
-                hazeState = hazeState,
-                generationResultController = generationResultController,
-            )
         }
     }
+
+    FeedbackBlock(
+        modifier =
+            Modifier
+                .align(Alignment.BottomEnd)
+                .padding(12.dp),
+        sessionImage = sessionImage,
+        itemIndex = itemIndex,
+        hazeState = hazeState,
+        generationResultController = generationResultController,
+        isInterfaceVisible = isVisible,
+    )
 }

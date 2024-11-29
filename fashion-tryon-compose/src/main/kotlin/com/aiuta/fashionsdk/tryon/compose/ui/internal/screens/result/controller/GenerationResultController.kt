@@ -15,6 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
 @Composable
 internal fun rememberGenerationResultController(): GenerationResultController {
@@ -55,5 +58,7 @@ internal class GenerationResultController(
     public val footerListState: LazyGridState,
     public val bottomSheetScaffoldState: BottomSheetScaffoldState,
 ) {
+    internal val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+
     public val isThanksFeedbackBlockVisible = mutableStateOf(false)
 }

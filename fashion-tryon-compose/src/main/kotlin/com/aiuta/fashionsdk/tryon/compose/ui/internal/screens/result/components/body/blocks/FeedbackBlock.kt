@@ -13,10 +13,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,9 +28,9 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isCustomLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -47,33 +47,32 @@ import dev.chrisbanes.haze.hazeChild
 @Composable
 internal fun FeedbackBlock(
     modifier: Modifier = Modifier,
+    sessionImage: SessionImageUIModel,
     itemIndex: Int,
     hazeState: HazeState,
     generationResultController: GenerationResultController,
+    isInterfaceVisible: State<Boolean>,
 ) {
     val controller = LocalController.current
     val dataController = LocalAiutaTryOnDataController.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
-    val scope = rememberCoroutineScope()
-    val isFeedbackSelected =
-        remember {
-            mutableStateOf(false)
-        }
     val feedbackData =
         remember {
             mutableStateOf<FeedbackFeatureUiModel?>(null)
         }
     val isFeedbackVisible =
-        remember {
+        remember(sessionImage, feedbackData, stringResources) {
             derivedStateOf {
-                val selectionCondition = !isFeedbackSelected.value
+                val isFeedbackNotProvided = !sessionImage.isFeedbackProvided
                 val backendCondition = feedbackData.value != null
                 val customLanguageCondition =
                     stringResources.isCustomLanguage() &&
-                        (stringResources as? CustomLanguage)?.feedbackSheetTitle != null
+                        stringResources.feedbackSheetTitle != null
 
-                selectionCondition && (backendCondition || customLanguageCondition)
+                isFeedbackNotProvided &&
+                    isInterfaceVisible.value &&
+                    (backendCondition || customLanguageCondition)
             }
         }
 
@@ -85,10 +84,10 @@ internal fun FeedbackBlock(
 
         // In priority custom language
         if (stringResources.isCustomLanguage()) {
-            title = (stringResources as? CustomLanguage)?.feedbackSheetTitle
-            options = (stringResources as? CustomLanguage)?.feedbackSheetOptions.orEmpty()
-            extraOption = (stringResources as? CustomLanguage)?.feedbackSheetExtraOption
-            extraOptionTitle = (stringResources as? CustomLanguage)?.feedbackSheetExtraOptionTitle
+            title = stringResources.feedbackSheetTitle
+            options = stringResources.feedbackSheetOptions.orEmpty()
+            extraOption = stringResources.feedbackSheetExtraOption
+            extraOptionTitle = stringResources.feedbackSheetExtraOptionTitle
         } else {
             val data = feedbackData.value
 
@@ -115,7 +114,7 @@ internal fun FeedbackBlock(
                     ),
             )
         } else {
-            generationResultController.showThanksFeedbackBlock(scope)
+            generationResultController.showThanksFeedbackBlock()
         }
     }
 
@@ -137,12 +136,12 @@ internal fun FeedbackBlock(
             onDislikeClick = {
                 controller.sendDislikeGenerationFeedback(itemIndex)
                 onFeedbackClick()
-                isFeedbackSelected.value = true
+                controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
             },
             onLikeClick = {
                 controller.sendLikeGenerationFeedback(itemIndex)
-                generationResultController.showThanksFeedbackBlock(scope)
-                isFeedbackSelected.value = true
+                generationResultController.showThanksFeedbackBlock()
+                controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
             },
         )
     }

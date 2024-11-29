@@ -50,23 +50,25 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                     val sessionGenerations =
                         controller.sessionGenerationInteractor.sessionGenerations
 
+                    val imagesIds = images.map { it.id }.toSet()
+
                     // Clean retries, because they can executed a little bit later
                     retryActiveGenerations.forEach { activeGeneration ->
-                        if (!images.contains(activeGeneration)) {
+                        if (!imagesIds.contains(activeGeneration.id)) {
                             retryGenerationsHolder.remove(activeGeneration)
                         }
                     }
 
                     // Clean loadings
                     loadingActiveGenerations.forEach { activeGeneration ->
-                        if (!images.contains(activeGeneration)) {
+                        if (!imagesIds.contains(activeGeneration.id)) {
                             loadingGenerationsHolder.remove(activeGeneration)
                         }
                     }
 
                     // Clean session history
                     sessionGenerations.forEach { generation ->
-                        if (!images.contains(generation)) {
+                        if (!imagesIds.contains(generation.id)) {
                             controller.sessionGenerationInteractor.deleteGeneration(generation)
                         }
                     }
@@ -143,16 +145,18 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
                     val loadingActiveUploads = loadingUploadsHolder.getList()
                     val retryActiveUploads = retryUploadsHolder.getList()
 
+                    val operationsIds = operations.map { it.operationId }.toSet()
+
                     // Clean retries, because they can executed a little bit later
                     retryActiveUploads.forEach { activeUpload ->
-                        if (!operations.contains(activeUpload)) {
+                        if (!operationsIds.contains(activeUpload.operationId)) {
                             retryUploadsHolder.remove(activeUpload)
                         }
                     }
 
                     // Delete active loading uploads
                     loadingActiveUploads.forEach { activeUpload ->
-                        if (!operations.contains(activeUpload)) {
+                        if (!operationsIds.contains(activeUpload.operationId)) {
                             loadingUploadsHolder.remove(activeUpload)
                         }
                     }
