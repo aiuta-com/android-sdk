@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -95,7 +96,7 @@ internal fun ConsentPageContent(
                 contentType = { index, point -> "CONSENT_SUPPLEMENTARY_POINT_TYPE_$index-$point" },
             ) { index, point ->
                 if (index == 0) {
-                    Spacer(Modifier.height(40.dp))
+                    Spacer(Modifier.height(28.dp))
                 }
 
                 AgreePoint(
@@ -110,7 +111,26 @@ internal fun ConsentPageContent(
                     },
                 )
 
-                Spacer(Modifier.height(40.dp))
+                if (index != supplementaryPoints.lastIndex) {
+                    Spacer(Modifier.height(40.dp))
+                }
+            }
+        }
+
+        stringResources.onboardingPageConsentFooter?.let { footerText ->
+            item(
+                key = "CONSENT_FOOTER",
+                contentType = { "CONSENT_FOOTER" },
+            ) {
+                Spacer(Modifier.height(28.dp))
+
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = footerText,
+                    style = theme.typography.regular,
+                    color = theme.colors.primary,
+                    textAlign = TextAlign.Start,
+                )
             }
         }
     }
@@ -147,7 +167,12 @@ private fun AgreePoint(
         Spacer(Modifier.width(16.dp))
 
         Text(
-            modifier = Modifier.weight(1f),
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .clickableUnindicated {
+                        onAgreementCheckedChange(!isAgreementChecked)
+                    },
             text = text,
             style = theme.typography.regular,
             color = theme.colors.primary,

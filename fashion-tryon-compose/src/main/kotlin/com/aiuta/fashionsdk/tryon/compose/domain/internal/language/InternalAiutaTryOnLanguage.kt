@@ -27,6 +27,7 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingAppbarTryonPage: String
     val onboardingAppbarBestResultPage: String
     val onboardingAppbarConsentPage: String
+    val onboardingPageConsentFooter: String?
 
     // Image selector
     val imageSelectorUploadButton: String
