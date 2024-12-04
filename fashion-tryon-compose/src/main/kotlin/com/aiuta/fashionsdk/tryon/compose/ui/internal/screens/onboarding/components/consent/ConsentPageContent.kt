@@ -126,7 +126,7 @@ internal fun ConsentPageContent(
 
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = footerText,
+                    text = buildAnnotatedStringFromHtml(footerText),
                     style = theme.typography.regular,
                     color = theme.colors.primary,
                     textAlign = TextAlign.Start,
