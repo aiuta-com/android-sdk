@@ -35,6 +35,7 @@ internal class RussianAiutaTryOnLanguage(
     override val onboardingAppbarTryonPage: String = "<b>Шаг 1/3</b> - Как это работает"
     override val onboardingAppbarBestResultPage: String = "<b>Шаг 2/3</b> - Лучшие результаты"
     override val onboardingAppbarConsentPage: String = "<b>Шаг 3/3</b> - Согласие"
+    override val onboardingPageConsentFooter: String? = null
 
     // Image selector
     override val imageSelectorUploadButton: String = "Загрузить своё фото"

@@ -65,6 +65,7 @@ public class CustomLanguage(
     override val onboardingAppbarTryonPage: String,
     override val onboardingAppbarBestResultPage: String,
     override val onboardingAppbarConsentPage: String,
+    override val onboardingPageConsentFooter: String?,
     // Image selector
     override val imageSelectorUploadButton: String,
     override val imageSelectorChangeButton: String,
