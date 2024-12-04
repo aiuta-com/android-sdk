@@ -50,7 +50,9 @@ internal fun ConsentPageContent(
     sendPageEvent(pageId = AiutaAnalyticPageId.CONSENT)
 
     LazyColumn(
-        modifier = modifier.padding(horizontal = 24.dp),
+        modifier = modifier
+            .padding(horizontal = 24.dp)
+            .padding(bottom = 8.dp),
     ) {
         item(
             key = "CONSENT_HEADER",
