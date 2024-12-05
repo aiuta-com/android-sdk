@@ -11,25 +11,34 @@ import com.aiuta.fashionsdk.internal.analytic.internal.worker.AnalyticWorker
 import com.aiuta.fashionsdk.internal.analytic.model.ExternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 internal class InternalAiutaAnalyticImpl(
     private val context: Context,
 ) : InternalAiutaAnalytic {
-    private val _analyticFlow = MutableStateFlow<ExternalAnalyticEvent?>(null)
+    private val _analyticFlow = MutableSharedFlow<ExternalAnalyticEvent?>(extraBufferCapacity = 10)
     override val analyticFlow: Flow<ExternalAnalyticEvent> = _analyticFlow.mapNotNull { it }
 
+    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+
     override fun sendEvent(event: InternalAnalyticEvent) {
-        resolveLog(event = event)
+        // Add call of coroutine, because we need to emit new value with guarantees
+        // Concurrency should not affect, because we use
+        // BufferOverflow.SUSPEND strategy
+        scope.launch { resolveLog(event = event) }
     }
 
-    private fun resolveLog(event: InternalAnalyticEvent) {
+    private suspend fun resolveLog(event: InternalAnalyticEvent) {
         // Notify external listeners
-        _analyticFlow.value = (event as? ExternalAnalyticEvent)
+        _analyticFlow.emit(event as? ExternalAnalyticEvent)
 
         // Build request
         val analyticWorkRequest: WorkRequest =
