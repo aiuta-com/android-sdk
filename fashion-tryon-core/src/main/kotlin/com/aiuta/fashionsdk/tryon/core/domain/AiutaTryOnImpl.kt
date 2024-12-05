@@ -100,7 +100,6 @@ internal class AiutaTryOnImpl(
                         ) {
                             solveUploadingImage(container)
                         }
-                    analytic.sendTryOnPhotoUploadedEvent(container)
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
                             sourceImageId = uploadedImage.id,
@@ -168,7 +167,9 @@ internal class AiutaTryOnImpl(
                 uploadImageSlice.uploadImage(
                     fileUri = container.fileUri,
                     fileName = generateFileName(),
-                )
+                ).also {
+                    analytic.sendTryOnPhotoUploadedEvent(container)
+                }
             }
 
             is SKUGenerationUrlContainer -> {

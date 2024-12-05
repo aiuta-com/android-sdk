@@ -14,17 +14,17 @@ private const val MILLISECONDS_IN_SECOND = 1000L
 internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationContainer) {
     sendEvent(
         event =
-            StartTryOn(
-                skuId = container.skuId,
-                skuCatalogName = container.skuCatalogName,
-            ),
-    )
-    sendEvent(
-        event =
             AiutaAnalyticsTryOnEvent(
                 event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
                 pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                 productId = container.skuId,
+            ),
+    )
+    sendEvent(
+        event =
+            StartTryOn(
+                skuId = container.skuId,
+                skuCatalogName = container.skuCatalogName,
             ),
     )
 }
@@ -37,18 +37,18 @@ internal fun InternalAiutaAnalytic.sendFinishTryOnEvent(
 
     sendEvent(
         event =
-            FinishTryOn(
-                skuId = container.skuId,
-                skuCatalogName = container.skuCatalogName,
-                generationTime = loadingTimeSeconds.toString(),
-            ),
-    )
-    sendEvent(
-        event =
             AiutaAnalyticsTryOnEvent(
                 event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
                 pageId = AiutaAnalyticPageId.LOADING,
                 productId = container.skuId,
+            ),
+    )
+    sendEvent(
+        event =
+            FinishTryOn(
+                skuId = container.skuId,
+                skuCatalogName = container.skuCatalogName,
+                generationTime = loadingTimeSeconds.toString(),
             ),
     )
 }
