@@ -50,7 +50,7 @@ internal fun FashionTryOnController.sendSelectMoreToTryOnEvent(skuItem: SKUItem)
 
 internal fun FashionTryOnController.sendGenerationFeedback(
     generationIndex: Int,
-    optionIndex: Int,
+    optionIndex: Int? = null,
     feedback: String? = null,
 ) {
     val activeSKUItem = activeSKUItem.value
