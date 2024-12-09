@@ -29,7 +29,7 @@ internal sealed interface NavigationBottomSheetScreen {
     public class ExtraFeedback(
         public val extraOptionTitle: String,
         public val itemIndex: Int,
-        public val optionIndex: Int,
+        public val optionIndex: Int? = null,
     ) : NavigationBottomSheetScreen
 
     public class SKUInfo(

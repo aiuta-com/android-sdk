@@ -99,7 +99,6 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                             newSheetScreen =
                                 NavigationBottomSheetScreen.ExtraFeedback(
                                     extraOptionTitle = extraOptionTitle,
-                                    optionIndex = feedbackData.options.size,
                                     itemIndex = feedbackData.itemIndex,
                                 ),
                         )
@@ -124,7 +123,6 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                         .clickableUnindicated {
                             controller.sendGenerationFeedback(
                                 generationIndex = feedbackData.itemIndex,
-                                optionIndex = feedbackData.options.indexOf(selectedOption.value),
                             )
                             controller.bottomSheetNavigator.hide()
                         },
@@ -142,7 +140,10 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 onClick = {
                     controller.sendGenerationFeedback(
                         generationIndex = feedbackData.itemIndex,
-                        optionIndex = feedbackData.options.indexOf(selectedOption.value),
+                        optionIndex =
+                            feedbackData.options
+                                .indexOf(selectedOption.value)
+                                .takeIf { it >= 0 },
                         feedback = selectedOption.value,
                     )
                     controller.bottomSheetNavigator.hide()
