@@ -2,17 +2,18 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.internal.ut
 
 /**
  * Delay before getting operation status in second:
- * 1, 1, 0.5 (12 times), 3 (forever)
+ * 1 (4 times), 0.5 (20 times), 3 (forever)
  */
 
 internal fun getGenerationDelaySequence(): Sequence<Long> {
     return sequence {
-        // Two times by 1 sec
-        yield(1000L)
-        yield(1000L)
+        // 4 times by 1 sec
+        repeat(4) {
+            yield(1000L)
+        }
 
-        // 12 times by 0.5 sec
-        (0..11).forEach {
+        // 20 times by 0.5 sec
+        repeat(20) {
             yield(500L)
         }
 
