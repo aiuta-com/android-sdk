@@ -8,12 +8,12 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.internal.ut
 internal fun getGenerationDelaySequence(): Sequence<Long> {
     return sequence {
         // 4 times by 1 sec
-        (0..3).forEach {
+        repeat(4) {
             yield(1000L)
         }
 
         // 20 times by 0.5 sec
-        (0..19).forEach {
+        repeat(20) {
             yield(500L)
         }
 
