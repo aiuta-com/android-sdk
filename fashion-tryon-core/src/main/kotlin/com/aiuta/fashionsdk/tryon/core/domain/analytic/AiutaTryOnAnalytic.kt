@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.StartTryOn
 import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 
-private const val MILLISECONDS_IN_SECOND = 1000L
+private const val MILLISECONDS_IN_SECOND = 1000F
 
 internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: SKUGenerationContainer) {
     sendEvent(
