@@ -30,7 +30,7 @@ internal fun FashionTryOnController.historyAvailabilityListener(
 ) {
     // We should delete all generations, if history not available
     LaunchedEffect(Unit) {
-        if (!configuration.isHistoryAvailable) {
+        if (!configuration.toggles.isHistoryAvailable) {
             generatedImageInteractor.removeAll()
         }
     }

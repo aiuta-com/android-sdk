@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dimensions.AiutaDimensions
+import com.aiuta.fashionsdk.tryon.compose.domain.models.toggles.AiutaToggles
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 
 /**
@@ -11,64 +12,72 @@ import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
  * @see [AiutaTryOnFlow]
  */
 @Immutable
-public interface AiutaTryOnConfiguration {
+public class AiutaTryOnConfiguration private constructor(
+    public val language: AiutaTryOnLanguage,
+    public val dimensions: AiutaDimensions?,
+    public val dataProvider: AiutaDataProvider?,
+    public val toggles: AiutaToggles,
+) {
     /**
-     * Language of Aiuta Try on Flow
+     * Public [Builder] for initialize [AiutaTryOnConfiguration] class
      */
-    public val language: AiutaTryOnLanguage
+    public class Builder {
+        private var language: AiutaTryOnLanguage? = null
+        private var dimensions: AiutaDimensions? = null
+        private var dataProvider: AiutaDataProvider? = null
+        private var toggles: AiutaToggles? = null
 
-    /**
-     * Dimensions configuration for [AiutaTryOnFlow]
-     */
-    public val dimensions: AiutaDimensions?
+        public fun setLanguage(language: AiutaTryOnLanguage): Builder {
+            return apply { this.language = language }
+        }
 
-    /**
-     * Data provider for dynamic data from host like
-     * generated/uploaded images
-     */
-    public val dataProvider: AiutaDataProvider?
+        public fun setDimensions(dimensions: AiutaDimensions): Builder {
+            return apply { this.dimensions = dimensions }
+        }
 
-    /**
-     * Flag which turn on or off possibility to use history flow
-     * inside [AiutaTryOnFlow].
-     *
-     * Be careful - if you turn off this flag, all previous
-     * generation history will be deleted
-     */
-    public val isHistoryAvailable: Boolean
+        public fun setDataProvider(dataProvider: AiutaDataProvider): Builder {
+            return apply { this.dataProvider = dataProvider }
+        }
 
-    /**
-     * Flag which turn on or off possibility to use add to wishlist option
-     */
-    public val isWishlistAvailable: Boolean
+        public fun setToggles(toggles: AiutaToggles): Builder {
+            return apply { this.toggles = toggles }
+        }
 
-    /**
-     * Flag which turn on or off possibility to use pre-onboarding flow
-     */
-    public val isPreOnboardingAvailable: Boolean
+        public fun build(): AiutaTryOnConfiguration {
+            // Init default
+            val internalToggles = toggles ?: AiutaToggles()
 
-    /**
-     * Flag which turn on or off possibility to use share option
-     */
-    public val isShareAvailable: Boolean
-}
+            // Check props without default initialization
+            val internalLanguage = this.language
 
-public fun defaultAiutaTryOnConfiguration(
-    language: AiutaTryOnLanguage,
-    dimensions: AiutaDimensions? = null,
-    dataProvider: AiutaDataProvider? = null,
-    isHistoryAvailable: Boolean = true,
-    isWishlistAvailable: Boolean = true,
-    isPreOnboardingAvailable: Boolean = false,
-    isShareAvailable: Boolean = true,
-): AiutaTryOnConfiguration {
-    return object : AiutaTryOnConfiguration {
-        override val language: AiutaTryOnLanguage = language
-        override val dimensions: AiutaDimensions? = dimensions
-        override val dataProvider: AiutaDataProvider? = dataProvider
-        override val isHistoryAvailable: Boolean = isHistoryAvailable
-        override val isWishlistAvailable: Boolean = isWishlistAvailable
-        override val isPreOnboardingAvailable: Boolean = isPreOnboardingAvailable
-        override val isShareAvailable: Boolean = isShareAvailable
+            checkNotNull(
+                value = internalLanguage,
+                lazyMessage = {
+                    propertyIsNull(
+                        property = "language",
+                        methodToCall = "setLanguage()",
+                    )
+                },
+            )
+
+            return AiutaTryOnConfiguration(
+                language = internalLanguage,
+                dimensions = dimensions,
+                dataProvider = dataProvider,
+                toggles = internalToggles,
+            ).also {
+                // TODO Add analytic
+            }
+        }
+    }
+
+    private companion object {
+        fun propertyIsNull(
+            property: String,
+            methodToCall: String,
+        ): String {
+            return "AiutaTryOnConfiguration: $property is null, therefore cannot init AiutaTryOnConfiguration. " +
+                "Please, call $methodToCall before build()"
+        }
     }
 }

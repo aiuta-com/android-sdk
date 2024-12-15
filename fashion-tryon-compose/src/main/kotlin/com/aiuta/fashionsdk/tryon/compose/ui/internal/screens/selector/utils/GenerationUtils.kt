@@ -62,7 +62,7 @@ internal fun FashionTryOnController.startGeneration(
                 generationFlow
                     .onEach { status ->
                         // Save generations for history, if operation is success and history available
-                        if (status is SKUGenerationStatus.SuccessGenerationStatus && aiutaConfiguration.isHistoryAvailable) {
+                        if (status is SKUGenerationStatus.SuccessGenerationStatus && aiutaConfiguration.toggles.isHistoryAvailable) {
                             generatedImageInteractor.insertAll(status.images.map { it.toUiModel() })
                         }
                     }

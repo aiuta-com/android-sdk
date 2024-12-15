@@ -3,6 +3,10 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
+/**
+ * Data provider for dynamic data from host like
+ * generated/uploaded images
+ */
 public class AiutaDataProvider(
     // Consent
     public val isUserConsentObtainedFlow: StateFlow<Boolean>,

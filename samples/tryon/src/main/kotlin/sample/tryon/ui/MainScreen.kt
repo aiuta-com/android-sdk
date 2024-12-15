@@ -9,10 +9,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
 import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
@@ -83,16 +83,17 @@ fun MainScreen() {
 
         val mockAiutaConfiguration =
             remember {
-                defaultAiutaTryOnConfiguration(
-                    isPreOnboardingAvailable = false,
-                    language =
-                        EnglishLanguage(
-                            brand = "YOUR brand",
-                            termsOfServiceUrl = "https://brand.com/tos",
-                            privacyPolicyUrl = "https://brand.com/pp",
-                            onboardingPageConsentSupplementaryPoints = emptyList(),
-                        ),
-                )
+                AiutaTryOnConfiguration.Builder()
+                    .setLanguage(
+                        language =
+                            EnglishLanguage(
+                                brand = "YOUR brand",
+                                termsOfServiceUrl = "https://brand.com/tos",
+                                privacyPolicyUrl = "https://brand.com/pp",
+                                onboardingPageConsentSupplementaryPoints = emptyList(),
+                            ),
+                    )
+                    .build()
             }
 
         val mockAiutaTheme =
@@ -106,7 +107,7 @@ fun MainScreen() {
             aiuta = { viewModel.aiuta },
             aiutaTryOn = { viewModel.aiutaTryOn },
             aiutaTryOnListeners = { mockAiutaTryOnListeners },
-            aiutaTryOnConfiguration = { mockAiutaConfiguration },
+            aiutaTryOnConfiguration = mockAiutaConfiguration,
             skuForGeneration = { mockSKUItem },
             aiutaTheme = mockAiutaTheme,
         )

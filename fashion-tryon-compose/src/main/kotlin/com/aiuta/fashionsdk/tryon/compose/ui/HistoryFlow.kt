@@ -39,7 +39,7 @@ public fun HistoryFlow(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
+    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
 ) {
     NavigationInitialisation(

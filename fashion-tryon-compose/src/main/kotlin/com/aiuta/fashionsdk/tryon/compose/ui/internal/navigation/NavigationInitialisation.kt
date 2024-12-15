@@ -34,7 +34,7 @@ internal fun NavigationInitialisation(
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
+    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
     content: @Composable () -> Unit,
@@ -43,14 +43,13 @@ internal fun NavigationInitialisation(
         modifier = modifier,
     ) {
         val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
-        val configuration = remember { aiutaTryOnConfiguration() }
         val controller =
             rememberFashionTryOnController(
                 analytic = { internalAnalytic },
                 aiuta = aiuta,
                 aiutaTryOn = aiutaTryOn,
                 aiutaTryOnListeners = aiutaTryOnListeners,
-                aiutaTryOnConfiguration = configuration,
+                aiutaTryOnConfiguration = aiutaTryOnConfiguration,
                 skuForGeneration = skuForGeneration,
             )
 
@@ -58,10 +57,10 @@ internal fun NavigationInitialisation(
             LocalAnalytic provides internalAnalytic,
             LocalController provides controller,
             LocalTheme provides aiutaTheme,
-            LocalAiutaConfiguration provides configuration,
+            LocalAiutaConfiguration provides aiutaTryOnConfiguration,
             LocalAiutaTryOnStringResources provides
                 resolveInternalLanguage(
-                    selectedLanguage = configuration.language,
+                    selectedLanguage = aiutaTryOnConfiguration.language,
                 ),
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
