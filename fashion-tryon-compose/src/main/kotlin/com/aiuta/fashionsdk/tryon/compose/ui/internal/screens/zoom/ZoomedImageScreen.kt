@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -271,6 +270,8 @@ private fun ZoomedImageScreenContent(
                                 shareManager.share(
                                     content = screenState.sharedImage.value.additionalShareInfo,
                                     imageUrls = imageUrls,
+                                    productId = controller.activeSKUItem.value.skuId,
+                                    pageId = screenState.sharedImage.value.originPageId,
                                     watermark = theme.watermark,
                                 )
                             },

@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendConfigureEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -42,8 +41,6 @@ public fun AiutaTryOnFlow(
         aiutaTheme = aiutaTheme,
     ) {
         val controller = LocalController.current
-
-        sendConfigureEvent(aiutaTheme)
 
         NavigationContainer(
             modifier = modifier,

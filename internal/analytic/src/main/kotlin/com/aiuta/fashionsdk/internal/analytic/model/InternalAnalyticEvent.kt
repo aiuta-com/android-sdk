@@ -25,12 +25,11 @@ public sealed interface InternalAnalyticEvent {
 
         // Internal
         public const val CONFIGURE_EVENT: String = "configureEvent"
-        public const val SHARE_SUCCESSFULLY_EVENT: String = "ShareSuccessfully"
+        public const val SHARE_EVENT: String = "shareEvent"
     }
 }
 
 // Config
-// TODO
 @Serializable
 @SerialName(InternalAnalyticEvent.EventType.CONFIGURE_EVENT)
 public class ConfigureEvent(
@@ -77,20 +76,27 @@ public class ConfigureEvent(
 }
 
 // ResultsScreen
-// TODO
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.SHARE_SUCCESSFULLY_EVENT)
-public class ShareSuccessfully(
+@SerialName(InternalAnalyticEvent.EventType.SHARE_EVENT)
+public class ShareEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticPageId?,
     @SerialName("productId")
     override val productId: String?,
-    @SerialName("origin")
-    public val origin: String? = null,
-    @SerialName("count")
-    public val count: String,
+    @SerialName("result")
+    public val result: ShareResult = ShareResult.SUCCEEDED,
     @SerialName("target")
-    public val target: String? = null,
-    @SerialName("additional_share_info")
-    public val additionalShareInfo: String? = null,
-) : InternalAnalyticEvent
+    public val target: String?,
+) : InternalAnalyticEvent {
+    @Serializable
+    public enum class ShareResult {
+        @SerialName("succeeded")
+        SUCCEEDED,
+
+        @SerialName("canceled")
+        CANCELED,
+
+        @SerialName("failed")
+        FAILED,
+    }
+}

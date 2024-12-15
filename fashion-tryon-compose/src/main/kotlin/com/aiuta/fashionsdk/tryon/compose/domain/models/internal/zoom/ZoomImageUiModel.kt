@@ -5,6 +5,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 
 @Immutable
 internal class ZoomImageUiModel(
@@ -13,6 +14,8 @@ internal class ZoomImageUiModel(
     val imageUrl: String?,
     val parentImageOffset: Offset,
     val additionalShareInfo: String? = null,
+    // Analytic
+    val originPageId: AiutaAnalyticPageId,
 ) {
     companion object {
         val EMPTY =
@@ -21,6 +24,7 @@ internal class ZoomImageUiModel(
                 initialCornerRadius = 0.dp,
                 imageUrl = null,
                 parentImageOffset = Offset.Unspecified,
+                originPageId = AiutaAnalyticPageId.RESULTS,
             )
     }
 }

@@ -11,6 +11,7 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaDrawableImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
@@ -35,12 +36,16 @@ internal class ShareManager(
 
     public fun share(
         content: String? = null,
+        pageId: AiutaAnalyticPageId,
+        productId: String?,
         imageUrls: List<String>,
         watermark: AiutaImage? = null,
     ): StateFlow<SharingState> {
         return share(
             content = content,
             imageUrls = imageUrls,
+            pageId = pageId,
+            productId = productId,
             watermark =
                 watermark?.let {
                     when (watermark) {
@@ -57,18 +62,24 @@ internal class ShareManager(
 
     public fun share(
         content: String? = null,
+        pageId: AiutaAnalyticPageId,
+        productId: String?,
         imageUrls: List<String>,
         @DrawableRes watermarkRes: Int? = null,
     ): StateFlow<SharingState> {
         return share(
             content = content,
             imageUrls = imageUrls,
+            pageId = pageId,
+            productId = productId,
             watermark = context.solveDrawableFromWatermark(watermarkRes),
         )
     }
 
     public fun share(
         content: String? = null,
+        pageId: AiutaAnalyticPageId,
+        productId: String?,
         imageUrls: List<String>,
         watermark: Drawable? = null,
     ): StateFlow<SharingState> {
@@ -89,7 +100,12 @@ internal class ShareManager(
                     .toCollection(imageUris)
 
                 if (imageUris.isNotEmpty()) {
-                    context.shareContent(content, imageUris)
+                    context.shareContent(
+                        content = content,
+                        pageId = pageId,
+                        productId = productId,
+                        contentUris = imageUris,
+                    )
                     stateFlow.value = SharingState.Success
                 } else {
                     stateFlow.value = SharingState.Error("There is no images")

@@ -54,7 +54,10 @@ internal fun NavigationInitialisation(
                 resolveInternalLanguage(
                     selectedLanguage = aiutaTryOnConfiguration.language,
                 ),
-            LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
+            LocalAiutaTryOnDataController provides
+                rememberAiutaTryOnDataController(
+                    aiuta = { aiutaTryOnConfiguration.aiuta },
+                ),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
             LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
         ) {

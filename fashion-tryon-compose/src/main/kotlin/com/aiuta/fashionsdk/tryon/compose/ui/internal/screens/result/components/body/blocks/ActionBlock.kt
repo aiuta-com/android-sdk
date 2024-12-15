@@ -52,6 +52,8 @@ internal fun ActionBlock(
 
                     shareManager.share(
                         content = activeSKUItem.additionalShareInfo,
+                        productId = activeSKUItem.skuId,
+                        pageId = AiutaAnalyticPageId.RESULTS,
                         imageUrls = imageUrls,
                         watermark = theme.watermark,
                     )

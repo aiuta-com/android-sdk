@@ -123,7 +123,6 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                         .fillMaxWidth()
                         .clickableUnindicated {
                             controller.sendGenerationFeedback(
-                                generationIndex = feedbackData.itemIndex,
                                 optionIndex = feedbackData.options.indexOf(selectedOption.value),
                             )
                             controller.bottomSheetNavigator.hide()
@@ -141,7 +140,6 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.sendGenerationFeedback(
-                        generationIndex = feedbackData.itemIndex,
                         optionIndex = feedbackData.options.indexOf(selectedOption.value),
                         feedback = selectedOption.value,
                     )

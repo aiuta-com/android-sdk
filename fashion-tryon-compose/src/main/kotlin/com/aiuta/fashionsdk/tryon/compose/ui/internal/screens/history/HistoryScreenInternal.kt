@@ -185,6 +185,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                                             initialCornerRadius = sharedRadius,
                                             imageUrl = generatedImage?.imageUrl,
                                             parentImageOffset = parentImageOffset,
+                                            originPageId = AiutaAnalyticPageId.HISTORY,
                                         ),
                                 )
                             }
@@ -345,6 +346,8 @@ private fun BoxScope.HistoryScreenInterface(
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED)
                 shareManager.share(
                     imageUrls = imageUrls,
+                    productId = controller.activeSKUItem.value.skuId,
+                    pageId = AiutaAnalyticPageId.HISTORY,
                     watermark = theme.watermark,
                 )
             },
