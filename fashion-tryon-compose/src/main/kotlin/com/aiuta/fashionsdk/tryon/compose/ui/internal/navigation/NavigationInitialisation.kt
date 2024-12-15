@@ -9,7 +9,6 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -30,7 +29,6 @@ internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
-    skuForGeneration: () -> SKUItem,
     content: @Composable () -> Unit,
 ) {
     BoxWithConstraints(
@@ -45,7 +43,6 @@ internal fun NavigationInitialisation(
         val controller =
             rememberFashionTryOnController(
                 aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-                skuForGeneration = skuForGeneration,
             )
 
         CompositionLocalProvider(

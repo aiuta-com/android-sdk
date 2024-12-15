@@ -3,11 +3,16 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.analytic.configure.sendConfigurationEvent
+import com.aiuta.fashionsdk.tryon.compose.domain.models.DefaultSKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.AiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.DefaultAiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.meta.DefaultHostMetadata
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.meta.HostMetadata
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.toggles.AiutaToggles
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.toggles.DefaultAiutaToggles
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
@@ -25,7 +30,9 @@ public class AiutaTryOnConfiguration private constructor(
     public val dimensions: AiutaDimensions?,
     public val language: AiutaTryOnLanguage,
     public val listeners: AiutaTryOnListeners,
+    public val hostMetadata: HostMetadata,
     public val toggles: AiutaToggles,
+    public val skuForGeneration: SKUItem,
 ) {
     internal val aiutaTryOn by lazy { aiuta.tryon }
     internal val aiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
@@ -39,7 +46,9 @@ public class AiutaTryOnConfiguration private constructor(
         private var dimensions: AiutaDimensions? = null
         private var language: AiutaTryOnLanguage? = null
         private var listeners: AiutaTryOnListeners? = null
+        private var hostMetadata: HostMetadata? = null
         private var toggles: AiutaToggles? = null
+        private var skuForGeneration: SKUItem? = null
 
         public fun setAiuta(aiuta: Aiuta): Builder {
             return apply { this.aiuta = aiuta }
@@ -61,14 +70,24 @@ public class AiutaTryOnConfiguration private constructor(
             return apply { this.listeners = listeners }
         }
 
+        public fun setHostMetadata(hostMetadata: HostMetadata): Builder {
+            return apply { this.hostMetadata = hostMetadata }
+        }
+
         public fun setToggles(toggles: AiutaToggles): Builder {
             return apply { this.toggles = toggles }
+        }
+
+        public fun setSKUForGeneration(skuForGeneration: SKUItem): Builder {
+            return apply { this.skuForGeneration = skuForGeneration }
         }
 
         public fun build(): AiutaTryOnConfiguration {
             // Init default
             val internalToggles = toggles ?: DefaultAiutaToggles
             val internalListeners = listeners ?: DefaultAiutaTryOnListeners
+            val internalHostMetadata = hostMetadata ?: DefaultHostMetadata
+            val internalSKUForGeneration = skuForGeneration ?: DefaultSKUItem
 
             // Check props without default initialization
             val internalAiuta =
@@ -88,9 +107,11 @@ public class AiutaTryOnConfiguration private constructor(
                 dimensions = dimensions,
                 language = internalLanguage,
                 listeners = internalListeners,
+                hostMetadata = internalHostMetadata,
                 toggles = internalToggles,
+                skuForGeneration = internalSKUForGeneration,
             ).also {
-                // TODO Add analytic
+                it.sendConfigurationEvent()
             }
         }
     }

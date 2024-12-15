@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendConfigureEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -21,13 +20,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.cl
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.disableZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
-import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 /**
  * Entry point for fashion try on flow
  *
- * @see AiutaTryOn
- * @see AiutaTryOnListeners
+ * @see AiutaTryOnConfiguration
  * @see AiutaTheme
  * @see SKUItem
  */
@@ -36,7 +33,6 @@ public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
-    skuForGeneration: () -> SKUItem,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -44,7 +40,6 @@ public fun AiutaTryOnFlow(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTheme = aiutaTheme,
-        skuForGeneration = skuForGeneration,
     ) {
         val controller = LocalController.current
 

@@ -32,7 +32,7 @@ public data class SKUItem(
     internal val uniqueGeneratedId: String = UUID.randomUUID().toString()
 }
 
-internal val defaultSKUItem =
+internal val DefaultSKUItem by lazy {
     SKUItem(
         skuId = "",
         description = "",
@@ -41,3 +41,4 @@ internal val defaultSKUItem =
         store = "",
         inWishlist = false,
     )
+}
