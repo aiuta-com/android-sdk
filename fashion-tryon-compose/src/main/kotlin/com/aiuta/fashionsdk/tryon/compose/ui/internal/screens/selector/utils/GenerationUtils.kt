@@ -119,7 +119,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
     generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
     return uriSource.imageUris.map { uri ->
-        aiutaTryOn()
+        aiutaTryOn
             .startSKUGeneration(
                 container =
                     SKUGenerationUriContainer(
@@ -151,7 +151,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
     urlSource: LastSavedImages.UrlSource,
 ): List<Flow<SKUGenerationStatus>> {
     return urlSource.sourceImages.map { sourceImage ->
-        aiutaTryOn()
+        aiutaTryOn
             .startSKUGeneration(
                 container =
                     SKUGenerationUrlContainer(

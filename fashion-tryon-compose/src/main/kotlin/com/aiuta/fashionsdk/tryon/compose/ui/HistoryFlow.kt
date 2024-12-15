@@ -36,15 +36,11 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 @Composable
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
-    aiuta: () -> Aiuta,
-    aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
 ) {
     NavigationInitialisation(
         modifier = modifier,
-        aiuta = aiuta,
-        aiutaTryOn = aiutaTryOn,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTheme = aiutaTheme,
         skuForGeneration = { defaultSKUItem },

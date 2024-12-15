@@ -69,6 +69,7 @@ fun MainScreen() {
         val mockAiutaConfiguration =
             remember {
                 AiutaTryOnConfiguration.Builder()
+                    .setAiuta(aiuta = viewModel.aiuta)
                     .setLanguage(
                         language =
                             EnglishLanguage(
@@ -103,8 +104,6 @@ fun MainScreen() {
 
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
-            aiuta = { viewModel.aiuta },
-            aiutaTryOn = { viewModel.aiutaTryOn },
             aiutaTryOnConfiguration = mockAiutaConfiguration,
             skuForGeneration = { mockSKUItem },
             aiutaTheme = mockAiutaTheme,

@@ -40,9 +40,6 @@ import kotlinx.coroutines.cancel
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
-    analytic: () -> InternalAiutaAnalytic,
-    aiuta: () -> Aiuta,
-    aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
@@ -123,15 +120,15 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             lastSavedImages = defaultLastSavedImages,
             lastSavedOperation = defaultSavedOperation,
             activeSKUItem = activeSKUItem,
-            aiuta = aiuta,
-            aiutaTryOn = aiutaTryOn,
+            aiuta = aiutaTryOnConfiguration.aiuta,
+            aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnConfiguration.listeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = OnboardingInteractor.getInstance(context),
             sessionGenerationInteractor = SessionGenerationInteractor.getInstance(context),
-            analytic = analytic(),
+            analytic = aiutaTryOnConfiguration.aiutaAnalytic,
         )
     }.also {
         it.generationNavigationListener()
@@ -161,8 +158,8 @@ internal class FashionTryOnController(
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
-    public val aiuta: () -> Aiuta,
-    public val aiutaTryOn: () -> AiutaTryOn,
+    public val aiuta: Aiuta,
+    public val aiutaTryOn: AiutaTryOn,
     public val aiutaTryOnListeners: AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,

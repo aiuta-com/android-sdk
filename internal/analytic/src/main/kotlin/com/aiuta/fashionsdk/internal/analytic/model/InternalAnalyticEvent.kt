@@ -9,9 +9,9 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @Serializable
 @JsonClassDiscriminator("type")
 public sealed interface InternalAnalyticEvent {
-    public val pageId: AiutaAnalyticPageId
+    public val pageId: AiutaAnalyticPageId?
 
-    public val productId: String
+    public val productId: String?
 
     public object EventType {
         public const val PAGE_EVENT: String = "pageEvent"
@@ -35,9 +35,9 @@ public sealed interface InternalAnalyticEvent {
 @SerialName(InternalAnalyticEvent.EventType.CONFIGURE_EVENT)
 public class ConfigureEvent(
     @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId,
+    override val pageId: AiutaAnalyticPageId?,
     @SerialName("productId")
-    override val productId: String,
+    override val productId: String?,
     @SerialName("mode")
     public val mode: SDKMode,
     @SerialName("authentication")
@@ -82,9 +82,9 @@ public class ConfigureEvent(
 @SerialName(InternalAnalyticEvent.EventType.SHARE_SUCCESSFULLY_EVENT)
 public class ShareSuccessfully(
     @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId,
+    override val pageId: AiutaAnalyticPageId?,
     @SerialName("productId")
-    override val productId: String,
+    override val productId: String?,
     @SerialName("origin")
     public val origin: String? = null,
     @SerialName("count")

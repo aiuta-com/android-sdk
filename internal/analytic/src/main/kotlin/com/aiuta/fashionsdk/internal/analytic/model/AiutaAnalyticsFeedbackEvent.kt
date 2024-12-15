@@ -13,9 +13,9 @@ public class AiutaAnalyticsFeedbackEvent(
     @SerialName("negativeFeedbackText")
     public val negativeFeedbackText: String? = null,
     @SerialName("pageId")
-    public override val pageId: AiutaAnalyticPageId,
+    public override val pageId: AiutaAnalyticPageId?,
     @SerialName("productId")
-    public override val productId: String,
+    public override val productId: String?,
 ) : ExternalAnalyticEvent
 
 @Serializable

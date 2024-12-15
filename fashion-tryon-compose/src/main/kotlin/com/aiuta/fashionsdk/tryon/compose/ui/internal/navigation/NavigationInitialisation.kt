@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
@@ -25,13 +24,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingUploadedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
-import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 @Composable
 internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
-    aiuta: () -> Aiuta,
-    aiutaTryOn: () -> AiutaTryOn,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
@@ -40,12 +36,14 @@ internal fun NavigationInitialisation(
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
+        val internalAnalytic =
+            remember {
+                aiutaTryOnConfiguration
+                    .aiuta
+                    .internalAiutaAnalytic
+            }
         val controller =
             rememberFashionTryOnController(
-                analytic = { internalAnalytic },
-                aiuta = aiuta,
-                aiutaTryOn = aiutaTryOn,
                 aiutaTryOnConfiguration = aiutaTryOnConfiguration,
                 skuForGeneration = skuForGeneration,
             )
