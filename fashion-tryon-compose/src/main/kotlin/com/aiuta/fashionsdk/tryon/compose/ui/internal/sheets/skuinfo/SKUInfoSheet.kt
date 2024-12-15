@@ -134,7 +134,7 @@ private fun ButtonsContainer(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (configuration.isWishlistAvailable) {
+        if (configuration.toggles.isWishlistAvailable) {
             FashionButton(
                 modifier =
                     Modifier

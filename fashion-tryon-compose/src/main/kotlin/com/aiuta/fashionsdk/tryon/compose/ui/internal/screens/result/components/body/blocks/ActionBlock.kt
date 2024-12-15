@@ -38,7 +38,7 @@ internal fun ActionBlock(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        if (aiutaConfiguration.isShareAvailable) {
+        if (aiutaConfiguration.toggles.isShareAvailable) {
             IconButton(
                 icon = theme.icons.share24,
                 onClick = {

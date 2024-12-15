@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider
+package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider
 
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow

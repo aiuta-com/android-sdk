@@ -259,7 +259,7 @@ private fun ZoomedImageScreenContent(
                 tint = interfaceColor.value,
             )
 
-            if (aiutaConfiguration.isShareAvailable) {
+            if (aiutaConfiguration.toggles.isShareAvailable) {
                 Text(
                     modifier =
                         Modifier

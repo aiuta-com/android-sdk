@@ -10,9 +10,8 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -33,7 +32,6 @@ internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
-    aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
     skuForGeneration: () -> SKUItem,
@@ -48,7 +46,6 @@ internal fun NavigationInitialisation(
                 analytic = { internalAnalytic },
                 aiuta = aiuta,
                 aiutaTryOn = aiutaTryOn,
-                aiutaTryOnListeners = aiutaTryOnListeners,
                 aiutaTryOnConfiguration = aiutaTryOnConfiguration,
                 skuForGeneration = skuForGeneration,
             )

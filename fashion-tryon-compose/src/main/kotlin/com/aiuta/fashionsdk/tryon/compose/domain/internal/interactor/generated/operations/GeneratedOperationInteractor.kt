@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import android.content.Context
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.AiutaDataProvider
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import kotlinx.coroutines.flow.Flow
 

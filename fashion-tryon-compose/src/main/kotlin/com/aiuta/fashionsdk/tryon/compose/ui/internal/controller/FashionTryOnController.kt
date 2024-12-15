@@ -16,9 +16,9 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session.SessionGenerationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
@@ -43,7 +43,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     analytic: () -> InternalAiutaAnalytic,
     aiuta: () -> Aiuta,
     aiutaTryOn: () -> AiutaTryOn,
-    aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     skuForGeneration: () -> SKUItem,
 ): FashionTryOnController {
@@ -126,7 +125,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             activeSKUItem = activeSKUItem,
             aiuta = aiuta,
             aiutaTryOn = aiutaTryOn,
-            aiutaTryOnListeners = aiutaTryOnListeners,
+            aiutaTryOnListeners = aiutaTryOnConfiguration.listeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
@@ -164,7 +163,7 @@ internal class FashionTryOnController(
     // Domain
     public val aiuta: () -> Aiuta,
     public val aiutaTryOn: () -> AiutaTryOn,
-    public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
+    public val aiutaTryOnListeners: AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val generatedOperationInteractor: GeneratedOperationInteractor,

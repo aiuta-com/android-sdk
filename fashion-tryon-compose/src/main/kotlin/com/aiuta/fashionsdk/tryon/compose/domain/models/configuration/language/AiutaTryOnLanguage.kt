@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 

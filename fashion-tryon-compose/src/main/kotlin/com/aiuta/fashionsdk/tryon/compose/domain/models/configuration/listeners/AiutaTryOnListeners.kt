@@ -1,6 +1,7 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models
+package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -26,4 +27,12 @@ public class AiutaTryOnListeners(
     public fun updateActiveSKUItem(skuItem: SKUItem) {
         internalUpdatedActiveSKUItem.value = skuItem
     }
+}
+
+public val DefaultAiutaTryOnListeners: AiutaTryOnListeners by lazy {
+    AiutaTryOnListeners(
+        addToWishlistClick = {},
+        addToCartClick = {},
+        closeClick = {},
+    )
 }

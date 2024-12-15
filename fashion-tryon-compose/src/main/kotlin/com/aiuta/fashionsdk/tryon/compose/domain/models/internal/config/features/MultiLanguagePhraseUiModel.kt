@@ -5,9 +5,9 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.MultiLanguagePhrase
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isoCode
-import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.RussianLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.TurkishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.RussianLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TurkishLanguage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 
 @Immutable

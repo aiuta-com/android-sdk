@@ -18,7 +18,7 @@ internal fun FashionTryOnController.clickAddToWishListActiveSKU(
         pageId = pageId,
         productId = skuId,
     )
-    aiutaTryOnListeners().addToWishlistClick(activeSKUItem.value)
+    aiutaTryOnListeners.addToWishlistClick(activeSKUItem.value)
 }
 
 internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: SKUItem) {
@@ -27,7 +27,7 @@ internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: 
         pageId = AiutaAnalyticPageId.RESULTS,
         productId = skuItem.skuId,
     )
-    aiutaTryOnListeners().addToWishlistClick(skuItem)
+    aiutaTryOnListeners.addToWishlistClick(skuItem)
 }
 
 internal fun FashionTryOnController.clickAddToCart(
@@ -39,7 +39,7 @@ internal fun FashionTryOnController.clickAddToCart(
         pageId = pageId,
         productId = skuId,
     )
-    aiutaTryOnListeners().addToCartClick(activeSKUItem.value)
+    aiutaTryOnListeners.addToCartClick(activeSKUItem.value)
 }
 
 internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticPageId? = null) {
@@ -47,7 +47,7 @@ internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticPageId? = nu
         pageId = pageId ?: currentScreen.value.exitPageId,
         skuItem = activeSKUItem.value,
     )
-    aiutaTryOnListeners().closeClick(activeSKUItem.value)
+    aiutaTryOnListeners.closeClick(activeSKUItem.value)
 }
 
 // Senders

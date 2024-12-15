@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models.toggles
+package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.toggles
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
@@ -15,17 +15,26 @@ public class AiutaToggles(
      * Be careful - if you turn off this flag, all previous
      * generation history will be deleted
      */
-    public val isHistoryAvailable: Boolean = true,
+    public val isHistoryAvailable: Boolean,
     /**
      * Flag which turn on or off possibility to use add to wishlist option
      */
-    public val isWishlistAvailable: Boolean = true,
+    public val isWishlistAvailable: Boolean,
     /**
      * Flag which turn on or off possibility to use pre-onboarding flow
      */
-    public val isPreOnboardingAvailable: Boolean = false,
+    public val isPreOnboardingAvailable: Boolean,
     /**
      * Flag which turn on or off possibility to use share option
      */
-    public val isShareAvailable: Boolean = true,
+    public val isShareAvailable: Boolean,
 )
+
+public val DefaultAiutaToggles: AiutaToggles by lazy {
+    AiutaToggles(
+        isHistoryAvailable = true,
+        isWishlistAvailable = true,
+        isPreOnboardingAvailable = false,
+        isShareAvailable = true,
+    )
+}

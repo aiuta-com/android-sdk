@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.domain.models.dimensions
+package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dimensions
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.unit.Dp
