@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.SupplementaryConsent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
@@ -14,7 +13,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.popUpAndNavigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.analytic.sendContinueOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.launch
@@ -37,8 +35,6 @@ internal fun OnboardingController.nextPage(
             if (state.value !is TryOnPage || isLastPageOfTryOn) {
                 state.value = nextState
             }
-
-            controller.sendContinueOnBoardingEvent(newPage = nextPageIndex)
 
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
@@ -91,14 +87,10 @@ internal fun OnboardingController.previousPage(controller: FashionTryOnControlle
                 state.value = previousState
             }
 
-            controller.sendContinueOnBoardingEvent(newPage = previousPageIndex)
-
             pagerState.animateScrollToPage(previousPageIndex)
         } else {
             // Try to navigate back
-            controller.navigateBack(
-                origin = FinishSession.Origin.ONBOARDING_SCREEN,
-            )
+            controller.navigateBack()
         }
     }
 }

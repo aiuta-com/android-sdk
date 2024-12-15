@@ -24,7 +24,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -52,10 +51,6 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val onboardingController = rememberOnboardingController()
 
     val generalHorizontalPadding = 16.dp
-
-    if (!configuration.isPreOnboardingAvailable) {
-        sendStartOnBoardingEvent()
-    }
 
     BackHandler {
         onboardingController.previousPage(controller)

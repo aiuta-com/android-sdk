@@ -11,7 +11,6 @@ import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -90,7 +89,6 @@ internal fun OnboardingAppBar(
                     color = theme.colors.primary,
                     onClick = {
                         controller.clickClose(
-                            origin = FinishSession.Origin.ONBOARDING_SCREEN,
                             pageId =
                                 when (onboardingController.state.value) {
                                     is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS

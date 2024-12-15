@@ -9,8 +9,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class AnalyticCompletedEvent(
-    @SerialName("event")
-    val event: InternalAnalyticEvent,
+    @SerialName("data")
+    val data: InternalAnalyticEvent,
     @SerialName("env")
     val environment: AnalyticEnvironment,
     @SerialName("local_date_time")

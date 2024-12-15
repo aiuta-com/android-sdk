@@ -25,11 +25,9 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartOnBoardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -42,7 +40,6 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    sendStartOnBoardingEvent()
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
     Box(
@@ -69,11 +66,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
                     modifier = Modifier.align(Alignment.CenterEnd),
                     icon = theme.icons.close24,
                     color = Color.White,
-                    onClick = {
-                        controller.clickClose(
-                            origin = FinishSession.Origin.PREONBOARDING_SCREEN,
-                        )
-                    },
+                    onClick = controller::clickClose,
                 )
             },
         )

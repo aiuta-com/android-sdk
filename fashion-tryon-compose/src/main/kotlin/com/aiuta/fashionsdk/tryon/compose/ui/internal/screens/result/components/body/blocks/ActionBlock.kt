@@ -13,10 +13,8 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -46,11 +44,6 @@ internal fun ActionBlock(
                 onClick = {
                     val imageUrls = listOfNotNull(imageUrl)
                     // Analytic
-                    controller.sendShareGeneratedImageEvent(
-                        origin = ShareGeneratedImage.Origin.RESULT_SCREEN,
-                        count = imageUrls.size,
-                        additionalShareInfo = activeSKUItem.additionalShareInfo,
-                    )
                     controller.sendResultEvent(
                         event = AiutaAnalyticsResultsEventType.RESULT_SHARED,
                         pageId = AiutaAnalyticPageId.RESULTS,
@@ -61,7 +54,6 @@ internal fun ActionBlock(
                         content = activeSKUItem.additionalShareInfo,
                         imageUrls = imageUrls,
                         watermark = theme.watermark,
-                        origin = ShareGeneratedImage.Origin.RESULT_SCREEN,
                     )
                 },
             )

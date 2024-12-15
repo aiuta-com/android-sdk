@@ -45,9 +45,7 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
@@ -270,16 +268,10 @@ private fun ZoomedImageScreenContent(
                                     listOfNotNull(
                                         screenState.sharedImage.value.imageUrl,
                                     )
-                                controller.sendShareGeneratedImageEvent(
-                                    origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
-                                    count = imageUrls.size,
-                                    additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
-                                )
                                 shareManager.share(
                                     content = screenState.sharedImage.value.additionalShareInfo,
                                     imageUrls = imageUrls,
                                     watermark = theme.watermark,
-                                    origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
                                 )
                             },
                     text = stringResources.share,

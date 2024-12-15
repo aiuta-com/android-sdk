@@ -11,7 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -51,11 +50,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
             modifier = innerModifier,
             icon = theme.icons.close24,
             color = theme.colors.primary,
-            onClick = {
-                controller.clickClose(
-                    FinishSession.Origin.MAIN_SCREEN,
-                )
-            },
+            onClick = controller::clickClose,
         )
     }
 

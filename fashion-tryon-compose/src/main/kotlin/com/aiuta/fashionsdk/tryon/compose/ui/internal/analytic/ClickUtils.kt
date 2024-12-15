@@ -4,8 +4,6 @@ import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -33,7 +31,6 @@ internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: 
 }
 
 internal fun FashionTryOnController.clickAddToCart(
-    origin: FinishSession.Origin,
     pageId: AiutaAnalyticPageId,
     skuId: String,
 ) {
@@ -42,22 +39,11 @@ internal fun FashionTryOnController.clickAddToCart(
         pageId = pageId,
         productId = skuId,
     )
-    analytic.sendFinishSessionEvent(
-        action = FinishSession.Action.ADD_TO_CART,
-        origin = origin,
-        pageId = pageId,
-        skuItem = activeSKUItem.value,
-    )
     aiutaTryOnListeners().addToCartClick(activeSKUItem.value)
 }
 
-internal fun FashionTryOnController.clickClose(
-    origin: FinishSession.Origin,
-    pageId: AiutaAnalyticPageId? = null,
-) {
+internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticPageId? = null) {
     analytic.sendFinishSessionEvent(
-        action = FinishSession.Action.NONE,
-        origin = origin,
         pageId = pageId ?: currentScreen.value.exitPageId,
         skuItem = activeSKUItem.value,
     )
@@ -66,34 +52,8 @@ internal fun FashionTryOnController.clickClose(
 
 // Senders
 internal fun InternalAiutaAnalytic.sendFinishSessionEvent(
-    action: FinishSession.Action,
-    origin: FinishSession.Origin,
     pageId: AiutaAnalyticPageId,
     skuItem: SKUItem,
 ) {
-    sendEvent(
-        event =
-            FinishSession(
-                action = action.value,
-                origin = origin.value,
-                skuId = skuItem.skuId,
-                skuCatalogName = skuItem.catalogName,
-            ),
-    )
     sendEvent(event = AiutaAnalyticExitEvent(pageId = pageId, productId = skuItem.skuId))
-}
-
-internal fun FashionTryOnController.sendShareGeneratedImageEvent(
-    origin: ShareGeneratedImage.Origin,
-    count: Int,
-    additionalShareInfo: String? = null,
-) {
-    analytic.sendEvent(
-        event =
-            ShareGeneratedImage(
-                origin = origin.value,
-                count = count.toString(),
-                additionalShareInfo = additionalShareInfo,
-            ),
-    )
 }

@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnAbortedErrorEvent
@@ -24,7 +23,6 @@ internal suspend fun measureTryOn(
 
 internal suspend fun <T> trackException(
     analytic: InternalAiutaAnalytic,
-    type: TryOnError.Type,
     container: SKUGenerationContainer,
     action: suspend () -> T,
 ): T {
@@ -33,7 +31,6 @@ internal suspend fun <T> trackException(
     } catch (e: AbortedPingGenerationException) {
         // Logging aborted exception
         analytic.sendTryOnAbortedErrorEvent(
-            type = type,
             container = container,
             errorMessage = e.message,
         )
@@ -41,7 +38,6 @@ internal suspend fun <T> trackException(
     } catch (e: Exception) {
         // Logging general exception
         analytic.sendTryOnErrorEvent(
-            type = type,
             container = container,
             errorMessage = e.message,
         )

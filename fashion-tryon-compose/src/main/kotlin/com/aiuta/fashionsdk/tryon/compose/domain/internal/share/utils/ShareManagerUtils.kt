@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.internal.analytic.model.ShareSuccessfully
 
 private const val ORIGIN_KEY = "originKey"
@@ -23,7 +22,6 @@ private const val SHARE_REQUEST_CODE = 100
 internal fun Context.shareContent(
     content: String?,
     contentUris: ArrayList<Uri> = arrayListOf(),
-    origin: ShareGeneratedImage.Origin,
 ) {
     // Create a new Intent object with the ACTION_SEND action.
     val action = if (contentUris.size > 1) Intent.ACTION_SEND_MULTIPLE else Intent.ACTION_SEND
@@ -42,7 +40,6 @@ internal fun Context.shareContent(
             SHARE_REQUEST_CODE,
             Intent(this, ShareBroadcastReceiver::class.java).apply {
                 putExtra(COUNT_KEY, contentUris.size)
-                putExtra(ORIGIN_KEY, origin.value)
                 putExtra(Intent.EXTRA_TEXT, content)
             },
             PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,

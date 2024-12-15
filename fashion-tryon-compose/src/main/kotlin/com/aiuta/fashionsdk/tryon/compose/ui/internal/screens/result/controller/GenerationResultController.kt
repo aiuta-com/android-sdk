@@ -45,8 +45,6 @@ internal fun rememberGenerationResultController(): GenerationResultController {
             footerListState = footerListState,
             bottomSheetScaffoldState = bottomSheetScaffoldState,
         )
-    }.also {
-        GenerationResultControllerListener(it)
     }
 }
 

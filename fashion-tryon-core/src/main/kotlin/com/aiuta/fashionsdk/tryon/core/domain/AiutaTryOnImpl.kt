@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.tryon.core.domain
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -96,7 +95,6 @@ internal class AiutaTryOnImpl(
                         trackException(
                             analytic = analytic,
                             container = container,
-                            type = TryOnError.Type.UPLOAD_FAILED,
                         ) {
                             solveUploadingImage(container)
                         }
@@ -112,7 +110,6 @@ internal class AiutaTryOnImpl(
                         trackException(
                             analytic = analytic,
                             container = container,
-                            type = TryOnError.Type.TRY_ON_START_FAILED,
                         ) {
                             skuOperationsDataSource.createSKUOperation(
                                 request =
@@ -134,7 +131,6 @@ internal class AiutaTryOnImpl(
                     trackException(
                         analytic = analytic,
                         container = container,
-                        type = TryOnError.Type.TRY_ON_START_FAILED,
                     ) {
                         pingOperationSlice.startOperationTypeListening(
                             operationId = newOperation.operationId,
@@ -144,7 +140,6 @@ internal class AiutaTryOnImpl(
                     trackException(
                         analytic = analytic,
                         container = container,
-                        type = TryOnError.Type.TRY_ON_OPERATION_FAILED,
                     ) {
                         pingOperationSlice
                             .getPingGenerationStatusFlow(operationId = newOperation.operationId)

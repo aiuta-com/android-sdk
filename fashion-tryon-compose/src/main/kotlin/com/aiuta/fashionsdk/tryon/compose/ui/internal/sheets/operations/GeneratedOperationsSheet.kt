@@ -60,7 +60,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.analytic.sendSelectOldPhotos
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
 import kotlinx.coroutines.launch
 
@@ -125,7 +124,6 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     onClick = {
                         with(controller) {
                             // Analytic
-                            sendSelectOldPhotos(generatedOperation.sourceImageUrls.size)
                             sendPickerAnalytic(
                                 event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
                                 pageId = AiutaAnalyticPageId.IMAGE_PICKER,

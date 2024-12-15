@@ -36,7 +36,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendDislikeGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendLikeGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
@@ -134,12 +133,11 @@ internal fun FeedbackBlock(
         FeedbackBlockContent(
             hazeState = hazeState,
             onDislikeClick = {
-                controller.sendDislikeGenerationFeedback(itemIndex)
                 onFeedbackClick()
                 controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
             },
             onLikeClick = {
-                controller.sendLikeGenerationFeedback(itemIndex)
+                controller.sendLikeGenerationFeedback()
                 generationResultController.showThanksFeedbackBlock()
                 controller.sessionGenerationInteractor.setFeedbackAsProvided(sessionImage)
             },
