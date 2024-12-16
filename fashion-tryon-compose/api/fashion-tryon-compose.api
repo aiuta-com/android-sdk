@@ -110,13 +110,12 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider;
 	public final fun getDimensions ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;
 	public final fun getHostMetadata ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;
 	public final fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;
-	public final fun getListeners ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;
 	public final fun getToggles ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;
 }
 
@@ -129,7 +128,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 	public final fun setDimensions (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
 	public final fun setHostMetadata (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
 	public final fun setLanguage (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
-	public final fun setListeners (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
 	public final fun setToggles (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
 }
 
@@ -324,11 +322,11 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
-	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
-	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;II)V
+	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/components/images/ComposableSingletons$ImagesContainerKt {
