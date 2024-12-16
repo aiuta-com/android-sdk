@@ -47,7 +47,7 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
                 modifier = Modifier.align(Alignment.CenterStart),
                 icon = theme.icons.back24,
                 color = theme.colors.primary,
-                onClick = { controller.navigateBack() },
+                onClick = controller::navigateBack,
             )
         },
         title = {

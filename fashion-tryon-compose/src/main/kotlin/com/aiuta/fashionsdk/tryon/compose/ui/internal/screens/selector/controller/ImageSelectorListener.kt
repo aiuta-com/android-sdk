@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -26,6 +27,7 @@ internal fun ImageSelectorAutoTryOnListener() {
                 context = context,
                 dialogController = dialogController,
                 stringResources = stringResources,
+                origin = StartTryOnEvent.TryOnOrigin.SELECTED_PHOTO,
             )
         }
     }

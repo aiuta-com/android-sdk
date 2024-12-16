@@ -7,11 +7,14 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
-import com.aiuta.fashionsdk.internal.analytic.model.ShareSuccessfully
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.ShareEvent
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
-private const val ORIGIN_KEY = "originKey"
-private const val COUNT_KEY = "countKey"
+private const val PAGE_ID_KEY = "pageIdKey"
+private const val PRODUCT_ID_KEY = "productIdKey"
 private const val SHARE_REQUEST_CODE = 100
 
 /**
@@ -22,8 +25,9 @@ private const val SHARE_REQUEST_CODE = 100
 
 internal fun Context.shareContent(
     content: String?,
+    pageId: AiutaAnalyticPageId,
+    productId: String?,
     contentUris: ArrayList<Uri> = arrayListOf(),
-    origin: ShareGeneratedImage.Origin,
 ) {
     // Create a new Intent object with the ACTION_SEND action.
     val action = if (contentUris.size > 1) Intent.ACTION_SEND_MULTIPLE else Intent.ACTION_SEND
@@ -41,9 +45,8 @@ internal fun Context.shareContent(
             this,
             SHARE_REQUEST_CODE,
             Intent(this, ShareBroadcastReceiver::class.java).apply {
-                putExtra(COUNT_KEY, contentUris.size)
-                putExtra(ORIGIN_KEY, origin.value)
-                putExtra(Intent.EXTRA_TEXT, content)
+                putExtra(PAGE_ID_KEY, Json.encodeToString(pageId))
+                putExtra(PRODUCT_ID_KEY, productId)
             },
             PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
@@ -77,17 +80,15 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
             intent?.getParcelableExtra(
                 Intent.EXTRA_CHOSEN_COMPONENT,
             )
-        val count = intent?.getIntExtra(COUNT_KEY, 0)
-        val origin = intent?.getStringExtra(ORIGIN_KEY)
-        val additionalShareInfo = intent?.getStringExtra(Intent.EXTRA_TEXT)
+        val pageId = intent?.getStringExtra(PAGE_ID_KEY)
+        val productId = intent?.getStringExtra(PRODUCT_ID_KEY)
 
         InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(
             event =
-                ShareSuccessfully(
-                    origin = origin,
-                    count = count.toString(),
+                ShareEvent(
+                    pageId = pageId?.let { Json.decodeFromString(it) },
+                    productId = productId,
                     target = clickedComponent?.packageName,
-                    additionalShareInfo = additionalShareInfo,
                 ),
         )
     }

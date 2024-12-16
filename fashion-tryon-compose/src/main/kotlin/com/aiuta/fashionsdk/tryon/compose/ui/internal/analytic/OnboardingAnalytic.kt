@@ -3,8 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.SupplementaryConsent
-import com.aiuta.fashionsdk.tryon.compose.domain.models.dataprovider.toAnalytic
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.SupplementaryConsent
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 internal fun FashionTryOnController.sendOnboardingEvent(

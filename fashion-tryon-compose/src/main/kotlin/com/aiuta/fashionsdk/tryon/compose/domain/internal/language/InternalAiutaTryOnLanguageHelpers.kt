@@ -5,11 +5,11 @@ import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.EnglishAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.RussianAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.TurkishAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.RussianLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.TurkishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.AiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.CustomLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.RussianLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TurkishLanguage
 
 @Composable
 internal fun resolveInternalLanguage(

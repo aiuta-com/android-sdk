@@ -5,14 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -26,31 +24,27 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingUploadedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
-import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 @Composable
 internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
-    aiuta: () -> Aiuta,
-    aiutaTryOn: () -> AiutaTryOn,
-    aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
+    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
-    skuForGeneration: () -> SKUItem,
+    skuForGeneration: SKUItem,
     content: @Composable () -> Unit,
 ) {
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        val internalAnalytic = remember { aiuta().internalAiutaAnalytic }
-        val configuration = remember { aiutaTryOnConfiguration() }
+        val internalAnalytic =
+            remember {
+                aiutaTryOnConfiguration
+                    .aiuta
+                    .internalAiutaAnalytic
+            }
         val controller =
             rememberFashionTryOnController(
-                analytic = { internalAnalytic },
-                aiuta = aiuta,
-                aiutaTryOn = aiutaTryOn,
-                aiutaTryOnListeners = aiutaTryOnListeners,
-                aiutaTryOnConfiguration = configuration,
+                aiutaTryOnConfiguration = aiutaTryOnConfiguration,
                 skuForGeneration = skuForGeneration,
             )
 
@@ -58,12 +52,15 @@ internal fun NavigationInitialisation(
             LocalAnalytic provides internalAnalytic,
             LocalController provides controller,
             LocalTheme provides aiutaTheme,
-            LocalAiutaConfiguration provides configuration,
+            LocalAiutaConfiguration provides aiutaTryOnConfiguration,
             LocalAiutaTryOnStringResources provides
                 resolveInternalLanguage(
-                    selectedLanguage = configuration.language,
+                    selectedLanguage = aiutaTryOnConfiguration.language,
                 ),
-            LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(aiuta),
+            LocalAiutaTryOnDataController provides
+                rememberAiutaTryOnDataController(
+                    aiuta = { aiutaTryOnConfiguration.aiuta },
+                ),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
             LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
         ) {

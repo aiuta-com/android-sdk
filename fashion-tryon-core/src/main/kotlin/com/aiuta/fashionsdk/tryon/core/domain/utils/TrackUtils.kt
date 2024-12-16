@@ -1,47 +1,28 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.model.TryOnError
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnAbortedErrorEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnErrorEvent
+import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendErrorEvent
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendPublicTryOnErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.exception.AbortedPingGenerationException
-import kotlin.system.measureTimeMillis
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 import kotlinx.coroutines.flow.FlowCollector
 
-internal suspend fun measureTryOn(
-    analytic: InternalAiutaAnalytic,
-    container: SKUGenerationContainer,
-    action: suspend () -> Unit,
-) {
-    analytic.sendStartTryOnEvent(container)
-    val loadingTimeMillis = measureTimeMillis { action() }
-    analytic.sendFinishTryOnEvent(container, loadingTimeMillis)
-}
-
-internal suspend fun <T> trackException(
-    analytic: InternalAiutaAnalytic,
-    type: TryOnError.Type,
+internal suspend fun <T> AiutaTryOnImpl.trackException(
     container: SKUGenerationContainer,
     action: suspend () -> T,
 ): T {
     return try {
         action()
-    } catch (e: AbortedPingGenerationException) {
-        // Logging aborted exception
-        analytic.sendTryOnAbortedErrorEvent(
-            type = type,
+    } catch (e: AiutaTryOnGenerationException) {
+        analytic.sendErrorEvent(
             container = container,
-            errorMessage = e.message,
+            exception = e,
         )
         throw e
     } catch (e: Exception) {
         // Logging general exception
-        analytic.sendTryOnErrorEvent(
-            type = type,
+        analytic.sendPublicTryOnErrorEvent(
             container = container,
             errorMessage = e.message,
         )

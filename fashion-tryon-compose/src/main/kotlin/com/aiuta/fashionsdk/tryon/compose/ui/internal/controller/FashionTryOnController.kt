@@ -16,9 +16,9 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session.SessionGenerationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
@@ -40,18 +40,14 @@ import kotlinx.coroutines.cancel
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
-    analytic: () -> InternalAiutaAnalytic,
-    aiuta: () -> Aiuta,
-    aiutaTryOn: () -> AiutaTryOn,
-    aiutaTryOnListeners: () -> AiutaTryOnListeners,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    skuForGeneration: () -> SKUItem,
+    skuForGeneration: SKUItem,
 ): FashionTryOnController {
     val context = LocalContext.current
 
     val activeSKUItem =
         remember {
-            mutableStateOf(skuForGeneration())
+            mutableStateOf(skuForGeneration)
         }
 
     val zoomImageController =
@@ -124,15 +120,15 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             lastSavedImages = defaultLastSavedImages,
             lastSavedOperation = defaultSavedOperation,
             activeSKUItem = activeSKUItem,
-            aiuta = aiuta,
-            aiutaTryOn = aiutaTryOn,
-            aiutaTryOnListeners = aiutaTryOnListeners,
+            aiuta = aiutaTryOnConfiguration.aiuta,
+            aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
+            aiutaTryOnListeners = aiutaTryOnConfiguration.listeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = OnboardingInteractor.getInstance(context),
             sessionGenerationInteractor = SessionGenerationInteractor.getInstance(context),
-            analytic = analytic(),
+            analytic = aiutaTryOnConfiguration.aiutaAnalytic,
         )
     }.also {
         it.generationNavigationListener()
@@ -162,9 +158,9 @@ internal class FashionTryOnController(
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?>,
     public val activeSKUItem: MutableState<SKUItem>,
     // Domain
-    public val aiuta: () -> Aiuta,
-    public val aiutaTryOn: () -> AiutaTryOn,
-    public val aiutaTryOnListeners: () -> AiutaTryOnListeners,
+    public val aiuta: Aiuta,
+    public val aiutaTryOn: AiutaTryOn,
+    public val aiutaTryOnListeners: AiutaTryOnListeners,
     public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val generatedOperationInteractor: GeneratedOperationInteractor,

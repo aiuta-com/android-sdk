@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.core.domain.slice.upload
 
-import android.net.Uri
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.UploadedImage
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
 import java.io.FileNotFoundException
 
@@ -24,7 +24,7 @@ internal interface UploadImageSlice {
      * @throws FashionNetworkIsDisconnected
      */
     suspend fun uploadImage(
-        fileUri: Uri,
+        container: SKUGenerationUriContainer,
         fileName: String,
     ): UploadedImage
 }

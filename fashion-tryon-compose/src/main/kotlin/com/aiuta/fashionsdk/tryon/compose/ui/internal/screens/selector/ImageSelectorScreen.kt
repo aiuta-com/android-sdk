@@ -22,7 +22,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppB
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendOpenMainScreenEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body.ImageSelectorBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer.ImageSelectorFooter
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.controller.ImageSelectorAutoTryOnListener
@@ -43,7 +42,6 @@ internal fun ImageSelectorScreen(modifier: Modifier = Modifier) {
             }
         }
 
-    sendOpenMainScreenEvent()
     sendPageEvent(pageId = AiutaAnalyticPageId.IMAGE_PICKER)
 
     ImageSelectorAutoTryOnListener()

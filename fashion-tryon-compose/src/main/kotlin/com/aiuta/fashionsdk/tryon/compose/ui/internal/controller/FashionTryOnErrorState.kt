@@ -2,8 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import android.content.Context
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
@@ -31,6 +32,7 @@ internal class TryOnToastErrorState(
             dialogController = dialogController,
             context = context,
             stringResources = stringResources,
+            origin = StartTryOnEvent.TryOnOrigin.RETRY_NOTIFICATION,
         )
     }
     override val onClose: (() -> Unit)? = null

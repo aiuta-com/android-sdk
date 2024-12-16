@@ -50,7 +50,7 @@ internal fun SplashScreen(
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =
-                if (configuration.isPreOnboardingAvailable) {
+                if (configuration.toggles.isPreOnboardingAvailable) {
                     NavigationScreen.Preonboarding
                 } else {
                     NavigationScreen.Onboarding

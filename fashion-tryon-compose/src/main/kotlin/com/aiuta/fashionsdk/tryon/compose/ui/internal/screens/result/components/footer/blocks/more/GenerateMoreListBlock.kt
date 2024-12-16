@@ -34,7 +34,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorP
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendSelectMoreToTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
 
 internal fun LazyGridScope.generateMoreListBlock(skuItem: SKUItem) {
@@ -85,7 +84,6 @@ private fun GenerationMoreItem(
                 )
                 .padding(8.dp)
                 .clickableUnindicated {
-                    controller.sendSelectMoreToTryOnEvent(skuItem)
                     controller.bottomSheetNavigator.show(
                         newSheetScreen =
                             NavigationBottomSheetScreen.SKUInfo(

@@ -38,7 +38,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
@@ -104,10 +103,7 @@ internal fun ImageSelectorBottom(
                     text = stringResources.imageSelectorUploadButton,
                     style = FashionButtonStyles.primaryStyle(theme),
                     size = sharedButtonSize,
-                    onClick = {
-                        controller.sendTapChangePhotoEvent()
-                        uploadPhoto()
-                    },
+                    onClick = uploadPhoto,
                 )
             }
 
@@ -131,10 +127,8 @@ internal fun ImageSelectorBottom(
                     size = sharedButtonSize,
                     onClick = {
                         if (countGeneratedOperation.value == 0) {
-                            controller.sendTapChangePhotoEvent()
                             uploadPhoto()
                         } else {
-                            controller.sendTapChangePhotoEvent(isHistorySheetOpened = true)
                             controller.bottomSheetNavigator.show(
                                 NavigationBottomSheetScreen.GeneratedOperations,
                             )

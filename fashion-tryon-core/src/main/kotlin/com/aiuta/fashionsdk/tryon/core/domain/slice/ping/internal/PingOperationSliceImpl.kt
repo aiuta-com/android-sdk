@@ -1,41 +1,71 @@
 package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal
 
-import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOperationsDataSource
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.GeneratedImage
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.SKUOperationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.GeneratePingController
-import java.util.concurrent.ConcurrentHashMap
-import kotlinx.coroutines.flow.StateFlow
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils.defaultGenerationDelaySequence
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 internal class PingOperationSliceImpl(
-    private val controllerFactory: () -> GeneratePingController,
+    private val skuOperationsDataSource: FashionSKUOperationsDataSource,
+    private val delaySequenceFactory: () -> Sequence<Long> = { defaultGenerationDelaySequence() },
 ) : PingOperationSlice {
-    private val taskMap: ConcurrentHashMap<String, Task> = ConcurrentHashMap()
+    private val mutex = Mutex()
 
-    override fun getPingGenerationStatusFlow(
-        operationId: String,
-    ): StateFlow<PingGenerationStatus>? {
-        return taskMap[operationId]?.controller?.pingGenerationStatus
+    override suspend fun operationPing(operationId: String): List<GeneratedImage> {
+        return mutex.withLock {
+            ping(
+                operationId = operationId,
+                delaySequenceIterator = delaySequenceFactory().iterator(),
+            )
+        }
     }
 
-    override suspend fun startOperationTypeListening(operationId: String) {
-        require(taskMap[operationId] == null) {
-            ERROR_OPERATION_EXIST
+    private suspend fun ping(
+        operationId: String,
+        delaySequenceIterator: Iterator<Long>,
+    ): List<GeneratedImage> {
+        val operation = skuOperationsDataSource.getSKUOperation(operationId)
+
+        when (operation.status) {
+            SKUOperationStatus.FAILED -> {
+                throw AiutaTryOnGenerationException(
+                    type = AiutaTryOnExceptionType.OPERATION_FAILED,
+                    message = operation.error,
+                )
+            }
+
+            SKUOperationStatus.ABORTED -> {
+                throw AiutaTryOnGenerationException(
+                    type = AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
+                    message = operation.error,
+                )
+            }
+
+            SKUOperationStatus.CREATED, SKUOperationStatus.IN_PROGRESS -> {
+                // Just wait result
+            }
+
+            SKUOperationStatus.SUCCESS -> {
+                return operation.generatedImages
+            }
         }
 
-        val controller = controllerFactory()
-        taskMap[operationId] = Task(controller)
+        if (delaySequenceIterator.hasNext()) {
+            delay(delaySequenceIterator.next())
+        } else {
+            // We reach time limit
+            throw AiutaTryOnGenerationException(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED)
+        }
 
-        controller.operationPing(operationId)
-    }
-
-    private class Task(
-        val controller: GeneratePingController,
-    )
-
-    private companion object {
-        const val ERROR_OPERATION_EXIST = """
-            Generation operation with this id is already exist.
-            Cancel this operation before submitting new
-        """
+        return ping(
+            operationId = operationId,
+            delaySequenceIterator = delaySequenceIterator,
+        )
     }
 }

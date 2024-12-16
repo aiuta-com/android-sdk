@@ -39,6 +39,7 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
@@ -166,6 +167,7 @@ private fun PagerItem(
                                     imageUrl = sessionImage.imageUrl,
                                     parentImageOffset = parentImageOffset,
                                     additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
+                                    originPageId = AiutaAnalyticPageId.RESULTS,
                                 ),
                         )
                     },

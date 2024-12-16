@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -45,9 +44,7 @@ import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
@@ -261,7 +258,7 @@ private fun ZoomedImageScreenContent(
                 tint = interfaceColor.value,
             )
 
-            if (aiutaConfiguration.isShareAvailable) {
+            if (aiutaConfiguration.toggles.isShareAvailable) {
                 Text(
                     modifier =
                         Modifier
@@ -270,16 +267,12 @@ private fun ZoomedImageScreenContent(
                                     listOfNotNull(
                                         screenState.sharedImage.value.imageUrl,
                                     )
-                                controller.sendShareGeneratedImageEvent(
-                                    origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
-                                    count = imageUrls.size,
-                                    additionalShareInfo = screenState.sharedImage.value.additionalShareInfo,
-                                )
                                 shareManager.share(
                                     content = screenState.sharedImage.value.additionalShareInfo,
                                     imageUrls = imageUrls,
+                                    productId = controller.activeSKUItem.value.skuId,
+                                    pageId = screenState.sharedImage.value.originPageId,
                                     watermark = theme.watermark,
-                                    origin = ShareGeneratedImage.Origin.RESULT_FULLSCREEN,
                                 )
                             },
                     text = stringResources.share,

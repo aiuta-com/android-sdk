@@ -38,7 +38,7 @@ internal suspend fun createAnalyticCompletedEvent(
         val event = Json.decodeFromString<InternalAnalyticEvent>(rawEvent)
 
         AnalyticCompletedEvent(
-            event = event,
+            data = event,
             environment = createAnalyticEnvironment(context),
             localDateTime = currentLocalDateTime(),
         )

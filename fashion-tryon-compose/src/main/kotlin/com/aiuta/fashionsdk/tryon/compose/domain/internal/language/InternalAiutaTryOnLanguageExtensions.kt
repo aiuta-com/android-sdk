@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
-import com.aiuta.fashionsdk.tryon.compose.domain.models.CustomLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.CustomLanguage
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 

@@ -54,12 +54,10 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
-import com.aiuta.fashionsdk.internal.analytic.model.ShareGeneratedImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.ShareManager
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendShareGeneratedImageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
@@ -187,6 +185,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                                             initialCornerRadius = sharedRadius,
                                             imageUrl = generatedImage?.imageUrl,
                                             parentImageOffset = parentImageOffset,
+                                            originPageId = AiutaAnalyticPageId.HISTORY,
                                         ),
                                 )
                             }
@@ -345,14 +344,11 @@ private fun BoxScope.HistoryScreenInterface(
                 controller.deactivateSelectMode()
 
                 controller.sendHistoryEvent(AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED)
-                controller.sendShareGeneratedImageEvent(
-                    origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
-                    count = imageUrls.size,
-                )
                 shareManager.share(
                     imageUrls = imageUrls,
+                    productId = controller.activeSKUItem.value.skuId,
+                    pageId = AiutaAnalyticPageId.HISTORY,
                     watermark = theme.watermark,
-                    origin = ShareGeneratedImage.Origin.HISTORY_SCREEN,
                 )
             },
             onDelete = {

@@ -31,7 +31,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
@@ -45,7 +44,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.analytic.sendTapMoreToTryOnEvent
 
 @Composable
 internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
@@ -136,7 +134,7 @@ private fun ButtonsContainer(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (configuration.isWishlistAvailable) {
+        if (configuration.toggles.isWishlistAvailable) {
             FashionButton(
                 modifier =
                     Modifier
@@ -182,12 +180,10 @@ private fun ButtonsContainer(
             onClick = {
                 if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     controller.clickAddToCart(
-                        origin = FinishSession.Origin.SKU_POPUP,
                         pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                         skuId = skuInfo.skuItem.skuId,
                     )
                 } else {
-                    controller.sendTapMoreToTryOnEvent(skuInfo.skuItem)
                     controller.changeActiveSKU(skuInfo.skuItem)
                     controller.bottomSheetNavigator.hide()
                     controller.navigateBack()

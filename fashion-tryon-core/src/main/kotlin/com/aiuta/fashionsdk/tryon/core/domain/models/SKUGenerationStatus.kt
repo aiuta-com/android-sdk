@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models
 
+import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
+
 /**
  * Status sku generation
  */
@@ -11,6 +13,7 @@ public sealed interface SKUGenerationStatus {
         public val sourceImageId: String,
         public val sourceImageUrl: String,
         public val images: List<SKUGeneratedImage> = emptyList(),
+        public val metadata: AiutaTryOnMetadata,
     ) : SKUGenerationStatus
 
     /**

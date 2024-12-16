@@ -8,9 +8,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultSKUItem
+import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
+import com.aiuta.fashionsdk.tryon.compose.domain.models.DefaultSKUItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -36,21 +38,17 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 @Composable
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
-    aiuta: () -> Aiuta,
-    aiutaTryOn: () -> AiutaTryOn,
-    aiutaTryOnListeners: () -> AiutaTryOnListeners,
-    aiutaTryOnConfiguration: (() -> AiutaTryOnConfiguration),
+    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
 ) {
     NavigationInitialisation(
         modifier = modifier,
-        aiuta = aiuta,
-        aiutaTryOn = aiutaTryOn,
-        aiutaTryOnListeners = aiutaTryOnListeners,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTheme = aiutaTheme,
-        skuForGeneration = { defaultSKUItem },
+        skuForGeneration = DefaultSKUItem,
     ) {
+        sendSessionEvent(SessionEvent.FlowType.HISTORY)
+
         val scope = rememberCoroutineScope()
         val controller = LocalController.current
 

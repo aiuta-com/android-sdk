@@ -25,7 +25,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
@@ -38,6 +37,7 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
@@ -154,6 +154,7 @@ private fun ItemPhotosBlock(
                                             imageUrl = url,
                                             parentImageOffset = parentImageOffset,
                                             additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
+                                            originPageId = AiutaAnalyticPageId.RESULTS,
                                         ),
                                 )
                             },

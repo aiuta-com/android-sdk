@@ -9,13 +9,13 @@ import kotlinx.serialization.Serializable
 internal class AnalyticEnvironment(
     @SerialName("platform")
     val platform: String,
-    @SerialName("sdk_version")
+    @SerialName("sdkVersion")
     val sdkVersion: String,
-    @SerialName("host_id")
+    @SerialName("hostId")
     val hostId: String,
-    @SerialName("host_version")
+    @SerialName("hostVersion")
     val hostVersion: String?,
-    @SerialName("installation_id")
+    @SerialName("installationId")
     val installationId: String?,
 ) {
     companion object {

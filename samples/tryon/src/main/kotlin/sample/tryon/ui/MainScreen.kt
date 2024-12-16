@@ -9,10 +9,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.defaultAiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
 import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
@@ -66,33 +66,34 @@ fun MainScreen() {
                 )
             }
 
-        val mockAiutaTryOnListeners =
-            remember {
-                AiutaTryOnListeners(
-                    addToWishlistClick = {
-                        context.makeToast("Rise Add to wishlist")
-                    },
-                    addToCartClick = {
-                        context.makeToast("Rise Add to cart")
-                    },
-                    closeClick = {
-                        context.makeToast("Rise Close")
-                    },
-                )
-            }
-
         val mockAiutaConfiguration =
             remember {
-                defaultAiutaTryOnConfiguration(
-                    isPreOnboardingAvailable = false,
-                    language =
-                        EnglishLanguage(
-                            brand = "YOUR brand",
-                            termsOfServiceUrl = "https://brand.com/tos",
-                            privacyPolicyUrl = "https://brand.com/pp",
-                            onboardingPageConsentSupplementaryPoints = emptyList(),
-                        ),
-                )
+                AiutaTryOnConfiguration.Builder()
+                    .setAiuta(viewModel.aiuta)
+                    .setLanguage(
+                        language =
+                            EnglishLanguage(
+                                brand = "YOUR brand",
+                                termsOfServiceUrl = "https://brand.com/tos",
+                                privacyPolicyUrl = "https://brand.com/pp",
+                                onboardingPageConsentSupplementaryPoints = emptyList(),
+                            ),
+                    )
+                    .setListeners(
+                        listeners =
+                            AiutaTryOnListeners(
+                                addToWishlistClick = {
+                                    context.makeToast("Rise Add to wishlist")
+                                },
+                                addToCartClick = {
+                                    context.makeToast("Rise Add to cart")
+                                },
+                                closeClick = {
+                                    context.makeToast("Rise Close")
+                                },
+                            ),
+                    )
+                    .build()
             }
 
         val mockAiutaTheme =
@@ -103,12 +104,9 @@ fun MainScreen() {
 
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
-            aiuta = { viewModel.aiuta },
-            aiutaTryOn = { viewModel.aiutaTryOn },
-            aiutaTryOnListeners = { mockAiutaTryOnListeners },
-            aiutaTryOnConfiguration = { mockAiutaConfiguration },
-            skuForGeneration = { mockSKUItem },
+            aiutaTryOnConfiguration = mockAiutaConfiguration,
             aiutaTheme = mockAiutaTheme,
+            skuForGeneration = mockSKUItem,
         )
     }
 }

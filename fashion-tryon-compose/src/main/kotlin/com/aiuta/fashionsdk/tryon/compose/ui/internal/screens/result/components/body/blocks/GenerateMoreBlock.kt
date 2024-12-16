@@ -11,7 +11,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateMoreListener
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.analytic.sendTapChangePhotoEvent
 
 @Composable
 internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
@@ -35,7 +34,6 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
                 pageId = AiutaAnalyticPageId.RESULTS,
                 productId = activeSKUItem.skuId,
             )
-            controller.sendTapChangePhotoEvent()
 
             controller.bottomSheetNavigator.show(
                 newSheetScreen =

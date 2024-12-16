@@ -5,7 +5,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.aiuta.fashionsdk.internal.analytic.model.FinishSession
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
@@ -54,15 +53,13 @@ internal fun FashionTryOnController.popUpAndNavigateTo(
     navigateTo(navigateToScreen)
 }
 
-internal fun FashionTryOnController.navigateBack(
-    origin: FinishSession.Origin = FinishSession.Origin.MAIN_SCREEN,
-) {
+internal fun FashionTryOnController.navigateBack() {
     if (backStack.isNotEmpty()) {
         val previousScreen = backStack.pop()
 
         currentScreen.value = previousScreen
     } else {
-        clickClose(origin = origin)
+        clickClose()
     }
 }
 

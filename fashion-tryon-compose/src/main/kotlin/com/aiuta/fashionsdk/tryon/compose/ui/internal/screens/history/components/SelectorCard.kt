@@ -99,7 +99,7 @@ internal fun SelectorCard(
                 onDelete()
             }
 
-            if (aiutaConfiguration.isShareAvailable) {
+            if (aiutaConfiguration.toggles.isShareAvailable) {
                 Spacer(Modifier.width(16.dp))
 
                 SmallIconButton(
