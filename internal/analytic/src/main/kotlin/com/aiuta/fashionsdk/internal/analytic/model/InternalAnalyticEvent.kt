@@ -27,7 +27,7 @@ public sealed interface InternalAnalyticEvent {
         public const val CONFIGURE_EVENT: String = "configureEvent"
         public const val ERROR_EVENT: String = "errorEvent"
         public const val SESSION_EVENT: String = "sessionEvent"
-        public const val START_EVENT: String = "startEvent"
+        public const val START_TRYON_EVENT: String = "startTryOnProcessEvent"
         public const val SHARE_EVENT: String = "shareEvent"
     }
 }
@@ -133,8 +133,8 @@ public class SessionEvent(
 }
 
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.START_EVENT)
-public class StartEvent(
+@SerialName(InternalAnalyticEvent.EventType.START_TRYON_EVENT)
+public class StartTryOnEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticPageId? = null,
     @SerialName("productId")

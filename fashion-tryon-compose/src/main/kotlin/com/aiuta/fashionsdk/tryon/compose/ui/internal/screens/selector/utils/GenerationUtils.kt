@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.content.Context
 import android.net.Uri
-import com.aiuta.fashionsdk.internal.analytic.model.StartEvent
+import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
@@ -49,7 +49,7 @@ internal fun FashionTryOnController.startGeneration(
     dialogController: AiutaTryOnDialogController,
     stringResources: InternalAiutaTryOnLanguage,
     // Analytic
-    origin: StartEvent.TryOnOrigin,
+    origin: StartTryOnEvent.TryOnOrigin,
 ) {
     generationScope.launch {
         activateGeneration()

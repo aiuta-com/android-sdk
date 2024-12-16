@@ -35,7 +35,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.StartEvent
+import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -109,7 +109,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                         context = context,
                         dialogController = dialogController,
                         stringResources = stringResources,
-                        origin = StartEvent.TryOnOrigin.TRY_ON_BUTTON,
+                        origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
                 },
             )
