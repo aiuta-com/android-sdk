@@ -76,9 +76,10 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationSt
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getImages ()Ljava/util/List;
+	public final fun getMetadata ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;
 	public final fun getSourceImageId ()Ljava/lang/String;
 	public final fun getSourceImageUrl ()Ljava/lang/String;
 }
@@ -100,7 +101,64 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUr
 	public fun getSkuId ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/controller/exception/AbortedPingGenerationException : java/lang/RuntimeException {
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata {
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata$Companion;
+	public synthetic fun <init> (JJJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getStartSecondsTimestamp-z9LOYto ()J
+	public final fun getTryOnDurationSeconds-UwyO8pc ()J
+	public final fun getUploadDurationSeconds-UwyO8pc ()J
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata$Builder {
 	public fun <init> ()V
+	public final fun build ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;
+	public final fun setTryOnDuration ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata$Builder;
+	public final fun setUploadDuration ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata$Builder;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata$Companion {
+	public final fun markNow-z9LOYto ()J
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/policies/AiutaTryOnRetryPolicies {
+	public fun <init> (IIIIJ)V
+	public final fun getOperationStartRetryCount ()I
+	public final fun getOperationStatusRetryCount ()I
+	public final fun getPhotoUploadRetryCount ()I
+	public final fun getResultDownloadRetryCount ()I
+	public final fun getRetryDelay ()J
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/policies/AiutaTryOnRetryPoliciesKt {
+	public static final fun getDefaultAiutaTryOnRetryPolicies ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/policies/AiutaTryOnRetryPolicies;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType : java/lang/Enum {
+	public static final field DOWNLOAD_RESULT_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field OPERATION_ABORTED_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field OPERATION_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field OPERATION_TIMEOUT_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field PREPARE_PHOTO_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field START_OPERATION_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field UPLOAD_PHOTO_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnGenerationException : java/lang/RuntimeException {
+	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getMessage ()Ljava/lang/String;
+	public final fun getType ()Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnGenerationExceptionKt {
+	public static final fun isTryOnGenerationAbortedException (Ljava/lang/Exception;)Z
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/domain/utils/RetryUtilsKt {
+	public static final fun retryAction (IJLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun retryAction$default (IJLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
