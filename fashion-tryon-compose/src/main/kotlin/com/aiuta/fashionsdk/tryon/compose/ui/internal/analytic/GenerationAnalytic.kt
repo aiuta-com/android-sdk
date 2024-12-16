@@ -45,20 +45,20 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
     // Notify internal
     analytic.sendEvent(
         event =
-            AiutaAnalyticsTryOnEvent(
-                event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
-                errorMessage = "Failed to download result",
-                pageId = AiutaAnalyticPageId.LOADING,
+            ErrorEvent(
                 productId = activeSKUItem.value.skuId,
+                error = ErrorType.DOWNLOAD_RESULT_FAILED,
             ),
     )
 
     // Notify public
     analytic.sendEvent(
         event =
-            ErrorEvent(
+            AiutaAnalyticsTryOnEvent(
+                event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
+                errorMessage = "Failed to download result",
+                pageId = AiutaAnalyticPageId.LOADING,
                 productId = activeSKUItem.value.skuId,
-                error = ErrorType.DOWNLOAD_RESULT_FAILED,
             ),
     )
 }
