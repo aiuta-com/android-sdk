@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception
 
 public class TryOnGenerationException(
     public val type: TryOnExceptionType,
-    override val message: String? = null,
+    override val message: String? = "Failed to generate image, type of error - $type",
 ) : RuntimeException()
 
 public enum class TryOnExceptionType {
