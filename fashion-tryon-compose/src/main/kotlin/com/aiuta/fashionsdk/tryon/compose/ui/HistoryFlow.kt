@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.models.DefaultSKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -47,7 +47,7 @@ public fun HistoryFlow(
         aiutaTheme = aiutaTheme,
         skuForGeneration = DefaultSKUItem,
     ) {
-        sendSessionAnalytic(SessionEvent.FlowType.HISTORY)
+        sendSessionEvent(SessionEvent.FlowType.HISTORY)
 
         val scope = rememberCoroutineScope()
         val controller = LocalController.current

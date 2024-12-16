@@ -38,7 +38,7 @@ internal fun solveLoadingGenerationText(): State<String> {
                 }
 
                 else -> {
-                    ""
+                    stringResources.imageSelectorScanningBody
                 }
             }
     }

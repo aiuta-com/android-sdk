@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -44,7 +44,7 @@ public fun AiutaTryOnFlow(
         aiutaTheme = aiutaTheme,
         skuForGeneration = skuForGeneration,
     ) {
-        sendSessionAnalytic(SessionEvent.FlowType.TRY_ON)
+        sendSessionEvent(SessionEvent.FlowType.TRY_ON)
 
         val controller = LocalController.current
 

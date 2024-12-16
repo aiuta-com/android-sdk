@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.content.Context
 import android.net.Uri
+import com.aiuta.fashionsdk.internal.analytic.model.StartEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
@@ -15,6 +16,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.toOperation
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateGeneration
@@ -46,9 +48,13 @@ internal fun FashionTryOnController.startGeneration(
     context: Context,
     dialogController: AiutaTryOnDialogController,
     stringResources: InternalAiutaTryOnLanguage,
+    // Analytic
+    origin: StartEvent.TryOnOrigin,
 ) {
     generationScope.launch {
         activateGeneration()
+
+        sendStartEvent(origin)
 
         val errorCount = AtomicInteger()
         val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)

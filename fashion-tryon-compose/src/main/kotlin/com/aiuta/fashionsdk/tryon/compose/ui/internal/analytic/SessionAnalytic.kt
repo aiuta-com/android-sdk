@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 @Composable
-internal fun sendSessionAnalytic(flow: SessionEvent.FlowType) {
+internal fun sendSessionEvent(flow: SessionEvent.FlowType) {
     val controller = LocalController.current
 
     LaunchedEffect(Unit) {

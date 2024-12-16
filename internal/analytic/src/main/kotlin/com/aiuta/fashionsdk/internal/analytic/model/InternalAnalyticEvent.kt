@@ -26,6 +26,7 @@ public sealed interface InternalAnalyticEvent {
         // Internal
         public const val CONFIGURE_EVENT: String = "configureEvent"
         public const val SESSION_EVENT: String = "sessionEvent"
+        public const val START_EVENT: String = "startEvent"
         public const val SHARE_EVENT: String = "shareEvent"
     }
 }
@@ -92,6 +93,32 @@ public class SessionEvent(
 
         @SerialName("history")
         HISTORY,
+    }
+}
+
+@Serializable
+@SerialName(InternalAnalyticEvent.EventType.START_EVENT)
+public class StartEvent(
+    @SerialName("pageId")
+    override val pageId: AiutaAnalyticPageId? = null,
+    @SerialName("productId")
+    override val productId: String?,
+    @SerialName("origin")
+    public val origin: TryOnOrigin,
+) : InternalAnalyticEvent {
+    @Serializable
+    public enum class TryOnOrigin {
+        @SerialName("selectedPhoto")
+        SELECTED_PHOTO,
+
+        @SerialName("tryOnButton")
+        TRY_ON_BUTTON,
+
+        @SerialName("retakeButton")
+        RETAKE_BUTTON,
+
+        @SerialName("retryNotification")
+        RETRY_NOTIFICATION,
     }
 }
 
