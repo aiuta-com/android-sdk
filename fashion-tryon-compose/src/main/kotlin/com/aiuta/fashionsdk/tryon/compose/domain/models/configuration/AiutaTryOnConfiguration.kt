@@ -7,8 +7,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.analytic.configure.sen
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.AiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.DefaultAiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.meta.HostMetadata
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.toggles.AiutaToggles
@@ -27,7 +25,6 @@ public class AiutaTryOnConfiguration private constructor(
     public val dataProvider: AiutaDataProvider?,
     public val dimensions: AiutaDimensions?,
     public val language: AiutaTryOnLanguage,
-    public val listeners: AiutaTryOnListeners,
     public val hostMetadata: HostMetadata,
     public val toggles: AiutaToggles,
 ) {
@@ -42,7 +39,6 @@ public class AiutaTryOnConfiguration private constructor(
         private var dataProvider: AiutaDataProvider? = null
         private var dimensions: AiutaDimensions? = null
         private var language: AiutaTryOnLanguage? = null
-        private var listeners: AiutaTryOnListeners? = null
         private var hostMetadata: HostMetadata? = null
         private var toggles: AiutaToggles? = null
 
@@ -62,10 +58,6 @@ public class AiutaTryOnConfiguration private constructor(
             return apply { this.language = language }
         }
 
-        public fun setListeners(listeners: AiutaTryOnListeners): Builder {
-            return apply { this.listeners = listeners }
-        }
-
         public fun setHostMetadata(hostMetadata: HostMetadata): Builder {
             return apply { this.hostMetadata = hostMetadata }
         }
@@ -77,7 +69,6 @@ public class AiutaTryOnConfiguration private constructor(
         public fun build(): AiutaTryOnConfiguration {
             // Init default
             val internalToggles = toggles ?: DefaultAiutaToggles
-            val internalListeners = listeners ?: DefaultAiutaTryOnListeners
             val internalHostMetadata = hostMetadata ?: DefaultHostMetadata
 
             // Check props without default initialization
@@ -97,7 +88,6 @@ public class AiutaTryOnConfiguration private constructor(
                 dataProvider = dataProvider,
                 dimensions = dimensions,
                 language = internalLanguage,
-                listeners = internalListeners,
                 hostMetadata = internalHostMetadata,
                 toggles = internalToggles,
             ).also {

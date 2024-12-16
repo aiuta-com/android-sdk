@@ -41,6 +41,7 @@ import kotlinx.coroutines.cancel
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
+    aiutaTryOnListeners: AiutaTryOnListeners,
     skuForGeneration: SKUItem,
 ): FashionTryOnController {
     val context = LocalContext.current
@@ -122,7 +123,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             activeSKUItem = activeSKUItem,
             aiuta = aiutaTryOnConfiguration.aiuta,
             aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
-            aiutaTryOnListeners = aiutaTryOnConfiguration.listeners,
+            aiutaTryOnListeners = aiutaTryOnListeners,
             isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,

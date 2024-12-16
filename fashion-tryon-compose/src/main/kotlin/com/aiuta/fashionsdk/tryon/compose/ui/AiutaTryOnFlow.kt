@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -33,6 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
+    aiutaTryOnListeners: AiutaTryOnListeners,
     aiutaTheme: AiutaTheme,
     skuForGeneration: SKUItem,
 ) {
@@ -41,6 +43,7 @@ public fun AiutaTryOnFlow(
     NavigationInitialisation(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
+        aiutaTryOnListeners = aiutaTryOnListeners,
         aiutaTheme = aiutaTheme,
         skuForGeneration = skuForGeneration,
     ) {
