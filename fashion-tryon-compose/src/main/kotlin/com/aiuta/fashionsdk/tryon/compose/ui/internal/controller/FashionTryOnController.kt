@@ -41,12 +41,13 @@ import kotlinx.coroutines.cancel
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
+    skuForGeneration: SKUItem,
 ): FashionTryOnController {
     val context = LocalContext.current
 
     val activeSKUItem =
         remember {
-            mutableStateOf(aiutaTryOnConfiguration.skuForGeneration)
+            mutableStateOf(skuForGeneration)
         }
 
     val zoomImageController =

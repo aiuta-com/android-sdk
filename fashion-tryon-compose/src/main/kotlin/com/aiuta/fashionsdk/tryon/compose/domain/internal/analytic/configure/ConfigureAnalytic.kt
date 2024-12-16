@@ -11,8 +11,6 @@ internal fun AiutaTryOnConfiguration.sendConfigurationEvent() {
     aiutaAnalytic.sendEvent(
         event =
             ConfigureEvent(
-                pageId = null,
-                productId = skuForGeneration.skuId,
                 mode = hostMetadata.mode.toSDKMode(),
                 authenticationType = aiuta.toAuthenticationType(),
                 isHistoryEnable = toggles.isHistoryAvailable,

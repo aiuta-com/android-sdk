@@ -5,8 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
+import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -32,6 +34,7 @@ public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTheme: AiutaTheme,
+    skuForGeneration: SKUItem,
 ) {
     val scope = rememberCoroutineScope()
 
@@ -39,7 +42,10 @@ public fun AiutaTryOnFlow(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTheme = aiutaTheme,
+        skuForGeneration = skuForGeneration,
     ) {
+        sendSessionAnalytic(SessionEvent.FlowType.TRY_ON)
+
         val controller = LocalController.current
 
         NavigationContainer(

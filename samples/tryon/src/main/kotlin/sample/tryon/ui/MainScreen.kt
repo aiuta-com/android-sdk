@@ -70,7 +70,6 @@ fun MainScreen() {
             remember {
                 AiutaTryOnConfiguration.Builder()
                     .setAiuta(viewModel.aiuta)
-                    .setSKUForGeneration(mockSKUItem)
                     .setLanguage(
                         language =
                             EnglishLanguage(
@@ -107,6 +106,7 @@ fun MainScreen() {
             modifier = Modifier.fillMaxSize(),
             aiutaTryOnConfiguration = mockAiutaConfiguration,
             aiutaTheme = mockAiutaTheme,
+            skuForGeneration = mockSKUItem,
         )
     }
 }

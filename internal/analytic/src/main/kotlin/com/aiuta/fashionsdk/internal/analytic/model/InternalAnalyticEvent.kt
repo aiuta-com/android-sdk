@@ -25,18 +25,18 @@ public sealed interface InternalAnalyticEvent {
 
         // Internal
         public const val CONFIGURE_EVENT: String = "configureEvent"
+        public const val SESSION_EVENT: String = "sessionEvent"
         public const val SHARE_EVENT: String = "shareEvent"
     }
 }
 
-// Config
 @Serializable
 @SerialName(InternalAnalyticEvent.EventType.CONFIGURE_EVENT)
 public class ConfigureEvent(
     @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId?,
+    override val pageId: AiutaAnalyticPageId? = null,
     @SerialName("productId")
-    override val productId: String?,
+    override val productId: String? = null,
     @SerialName("mode")
     public val mode: SDKMode,
     @SerialName("authentication")
@@ -75,7 +75,26 @@ public class ConfigureEvent(
     }
 }
 
-// ResultsScreen
+@Serializable
+@SerialName(InternalAnalyticEvent.EventType.SESSION_EVENT)
+public class SessionEvent(
+    @SerialName("pageId")
+    override val pageId: AiutaAnalyticPageId? = null,
+    @SerialName("productId")
+    override val productId: String?,
+    @SerialName("flow")
+    public val flow: FlowType,
+) : InternalAnalyticEvent {
+    @Serializable
+    public enum class FlowType {
+        @SerialName("tryOn")
+        TRY_ON,
+
+        @SerialName("history")
+        HISTORY,
+    }
+}
+
 @Serializable
 @SerialName(InternalAnalyticEvent.EventType.SHARE_EVENT)
 public class ShareEvent(
