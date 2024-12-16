@@ -1,8 +1,9 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnGenerationException
+import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultAiutaTryOnRetryPolicies
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 import kotlinx.coroutines.delay
 
 /**
@@ -10,8 +11,9 @@ import kotlinx.coroutines.delay
  *
  * Can throw exception, because in last attempt we will execute pure [action]
  */
-internal suspend fun <T> AiutaTryOnImpl.retryAction(
+public suspend fun <T> retryAction(
     times: Int = 0,
+    delay: Long = DefaultAiutaTryOnRetryPolicies.retryDelay,
     action: suspend () -> T,
 ): T {
     repeat(times.coerceAtLeast(0)) {
@@ -20,7 +22,7 @@ internal suspend fun <T> AiutaTryOnImpl.retryAction(
         } catch (exception: Exception) {
             // Ignore exception, because we retry it
         }
-        delay(retryPolicies.retryDelay)
+        delay(delay)
     }
     return action()
 }
@@ -30,13 +32,13 @@ internal suspend fun <T> AiutaTryOnImpl.retryAction(
  */
 internal suspend fun <T> AiutaTryOnImpl.retryActionWithSpecificTypes(
     times: Int = 0,
-    failingTypes: Set<TryOnExceptionType>,
+    failingTypes: Set<AiutaTryOnExceptionType>,
     action: suspend () -> T,
 ): T {
     repeat(times.coerceAtLeast(0)) {
         try {
             return action()
-        } catch (exception: TryOnGenerationException) {
+        } catch (exception: AiutaTryOnGenerationException) {
             // Rethrow if not required type
             if (exception.type in failingTypes) {
                 throw exception

@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception
 
-public class TryOnGenerationException(
-    public val type: TryOnExceptionType,
+public class AiutaTryOnGenerationException(
+    public val type: AiutaTryOnExceptionType,
     override val message: String? = "Failed to generate image, type of error - $type",
 ) : RuntimeException()
 
-public enum class TryOnExceptionType {
+public enum class AiutaTryOnExceptionType {
     PREPARE_PHOTO_FAILED,
     UPLOAD_PHOTO_FAILED,
     START_OPERATION_FAILED,
@@ -16,5 +16,5 @@ public enum class TryOnExceptionType {
 }
 
 public fun Exception.isTryOnGenerationAbortedException(): Boolean {
-    return this is TryOnGenerationException && this.type == TryOnExceptionType.OPERATION_ABORTED_FAILED
+    return this is AiutaTryOnGenerationException && this.type == AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED
 }

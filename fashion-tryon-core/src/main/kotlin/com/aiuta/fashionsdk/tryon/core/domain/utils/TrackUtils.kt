@@ -1,26 +1,12 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendErrorEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendFinishTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendPublicTryOnErrorEvent
-import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnGenerationException
-import kotlin.system.measureTimeMillis
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 import kotlinx.coroutines.flow.FlowCollector
-
-internal suspend fun measureTryOn(
-    analytic: InternalAiutaAnalytic,
-    container: SKUGenerationContainer,
-    action: suspend () -> Unit,
-) {
-    analytic.sendStartTryOnEvent(container)
-    val loadingTimeMillis = measureTimeMillis { action() }
-    analytic.sendFinishTryOnEvent(container, loadingTimeMillis)
-}
 
 internal suspend fun <T> AiutaTryOnImpl.trackException(
     container: SKUGenerationContainer,
@@ -28,7 +14,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
 ): T {
     return try {
         action()
-    } catch (e: TryOnGenerationException) {
+    } catch (e: AiutaTryOnGenerationException) {
         analytic.sendErrorEvent(
             container = container,
             exception = e,

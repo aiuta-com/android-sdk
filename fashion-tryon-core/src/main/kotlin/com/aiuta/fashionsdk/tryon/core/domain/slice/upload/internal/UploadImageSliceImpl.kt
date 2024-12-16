@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.compressor.ImageCompressor
 import com.aiuta.fashionsdk.tryon.core.domain.compressor.models.CompressionConfig
 import com.aiuta.fashionsdk.tryon.core.domain.compressor.models.CompressionResult
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
 import com.aiuta.fashionsdk.tryon.core.utils.readBytes
@@ -64,7 +64,7 @@ internal class UploadImageSliceImpl(
         } else {
             analytic.sendInternalErrorEvent(
                 container = container,
-                type = TryOnExceptionType.PREPARE_PHOTO_FAILED,
+                type = AiutaTryOnExceptionType.PREPARE_PHOTO_FAILED,
             )
             null
         }

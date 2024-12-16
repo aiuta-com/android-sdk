@@ -1,19 +1,19 @@
 package com.aiuta.fashionsdk.tryon.core.domain.utils
 
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnGenerationException
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 
 internal suspend fun <T> tryOnExceptionArea(
-    type: TryOnExceptionType,
+    type: AiutaTryOnExceptionType,
     action: suspend () -> T,
 ): T {
     try {
         return action()
-    } catch (e: TryOnGenerationException) {
+    } catch (e: AiutaTryOnGenerationException) {
         // Rethrow with original
         throw e
     } catch (e: Exception) {
         // Rethrow with custom try on exception
-        throw TryOnGenerationException(type)
+        throw AiutaTryOnGenerationException(type)
     }
 }

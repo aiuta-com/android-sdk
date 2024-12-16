@@ -4,8 +4,8 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOpera
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.GeneratedImage
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.SKUOperationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnGenerationException
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.internal.utils.defaultGenerationDelaySequence
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
@@ -34,15 +34,15 @@ internal class PingOperationSliceImpl(
 
         when (operation.status) {
             SKUOperationStatus.FAILED -> {
-                throw TryOnGenerationException(
-                    type = TryOnExceptionType.OPERATION_FAILED,
+                throw AiutaTryOnGenerationException(
+                    type = AiutaTryOnExceptionType.OPERATION_FAILED,
                     message = operation.error,
                 )
             }
 
             SKUOperationStatus.ABORTED -> {
-                throw TryOnGenerationException(
-                    type = TryOnExceptionType.OPERATION_ABORTED_FAILED,
+                throw AiutaTryOnGenerationException(
+                    type = AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
                     message = operation.error,
                 )
             }
@@ -60,7 +60,7 @@ internal class PingOperationSliceImpl(
             delay(delaySequenceIterator.next())
         } else {
             // We reach time limit
-            throw TryOnGenerationException(TryOnExceptionType.OPERATION_TIMEOUT_FAILED)
+            throw AiutaTryOnGenerationException(AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED)
         }
 
         return ping(

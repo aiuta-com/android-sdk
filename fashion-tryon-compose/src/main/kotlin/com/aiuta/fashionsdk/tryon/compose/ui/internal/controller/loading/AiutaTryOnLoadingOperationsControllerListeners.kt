@@ -165,7 +165,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
                     val operation = operations.firstOrNull()
                     val imageUrl = operation?.sourceImageUrls?.firstOrNull()
 
-                    imageUrl?.let { warmUpInteractor.warmUp(it) }
+                    imageUrl?.let { warmUpInteractor.saveWarmUp(it) }
 
                     // Save delay for smooth changing
                     delay(700)

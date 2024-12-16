@@ -13,7 +13,7 @@ internal data class AnalyticCompletedEvent(
     val data: InternalAnalyticEvent,
     @SerialName("env")
     val environment: AnalyticEnvironment,
-    @SerialName("local_date_time")
+    @SerialName("localDateTime")
     val localDateTime: String,
 )
 

@@ -4,35 +4,37 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 
 @Immutable
 internal sealed interface SKUGenerationOperation {
     val sourceImage: String
 
     sealed interface LoadingOperation : SKUGenerationOperation {
-        public class StartGenerationOperation(
+        class StartGenerationOperation(
             override val sourceImage: String,
         ) : LoadingOperation
 
-        public class UploadedSourceImageOperation(
+        class UploadedSourceImageOperation(
             override val sourceImage: String,
         ) : LoadingOperation
 
-        public class GenerationProcessingOperation(
+        class GenerationProcessingOperation(
             override val sourceImage: String,
         ) : LoadingOperation
     }
 
     class SuccessOperation(
-        public val sourceImageId: String,
+        val sourceImageId: String,
         override val sourceImage: String,
         val generatedImages: List<GeneratedImageUIModel>,
+        val metadata: AiutaTryOnMetadata,
     ) : SKUGenerationOperation
 
     class ErrorOperation(
         override val sourceImage: String,
-        public val errorMessage: String? = null,
-        public val exception: Exception? = null,
+        val errorMessage: String? = null,
+        val exception: Exception? = null,
     ) : SKUGenerationOperation
 }
 
@@ -65,6 +67,7 @@ internal fun SKUGenerationStatus.toOperation(sourceImage: String): SKUGeneration
                 sourceImageId = sourceImageId,
                 sourceImage = sourceImage,
                 generatedImages = images.map { it.toUiModel() },
+                metadata = metadata,
             )
     }
 }

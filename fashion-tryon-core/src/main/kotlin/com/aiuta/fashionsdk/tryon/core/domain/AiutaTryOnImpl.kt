@@ -12,6 +12,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSK
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
+import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
@@ -19,16 +20,16 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultTryOnRetryPolicies
-import com.aiuta.fashionsdk.tryon.core.domain.models.policies.TryOnRetryPolicies
+import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
+import com.aiuta.fashionsdk.tryon.core.domain.models.policies.AiutaTryOnRetryPolicies
+import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultAiutaTryOnRetryPolicies
 import com.aiuta.fashionsdk.tryon.core.domain.models.toPublic
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.pingOperationSliceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.uploadImageSliceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.utils.errorListener
-import com.aiuta.fashionsdk.tryon.core.domain.utils.measureTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.utils.trackSpecificTryOnArea
 import com.aiuta.fashionsdk.tryon.core.domain.utils.trackTryOnArea
 import com.aiuta.fashionsdk.tryon.core.utils.generateFileName
@@ -37,7 +38,7 @@ import kotlinx.coroutines.flow.flow
 
 internal class AiutaTryOnImpl(
     internal val analytic: InternalAiutaAnalytic,
-    internal val retryPolicies: TryOnRetryPolicies,
+    internal val retryPolicies: AiutaTryOnRetryPolicies,
     private val pingOperationSlice: PingOperationSlice,
     private val uploadImageSlice: UploadImageSlice,
     private val skuDataSource: FashionSKUDataSource,
@@ -83,75 +84,77 @@ internal class AiutaTryOnImpl(
 
     override fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus> {
         return flow {
-            measureTryOn(
-                analytic = analytic,
-                container = container,
-            ) {
-                errorListener {
-                    // Set loading state with previous image urls
-                    emit(SKUGenerationStatus.LoadingGenerationStatus.StartGeneration)
+            analytic.sendStartTryOnEvent(container)
+            errorListener {
+                val metadataBuilder = AiutaTryOnMetadata.Builder()
 
-                    // Firstly, upload image on backend
-                    val uploadedImage =
-                        trackTryOnArea(
-                            typeArea = TryOnExceptionType.UPLOAD_PHOTO_FAILED,
-                            container = container,
-                        ) {
-                            solveUploadingImage(container)
-                        }
+                // Set loading state with previous image urls
+                emit(SKUGenerationStatus.LoadingGenerationStatus.StartGeneration)
 
-                    emit(
-                        SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
-                            sourceImageId = uploadedImage.id,
-                            sourceImageUrl = uploadedImage.url,
-                        ),
-                    )
+                // Firstly, upload image on backend
+                val uploadedImage =
+                    trackTryOnArea(
+                        typeArea = AiutaTryOnExceptionType.UPLOAD_PHOTO_FAILED,
+                        container = container,
+                    ) {
+                        solveUploadingImage(container)
+                    }
+                // Update time for meta info of generation
+                metadataBuilder.setUploadDuration()
+                emit(
+                    SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
+                    ),
+                )
 
-                    // Secondly, create sku generation operation
-                    val newOperation =
-                        trackTryOnArea(
-                            typeArea = TryOnExceptionType.START_OPERATION_FAILED,
-                            container = container,
-                        ) {
-                            skuOperationsDataSource.createSKUOperation(
-                                request =
-                                    CreateSKUOperationRequest(
-                                        skuCatalogName = container.skuCatalogName,
-                                        skuId = container.skuId,
-                                        uploadedImageId = uploadedImage.id,
-                                    ),
-                            )
-                        }
-
-                    // Wait for the operation, until it is completed
-                    emit(
-                        SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
-                            sourceImageId = uploadedImage.id,
-                            sourceImageUrl = uploadedImage.url,
-                        ),
-                    )
-                    val generations =
-                        trackSpecificTryOnArea(
-                            typeArea = TryOnExceptionType.OPERATION_FAILED,
-                            failingTypes =
-                                setOf(
-                                    TryOnExceptionType.OPERATION_ABORTED_FAILED,
-                                    TryOnExceptionType.OPERATION_TIMEOUT_FAILED,
+                // Secondly, create sku generation operation
+                val newOperation =
+                    trackTryOnArea(
+                        typeArea = AiutaTryOnExceptionType.START_OPERATION_FAILED,
+                        container = container,
+                    ) {
+                        skuOperationsDataSource.createSKUOperation(
+                            request =
+                                CreateSKUOperationRequest(
+                                    skuCatalogName = container.skuCatalogName,
+                                    skuId = container.skuId,
+                                    uploadedImageId = uploadedImage.id,
                                 ),
-                            container = container,
-                        ) {
-                            pingOperationSlice.operationPing(newOperation.operationId)
-                        }
+                        )
+                    }
 
-                    // Finally, emit result
-                    emit(
-                        SKUGenerationStatus.SuccessGenerationStatus(
-                            sourceImageId = uploadedImage.id,
-                            sourceImageUrl = uploadedImage.url,
-                            images = generations.map { it.toPublic() },
-                        ),
-                    )
-                }
+                // Wait for the operation, until it is completed
+                emit(
+                    SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
+                    ),
+                )
+                val generations =
+                    trackSpecificTryOnArea(
+                        typeArea = AiutaTryOnExceptionType.OPERATION_FAILED,
+                        failingTypes =
+                            setOf(
+                                AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
+                                AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED,
+                            ),
+                        container = container,
+                    ) {
+                        pingOperationSlice.operationPing(newOperation.operationId)
+                    }
+                // Update time for meta info of generation
+                metadataBuilder.setTryOnDuration()
+
+                // Finally, emit result
+                emit(
+                    SKUGenerationStatus.SuccessGenerationStatus(
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
+                        images = generations.map { it.toPublic() },
+                        metadata = metadataBuilder.build(),
+                    ),
+                )
             }
         }
     }
@@ -184,7 +187,7 @@ internal class AiutaTryOnImpl(
                 uploadImageSlice = aiuta.uploadImageSliceFactory,
                 skuDataSource = aiuta.skuDataSourceFactory,
                 skuOperationsDataSource = aiuta.skuOperationsDataSourceFactory,
-                retryPolicies = DefaultTryOnRetryPolicies,
+                retryPolicies = DefaultAiutaTryOnRetryPolicies,
             )
         }
     }

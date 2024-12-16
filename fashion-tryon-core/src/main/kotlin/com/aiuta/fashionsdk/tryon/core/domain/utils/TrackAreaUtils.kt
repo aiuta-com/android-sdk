@@ -3,10 +3,10 @@ package com.aiuta.fashionsdk.tryon.core.domain.utils
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.toRetryCount
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
 
 internal suspend fun <T> AiutaTryOnImpl.trackTryOnArea(
-    typeArea: TryOnExceptionType,
+    typeArea: AiutaTryOnExceptionType,
     container: SKUGenerationContainer,
     action: suspend () -> T,
 ): T {
@@ -16,6 +16,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackTryOnArea(
         retryAction = {
             retryAction(
                 times = typeArea.toRetryCount(retryPolicies),
+                delay = retryPolicies.retryDelay,
                 action = action,
             )
         },
@@ -23,8 +24,8 @@ internal suspend fun <T> AiutaTryOnImpl.trackTryOnArea(
 }
 
 internal suspend fun <T> AiutaTryOnImpl.trackSpecificTryOnArea(
-    typeArea: TryOnExceptionType,
-    failingTypes: Set<TryOnExceptionType>,
+    typeArea: AiutaTryOnExceptionType,
+    failingTypes: Set<AiutaTryOnExceptionType>,
     container: SKUGenerationContainer,
     action: suspend () -> T,
 ): T {
@@ -42,7 +43,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackSpecificTryOnArea(
 }
 
 internal suspend fun <T> AiutaTryOnImpl.trackTryOnAreaExceptionWithRetryLambda(
-    type: TryOnExceptionType,
+    type: AiutaTryOnExceptionType,
     container: SKUGenerationContainer,
     retryAction: suspend () -> T,
 ): T {

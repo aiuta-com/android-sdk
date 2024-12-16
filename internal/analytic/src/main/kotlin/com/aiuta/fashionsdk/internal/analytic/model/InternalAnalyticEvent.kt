@@ -28,6 +28,7 @@ public sealed interface InternalAnalyticEvent {
         public const val ERROR_EVENT: String = "errorEvent"
         public const val SESSION_EVENT: String = "sessionEvent"
         public const val START_TRYON_EVENT: String = "startTryOnProcessEvent"
+        public const val SUCCESS_EVENT: String = "successEvent"
         public const val SHARE_EVENT: String = "shareEvent"
     }
 }
@@ -157,6 +158,23 @@ public class StartTryOnEvent(
         RETRY_NOTIFICATION,
     }
 }
+
+@Serializable
+@SerialName(InternalAnalyticEvent.EventType.SUCCESS_EVENT)
+public class SuccessEvent(
+    @SerialName("pageId")
+    override val pageId: AiutaAnalyticPageId? = null,
+    @SerialName("productId")
+    override val productId: String?,
+    @SerialName("uploadDuration")
+    public val uploadDuration: Double,
+    @SerialName("tryOnDuration")
+    public val tryOnDuration: Double,
+    @SerialName("downloadDuration")
+    public val downloadDuration: Double,
+    @SerialName("totalDuration")
+    public val totalDuration: Double,
+) : InternalAnalyticEvent
 
 @Serializable
 @SerialName(InternalAnalyticEvent.EventType.SHARE_EVENT)
