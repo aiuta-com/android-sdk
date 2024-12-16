@@ -66,6 +66,21 @@ fun MainScreen() {
                 )
             }
 
+        val mockAiutaTryOnListeners =
+            remember {
+                AiutaTryOnListeners(
+                    addToWishlistClick = {
+                        context.makeToast("Rise Add to wishlist")
+                    },
+                    addToCartClick = {
+                        context.makeToast("Rise Add to cart")
+                    },
+                    closeClick = {
+                        context.makeToast("Rise Close")
+                    },
+                )
+            }
+
         val mockAiutaConfiguration =
             remember {
                 AiutaTryOnConfiguration.Builder()
@@ -77,20 +92,6 @@ fun MainScreen() {
                                 termsOfServiceUrl = "https://brand.com/tos",
                                 privacyPolicyUrl = "https://brand.com/pp",
                                 onboardingPageConsentSupplementaryPoints = emptyList(),
-                            ),
-                    )
-                    .setListeners(
-                        listeners =
-                            AiutaTryOnListeners(
-                                addToWishlistClick = {
-                                    context.makeToast("Rise Add to wishlist")
-                                },
-                                addToCartClick = {
-                                    context.makeToast("Rise Add to cart")
-                                },
-                                closeClick = {
-                                    context.makeToast("Rise Close")
-                                },
                             ),
                     )
                     .build()
@@ -105,6 +106,7 @@ fun MainScreen() {
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiutaTryOnConfiguration = mockAiutaConfiguration,
+            aiutaTryOnListeners = mockAiutaTryOnListeners,
             aiutaTheme = mockAiutaTheme,
             skuForGeneration = mockSKUItem,
         )

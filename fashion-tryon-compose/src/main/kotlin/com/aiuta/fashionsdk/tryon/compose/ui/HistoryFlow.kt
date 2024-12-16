@@ -39,12 +39,14 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
+    aiutaTryOnListeners: AiutaTryOnListeners,
     aiutaTheme: AiutaTheme,
 ) {
     NavigationInitialisation(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTheme = aiutaTheme,
+        aiutaTryOnListeners = aiutaTryOnListeners,
         skuForGeneration = DefaultSKUItem,
     ) {
         sendSessionEvent(SessionEvent.FlowType.HISTORY)
