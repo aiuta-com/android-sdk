@@ -13,30 +13,31 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDa
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEvent
-import com.aiuta.fashionsdk.tryon.core.domain.models.PingGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.isTerminate
+import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultTryOnRetryPolicies
+import com.aiuta.fashionsdk.tryon.core.domain.models.policies.TryOnRetryPolicies
 import com.aiuta.fashionsdk.tryon.core.domain.models.toPublic
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.PingOperationSlice
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.TryOnExceptionType
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.pingOperationSliceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.uploadImageSliceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.utils.errorListener
 import com.aiuta.fashionsdk.tryon.core.domain.utils.measureTryOn
-import com.aiuta.fashionsdk.tryon.core.domain.utils.trackException
+import com.aiuta.fashionsdk.tryon.core.domain.utils.trackSpecificTryOnArea
+import com.aiuta.fashionsdk.tryon.core.domain.utils.trackTryOnArea
 import com.aiuta.fashionsdk.tryon.core.utils.generateFileName
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
 internal class AiutaTryOnImpl(
-    private val analytic: InternalAiutaAnalytic,
+    internal val analytic: InternalAiutaAnalytic,
+    internal val retryPolicies: TryOnRetryPolicies,
     private val pingOperationSlice: PingOperationSlice,
     private val uploadImageSlice: UploadImageSlice,
     private val skuDataSource: FashionSKUDataSource,
@@ -92,12 +93,13 @@ internal class AiutaTryOnImpl(
 
                     // Firstly, upload image on backend
                     val uploadedImage =
-                        trackException(
-                            analytic = analytic,
+                        trackTryOnArea(
+                            typeArea = TryOnExceptionType.UPLOAD_PHOTO_FAILED,
                             container = container,
                         ) {
                             solveUploadingImage(container)
                         }
+
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
                             sourceImageId = uploadedImage.id,
@@ -107,8 +109,8 @@ internal class AiutaTryOnImpl(
 
                     // Secondly, create sku generation operation
                     val newOperation =
-                        trackException(
-                            analytic = analytic,
+                        trackTryOnArea(
+                            typeArea = TryOnExceptionType.START_OPERATION_FAILED,
                             container = container,
                         ) {
                             skuOperationsDataSource.createSKUOperation(
@@ -121,36 +123,34 @@ internal class AiutaTryOnImpl(
                             )
                         }
 
-                    // Finally, wait for the operation, until it is completed
+                    // Wait for the operation, until it is completed
                     emit(
                         SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
                             sourceImageId = uploadedImage.id,
                             sourceImageUrl = uploadedImage.url,
                         ),
                     )
-                    trackException(
-                        analytic = analytic,
-                        container = container,
-                    ) {
-                        pingOperationSlice.startOperationTypeListening(
-                            operationId = newOperation.operationId,
-                        )
-                    }
+                    val generations =
+                        trackSpecificTryOnArea(
+                            typeArea = TryOnExceptionType.OPERATION_FAILED,
+                            failingTypes =
+                                setOf(
+                                    TryOnExceptionType.OPERATION_ABORTED_FAILED,
+                                    TryOnExceptionType.OPERATION_TIMEOUT_FAILED,
+                                ),
+                            container = container,
+                        ) {
+                            pingOperationSlice.operationPing(newOperation.operationId)
+                        }
 
-                    trackException(
-                        analytic = analytic,
-                        container = container,
-                    ) {
-                        pingOperationSlice
-                            .getPingGenerationStatusFlow(operationId = newOperation.operationId)
-                            ?.first { it.isTerminate() }
-                            .also {
-                                solveTerminatedOperationResult(
-                                    uploadedImage = uploadedImage,
-                                    terminatedOperation = it,
-                                )
-                            }
-                    }
+                    // Finally, emit result
+                    emit(
+                        SKUGenerationStatus.SuccessGenerationStatus(
+                            sourceImageId = uploadedImage.id,
+                            sourceImageUrl = uploadedImage.url,
+                            images = generations.map { it.toPublic() },
+                        ),
+                    )
                 }
             }
         }
@@ -160,7 +160,7 @@ internal class AiutaTryOnImpl(
         return when (container) {
             is SKUGenerationUriContainer -> {
                 uploadImageSlice.uploadImage(
-                    fileUri = container.fileUri,
+                    container = container,
                     fileName = generateFileName(),
                 ).also {
                     analytic.sendTryOnPhotoUploadedEvent(container)
@@ -176,42 +176,6 @@ internal class AiutaTryOnImpl(
         }
     }
 
-    private suspend fun FlowCollector<SKUGenerationStatus>.solveTerminatedOperationResult(
-        uploadedImage: UploadedImage,
-        terminatedOperation: PingGenerationStatus?,
-    ) {
-        // Check, if last operation is finished and we got it
-        requireNotNull(terminatedOperation)
-
-        // Solve, what to emit outside
-        when (terminatedOperation) {
-            is PingGenerationStatus.SuccessPingGenerationStatus -> {
-                // Add new image urls to current generation
-                emit(
-                    SKUGenerationStatus.SuccessGenerationStatus(
-                        sourceImageId = uploadedImage.id,
-                        sourceImageUrl = uploadedImage.url,
-                        images = terminatedOperation.images.map { it.toPublic() },
-                    ),
-                )
-            }
-
-            is PingGenerationStatus.ErrorPingGenerationStatus -> {
-                // Rethrow exception
-                terminatedOperation.exception?.let { throw terminatedOperation.exception }
-                // If no exception, just set error status
-                emit(
-                    SKUGenerationStatus.ErrorGenerationStatus(
-                        errorMessage = terminatedOperation.errorMessage,
-                        exception = terminatedOperation.exception,
-                    ),
-                )
-            }
-
-            else -> Unit
-        }
-    }
-
     companion object {
         fun create(aiuta: Aiuta): AiutaTryOn {
             return AiutaTryOnImpl(
@@ -220,6 +184,7 @@ internal class AiutaTryOnImpl(
                 uploadImageSlice = aiuta.uploadImageSliceFactory,
                 skuDataSource = aiuta.skuDataSourceFactory,
                 skuOperationsDataSource = aiuta.skuOperationsDataSourceFactory,
+                retryPolicies = DefaultTryOnRetryPolicies,
             )
         }
     }

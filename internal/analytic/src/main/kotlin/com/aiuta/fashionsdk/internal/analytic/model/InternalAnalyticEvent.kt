@@ -25,6 +25,7 @@ public sealed interface InternalAnalyticEvent {
 
         // Internal
         public const val CONFIGURE_EVENT: String = "configureEvent"
+        public const val ERROR_EVENT: String = "errorEvent"
         public const val SESSION_EVENT: String = "sessionEvent"
         public const val START_EVENT: String = "startEvent"
         public const val SHARE_EVENT: String = "shareEvent"
@@ -73,6 +74,41 @@ public class ConfigureEvent(
 
         @SerialName("jwt")
         JWT,
+    }
+}
+
+@Serializable
+@SerialName(InternalAnalyticEvent.EventType.ERROR_EVENT)
+public class ErrorEvent(
+    @SerialName("pageId")
+    override val pageId: AiutaAnalyticPageId? = null,
+    @SerialName("productId")
+    override val productId: String?,
+    @SerialName("error")
+    public val error: ErrorType,
+) : InternalAnalyticEvent {
+    @Serializable
+    public enum class ErrorType {
+        @SerialName("preparePhotoFailed")
+        PREPARE_PHOTO_FAILED,
+
+        @SerialName("uploadPhotoFailed")
+        UPLOAD_PHOTO_FAILED,
+
+        @SerialName("startOperationFailed")
+        START_OPERATION_FAILED,
+
+        @SerialName("operationFailed")
+        OPERATION_FAILED,
+
+        @SerialName("operationAborted")
+        OPERATION_ABORTED_FAILED,
+
+        @SerialName("operationTimeout")
+        OPERATION_TIMEOUT_FAILED,
+
+        @SerialName("downloadResultFailed")
+        DOWNLOAD_RESULT_FAILED,
     }
 }
 

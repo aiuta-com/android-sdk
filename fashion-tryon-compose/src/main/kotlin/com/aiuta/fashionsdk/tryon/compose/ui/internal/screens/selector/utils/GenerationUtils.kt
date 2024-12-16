@@ -33,7 +33,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScree
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
-import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.controller.exception.AbortedPingGenerationException
+import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.isTryOnGenerationAbortedException
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
@@ -232,8 +232,8 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
             deactivateGeneration()
             generationStatus.value = SKUGenerationUIStatus.IDLE
 
-            when (operation.exception) {
-                is AbortedPingGenerationException -> {
+            when {
+                operation.exception?.isTryOnGenerationAbortedException() == true -> {
                     // Change to last success or empty operation
                     updateActiveOperationWithFirstOrSetEmpty()
 
