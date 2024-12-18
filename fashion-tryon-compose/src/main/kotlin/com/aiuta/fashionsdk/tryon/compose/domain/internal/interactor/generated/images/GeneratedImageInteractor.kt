@@ -7,7 +7,10 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import kotlinx.coroutines.flow.Flow
 
 internal interface GeneratedImageInteractor {
-    suspend fun insertAll(images: List<GeneratedImageUIModel>)
+    suspend fun insertAll(
+        generatedSkuId: String,
+        images: List<GeneratedImageUIModel>,
+    )
 
     fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>>
 

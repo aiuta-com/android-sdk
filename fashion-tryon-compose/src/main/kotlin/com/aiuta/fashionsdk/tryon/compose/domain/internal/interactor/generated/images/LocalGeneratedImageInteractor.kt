@@ -15,7 +15,10 @@ import kotlinx.coroutines.flow.map
 internal class LocalGeneratedImageInteractor(
     private val generatedImageDatasource: GeneratedImageDatasource,
 ) : GeneratedImageInteractor {
-    override suspend fun insertAll(images: List<GeneratedImageUIModel>) {
+    override suspend fun insertAll(
+        generatedSkuId: String,
+        images: List<GeneratedImageUIModel>,
+    ) {
         return generatedImageDatasource.insertAll(
             generatedImages = images.map { it.toEntity() },
         )

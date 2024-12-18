@@ -359,6 +359,9 @@ private suspend fun FashionTryOnController.saveGenerations(
 ) {
     // Save generations for history, if operation is success and history available
     if (aiutaConfiguration.toggles.isHistoryAvailable) {
-        generatedImageInteractor.insertAll(operation.generatedImages)
+        generatedImageInteractor.insertAll(
+            generatedSkuId = activeSKUItem.value.skuId,
+            images = operation.generatedImages,
+        )
     }
 }
