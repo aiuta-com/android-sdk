@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendPublicTryOnErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
+import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.flow.FlowCollector
 
 internal suspend fun <T> AiutaTryOnImpl.trackException(
@@ -14,6 +15,9 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
 ): T {
     return try {
         action()
+    } catch (e: CancellationException) {
+        // Just rethrow cancellation, because we don't want to track it
+        throw e
     } catch (e: AiutaTryOnGenerationException) {
         analytic.sendErrorEvent(
             container = container,
