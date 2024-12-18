@@ -27,7 +27,7 @@ internal class InternalAiutaAnalyticImpl(
     private val _analyticFlow = MutableSharedFlow<ExternalAnalyticEvent?>(extraBufferCapacity = 10)
     override val analyticFlow: Flow<ExternalAnalyticEvent> = _analyticFlow.mapNotNull { it }
 
-    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+    private val scope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 
     override fun sendEvent(event: InternalAnalyticEvent) {
         // Add call of coroutine, because we need to emit new value with guarantees
