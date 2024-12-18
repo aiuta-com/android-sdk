@@ -28,6 +28,10 @@ public class AiutaToggles(
      * Flag which turn on or off possibility to use share option
      */
     public val isShareAvailable: Boolean,
+    /**
+     * Flag which turn on or off possibility to execute in background work
+     */
+    public val isBackgroundExecutionAllowed: Boolean,
 )
 
 public val DefaultAiutaToggles: AiutaToggles by lazy {
@@ -36,5 +40,6 @@ public val DefaultAiutaToggles: AiutaToggles by lazy {
         isWishlistAvailable = true,
         isPreOnboardingAvailable = false,
         isShareAvailable = true,
+        isBackgroundExecutionAllowed = true,
     )
 }

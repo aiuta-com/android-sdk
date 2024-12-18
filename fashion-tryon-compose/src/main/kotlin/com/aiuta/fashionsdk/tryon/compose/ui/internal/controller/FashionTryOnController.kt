@@ -133,6 +133,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }.also {
         it.generationNavigationListener()
+        it.generationCancellationListener(aiutaTryOnConfiguration)
         it.historyAvailabilityListener(aiutaTryOnConfiguration)
         it.updationActiveSKUItemListener()
     }
@@ -192,5 +193,10 @@ internal class FashionTryOnController(
         return CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate).also {
             internalGenerationScope = it
         }
+    }
+
+    internal fun clean() {
+        // Cancel generation scope
+        internalGenerationScope?.cancel()
     }
 }
