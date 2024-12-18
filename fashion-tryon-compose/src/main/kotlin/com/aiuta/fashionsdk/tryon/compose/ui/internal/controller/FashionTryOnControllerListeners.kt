@@ -1,9 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendTerminateEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
@@ -45,4 +50,36 @@ internal fun FashionTryOnController.updationActiveSKUItemListener() {
             changeActiveSKU(updatedSKUItem)
         }
         .launchIn(generalScope)
+}
+
+@Composable
+internal fun FashionTryOnController.generationCancellationListener(
+    configuration: AiutaTryOnConfiguration,
+) {
+    if (!configuration.toggles.isBackgroundExecutionAllowed) {
+        val lifecycleOwner = LocalLifecycleOwner.current
+
+        DisposableEffect(lifecycleOwner) {
+            val observer =
+                LifecycleEventObserver { _, event ->
+                    if (event == Lifecycle.Event.ON_DESTROY) {
+                        // Notify analytic about termination
+                        if (generationStatus.value == SKUGenerationUIStatus.LOADING) {
+                            sendTerminateEvent()
+                        }
+
+                        // Let's clean all generation processes
+                        clean()
+                    }
+                }
+
+            // Add the observer to the lifecycle
+            lifecycleOwner.lifecycle.addObserver(observer)
+
+            // When the effect leaves the Composition, remove the observer
+            onDispose {
+                lifecycleOwner.lifecycle.removeObserver(observer)
+            }
+        }
+    }
 }

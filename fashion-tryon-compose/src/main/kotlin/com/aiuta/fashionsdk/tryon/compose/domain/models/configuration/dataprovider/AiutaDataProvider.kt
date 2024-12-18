@@ -13,7 +13,7 @@ public class AiutaDataProvider(
     public val obtainUserConsentAction: (List<SupplementaryConsent>) -> Unit,
     // Generated images
     public val generatedImagesFlow: StateFlow<List<AiutaHistoryImage>>,
-    public val addGeneratedImagesAction: (List<AiutaHistoryImage>) -> Unit,
+    public val addGeneratedImagesAction: (skuId: String, images: List<AiutaHistoryImage>) -> Unit,
     public val isErrorDeletingGeneratedImagesFlow: SharedFlow<Boolean>,
     public val deleteGeneratedImagesAction: (List<AiutaHistoryImage>) -> Unit,
     // Uploaded images

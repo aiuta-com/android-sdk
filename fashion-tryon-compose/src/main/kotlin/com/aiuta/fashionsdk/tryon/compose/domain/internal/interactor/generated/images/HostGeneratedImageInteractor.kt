@@ -11,8 +11,12 @@ import kotlinx.coroutines.flow.map
 internal class HostGeneratedImageInteractor(
     private val dataProvider: AiutaDataProvider,
 ) : GeneratedImageInteractor {
-    override suspend fun insertAll(images: List<GeneratedImageUIModel>) {
+    override suspend fun insertAll(
+        generatedSkuId: String,
+        images: List<GeneratedImageUIModel>,
+    ) {
         dataProvider.addGeneratedImagesAction(
+            generatedSkuId,
             images.map { image -> image.toPublic() },
         )
     }
