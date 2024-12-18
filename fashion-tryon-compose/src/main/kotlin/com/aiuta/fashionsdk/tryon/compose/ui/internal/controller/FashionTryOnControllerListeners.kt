@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendTerminateEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
@@ -55,14 +56,19 @@ internal fun FashionTryOnController.updationActiveSKUItemListener() {
 internal fun FashionTryOnController.generationCancellationListener(
     configuration: AiutaTryOnConfiguration,
 ) {
-    val lifecycleOwner = LocalLifecycleOwner.current
-
     if (!configuration.toggles.isBackgroundExecutionAllowed) {
+        val lifecycleOwner = LocalLifecycleOwner.current
+
         DisposableEffect(lifecycleOwner) {
             val observer =
                 LifecycleEventObserver { _, event ->
                     if (event == Lifecycle.Event.ON_DESTROY) {
-                        // Let's clean all processes
+                        // Notify analytic about termination
+                        if (generationStatus.value == SKUGenerationUIStatus.LOADING) {
+                            sendTerminateEvent()
+                        }
+
+                        // Let's clean all generation processes
                         clean()
                     }
                 }
