@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.selector
 import androidx.compose.runtime.mutableStateMapOf
 
 internal class SelectedHolder<T> {
-    private val lock = Any()
     private val itemsMap = mutableStateMapOf<T, Int>()
 
     fun reset(items: List<T>) {
@@ -12,7 +11,7 @@ internal class SelectedHolder<T> {
     }
 
     fun removeAll() {
-        synchronized(lock) {
+        synchronized(this) {
             itemsMap.clear()
         }
     }
@@ -32,7 +31,7 @@ internal class SelectedHolder<T> {
     }
 
     fun putAll(items: List<T>) {
-        synchronized(lock) {
+        synchronized(this) {
             itemsMap.putAll(items.map { it to 1 })
         }
     }
@@ -52,7 +51,7 @@ internal class SelectedHolder<T> {
     }
 
     fun remove(item: T) {
-        synchronized(lock) {
+        synchronized(this) {
             itemsMap.remove(item)
         }
     }
@@ -62,7 +61,7 @@ internal class SelectedHolder<T> {
     }
 
     private fun add(item: T) {
-        synchronized(lock) {
+        synchronized(this) {
             itemsMap[item] = 1
         }
     }

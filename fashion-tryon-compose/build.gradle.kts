@@ -46,4 +46,7 @@ dependencies {
     implementation(libs.ktor.core)
 
     ksp(libs.androidx.room.compiler)
+
+    testImplementation(kotlin("test"))
+    testImplementation(libs.mockk)
 }
