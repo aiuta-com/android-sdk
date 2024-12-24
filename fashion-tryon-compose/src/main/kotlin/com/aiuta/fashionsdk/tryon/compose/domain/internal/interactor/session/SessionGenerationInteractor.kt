@@ -11,13 +11,11 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 internal class SessionGenerationInteractor(
     private val warmUpInteractor: WarmUpInteractor,
 ) {
-    private val lock = Any()
-
     private val _sessionGenerations: SnapshotStateList<SessionImageUIModel> = mutableStateListOf()
     val sessionGenerations: List<SessionImageUIModel> = _sessionGenerations
 
     fun deleteGenerations(images: List<GeneratedImageUIModel>) {
-        synchronized(lock) {
+        synchronized(this) {
             // Check by id, because urls can be different
             val imagesIds = images.map { it.id }.toSet()
             _sessionGenerations.removeAll { it.id in imagesIds }
@@ -25,13 +23,16 @@ internal class SessionGenerationInteractor(
     }
 
     fun deleteGeneration(image: SessionImageUIModel) {
-        synchronized(lock) {
-            _sessionGenerations.removeAll { it.id == image.id }
+        synchronized(this) {
+            // For handling ConcurrentModificationException
+            val copyImage = image.copy()
+
+            _sessionGenerations.removeAll { copyImage.id == image.id }
         }
     }
 
     fun setFeedbackAsProvided(image: SessionImageUIModel) {
-        synchronized(lock) {
+        synchronized(this) {
             val imageIndex = _sessionGenerations.indexOf(image)
 
             if (imageIndex >= 0) {
@@ -43,7 +44,7 @@ internal class SessionGenerationInteractor(
     suspend fun addGeneration(image: GeneratedImageUIModel) {
         warmUpInteractor.warmUp(image.imageUrl)
 
-        synchronized(lock) {
+        synchronized(this) {
             _sessionGenerations.add(0, image.toSessionUiModel())
         }
     }

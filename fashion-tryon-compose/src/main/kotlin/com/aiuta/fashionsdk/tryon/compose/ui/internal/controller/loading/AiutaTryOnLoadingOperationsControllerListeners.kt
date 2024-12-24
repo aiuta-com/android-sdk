@@ -48,7 +48,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
                     val loadingActiveGenerations = loadingGenerationsHolder.getList()
                     val retryActiveGenerations = retryGenerationsHolder.getList()
                     val sessionGenerations =
-                        controller.sessionGenerationInteractor.sessionGenerations
+                        controller.sessionGenerationInteractor.sessionGenerations.toList()
 
                     val imagesIds = images.map { it.id }.toSet()
 

@@ -40,6 +40,7 @@ ksp = "2.0.0-1.0.24"
 room = "2.6.1"
 
 material = "1.12.0"
+mockk = "1.13.14"
 
 secrets = "2.0.1"
 spotless = "6.25.0"
@@ -91,6 +92,7 @@ ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", versi
 
 
 material = { module = "com.google.android.material:material", version.ref = "material" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 
 
