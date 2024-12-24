@@ -2,8 +2,8 @@ package domain.interactor.session
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session.SessionGenerationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toSessionUiModel
+import domain.interactor.utils.newImageList
 import io.mockk.coEvery
 import io.mockk.just
 import io.mockk.mockk
@@ -110,6 +110,7 @@ internal class SessionGenerationInteractorTest {
                 launch { sessionGenerationInteractor.deleteGenerations(imageList3) },
             )
 
+            // Check
             assertEquals(
                 expected = 0,
                 actual = sessionGenerationInteractor.sessionGenerations.size,
@@ -131,19 +132,10 @@ internal class SessionGenerationInteractorTest {
                 sessionGenerationInteractor.deleteGeneration(generation)
             }
 
+            // Check
             assertEquals(
                 expected = 0,
                 actual = sessionGenerationInteractor.sessionGenerations.size,
             )
         }
-
-    // Utils
-    private fun newImageList(range: IntRange): List<GeneratedImageUIModel> {
-        return range.map {
-            GeneratedImageUIModel(
-                id = "id-$it",
-                imageUrl = "url-$it",
-            )
-        }
-    }
 }
