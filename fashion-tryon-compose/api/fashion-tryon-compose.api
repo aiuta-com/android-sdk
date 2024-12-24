@@ -133,8 +133,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider {
 	public static final field $stable I
-	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
-	public final fun getAddGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
+	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function2;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
+	public final fun getAddGeneratedImagesAction ()Lkotlin/jvm/functions/Function2;
 	public final fun getAddUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getDeleteGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
 	public final fun getDeleteUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
@@ -310,7 +310,8 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles {
 	public static final field $stable I
-	public fun <init> (ZZZZ)V
+	public fun <init> (ZZZZZ)V
+	public final fun isBackgroundExecutionAllowed ()Z
 	public final fun isHistoryAvailable ()Z
 	public final fun isPreOnboardingAvailable ()Z
 	public final fun isShareAvailable ()Z
