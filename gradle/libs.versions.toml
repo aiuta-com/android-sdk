@@ -26,7 +26,7 @@ gradle-plugin-mavenPublish = "0.28.0"
 gradle-plugin-jreleaser = "1.13.1"
 
 kotlinx-serialization = "1.7.1"
-ktor = "2.3.11"
+ktor = "3.0.3"
 
 jetbrains-compose-compiler = "1.5.7.1"
 
