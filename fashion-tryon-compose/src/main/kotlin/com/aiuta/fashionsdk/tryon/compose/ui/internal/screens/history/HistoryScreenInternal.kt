@@ -236,6 +236,8 @@ private fun ImageContainer(
             model =
                 ImageRequest.Builder(context)
                     .data(imageUrl)
+                    // Do that, because thumbnail size is too small for zoom screen
+                    .size(coil.size.Size.ORIGINAL)
                     .crossfade(true)
                     .build(),
             loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },

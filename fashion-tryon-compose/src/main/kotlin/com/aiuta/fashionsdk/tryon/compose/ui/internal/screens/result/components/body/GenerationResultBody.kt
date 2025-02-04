@@ -174,6 +174,7 @@ private fun PagerItem(
             model =
                 ImageRequest.Builder(context)
                     .data(sessionImage.imageUrl)
+                    .size(coil.size.Size.ORIGINAL)
                     .crossfade(true)
                     .build(),
             loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
