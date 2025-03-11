@@ -35,7 +35,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDial
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CameraFileProvider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.newImageUri
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openMultipleImagePicker
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openSettings
@@ -60,7 +60,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
             .fillMaxWidth()
             .height(74.dp)
 
-    val newImageUri = remember { CameraFileProvider.newImageUri(context = context) }
+    val newImageUri = remember { newImageUri(context = context) }
     val cameraPickerLauncher =
         provideCameraPicker { hasImage ->
             if (hasImage && newImageUri != null) {
