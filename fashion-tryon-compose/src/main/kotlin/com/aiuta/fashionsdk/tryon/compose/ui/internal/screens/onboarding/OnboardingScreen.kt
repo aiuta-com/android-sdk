@@ -32,6 +32,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.righ
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.SmallConsentContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.listenIsPrimaryButtonEnabled
@@ -87,10 +88,17 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(horizontal = generalHorizontalPadding),
             text =
-                if (onboardingController.state.value != onboardingController.onboardingStatesQueue.last()) {
-                    stringResources.onboardingButtonNext
-                } else {
-                    stringResources.onboardingButtonStart
+                with(onboardingController) {
+                    val currentState = state.value
+                    when {
+                        currentState != onboardingStatesQueue.last() -> stringResources.onboardingButtonNext
+
+                        currentState is TryOnPage && currentState.internalPages.getOrNull(
+                            onboardingController.pagerState.settledPage,
+                        ) != currentState.internalPages.last() -> stringResources.onboardingButtonNext
+
+                        else -> stringResources.onboardingButtonStart
+                    }
                 },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
@@ -101,6 +109,11 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                     configuration = configuration,
                 )
             },
+        )
+
+        SmallConsentContent(
+            modifier = Modifier.fillMaxWidth(),
+            onboardingController = onboardingController,
         )
 
         Spacer(Modifier.height(12.dp))

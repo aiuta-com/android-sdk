@@ -23,6 +23,7 @@ internal class RussianAiutaTryOnLanguage(
     override val onboardingButtonStart: String = "Начать"
     override val onboardingPageTryonTopic: String = "Примерьте перед покупкой"
     override val onboardingPageTryonSubtopic: String = "Загрузите своё фото и порадуйтесь новому образу"
+    override val onboardingPageTryonConsent: String = "Ваши фотографии будут обрабатываться в соответствии с <b><a href=\"$termsOfServiceUrl\">Условиями использования</a></b>"
     override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
     override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
     override val onboardingPageConsentTopic: String = "Согласие"
