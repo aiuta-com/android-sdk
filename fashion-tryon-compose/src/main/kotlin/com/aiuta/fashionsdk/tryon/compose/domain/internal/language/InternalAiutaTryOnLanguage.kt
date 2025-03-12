@@ -18,8 +18,8 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingButtonStart: String
     val onboardingPageTryonTopic: String
     val onboardingPageTryonSubtopic: String
-    val onboardingPageBestResultTopic: String
-    val onboardingPageBestResultSubtopic: String
+    val onboardingPageTryonConsent: String
+
     val onboardingPageConsentTopic: String
     val onboardingPageConsentBody: String
     val onboardingPageConsentAgreePoint: String

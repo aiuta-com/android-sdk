@@ -10,9 +10,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
@@ -22,20 +21,32 @@ import kotlinx.coroutines.CoroutineScope
 internal fun rememberOnboardingController(): OnboardingController {
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
+    val configuration = LocalAiutaConfiguration.current
 
-    // Try on pages + Best result page
+    val onboardingStatesQueue =
+        remember {
+            if (configuration.toggles.isExtendedConsentPageAvailable) {
+                listOf(
+                    TryOnPage(theme.images),
+                    ConsentPage,
+                )
+            } else {
+                listOf(TryOnPage(theme.images))
+            }
+        }
+
     val pagerState =
         rememberPagerState(
             pageCount = {
-                TryOnPage(theme.images).internalPages.size + 2
+                TryOnPage(theme.images).internalPages.size + onboardingStatesQueue.size - 1
             },
         )
     val scope = rememberCoroutineScope()
 
     return remember {
         OnboardingController(
-            aiutaImages = theme.images,
             supplementPoint = stringResources.onboardingPageConsentSupplementaryPoints,
+            onboardingStatesQueue = onboardingStatesQueue,
             pagerState = pagerState,
             scope = scope,
         )
@@ -44,8 +55,8 @@ internal fun rememberOnboardingController(): OnboardingController {
 
 @Immutable
 internal class OnboardingController(
-    aiutaImages: AiutaImages,
     supplementPoint: List<String>,
+    val onboardingStatesQueue: List<OnboardingState>,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
 ) {
@@ -56,14 +67,6 @@ internal class OnboardingController(
             *supplementPoint.map {
                 it to false
             }.toTypedArray(),
-        )
-
-    // Onboarding queue
-    val onboardingStatesQueue =
-        listOf(
-            TryOnPage(aiutaImages),
-            BestResultPage(aiutaImages),
-            ConsentPage,
         )
 
     // General state

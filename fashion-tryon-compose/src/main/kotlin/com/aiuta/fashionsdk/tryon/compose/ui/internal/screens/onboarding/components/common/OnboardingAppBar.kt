@@ -18,7 +18,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appb
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.previousPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
@@ -66,7 +65,6 @@ internal fun OnboardingAppBar(
                                 input =
                                     when (state) {
                                         is TryOnPage -> stringResources.onboardingAppbarTryonPage
-                                        is BestResultPage -> stringResources.onboardingAppbarBestResultPage
                                         is ConsentPage -> stringResources.onboardingAppbarConsentPage
                                     },
                                 isClickable = false,
@@ -92,7 +90,6 @@ internal fun OnboardingAppBar(
                             pageId =
                                 when (onboardingController.state.value) {
                                     is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS
-                                    is BestResultPage -> AiutaAnalyticPageId.BEST_RESULTS
                                     is ConsentPage -> AiutaAnalyticPageId.CONSENT
                                 },
                         )

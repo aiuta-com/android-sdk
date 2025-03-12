@@ -32,6 +32,14 @@ public class AiutaToggles(
      * Flag which turn on or off possibility to execute in background work
      */
     public val isBackgroundExecutionAllowed: Boolean,
+    /**
+     * Flag which shows extended consent page in onboarding flow
+     */
+    public val isExtendedConsentPageAvailable: Boolean,
+    /**
+     * Flag which turn on possibility to generate with models
+     */
+    public val isTryonWithModelsAvailable: Boolean,
 )
 
 public val DefaultAiutaToggles: AiutaToggles by lazy {
@@ -41,5 +49,7 @@ public val DefaultAiutaToggles: AiutaToggles by lazy {
         isPreOnboardingAvailable = false,
         isShareAvailable = true,
         isBackgroundExecutionAllowed = true,
+        isExtendedConsentPageAvailable = true,
+        isTryonWithModelsAvailable = true,
     )
 }

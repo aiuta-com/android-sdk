@@ -29,16 +29,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.SmallConsentContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.listenIsPrimaryButtonEnabled
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.nextPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.previousPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.rememberOnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 
@@ -87,10 +86,17 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                     .fillMaxWidth()
                     .padding(horizontal = generalHorizontalPadding),
             text =
-                if (onboardingController.state.value != onboardingController.onboardingStatesQueue.last()) {
-                    stringResources.onboardingButtonNext
-                } else {
-                    stringResources.onboardingButtonStart
+                with(onboardingController) {
+                    val currentState = state.value
+                    when {
+                        currentState != onboardingStatesQueue.last() -> stringResources.onboardingButtonNext
+
+                        currentState is TryOnPage && currentState.internalPages.getOrNull(
+                            onboardingController.pagerState.settledPage,
+                        ) != currentState.internalPages.last() -> stringResources.onboardingButtonNext
+
+                        else -> stringResources.onboardingButtonStart
+                    }
                 },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
@@ -101,6 +107,11 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                     configuration = configuration,
                 )
             },
+        )
+
+        SmallConsentContent(
+            modifier = Modifier.fillMaxWidth(),
+            onboardingController = onboardingController,
         )
 
         Spacer(Modifier.height(12.dp))
@@ -145,13 +156,6 @@ private fun OnboardingScreenContent(
                     TryOnPageContent(
                         modifier = Modifier.fillMaxSize(),
                         onboardingController = onboardingController,
-                        state = state,
-                    )
-                }
-
-                is BestResultPage -> {
-                    BestResultPageContent(
-                        modifier = Modifier.fillMaxSize(),
                         state = state,
                     )
                 }

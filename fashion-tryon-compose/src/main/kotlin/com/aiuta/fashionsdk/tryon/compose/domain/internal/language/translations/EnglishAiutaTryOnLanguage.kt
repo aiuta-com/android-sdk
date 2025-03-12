@@ -24,9 +24,7 @@ internal class EnglishAiutaTryOnLanguage(
     override val onboardingPageTryonTopic: String = "Try on before buying"
     override val onboardingPageTryonSubtopic: String =
         "Upload a photo and see how items look on you"
-    override val onboardingPageBestResultTopic: String = "For best results"
-    override val onboardingPageBestResultSubtopic: String =
-        "Use a photo with good lighting, stand straight a plain background"
+    override val onboardingPageTryonConsent: String = "Your photos will be processed by <b><a href=\"$termsOfServiceUrl\">$brand</a></b>"
     override val onboardingPageConsentTopic: String = "Consent"
     override val onboardingPageConsentBody: String =
         "In order to try on items digitally, you agree to allow $brand to process your photo." +
