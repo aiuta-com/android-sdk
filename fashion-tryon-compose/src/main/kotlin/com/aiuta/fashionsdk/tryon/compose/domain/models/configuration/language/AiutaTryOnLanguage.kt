@@ -56,6 +56,7 @@ public class CustomLanguage(
     override val onboardingButtonStart: String,
     override val onboardingPageTryonTopic: String,
     override val onboardingPageTryonSubtopic: String,
+    override val onboardingPageTryonConsent: String,
     override val onboardingPageBestResultTopic: String,
     override val onboardingPageBestResultSubtopic: String,
     override val onboardingPageConsentTopic: String,

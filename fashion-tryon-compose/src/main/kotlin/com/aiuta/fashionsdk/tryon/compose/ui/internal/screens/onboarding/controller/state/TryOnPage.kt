@@ -37,6 +37,10 @@ internal class TryOnPage(
         return internalPages.iterator()
     }
 
+    override fun pageSize(): Int {
+        return internalPages.size
+    }
+
     companion object {
         const val INTERNAL_PAGES_SIZE = 3
         const val INTERNAL_PAGES_LAST_INDEX = INTERNAL_PAGES_SIZE - 1

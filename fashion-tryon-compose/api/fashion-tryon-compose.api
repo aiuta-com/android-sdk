@@ -174,7 +174,7 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/CustomLanguage : com/aiuta/fashionsdk/tryon/compose/domain/internal/language/InternalAiutaTryOnLanguage, com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun getAddToCart ()Ljava/lang/String;
 	public fun getAddToWish ()Ljava/lang/String;
 	public fun getAppBarHistory ()Ljava/lang/String;
@@ -222,6 +222,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 	public fun getOnboardingPageConsentFooter ()Ljava/lang/String;
 	public fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
 	public fun getOnboardingPageConsentTopic ()Ljava/lang/String;
+	public fun getOnboardingPageTryonConsent ()Ljava/lang/String;
 	public fun getOnboardingPageTryonSubtopic ()Ljava/lang/String;
 	public fun getOnboardingPageTryonTopic ()Ljava/lang/String;
 	public fun getPickerSheetChooseLibrary ()Ljava/lang/String;
@@ -308,13 +309,24 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 	public static final fun getDefaultHostMetadata ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;
 }
 
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode : java/lang/Enum {
+	public static final field EXTENDED Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
+	public static final field STANDARD Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
+	public static final field STANDARD_WITH_CONSENT Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
+	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
+}
+
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles {
 	public static final field $stable I
-	public fun <init> (ZZZZZ)V
+	public fun <init> (ZZZZZLcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;Z)V
+	public final fun getOnboardingMode ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
 	public final fun isBackgroundExecutionAllowed ()Z
 	public final fun isHistoryAvailable ()Z
 	public final fun isPreOnboardingAvailable ()Z
 	public final fun isShareAvailable ()Z
+	public final fun isTryonWithModelsAvailable ()Z
 	public final fun isWishlistAvailable ()Z
 }
 

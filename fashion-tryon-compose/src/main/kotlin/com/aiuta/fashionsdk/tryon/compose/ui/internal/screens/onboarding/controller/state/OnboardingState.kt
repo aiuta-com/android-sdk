@@ -3,4 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.contro
 import androidx.compose.runtime.Immutable
 
 @Immutable
-internal sealed interface OnboardingState
+internal sealed interface OnboardingState {
+    fun pageSize(): Int {
+        return 1
+    }
+}

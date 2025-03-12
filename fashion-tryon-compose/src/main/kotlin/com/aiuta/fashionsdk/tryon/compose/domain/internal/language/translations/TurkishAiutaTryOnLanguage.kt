@@ -24,6 +24,7 @@ internal class TurkishAiutaTryOnLanguage(
 
     override val onboardingPageTryonTopic: String = "Satın almadan önce dene"
     override val onboardingPageTryonSubtopic: String = "Fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
+    override val onboardingPageTryonConsent: String = "Fotoğraflarınız <b><a href=\"$termsOfServiceUrl\">Kullanım Koşullarına</a></b> göre işlenecektir"
     override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
     override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
     override val onboardingPageConsentTopic: String = "Onay"
