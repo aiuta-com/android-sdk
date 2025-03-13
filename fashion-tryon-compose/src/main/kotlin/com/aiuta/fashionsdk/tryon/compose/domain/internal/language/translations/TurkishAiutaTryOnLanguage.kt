@@ -40,7 +40,11 @@ internal class TurkishAiutaTryOnLanguage(
     override val onboardingPageConsentFooter: String? = null
 
     // Image selector
-    override val imageSelectorUploadButton: String = "Fotoğrafını yükle"
+    override val imageSelectorUploadTitle: String = "Fotoğrafınızı yükleyin"
+    override val imageSelectorUploadSubtitle: String = "Dik durduğunuz ve net göründüğünüz bir fotoğraf seçin"
+    override val imageSelectorUploadButton: String = "Fotoğraf yükle"
+    override val imageSelectorSelectModelButton: String = "Modelinizi seçin"
+    override val imageSelectorOr: String = "Veya"
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
     override val imageSelectorPoweredByAiuta: String = "Tarafından desteklenmektedir Aiuta"
     override val imageSelectorProtectionPoint: String = "Fotoğraflarınız koruma altındadır ve yalnızca size görünür"

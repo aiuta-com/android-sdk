@@ -38,6 +38,8 @@ public fun defaultAiutaImages(): AiutaImages {
                     ),
             ),
         selectorEmptyImage = AiutaResourceImage(R.drawable.demo_image_selector),
+        selectorEmptySmallImage1 = AiutaResourceImage(R.drawable.selector_empty_small_image_1),
+        selectorEmptySmallImage2 = AiutaResourceImage(R.drawable.onboarding_good_image_1),
         feedbackThanksImage = AiutaResourceImage(R.drawable.ic_heart),
     )
 }

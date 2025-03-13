@@ -36,7 +36,6 @@ import com.aiuta.fashionsdk.compose.tokens.utils.conditional
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
@@ -83,11 +82,7 @@ internal fun ImageSelectorBottom(
                         ImageSelectorState.GENERATION_LOADING
                     }
 
-                    controller.isLastSavedPhotoAvailable().value -> {
-                        ImageSelectorState.LAST_IMAGE_SAVED
-                    }
-
-                    else -> ImageSelectorState.IDLE
+                    else -> ImageSelectorState.LAST_IMAGE_SAVED
                 },
             label = "bottomState",
         )
@@ -97,16 +92,6 @@ internal fun ImageSelectorBottom(
         transitionSpec = { transitionAnimation },
     ) { state ->
         when (state) {
-            ImageSelectorState.IDLE -> {
-                FashionButton(
-                    modifier = sharedModifier,
-                    text = stringResources.imageSelectorUploadButton,
-                    style = FashionButtonStyles.primaryStyle(theme),
-                    size = sharedButtonSize,
-                    onClick = uploadPhoto,
-                )
-            }
-
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
                     modifier =

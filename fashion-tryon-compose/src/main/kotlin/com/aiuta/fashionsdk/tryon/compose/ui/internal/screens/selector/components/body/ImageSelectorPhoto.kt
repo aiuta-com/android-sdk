@@ -7,9 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -58,27 +56,13 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxSize(),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { uploadedImageUris ->
-            if (uploadedImageUris.isEmpty()) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    DefaultImage(
-                        modifier =
-                            Modifier
-                                .fillMaxHeight(0.55f)
-                                .fillMaxWidth(),
-                    )
-                }
-            } else {
-                ImagesContainer(
-                    modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .clip(sharedCornerShape),
-                    getImageUrls = { uploadedImageUris },
-                )
-            }
+            ImagesContainer(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .clip(sharedCornerShape),
+                getImageUrls = { uploadedImageUris },
+            )
         }
 
         skuGenerationTransition.AnimatedVisibility(

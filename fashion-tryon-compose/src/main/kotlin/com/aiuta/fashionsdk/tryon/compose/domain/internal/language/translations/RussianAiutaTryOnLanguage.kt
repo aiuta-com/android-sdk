@@ -39,7 +39,11 @@ internal class RussianAiutaTryOnLanguage(
     override val onboardingPageConsentFooter: String? = null
 
     // Image selector
-    override val imageSelectorUploadButton: String = "Загрузить своё фото"
+    override val imageSelectorUploadTitle: String = "Загрузите свою фотографию"
+    override val imageSelectorUploadSubtitle: String = "Выберите фотографию, где вы стоите прямо и хорошо видны"
+    override val imageSelectorUploadButton: String = "Загрузить фото"
+    override val imageSelectorSelectModelButton: String = "Выберите свою модель"
+    override val imageSelectorOr: String = "Или"
     override val imageSelectorChangeButton: String = "Заменить фото"
     override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
     override val imageSelectorProtectionPoint: String = "Ваши фото защищены и видны только вам"

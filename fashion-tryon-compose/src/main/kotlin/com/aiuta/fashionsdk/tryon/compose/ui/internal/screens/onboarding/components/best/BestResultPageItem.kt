@@ -31,7 +31,7 @@ internal fun BestResultPageItem(
             modifier = modifier.fillMaxSize(),
             image = image,
             contentDescription = null,
-            contentScale = ContentScale.FillWidth,
+            contentScale = ContentScale.Crop,
         )
 
         AiutaIcon(
