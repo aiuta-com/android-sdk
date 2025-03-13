@@ -174,7 +174,7 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/CustomLanguage : com/aiuta/fashionsdk/tryon/compose/domain/internal/language/InternalAiutaTryOnLanguage, com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun getAddToCart ()Ljava/lang/String;
 	public fun getAddToWish ()Ljava/lang/String;
 	public fun getAppBarHistory ()Ljava/lang/String;
@@ -205,10 +205,14 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 	public fun getHistorySelectorEnableButtonUnselectAll ()Ljava/lang/String;
 	public fun getImageSelectorChangeButton ()Ljava/lang/String;
 	public fun getImageSelectorGeneratingOutfit ()Ljava/lang/String;
+	public fun getImageSelectorOr ()Ljava/lang/String;
 	public fun getImageSelectorPoweredByAiuta ()Ljava/lang/String;
 	public fun getImageSelectorProtectionPoint ()Ljava/lang/String;
 	public fun getImageSelectorScanningBody ()Ljava/lang/String;
+	public fun getImageSelectorSelectModelButton ()Ljava/lang/String;
 	public fun getImageSelectorUploadButton ()Ljava/lang/String;
+	public fun getImageSelectorUploadSubtitle ()Ljava/lang/String;
+	public fun getImageSelectorUploadTitle ()Ljava/lang/String;
 	public fun getImageSelectorUploadingImage ()Ljava/lang/String;
 	public fun getOnboardingAppbarBestResultPage ()Ljava/lang/String;
 	public fun getOnboardingAppbarConsentPage ()Ljava/lang/String;
@@ -452,6 +456,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/select
 	public static field lambda-1 Lkotlin/jvm/functions/Function3;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/content/ComposableSingletons$ImageSelectorScreenContentKt {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/content/ComposableSingletons$ImageSelectorScreenContentKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function4;
+	public fun <init> ()V
+	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt {

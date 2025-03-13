@@ -13,7 +13,8 @@ public class AiutaImages(
     // Onboarding screen
     public val onboardingImages: AiutaOnboardingImages,
     // Selector screen
-    public val selectorEmptyImage: AiutaImage,
+    public val selectorEmptySmallImage1: AiutaImage,
+    public val selectorEmptySmallImage2: AiutaImage,
     // Result screen
     public val feedbackThanksImage: AiutaImage,
 )

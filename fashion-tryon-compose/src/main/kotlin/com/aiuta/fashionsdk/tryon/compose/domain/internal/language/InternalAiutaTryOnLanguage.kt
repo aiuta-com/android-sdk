@@ -31,7 +31,11 @@ internal interface InternalAiutaTryOnLanguage {
     val onboardingPageConsentFooter: String?
 
     // Image selector
+    val imageSelectorUploadTitle: String
+    val imageSelectorUploadSubtitle: String
     val imageSelectorUploadButton: String
+    val imageSelectorSelectModelButton: String
+    val imageSelectorOr: String
     val imageSelectorChangeButton: String
 
     val imageSelectorPoweredByAiuta: String

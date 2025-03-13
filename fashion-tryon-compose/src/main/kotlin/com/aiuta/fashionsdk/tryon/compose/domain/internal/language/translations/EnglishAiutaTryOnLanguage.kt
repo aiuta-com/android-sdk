@@ -41,7 +41,11 @@ internal class EnglishAiutaTryOnLanguage(
     override val onboardingPageConsentFooter: String? = null
 
     // Image selector
-    override val imageSelectorUploadButton: String = "Upload a photo of you"
+    override val imageSelectorUploadTitle: String = "Upload a photo of you"
+    override val imageSelectorUploadSubtitle: String = "Select a photo where you are standing straight and clearly visible"
+    override val imageSelectorUploadButton: String = "Upload a photo"
+    override val imageSelectorSelectModelButton: String = "Select your model"
+    override val imageSelectorOr: String = "Or"
     override val imageSelectorChangeButton: String = "Change photo"
     override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
     override val imageSelectorProtectionPoint: String =

@@ -68,7 +68,11 @@ public class CustomLanguage(
     override val onboardingAppbarConsentPage: String,
     override val onboardingPageConsentFooter: String?,
     // Image selector
+    override val imageSelectorUploadTitle: String,
+    override val imageSelectorUploadSubtitle: String,
     override val imageSelectorUploadButton: String,
+    override val imageSelectorSelectModelButton: String,
+    override val imageSelectorOr: String,
     override val imageSelectorChangeButton: String,
     override val imageSelectorPoweredByAiuta: String,
     override val imageSelectorProtectionPoint: String,
