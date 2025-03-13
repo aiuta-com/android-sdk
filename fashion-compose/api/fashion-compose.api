@@ -295,11 +295,13 @@ public abstract interface class com/aiuta/fashionsdk/compose/tokens/images/Aiuta
 
 public final class com/aiuta/fashionsdk/compose/tokens/images/AiutaImages {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;Lcom/aiuta/fashionsdk/compose/tokens/images/onboarding/AiutaOnboardingImages;Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;Lcom/aiuta/fashionsdk/compose/tokens/images/onboarding/AiutaOnboardingImages;Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;)V
 	public final fun getFeedbackThanksImage ()Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;
 	public final fun getOnboardingImages ()Lcom/aiuta/fashionsdk/compose/tokens/images/onboarding/AiutaOnboardingImages;
 	public final fun getPreonboardingImage ()Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;
 	public final fun getSelectorEmptyImage ()Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;
+	public final fun getSelectorEmptySmallImage1 ()Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;
+	public final fun getSelectorEmptySmallImage2 ()Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImage;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/images/AiutaResourceImage : com/aiuta/fashionsdk/compose/tokens/images/AiutaImage {
