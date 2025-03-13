@@ -13,8 +13,6 @@ public class AiutaImages(
     // Onboarding screen
     public val onboardingImages: AiutaOnboardingImages,
     // Selector screen
-    @Deprecated("Will not be used in new version of SDK")
-    public val selectorEmptyImage: AiutaImage,
     public val selectorEmptySmallImage1: AiutaImage,
     public val selectorEmptySmallImage2: AiutaImage,
     // Result screen
