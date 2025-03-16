@@ -10,6 +10,7 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FeedbackFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FitDisclaimerFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PoweredByStickerFeatureConverter
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.ConfigDao
@@ -30,7 +31,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-private const val DATABASE_VERSION = 11
+private const val DATABASE_VERSION = 12
 private const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(
@@ -63,6 +64,7 @@ private const val DATABASE_NAME = "fashionsdk-database"
         PoweredByStickerFeatureConverter::class,
         FeedbackFeatureConverter::class,
         FitDisclaimerFeatureConverter::class,
+        TryOnModelsCategoriesConverter::class,
     ],
 )
 internal abstract class AppDatabase : RoomDatabase() {
@@ -107,6 +109,7 @@ internal abstract class AppDatabase : RoomDatabase() {
                             .addTypeConverter(PoweredByStickerFeatureConverter())
                             .addTypeConverter(FeedbackFeatureConverter())
                             .addTypeConverter(FitDisclaimerFeatureConverter())
+                            .addTypeConverter(TryOnModelsCategoriesConverter())
                             // Fallback
                             .fallbackToDestructiveMigration()
                             .build()

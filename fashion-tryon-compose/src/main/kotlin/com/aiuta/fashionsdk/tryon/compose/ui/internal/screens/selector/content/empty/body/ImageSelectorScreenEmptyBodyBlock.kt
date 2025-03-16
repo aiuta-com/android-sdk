@@ -33,7 +33,9 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
 
 @Composable
@@ -129,7 +131,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                     ),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    // TODO Navigation to model selector
+                    controller.navigateTo(NavigationScreen.ModelSelector)
                 },
             )
 

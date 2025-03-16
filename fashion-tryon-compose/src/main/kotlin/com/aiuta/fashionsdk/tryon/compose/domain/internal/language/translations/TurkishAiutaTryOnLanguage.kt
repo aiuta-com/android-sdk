@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class TurkishAiutaTryOnLanguage(
     brand: String,
@@ -11,6 +12,7 @@ internal class TurkishAiutaTryOnLanguage(
     // App bar
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
+    override val appBarModelSelect: String = "Modelinizi seçin"
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Üzerinde Dene"
@@ -52,6 +54,13 @@ internal class TurkishAiutaTryOnLanguage(
     override val imageSelectorUploadingImage: String = "Resim yükleme"
     override val imageSelectorScanningBody: String = "Vücudunu taramak"
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
+
+    override val modelSelectorCategories: List<TranslationWord> =
+        listOf(
+            TranslationWord(id = "woman", translation = "Kadın"),
+            TranslationWord(id = "man", translation = "Kadın"),
+        )
+    override val modelSelectorErrorEmptyModelsList: String = "Model listesi boş"
 
     // History
     override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"

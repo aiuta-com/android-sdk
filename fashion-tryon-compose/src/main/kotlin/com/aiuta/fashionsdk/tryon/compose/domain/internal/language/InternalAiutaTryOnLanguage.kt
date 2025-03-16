@@ -1,12 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 @Immutable
 internal interface InternalAiutaTryOnLanguage {
     // App bar
     val appBarHistory: String
     val appBarSelect: String
+    val appBarModelSelect: String
 
     // Pre Onboarding
     val preOnboardingTitle: String
@@ -44,6 +46,10 @@ internal interface InternalAiutaTryOnLanguage {
     val imageSelectorUploadingImage: String
     val imageSelectorScanningBody: String
     val imageSelectorGeneratingOutfit: String
+
+    // Model selector
+    val modelSelectorCategories: List<TranslationWord>
+    val modelSelectorErrorEmptyModelsList: String
 
     // History
     val historySelectorEnableButtonSelectAll: String

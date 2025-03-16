@@ -6,11 +6,13 @@ import androidx.room.TypeConverters
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FeedbackFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FitDisclaimerFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PoweredByStickerFeatureConverter
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfig
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfiguration
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.PoweredByStickerFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.TryOnModelsCategory
 
 @Entity(tableName = "client_config")
 internal class ClientConfigEntity(
@@ -23,6 +25,8 @@ internal class ClientConfigEntity(
     val feedbackFeature: FeedbackFeature? = null,
     @TypeConverters(FitDisclaimerFeatureConverter::class)
     val fitDisclaimerFeature: FitDisclaimerFeature? = null,
+    @TypeConverters(TryOnModelsCategoriesConverter::class)
+    val predefinedTryOnModels: List<TryOnModelsCategory>? = null,
 )
 
 internal fun ClientConfigEntity.toDTO() =
@@ -33,6 +37,7 @@ internal fun ClientConfigEntity.toDTO() =
                 poweredByStickerFeature = poweredByStickerFeature,
                 feedbackFeature = feedbackFeature,
                 fitDisclaimerFeature = fitDisclaimerFeature,
+                predefinedTryOnModels = predefinedTryOnModels,
             ),
     )
 
@@ -42,4 +47,5 @@ internal fun ClientConfig.toEntity() =
         poweredByStickerFeature = clientConfiguration.poweredByStickerFeature,
         feedbackFeature = clientConfiguration.feedbackFeature,
         fitDisclaimerFeature = clientConfiguration.fitDisclaimerFeature,
+        predefinedTryOnModels = clientConfiguration.predefinedTryOnModels,
     )

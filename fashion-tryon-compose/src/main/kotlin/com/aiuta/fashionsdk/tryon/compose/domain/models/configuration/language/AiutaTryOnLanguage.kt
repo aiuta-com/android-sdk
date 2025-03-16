@@ -47,6 +47,7 @@ public class CustomLanguage(
     // App bar
     override val appBarHistory: String,
     override val appBarSelect: String,
+    override val appBarModelSelect: String,
     // Pre Onboarding
     override val preOnboardingTitle: String,
     override val preOnboardingSubtitle: String,
@@ -79,6 +80,8 @@ public class CustomLanguage(
     override val imageSelectorUploadingImage: String,
     override val imageSelectorScanningBody: String,
     override val imageSelectorGeneratingOutfit: String,
+    override val modelSelectorCategories: List<TranslationWord>,
+    override val modelSelectorErrorEmptyModelsList: String,
     // History
     override val historySelectorEnableButtonSelectAll: String,
     override val historySelectorEnableButtonUnselectAll: String,

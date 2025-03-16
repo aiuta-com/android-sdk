@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class EnglishAiutaTryOnLanguage(
     brand: String,
@@ -11,6 +12,7 @@ internal class EnglishAiutaTryOnLanguage(
     // App bar
     override val appBarHistory: String = "History"
     override val appBarSelect: String = "Select"
+    override val appBarModelSelect: String = "Select your model"
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Try on you"
@@ -54,6 +56,14 @@ internal class EnglishAiutaTryOnLanguage(
     override val imageSelectorUploadingImage: String = "Uploading image"
     override val imageSelectorScanningBody: String = "Scanning your body"
     override val imageSelectorGeneratingOutfit: String = "Generating outfit"
+
+    // Model selector
+    override val modelSelectorCategories: List<TranslationWord> =
+        listOf(
+            TranslationWord(id = "woman", translation = "Woman"),
+            TranslationWord(id = "man", translation = "Man"),
+        )
+    override val modelSelectorErrorEmptyModelsList: String = "The models list is empty"
 
     // History
     override val historySelectorEnableButtonSelectAll: String = "Select all"

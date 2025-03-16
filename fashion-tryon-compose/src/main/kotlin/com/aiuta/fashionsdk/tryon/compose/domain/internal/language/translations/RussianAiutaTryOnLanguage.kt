@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class RussianAiutaTryOnLanguage(
     brand: String,
@@ -11,6 +12,7 @@ internal class RussianAiutaTryOnLanguage(
     // App bar
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
+    override val appBarModelSelect: String = "Выберите вашу модель"
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Примерьте на себе"
@@ -51,6 +53,14 @@ internal class RussianAiutaTryOnLanguage(
     override val imageSelectorUploadingImage: String = "Загружаем фото"
     override val imageSelectorScanningBody: String = "Сканируем"
     override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
+
+    // Model selector
+    override val modelSelectorCategories: List<TranslationWord> =
+        listOf(
+            TranslationWord(id = "woman", translation = "Женщины"),
+            TranslationWord(id = "man", translation = "Мужчины"),
+        )
+    override val modelSelectorErrorEmptyModelsList: String = "Список моделей пуст"
 
     // History
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
