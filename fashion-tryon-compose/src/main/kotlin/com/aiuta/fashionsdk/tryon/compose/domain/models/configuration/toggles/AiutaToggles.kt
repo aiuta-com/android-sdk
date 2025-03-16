@@ -49,7 +49,7 @@ public val DefaultAiutaToggles: AiutaToggles by lazy {
         isPreOnboardingAvailable = false,
         isShareAvailable = true,
         isBackgroundExecutionAllowed = true,
-        onboardingMode = AiutaOnboardingMode.EXTENDED,
+        onboardingMode = AiutaOnboardingMode.STANDARD,
         isTryonWithModelsAvailable = true,
     )
 }
