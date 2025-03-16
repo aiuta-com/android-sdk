@@ -30,6 +30,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -37,6 +38,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
 
 @Composable
 internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val configuration = LocalConfiguration.current
     val theme = LocalTheme.current
@@ -59,7 +61,11 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Spacer(Modifier.height(60.dp))
 
         ImagesBlock(
-            modifier = Modifier.fillMaxWidth().weight(1f).padding(imageBlockPadding),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(imageBlockPadding),
         )
 
         Spacer(Modifier.height(60.dp))
@@ -99,34 +105,38 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             },
         )
 
-        Spacer(Modifier.height(20.dp))
+        if (aiutaConfiguration.toggles.isTryonWithModelsAvailable) {
+            Spacer(Modifier.height(20.dp))
 
-        Text(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResources.imageSelectorOr,
-            style = theme.typography.chips,
-            color = theme.colors.primary,
-            textAlign = TextAlign.Center,
-        )
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = stringResources.imageSelectorOr,
+                style = theme.typography.chips,
+                color = theme.colors.primary,
+                textAlign = TextAlign.Center,
+            )
 
-        Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.height(20.dp))
 
-        FashionButton(
-            modifier = Modifier.fillMaxWidth(),
-            text = stringResources.imageSelectorSelectModelButton,
-            style =
-                FashionButtonStyles.secondaryStyle(
-                    backgroundColor = theme.colors.background,
-                    contentColor = theme.colors.primary,
-                    borderColor = Color.Transparent,
-                ),
-            size = FashionButtonSizes.lSize(),
-            onClick = {
-                // TODO Navigation to model selector
-            },
-        )
+            FashionButton(
+                modifier = Modifier.fillMaxWidth(),
+                text = stringResources.imageSelectorSelectModelButton,
+                style =
+                    FashionButtonStyles.secondaryStyle(
+                        backgroundColor = theme.colors.background,
+                        contentColor = theme.colors.primary,
+                        borderColor = Color.Transparent,
+                    ),
+                size = FashionButtonSizes.lSize(),
+                onClick = {
+                    // TODO Navigation to model selector
+                },
+            )
 
-        Spacer(Modifier.height(32.dp))
+            Spacer(Modifier.height(32.dp))
+        } else {
+            Spacer(Modifier.weight(0.5f))
+        }
     }
 }
 
