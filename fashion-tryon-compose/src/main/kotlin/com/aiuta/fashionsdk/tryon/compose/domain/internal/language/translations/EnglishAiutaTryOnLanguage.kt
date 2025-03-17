@@ -12,7 +12,6 @@ internal class EnglishAiutaTryOnLanguage(
     // App bar
     override val appBarHistory: String = "History"
     override val appBarSelect: String = "Select"
-    override val appBarModelSelect: String = "Select your model"
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Try on you"
@@ -109,6 +108,7 @@ internal class EnglishAiutaTryOnLanguage(
     override val addToCart: String = "Add to cart"
     override val cancel: String = "Cancel"
     override val close: String = "Close"
+    override val modelSelect: String = "Select your model"
     override val tryOn: String = "Try on"
     override val tryAgain: String = "Try again"
     override val virtualTryOn: String = "Virtual Try-on"

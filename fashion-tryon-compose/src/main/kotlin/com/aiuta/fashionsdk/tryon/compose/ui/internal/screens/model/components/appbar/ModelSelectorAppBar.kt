@@ -32,7 +32,7 @@ internal fun ModelSelectorAppBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = stringResources.appBarModelSelect,
+                text = stringResources.modelSelect,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,

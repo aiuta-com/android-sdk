@@ -12,7 +12,6 @@ internal class TurkishAiutaTryOnLanguage(
     // App bar
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
-    override val appBarModelSelect: String = "Modelinizi seçin"
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Üzerinde Dene"
@@ -103,6 +102,7 @@ internal class TurkishAiutaTryOnLanguage(
     override val addToCart: String = "Sepete ekle"
     override val cancel: String = "Vazgeç"
     override val close: String = "Kapat"
+    override val modelSelect: String = "Modelinizi seçin"
     override val tryOn: String = "Üzerinde Dene"
     override val tryAgain: String = "Tekrar dene"
     override val virtualTryOn: String = "Sanal Deneme"

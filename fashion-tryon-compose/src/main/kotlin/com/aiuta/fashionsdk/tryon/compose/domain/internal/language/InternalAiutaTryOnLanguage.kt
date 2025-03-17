@@ -8,7 +8,6 @@ internal interface InternalAiutaTryOnLanguage {
     // App bar
     val appBarHistory: String
     val appBarSelect: String
-    val appBarModelSelect: String
 
     // Pre Onboarding
     val preOnboardingTitle: String
@@ -93,6 +92,7 @@ internal interface InternalAiutaTryOnLanguage {
     val addToCart: String
     val cancel: String
     val close: String
+    val modelSelect: String
     val tryOn: String
     val tryAgain: String
     val virtualTryOn: String

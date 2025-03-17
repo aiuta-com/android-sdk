@@ -33,6 +33,7 @@ public class AiutaResourceIcons(
     public override val photoLibrary24: AiutaResourceIcon,
     public override val trash24: AiutaResourceIcon,
     public override val takePhoto24: AiutaResourceIcon,
+    public override val selectModel24: AiutaResourceIcon,
     public override val share24: AiutaResourceIcon,
     public override val wishlist24: AiutaResourceIcon,
     public override val wishlistFill24: AiutaResourceIcon,

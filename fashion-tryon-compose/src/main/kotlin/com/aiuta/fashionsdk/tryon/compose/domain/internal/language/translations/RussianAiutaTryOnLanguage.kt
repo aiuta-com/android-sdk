@@ -12,7 +12,6 @@ internal class RussianAiutaTryOnLanguage(
     // App bar
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
-    override val appBarModelSelect: String = "Выберите вашу модель"
 
     // Pre Onboarding
     override val preOnboardingTitle: String = "Примерьте на себе"
@@ -105,6 +104,7 @@ internal class RussianAiutaTryOnLanguage(
     override val addToCart: String = "Добавить в корзину"
     override val cancel: String = "Отмена"
     override val close: String = "Закрыть"
+    override val modelSelect: String = "Выберите вашу модель"
     override val tryOn: String = "Примерить"
     override val tryAgain: String = "Попробовать снова"
     override val virtualTryOn: String = "Виртуальная примерка"

@@ -47,7 +47,6 @@ public class CustomLanguage(
     // App bar
     override val appBarHistory: String,
     override val appBarSelect: String,
-    override val appBarModelSelect: String,
     // Pre Onboarding
     override val preOnboardingTitle: String,
     override val preOnboardingSubtitle: String,
@@ -121,6 +120,7 @@ public class CustomLanguage(
     override val addToCart: String,
     override val cancel: String,
     override val close: String,
+    override val modelSelect: String,
     override val tryOn: String,
     override val tryAgain: String,
     override val virtualTryOn: String,
