@@ -174,7 +174,7 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/CustomLanguage : com/aiuta/fashionsdk/tryon/compose/domain/internal/language/InternalAiutaTryOnLanguage, com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public fun getAddToCart ()Ljava/lang/String;
 	public fun getAddToWish ()Ljava/lang/String;
 	public fun getAppBarHistory ()Ljava/lang/String;
@@ -198,6 +198,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 	public fun getFitDisclaimerTitle ()Ljava/lang/String;
 	public fun getGeneratedOperationsSheetPreviously ()Ljava/lang/String;
 	public fun getGeneratedOperationsSheetUploadNewButton ()Ljava/lang/String;
+	public fun getGeneratedOperationsSheetUploadNewButtonWithModels ()Ljava/lang/String;
 	public fun getGenerationResultMoreSubtitle ()Ljava/lang/String;
 	public fun getGenerationResultMoreTitle ()Ljava/lang/String;
 	public fun getHistoryEmptyDescription ()Ljava/lang/String;
@@ -214,6 +215,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 	public fun getImageSelectorUploadSubtitle ()Ljava/lang/String;
 	public fun getImageSelectorUploadTitle ()Ljava/lang/String;
 	public fun getImageSelectorUploadingImage ()Ljava/lang/String;
+	public fun getModelSelect ()Ljava/lang/String;
+	public fun getModelSelectorCategories ()Ljava/util/List;
+	public fun getModelSelectorErrorEmptyModelsList ()Ljava/lang/String;
 	public fun getOnboardingAppbarBestResultPage ()Ljava/lang/String;
 	public fun getOnboardingAppbarConsentPage ()Ljava/lang/String;
 	public fun getOnboardingAppbarTryonPage ()Ljava/lang/String;
@@ -266,6 +270,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/RussianLanguage$Companion {
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/TranslationWord {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getId ()Ljava/lang/String;
+	public final fun getTranslation ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/TurkishLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
