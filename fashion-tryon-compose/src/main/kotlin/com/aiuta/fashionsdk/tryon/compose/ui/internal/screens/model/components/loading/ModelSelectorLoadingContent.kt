@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.list.CentredModelsHorizontalPager
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_BOTTOM_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.placeholderFadeConnecting
@@ -33,7 +34,7 @@ internal fun ModelSelectorLoadingContent(modifier: Modifier = Modifier) {
     val screenHeight = configuration.screenHeightDp.dp
 
     val imageHorizontalPadding = screenWidth * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
-    val bottomPadding = screenHeight * 0.1f
+    val bottomPadding = screenHeight * MODEL_IMAGE_BOTTOM_PADDING_COEF
 
     Column(
         modifier = modifier,

@@ -25,6 +25,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.Mo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.appbar.ModelSelectorAppBar
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.content.ModelSelectorShowContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorEmptyModelsErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorGeneralErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.loading.ModelSelectorLoadingContent
@@ -72,6 +73,10 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
         ) { state ->
             when (state) {
                 is ModelSelectorScreenState.Content -> {
+                    ModelSelectorShowContent(
+                        modifier = sharedModifier,
+                        state = state,
+                    )
                 }
 
                 is ModelSelectorScreenState.EmptyModelsListError -> {

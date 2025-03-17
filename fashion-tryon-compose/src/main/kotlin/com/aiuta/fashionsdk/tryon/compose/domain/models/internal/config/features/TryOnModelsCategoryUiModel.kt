@@ -3,14 +3,15 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.feature
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.TryOnModelsCategory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
 
 @Immutable
-internal class TryOnModelsCategoryUiModel(
+internal data class TryOnModelsCategoryUiModel(
     val category: String,
     val models: List<TryOnModelUiModel>,
 ) {
     @Immutable
-    internal class TryOnModelUiModel(
+    internal data class TryOnModelUiModel(
         val id: String,
         val url: String,
     )
@@ -18,25 +19,30 @@ internal class TryOnModelsCategoryUiModel(
 
 internal fun TryOnModelsCategory.toUiModel(
     stringResources: InternalAiutaTryOnLanguage,
-): TryOnModelsCategoryUiModel {
-    return TryOnModelsCategoryUiModel(
-        category = category,
-        models = models.mapNotNull { model -> model.toUiModel(stringResources) },
-    )
-}
-
-internal fun TryOnModelsCategory.TryOnModel.toUiModel(
-    stringResources: InternalAiutaTryOnLanguage,
-): TryOnModelsCategoryUiModel.TryOnModelUiModel? {
+): TryOnModelsCategoryUiModel? {
     val translation =
         stringResources.modelSelectorCategories.find { translationWord ->
-            translationWord.id == this.id
+            translationWord.id == this.category
         }
 
     return translation?.let {
-        TryOnModelsCategoryUiModel.TryOnModelUiModel(
-            id = this.id,
-            url = this.url,
+        TryOnModelsCategoryUiModel(
+            category = translation.translation,
+            models = models.map { model -> model.toUiModel() },
         )
     }
+}
+
+internal fun TryOnModelsCategory.TryOnModel.toUiModel(): TryOnModelsCategoryUiModel.TryOnModelUiModel {
+    return TryOnModelsCategoryUiModel.TryOnModelUiModel(
+        id = this.id,
+        url = this.url,
+    )
+}
+
+internal fun TryOnModelsCategoryUiModel.TryOnModelUiModel.toSourceImage(): SourceImage {
+    return SourceImage(
+        imageId = id,
+        imageUrl = url,
+    )
 }
