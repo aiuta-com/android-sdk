@@ -138,7 +138,7 @@ internal fun ModelSelectorShowContent(
                     activeImageModel.value?.let { model ->
                         // Save model
                         controller.lastSavedImages.value =
-                            LastSavedImages.UrlSource(
+                            LastSavedImages.UrlSource.PregeneratedModels(
                                 sourceImages = listOf(model.toSourceImage()),
                             )
                         // Activate try on

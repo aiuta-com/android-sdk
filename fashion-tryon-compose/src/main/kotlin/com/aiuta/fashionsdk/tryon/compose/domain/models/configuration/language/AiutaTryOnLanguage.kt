@@ -96,6 +96,7 @@ public class CustomLanguage(
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String,
     override val generatedOperationsSheetUploadNewButton: String,
+    override val generatedOperationsSheetUploadNewButtonWithModels: String,
     // Feedback sheet
     override val feedbackSheetSkip: String,
     override val feedbackSheetSend: String,

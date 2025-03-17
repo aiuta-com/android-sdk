@@ -79,6 +79,7 @@ internal class RussianAiutaTryOnLanguage(
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Ранее использованные фото"
     override val generatedOperationsSheetUploadNewButton: String = "+ Загрузить новое фото"
+    override val generatedOperationsSheetUploadNewButtonWithModels: String = "+ Загрузить новое фото или модель"
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Пропустить"

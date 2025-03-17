@@ -157,7 +157,13 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = sharedHorizontalPadding),
-        text = stringResources.generatedOperationsSheetUploadNewButton,
+        text =
+            if (aiutaConfiguration.toggles.isTryonWithModelsAvailable)
+                {
+                    stringResources.generatedOperationsSheetUploadNewButtonWithModels
+                } else {
+                stringResources.generatedOperationsSheetUploadNewButton
+            },
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
         onClick = {

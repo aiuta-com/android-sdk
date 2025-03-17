@@ -78,6 +78,7 @@ internal class TurkishAiutaTryOnLanguage(
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Önceden yüklenen fotoğraflar"
     override val generatedOperationsSheetUploadNewButton: String = "+ Yeni fotoğraf yükle"
+    override val generatedOperationsSheetUploadNewButtonWithModels: String = "+ Yeni fotoğraf yükle"
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Atla"

@@ -68,6 +68,7 @@ internal interface InternalAiutaTryOnLanguage {
     // Generated operations sheet
     val generatedOperationsSheetPreviously: String
     val generatedOperationsSheetUploadNewButton: String
+    val generatedOperationsSheetUploadNewButtonWithModels: String
 
     // Feedback sheet
     val feedbackSheetSkip: String

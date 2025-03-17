@@ -82,7 +82,8 @@ internal class EnglishAiutaTryOnLanguage(
 
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Previously used photos"
-    override val generatedOperationsSheetUploadNewButton: String = "+ Upload new photo"
+    override val generatedOperationsSheetUploadNewButton: String = "+ New photo"
+    override val generatedOperationsSheetUploadNewButtonWithModels: String = "+ New photo or model"
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Skip"

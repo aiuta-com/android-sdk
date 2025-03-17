@@ -9,9 +9,17 @@ internal sealed interface LastSavedImages {
         val imageUris: List<String>,
     ) : LastSavedImages
 
-    data class UrlSource(
-        val sourceImages: List<SourceImage>,
-    ) : LastSavedImages
+    sealed interface UrlSource : LastSavedImages {
+        val sourceImages: List<SourceImage>
+
+        data class Base(
+            override val sourceImages: List<SourceImage>,
+        ) : UrlSource
+
+        data class PregeneratedModels(
+            override val sourceImages: List<SourceImage>,
+        ) : UrlSource
+    }
 
     object Empty : LastSavedImages
 }
@@ -39,7 +47,7 @@ internal val LastSavedImages.size: Int
 
 // Converters
 internal fun GeneratedOperationUIModel.toLastSavedImages(): LastSavedImages {
-    return LastSavedImages.UrlSource(
+    return LastSavedImages.UrlSource.Base(
         sourceImages = sourceImages,
     )
 }
