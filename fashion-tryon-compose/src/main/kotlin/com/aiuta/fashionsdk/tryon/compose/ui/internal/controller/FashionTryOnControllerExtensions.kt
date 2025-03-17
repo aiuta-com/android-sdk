@@ -21,6 +21,7 @@ internal val skippedBackStackScreens =
     setOf(
         NavigationScreen.Splash,
         NavigationScreen.Onboarding,
+        NavigationScreen.ModelSelector,
     )
 
 // Navigation
