@@ -27,6 +27,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.appbar.ModelSelectorAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorEmptyModelsErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorGeneralErrorContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.loading.ModelSelectorLoadingContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.controller.initModelSelectorScreen
 
 @Composable
@@ -36,7 +37,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
     val stringResources = LocalAiutaTryOnStringResources.current
 
     val screenState =
-        remember { mutableStateOf<ModelSelectorScreenState>(ModelSelectorScreenState.GeneralError) }
+        remember { mutableStateOf<ModelSelectorScreenState>(ModelSelectorScreenState.Loading) }
     val screenStateTransition = updateTransition(screenState.value)
 
     val sharedModifier = Modifier.fillMaxSize()
@@ -74,9 +75,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
                 }
 
                 is ModelSelectorScreenState.EmptyModelsListError -> {
-                    ModelSelectorEmptyModelsErrorContent(
-                        modifier = sharedModifier,
-                    )
+                    ModelSelectorEmptyModelsErrorContent(modifier = sharedModifier)
                 }
 
                 is ModelSelectorScreenState.GeneralError -> {
@@ -94,6 +93,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
                 }
 
                 is ModelSelectorScreenState.Loading -> {
+                    ModelSelectorLoadingContent(modifier = sharedModifier)
                 }
             }
         }
