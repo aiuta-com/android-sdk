@@ -12,6 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.screenPosition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.ModelSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.preonboarding.PreOnboardingScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.GenerationResultScreen
@@ -67,6 +68,12 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
 
             NavigationScreen.ImageSelector -> {
                 ImageSelectorScreen(
+                    modifier = sharedModifier,
+                )
+            }
+
+            NavigationScreen.ModelSelector -> {
+                ModelSelectorScreen(
                     modifier = sharedModifier,
                 )
             }

@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 @Immutable
 internal interface InternalAiutaTryOnLanguage {
@@ -45,6 +46,10 @@ internal interface InternalAiutaTryOnLanguage {
     val imageSelectorScanningBody: String
     val imageSelectorGeneratingOutfit: String
 
+    // Model selector
+    val modelSelectorCategories: List<TranslationWord>
+    val modelSelectorErrorEmptyModelsList: String
+
     // History
     val historySelectorEnableButtonSelectAll: String
     val historySelectorEnableButtonUnselectAll: String
@@ -62,6 +67,7 @@ internal interface InternalAiutaTryOnLanguage {
     // Generated operations sheet
     val generatedOperationsSheetPreviously: String
     val generatedOperationsSheetUploadNewButton: String
+    val generatedOperationsSheetUploadNewButtonWithModels: String
 
     // Feedback sheet
     val feedbackSheetSkip: String
@@ -86,6 +92,7 @@ internal interface InternalAiutaTryOnLanguage {
     val addToCart: String
     val cancel: String
     val close: String
+    val modelSelect: String
     val tryOn: String
     val tryAgain: String
     val virtualTryOn: String

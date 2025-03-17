@@ -109,7 +109,10 @@ private fun FashionTryOnController.solveStartGenerationFlows(
         }
 
         is LastSavedImages.UrlSource -> {
-            startGenerationWithUrlSource(urlSource = activeImages)
+            startGenerationWithUrlSource(
+                urlSource = activeImages,
+                generatedOperationFactory = generatedOperationFactory,
+            )
         }
 
         is LastSavedImages.Empty -> emptyList()
@@ -151,6 +154,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
 
 private fun FashionTryOnController.startGenerationWithUrlSource(
     urlSource: LastSavedImages.UrlSource,
+    generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
     return urlSource.sourceImages.map { sourceImage ->
         aiutaTryOn
@@ -163,6 +167,25 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
                         skuCatalogName = activeSKUItem.value.catalogName,
                     ),
             )
+            .onEach { status ->
+                // Notify (or create locally) about new operation, after success
+                // Also need update active operation, if we change local URI to backend URL
+                val isModelSource =
+                    lastSavedImages.value is LastSavedImages.UrlSource.PregeneratedModels
+
+                if (isModelSource && status is SKUGenerationStatus.SuccessGenerationStatus) {
+                    val currentOperationId =
+                        generatedOperationFactory.getOperationId(
+                            imageId = status.sourceImageId,
+                        )
+
+                    generatedOperationInteractor.createImage(
+                        sourceImageId = status.sourceImageId,
+                        sourceImageUrl = status.sourceImageUrl,
+                        operationId = currentOperationId,
+                    )
+                }
+            }
     }
 }
 

@@ -29,6 +29,7 @@ public fun defaultAiutaIcons(): AiutaIcons {
         history24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_history_24),
         magic20 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_magic_20),
         photoLibrary24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_photo_library_24),
+        selectModel24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_select_model_24),
         share24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_share_24),
         wishlist24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_wishlist_24),
         wishlistFill24 = AiutaResourceIcons.AiutaResourceIcon(R.drawable.ic_wishlist_fill_24),

@@ -1,7 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data
 
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FitDisclaimerFeatureUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.TryOnModelsCategoryUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUiModel
 
 internal suspend fun AiutaTryOnDataController.preloadConfig() {
@@ -9,15 +10,6 @@ internal suspend fun AiutaTryOnDataController.preloadConfig() {
         configRepository.loadConfig()
     } catch (e: Exception) {
         // Failed to preload config
-    }
-}
-
-internal suspend fun AiutaTryOnDataController.providePoweredByUrl(): String? {
-    return try {
-        configRepository.getPoweredByStickerFeature()?.urlAndroid
-    } catch (e: Exception) {
-        // Failed to solve powered by url
-        null
     }
 }
 
@@ -30,11 +22,20 @@ internal suspend fun AiutaTryOnDataController.provideFeedbackFeature(): Feedback
     }
 }
 
-internal suspend fun AiutaTryOnDataController.provideFitDisclaimerFeature(): FitDisclaimerFeatureUiModel? {
-    return try {
-        configRepository.getFitDisclaimerFeature()?.toUiModel()
-    } catch (e: Exception) {
-        // Failed to solve fit disclaimer
-        null
+internal suspend fun AiutaTryOnDataController.provideTryOnModelsCategories(
+    stringResources: InternalAiutaTryOnLanguage,
+    forceUpdate: Boolean = false,
+): Result<List<TryOnModelsCategoryUiModel>?> {
+    return kotlin.runCatching {
+        configRepository
+            .getTryOnModelsCategories(forceUpdate)
+            ?.mapNotNull { category ->
+                if (category.models.isNotEmpty()) {
+                    category.toUiModel(stringResources)
+                } else {
+                    // Let's skip empty category
+                    null
+                }
+            }
     }
 }

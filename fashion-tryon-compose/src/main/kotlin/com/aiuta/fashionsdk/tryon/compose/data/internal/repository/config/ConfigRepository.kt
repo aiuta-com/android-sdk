@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.Cli
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.FitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.PoweredByStickerFeature
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.TryOnModelsCategory
 import com.aiuta.fashionsdk.tryon.compose.data.internal.repository.base.BaseRepository
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.time.TimeSaver
 import java.util.concurrent.TimeUnit
@@ -43,6 +44,10 @@ internal class ConfigRepository(
 
     suspend fun getFitDisclaimerFeature(forceUpdate: Boolean = false): FitDisclaimerFeature? {
         return loadConfig(forceUpdate).clientConfiguration.fitDisclaimerFeature
+    }
+
+    suspend fun getTryOnModelsCategories(forceUpdate: Boolean = false): List<TryOnModelsCategory>? {
+        return loadConfig(forceUpdate).clientConfiguration.predefinedTryOnModels
     }
 
     companion object {

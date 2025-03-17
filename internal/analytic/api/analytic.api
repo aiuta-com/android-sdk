@@ -113,6 +113,7 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPag
 	public static final field HOW_IT_WORKS Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
 	public static final field IMAGE_PICKER Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
 	public static final field LOADING Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field MODEL_PICKER Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
 	public static final field RESULTS Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
 	public static final field WELCOME Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;

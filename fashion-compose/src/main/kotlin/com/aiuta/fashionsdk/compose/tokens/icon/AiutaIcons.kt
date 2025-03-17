@@ -44,6 +44,7 @@ public sealed interface AiutaIcons {
     public val photoLibrary24: AiutaIcon
     public val trash24: AiutaIcon
     public val takePhoto24: AiutaIcon
+    public val selectModel24: AiutaIcon
     public val share24: AiutaIcon
     public val wishlist24: AiutaIcon
     public val wishlistFill24: AiutaIcon

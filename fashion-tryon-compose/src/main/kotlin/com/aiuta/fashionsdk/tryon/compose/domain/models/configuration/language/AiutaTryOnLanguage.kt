@@ -79,6 +79,8 @@ public class CustomLanguage(
     override val imageSelectorUploadingImage: String,
     override val imageSelectorScanningBody: String,
     override val imageSelectorGeneratingOutfit: String,
+    override val modelSelectorCategories: List<TranslationWord>,
+    override val modelSelectorErrorEmptyModelsList: String,
     // History
     override val historySelectorEnableButtonSelectAll: String,
     override val historySelectorEnableButtonUnselectAll: String,
@@ -93,6 +95,7 @@ public class CustomLanguage(
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String,
     override val generatedOperationsSheetUploadNewButton: String,
+    override val generatedOperationsSheetUploadNewButtonWithModels: String,
     // Feedback sheet
     override val feedbackSheetSkip: String,
     override val feedbackSheetSend: String,
@@ -117,6 +120,7 @@ public class CustomLanguage(
     override val addToCart: String,
     override val cancel: String,
     override val close: String,
+    override val modelSelect: String,
     override val tryOn: String,
     override val tryAgain: String,
     override val virtualTryOn: String,

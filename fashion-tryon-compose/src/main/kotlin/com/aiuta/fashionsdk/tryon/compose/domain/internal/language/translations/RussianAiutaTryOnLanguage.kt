@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class RussianAiutaTryOnLanguage(
     brand: String,
@@ -52,6 +53,14 @@ internal class RussianAiutaTryOnLanguage(
     override val imageSelectorScanningBody: String = "Сканируем"
     override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
 
+    // Model selector
+    override val modelSelectorCategories: List<TranslationWord> =
+        listOf(
+            TranslationWord(id = "woman", translation = "Женщины"),
+            TranslationWord(id = "man", translation = "Мужчины"),
+        )
+    override val modelSelectorErrorEmptyModelsList: String = "Список моделей пуст"
+
     // History
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
     override val historySelectorEnableButtonUnselectAll: String = "Снять выделение"
@@ -69,6 +78,7 @@ internal class RussianAiutaTryOnLanguage(
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Ранее использованные фото"
     override val generatedOperationsSheetUploadNewButton: String = "+ Загрузить новое фото"
+    override val generatedOperationsSheetUploadNewButtonWithModels: String = "+ Загрузить новое фото или модель"
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Пропустить"
@@ -94,6 +104,7 @@ internal class RussianAiutaTryOnLanguage(
     override val addToCart: String = "Добавить в корзину"
     override val cancel: String = "Отмена"
     override val close: String = "Закрыть"
+    override val modelSelect: String = "Выберите вашу модель"
     override val tryOn: String = "Примерить"
     override val tryAgain: String = "Попробовать снова"
     override val virtualTryOn: String = "Виртуальная примерка"

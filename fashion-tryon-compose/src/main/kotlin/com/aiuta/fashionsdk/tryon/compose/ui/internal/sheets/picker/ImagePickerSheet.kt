@@ -33,7 +33,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.showDialog
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.newImageUri
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.openCameraPicker
@@ -152,13 +154,23 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
         modifier = sharedModifier,
         icon = theme.icons.photoLibrary24,
         text = stringResources.pickerSheetChooseLibrary,
-        shouldDrawDivider = false,
         onClick = {
             controller.sendPickerAnalytic(
                 event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
                 pageId = pickerData.originPageId,
             )
             openMultipleImagePicker { imagePickerLauncher }
+        },
+    )
+
+    PickerButton(
+        modifier = sharedModifier,
+        icon = theme.icons.selectModel24,
+        text = stringResources.modelSelect,
+        shouldDrawDivider = false,
+        onClick = {
+            controller.bottomSheetNavigator.hide()
+            controller.navigateTo(NavigationScreen.ModelSelector)
         },
     )
 }

@@ -15,6 +15,7 @@ binaryCompatibility = "0.16.3"
 
 coroutines = "1.8.1"
 coil = "2.7.0"
+compose-placeholder = "2.0.0"
 
 dokka = "1.9.10"
 
@@ -70,6 +71,7 @@ androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", 
 androidx-work = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
 
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+compose-placeholder = { module = "io.github.fornewid:placeholder-foundation", version.ref = "compose-placeholder" }
 
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin-android" }
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class TurkishAiutaTryOnLanguage(
     brand: String,
@@ -53,6 +54,13 @@ internal class TurkishAiutaTryOnLanguage(
     override val imageSelectorScanningBody: String = "Vücudunu taramak"
     override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
 
+    override val modelSelectorCategories: List<TranslationWord> =
+        listOf(
+            TranslationWord(id = "woman", translation = "Kadın"),
+            TranslationWord(id = "man", translation = "Kadın"),
+        )
+    override val modelSelectorErrorEmptyModelsList: String = "Model listesi boş"
+
     // History
     override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"
     override val historySelectorEnableButtonUnselectAll: String = "Tümünü Kaldır"
@@ -69,6 +77,7 @@ internal class TurkishAiutaTryOnLanguage(
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Önceden yüklenen fotoğraflar"
     override val generatedOperationsSheetUploadNewButton: String = "+ Yeni fotoğraf yükle"
+    override val generatedOperationsSheetUploadNewButtonWithModels: String = "+ Yeni fotoğraf yükle"
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Atla"
@@ -93,6 +102,7 @@ internal class TurkishAiutaTryOnLanguage(
     override val addToCart: String = "Sepete ekle"
     override val cancel: String = "Vazgeç"
     override val close: String = "Kapat"
+    override val modelSelect: String = "Modelinizi seçin"
     override val tryOn: String = "Üzerinde Dene"
     override val tryAgain: String = "Tekrar dene"
     override val virtualTryOn: String = "Sanal Deneme"

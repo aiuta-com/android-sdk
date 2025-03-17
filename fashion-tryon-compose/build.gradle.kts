@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.paging.compose)
     implementation(libs.coil.compose)
+    implementation(libs.compose.placeholder)
     implementation(libs.haze)
     implementation(libs.kotlinx.serialization)
     implementation(libs.ktor.core)

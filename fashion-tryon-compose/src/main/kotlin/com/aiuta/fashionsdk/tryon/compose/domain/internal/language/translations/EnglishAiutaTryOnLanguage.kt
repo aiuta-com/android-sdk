@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class EnglishAiutaTryOnLanguage(
     brand: String,
@@ -55,6 +56,14 @@ internal class EnglishAiutaTryOnLanguage(
     override val imageSelectorScanningBody: String = "Scanning your body"
     override val imageSelectorGeneratingOutfit: String = "Generating outfit"
 
+    // Model selector
+    override val modelSelectorCategories: List<TranslationWord> =
+        listOf(
+            TranslationWord(id = "woman", translation = "Woman"),
+            TranslationWord(id = "man", translation = "Man"),
+        )
+    override val modelSelectorErrorEmptyModelsList: String = "The models list is empty"
+
     // History
     override val historySelectorEnableButtonSelectAll: String = "Select all"
     override val historySelectorEnableButtonUnselectAll: String = "Unselect all"
@@ -72,7 +81,8 @@ internal class EnglishAiutaTryOnLanguage(
 
     // Generated operations sheet
     override val generatedOperationsSheetPreviously: String = "Previously used photos"
-    override val generatedOperationsSheetUploadNewButton: String = "+ Upload new photo"
+    override val generatedOperationsSheetUploadNewButton: String = "+ New photo"
+    override val generatedOperationsSheetUploadNewButtonWithModels: String = "+ New photo or model"
 
     // Feedback sheet
     override val feedbackSheetSkip: String = "Skip"
@@ -98,6 +108,7 @@ internal class EnglishAiutaTryOnLanguage(
     override val addToCart: String = "Add to cart"
     override val cancel: String = "Cancel"
     override val close: String = "Close"
+    override val modelSelect: String = "Select your model"
     override val tryOn: String = "Try on"
     override val tryAgain: String = "Try again"
     override val virtualTryOn: String = "Virtual Try-on"

@@ -24,6 +24,10 @@ internal interface NavigationScreen {
         override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.IMAGE_PICKER
     }
 
+    object ModelSelector : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.MODEL_PICKER
+    }
+
     object GenerationResult : NavigationScreen {
         override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.RESULTS
     }
@@ -45,6 +49,7 @@ private val screenStacks =
         NavigationScreen.Preonboarding,
         NavigationScreen.Onboarding,
         NavigationScreen.ImageSelector,
+        NavigationScreen.ModelSelector,
         NavigationScreen.GenerationResult,
         NavigationScreen.History,
     )

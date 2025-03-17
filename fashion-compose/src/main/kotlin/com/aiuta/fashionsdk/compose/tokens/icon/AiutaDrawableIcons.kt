@@ -33,6 +33,7 @@ public class AiutaDrawableIcons(
     public override val history24: AiutaDrawableIcon,
     public override val magic20: AiutaDrawableIcon,
     public override val photoLibrary24: AiutaDrawableIcon,
+    public override val selectModel24: AiutaIcons.AiutaIcon,
     public override val share24: AiutaDrawableIcon,
     public override val wishlist24: AiutaDrawableIcon,
     public override val wishlistFill24: AiutaDrawableIcon,

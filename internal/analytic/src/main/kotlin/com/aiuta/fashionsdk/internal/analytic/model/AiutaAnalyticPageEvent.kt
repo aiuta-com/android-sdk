@@ -29,6 +29,9 @@ public enum class AiutaAnalyticPageId {
     @SerialName("imagePicker")
     IMAGE_PICKER,
 
+    @SerialName("modelPicker")
+    MODEL_PICKER,
+
     @SerialName("loading")
     LOADING,
 
