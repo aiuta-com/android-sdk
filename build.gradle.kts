@@ -18,6 +18,7 @@ buildscript {
     dependencies {
         classpath(libs.gradlePlugin.android)
         classpath(libs.gradlePlugin.kotlin)
+        classpath(libs.gradlePlugin.jetbrains.compose)
         classpath(libs.gradlePlugin.jreleaser)
     }
 }
@@ -88,6 +89,9 @@ allprojects {
     val configureSpotless: SpotlessExtension.() -> Unit = {
         kotlin {
             target("**/*.kt", "**/*.kts")
+            targetExclude(
+                "**/MainViewController.kt",
+            )
             ktlint(
                 libs.versions.ktlint.get(),
             ).setEditorConfigPath("${project.rootDir}/.editorconfig")
