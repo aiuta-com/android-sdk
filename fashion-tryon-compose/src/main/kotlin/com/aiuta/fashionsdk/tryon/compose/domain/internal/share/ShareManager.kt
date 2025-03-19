@@ -125,10 +125,11 @@ internal class ShareManager(
         watermark: Drawable? = null,
     ): Uri? {
         val bitmap = getBitmap(imageUrl) ?: return null
+        val bitmapConfig = bitmap.config ?: return null
 
         return try {
             withContext(workerDispatcher) {
-                val mutableBitmap = bitmap.copy(bitmap.config, true)
+                val mutableBitmap = bitmap.copy(bitmapConfig, true)
                 val modifierBitmap =
                     try {
                         watermark?.let {
