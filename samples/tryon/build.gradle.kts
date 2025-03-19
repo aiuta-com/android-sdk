@@ -9,7 +9,6 @@ plugins {
 androidApplication(
     name = "sample.tryon",
     composeApp = true,
-    shouldBePublic = false,
 ) {
     buildFeatures {
         buildConfig = true

@@ -44,6 +44,7 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
 
 internal fun FashionTryOnController.startGeneration(
     aiutaConfiguration: AiutaTryOnConfiguration,
@@ -128,7 +129,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
             .startSKUGeneration(
                 container =
                     SKUGenerationUriContainer(
-                        fileUri = Uri.parse(uri),
+                        fileUri = uri.toUri(),
                         skuId = activeSKUItem.value.skuId,
                         skuCatalogName = activeSKUItem.value.catalogName,
                     ),

@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import kotlin.math.min
+import androidx.core.graphics.createBitmap
 
 private const val PORTRAIT_WIDTH_COEF = 0.5f
 private const val LANDSCAPE_WIDTH_COEF = 0.25f
@@ -68,12 +69,7 @@ private fun Context.getBitmapFromVectorDrawable(
     val watermarkHeight = (watermark.intrinsicHeight * scaleCoef).toInt()
 
     watermark.setBounds(0, 0, watermarkWidth, watermarkHeight)
-    val bitmap =
-        Bitmap.createBitmap(
-            watermarkWidth,
-            watermarkHeight,
-            Bitmap.Config.ARGB_8888,
-        )
+    val bitmap = createBitmap(watermarkWidth, watermarkHeight)
     val canvas = Canvas(bitmap)
     watermark.draw(canvas)
     return bitmap

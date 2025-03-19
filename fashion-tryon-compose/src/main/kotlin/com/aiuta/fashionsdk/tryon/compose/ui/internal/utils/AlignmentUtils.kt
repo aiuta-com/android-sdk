@@ -8,7 +8,7 @@ internal val CenterAlignmentLine = HorizontalAlignmentLine { _, new -> new }
 
 internal fun Modifier.createCenterAlignmentLine() =
     this.then(
-        layout { measurable, constraints ->
+        Modifier.layout { measurable, constraints ->
             val placeable = measurable.measure(constraints)
             val centerPoint = placeable.height / 2
             layout(
@@ -25,7 +25,7 @@ internal fun Modifier.createCenterAlignmentLine(
     topPosition: Float,
     bottomPosition: Float,
 ) = this.then(
-    layout { measurable, constraints ->
+    Modifier.layout { measurable, constraints ->
         val placeable = measurable.measure(constraints)
         val centerPoint = topPosition + ((bottomPosition - topPosition) / 2)
         layout(
