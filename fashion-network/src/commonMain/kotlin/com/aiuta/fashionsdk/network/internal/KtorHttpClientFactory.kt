@@ -1,10 +1,8 @@
 package com.aiuta.fashionsdk.network.internal
 
-import android.util.Log
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.JWTAuthenticationStrategy
-import com.aiuta.fashionsdk.network.BuildConfig
 import com.aiuta.fashionsdk.network.internal.plugins.apiKey
 import com.aiuta.fashionsdk.network.internal.plugins.installSubscriptionIdHeader
 import com.aiuta.fashionsdk.network.internal.plugins.jwt
@@ -17,6 +15,7 @@ import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
@@ -30,6 +29,7 @@ import io.ktor.serialization.kotlinx.json.json
 internal class KtorHttpClientFactory(
     private val authenticationStrategy: AuthenticationStrategy,
     private val subscriptionId: String,
+    private val isLoggingEnabled: Boolean = false, // TODO Migrate from config?
     backendEndpoint: String? = null,
 ) {
     private val internalBackendEndpoint = backendEndpoint ?: DEFAULT_BACKEND_ENDPOINT
@@ -43,16 +43,9 @@ internal class KtorHttpClientFactory(
 
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installLogging() =
         apply {
-            if (BuildConfig.DEBUG) {
+            if (isLoggingEnabled) {
                 install(Logging) {
-                    logger =
-                        object : Logger {
-                            val TAG = "HTTP_CLIENT_TAG"
-
-                            override fun log(message: String) {
-                                Log.d(TAG, "ktorNetworkClient: $message")
-                            }
-                        }
+                    logger = Logger.DEFAULT
                     level = LogLevel.ALL
                 }
             }

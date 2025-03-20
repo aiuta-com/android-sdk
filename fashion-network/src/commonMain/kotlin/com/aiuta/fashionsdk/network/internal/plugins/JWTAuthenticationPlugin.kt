@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.network.internal.plugins
 
 import com.aiuta.fashionsdk.network.utils.authorizedPaths
 import com.aiuta.fashionsdk.network.utils.jsonSerializer
-import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.AuthConfig
 import io.ktor.client.plugins.auth.AuthProvider
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.headers
@@ -16,7 +16,7 @@ import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.serializer
 
-internal fun Auth.jwt(block: JWTConfig.() -> Unit) {
+internal fun AuthConfig.jwt(block: JWTConfig.() -> Unit) {
     with(JWTConfig().apply(block)) {
         this@jwt.providers.add(JWTProvider(loadToken, sendWithoutRequest))
     }

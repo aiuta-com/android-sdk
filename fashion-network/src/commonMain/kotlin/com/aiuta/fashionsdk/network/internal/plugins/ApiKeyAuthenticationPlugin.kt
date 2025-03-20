@@ -1,12 +1,12 @@
 package com.aiuta.fashionsdk.network.internal.plugins
 
-import io.ktor.client.plugins.auth.Auth
+import io.ktor.client.plugins.auth.AuthConfig
 import io.ktor.client.plugins.auth.AuthProvider
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.header
 import io.ktor.http.auth.HttpAuthHeader
 
-internal fun Auth.apiKey(block: ApiKeyAuthConfig.() -> Unit) {
+internal fun AuthConfig.apiKey(block: ApiKeyAuthConfig.() -> Unit) {
     with(ApiKeyAuthConfig().apply(block)) {
         this@apiKey.providers.add(ApiKeyAuthProvider(apiKey, sendWithoutRequest))
     }

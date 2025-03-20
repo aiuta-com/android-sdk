@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.network.exceptions
 
-import java.io.IOException
+import kotlinx.io.IOException
 
 /**
  * Exception for handling network communication termination

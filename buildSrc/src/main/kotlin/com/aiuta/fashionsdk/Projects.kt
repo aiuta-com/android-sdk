@@ -122,7 +122,7 @@ fun Project.androidApplicationV2(
         applicationId = name
         versionCode = project.versionCode
         versionName = project.versionName
-        resourceConfigurations += "en"
+        androidResources.localeFilters += "en"
         vectorDrawables.useSupportLibrary = true
     }
     action()

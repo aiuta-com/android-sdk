@@ -3,11 +3,14 @@ package com.aiuta.fashionsdk.network.internal
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.NetworkClient
 import io.ktor.client.HttpClient
+import kotlin.concurrent.Volatile
+import kotlinx.atomicfu.locks.SynchronizedObject
+import kotlinx.atomicfu.locks.synchronized
 
 internal class KtorNetworkClient(
     override val httpClient: Lazy<HttpClient>,
 ) : NetworkClient {
-    companion object : NetworkClient.Factory {
+    companion object : NetworkClient.Factory, SynchronizedObject() {
         @Volatile
         private var instance: NetworkClient? = null
         private var cachedSubscriptionId: String? = null
