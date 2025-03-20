@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.versionName
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import kotlinx.validation.ApiValidationExtension
+import kotlinx.validation.ExperimentalBCVApi
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -38,6 +39,10 @@ extensions.configure<ApiValidationExtension> {
         project.subprojects.mapNotNull { project ->
             if (project.name in publicModules) null else project.name
         }
+    @OptIn(ExperimentalBCVApi::class)
+    klib {
+        enabled = true
+    }
 }
 
 tasks.withType<DokkaMultiModuleTask>().configureEach {
