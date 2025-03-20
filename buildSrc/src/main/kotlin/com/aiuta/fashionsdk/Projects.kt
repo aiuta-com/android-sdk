@@ -10,6 +10,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -37,6 +38,40 @@ fun Project.androidLibrary(
         extensions.configure<ComposeCompilerGradlePluginExtension> {
             enableStrongSkippingMode = true
         }
+        buildFeatures {
+            compose = true
+        }
+    }
+    if (config) {
+        defaultConfig {
+            buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
+        }
+    }
+    action()
+}
+
+fun Project.androidLibraryV2(
+    name: String,
+    config: Boolean = false,
+    composeLibrary: Boolean = false,
+    action: LibraryExtension.() -> Unit = {},
+) = androidBaseV2<LibraryExtension>(
+    name = name,
+    config = config,
+) {
+    buildFeatures {
+        buildConfig = config
+    }
+    sourceSets["main"].resources {
+        srcDirs("src/commonMain/resources")
+    }
+    if (project.name in publicModules) {
+        apply(plugin = "org.jetbrains.dokka")
+        // TODO Migrate publishing
+        // setupAndroidPublishing<LibraryExtension>()
+    }
+    if (composeLibrary) {
+        apply(plugin = "org.jetbrains.kotlin.plugin.compose")
         buildFeatures {
             compose = true
         }
@@ -110,6 +145,20 @@ fun Project.androidTest(
     }
     defaultConfig {
         resourceConfigurations += "en"
+        vectorDrawables.useSupportLibrary = true
+    }
+    action()
+}
+
+fun Project.androidTestV2(
+    name: String,
+    config: Boolean = false,
+    action: TestExtension.() -> Unit = {},
+) = androidBaseV2<TestExtension>(name) {
+    buildFeatures {
+        buildConfig = config
+    }
+    defaultConfig {
         vectorDrawables.useSupportLibrary = true
     }
     action()

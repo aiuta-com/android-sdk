@@ -123,7 +123,7 @@ internal abstract class AppDatabase : RoomDatabase() {
         suspend fun validateCache(aiuta: Aiuta) {
             mutex.withLock {
                 withContext(Dispatchers.IO) {
-                    val database = getInstance(aiuta.application)
+                    val database = getInstance(aiuta.platformContext.application)
                     val aiutaCodeDao = database.aiutaCodeDao()
                     val cachedSubscriptionId = aiutaCodeDao.getCodes().firstOrNull()?.subscriptionId
 

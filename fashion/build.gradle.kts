@@ -1,8 +1,10 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk")
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk")

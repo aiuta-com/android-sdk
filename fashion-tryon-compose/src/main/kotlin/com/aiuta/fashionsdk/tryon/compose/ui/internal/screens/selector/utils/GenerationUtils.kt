@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.content.Context
-import android.net.Uri
+import androidx.core.net.toUri
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
@@ -44,7 +44,6 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import androidx.core.net.toUri
 
 internal fun FashionTryOnController.startGeneration(
     aiutaConfiguration: AiutaTryOnConfiguration,

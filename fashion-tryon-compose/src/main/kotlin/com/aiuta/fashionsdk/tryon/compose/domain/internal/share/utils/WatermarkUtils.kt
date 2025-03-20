@@ -6,8 +6,8 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
-import kotlin.math.min
 import androidx.core.graphics.createBitmap
+import kotlin.math.min
 
 private const val PORTRAIT_WIDTH_COEF = 0.5f
 private const val LANDSCAPE_WIDTH_COEF = 0.25f

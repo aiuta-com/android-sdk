@@ -26,7 +26,7 @@ public object InternalAiutaAnalyticFactory {
 
         return instance ?: synchronized(this) {
             instance ?: buildInternalAiutaAnalyticImpl(
-                context = aiuta.application,
+                context = aiuta.platformContext.application,
             ).also {
                 instance = it
                 networkClient =

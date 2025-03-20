@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk
 
-import android.app.Application
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
+import com.aiuta.fashionsdk.context.AiutaPlatformContext
 
 /**
  * [Aiuta] class is an entry point to Aiuta sdk.
@@ -10,13 +10,13 @@ import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 public class Aiuta private constructor(
     public val subscriptionId: String,
     public val authenticationStrategy: AuthenticationStrategy,
-    public val application: Application,
+    public val platformContext: AiutaPlatformContext,
 ) {
     /**
      * Public [Builder] for initialize [Aiuta] class
      */
     public class Builder {
-        private var application: Application? = null
+        private var platformContext: AiutaPlatformContext? = null
         private var authenticationStrategy: AuthenticationStrategy? = null
         private var subscriptionId: String? = null
 
@@ -43,9 +43,9 @@ public class Aiuta private constructor(
             }
         }
 
-        public fun setApplication(context: Application): Builder {
+        public fun setPlatformContext(platformContext: AiutaPlatformContext): Builder {
             return apply {
-                this.application = context
+                this.platformContext = platformContext
             }
         }
 
@@ -64,17 +64,17 @@ public class Aiuta private constructor(
         }
 
         public fun build(): Aiuta {
-            val internalApplication = application
+            val internalPlatformContext = platformContext
             val internalAuthenticationStrategy = authenticationStrategy
             val internalSubscriptionId = subscriptionId
 
             // Checks for context
             checkNotNull(
-                value = internalApplication,
+                value = internalPlatformContext,
                 lazyMessage = {
                     propertyIsNull(
-                        property = "application",
-                        methodToCall = "setApplication()",
+                        property = "platformContext",
+                        methodToCall = "setPlatformContext()",
                     )
                 },
             )
@@ -112,9 +112,9 @@ public class Aiuta private constructor(
             )
 
             return Aiuta(
-                application = internalApplication,
                 authenticationStrategy = internalAuthenticationStrategy,
                 subscriptionId = internalSubscriptionId,
+                platformContext = internalPlatformContext,
             )
         }
     }
