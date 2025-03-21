@@ -1,15 +1,22 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk.analytic")
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk.analytic")
 
-dependencies {
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api(projects.internal.analytic)
 
-    api(projects.internal.analytic)
-
-    implementation(libs.kotlinx.coroutines.core)
+                api(libs.kotlinx.coroutines.core)
+            }
+        }
+    }
 }

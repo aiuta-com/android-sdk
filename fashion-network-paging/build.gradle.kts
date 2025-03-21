@@ -14,8 +14,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(projects.fashionNetwork)
-
                 implementation(libs.androidx.paging.common)
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.ktor.core)

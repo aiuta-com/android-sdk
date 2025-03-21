@@ -1,0 +1,748 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:analytic>
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType|null[0]
+    enum entry CONSENT_GIVEN // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.CONSENT_GIVEN|null[0]
+    enum entry ONBOARDING_FINISHED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED|null[0]
+    enum entry WELCOME_START_CLICKED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId|null[0]
+    enum entry BEST_RESULTS // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.BEST_RESULTS|null[0]
+    enum entry CONSENT // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.CONSENT|null[0]
+    enum entry HISTORY // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.HISTORY|null[0]
+    enum entry HOW_IT_WORKS // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.HOW_IT_WORKS|null[0]
+    enum entry IMAGE_PICKER // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.IMAGE_PICKER|null[0]
+    enum entry LOADING // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.LOADING|null[0]
+    enum entry MODEL_PICKER // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.MODEL_PICKER|null[0]
+    enum entry RESULTS // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.RESULTS|null[0]
+    enum entry WELCOME // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.WELCOME|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType|null[0]
+    enum entry NEGATIVE // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.NEGATIVE|null[0]
+    enum entry POSITIVE // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.POSITIVE|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType|null[0]
+    enum entry GENERATED_IMAGE_DELETED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED|null[0]
+    enum entry GENERATED_IMAGE_SHARED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType|null[0]
+    enum entry CAMERA_OPENED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.CAMERA_OPENED|null[0]
+    enum entry GALLERY_PHOTO_SELECTED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED|null[0]
+    enum entry NEW_PHOTO_TAKEN // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN|null[0]
+    enum entry PHOTO_GALLERY_OPENED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED|null[0]
+    enum entry UPLOADED_PHOTO_DELETED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED|null[0]
+    enum entry UPLOADED_PHOTO_SELECTED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED|null[0]
+    enum entry UPLOADS_HISTORY_OPENED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.UPLOADS_HISTORY_OPENED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType|null[0]
+    enum entry PICK_OTHER_PHOTO // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO|null[0]
+    enum entry PRODUCT_ADD_TO_CART // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_CART|null[0]
+    enum entry PRODUCT_ADD_TO_WISHLIST // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST|null[0]
+    enum entry RESULT_SHARED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.RESULT_SHARED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+final enum class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType|null[0]
+    enum entry PHOTO_UPLOADED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED|null[0]
+    enum entry TRY_ON_ABORTED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED|null[0]
+    enum entry TRY_ON_ERROR // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.TRY_ON_ERROR|null[0]
+    enum entry TRY_ON_FINISHED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED|null[0]
+    enum entry TRY_ON_STARTED // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.TRY_ON_STARTED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
+abstract interface com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic { // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic|null[0]
+    abstract val analyticFlow // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic.analyticFlow|{}analyticFlow[0]
+        abstract fun <get-analyticFlow>(): kotlinx.coroutines.flow/Flow<com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent> // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic.analyticFlow.<get-analyticFlow>|<get-analyticFlow>(){}[0]
+
+    abstract fun sendEvent(com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent) // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic.sendEvent|sendEvent(com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent){}[0]
+}
+
+sealed interface com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent|null[0]
+    open fun serialize(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent.serialize|serialize(){}[0]
+}
+
+sealed interface com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent|null[0]
+    abstract val pageId // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.pageId|{}pageId[0]
+        abstract fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    abstract val productId // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.productId|{}productId[0]
+        abstract fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent> // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+
+    final object EventType { // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType|null[0]
+        final const val CONFIGURE_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.CONFIGURE_EVENT|{}CONFIGURE_EVENT[0]
+            final fun <get-CONFIGURE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.CONFIGURE_EVENT.<get-CONFIGURE_EVENT>|<get-CONFIGURE_EVENT>(){}[0]
+        final const val ERROR_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.ERROR_EVENT|{}ERROR_EVENT[0]
+            final fun <get-ERROR_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.ERROR_EVENT.<get-ERROR_EVENT>|<get-ERROR_EVENT>(){}[0]
+        final const val EXIT_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.EXIT_EVENT|{}EXIT_EVENT[0]
+            final fun <get-EXIT_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.EXIT_EVENT.<get-EXIT_EVENT>|<get-EXIT_EVENT>(){}[0]
+        final const val FEEDBACK_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.FEEDBACK_EVENT|{}FEEDBACK_EVENT[0]
+            final fun <get-FEEDBACK_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.FEEDBACK_EVENT.<get-FEEDBACK_EVENT>|<get-FEEDBACK_EVENT>(){}[0]
+        final const val HISTORY_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.HISTORY_EVENT|{}HISTORY_EVENT[0]
+            final fun <get-HISTORY_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.HISTORY_EVENT.<get-HISTORY_EVENT>|<get-HISTORY_EVENT>(){}[0]
+        final const val ONBOARDING_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.ONBOARDING_EVENT|{}ONBOARDING_EVENT[0]
+            final fun <get-ONBOARDING_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.ONBOARDING_EVENT.<get-ONBOARDING_EVENT>|<get-ONBOARDING_EVENT>(){}[0]
+        final const val PAGE_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.PAGE_EVENT|{}PAGE_EVENT[0]
+            final fun <get-PAGE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.PAGE_EVENT.<get-PAGE_EVENT>|<get-PAGE_EVENT>(){}[0]
+        final const val PICKER_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.PICKER_EVENT|{}PICKER_EVENT[0]
+            final fun <get-PICKER_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.PICKER_EVENT.<get-PICKER_EVENT>|<get-PICKER_EVENT>(){}[0]
+        final const val RESULTS_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.RESULTS_EVENT|{}RESULTS_EVENT[0]
+            final fun <get-RESULTS_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.RESULTS_EVENT.<get-RESULTS_EVENT>|<get-RESULTS_EVENT>(){}[0]
+        final const val SESSION_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.SESSION_EVENT|{}SESSION_EVENT[0]
+            final fun <get-SESSION_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.SESSION_EVENT.<get-SESSION_EVENT>|<get-SESSION_EVENT>(){}[0]
+        final const val SHARE_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.SHARE_EVENT|{}SHARE_EVENT[0]
+            final fun <get-SHARE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.SHARE_EVENT.<get-SHARE_EVENT>|<get-SHARE_EVENT>(){}[0]
+        final const val START_TRYON_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.START_TRYON_EVENT|{}START_TRYON_EVENT[0]
+            final fun <get-START_TRYON_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.START_TRYON_EVENT.<get-START_TRYON_EVENT>|<get-START_TRYON_EVENT>(){}[0]
+        final const val SUCCESS_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.SUCCESS_EVENT|{}SUCCESS_EVENT[0]
+            final fun <get-SUCCESS_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.SUCCESS_EVENT.<get-SUCCESS_EVENT>|<get-SUCCESS_EVENT>(){}[0]
+        final const val TERMINATE_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.TERMINATE_EVENT|{}TERMINATE_EVENT[0]
+            final fun <get-TERMINATE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.TERMINATE_EVENT.<get-TERMINATE_EVENT>|<get-TERMINATE_EVENT>(){}[0]
+        final const val TRY_ON_EVENT // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.TRY_ON_EVENT|{}TRY_ON_EVENT[0]
+            final fun <get-TRY_ON_EVENT>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent.EventType.TRY_ON_EVENT.<get-TRY_ON_EVENT>|<get-TRY_ON_EVENT>(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.internal.installation/IosInstallationStorage : com.aiuta.fashionsdk.internal.analytic.internal.installation/InstallationStorage { // com.aiuta.fashionsdk.internal.analytic.internal.installation/IosInstallationStorage|null[0]
+    constructor <init>() // com.aiuta.fashionsdk.internal.analytic.internal.installation/IosInstallationStorage.<init>|<init>(){}[0]
+
+    final suspend fun readInstallationId(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.internal.installation/IosInstallationStorage.readInstallationId|readInstallationId(){}[0]
+    final suspend fun writeInstallationId(kotlin/String) // com.aiuta.fashionsdk.internal.analytic.internal.installation/IosInstallationStorage.writeInstallationId|writeInstallationId(kotlin.String){}[0]
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticExitEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?, kotlin.collections/List<com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent>? = ...) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;kotlin.collections.List<com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent>?){}[0]
+
+    final val event // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.productId.<get-productId>|<get-productId>(){}[0]
+    final val supplementaryConsents // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.supplementaryConsents|{}supplementaryConsents[0]
+        final fun <get-supplementaryConsents>(): kotlin.collections/List<com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent>? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.supplementaryConsents.<get-supplementaryConsents>|<get-supplementaryConsents>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticOnboardingEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType, kotlin/Int? = ..., kotlin/String? = ..., com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsFeedbackEventType;kotlin.Int?;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.event.<get-event>|<get-event>(){}[0]
+    final val negativeFeedbackOptionIndex // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.negativeFeedbackOptionIndex|{}negativeFeedbackOptionIndex[0]
+        final fun <get-negativeFeedbackOptionIndex>(): kotlin/Int? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.negativeFeedbackOptionIndex.<get-negativeFeedbackOptionIndex>|<get-negativeFeedbackOptionIndex>(){}[0]
+    final val negativeFeedbackText // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.negativeFeedbackText|{}negativeFeedbackText[0]
+        final fun <get-negativeFeedbackText>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.negativeFeedbackText.<get-negativeFeedbackText>|<get-negativeFeedbackText>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsFeedbackEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsFeedbackEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsHistoryEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsPickerEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsResultsEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent : com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType, kotlin/String? = ..., com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val errorMessage // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.errorMessage|{}errorMessage[0]
+        final fun <get-errorMessage>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.errorMessage.<get-errorMessage>|<get-errorMessage>(){}[0]
+    final val event // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEventType // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticsTryOnEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent { // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent|null[0]
+    constructor <init>(kotlin/String, kotlin/Boolean) // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.<init>|<init>(kotlin.String;kotlin.Boolean){}[0]
+
+    final val consentText // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.consentText|{}consentText[0]
+        final fun <get-consentText>(): kotlin/String // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.consentText.<get-consentText>|<get-consentText>(){}[0]
+    final val isObtained // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.isObtained|{}isObtained[0]
+        final fun <get-isObtained>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.isObtained.<get-isObtained>|<get-isObtained>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent> { // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent) // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent> // com.aiuta.fashionsdk.internal.analytic.model/AiutaSupplementaryConsent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? = ..., kotlin/String? = ..., com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode, com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean) // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.ConfigureEvent.SDKMode;com.aiuta.fashionsdk.internal.analytic.model.ConfigureEvent.AuthenticationType;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val authenticationType // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.authenticationType|{}authenticationType[0]
+        final fun <get-authenticationType>(): com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.authenticationType.<get-authenticationType>|<get-authenticationType>(){}[0]
+    final val isHistoryEnable // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isHistoryEnable|{}isHistoryEnable[0]
+        final fun <get-isHistoryEnable>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isHistoryEnable.<get-isHistoryEnable>|<get-isHistoryEnable>(){}[0]
+    final val isHostDataProviderEnabled // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isHostDataProviderEnabled|{}isHostDataProviderEnabled[0]
+        final fun <get-isHostDataProviderEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isHostDataProviderEnabled.<get-isHostDataProviderEnabled>|<get-isHostDataProviderEnabled>(){}[0]
+    final val isPreOnboardingAvailable // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isPreOnboardingAvailable|{}isPreOnboardingAvailable[0]
+        final fun <get-isPreOnboardingAvailable>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isPreOnboardingAvailable.<get-isPreOnboardingAvailable>|<get-isPreOnboardingAvailable>(){}[0]
+    final val isShareAvailable // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isShareAvailable|{}isShareAvailable[0]
+        final fun <get-isShareAvailable>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isShareAvailable.<get-isShareAvailable>|<get-isShareAvailable>(){}[0]
+    final val isWishlistAvailable // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isWishlistAvailable|{}isWishlistAvailable[0]
+        final fun <get-isWishlistAvailable>(): kotlin/Boolean // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.isWishlistAvailable.<get-isWishlistAvailable>|<get-isWishlistAvailable>(){}[0]
+    final val mode // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.mode|{}mode[0]
+        final fun <get-mode>(): com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.mode.<get-mode>|<get-mode>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final enum class AuthenticationType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType> { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType|null[0]
+        enum entry API_KEY // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.API_KEY|null[0]
+        enum entry JWT // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.JWT|null[0]
+
+        final val entries // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.values|values#static(){}[0]
+
+        final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.Companion.serializer|serializer(){}[0]
+            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.AuthenticationType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+        }
+    }
+
+    final enum class SDKMode : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode> { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode|null[0]
+        enum entry BOTTOM_SHEET // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.BOTTOM_SHEET|null[0]
+        enum entry FULL_SCREEN // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.FULL_SCREEN|null[0]
+        enum entry PAGE_SHEET // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.PAGE_SHEET|null[0]
+
+        final val entries // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.values|values#static(){}[0]
+
+        final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.Companion.serializer|serializer(){}[0]
+            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.SDKMode.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+        }
+    }
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent> { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent) // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.ConfigureEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent> // com.aiuta.fashionsdk.internal.analytic.model/ConfigureEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? = ..., kotlin/String?, com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType) // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.ErrorEvent.ErrorType){}[0]
+
+    final val error // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.error|{}error[0]
+        final fun <get-error>(): com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.error.<get-error>|<get-error>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final enum class ErrorType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType> { // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType|null[0]
+        enum entry DOWNLOAD_RESULT_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.DOWNLOAD_RESULT_FAILED|null[0]
+        enum entry OPERATION_ABORTED_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.OPERATION_ABORTED_FAILED|null[0]
+        enum entry OPERATION_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.OPERATION_FAILED|null[0]
+        enum entry OPERATION_TIMEOUT_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.OPERATION_TIMEOUT_FAILED|null[0]
+        enum entry PREPARE_PHOTO_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.PREPARE_PHOTO_FAILED|null[0]
+        enum entry START_OPERATION_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.START_OPERATION_FAILED|null[0]
+        enum entry UPLOAD_PHOTO_FAILED // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.UPLOAD_PHOTO_FAILED|null[0]
+
+        final val entries // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType> // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType> // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.values|values#static(){}[0]
+
+        final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType> // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.Companion.serializer|serializer(){}[0]
+            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.ErrorType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+        }
+    }
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent> { // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent) // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.ErrorEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent> // com.aiuta.fashionsdk.internal.analytic.model/ErrorEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/SessionEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? = ..., kotlin/String?, com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType) // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.SessionEvent.FlowType){}[0]
+
+    final val flow // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.flow|{}flow[0]
+        final fun <get-flow>(): com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.flow.<get-flow>|<get-flow>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final enum class FlowType : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType> { // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType|null[0]
+        enum entry HISTORY // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.HISTORY|null[0]
+        enum entry TRY_ON // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.TRY_ON|null[0]
+
+        final val entries // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType> // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType> // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.values|values#static(){}[0]
+
+        final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType> // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.Companion.serializer|serializer(){}[0]
+            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.FlowType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+        }
+    }
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/SessionEvent> { // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/SessionEvent // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/SessionEvent) // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.SessionEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/SessionEvent> // com.aiuta.fashionsdk.internal.analytic.model/SessionEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/ShareEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId?, kotlin/String?, com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult = ..., kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.ShareEvent.ShareResult;kotlin.String?){}[0]
+
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.productId.<get-productId>|<get-productId>(){}[0]
+    final val result // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.result|{}result[0]
+        final fun <get-result>(): com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.result.<get-result>|<get-result>(){}[0]
+    final val target // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.target|{}target[0]
+        final fun <get-target>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.target.<get-target>|<get-target>(){}[0]
+
+    final enum class ShareResult : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult> { // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult|null[0]
+        enum entry CANCELED // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.CANCELED|null[0]
+        enum entry FAILED // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.FAILED|null[0]
+        enum entry SUCCEEDED // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.SUCCEEDED|null[0]
+
+        final val entries // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult> // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult> // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.values|values#static(){}[0]
+
+        final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult> // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.Companion.serializer|serializer(){}[0]
+            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.ShareResult.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+        }
+    }
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/ShareEvent> { // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/ShareEvent // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/ShareEvent) // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.ShareEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/ShareEvent> // com.aiuta.fashionsdk.internal.analytic.model/ShareEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? = ..., kotlin/String?, com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin) // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent.TryOnOrigin){}[0]
+
+    final val origin // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.origin|{}origin[0]
+        final fun <get-origin>(): com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.origin.<get-origin>|<get-origin>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final enum class TryOnOrigin : kotlin/Enum<com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin> { // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin|null[0]
+        enum entry RETAKE_BUTTON // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.RETAKE_BUTTON|null[0]
+        enum entry RETRY_NOTIFICATION // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.RETRY_NOTIFICATION|null[0]
+        enum entry SELECTED_PHOTO // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.SELECTED_PHOTO|null[0]
+        enum entry TRY_ON_BUTTON // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON|null[0]
+
+        final val entries // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin> // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin> // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.values|values#static(){}[0]
+
+        final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.Companion|null[0]
+            final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin> // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.Companion.serializer|serializer(){}[0]
+            final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.TryOnOrigin.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+        }
+    }
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent> { // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent) // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent> // com.aiuta.fashionsdk.internal.analytic.model/StartTryOnEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? = ..., kotlin/String?, kotlin/Double, kotlin/Double, kotlin/Double, kotlin/Double) // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?;kotlin.Double;kotlin.Double;kotlin.Double;kotlin.Double){}[0]
+
+    final val downloadDuration // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.downloadDuration|{}downloadDuration[0]
+        final fun <get-downloadDuration>(): kotlin/Double // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.downloadDuration.<get-downloadDuration>|<get-downloadDuration>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.productId.<get-productId>|<get-productId>(){}[0]
+    final val totalDuration // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.totalDuration|{}totalDuration[0]
+        final fun <get-totalDuration>(): kotlin/Double // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.totalDuration.<get-totalDuration>|<get-totalDuration>(){}[0]
+    final val tryOnDuration // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.tryOnDuration|{}tryOnDuration[0]
+        final fun <get-tryOnDuration>(): kotlin/Double // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.tryOnDuration.<get-tryOnDuration>|<get-tryOnDuration>(){}[0]
+    final val uploadDuration // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.uploadDuration|{}uploadDuration[0]
+        final fun <get-uploadDuration>(): kotlin/Double // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.uploadDuration.<get-uploadDuration>|<get-uploadDuration>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent> { // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent) // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.SuccessEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent> // com.aiuta.fashionsdk.internal.analytic.model/SuccessEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent : com.aiuta.fashionsdk.internal.analytic.model/InternalAnalyticEvent { // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? = ..., kotlin/String?) // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.<init>|<init>(com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId?;kotlin.String?){}[0]
+
+    final val pageId // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.internal.analytic.model/AiutaAnalyticPageId? // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final object $serializer : kotlinx.serialization.internal/GeneratedSerializer<com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent> { // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.$serializer|null[0]
+        final val descriptor // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.$serializer.descriptor|{}descriptor[0]
+            final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.$serializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+        final fun childSerializers(): kotlin/Array<kotlinx.serialization/KSerializer<*>> // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.$serializer.childSerializers|childSerializers(){}[0]
+        final fun deserialize(kotlinx.serialization.encoding/Decoder): com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.$serializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+        final fun serialize(kotlinx.serialization.encoding/Encoder, com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent) // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.$serializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;com.aiuta.fashionsdk.internal.analytic.model.TerminateEvent){}[0]
+    }
+
+    final object Companion { // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.Companion|null[0]
+        final val $childSerializers // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.Companion.$childSerializers|{}$childSerializers[0]
+
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent> // com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent.Companion.serializer|serializer(){}[0]
+    }
+}
+
+final object com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory : kotlinx.atomicfu.locks/SynchronizedObject { // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory|null[0]
+    final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
+    final fun getInternalAiutaAnalytic(): com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic? // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory.getInternalAiutaAnalytic|getInternalAiutaAnalytic(){}[0]
+    final fun getNetworkClient(): com.aiuta.fashionsdk.network/NetworkClient? // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory.getNetworkClient|getNetworkClient(){}[0]
+}
+
+final val com.aiuta.fashionsdk.internal.analytic/internalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytic/internalAiutaAnalytic|@com.aiuta.fashionsdk.Aiuta{}internalAiutaAnalytic[0]
+    final fun (com.aiuta.fashionsdk/Aiuta).<get-internalAiutaAnalytic>(): com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytic/internalAiutaAnalytic.<get-internalAiutaAnalytic>|<get-internalAiutaAnalytic>@com.aiuta.fashionsdk.Aiuta(){}[0]
