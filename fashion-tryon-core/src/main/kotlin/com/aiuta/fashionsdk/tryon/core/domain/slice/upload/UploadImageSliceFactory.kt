@@ -10,7 +10,7 @@ internal val Aiuta.uploadImageSliceFactory: UploadImageSlice
     get() =
         UploadImageSliceImpl(
             analytic = this.internalAiutaAnalytic,
-            context = this.application,
+            context = this.platformContext.application,
             imageCompressor = this.imageCompressorFactory,
             imageDataSource = this.imageDataSourceFactory,
         )

@@ -1,0 +1,45 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion-network>
+abstract interface com.aiuta.fashionsdk.network/NetworkClient { // com.aiuta.fashionsdk.network/NetworkClient|null[0]
+    abstract val httpClient // com.aiuta.fashionsdk.network/NetworkClient.httpClient|{}httpClient[0]
+        abstract fun <get-httpClient>(): kotlin/Lazy<io.ktor.client/HttpClient> // com.aiuta.fashionsdk.network/NetworkClient.httpClient.<get-httpClient>|<get-httpClient>(){}[0]
+
+    abstract interface Factory { // com.aiuta.fashionsdk.network/NetworkClient.Factory|null[0]
+        abstract fun create(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/NetworkClient.Factory.create|create(com.aiuta.fashionsdk.Aiuta;kotlin.String?){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.network.exceptions/FashionIOException : kotlin/Exception { // com.aiuta.fashionsdk.network.exceptions/FashionIOException|null[0]
+    constructor <init>(kotlin/Int, kotlin.collections/List<kotlin/String>, kotlin/String, kotlin/String) // com.aiuta.fashionsdk.network.exceptions/FashionIOException.<init>|<init>(kotlin.Int;kotlin.collections.List<kotlin.String>;kotlin.String;kotlin.String){}[0]
+
+    final val date // com.aiuta.fashionsdk.network.exceptions/FashionIOException.date|{}date[0]
+        final fun <get-date>(): kotlin/String // com.aiuta.fashionsdk.network.exceptions/FashionIOException.date.<get-date>|<get-date>(){}[0]
+    final val errorCode // com.aiuta.fashionsdk.network.exceptions/FashionIOException.errorCode|{}errorCode[0]
+        final fun <get-errorCode>(): kotlin/Int // com.aiuta.fashionsdk.network.exceptions/FashionIOException.errorCode.<get-errorCode>|<get-errorCode>(){}[0]
+    final val errorMessages // com.aiuta.fashionsdk.network.exceptions/FashionIOException.errorMessages|{}errorMessages[0]
+        final fun <get-errorMessages>(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.network.exceptions/FashionIOException.errorMessages.<get-errorMessages>|<get-errorMessages>(){}[0]
+    final val requestId // com.aiuta.fashionsdk.network.exceptions/FashionIOException.requestId|{}requestId[0]
+        final fun <get-requestId>(): kotlin/String // com.aiuta.fashionsdk.network.exceptions/FashionIOException.requestId.<get-requestId>|<get-requestId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected : kotlinx.io/IOException { // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected|null[0]
+    constructor <init>(kotlin/Throwable?) // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected.<init>|<init>(kotlin.Throwable?){}[0]
+
+    final val cause // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected.cause|{}cause[0]
+        final fun <get-cause>(): kotlin/Throwable? // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected.cause.<get-cause>|<get-cause>(){}[0]
+}
+
+final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin.collections/List<kotlin/String>) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
+final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.Int?){}[0]
+final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/String?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.String?){}[0]
+final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppendLimit(kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppendLimit|saveAppendLimit@io.ktor.http.URLBuilder(kotlin.Int?){}[0]
+final fun com.aiuta.fashionsdk.network/createNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/createNetworkClient|createNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?){}[0]
+final fun com.aiuta.fashionsdk.network/createNetworkClient(kotlin/String, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/createNetworkClient|createNetworkClient(kotlin.String;kotlin.String?){}[0]
+final fun com.aiuta.fashionsdk.network/defaultNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/defaultNetworkClient|defaultNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?){}[0]
+final fun com.aiuta.fashionsdk.network/defaultNetworkClient(kotlin/String, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/defaultNetworkClient|defaultNetworkClient(kotlin.String;kotlin.String?){}[0]
