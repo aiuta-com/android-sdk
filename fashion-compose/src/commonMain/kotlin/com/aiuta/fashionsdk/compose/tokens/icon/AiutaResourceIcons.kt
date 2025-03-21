@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.compose.tokens.icon
 
 import org.jetbrains.compose.resources.DrawableResource
 
-
 /**
  * Public class for providing resource icons in the SDK.
  *

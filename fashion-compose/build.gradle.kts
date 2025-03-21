@@ -11,7 +11,6 @@ plugins {
 addAllMultiplatformTargets()
 androidLibraryV2(name = "com.aiuta.fashionsdk.compose")
 
-
 kotlin {
     sourceSets {
         commonMain {
