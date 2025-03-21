@@ -70,10 +70,10 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
                     pageId = pickerData.originPageId,
                 )
-                controller.lastSavedImages.value =
-                    LastSavedImages.UriSource(
-                        imageUris = listOf(newImageUri.toString()),
-                    )
+                controller.lastSavedImages.value = TODO("Make picker with platform images")
+//                    LastSavedImages.UriSource(
+//                        imageUris = listOf(newImageUri.toString()),
+//                    )
                 // Activate try on
                 controller.activateAutoTryOn()
                 // Move back
@@ -107,10 +107,10 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
                     pageId = pickerData.originPageId,
                 )
-                controller.lastSavedImages.value =
-                    LastSavedImages.UriSource(
-                        imageUris = listOf(uri.toString()),
-                    )
+                controller.lastSavedImages.value = TODO("Make picker with platform images")
+//                    LastSavedImages.UriSource(
+//                        imageUris = listOf(uri.toString()),
+//                    )
                 // Activate try on
                 controller.activateAutoTryOn()
                 // Move back

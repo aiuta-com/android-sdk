@@ -22,9 +22,10 @@ kotlin {
             dependencies {
                 api(projects.fashion)
 
+                api(libs.ktor.core)
+
                 implementation(libs.kotlinx.atomicfu)
                 implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.ktor.core)
                 implementation(libs.ktor.auth)
                 implementation(libs.ktor.logging)
                 implementation(libs.ktor.negotiation)

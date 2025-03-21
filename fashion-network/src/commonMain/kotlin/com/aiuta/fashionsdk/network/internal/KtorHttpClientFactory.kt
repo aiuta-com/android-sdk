@@ -29,7 +29,7 @@ import io.ktor.serialization.kotlinx.json.json
 internal class KtorHttpClientFactory(
     private val authenticationStrategy: AuthenticationStrategy,
     private val subscriptionId: String,
-    private val isLoggingEnabled: Boolean = false, // TODO Migrate from config?
+    private val isLoggingEnabled: Boolean = true, // TODO Migrate from config?
     backendEndpoint: String? = null,
 ) {
     private val internalBackendEndpoint = backendEndpoint ?: DEFAULT_BACKEND_ENDPOINT
