@@ -18,15 +18,16 @@ internal object Installation {
             if (currentInstallationId == null) {
                 val currentStorage = initStorage(platformContext)
 
-                val solvedInstallationId = try {
-                    val savedInstallationId = storage?.readInstallationId()
+                val solvedInstallationId =
+                    try {
+                        val savedInstallationId = storage?.readInstallationId()
 
-                    checkNotNull(savedInstallationId)
+                        checkNotNull(savedInstallationId)
 
-                    savedInstallationId
-                } catch (e: Exception) {
-                    generateAndStoreId(currentStorage)
-                }
+                        savedInstallationId
+                    } catch (e: Exception) {
+                        generateAndStoreId(currentStorage)
+                    }
 
                 // Just update id
                 installationId = solvedInstallationId

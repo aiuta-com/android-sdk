@@ -15,7 +15,7 @@ import kotlinx.atomicfu.locks.synchronized
 public val Aiuta.internalAiutaAnalytic: InternalAiutaAnalytic
     get() = InternalAiutaAnalyticFactory.create(this)
 
-public object InternalAiutaAnalyticFactory: SynchronizedObject() {
+public object InternalAiutaAnalyticFactory : SynchronizedObject() {
     @Volatile
     private var instance: InternalAiutaAnalytic? = null
     private var cachedSubscriptionId: String? = null

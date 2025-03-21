@@ -6,7 +6,9 @@ import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticCompletedEv
 import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticEnvironment
 import com.aiuta.fashionsdk.internal.analytic.model.internal.currentLocalDateTime
 
-internal expect suspend fun createAnalyticEnvironment(platformContext: AiutaPlatformContext): AnalyticEnvironment
+internal expect suspend fun createAnalyticEnvironment(
+    platformContext: AiutaPlatformContext,
+): AnalyticEnvironment
 
 internal suspend fun createAnalyticCompletedEvent(
     platformContext: AiutaPlatformContext,

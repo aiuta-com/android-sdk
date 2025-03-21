@@ -46,10 +46,11 @@ internal class InternalAiutaAnalyticImpl(
     private suspend fun resolveLog(event: InternalAnalyticEvent) {
         withContext(Dispatchers.IO) {
             retryAction {
-                val completedEvent = createAnalyticCompletedEvent(
-                    platformContext = platformContext,
-                    event = event,
-                )
+                val completedEvent =
+                    createAnalyticCompletedEvent(
+                        platformContext = platformContext,
+                        event = event,
+                    )
 
                 // Try to send analytic event
                 networkClient.httpClient.value.post { setBody(completedEvent) }
@@ -61,10 +62,11 @@ internal class InternalAiutaAnalyticImpl(
         fun getInstance(aiuta: Aiuta): InternalAiutaAnalytic {
             return InternalAiutaAnalyticImpl(
                 platformContext = aiuta.platformContext,
-                networkClient = createNetworkClient(
-                    aiuta = aiuta,
-                    backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
-                )
+                networkClient =
+                    createNetworkClient(
+                        aiuta = aiuta,
+                        backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
+                    ),
             )
         }
     }

@@ -7,10 +7,15 @@ import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticEnvironment
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 import platform.Foundation.NSBundle
 
-internal actual suspend fun createAnalyticEnvironment(platformContext: AiutaPlatformContext): AnalyticEnvironment {
+internal actual suspend fun createAnalyticEnvironment(
+    platformContext: AiutaPlatformContext,
+): AnalyticEnvironment {
     return try {
         val hostId = NSBundle.mainBundle.bundleIdentifier ?: AnalyticConfig.DEFAULT_HOST_ID
-        val hostVersion = NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String ?: AnalyticConfig.DEFAULT_HOST_VERSION
+        val hostVersion =
+            NSBundle.mainBundle.objectForInfoDictionaryKey(
+                "CFBundleShortVersionString",
+            ) as? String ?: AnalyticConfig.DEFAULT_HOST_VERSION
 
         AnalyticEnvironment(
             platform = AnalyticConfig.PLATFORM_IOS,

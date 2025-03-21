@@ -6,7 +6,9 @@ import com.aiuta.fashionsdk.internal.analytic.internal.installation.Installation
 import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticEnvironment
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 
-internal actual suspend fun createAnalyticEnvironment(platformContext: AiutaPlatformContext): AnalyticEnvironment {
+internal actual suspend fun createAnalyticEnvironment(
+    platformContext: AiutaPlatformContext,
+): AnalyticEnvironment {
     return try {
         val hostId = platformContext.application.packageName ?: AnalyticConfig.DEFAULT_HOST_ID
         val packageInfo = platformContext.application.packageManager.getPackageInfo(hostId, 0)

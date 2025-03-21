@@ -6,7 +6,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 internal abstract class BaseUpdater {
-
     /**
      * Return version of [retryAction], but can throw [CancellationException]
      */

@@ -13,11 +13,6 @@ plugins {
 addAllMultiplatformTargets()
 androidLibraryV2(name = "com.aiuta.fashionsdk.internal.analytic")
 
-//dependencies {
-//
-//    implementation(libs.ktor.core)
-//}
-
 buildkonfig {
     packageName = "com.aiuta.fashionsdk.internal.analytic"
     defaultConfigs {
