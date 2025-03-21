@@ -1,28 +1,25 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
-    id("androidx.baselineprofile")
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
-androidLibrary(
-    name = "com.aiuta.fashionsdk.tryon.icons",
-    composeLibrary = true,
-)
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.icons")
 
-baselineProfile {
-    mergeIntoMain = true
-    saveInSrc = true
-    baselineProfileOutputDir = ""
-    filter {
-        include("com.aiuta.fashionsdk.**")
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api(projects.fashionCompose)
+
+                implementation(compose.foundation)
+                implementation(compose.components.resources)
+            }
+        }
     }
-}
-
-dependencies {
-    baselineProfile(projects.internal.benchmark)
-
-    implementation(projects.fashionCompose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
 }

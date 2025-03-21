@@ -11,11 +11,6 @@ plugins {
 addAllMultiplatformTargets()
 androidLibraryV2(name = "com.aiuta.fashionsdk.compose")
 
-//dependencies {
-//    implementation(libs.androidx.compose.material)
-//    implementation(libs.androidx.lifecycle.runtime.compose)
-//    implementation(libs.coil.compose)
-//}
 
 kotlin {
     sourceSets {
@@ -23,7 +18,6 @@ kotlin {
             dependencies {
                 implementation(compose.components.resources)
                 implementation(compose.material)
-//                implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.coil3.compose)
             }
         }
