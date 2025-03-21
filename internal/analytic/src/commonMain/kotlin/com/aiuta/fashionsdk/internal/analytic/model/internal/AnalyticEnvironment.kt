@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.internal.analytic.model.internal
 
-import com.aiuta.fashionsdk.internal.analytic.BuildConfig
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -22,7 +21,7 @@ internal class AnalyticEnvironment(
         val DEFAULT =
             AnalyticEnvironment(
                 platform = AnalyticConfig.DEFAULT_PLATFORM,
-                sdkVersion = BuildConfig.VERSION_NAME,
+                sdkVersion = AnalyticConfig.DEFAULT_SDK_VERSION,
                 hostId = AnalyticConfig.DEFAULT_HOST_ID,
                 hostVersion = null,
                 installationId = null,

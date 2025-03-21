@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.internal.analytic
 
-import android.content.Context
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.internal.InternalAiutaAnalyticImpl
-import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 import com.aiuta.fashionsdk.network.NetworkClient
-import com.aiuta.fashionsdk.network.createNetworkClient
+import kotlin.concurrent.Volatile
+import kotlinx.atomicfu.locks.SynchronizedObject
+import kotlinx.atomicfu.locks.synchronized
 
 /**
  * Extension for default creation of [InternalAiutaAnalytic].
@@ -15,7 +15,7 @@ import com.aiuta.fashionsdk.network.createNetworkClient
 public val Aiuta.internalAiutaAnalytic: InternalAiutaAnalytic
     get() = InternalAiutaAnalyticFactory.create(this)
 
-public object InternalAiutaAnalyticFactory {
+public object InternalAiutaAnalyticFactory: SynchronizedObject() {
     @Volatile
     private var instance: InternalAiutaAnalytic? = null
     private var cachedSubscriptionId: String? = null
@@ -25,31 +25,19 @@ public object InternalAiutaAnalyticFactory {
         validateCacheInstance(newSubscriptionId = aiuta.subscriptionId)
 
         return instance ?: synchronized(this) {
-            instance ?: buildInternalAiutaAnalyticImpl(
-                context = aiuta.platformContext.application,
-            ).also {
+            instance ?: InternalAiutaAnalyticImpl.getInstance(aiuta).also {
                 instance = it
-                networkClient =
-                    createNetworkClient(
-                        aiuta = aiuta,
-                        backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
-                    )
             }
         }
     }
 
+    @Deprecated("Will be deleted")
     public fun getNetworkClient(): NetworkClient? {
         return networkClient
     }
 
     public fun getInternalAiutaAnalytic(): InternalAiutaAnalytic? {
         return instance
-    }
-
-    private fun buildInternalAiutaAnalyticImpl(context: Context): InternalAiutaAnalytic {
-        return InternalAiutaAnalyticImpl(
-            context = context,
-        )
     }
 
     private fun validateCacheInstance(newSubscriptionId: String) {

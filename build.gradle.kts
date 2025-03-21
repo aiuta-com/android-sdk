@@ -27,6 +27,7 @@ buildscript {
 plugins {
     alias(libs.plugins.baselineProfile) apply false
     alias(libs.plugins.binaryCompatibility)
+    alias(libs.plugins.buildKonfig) apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.ksp) apply false

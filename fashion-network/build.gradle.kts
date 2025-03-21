@@ -8,10 +8,7 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibraryV2(
-    name = "com.aiuta.fashionsdk.network",
-    config = true,
-)
+androidLibraryV2(name = "com.aiuta.fashionsdk.network")
 
 kotlin {
     sourceSets {
