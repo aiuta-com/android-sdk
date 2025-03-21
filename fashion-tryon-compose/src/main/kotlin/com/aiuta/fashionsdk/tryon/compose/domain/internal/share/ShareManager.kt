@@ -51,10 +51,12 @@ internal class ShareManager(
                     when (watermark) {
                         is AiutaDrawableImage -> watermark.resource
 
-                        is AiutaResourceImage ->
-                            context.solveDrawableFromWatermark(
-                                watermark.resource,
-                            )
+                        is AiutaResourceImage -> TODO("Support KMP resource")
+
+                        //                            context.solveDrawableFromWatermark(
+//                                watermark.resource,
+//                            )
+                        else -> TODO("Support KMP resource")
                     }
                 },
         )
