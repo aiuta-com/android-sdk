@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.compose.tokens.icon
 
-import androidx.annotation.DrawableRes
+import org.jetbrains.compose.resources.DrawableResource
+
 
 /**
  * Public class for providing resource icons in the SDK.
@@ -47,7 +48,7 @@ public class AiutaResourceIcons(
     public override val loading14: AiutaResourceIcon,
 ) : AiutaIcons {
     public class AiutaResourceIcon(
-        @DrawableRes public override val resource: Int,
+        public override val resource: DrawableResource,
         public override val shouldDrawAsIs: Boolean = false,
     ) : AiutaIcons.AiutaIcon
 }

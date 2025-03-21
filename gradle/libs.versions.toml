@@ -15,6 +15,7 @@ buildKonfig = "0.17.0"
 
 coroutines = "1.10.1"
 coil = "2.7.0"
+coil3 = "3.1.0"
 compose-placeholder = "2.0.0"
 
 dokka = "1.9.10"
@@ -73,6 +74,7 @@ androidx-test-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "a
 androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "androidx-test-uiautomator" }
 
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
 compose-placeholder = { module = "io.github.fornewid:placeholder-foundation", version.ref = "compose-placeholder" }
 
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin-android" }

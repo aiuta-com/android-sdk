@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.compose.molecules.indicator.internal
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.runtime.snapshotFlow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,7 +15,7 @@ import kotlinx.coroutines.flow.runningReduce
  *
  * @return Flow<[PagerProgress]>
  **/
-@OptIn(ExperimentalFoundationApi::class, ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 internal fun PagerState.getProgressFlow(): Flow<PagerProgress> {
     return snapshotFlow { currentPage }
         .flatMapLatest { currentPage ->

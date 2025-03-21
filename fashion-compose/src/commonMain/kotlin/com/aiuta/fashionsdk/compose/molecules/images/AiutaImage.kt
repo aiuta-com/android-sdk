@@ -6,11 +6,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import coil.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaDrawableImage
+import coil3.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 
 @Composable
 public fun AiutaImage(
@@ -24,11 +21,7 @@ public fun AiutaImage(
 ) {
     androidx.compose.foundation.Image(
         modifier = modifier,
-        painter =
-            when (image) {
-                is AiutaResourceImage -> painterResource(image.resource)
-                is AiutaDrawableImage -> rememberAsyncImagePainter(image.resource)
-            },
+        painter = rememberAsyncImagePainter(image.resource),
         contentScale = contentScale,
         contentDescription = contentDescription,
         alignment = alignment,

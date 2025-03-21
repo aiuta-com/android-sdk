@@ -53,7 +53,6 @@ fun Project.androidLibrary(
 fun Project.androidLibraryV2(
     name: String,
     config: Boolean = false,
-    composeLibrary: Boolean = false,
     action: LibraryExtension.() -> Unit = {},
 ) = androidBaseV2<LibraryExtension>(
     name = name,
@@ -69,12 +68,6 @@ fun Project.androidLibraryV2(
         apply(plugin = "org.jetbrains.dokka")
         // TODO Migrate publishing
         // setupAndroidPublishing<LibraryExtension>()
-    }
-    if (composeLibrary) {
-        apply(plugin = "org.jetbrains.kotlin.plugin.compose")
-        buildFeatures {
-            compose = true
-        }
     }
     if (config) {
         defaultConfig {

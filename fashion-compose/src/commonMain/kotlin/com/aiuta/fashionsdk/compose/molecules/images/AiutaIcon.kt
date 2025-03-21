@@ -6,7 +6,7 @@ import androidx.compose.material.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import coil.compose.rememberAsyncImagePainter
+import coil3.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 
 @Composable
