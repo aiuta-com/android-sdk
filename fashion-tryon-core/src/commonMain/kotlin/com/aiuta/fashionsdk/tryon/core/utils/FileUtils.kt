@@ -17,9 +17,10 @@ internal fun generateFileName(
     fileExtension: String = "jpeg",
 ): String {
     val dateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-    val datePrefix = with(dateTime) {
-        "$year-$monthNumber-$dayOfMonth-$hour-$minute-$second-$nanosecond"
-    }
+    val datePrefix =
+        with(dateTime) {
+            "$year-$monthNumber-$dayOfMonth-$hour-$minute-$second-$nanosecond"
+        }
     return "$datePrefix$fileNameAdditional.$fileExtension"
 }
 

@@ -34,17 +34,19 @@ actual class PlatformImage(
         val imageWidth = image.size.useContents { this.width }
         val imageHeight = image.size.useContents { this.height }
 
-        val resizedImage = if (
-            imageWidth > compressionConfig.compressedImageMaxSize ||
-            imageHeight > compressionConfig.compressedImageMaxSize
-        ) {
-            resizeImage(image, compressionConfig.compressedImageMaxSize.toDouble())
-        } else {
-            image
-        }
+        val resizedImage =
+            if (
+                imageWidth > compressionConfig.compressedImageMaxSize ||
+                imageHeight > compressionConfig.compressedImageMaxSize
+            ) {
+                resizeImage(image, compressionConfig.compressedImageMaxSize.toDouble())
+            } else {
+                image
+            }
 
-        val imageData = resizedImage.jpegDataWithQuality(nativeQuality)
-            ?: error("Unable to convert image to JPEG")
+        val imageData =
+            resizedImage.jpegDataWithQuality(nativeQuality)
+                ?: error("Unable to convert image to JPEG")
 
         val bytes = imageData.bytes ?: error("image bytes is null")
         val length = imageData.length
@@ -59,7 +61,10 @@ actual class PlatformImage(
     }
 
     @OptIn(ExperimentalForeignApi::class)
-    private fun resizeImage(image: UIImage, maxSize: Double): UIImage {
+    private fun resizeImage(
+        image: UIImage,
+        maxSize: Double,
+    ): UIImage {
         val originalSize = image.size
         val width = originalSize.useContents { this.width }
         val height = originalSize.useContents { this.height }

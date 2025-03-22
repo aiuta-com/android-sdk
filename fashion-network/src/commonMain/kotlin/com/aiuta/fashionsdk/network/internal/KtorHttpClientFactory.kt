@@ -24,6 +24,7 @@ import io.ktor.client.request.header
 import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.URLProtocol
+import io.ktor.http.encodedPath
 import io.ktor.serialization.kotlinx.json.json
 
 internal class KtorHttpClientFactory(
@@ -58,6 +59,7 @@ internal class KtorHttpClientFactory(
                 url {
                     protocol = URLProtocol.HTTPS
                     host = internalBackendEndpoint
+                    encodedPath = "digital-try-on/v1"
                 }
             }
         }
@@ -102,6 +104,6 @@ internal class KtorHttpClientFactory(
     }
 
     private companion object {
-        const val DEFAULT_BACKEND_ENDPOINT = "api.aiuta.com/digital-try-on/v1"
+        const val DEFAULT_BACKEND_ENDPOINT = "api.aiuta.com"
     }
 }

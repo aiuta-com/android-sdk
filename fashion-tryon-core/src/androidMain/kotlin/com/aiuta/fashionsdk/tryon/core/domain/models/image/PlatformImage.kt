@@ -18,15 +18,15 @@ public actual class PlatformImage(
     private fun toByteArray(): ByteArray {
         val compressionConfig = CompressionConfig.DEFAULT
 
-        val resizedBitmap = if (bitmap.width > compressionConfig.compressedImageMaxSize ||
-            bitmap.height > compressionConfig.compressedImageMaxSize
-        ) {
-            resizeBitmap(bitmap, compressionConfig.compressedImageMaxSize)
-        } else {
-            bitmap
-        }
+        val resizedBitmap =
+            if (bitmap.width > compressionConfig.compressedImageMaxSize ||
+                bitmap.height > compressionConfig.compressedImageMaxSize
+            ) {
+                resizeBitmap(bitmap, compressionConfig.compressedImageMaxSize)
+            } else {
+                bitmap
+            }
         val byteArrayOutputStream = ByteArrayOutputStream()
-
 
         resizedBitmap.compress(
             Bitmap.CompressFormat.JPEG,

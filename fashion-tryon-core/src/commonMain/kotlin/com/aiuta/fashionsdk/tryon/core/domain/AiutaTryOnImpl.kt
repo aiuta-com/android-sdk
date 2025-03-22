@@ -17,8 +17,8 @@ import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEve
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationPlatformImageContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.AiutaTryOnRetryPolicies
