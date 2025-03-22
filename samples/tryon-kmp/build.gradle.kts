@@ -51,8 +51,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(projects.fashion)
-            implementation(projects.fashionNetwork)
+            implementation(projects.fashionTryonCore)
 
             implementation(compose.runtime)
             implementation(compose.foundation)

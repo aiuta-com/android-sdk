@@ -36,6 +36,7 @@ ktor = "3.1.1"
 
 jetbrains-compose-compiler = "1.5.7.1"
 jetbrains-compose = "1.7.3"
+jetbrains-viewmodel = "2.8.2"
 
 kotlin = "2.1.10"
 ktlint = "1.2.0"
@@ -86,6 +87,7 @@ gradlePlugin-jreleaser = { module = "org.jreleaser:jreleaser-gradle-plugin", ver
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 
 jetbrains-compose-compiler = { module = "org.jetbrains.compose.compiler:compiler", version.ref = "jetbrains-compose-compiler" }
+jetbrains-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "jetbrains-viewmodel" }
 
 kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "kotlinx-atomicfu" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
