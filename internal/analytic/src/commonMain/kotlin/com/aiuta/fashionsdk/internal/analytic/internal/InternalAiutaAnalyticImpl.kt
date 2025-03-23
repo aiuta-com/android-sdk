@@ -65,7 +65,8 @@ internal class InternalAiutaAnalyticImpl(
                 networkClient =
                     createNetworkClient(
                         aiuta = aiuta,
-                        backendEndpoint = AnalyticConfig.DEFAULT_ENDPOINT,
+                        host = AnalyticConfig.DEFAULT_ENDPOINT,
+                        encodedPath = AnalyticConfig.DEFAULT_ENCODED_PATH,
                     ),
             )
         }

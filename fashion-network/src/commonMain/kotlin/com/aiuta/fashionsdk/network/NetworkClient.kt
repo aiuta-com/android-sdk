@@ -16,14 +16,16 @@ public interface NetworkClient {
         /**
          * Factory for [NetworkClient]
          *
-         * @param apiKey The incoming api key received from the Aiuta developer portal.
-         * @param backendEndpoint Optional backend endpoint. Otherwise, will use default.
+         * @param aiuta Instance of Aiuta.
+         * @param host Optional backend endpoint. Otherwise, will use default.
+         * @param encodedPath Optional encoded path. Otherwise, will use default.
          *
          * @return [NetworkClient] that can fetch data by using [HttpClient]
          */
         public fun create(
             aiuta: Aiuta,
-            backendEndpoint: String? = null,
+            host: String? = null,
+            encodedPath: String? = null,
         ): NetworkClient
     }
 }

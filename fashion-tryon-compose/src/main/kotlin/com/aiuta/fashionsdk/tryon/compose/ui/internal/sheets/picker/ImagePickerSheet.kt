@@ -24,7 +24,6 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -70,10 +69,10 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     event = AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN,
                     pageId = pickerData.originPageId,
                 )
-                controller.lastSavedImages.value =
-                    LastSavedImages.UriSource(
-                        imageUris = listOf(newImageUri.toString()),
-                    )
+                controller.lastSavedImages.value = TODO("Make picker with platform images")
+//                    LastSavedImages.UriSource(
+//                        imageUris = listOf(newImageUri.toString()),
+//                    )
                 // Activate try on
                 controller.activateAutoTryOn()
                 // Move back
@@ -107,10 +106,10 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     event = AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED,
                     pageId = pickerData.originPageId,
                 )
-                controller.lastSavedImages.value =
-                    LastSavedImages.UriSource(
-                        imageUris = listOf(uri.toString()),
-                    )
+                controller.lastSavedImages.value = TODO("Make picker with platform images")
+//                    LastSavedImages.UriSource(
+//                        imageUris = listOf(uri.toString()),
+//                    )
                 // Activate try on
                 controller.activateAutoTryOn()
                 // Move back

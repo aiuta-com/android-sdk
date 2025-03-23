@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.internal.analytic
 
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.internal.InternalAiutaAnalyticImpl
-import com.aiuta.fashionsdk.network.NetworkClient
 import kotlin.concurrent.Volatile
 import kotlinx.atomicfu.locks.SynchronizedObject
 import kotlinx.atomicfu.locks.synchronized
@@ -19,7 +18,6 @@ public object InternalAiutaAnalyticFactory : SynchronizedObject() {
     @Volatile
     private var instance: InternalAiutaAnalytic? = null
     private var cachedSubscriptionId: String? = null
-    private var networkClient: NetworkClient? = null
 
     public fun create(aiuta: Aiuta): InternalAiutaAnalytic {
         validateCacheInstance(newSubscriptionId = aiuta.subscriptionId)
@@ -31,11 +29,6 @@ public object InternalAiutaAnalyticFactory : SynchronizedObject() {
         }
     }
 
-    @Deprecated("Will be deleted")
-    public fun getNetworkClient(): NetworkClient? {
-        return networkClient
-    }
-
     public fun getInternalAiutaAnalytic(): InternalAiutaAnalytic? {
         return instance
     }
@@ -44,7 +37,6 @@ public object InternalAiutaAnalyticFactory : SynchronizedObject() {
         // We should remove cache, if we have new instance of api key
         if (newSubscriptionId != cachedSubscriptionId) {
             instance = null
-            networkClient = null
             cachedSubscriptionId = newSubscriptionId
         }
     }

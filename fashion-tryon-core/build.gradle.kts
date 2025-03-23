@@ -1,34 +1,33 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
-    id("androidx.baselineprofile")
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     alias(libs.plugins.kotlinx.serialization)
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk.tryon.core")
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.core")
 
-baselineProfile {
-    mergeIntoMain = true
-    saveInSrc = true
-    baselineProfileOutputDir = ""
-    filter {
-        include("com.aiuta.fashionsdk.tryon.**")
-        exclude("com.aiuta.fashionsdk.network.**")
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api(projects.fashion)
+                api(projects.fashionNetwork)
+                api(projects.fashionNetworkPaging)
+
+                implementation(compose.ui)
+
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.serialization)
+
+                implementation(projects.internal.analytic)
+            }
+        }
     }
-}
-
-dependencies {
-    api(projects.fashion)
-    api(projects.fashionNetwork)
-    api(projects.fashionNetworkPaging)
-    api(projects.internal.analytic)
-
-    baselineProfile(projects.internal.benchmark)
-
-    implementation(libs.androidx.exifinterface)
-    implementation(libs.kotlinx.serialization)
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.ktor.core)
 }

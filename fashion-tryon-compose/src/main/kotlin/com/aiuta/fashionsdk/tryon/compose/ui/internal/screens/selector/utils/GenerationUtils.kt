@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import android.content.Context
-import androidx.core.net.toUri
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
@@ -31,8 +30,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationPlatformImageContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUriContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.isTryOnGenerationAbortedException
 import java.util.concurrent.atomic.AtomicInteger
@@ -123,12 +122,12 @@ private fun FashionTryOnController.startGenerationWithUriSource(
     uriSource: LastSavedImages.UriSource,
     generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
-    return uriSource.imageUris.map { uri ->
+    return uriSource.platformImages.map { image ->
         aiutaTryOn
             .startSKUGeneration(
                 container =
-                    SKUGenerationUriContainer(
-                        fileUri = uri.toUri(),
+                    SKUGenerationPlatformImageContainer(
+                        platformImage = image,
                         skuId = activeSKUItem.value.skuId,
                         skuCatalogName = activeSKUItem.value.catalogName,
                     ),
