@@ -11,7 +11,6 @@ public final class com/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticF
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticFactory;
 	public final fun create (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
 	public final fun getInternalAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
-	public final fun getNetworkClient ()Lcom/aiuta/fashionsdk/network/NetworkClient;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {

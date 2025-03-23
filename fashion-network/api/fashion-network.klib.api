@@ -11,7 +11,7 @@ abstract interface com.aiuta.fashionsdk.network/NetworkClient { // com.aiuta.fas
         abstract fun <get-httpClient>(): kotlin/Lazy<io.ktor.client/HttpClient> // com.aiuta.fashionsdk.network/NetworkClient.httpClient.<get-httpClient>|<get-httpClient>(){}[0]
 
     abstract interface Factory { // com.aiuta.fashionsdk.network/NetworkClient.Factory|null[0]
-        abstract fun create(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/NetworkClient.Factory.create|create(com.aiuta.fashionsdk.Aiuta;kotlin.String?){}[0]
+        abstract fun create(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ..., kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/NetworkClient.Factory.create|create(com.aiuta.fashionsdk.Aiuta;kotlin.String?;kotlin.String?){}[0]
     }
 }
 
@@ -39,7 +39,5 @@ final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppen
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.Int?){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/String?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.String?){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppendLimit(kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppendLimit|saveAppendLimit@io.ktor.http.URLBuilder(kotlin.Int?){}[0]
-final fun com.aiuta.fashionsdk.network/createNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/createNetworkClient|createNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?){}[0]
-final fun com.aiuta.fashionsdk.network/createNetworkClient(kotlin/String, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/createNetworkClient|createNetworkClient(kotlin.String;kotlin.String?){}[0]
-final fun com.aiuta.fashionsdk.network/defaultNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/defaultNetworkClient|defaultNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?){}[0]
-final fun com.aiuta.fashionsdk.network/defaultNetworkClient(kotlin/String, kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/defaultNetworkClient|defaultNetworkClient(kotlin.String;kotlin.String?){}[0]
+final fun com.aiuta.fashionsdk.network/createNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ..., kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/createNetworkClient|createNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?;kotlin.String?){}[0]
+final fun com.aiuta.fashionsdk.network/defaultNetworkClient(com.aiuta.fashionsdk/Aiuta, kotlin/String? = ..., kotlin/String? = ...): com.aiuta.fashionsdk.network/NetworkClient // com.aiuta.fashionsdk.network/defaultNetworkClient|defaultNetworkClient(com.aiuta.fashionsdk.Aiuta;kotlin.String?;kotlin.String?){}[0]

@@ -741,7 +741,6 @@ final class com.aiuta.fashionsdk.internal.analytic.model/TerminateEvent : com.ai
 final object com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory : kotlinx.atomicfu.locks/SynchronizedObject { // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory|null[0]
     final fun create(com.aiuta.fashionsdk/Aiuta): com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory.create|create(com.aiuta.fashionsdk.Aiuta){}[0]
     final fun getInternalAiutaAnalytic(): com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalytic? // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory.getInternalAiutaAnalytic|getInternalAiutaAnalytic(){}[0]
-    final fun getNetworkClient(): com.aiuta.fashionsdk.network/NetworkClient? // com.aiuta.fashionsdk.internal.analytic/InternalAiutaAnalyticFactory.getNetworkClient|getNetworkClient(){}[0]
 }
 
 final val com.aiuta.fashionsdk.internal.analytic/internalAiutaAnalytic // com.aiuta.fashionsdk.internal.analytic/internalAiutaAnalytic|@com.aiuta.fashionsdk.Aiuta{}internalAiutaAnalytic[0]
