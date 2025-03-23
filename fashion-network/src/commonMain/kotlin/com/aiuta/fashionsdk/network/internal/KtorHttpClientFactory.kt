@@ -31,9 +31,11 @@ internal class KtorHttpClientFactory(
     private val authenticationStrategy: AuthenticationStrategy,
     private val subscriptionId: String,
     private val isLoggingEnabled: Boolean = true, // TODO Migrate from config?
-    backendEndpoint: String? = null,
+    host: String? = null,
+    encodedPath: String? = null,
 ) {
-    private val internalBackendEndpoint = backendEndpoint ?: DEFAULT_BACKEND_ENDPOINT
+    private val internalHost = host ?: DEFAULT_HOST
+    private val internalEncodedPath = encodedPath ?: DEFAULT_ENCODED_PATH
 
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installSerialization() =
         apply {
@@ -58,8 +60,8 @@ internal class KtorHttpClientFactory(
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
                 url {
                     protocol = URLProtocol.HTTPS
-                    host = internalBackendEndpoint
-                    encodedPath = "digital-try-on/v1"
+                    host = internalHost
+                    encodedPath = internalEncodedPath
                 }
             }
         }
@@ -84,7 +86,7 @@ internal class KtorHttpClientFactory(
 
     private fun HttpClient.addDynamicHeader() {
         plugin(HttpSend).intercept { request ->
-            if (request.url.host == internalBackendEndpoint) {
+            if (request.url.host == internalHost) {
                 request.installSubscriptionIdHeader(subscriptionId)
             }
 
@@ -104,6 +106,7 @@ internal class KtorHttpClientFactory(
     }
 
     private companion object {
-        const val DEFAULT_BACKEND_ENDPOINT = "api.aiuta.com"
+        const val DEFAULT_HOST = "api.aiuta.com"
+        const val DEFAULT_ENCODED_PATH = "digital-try-on/v1"
     }
 }

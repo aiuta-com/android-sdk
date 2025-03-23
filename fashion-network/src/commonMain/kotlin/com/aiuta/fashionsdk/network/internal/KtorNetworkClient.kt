@@ -17,14 +17,16 @@ internal class KtorNetworkClient(
 
         override fun create(
             aiuta: Aiuta,
-            backendEndpoint: String?,
+            host: String?,
+            encodedPath: String?,
         ): NetworkClient {
             validateCacheInstance(newSubscriptionId = aiuta.subscriptionId)
 
             return instance ?: synchronized(this) {
                 instance ?: buildKtorNetworkClient(
                     aiuta = aiuta,
-                    backendEndpoint = backendEndpoint,
+                    host = host,
+                    encodedPath = encodedPath,
                 ).also {
                     instance = it
                     cachedSubscriptionId = aiuta.subscriptionId
@@ -34,14 +36,16 @@ internal class KtorNetworkClient(
 
         internal fun buildKtorNetworkClient(
             aiuta: Aiuta,
-            backendEndpoint: String? = null,
+            host: String? = null,
+            encodedPath: String? = null,
         ): NetworkClient {
             return KtorNetworkClient(
                 httpClient =
                     KtorHttpClientFactory(
                         authenticationStrategy = aiuta.authenticationStrategy,
                         subscriptionId = aiuta.subscriptionId,
-                        backendEndpoint = backendEndpoint,
+                        host = host,
+                        encodedPath = encodedPath,
                     ).create(),
             )
         }
