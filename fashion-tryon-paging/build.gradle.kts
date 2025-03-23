@@ -15,7 +15,7 @@ kotlin {
             dependencies {
                 api(projects.fashionTryonCore)
 
-                api(libs.androidx.paging)
+                api(libs.androidx.paging.common)
             }
         }
     }
