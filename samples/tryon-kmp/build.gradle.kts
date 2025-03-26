@@ -51,7 +51,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
-            implementation(projects.fashionTryonCore)
+            implementation(projects.fashionTryonCompose)
+            implementation(projects.fashionTryonImages)
+            implementation(projects.fashionTryonIcons)
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -59,8 +61,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-//            implementation(libs.androidx.lifecycle.viewmodel)
-//            implementation(libs.androidx.lifecycle.runtime.compose)
+
+            implementation(libs.jetbrains.viewmodel)
         }
     }
 }
