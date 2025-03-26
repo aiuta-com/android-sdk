@@ -52,7 +52,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationPl
 	public static final field $stable I
 	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getPlatformImage ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;
+	public final fun getAiutaPlatformImage ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;
 	public fun getSkuCatalogName ()Ljava/lang/String;
 	public fun getSkuId ()Ljava/lang/String;
 }

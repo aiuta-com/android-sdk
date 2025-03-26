@@ -1,53 +1,89 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
+    id("com.android.library")
+    id("kotlin-multiplatform")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
-    id("androidx.baselineprofile")
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.room)
 }
 
-androidLibrary(
-    name = "com.aiuta.fashionsdk.tryon.compose",
-    composeLibrary = true,
-)
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.compose") {
+    defaultConfig {
+        consumerProguardFiles("shrinker-rules.pro")
+    }
+}
 
-baselineProfile {
-    mergeIntoMain = true
-    saveInSrc = true
-    baselineProfileOutputDir = ""
-    filter {
-        include("com.aiuta.fashionsdk.tryon.**")
+// dependencies {
+//
+//    implementation(libs.accompanist.permissions)
+//    implementation(libs.androidx.lifecycle.runtime.compose)
+
+//    implementation(libs.androidx.room.ktx)
+//    implementation(libs.androidx.room.paging)
+//    implementation(libs.ktor.core)
+// }
+
+kotlin {
+    sourceSets {
+        androidMain {
+            dependencies {
+                implementation(libs.androidx.core)
+                implementation(libs.androidx.activity.compose)
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
+        androidUnitTest {
+            dependencies {
+                implementation(kotlin("test"))
+                implementation(libs.mockk)
+            }
+        }
+        commonMain {
+            dependencies {
+                api(projects.fashionCompose)
+                api(projects.fashionTryonCore)
+                api(projects.internal.analytic)
+
+                implementation(compose.material)
+
+                implementation(libs.androidx.paging.common)
+                implementation(libs.coil3.compose)
+                implementation(libs.coil3.network.ktor3)
+                implementation(libs.compose.placeholder)
+                implementation(libs.haze)
+                implementation(libs.kotlinx.atomicfu)
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.serialization)
+                implementation(libs.room.runtime)
+                implementation(libs.room.paging)
+                implementation(libs.jetbrains.lifecycle)
+                implementation(libs.sqlite.bundled)
+                implementation(libs.moko.permissions.camera)
+                implementation(libs.moko.permissions.gallery)
+                implementation(libs.moko.compose)
+            }
+        }
+        appleMain {
+            dependencies {
+                implementation(libs.ktor.engine.darwin)
+            }
+        }
     }
 }
 
 dependencies {
-    api(projects.fashionCompose)
-    api(projects.fashionTryonCore)
-    api(projects.internal.analytic)
+    implementation(libs.androidx.ui.unit.android)
+    add("kspAndroid", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
+}
 
-    annotationProcessor(libs.androidx.room.compiler)
-
-    baselineProfile(projects.internal.benchmark)
-
-    implementation(libs.accompanist.permissions)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.room.paging)
-    implementation(libs.androidx.paging.compose)
-    implementation(libs.coil.compose)
-    implementation(libs.compose.placeholder)
-    implementation(libs.haze)
-    implementation(libs.kotlinx.serialization)
-    implementation(libs.ktor.core)
-
-    ksp(libs.androidx.room.compiler)
-
-    testImplementation(kotlin("test"))
-    testImplementation(libs.mockk)
+room {
+    schemaDirectory("$projectDir/schemas")
 }

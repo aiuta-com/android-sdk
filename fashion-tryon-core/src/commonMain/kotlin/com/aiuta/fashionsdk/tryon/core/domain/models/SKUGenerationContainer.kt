@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models
 
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
-import com.aiuta.fashionsdk.tryon.core.domain.models.image.PlatformImage
+import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
 
 /**
  * Base container for starting sku generation flow
@@ -21,7 +21,7 @@ public sealed interface SKUGenerationContainer {
  * @see SKUGenerationContainer
  */
 public class SKUGenerationPlatformImageContainer(
-    public val platformImage: PlatformImage,
+    public val aiutaPlatformImage: AiutaPlatformImage,
     override val skuId: String,
     override val skuCatalogName: String? = null,
 ) : SKUGenerationContainer

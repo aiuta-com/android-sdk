@@ -34,13 +34,17 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
     }
 }
 
-internal suspend fun FlowCollector<SKUGenerationStatus>.errorListener(action: suspend () -> Unit) {
+internal suspend fun FlowCollector<SKUGenerationStatus>.errorListener(
+    statusId: String,
+    action: suspend () -> Unit,
+) {
     try {
         action()
     } catch (e: Exception) {
         // Fallback with error
         emit(
             SKUGenerationStatus.ErrorGenerationStatus(
+                statusId = statusId,
                 errorMessage = e.message,
                 exception = e,
             ),
