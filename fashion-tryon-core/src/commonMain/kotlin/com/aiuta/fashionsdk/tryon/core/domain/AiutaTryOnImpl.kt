@@ -20,6 +20,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationPlatformImageContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.generateStatusId
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.AiutaTryOnRetryPolicies
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultAiutaTryOnRetryPolicies
@@ -85,11 +86,17 @@ internal class AiutaTryOnImpl(
     override fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus> {
         return flow {
             analytic.sendStartTryOnEvent(container)
-            errorListener {
+            val statusId = generateStatusId()
+
+            errorListener(statusId = statusId) {
                 val metadataBuilder = AiutaTryOnMetadata.Builder()
 
                 // Set loading state with previous image urls
-                emit(SKUGenerationStatus.LoadingGenerationStatus.StartGeneration)
+                emit(
+                    SKUGenerationStatus.LoadingGenerationStatus.StartGeneration(
+                        statusId = statusId,
+                    ),
+                )
 
                 // Firstly, upload image on backend
                 val uploadedImage =
@@ -103,6 +110,7 @@ internal class AiutaTryOnImpl(
                 metadataBuilder.setUploadDuration()
                 emit(
                     SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                        statusId = statusId,
                         sourceImageId = uploadedImage.id,
                         sourceImageUrl = uploadedImage.url,
                     ),
@@ -127,6 +135,7 @@ internal class AiutaTryOnImpl(
                 // Wait for the operation, until it is completed
                 emit(
                     SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                        statusId = statusId,
                         sourceImageId = uploadedImage.id,
                         sourceImageUrl = uploadedImage.url,
                     ),
@@ -149,6 +158,7 @@ internal class AiutaTryOnImpl(
                 // Finally, emit result
                 emit(
                     SKUGenerationStatus.SuccessGenerationStatus(
+                        statusId = statusId,
                         sourceImageId = uploadedImage.id,
                         sourceImageUrl = uploadedImage.url,
                         images = generations.map { it.toPublic() },
