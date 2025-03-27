@@ -25,7 +25,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
  * @see AiutaTheme
  * @see SKUItem
  */
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
@@ -34,8 +33,6 @@ public fun AiutaTryOnFlow(
     aiutaTheme: AiutaTheme,
     skuForGeneration: SKUItem,
 ) {
-    val scope = rememberCoroutineScope()
-
     NavigationInitialisation(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
