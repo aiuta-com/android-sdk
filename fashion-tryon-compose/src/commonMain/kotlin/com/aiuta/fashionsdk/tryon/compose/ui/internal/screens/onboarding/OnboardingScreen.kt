@@ -37,10 +37,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.compone
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.listenIsPrimaryButtonEnabled
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.nextPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.previousPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.rememberOnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -53,10 +55,9 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
     val generalHorizontalPadding = 16.dp
 
-    // TODO
-//    BackHandler {
-//        onboardingController.previousPage(controller)
-//    }
+    BackHandler {
+        onboardingController.previousPage(controller)
+    }
 
     Column(
         modifier =

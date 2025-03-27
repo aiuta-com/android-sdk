@@ -15,7 +15,6 @@ binaryCompatibility = "0.16.3"
 buildKonfig = "0.17.0"
 
 coroutines = "1.10.1"
-coil = "2.7.0"
 coil3 = "3.1.0"
 compose-placeholder = "2.0.0"
 
