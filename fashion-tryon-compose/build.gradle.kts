@@ -18,16 +18,6 @@ androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.compose") {
     }
 }
 
-// dependencies {
-//
-//    implementation(libs.accompanist.permissions)
-//    implementation(libs.androidx.lifecycle.runtime.compose)
-
-//    implementation(libs.androidx.room.ktx)
-//    implementation(libs.androidx.room.paging)
-//    implementation(libs.ktor.core)
-// }
-
 kotlin {
     sourceSets {
         androidMain {
