@@ -35,7 +35,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
 
 @Composable
 internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {

@@ -39,7 +39,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
 
 @Composable
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
