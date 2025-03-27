@@ -32,7 +32,7 @@ kotlin {
                 implementation(libs.ktor.serialization)
             }
         }
-        nativeMain {
+        appleMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)
             }
