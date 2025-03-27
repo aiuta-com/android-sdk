@@ -167,7 +167,7 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationItem { //
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationContainer { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer|null[0]
-    constructor <init>(com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage, kotlin/String, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.<init>|<init>(com.aiuta.fashionsdk.tryon.core.domain.models.image.PlatformImage;kotlin.String;kotlin.String?){}[0]
+    constructor <init>(com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage, kotlin/String, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.<init>|<init>(com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage;kotlin.String;kotlin.String?){}[0]
 
     final val platformImage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.platformImage|{}platformImage[0]
         final fun <get-platformImage>(): com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.platformImage.<get-platformImage>|<get-platformImage>(){}[0]

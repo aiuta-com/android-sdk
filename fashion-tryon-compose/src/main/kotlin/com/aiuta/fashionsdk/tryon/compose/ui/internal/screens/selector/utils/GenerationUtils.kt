@@ -122,12 +122,12 @@ private fun FashionTryOnController.startGenerationWithUriSource(
     uriSource: LastSavedImages.UriSource,
     generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
-    return uriSource.platformImages.map { image ->
+    return uriSource.aiutaPlatformImages.map { image ->
         aiutaTryOn
             .startSKUGeneration(
                 container =
                     SKUGenerationPlatformImageContainer(
-                        platformImage = image,
+                        aiutaPlatformImage = image,
                         skuId = activeSKUItem.value.skuId,
                         skuCatalogName = activeSKUItem.value.catalogName,
                     ),

@@ -8,8 +8,8 @@ import androidx.compose.ui.graphics.asImageBitmap
 import com.aiuta.fashionsdk.tryon.core.domain.models.compressor.CompressionConfig
 import java.io.ByteArrayOutputStream
 
-public actual class PlatformImage(
-    private val bitmap: Bitmap,
+public actual class AiutaPlatformImage(
+    public val bitmap: Bitmap,
 ) {
     public actual val byteArray: ByteArray by lazy { toByteArray() }
 

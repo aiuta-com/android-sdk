@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.imag
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
-import com.aiuta.fashionsdk.tryon.core.domain.models.image.PlatformImage
+import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
 
 @Immutable
 internal sealed interface LastSavedImages {
     data class UriSource(
-        val platformImages: List<PlatformImage>,
+        val aiutaPlatformImages: List<AiutaPlatformImage>,
     ) : LastSavedImages
 
     sealed interface UrlSource : LastSavedImages {
