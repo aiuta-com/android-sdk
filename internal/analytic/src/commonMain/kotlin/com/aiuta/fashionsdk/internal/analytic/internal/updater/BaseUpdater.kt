@@ -14,7 +14,7 @@ internal abstract class BaseUpdater {
             // Try to update
             try {
                 // Execute action
-                block()
+                return block()
             } catch (e: CancellationException) {
                 // Rethrow cancellation exception
                 throw e
