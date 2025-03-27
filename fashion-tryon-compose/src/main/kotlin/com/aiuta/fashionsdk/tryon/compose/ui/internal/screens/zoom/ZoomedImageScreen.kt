@@ -39,8 +39,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import coil.compose.SubcomposeAsyncImage
-import coil.request.ImageRequest
+import coil3.compose.LocalPlatformContext
+import coil3.compose.SubcomposeAsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
@@ -172,6 +174,7 @@ private fun ZoomedImageScreenContent(
     imageSize: State<Size>,
 ) {
     val aiutaConfiguration = LocalAiutaConfiguration.current
+    val coilContext = LocalPlatformContext.current
     val context = LocalContext.current
     val controller = LocalController.current
     val theme = LocalTheme.current
@@ -202,7 +205,7 @@ private fun ZoomedImageScreenContent(
                         },
                     ),
             model =
-                ImageRequest.Builder(context)
+                ImageRequest.Builder(coilContext)
                     .data(screenState.sharedImage.value.imageUrl)
                     .crossfade(true)
                     .build(),

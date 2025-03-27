@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -14,7 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.sta
 
 @Composable
 internal fun GenerateMoreListener() {
-    val context = LocalContext.current
+    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val dialogController = LocalAiutaTryOnDialogController.current
@@ -26,7 +27,7 @@ internal fun GenerateMoreListener() {
             controller.disableAutoTryOn()
             controller.startGeneration(
                 aiutaConfiguration = aiutaConfiguration,
-                context = context,
+                coilContext = coilContext,
                 dialogController = dialogController,
                 stringResources = stringResources,
                 origin = StartTryOnEvent.TryOnOrigin.RETAKE_BUTTON,

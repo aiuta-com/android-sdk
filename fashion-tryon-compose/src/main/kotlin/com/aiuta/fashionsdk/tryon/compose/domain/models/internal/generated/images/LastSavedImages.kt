@@ -6,19 +6,19 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
 
 @Immutable
 internal sealed interface LastSavedImages {
-    data class UriSource(
-        val aiutaPlatformImages: List<AiutaPlatformImage>,
+    data class PlatformImageSource(
+        val platformImages: List<AiutaPlatformImage>,
     ) : LastSavedImages
 
     sealed interface UrlSource : LastSavedImages {
-        val sourceImages: List<SourceImage>
+        val urlImages: List<UrlImage>
 
         data class Base(
-            override val sourceImages: List<SourceImage>,
+            override val urlImages: List<UrlImage>,
         ) : UrlSource
 
         data class PregeneratedModels(
-            override val sourceImages: List<SourceImage>,
+            override val urlImages: List<UrlImage>,
         ) : UrlSource
     }
 
@@ -26,19 +26,25 @@ internal sealed interface LastSavedImages {
 }
 
 // Helpers
-internal fun LastSavedImages.isEmpty(): Boolean {
-    return imageSource.isEmpty()
-}
-
 internal fun LastSavedImages.isNotEmpty(): Boolean {
     return imageSource.isNotEmpty()
 }
 
-internal val LastSavedImages.imageSource: List<String>
+internal val LastSavedImages.imageSource: List<LastSavedImageWrapper>
     get() {
         return when (this) {
-            is LastSavedImages.UriSource -> TODO("Make picker with platform images")
-            is LastSavedImages.UrlSource -> sourceImages.map { it.imageUrl }
+            is LastSavedImages.PlatformImageSource ->
+                platformImages.map {
+                    LastSavedImageWrapper.SavedPlatformImage(it)
+                }
+
+            is LastSavedImages.UrlSource ->
+                urlImages.map {
+                    LastSavedImageWrapper.SavedUrlImage(
+                        it,
+                    )
+                }
+
             is LastSavedImages.Empty -> emptyList()
         }
     }
@@ -49,6 +55,6 @@ internal val LastSavedImages.size: Int
 // Converters
 internal fun GeneratedOperationUIModel.toLastSavedImages(): LastSavedImages {
     return LastSavedImages.UrlSource.Base(
-        sourceImages = sourceImages,
+        urlImages = urlImages,
     )
 }

@@ -24,8 +24,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import coil.compose.SubcomposeAsyncImage
-import coil.request.ImageRequest
+import coil3.compose.LocalPlatformContext
+import coil3.compose.SubcomposeAsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -107,7 +109,7 @@ private fun ImageContainer(
                 .clip(RoundedCornerShape(8.dp))
                 .background(theme.colors.background),
         model =
-            ImageRequest.Builder(LocalContext.current)
+            ImageRequest.Builder(LocalPlatformContext.current)
                 .data(imageUrl)
                 .crossfade(true)
                 .build(),

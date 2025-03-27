@@ -40,11 +40,14 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.paging.compose)
-    implementation(libs.coil.compose)
+    implementation(libs.coil3.compose)
+    implementation(libs.coil3.network.ktor3)
     implementation(libs.compose.placeholder)
     implementation(libs.haze)
+    implementation(libs.kotlinx.atomicfu)
     implementation(libs.kotlinx.serialization)
     implementation(libs.ktor.core)
+    implementation(libs.ktor.engine.okhttp)
 
     ksp(libs.androidx.room.compiler)
 

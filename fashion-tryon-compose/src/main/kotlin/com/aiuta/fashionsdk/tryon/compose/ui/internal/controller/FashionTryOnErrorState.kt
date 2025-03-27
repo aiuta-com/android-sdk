@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
-import android.content.Context
 import androidx.compose.runtime.Immutable
+import coil3.PlatformContext
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
@@ -20,7 +20,7 @@ internal interface ToastErrorState {
 @Immutable
 internal class TryOnToastErrorState(
     aiutaConfiguration: AiutaTryOnConfiguration,
-    context: Context,
+    coilContext: PlatformContext,
     controller: FashionTryOnController,
     dialogController: AiutaTryOnDialogController,
     stringResources: InternalAiutaTryOnLanguage,
@@ -30,7 +30,7 @@ internal class TryOnToastErrorState(
         controller.startGeneration(
             aiutaConfiguration = aiutaConfiguration,
             dialogController = dialogController,
-            context = context,
+            coilContext = coilContext,
             stringResources = stringResources,
             origin = StartTryOnEvent.TryOnOrigin.RETRY_NOTIFICATION,
         )

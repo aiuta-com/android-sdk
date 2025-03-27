@@ -1,13 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.annotation.DrawableRes
-import androidx.core.graphics.drawable.toBitmapOrNull
-import coil.Coil
-import coil.request.ImageRequest
+import coil3.PlatformContext
+import coil3.SingletonImageLoader
+import coil3.request.ImageRequest
+import coil3.request.allowHardware
+import coil3.toBitmap
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaDrawableImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 internal class ShareManager(
-    private val context: Context,
+    private val context: PlatformContext,
 ) {
     private val stateFlow = MutableStateFlow<SharingState>(SharingState.Loading)
     private val workerDispatcher = Dispatchers.Default
@@ -161,7 +162,7 @@ internal class ShareManager(
                     .data(imageUrl)
                     .allowHardware(false)
                     .build()
-            Coil.imageLoader(context).execute(request).drawable?.toBitmapOrNull()
+            SingletonImageLoader.get(context).execute(request).image?.toBitmap()
         } catch (e: Exception) {
             // Failed to resolve bitmap
             null

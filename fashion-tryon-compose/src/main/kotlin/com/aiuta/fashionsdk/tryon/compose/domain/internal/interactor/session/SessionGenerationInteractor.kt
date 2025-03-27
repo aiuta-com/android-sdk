@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session
 
-import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import coil3.PlatformContext
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
@@ -54,9 +54,9 @@ internal class SessionGenerationInteractor(
     }
 
     companion object {
-        fun getInstance(context: Context): SessionGenerationInteractor {
+        fun getInstance(coilContext: PlatformContext): SessionGenerationInteractor {
             return SessionGenerationInteractor(
-                warmUpInteractor = WarmUpInteractor(context),
+                warmUpInteractor = WarmUpInteractor(coilContext),
             )
         }
     }

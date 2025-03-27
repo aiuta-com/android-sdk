@@ -1,14 +1,13 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
-import android.content.Context
+import coil3.PlatformContext
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
@@ -34,8 +33,8 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationPlatformImageC
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.isTryOnGenerationAbortedException
-import java.util.concurrent.atomic.AtomicInteger
 import kotlin.time.measureTimedValue
+import kotlinx.atomicfu.atomic
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.flow.catch
@@ -46,7 +45,7 @@ import kotlinx.coroutines.launch
 
 internal fun FashionTryOnController.startGeneration(
     aiutaConfiguration: AiutaTryOnConfiguration,
-    context: Context,
+    coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
     stringResources: InternalAiutaTryOnLanguage,
     // Analytic
@@ -57,7 +56,7 @@ internal fun FashionTryOnController.startGeneration(
 
         sendStartEvent(origin)
 
-        val errorCount = AtomicInteger()
+        val errorCount = atomic(0)
         val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)
 
         val rawGenerationFlows =
@@ -67,11 +66,7 @@ internal fun FashionTryOnController.startGeneration(
         val generationFlows =
             rawGenerationFlows.mapIndexed { index, generationFlow ->
                 generationFlow
-                    .mapNotNull { status ->
-                        lastSavedImages.value.imageSource.getOrNull(index)?.let { sourceImage ->
-                            status.toOperation(sourceImage = sourceImage)
-                        }
-                    }
+                    .mapNotNull { status -> status.toOperation() }
                     .catch {
                         if (errorCount.incrementAndGet() == lastSavedImages.value.size) {
                             generationStatus.value = SKUGenerationUIStatus.IDLE
@@ -86,7 +81,7 @@ internal fun FashionTryOnController.startGeneration(
             .collect { operation ->
                 solveOperationCollecting(
                     aiutaConfiguration = aiutaConfiguration,
-                    context = context,
+                    coilContext = coilContext,
                     dialogController = dialogController,
                     operation = operation,
                     stringResources = stringResources,
@@ -100,9 +95,9 @@ private fun FashionTryOnController.solveStartGenerationFlows(
     generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
     return when (val activeImages = lastSavedImages.value) {
-        is LastSavedImages.UriSource -> {
+        is LastSavedImages.PlatformImageSource -> {
             startGenerationWithUriSource(
-                uriSource = activeImages,
+                platformImageSource = activeImages,
                 generatedOperationFactory = generatedOperationFactory,
             )
         }
@@ -119,10 +114,10 @@ private fun FashionTryOnController.solveStartGenerationFlows(
 }
 
 private fun FashionTryOnController.startGenerationWithUriSource(
-    uriSource: LastSavedImages.UriSource,
+    platformImageSource: LastSavedImages.PlatformImageSource,
     generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
-    return uriSource.aiutaPlatformImages.map { image ->
+    return platformImageSource.platformImages.map { image ->
         aiutaTryOn
             .startSKUGeneration(
                 container =
@@ -155,7 +150,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
     urlSource: LastSavedImages.UrlSource,
     generatedOperationFactory: GeneratedOperationFactory,
 ): List<Flow<SKUGenerationStatus>> {
-    return urlSource.sourceImages.map { sourceImage ->
+    return urlSource.urlImages.map { sourceImage ->
         aiutaTryOn
             .startSKUGeneration(
                 container =
@@ -191,7 +186,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 // Collecting
 private suspend fun FashionTryOnController.solveOperationCollecting(
     aiutaConfiguration: AiutaTryOnConfiguration,
-    context: Context,
+    coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
     operation: SKUGenerationOperation,
     stringResources: InternalAiutaTryOnLanguage,
@@ -206,7 +201,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
             // Check is this operation already exist
             // Should think about optimization for O(n)
             val existedOperation =
-                generationOperations.find { it.sourceImage == operation.sourceImage }
+                generationOperations.find { it.operationId == operation.operationId }
             val existedOperationIndex =
                 existedOperation?.let {
                     generationOperations.indexOf(
@@ -243,7 +238,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
 
                     // Only after navigation, let's change if need active image to backend
                     refreshActiveImage(
-                        context = context,
+                        coilContext = coilContext,
                         generatedOperationFactory = generatedOperationFactory,
                         operation = operation,
                     )
@@ -259,7 +254,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                                 aiutaConfiguration = aiutaConfiguration,
                                 controller = this@solveOperationCollecting,
                                 dialogController = dialogController,
-                                context = context,
+                                coilContext = coilContext,
                                 stringResources = stringResources,
                             ),
                     )
@@ -295,7 +290,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                                 aiutaConfiguration = aiutaConfiguration,
                                 controller = this@solveOperationCollecting,
                                 dialogController = dialogController,
-                                context = context,
+                                coilContext = coilContext,
                                 stringResources = stringResources,
                             ),
                     )
@@ -308,35 +303,37 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
 }
 
 private suspend fun FashionTryOnController.refreshActiveImage(
-    context: Context,
+    coilContext: PlatformContext,
     generatedOperationFactory: GeneratedOperationFactory,
     operation: SKUGenerationOperation.SuccessOperation,
 ) {
     // Refresh only if active operation with local image
-    if (lastSavedImages.value is LastSavedImages.UriSource) {
-        val warmUpInteractor = WarmUpInteractor(context)
+    if (lastSavedImages.value is LastSavedImages.PlatformImageSource) {
+        val warmUpInteractor = WarmUpInteractor(coilContext)
 
         val currentOperationId =
             generatedOperationFactory.getOperationId(
-                imageId = operation.sourceImageId,
+                imageId = operation.uploadedSourceImageId,
             )
         if (lastSavedOperation.value?.operationId != currentOperationId) {
             val images =
-                listOf(
-                    SourceImage(
-                        imageId = operation.sourceImageId,
-                        imageUrl = operation.sourceImage,
-                    ),
-                )
+                operation.generatedImages.map { image ->
+                    UrlImage(
+                        imageId = image.id,
+                        imageUrl = image.imageUrl,
+                    )
+                }
 
             // Warm up for smooth change
-            warmUpInteractor.saveWarmUp(operation.sourceImage)
+            images.firstOrNull()?.let { image ->
+                warmUpInteractor.saveWarmUp(image.imageUrl)
+            }
 
             // Change to new
             val newOperation =
                 GeneratedOperationUIModel(
                     operationId = currentOperationId,
-                    sourceImages = images,
+                    urlImages = images,
                 )
             updateActiveOperationOrSetEmpty(newOperation)
         }
@@ -345,7 +342,7 @@ private suspend fun FashionTryOnController.refreshActiveImage(
 
 private fun FashionTryOnController.refreshOperation(newOperation: SKUGenerationOperation) {
     generationOperations.forEachIndexed { index, oldOperation ->
-        if (oldOperation.sourceImage == newOperation.sourceImage) {
+        if (oldOperation.operationId == newOperation.operationId) {
             generationOperations[index] = newOperation
         }
     }

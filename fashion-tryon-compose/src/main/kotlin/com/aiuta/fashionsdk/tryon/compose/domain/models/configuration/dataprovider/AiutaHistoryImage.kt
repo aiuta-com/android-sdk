@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider
 
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 
 public class AiutaHistoryImage(
@@ -19,7 +19,7 @@ internal fun AiutaHistoryImage.toImageUiModel(): GeneratedImageUIModel {
 internal fun AiutaHistoryImage.toOperationUiModel(): GeneratedOperationUIModel {
     return GeneratedOperationUIModel(
         operationId = id,
-        sourceImages = listOf(SourceImage(imageId = id, imageUrl = url)),
+        urlImages = listOf(UrlImage(imageId = id, imageUrl = url)),
     )
 }
 
@@ -31,7 +31,7 @@ internal fun GeneratedImageUIModel.toPublic(): AiutaHistoryImage {
 }
 
 internal fun GeneratedOperationUIModel.toPublic(): List<AiutaHistoryImage> {
-    return sourceImages.map { image ->
+    return urlImages.map { image ->
         AiutaHistoryImage(
             id = image.imageId,
             url = image.imageUrl,

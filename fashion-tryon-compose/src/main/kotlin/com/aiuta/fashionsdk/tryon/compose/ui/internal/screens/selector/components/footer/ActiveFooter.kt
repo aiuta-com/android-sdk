@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
+import coil3.compose.LocalPlatformContext
+import coil3.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -43,7 +43,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.dropShadow
 
 @Composable
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
-    val context = LocalContext.current
+    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val dialogController = LocalAiutaTryOnDialogController.current
@@ -102,7 +102,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
-                        context = context,
+                        coilContext = coilContext,
                         dialogController = dialogController,
                         stringResources = stringResources,
                         origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,

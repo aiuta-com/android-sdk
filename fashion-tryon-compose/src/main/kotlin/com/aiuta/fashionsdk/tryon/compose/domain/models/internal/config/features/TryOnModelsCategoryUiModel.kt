@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.feature
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.TryOnModelsCategory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SourceImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 
 @Immutable
 internal data class TryOnModelsCategoryUiModel(
@@ -40,8 +40,8 @@ internal fun TryOnModelsCategory.TryOnModel.toUiModel(): TryOnModelsCategoryUiMo
     )
 }
 
-internal fun TryOnModelsCategoryUiModel.TryOnModelUiModel.toSourceImage(): SourceImage {
-    return SourceImage(
+internal fun TryOnModelsCategoryUiModel.TryOnModelUiModel.toSourceImage(): UrlImage {
+    return UrlImage(
         imageId = id,
         imageUrl = url,
     )

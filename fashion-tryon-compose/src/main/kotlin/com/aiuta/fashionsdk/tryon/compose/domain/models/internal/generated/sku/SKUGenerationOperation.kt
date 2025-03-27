@@ -8,64 +8,66 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 
 @Immutable
 internal sealed interface SKUGenerationOperation {
-    val sourceImage: String
+    val operationId: String
 
     sealed interface LoadingOperation : SKUGenerationOperation {
         class StartGenerationOperation(
-            override val sourceImage: String,
+            override val operationId: String,
         ) : LoadingOperation
 
         class UploadedSourceImageOperation(
-            override val sourceImage: String,
+            override val operationId: String,
         ) : LoadingOperation
 
         class GenerationProcessingOperation(
-            override val sourceImage: String,
+            override val operationId: String,
         ) : LoadingOperation
     }
 
     class SuccessOperation(
-        val sourceImageId: String,
-        override val sourceImage: String,
+        override val operationId: String,
+        val uploadedSourceImageId: String,
+        val uploadedSourceImage: String,
         val generatedImages: List<GeneratedImageUIModel>,
         val metadata: AiutaTryOnMetadata,
     ) : SKUGenerationOperation
 
     class ErrorOperation(
-        override val sourceImage: String,
+        override val operationId: String,
         val errorMessage: String? = null,
         val exception: Exception? = null,
     ) : SKUGenerationOperation
 }
 
-internal fun SKUGenerationStatus.toOperation(sourceImage: String): SKUGenerationOperation {
+internal fun SKUGenerationStatus.toOperation(): SKUGenerationOperation {
     return when (this) {
         is SKUGenerationStatus.LoadingGenerationStatus.StartGeneration ->
             SKUGenerationOperation.LoadingOperation.StartGenerationOperation(
-                sourceImage = sourceImage,
+                operationId = statusId,
             )
 
         is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage ->
             SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation(
-                sourceImage = sourceImage,
+                operationId = statusId,
             )
 
         is SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing ->
             SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation(
-                sourceImage = sourceImage,
+                operationId = statusId,
             )
 
         is SKUGenerationStatus.ErrorGenerationStatus ->
             SKUGenerationOperation.ErrorOperation(
-                sourceImage = sourceImage,
+                operationId = statusId,
                 errorMessage = errorMessage,
                 exception = exception,
             )
 
         is SKUGenerationStatus.SuccessGenerationStatus ->
             SKUGenerationOperation.SuccessOperation(
-                sourceImageId = sourceImageId,
-                sourceImage = sourceImage,
+                operationId = statusId,
+                uploadedSourceImageId = sourceImageId,
+                uploadedSourceImage = sourceImageUrl,
                 generatedImages = images.map { it.toUiModel() },
                 metadata = metadata,
             )

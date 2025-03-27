@@ -28,15 +28,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
-import coil.compose.AsyncImagePainter
-import coil.compose.SubcomposeAsyncImage
-import coil.request.ImageRequest
+import coil3.compose.AsyncImagePainter
+import coil3.compose.LocalPlatformContext
+import coil3.compose.SubcomposeAsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
@@ -130,7 +131,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                             )
 
                             // Host notification
-                            val image = generatedOperation.sourceImages.firstOrNull()
+                            val image = generatedOperation.urlImages.firstOrNull()
                             image?.let {
                                 aiutaConfiguration.dataProvider?.selectUploadedImageAction?.invoke(
                                     AiutaHistoryImage(id = image.imageId, url = image.imageUrl),
@@ -182,7 +183,7 @@ private fun OperationItem(
     generatedOperation: GeneratedOperationUIModel,
     onClick: () -> Unit,
 ) {
-    val context = LocalContext.current
+    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
@@ -216,7 +217,7 @@ private fun OperationItem(
                     .clipToBounds()
                     .fillMaxSize(),
             model =
-                ImageRequest.Builder(context)
+                ImageRequest.Builder(coilContext)
                     .data(generatedOperation.sourceImageUrls.firstOrNull())
                     .crossfade(true)
                     .build(),

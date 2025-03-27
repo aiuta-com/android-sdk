@@ -70,7 +70,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     pageId = pickerData.originPageId,
                 )
                 controller.lastSavedImages.value = TODO("Make picker with platform images")
-//                    LastSavedImages.UriSource(
+//                    LastSavedImages.PlatformImageSource(
 //                        imageUris = listOf(newImageUri.toString()),
 //                    )
                 // Activate try on
@@ -107,7 +107,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     pageId = pickerData.originPageId,
                 )
                 controller.lastSavedImages.value = TODO("Make picker with platform images")
-//                    LastSavedImages.UriSource(
+//                    LastSavedImages.PlatformImageSource(
 //                        imageUris = listOf(uri.toString()),
 //                    )
                 // Activate try on
