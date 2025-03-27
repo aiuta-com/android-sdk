@@ -1,9 +1,10 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow
 
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.NativePaint
 import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.drawOutline
@@ -25,12 +26,9 @@ internal fun Modifier.dropShadow(
     val paint = Paint()
     paint.color = color
 
-    // TODO Migrate to skia?
-//    if (blur.toPx() > 0) {
-//        paint.asFrameworkPaint().apply {
-//            maskFilter = BlurMaskFilter(blur.toPx(), BlurMaskFilter.Blur.NORMAL)
-//        }
-//    }
+    if (blur.toPx() > 0) {
+        paint.asFrameworkPaint().setMaskFilter(blur.toPx())
+    }
 
     drawIntoCanvas { canvas ->
         canvas.save()
@@ -39,3 +37,5 @@ internal fun Modifier.dropShadow(
         canvas.restore()
     }
 }
+
+internal expect fun NativePaint.setMaskFilter(blurRadius: Float)
