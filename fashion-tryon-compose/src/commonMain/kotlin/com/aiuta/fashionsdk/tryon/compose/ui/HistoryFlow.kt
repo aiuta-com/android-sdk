@@ -14,14 +14,19 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationInitialisation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.ZoomedImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.closeZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.disableZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActive
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 /**
@@ -71,21 +76,20 @@ public fun HistoryFlow(
             }
         }
 
-        // TODO
-//        BackHandler {
-//            when {
-//                controller.zoomImageController.isZoomEnable() -> {
-//                    controller.zoomImageController.closeZoomImageScreen(scope)
-//                }
-//
-//                controller.currentScreen.value == NavigationScreen.History -> {
-//                    // Use custom, because we need deactivate select mode first
-//                    controller.deactivateSelectMode()
-//                    controller.navigateBack()
-//                }
-//
-//                else -> controller.navigateBack()
-//            }
-//        }
+        BackHandler {
+            when {
+                controller.zoomImageController.isZoomEnable() -> {
+                    controller.zoomImageController.closeZoomImageScreen(scope)
+                }
+
+                controller.currentScreen.value == NavigationScreen.History -> {
+                    // Use custom, because we need deactivate select mode first
+                    controller.deactivateSelectMode()
+                    controller.navigateBack()
+                }
+
+                else -> controller.navigateBack()
+            }
+        }
     }
 }
