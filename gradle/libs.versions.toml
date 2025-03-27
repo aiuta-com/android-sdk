@@ -76,6 +76,7 @@ androidx-test-uiautomator = { module = "androidx.test.uiautomator:uiautomator", 
 
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil3-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil3" }
 compose-placeholder = { module = "io.github.fornewid:placeholder-foundation", version.ref = "compose-placeholder" }
 
 gradlePlugin-android = { module = "com.android.tools.build:gradle", version.ref = "gradle-plugin-android" }

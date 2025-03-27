@@ -13,11 +13,22 @@ androidLibraryV2(name = "com.aiuta.fashionsdk.compose")
 
 kotlin {
     sourceSets {
+        androidMain {
+            dependencies {
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
         commonMain {
             dependencies {
                 implementation(compose.components.resources)
                 implementation(compose.material)
                 implementation(libs.coil3.compose)
+                implementation(libs.coil3.network.ktor3)
+            }
+        }
+        appleMain {
+            dependencies {
+                implementation(libs.ktor.engine.darwin)
             }
         }
     }
