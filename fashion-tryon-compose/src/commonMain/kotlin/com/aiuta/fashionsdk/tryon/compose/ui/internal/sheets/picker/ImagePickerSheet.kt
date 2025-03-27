@@ -36,17 +36,16 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.actionWithPermission
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera.rememberCameraManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.gallery.rememberGalleryManager
 import dev.icerock.moko.permissions.Permission
-import dev.icerock.moko.permissions.PermissionState
 import dev.icerock.moko.permissions.PermissionsController
 import dev.icerock.moko.permissions.camera.CAMERA
 import dev.icerock.moko.permissions.compose.BindEffect
 import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
 import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import dev.icerock.moko.permissions.gallery.GALLERY
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -63,7 +62,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
 
     val factory: PermissionsControllerFactory = rememberPermissionsControllerFactory()
     val permissionsController: PermissionsController =
-        remember(factory) { factory.createPermissionsController() }
+        remember(factory) {
+            factory.createPermissionsController()
+        }
     val scope = rememberCoroutineScope()
 
     BindEffect(permissionsController)
@@ -153,6 +154,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                 },
                 onAlwaysDenied = {
                     // Show nothing
+                    controller.bottomSheetNavigator.hide()
                 },
             )
         },
@@ -221,34 +223,6 @@ private fun PickerButton(
                             .align(Alignment.BottomCenter),
                     color = theme.colors.neutral,
                 )
-            }
-        }
-    }
-}
-
-internal fun CoroutineScope.actionWithPermission(
-    permission: Permission,
-    permissionsController: PermissionsController,
-    onGranted: suspend () -> Unit,
-    onAlwaysDenied: suspend () -> Unit,
-) {
-    launch {
-        if (permissionsController.isPermissionGranted(permission)) {
-            // Permission granted, let's open camera
-            println("actionWithPermission(): permission granted")
-            onGranted()
-        } else {
-            try {
-                val permissionState = permissionsController.getPermissionState(permission)
-                println("actionWithPermission(): permission not granted, state - $permissionState")
-
-                if (permissionState == PermissionState.DeniedAlways) {
-                    onAlwaysDenied()
-                } else {
-                    permissionsController.providePermission(permission)
-                }
-            } catch (e: Exception) {
-                // Just intercept
             }
         }
     }
