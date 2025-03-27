@@ -19,10 +19,11 @@ public fun AiutaIcon(
     tint: Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current),
 ) {
     Icon(
-        painter = when (icon) {
-            is AiutaResourceIcons.AiutaResourceIcon -> painterResource(icon.resource)
-            else -> rememberAsyncImagePainter(icon.resource)
-        },
+        painter =
+            when (icon) {
+                is AiutaResourceIcons.AiutaResourceIcon -> painterResource(icon.resource)
+                else -> rememberAsyncImagePainter(icon.resource)
+            },
         contentDescription = contentDescription,
         modifier = modifier,
         tint = if (icon.shouldDrawAsIs) Color.Unspecified else tint,
