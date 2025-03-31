@@ -24,7 +24,6 @@ import com.aiuta.fashionsdk.tryon.core.tryon
 public class AiutaTryOnConfiguration private constructor(
     public val aiuta: Aiuta,
     public val features: AiutaTryOnFeatures,
-
     @Deprecated("Will be split by features")
     public val dataProvider: AiutaDataProvider?,
     @Deprecated("Will be split by features")

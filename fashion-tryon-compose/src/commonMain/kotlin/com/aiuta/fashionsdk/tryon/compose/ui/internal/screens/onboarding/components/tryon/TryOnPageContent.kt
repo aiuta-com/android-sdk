@@ -24,10 +24,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.shapes.onboardingImageLShape
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
@@ -39,7 +39,7 @@ internal fun TryOnPageContent(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val stringResources = LocalAiutaTryOnStringResources.current
+    val tryOnPageFeature = strictOnboardingFeature().tryOnPage
 
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
@@ -78,8 +78,8 @@ internal fun TryOnPageContent(
                 Modifier
                     .fillMaxWidth()
                     .weight(0.35f),
-            title = stringResources.onboardingPageTryonTopic,
-            subtitle = stringResources.onboardingPageTryonSubtopic,
+            title = tryOnPageFeature.strings.onboardingTryOnTitle,
+            subtitle = tryOnPageFeature.strings.onboardingTryOnDescription,
         )
     }
 }
@@ -91,7 +91,7 @@ private fun ImagesBlock(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val theme = LocalTheme.current
+    val onboardingFeature = strictOnboardingFeature()
 
     Box(
         modifier = modifier,
@@ -108,7 +108,7 @@ private fun ImagesBlock(
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .clip(theme.shapes.mainImage),
+                        .clip(onboardingFeature.shapes.onboardingImageLShape),
                 image = page.mainImage,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,

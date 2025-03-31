@@ -3,11 +3,11 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.icons.AiutaWelcomeScreenFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.images.AiutaWelcomeScreenFeatureImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.strings.AiutaWelcomeScreenFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.typography.AiutaWelcomeScreenFeatureTypography
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.checkFeatureAvailability
 
 public class AiutaWelcomeScreenFeature(
@@ -15,14 +15,15 @@ public class AiutaWelcomeScreenFeature(
     public val icons: AiutaWelcomeScreenFeatureIcons,
     public val strings: AiutaWelcomeScreenFeatureStrings,
     public val typography: AiutaWelcomeScreenFeatureTypography,
-): AiutaTryOnFeature
+)
 
 @Composable
 @ReadOnlyComposable
-internal fun AiutaTryOnConfiguration.welcomeScreenFeature(): AiutaWelcomeScreenFeature {
+internal fun strictWelcomeScreenFeature(): AiutaWelcomeScreenFeature {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     return checkFeatureAvailability(
         name = "AiutaWelcomeScreenFeature",
-        feature = features.welcomeScreen,
+        feature = aiutaConfiguration.features.welcomeScreen,
     )
 }
 

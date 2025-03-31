@@ -5,16 +5,9 @@ public interface AiutaWelcomeScreenFeatureStrings {
     public val welcomeDescription: String
     public val welcomeButtonStart: String
 
-    public class Default(
-        override val welcomeTitle: String,
-        override val welcomeDescription: String,
-        override val welcomeButtonStart: String,
-    ) : AiutaWelcomeScreenFeatureStrings {
-
-        public constructor() : this(
-            welcomeTitle = "Try on you",
-            welcomeDescription = "Welcome to our Virtual try-on. Try on the item directly on your photo",
-            welcomeButtonStart = "Let’s start",
-        )
+    public class Default : AiutaWelcomeScreenFeatureStrings {
+        override val welcomeTitle: String = "Try on you"
+        override val welcomeDescription: String = "Welcome to our Virtual try-on. Try on the item directly on your photo"
+        override val welcomeButtonStart: String = "Let’s start"
     }
 }

@@ -12,7 +12,6 @@ import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
@@ -31,7 +30,6 @@ internal fun OnboardingAppBar(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val titleTransition = updateTransition(onboardingController.state.value)
 
@@ -56,28 +54,25 @@ internal fun OnboardingAppBar(
                             .align(Alignment.Center),
                     transitionSpec = { transitionAnimation },
                 ) { state ->
-                    Text(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .align(Alignment.Center),
-                        text =
-                            buildAnnotatedStringFromHtml(
-                                input =
-                                    when (state) {
-                                        is TryOnPage -> stringResources.onboardingAppbarTryonPage
-                                        is BestResultPage -> stringResources.onboardingAppbarBestResultPage
-                                        is ConsentPage -> stringResources.onboardingAppbarConsentPage
-                                    },
-                                isClickable = false,
-                            ),
-                        style =
-                            theme.typography.navbar.copy(
-                                fontSynthesis = FontSynthesis.All,
-                            ),
-                        color = theme.colors.primary,
-                        textAlign = TextAlign.Center,
-                    )
+                    state.pageTitle?.let { pageTitle ->
+                        Text(
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .align(Alignment.Center),
+                            text =
+                                buildAnnotatedStringFromHtml(
+                                    input = pageTitle,
+                                    isClickable = false,
+                                ),
+                            style =
+                                theme.typography.navbar.copy(
+                                    fontSynthesis = FontSynthesis.All,
+                                ),
+                            color = theme.colors.primary,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
                 }
             }
         },

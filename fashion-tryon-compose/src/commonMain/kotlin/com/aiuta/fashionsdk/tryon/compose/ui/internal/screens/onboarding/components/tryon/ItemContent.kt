@@ -13,6 +13,8 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.shapes.onboardingImageSShape
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
 
 @Composable
 internal fun ItemContent(
@@ -22,6 +24,7 @@ internal fun ItemContent(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
+    val onboardingFeature = strictOnboardingFeature()
 
     val widthTransition =
         animateDpAsState(
@@ -35,7 +38,7 @@ internal fun ItemContent(
             label = "heightTransition",
         )
 
-    val cornerRadius = theme.shapes.onboardingImage
+    val cornerRadius = onboardingFeature.shapes.onboardingImageSShape
 
     AiutaImage(
         modifier =

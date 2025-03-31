@@ -13,8 +13,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.shapes.onboardingImageSShape
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictBestResultFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 
 @Composable
 internal fun BestResultPageItem(
@@ -22,10 +25,12 @@ internal fun BestResultPageItem(
     image: AiutaImage,
     isGoodImage: Boolean,
 ) {
-    val theme = LocalTheme.current
+    val aiutaConfiguration = LocalAiutaConfiguration.current
+    val onboardingFeature = aiutaConfiguration.strictOnboardingFeature()
+    val bestResultFeature = aiutaConfiguration.strictBestResultFeature()
 
     Box(
-        modifier = modifier.clip(theme.shapes.onboardingImage),
+        modifier = modifier.clip(onboardingFeature.shapes.onboardingImageSShape),
     ) {
         AiutaImage(
             modifier = modifier.fillMaxSize(),
@@ -42,9 +47,9 @@ internal fun BestResultPageItem(
                     .size(24.dp),
             icon =
                 if (isGoodImage) {
-                    theme.icons.checkCorrect24
+                    bestResultFeature.icons.onboardingBestResultsGood24
                 } else {
-                    theme.icons.checkNotCorrect24
+                    bestResultFeature.icons.onboardingBestResultsBad24
                 },
             contentDescription = null,
             tint = Color.Unspecified,

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
@@ -24,8 +23,8 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
@@ -44,13 +43,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val onboardingFeature = strictOnboardingFeature()
     val onboardingController = rememberOnboardingController()
 
     val generalHorizontalPadding = 16.dp
@@ -93,13 +92,13 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                 with(onboardingController) {
                     val currentState = state.value
                     when {
-                        currentState != onboardingStatesQueue.last() -> stringResources.onboardingButtonNext
+                        currentState != onboardingStatesQueue.last() -> onboardingFeature.strings.onboardingButtonNext
 
                         currentState is TryOnPage && currentState.internalPages.getOrNull(
                             onboardingController.pagerState.settledPage,
-                        ) != currentState.internalPages.last() -> stringResources.onboardingButtonNext
+                        ) != currentState.internalPages.last() -> onboardingFeature.strings.onboardingButtonNext
 
-                        else -> stringResources.onboardingButtonStart
+                        else -> onboardingFeature.strings.onboardingButtonStart
                     }
                 },
             style = FashionButtonStyles.primaryStyle(theme),

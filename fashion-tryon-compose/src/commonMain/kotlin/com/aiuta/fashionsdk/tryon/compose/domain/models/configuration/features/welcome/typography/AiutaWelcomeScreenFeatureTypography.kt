@@ -13,20 +13,21 @@ public interface AiutaWelcomeScreenFeatureTypography {
         override val welcomeTitle: TextStyle,
         override val welcomeDescription: TextStyle,
     ) : AiutaWelcomeScreenFeatureTypography {
-
         public constructor() : this(
-            welcomeTitle = TextStyle(
-                fontFamily = FontFamily.Default,
-                fontWeight = FontWeight.Black,
-                fontSize = 40.sp,
-                lineHeight = 44.sp,
-            ),
-            welcomeDescription = TextStyle(
-                fontFamily = FontFamily.Default,
-                fontWeight = FontWeight.Medium,
-                fontSize = 16.sp,
-                lineHeight = 24.sp,
-            ),
+            welcomeTitle =
+                TextStyle(
+                    fontFamily = FontFamily.Default,
+                    fontWeight = FontWeight.Black,
+                    fontSize = 40.sp,
+                    lineHeight = 44.sp,
+                ),
+            welcomeDescription =
+                TextStyle(
+                    fontFamily = FontFamily.Default,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 16.sp,
+                    lineHeight = 24.sp,
+                ),
         )
     }
 }

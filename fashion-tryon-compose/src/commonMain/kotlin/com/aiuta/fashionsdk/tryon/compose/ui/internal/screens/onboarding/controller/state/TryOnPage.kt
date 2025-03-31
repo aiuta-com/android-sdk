@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.contro
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPage
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 internal class TryOnPage(
-    aiutaImages: AiutaImages,
+    tryOnPageFeature: AiutaOnboardingTryOnPage,
 ) : OnboardingState, Iterable<TryOnPage.InternalPage> {
     @Immutable
     data class InternalPage(
@@ -19,25 +19,19 @@ internal class TryOnPage(
     }
 
     val internalPages by lazy {
-        listOf(
+        tryOnPageFeature.images.onboardingTryOnItems.map { item ->
             InternalPage(
-                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage1,
-                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage1,
-            ),
-            InternalPage(
-                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage2,
-                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage2,
-            ),
-            InternalPage(
-                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage3,
-                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage3,
-            ),
-        )
+                mainImage = item.itemPhoto,
+                itemImage = item.itemPreview,
+            )
+        }
     }
 
     override fun iterator(): Iterator<InternalPage> {
         return internalPages.iterator()
     }
+
+    override val pageTitle: String? = tryOnPageFeature.strings.onboardingTryOnPageTitle
 
     override fun pageSize(): Int {
         return internalPages.size

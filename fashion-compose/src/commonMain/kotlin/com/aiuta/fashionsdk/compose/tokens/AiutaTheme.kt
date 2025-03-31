@@ -37,12 +37,18 @@ import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
 @Immutable
 public class AiutaTheme(
     public val colors: AiutaColors,
-    public val gradients: AiutaGradients,
-    public val toggles: AiutaThemeToggles,
     public val typography: AiutaTypography,
+    @Deprecated("Will be splitted by features")
+    public val gradients: AiutaGradients,
+    @Deprecated("Will be splitted by features")
+    public val toggles: AiutaThemeToggles,
+    @Deprecated("Will be splitted by features")
     public val icons: AiutaIcons,
+    @Deprecated("Will be splitted by features")
     public val images: AiutaImages,
+    @Deprecated("Will be splitted by features")
     public val shapes: AiutaShapes,
+    @Deprecated("Will be splitted by features")
     public val watermark: AiutaImage?,
 )
 

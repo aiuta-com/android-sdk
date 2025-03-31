@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.isOnboardingFeatureAvailable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.isWelcomeScreenFeatureAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -51,10 +52,10 @@ internal fun SplashScreen(
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =
-                if (configuration.isWelcomeScreenFeatureAvailable()) {
-                    NavigationScreen.Preonboarding
-                } else {
-                    NavigationScreen.Onboarding
+                when {
+                    configuration.isWelcomeScreenFeatureAvailable() -> NavigationScreen.Preonboarding
+                    configuration.isOnboardingFeatureAvailable() -> NavigationScreen.Onboarding
+                    else -> NavigationScreen.ImageSelector
                 }
 
             navigateTo(firstOnboardingScreen)

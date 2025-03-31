@@ -25,11 +25,10 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.welcomeScreenFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.strictWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -39,11 +38,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appb
 
 @Composable
 internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val welcomeScreenFeature = aiutaConfiguration.welcomeScreenFeature()
+    val welcomeScreenFeature = strictWelcomeScreenFeature()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
@@ -80,10 +78,9 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 
 @Composable
 private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
 
-    val welcomeScreenFeature = aiutaConfiguration.welcomeScreenFeature()
+    val welcomeScreenFeature = strictWelcomeScreenFeature()
 
     Column(
         modifier = modifier.padding(horizontal = 24.dp),
