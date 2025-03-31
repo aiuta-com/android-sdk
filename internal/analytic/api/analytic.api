@@ -1,11 +1,3 @@
-public final class com/aiuta/fashionsdk/internal/analytic/BuildConfig {
-	public static final field BUILD_TYPE Ljava/lang/String;
-	public static final field DEBUG Z
-	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
-	public static final field VERSION_NAME Ljava/lang/String;
-	public fun <init> ()V
-}
-
 public final class com/aiuta/fashionsdk/internal/analytic/DefaultInternalAiutaAnalyticKt {
 	public static final fun getInternalAiutaAnalytic (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
 }
@@ -19,7 +11,6 @@ public final class com/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticF
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticFactory;
 	public final fun create (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
 	public final fun getInternalAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
-	public final fun getNetworkClient ()Lcom/aiuta/fashionsdk/network/NetworkClient;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
@@ -37,7 +28,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent$Companion {
@@ -62,7 +52,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent$Companion {
@@ -98,7 +87,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent$Companion {
@@ -144,7 +132,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent$Companion {
@@ -180,7 +167,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent$Companion {
@@ -216,7 +202,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent$Companion {
@@ -257,7 +242,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent$Companion {
@@ -297,7 +281,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyti
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent$Companion {
@@ -335,7 +318,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaSupplem
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent$Companion {
@@ -365,7 +347,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEve
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType : java/lang/Enum {
@@ -416,7 +397,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$Companion {
@@ -491,7 +471,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent$Companion {
@@ -529,7 +508,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent$$
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent$Companion {
@@ -567,7 +545,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEv
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$Companion {
@@ -609,7 +586,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/SuccessEvent
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/SuccessEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/SuccessEvent$Companion {
@@ -632,7 +608,6 @@ public synthetic class com/aiuta/fashionsdk/internal/analytic/model/TerminateEve
 	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/TerminateEvent;)V
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
 public final class com/aiuta/fashionsdk/internal/analytic/model/TerminateEvent$Companion {

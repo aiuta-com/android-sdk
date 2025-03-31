@@ -3,6 +3,7 @@ package sample.tryon
 import android.app.Application
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
+import com.aiuta.fashionsdk.context.AiutaPlatformContext
 
 class MainApplication : Application() {
     override fun onCreate() {
@@ -20,7 +21,7 @@ class MainApplication : Application() {
                         ),
                 )
                 .setSubscriptionId(BuildConfig.SAMPLES_TRYON_SUBSCRIPTION_ID)
-                .setApplication(this)
+                .setPlatformContext(AiutaPlatformContext(application = this))
                 .build()
     }
 

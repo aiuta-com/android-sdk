@@ -16,6 +16,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(
     ":internal:benchmark",
     ":samples:tryon",
+    ":samples:tryon-kmp",
 )
 
 // Public modules

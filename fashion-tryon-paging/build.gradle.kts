@@ -1,16 +1,22 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
 }
 
-androidLibrary(name = "com.aiuta.fashionsdk.tryon.paging")
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.paging")
 
-dependencies {
-    api(projects.fashionNetworkPaging)
-    api(projects.fashionTryonCore)
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api(projects.fashionTryonCore)
 
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.androidx.paging)
+                api(libs.androidx.paging.common)
+            }
+        }
+    }
 }

@@ -1,0 +1,46 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion>
+sealed interface com.aiuta.fashionsdk.authentication/AuthenticationStrategy // com.aiuta.fashionsdk.authentication/AuthenticationStrategy|null[0]
+
+final class com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy : com.aiuta.fashionsdk.authentication/AuthenticationStrategy { // com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy|null[0]
+    constructor <init>(kotlin/String) // com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy.<init>|<init>(kotlin.String){}[0]
+
+    final val apiKey // com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy.apiKey|{}apiKey[0]
+        final fun <get-apiKey>(): kotlin/String // com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy.apiKey.<get-apiKey>|<get-apiKey>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy : com.aiuta.fashionsdk.authentication/AuthenticationStrategy { // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy|null[0]
+    constructor <init>(kotlin.coroutines/SuspendFunction1<kotlin/String?, kotlin/String>) // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy.<init>|<init>(kotlin.coroutines.SuspendFunction1<kotlin.String?,kotlin.String>){}[0]
+
+    final val getJWT // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy.getJWT|{}getJWT[0]
+        final fun <get-getJWT>(): kotlin.coroutines/SuspendFunction1<kotlin/String?, kotlin/String> // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy.getJWT.<get-getJWT>|<get-getJWT>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.context/AiutaPlatformContext { // com.aiuta.fashionsdk.context/AiutaPlatformContext|null[0]
+    constructor <init>() // com.aiuta.fashionsdk.context/AiutaPlatformContext.<init>|<init>(){}[0]
+}
+
+final class com.aiuta.fashionsdk/Aiuta { // com.aiuta.fashionsdk/Aiuta|null[0]
+    final val authenticationStrategy // com.aiuta.fashionsdk/Aiuta.authenticationStrategy|{}authenticationStrategy[0]
+        final fun <get-authenticationStrategy>(): com.aiuta.fashionsdk.authentication/AuthenticationStrategy // com.aiuta.fashionsdk/Aiuta.authenticationStrategy.<get-authenticationStrategy>|<get-authenticationStrategy>(){}[0]
+    final val platformContext // com.aiuta.fashionsdk/Aiuta.platformContext|{}platformContext[0]
+        final fun <get-platformContext>(): com.aiuta.fashionsdk.context/AiutaPlatformContext // com.aiuta.fashionsdk/Aiuta.platformContext.<get-platformContext>|<get-platformContext>(){}[0]
+    final val subscriptionId // com.aiuta.fashionsdk/Aiuta.subscriptionId|{}subscriptionId[0]
+        final fun <get-subscriptionId>(): kotlin/String // com.aiuta.fashionsdk/Aiuta.subscriptionId.<get-subscriptionId>|<get-subscriptionId>(){}[0]
+
+    final class Builder { // com.aiuta.fashionsdk/Aiuta.Builder|null[0]
+        constructor <init>() // com.aiuta.fashionsdk/Aiuta.Builder.<init>|<init>(){}[0]
+
+        final fun build(): com.aiuta.fashionsdk/Aiuta // com.aiuta.fashionsdk/Aiuta.Builder.build|build(){}[0]
+        final fun setApiKey(kotlin/String): com.aiuta.fashionsdk/Aiuta.Builder // com.aiuta.fashionsdk/Aiuta.Builder.setApiKey|setApiKey(kotlin.String){}[0]
+        final fun setAuthenticationStrategy(com.aiuta.fashionsdk.authentication/AuthenticationStrategy): com.aiuta.fashionsdk/Aiuta.Builder // com.aiuta.fashionsdk/Aiuta.Builder.setAuthenticationStrategy|setAuthenticationStrategy(com.aiuta.fashionsdk.authentication.AuthenticationStrategy){}[0]
+        final fun setPlatformContext(com.aiuta.fashionsdk.context/AiutaPlatformContext): com.aiuta.fashionsdk/Aiuta.Builder // com.aiuta.fashionsdk/Aiuta.Builder.setPlatformContext|setPlatformContext(com.aiuta.fashionsdk.context.AiutaPlatformContext){}[0]
+        final fun setSubscriptionId(kotlin/String): com.aiuta.fashionsdk/Aiuta.Builder // com.aiuta.fashionsdk/Aiuta.Builder.setSubscriptionId|setSubscriptionId(kotlin.String){}[0]
+    }
+}

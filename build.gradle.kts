@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.versionName
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessExtensionPredeclare
 import kotlinx.validation.ApiValidationExtension
+import kotlinx.validation.ExperimentalBCVApi
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -18,6 +19,7 @@ buildscript {
     dependencies {
         classpath(libs.gradlePlugin.android)
         classpath(libs.gradlePlugin.kotlin)
+        classpath(libs.gradlePlugin.jetbrains.compose)
         classpath(libs.gradlePlugin.jreleaser)
     }
 }
@@ -25,6 +27,7 @@ buildscript {
 plugins {
     alias(libs.plugins.baselineProfile) apply false
     alias(libs.plugins.binaryCompatibility)
+    alias(libs.plugins.buildKonfig) apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization) apply false
     alias(libs.plugins.ksp) apply false
@@ -37,6 +40,10 @@ extensions.configure<ApiValidationExtension> {
         project.subprojects.mapNotNull { project ->
             if (project.name in publicModules) null else project.name
         }
+    @OptIn(ExperimentalBCVApi::class)
+    klib {
+        enabled = true
+    }
 }
 
 tasks.withType<DokkaMultiModuleTask>().configureEach {
@@ -88,6 +95,9 @@ allprojects {
     val configureSpotless: SpotlessExtension.() -> Unit = {
         kotlin {
             target("**/*.kt", "**/*.kts")
+            targetExclude(
+                "**/MainViewController.kt",
+            )
             ktlint(
                 libs.versions.ktlint.get(),
             ).setEditorConfigPath("${project.rootDir}/.editorconfig")

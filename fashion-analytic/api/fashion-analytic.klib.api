@@ -1,0 +1,15 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion-analytic>
+abstract interface com.aiuta.fashionsdk.analytic/AiutaAnalytic { // com.aiuta.fashionsdk.analytic/AiutaAnalytic|null[0]
+    abstract val analyticFlow // com.aiuta.fashionsdk.analytic/AiutaAnalytic.analyticFlow|{}analyticFlow[0]
+        abstract fun <get-analyticFlow>(): kotlinx.coroutines.flow/Flow<com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent> // com.aiuta.fashionsdk.analytic/AiutaAnalytic.analyticFlow.<get-analyticFlow>|<get-analyticFlow>(){}[0]
+}
+
+final val com.aiuta.fashionsdk.analytic/analytic // com.aiuta.fashionsdk.analytic/analytic|@com.aiuta.fashionsdk.Aiuta{}analytic[0]
+    final fun (com.aiuta.fashionsdk/Aiuta).<get-analytic>(): com.aiuta.fashionsdk.analytic/AiutaAnalytic // com.aiuta.fashionsdk.analytic/analytic.<get-analytic>|<get-analytic>@com.aiuta.fashionsdk.Aiuta(){}[0]

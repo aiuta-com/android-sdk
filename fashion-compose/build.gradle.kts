@@ -1,29 +1,35 @@
-import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.addAllMultiplatformTargets
+import com.aiuta.fashionsdk.androidLibraryV2
 
 plugins {
-    id("androidx.baselineprofile")
     id("com.android.library")
-    id("kotlin-android")
+    id("kotlin-multiplatform")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
-androidLibrary(
-    name = "com.aiuta.fashionsdk.compose",
-    composeLibrary = true,
-)
+addAllMultiplatformTargets()
+androidLibraryV2(name = "com.aiuta.fashionsdk.compose")
 
-baselineProfile {
-    mergeIntoMain = true
-    saveInSrc = true
-    baselineProfileOutputDir = ""
-    filter {
-        include("com.aiuta.fashionsdk.**")
+kotlin {
+    sourceSets {
+        androidMain {
+            dependencies {
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
+        commonMain {
+            dependencies {
+                implementation(compose.components.resources)
+                implementation(compose.material)
+                implementation(libs.coil3.compose)
+                implementation(libs.coil3.network.ktor3)
+            }
+        }
+        appleMain {
+            dependencies {
+                implementation(libs.ktor.engine.darwin)
+            }
+        }
     }
-}
-
-dependencies {
-    baselineProfile(projects.internal.benchmark)
-
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.coil.compose)
 }
