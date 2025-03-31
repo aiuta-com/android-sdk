@@ -27,10 +27,10 @@ fun MainViewController() = ComposeUIViewController {
             .setAuthenticationStrategy(
                 authenticationStrategy =
                     ApiKeyAuthenticationStrategy(
-                        apiKey = "OLDDEMO", // TODO
+                        apiKey = "TODO",
                     ),
             )
-            .setSubscriptionId("OLDDEMO") // TODO
+            .setSubscriptionId("TODO")
             .setPlatformContext(AiutaPlatformContext())
             .build()
     }
