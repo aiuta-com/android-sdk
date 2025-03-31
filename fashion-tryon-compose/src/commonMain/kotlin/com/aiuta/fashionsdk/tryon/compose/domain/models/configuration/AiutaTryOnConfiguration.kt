@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.analytic.configure.sendConfigurationEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dimensions.AiutaDimensions
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.AiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.meta.HostMetadata
@@ -22,10 +23,17 @@ import com.aiuta.fashionsdk.tryon.core.tryon
 @Immutable
 public class AiutaTryOnConfiguration private constructor(
     public val aiuta: Aiuta,
+    public val features: AiutaTryOnFeatures,
+
+    @Deprecated("Will be split by features")
     public val dataProvider: AiutaDataProvider?,
+    @Deprecated("Will be split by features")
     public val dimensions: AiutaDimensions?,
+    @Deprecated("Will be split by features")
     public val language: AiutaTryOnLanguage,
+    @Deprecated("Will be split by features")
     public val hostMetadata: HostMetadata,
+    @Deprecated("Will be split by features")
     public val toggles: AiutaToggles,
 ) {
     internal val aiutaTryOn by lazy { aiuta.tryon }
@@ -36,6 +44,7 @@ public class AiutaTryOnConfiguration private constructor(
      */
     public class Builder {
         private var aiuta: Aiuta? = null
+        private var features: AiutaTryOnFeatures? = null
         private var dataProvider: AiutaDataProvider? = null
         private var dimensions: AiutaDimensions? = null
         private var language: AiutaTryOnLanguage? = null
@@ -44,6 +53,10 @@ public class AiutaTryOnConfiguration private constructor(
 
         public fun setAiuta(aiuta: Aiuta): Builder {
             return apply { this.aiuta = aiuta }
+        }
+
+        public fun setFeatures(features: AiutaTryOnFeatures): Builder {
+            return apply { this.features = features }
         }
 
         public fun setDataProvider(dataProvider: AiutaDataProvider): Builder {
@@ -82,9 +95,15 @@ public class AiutaTryOnConfiguration private constructor(
                     property = "language",
                     methodToCall = "setLanguage()",
                 )
+            val internalFeatures =
+                this.features.checkNotNullWithDescription(
+                    property = "features",
+                    methodToCall = "setFeatures()",
+                )
 
             return AiutaTryOnConfiguration(
                 aiuta = internalAiuta,
+                features = internalFeatures,
                 dataProvider = dataProvider,
                 dimensions = dimensions,
                 language = internalLanguage,

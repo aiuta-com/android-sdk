@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -50,7 +51,7 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
 
             NavigationScreen.Preonboarding -> {
                 PreOnboardingScreen(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = sharedModifier,
                 )
             }
 

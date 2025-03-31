@@ -13,6 +13,7 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
+import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -272,6 +273,10 @@ private fun <T : BaseExtension> Project.androidBaseV2(
     }
     plugins.withId("org.jetbrains.kotlin.multiplatform") {
         extensions.configure<KotlinMultiplatformExtension> {
+            if (project.name in publicModules) {
+                explicitApi = ExplicitApiMode.Strict
+            }
+
             targets.configureEach {
                 compilations.configureEach {
                     // https://youtrack.jetbrains.com/issue/KT-61573#focus=Comments-27-9822729.0-0

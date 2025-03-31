@@ -25,9 +25,11 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -37,8 +39,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appb
 
 @Composable
 internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val theme = LocalTheme.current
+
+    val welcomeScreenFeature = aiutaConfiguration.welcomeScreenFeature()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
@@ -46,14 +51,12 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
         modifier = modifier.background(theme.colors.background),
         contentAlignment = Alignment.Center,
     ) {
-        theme.images?.preonboardingImage?.let { preonboardingImage ->
-            AiutaImage(
-                modifier = Modifier.fillMaxSize(),
-                image = preonboardingImage,
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-        }
+        AiutaImage(
+            modifier = Modifier.fillMaxSize(),
+            image = welcomeScreenFeature.images.welcomeBackground,
+            contentScale = ContentScale.Crop,
+            contentDescription = null,
+        )
 
         AppBar(
             modifier =
@@ -77,9 +80,10 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 
 @Composable
 private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
-    val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val welcomeScreenFeature = aiutaConfiguration.welcomeScreenFeature()
 
     Column(
         modifier = modifier.padding(horizontal = 24.dp),
@@ -87,7 +91,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
     ) {
         AiutaIcon(
             modifier = Modifier.size(82.dp),
-            icon = theme.icons.welcomeScreen82,
+            icon = welcomeScreenFeature.icons.welcome82,
             contentDescription = null,
             tint = Color.Unspecified,
         )
@@ -95,8 +99,8 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = stringResources.preOnboardingTitle,
-            style = theme.typography.titleXL,
+            text = welcomeScreenFeature.strings.welcomeTitle,
+            style = welcomeScreenFeature.typography.welcomeTitle,
             color = Color.White,
             textAlign = TextAlign.Center,
         )
@@ -104,8 +108,8 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = stringResources.preOnboardingSubtitle,
-            style = theme.typography.welcomeText,
+            text = welcomeScreenFeature.strings.welcomeDescription,
+            style = welcomeScreenFeature.typography.welcomeDescription,
             color = Color.White,
             textAlign = TextAlign.Center,
         )
