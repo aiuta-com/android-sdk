@@ -14,9 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.toggles.isStandard
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.consentBuiltInFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
@@ -26,16 +24,16 @@ internal fun SmallConsentContent(
     modifier: Modifier = Modifier,
     onboardingController: OnboardingController,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
+
+    val consentBuiltInFeature = consentBuiltInFeature()
 
     val isVisible =
         remember(
             onboardingController.state.value,
         ) {
             derivedStateOf {
-                onboardingController.state.value is TryOnPage && aiutaConfiguration.toggles.onboardingMode.isStandard()
+                onboardingController.state.value is TryOnPage && consentBuiltInFeature != null
             }
         }
 
@@ -43,21 +41,23 @@ internal fun SmallConsentContent(
         modifier = modifier,
         visible = isVisible.value,
     ) {
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-        ) {
-            Spacer(Modifier.height(24.dp))
+        consentBuiltInFeature?.let {
+            Column(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+            ) {
+                Spacer(Modifier.height(24.dp))
 
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = buildAnnotatedStringFromHtml(stringResources.onboardingPageTryonConsent),
-                style = theme.typography.productName,
-                color = theme.colors.secondary,
-                textAlign = TextAlign.Center,
-            )
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = buildAnnotatedStringFromHtml(consentBuiltInFeature.strings.consentHtml),
+                    style = theme.typography.productName,
+                    color = theme.colors.secondary,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
     }
 }

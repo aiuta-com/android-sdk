@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.SupplementaryConsent
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -39,6 +40,7 @@ internal fun OnboardingController.nextPage(
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
             val skuItem = controller.activeSKUItem.value
+            val consentStandaloneFeature = configuration.features.consent as? AiutaConsentFeature.StandaloneOnboardingPage
 
             // Close onboarding and move on
             controller.onboardingInteractor.setOnboardingAsFinished()
@@ -57,7 +59,9 @@ internal fun OnboardingController.nextPage(
                 productId = skuItem.skuId,
                 supplementaryConsents = supplementaryConsents,
             )
-            configuration.dataProvider?.obtainUserConsentAction?.invoke(supplementaryConsents)
+            consentStandaloneFeature?.dataProvider?.obtainUserConsentAction?.invoke(
+                supplementaryConsents,
+            )
 
             // Finish
             controller.sendOnboardingEvent(

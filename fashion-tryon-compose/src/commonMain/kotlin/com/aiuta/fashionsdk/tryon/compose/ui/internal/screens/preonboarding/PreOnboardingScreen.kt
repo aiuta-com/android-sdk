@@ -29,7 +29,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.w
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
@@ -134,7 +133,7 @@ private fun StartButton(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+    val welcomeScreenFeature = strictWelcomeScreenFeature()
 
     Box(
         modifier =
@@ -146,7 +145,7 @@ private fun StartButton(
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = stringResources.preOnboardingButton,
+            text = welcomeScreenFeature.strings.welcomeButtonStart,
             style = theme.typography.button,
             color = theme.colors.primary,
             textAlign = TextAlign.Center,

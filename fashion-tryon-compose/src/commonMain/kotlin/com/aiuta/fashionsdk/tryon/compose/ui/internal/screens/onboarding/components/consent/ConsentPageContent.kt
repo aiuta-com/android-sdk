@@ -28,9 +28,8 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.strictConsentStandaloneFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateMandatoryAgreementState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateSupplementAgreementState
@@ -44,12 +43,11 @@ internal fun ConsentPageContent(
     onboardingController: OnboardingController,
 ) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
 
+    val consentStandaloneFeature = strictConsentStandaloneFeature()
     val supplementaryPoints =
         remember {
-            stringResources.onboardingPageConsentSupplementaryPoints.take(5)
+            consentStandaloneFeature.strings.optionalConsentsHtml.take(5)
         }
 
     sendPageEvent(pageId = AiutaAnalyticPageId.CONSENT)
@@ -66,7 +64,7 @@ internal fun ConsentPageContent(
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResources.onboardingPageConsentTopic,
+                text = consentStandaloneFeature.strings.consentTitle,
                 style = theme.typography.titleL,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Start,
@@ -76,7 +74,10 @@ internal fun ConsentPageContent(
 
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = buildAnnotatedStringFromHtml(stringResources.onboardingPageConsentBody),
+                text =
+                    buildAnnotatedStringFromHtml(
+                        consentStandaloneFeature.strings.consentDescriptionHtml,
+                    ),
                 style = theme.typography.regular,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Start,
@@ -91,13 +92,13 @@ internal fun ConsentPageContent(
         ) {
             AgreePoint(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResources.onboardingPageConsentAgreePoint,
+                text = consentStandaloneFeature.strings.mandatoryConsentHtml,
                 isAgreementChecked = onboardingController.isMandatoryAgreementChecked.value,
                 onAgreementCheckedChange = onboardingController::updateMandatoryAgreementState,
             )
         }
 
-        if (aiutaConfiguration.dataProvider != null) {
+        consentStandaloneFeature.dataProvider?.let {
             itemsIndexed(
                 items = supplementaryPoints,
                 key = { _, point -> point },
@@ -125,7 +126,7 @@ internal fun ConsentPageContent(
             }
         }
 
-        stringResources.onboardingPageConsentFooter?.let { footerText ->
+        consentStandaloneFeature.strings.consentFooterHtml?.let { footerText ->
             item(
                 key = "CONSENT_FOOTER",
                 contentType = { "CONSENT_FOOTER" },

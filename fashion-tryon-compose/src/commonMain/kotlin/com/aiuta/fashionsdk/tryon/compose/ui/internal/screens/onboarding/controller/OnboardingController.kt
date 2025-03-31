@@ -9,17 +9,18 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.AiutaConsentFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.consentFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
-    val stringResources = LocalAiutaTryOnStringResources.current
-
+    val consentFeature = consentFeature()
     val onboardingFeature = strictOnboardingFeature()
 
     val onboardingStatesQueue =
@@ -35,7 +36,9 @@ internal fun rememberOnboardingController(): OnboardingController {
             }
 
             // Consent
-            // TODO
+            if (consentFeature is AiutaConsentFeature.StandaloneOnboardingPage) {
+                rawOnboardingQueue.add(ConsentPage(consentFeature))
+            }
 
             rawOnboardingQueue
         }
@@ -48,7 +51,11 @@ internal fun rememberOnboardingController(): OnboardingController {
 
     return remember {
         OnboardingController(
-            supplementPoint = stringResources.onboardingPageConsentSupplementaryPoints, // TODO
+            supplementPoint =
+                (consentFeature as? AiutaConsentFeature.StandaloneOnboardingPage)
+                    ?.strings
+                    ?.optionalConsentsHtml
+                    .orEmpty(),
             onboardingStatesQueue = onboardingStatesQueue,
             pagerState = pagerState,
             scope = scope,

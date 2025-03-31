@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.consentStandaloneFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.isOnboardingFeatureAvailable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.isWelcomeScreenFeatureAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -25,6 +26,8 @@ internal fun SplashScreen(
     val configuration = LocalAiutaConfiguration.current
     val dataController = LocalAiutaTryOnDataController.current
 
+    val consentStandaloneFeature = consentStandaloneFeature()
+
     LaunchedEffect(Unit) {
         // Try to preload config
         launch { dataController.preloadConfig() }
@@ -44,7 +47,7 @@ internal fun SplashScreen(
 
         // Solve should show onboarding or not
         val isUserConsentObtainedFlowRaw =
-            configuration.dataProvider?.isUserConsentObtainedFlow?.value
+            consentStandaloneFeature?.dataProvider?.isUserConsentObtainedFlow?.value
         val shouldShowOnboardingFromHost =
             isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
         val shouldShowOnboarding =

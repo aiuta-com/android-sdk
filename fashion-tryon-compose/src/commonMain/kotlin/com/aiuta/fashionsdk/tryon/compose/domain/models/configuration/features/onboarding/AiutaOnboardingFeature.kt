@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.checkFeatur
 
 public class AiutaOnboardingFeature(
     public val tryOnPage: AiutaOnboardingTryOnPage,
-    public val bestResultsPage: AiutaOnboardingBestResultsPage?,
+    public val bestResultsPage: AiutaOnboardingBestResultsPage? = null,
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
 )

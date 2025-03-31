@@ -1,8 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state
 
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.AiutaConsentFeature
+
 internal class ConsentPage(
-    // TODO Add consent page feature
+    consentStandaloneFeature: AiutaConsentFeature.StandaloneOnboardingPage,
 ) : OnboardingState {
-    override val pageTitle: String?
-        get() = TODO("Not yet implemented")
+    override val pageTitle: String? = consentStandaloneFeature.strings.consentPageTitle
 }
