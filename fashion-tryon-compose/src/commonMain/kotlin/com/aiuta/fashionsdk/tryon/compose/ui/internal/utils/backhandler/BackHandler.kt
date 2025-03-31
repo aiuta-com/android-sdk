@@ -4,4 +4,7 @@ import androidx.compose.runtime.Composable
 
 // TODO Migrate to Jetbrains realization after release 1.8.0
 @Composable
-internal expect fun BackHandler(enabled: Boolean = true, onBack: () -> Unit)
+internal expect fun BackHandler(
+    enabled: Boolean = true,
+    onBack: () -> Unit,
+)
