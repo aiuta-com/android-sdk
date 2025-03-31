@@ -1,11 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.ReadOnlyComposable
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.AiutaWelcomeScreenFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.checkFeatureAvailability
 
 @Immutable
 public class AiutaTryOnFeatures private constructor(
@@ -29,11 +25,3 @@ public class AiutaTryOnFeatures private constructor(
     }
 }
 
-@Composable
-@ReadOnlyComposable
-internal fun AiutaTryOnConfiguration.welcomeScreenFeature(): AiutaWelcomeScreenFeature {
-    return checkFeatureAvailability(
-        name = "AiutaWelcomeScreenFeature",
-        feature = features.welcomeScreen,
-    )
-}
