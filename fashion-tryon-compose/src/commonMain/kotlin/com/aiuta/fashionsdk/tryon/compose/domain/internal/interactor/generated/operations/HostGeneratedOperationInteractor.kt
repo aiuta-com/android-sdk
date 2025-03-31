@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaDataProvider
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaHistoryImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toOperationUiModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toPublic
+import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toPublic
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

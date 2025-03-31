@@ -2,14 +2,13 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.AiutaTryOnLanguage
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.RussianLanguage
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.TurkishLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.EnglishAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.RussianAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.TurkishAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.AiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.CustomLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.EnglishLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.RussianLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TurkishLanguage
 
 @Composable
 internal fun resolveInternalLanguage(
@@ -46,6 +45,6 @@ private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTr
                 onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
             )
 
-        is CustomLanguage -> language
+        else -> language as CustomLanguage
     }
 }

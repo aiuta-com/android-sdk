@@ -10,10 +10,10 @@ import coil3.compose.setSingletonImageLoaderFactory
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController

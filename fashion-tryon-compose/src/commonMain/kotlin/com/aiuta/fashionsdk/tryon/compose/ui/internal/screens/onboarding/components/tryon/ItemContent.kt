@@ -13,8 +13,8 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.shapes.onboardingImageSShape
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.shapes.onboardingImageSShape
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictOnboardingFeature
 
 @Composable
 internal fun ItemContent(

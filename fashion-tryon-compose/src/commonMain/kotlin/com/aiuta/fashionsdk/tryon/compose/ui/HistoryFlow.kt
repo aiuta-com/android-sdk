@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
-import com.aiuta.fashionsdk.tryon.compose.domain.models.DefaultSKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -92,4 +92,15 @@ public fun HistoryFlow(
             }
         }
     }
+}
+
+internal val DefaultSKUItem by lazy {
+    SKUItem(
+        skuId = "",
+        description = "",
+        imageUrls = emptyList(),
+        localizedPrice = "",
+        store = "",
+        inWishlist = false,
+    )
 }

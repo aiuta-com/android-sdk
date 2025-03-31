@@ -5,8 +5,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toImageUiModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toOperationUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGeneratedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteUploadedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController

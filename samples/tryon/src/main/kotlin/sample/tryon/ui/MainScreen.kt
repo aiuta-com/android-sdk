@@ -9,10 +9,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.EnglishLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
+import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
 import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages

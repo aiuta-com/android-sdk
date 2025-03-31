@@ -14,10 +14,9 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.shapes.onboardingImageSShape
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictBestResultFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.strictOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.shapes.onboardingImageSShape
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictBestResultFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictOnboardingFeature
 
 @Composable
 internal fun BestResultPageItem(
@@ -25,9 +24,8 @@ internal fun BestResultPageItem(
     image: AiutaImage,
     isGoodImage: Boolean,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val onboardingFeature = aiutaConfiguration.strictOnboardingFeature()
-    val bestResultFeature = aiutaConfiguration.strictBestResultFeature()
+    val onboardingFeature = strictOnboardingFeature()
+    val bestResultFeature = strictBestResultFeature()
 
     Box(
         modifier = modifier.clip(onboardingFeature.shapes.onboardingImageSShape),

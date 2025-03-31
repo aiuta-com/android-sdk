@@ -31,6 +31,7 @@ include(
     ":fashion-network",
     ":fashion-network-paging",
     ":fashion-tryon-compose",
+    ":fashion-tryon-compose-configuration",
     ":fashion-tryon-core",
     ":fashion-tryon-paging",
 )

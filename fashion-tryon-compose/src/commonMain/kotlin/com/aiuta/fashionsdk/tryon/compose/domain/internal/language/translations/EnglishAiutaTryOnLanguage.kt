@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations
 
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.TranslationWord
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
 
 internal class EnglishAiutaTryOnLanguage(
     brand: String,

@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.language
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.TranslationWord
+import com.aiuta.fashionsdk.tryon.compose.configuration.language.TranslationWord
 
 @Immutable
 internal interface InternalAiutaTryOnLanguage {
@@ -99,8 +99,3 @@ internal interface InternalAiutaTryOnLanguage {
     val share: String
     val defaultErrorMessage: String
 }
-
-internal class Plurals(
-    val one: String,
-    val other: String,
-)

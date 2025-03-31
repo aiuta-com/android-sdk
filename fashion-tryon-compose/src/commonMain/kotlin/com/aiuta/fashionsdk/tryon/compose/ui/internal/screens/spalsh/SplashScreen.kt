@@ -4,9 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.consent.consentStandaloneFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.onboarding.isOnboardingFeatureAvailable
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.features.welcome.isWelcomeScreenFeatureAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -14,6 +11,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.consent.consentStandaloneFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.isOnboardingFeatureAvailable
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.welcome.isWelcomeScreenFeatureAvailable
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
