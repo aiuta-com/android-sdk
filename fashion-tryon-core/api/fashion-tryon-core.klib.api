@@ -36,39 +36,53 @@ sealed interface com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationCont
 }
 
 sealed interface com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus|null[0]
+    abstract val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.statusId|{}statusId[0]
+        abstract fun <get-statusId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.statusId.<get-statusId>|<get-statusId>(){}[0]
+
     sealed interface LoadingGenerationStatus : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus|null[0]
         final class GenerationProcessing : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing|null[0]
-            constructor <init>(kotlin/String, kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.<init>|<init>(kotlin.String;kotlin.String){}[0]
+            constructor <init>(kotlin/String, kotlin/String, kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.<init>|<init>(kotlin.String;kotlin.String;kotlin.String){}[0]
 
             final val sourceImageId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.sourceImageId|{}sourceImageId[0]
                 final fun <get-sourceImageId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.sourceImageId.<get-sourceImageId>|<get-sourceImageId>(){}[0]
             final val sourceImageUrl // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.sourceImageUrl|{}sourceImageUrl[0]
                 final fun <get-sourceImageUrl>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.sourceImageUrl.<get-sourceImageUrl>|<get-sourceImageUrl>(){}[0]
+            final val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.statusId|{}statusId[0]
+                final fun <get-statusId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing.statusId.<get-statusId>|<get-statusId>(){}[0]
+        }
+
+        final class StartGeneration : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.StartGeneration|null[0]
+            constructor <init>(kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.StartGeneration.<init>|<init>(kotlin.String){}[0]
+
+            final val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.StartGeneration.statusId|{}statusId[0]
+                final fun <get-statusId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.StartGeneration.statusId.<get-statusId>|<get-statusId>(){}[0]
         }
 
         final class UploadedSourceImage : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage|null[0]
-            constructor <init>(kotlin/String, kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.<init>|<init>(kotlin.String;kotlin.String){}[0]
+            constructor <init>(kotlin/String, kotlin/String, kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.<init>|<init>(kotlin.String;kotlin.String;kotlin.String){}[0]
 
             final val sourceImageId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.sourceImageId|{}sourceImageId[0]
                 final fun <get-sourceImageId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.sourceImageId.<get-sourceImageId>|<get-sourceImageId>(){}[0]
             final val sourceImageUrl // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.sourceImageUrl|{}sourceImageUrl[0]
                 final fun <get-sourceImageUrl>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.sourceImageUrl.<get-sourceImageUrl>|<get-sourceImageUrl>(){}[0]
+            final val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.statusId|{}statusId[0]
+                final fun <get-statusId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage.statusId.<get-statusId>|<get-statusId>(){}[0]
         }
-
-        final object StartGeneration : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.LoadingGenerationStatus.StartGeneration|null[0]
     }
 
     final class ErrorGenerationStatus : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus|null[0]
-        constructor <init>(kotlin/String? = ..., kotlin/Exception? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.<init>|<init>(kotlin.String?;kotlin.Exception?){}[0]
+        constructor <init>(kotlin/String, kotlin/String? = ..., kotlin/Exception? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.<init>|<init>(kotlin.String;kotlin.String?;kotlin.Exception?){}[0]
 
         final val errorMessage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.errorMessage|{}errorMessage[0]
             final fun <get-errorMessage>(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.errorMessage.<get-errorMessage>|<get-errorMessage>(){}[0]
         final val exception // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.exception|{}exception[0]
             final fun <get-exception>(): kotlin/Exception? // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.exception.<get-exception>|<get-exception>(){}[0]
+        final val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.statusId|{}statusId[0]
+            final fun <get-statusId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.ErrorGenerationStatus.statusId.<get-statusId>|<get-statusId>(){}[0]
     }
 
     final class SuccessGenerationStatus : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus|null[0]
-        constructor <init>(kotlin/String, kotlin/String, kotlin.collections/List<com.aiuta.fashionsdk.tryon.core.domain.models/SKUGeneratedImage> = ..., com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.<init>|<init>(kotlin.String;kotlin.String;kotlin.collections.List<com.aiuta.fashionsdk.tryon.core.domain.models.SKUGeneratedImage>;com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata){}[0]
+        constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin.collections/List<com.aiuta.fashionsdk.tryon.core.domain.models/SKUGeneratedImage> = ..., com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.collections.List<com.aiuta.fashionsdk.tryon.core.domain.models.SKUGeneratedImage>;com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata){}[0]
 
         final val images // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.images|{}images[0]
             final fun <get-images>(): kotlin.collections/List<com.aiuta.fashionsdk.tryon.core.domain.models/SKUGeneratedImage> // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.images.<get-images>|<get-images>(){}[0]
@@ -78,16 +92,18 @@ sealed interface com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStat
             final fun <get-sourceImageId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.sourceImageId.<get-sourceImageId>|<get-sourceImageId>(){}[0]
         final val sourceImageUrl // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.sourceImageUrl|{}sourceImageUrl[0]
             final fun <get-sourceImageUrl>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.sourceImageUrl.<get-sourceImageUrl>|<get-sourceImageUrl>(){}[0]
+        final val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.statusId|{}statusId[0]
+            final fun <get-statusId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationStatus.SuccessGenerationStatus.statusId.<get-statusId>|<get-statusId>(){}[0]
     }
 }
 
-final class com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage { // com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage|null[0]
-    constructor <init>(platform.UIKit/UIImage) // com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage.<init>|<init>(platform.UIKit.UIImage){}[0]
+final class com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage { // com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage|null[0]
+    constructor <init>(platform.UIKit/UIImage) // com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage.<init>|<init>(platform.UIKit.UIImage){}[0]
 
-    final val byteArray // com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage.byteArray|{}byteArray[0]
-        final fun <get-byteArray>(): kotlin/ByteArray // com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage.byteArray.<get-byteArray>|<get-byteArray>(){}[0]
-    final val imageBitmap // com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage.imageBitmap|{}imageBitmap[0]
-        final fun <get-imageBitmap>(): androidx.compose.ui.graphics/ImageBitmap // com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage.imageBitmap.<get-imageBitmap>|<get-imageBitmap>(){}[0]
+    final val byteArray // com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage.byteArray|{}byteArray[0]
+        final fun <get-byteArray>(): kotlin/ByteArray // com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage.byteArray.<get-byteArray>|<get-byteArray>(){}[0]
+    final val imageBitmap // com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage.imageBitmap|{}imageBitmap[0]
+        final fun <get-imageBitmap>(): androidx.compose.ui.graphics/ImageBitmap // com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage.imageBitmap.<get-imageBitmap>|<get-imageBitmap>(){}[0]
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata { // com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata|null[0]
@@ -167,10 +183,10 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationItem { //
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer : com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationContainer { // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer|null[0]
-    constructor <init>(com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage, kotlin/String, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.<init>|<init>(com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage;kotlin.String;kotlin.String?){}[0]
+    constructor <init>(com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage, kotlin/String, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.<init>|<init>(com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage;kotlin.String;kotlin.String?){}[0]
 
-    final val platformImage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.platformImage|{}platformImage[0]
-        final fun <get-platformImage>(): com.aiuta.fashionsdk.tryon.core.domain.models.image/PlatformImage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.platformImage.<get-platformImage>|<get-platformImage>(){}[0]
+    final val aiutaPlatformImage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.aiutaPlatformImage|{}aiutaPlatformImage[0]
+        final fun <get-aiutaPlatformImage>(): com.aiuta.fashionsdk.tryon.core.domain.models.image/AiutaPlatformImage // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.aiutaPlatformImage.<get-aiutaPlatformImage>|<get-aiutaPlatformImage>(){}[0]
     final val skuCatalogName // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.skuCatalogName|{}skuCatalogName[0]
         final fun <get-skuCatalogName>(): kotlin/String? // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.skuCatalogName.<get-skuCatalogName>|<get-skuCatalogName>(){}[0]
     final val skuId // com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationPlatformImageContainer.skuId|{}skuId[0]
@@ -217,7 +233,7 @@ final val com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_f
 final val com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO$stableprop // com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO$stableprop[0]
 final val com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO_$serializer$stableprop // com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO_$serializer$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO_$serializer$stableprop[0]
 final val com.aiuta.fashionsdk.tryon.core.domain.models.compressor/com_aiuta_fashionsdk_tryon_core_domain_models_compressor_CompressionConfig$stableprop // com.aiuta.fashionsdk.tryon.core.domain.models.compressor/com_aiuta_fashionsdk_tryon_core_domain_models_compressor_CompressionConfig$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_domain_models_compressor_CompressionConfig$stableprop[0]
-final val com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_PlatformImage$stableprop // com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_PlatformImage$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_domain_models_image_PlatformImage$stableprop[0]
+final val com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_AiutaPlatformImage$stableprop // com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_AiutaPlatformImage$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_domain_models_image_AiutaPlatformImage$stableprop[0]
 final val com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata$stableprop // com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata$stableprop[0]
 final val com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata_Builder$stableprop // com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata_Builder$stableprop|#static{}com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata_Builder$stableprop[0]
 final val com.aiuta.fashionsdk.tryon.core.domain.models.policies/DefaultAiutaTryOnRetryPolicies // com.aiuta.fashionsdk.tryon.core.domain.models.policies/DefaultAiutaTryOnRetryPolicies|{}DefaultAiutaTryOnRetryPolicies[0]
@@ -260,7 +276,7 @@ final fun com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_f
 final fun com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO$stableprop_getter|com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO_$serializer$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models/com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO_$serializer$stableprop_getter|com_aiuta_fashionsdk_tryon_core_data_datasource_sku_models_SKUItemDTO_$serializer$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.tryon.core.domain.models.compressor/com_aiuta_fashionsdk_tryon_core_domain_models_compressor_CompressionConfig$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models.compressor/com_aiuta_fashionsdk_tryon_core_domain_models_compressor_CompressionConfig$stableprop_getter|com_aiuta_fashionsdk_tryon_core_domain_models_compressor_CompressionConfig$stableprop_getter(){}[0]
-final fun com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_PlatformImage$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_PlatformImage$stableprop_getter|com_aiuta_fashionsdk_tryon_core_domain_models_image_PlatformImage$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_AiutaPlatformImage$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models.image/com_aiuta_fashionsdk_tryon_core_domain_models_image_AiutaPlatformImage$stableprop_getter|com_aiuta_fashionsdk_tryon_core_domain_models_image_AiutaPlatformImage$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata$stableprop_getter|com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models.meta/com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata_Builder$stableprop_getter|com_aiuta_fashionsdk_tryon_core_domain_models_meta_AiutaTryOnMetadata_Builder$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.tryon.core.domain.models.policies/com_aiuta_fashionsdk_tryon_core_domain_models_policies_AiutaTryOnRetryPolicies$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.tryon.core.domain.models.policies/com_aiuta_fashionsdk_tryon_core_domain_models_policies_AiutaTryOnRetryPolicies$stableprop_getter|com_aiuta_fashionsdk_tryon_core_domain_models_policies_AiutaTryOnRetryPolicies$stableprop_getter(){}[0]
