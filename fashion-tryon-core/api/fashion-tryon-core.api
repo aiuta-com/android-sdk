@@ -50,23 +50,24 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationIt
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationPlatformImageContainer : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getAiutaPlatformImage ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage;
+	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAiutaPlatformImage ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage;
 	public fun getSkuCatalogName ()Ljava/lang/String;
 	public fun getSkuId ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
+	public abstract fun getStatusId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$ErrorGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
 	public static final field $stable I
-	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/Exception;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Exception;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Exception;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Exception;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getErrorMessage ()Ljava/lang/String;
 	public final fun getException ()Ljava/lang/Exception;
+	public fun getStatusId ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
@@ -74,31 +75,35 @@ public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SK
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$GenerationProcessing : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public final fun getSourceImageId ()Ljava/lang/String;
 	public final fun getSourceImageUrl ()Ljava/lang/String;
+	public fun getStatusId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$StartGeneration : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus {
 	public static final field $stable I
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$StartGeneration;
+	public fun <init> (Ljava/lang/String;)V
+	public fun getStatusId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus$UploadedSourceImage : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$LoadingGenerationStatus {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public final fun getSourceImageId ()Ljava/lang/String;
 	public final fun getSourceImageUrl ()Ljava/lang/String;
+	public fun getStatusId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus$SuccessGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getImages ()Ljava/util/List;
 	public final fun getMetadata ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;
 	public final fun getSourceImageId ()Ljava/lang/String;
 	public final fun getSourceImageUrl ()Ljava/lang/String;
+	public fun getStatusId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUrlContainer : com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
@@ -111,9 +116,10 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUr
 	public fun getSkuId ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/image/PlatformImage {
+public final class com/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage {
 	public static final field $stable I
 	public fun <init> (Landroid/graphics/Bitmap;)V
+	public final fun getBitmap ()Landroid/graphics/Bitmap;
 	public final fun getByteArray ()[B
 	public final fun getImageBitmap ()Landroidx/compose/ui/graphics/ImageBitmap;
 }
