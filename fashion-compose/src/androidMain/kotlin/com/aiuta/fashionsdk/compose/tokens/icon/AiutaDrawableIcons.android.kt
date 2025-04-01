@@ -33,7 +33,7 @@ public class AiutaDrawableIcons(
     public override val history24: AiutaDrawableIcon,
     public override val magic20: AiutaDrawableIcon,
     public override val photoLibrary24: AiutaDrawableIcon,
-    public override val selectModel24: AiutaIcons.AiutaIcon,
+    public override val selectModel24: AiutaDrawableIcon,
     public override val share24: AiutaDrawableIcon,
     public override val wishlist24: AiutaDrawableIcon,
     public override val wishlistFill24: AiutaDrawableIcon,
@@ -45,9 +45,9 @@ public class AiutaDrawableIcons(
     public override val arrow16: AiutaDrawableIcon,
     // x14
     public override val loading14: AiutaDrawableIcon,
-) : AiutaIcons {
-    public class AiutaDrawableIcon(
-        public override val resource: Drawable,
-        public override val shouldDrawAsIs: Boolean = false,
-    ) : AiutaIcons.AiutaIcon
-}
+) : AiutaIcons
+
+public class AiutaDrawableIcon(
+    public override val resource: Drawable,
+    public override val shouldDrawAsIs: Boolean = false,
+) : AiutaIcon

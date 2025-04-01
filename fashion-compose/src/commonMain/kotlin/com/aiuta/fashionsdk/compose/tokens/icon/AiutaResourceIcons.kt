@@ -45,9 +45,9 @@ public class AiutaResourceIcons(
     public override val arrow16: AiutaResourceIcon,
     // x14
     public override val loading14: AiutaResourceIcon,
-) : AiutaIcons {
-    public class AiutaResourceIcon(
-        public override val resource: DrawableResource,
-        public override val shouldDrawAsIs: Boolean = false,
-    ) : AiutaIcons.AiutaIcon
-}
+) : AiutaIcons
+
+public class AiutaResourceIcon(
+    public override val resource: DrawableResource,
+    public override val shouldDrawAsIs: Boolean = false,
+) : AiutaIcon

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 
 @Composable
@@ -39,7 +39,7 @@ internal fun AppBar(
 @Composable
 internal fun AppBarIcon(
     modifier: Modifier = Modifier,
-    icon: AiutaIcons.AiutaIcon,
+    icon: AiutaIcon,
     color: Color,
     onClick: () -> Unit,
 ) {

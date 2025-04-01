@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.isCustomLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
@@ -180,7 +180,7 @@ private fun FeedbackBlockContent(
 @Composable
 private fun ReactionIcon(
     modifier: Modifier = Modifier,
-    icon: AiutaIcons.AiutaIcon,
+    icon: AiutaIcon,
     hazeState: HazeState,
     onClick: () -> Unit,
 ) {

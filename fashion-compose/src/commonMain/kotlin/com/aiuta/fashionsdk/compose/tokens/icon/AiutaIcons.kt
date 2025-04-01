@@ -15,12 +15,6 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
  */
 @Immutable
 public interface AiutaIcons {
-    @Immutable
-    public interface AiutaIcon {
-        public val resource: Any?
-        public val shouldDrawAsIs: Boolean
-    }
-
     // x100
     public val recent100: AiutaIcon?
 
@@ -59,4 +53,10 @@ public interface AiutaIcons {
 
     // x14
     public val loading14: AiutaIcon
+}
+
+@Immutable
+public interface AiutaIcon {
+    public val resource: Any?
+    public val shouldDrawAsIs: Boolean
 }

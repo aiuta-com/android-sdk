@@ -12,13 +12,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 
 @Composable
 internal fun SmallIconButton(
     modifier: Modifier = Modifier,
-    icon: AiutaIcons.AiutaIcon,
+    icon: AiutaIcon,
     isActive: Boolean = true,
     onClick: () -> Unit,
 ) {

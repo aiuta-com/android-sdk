@@ -25,7 +25,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonSize
 import com.aiuta.fashionsdk.compose.molecules.button.internal.FashionButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.button.internal.GradientButtonStyle
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.conditional
 
 @Composable
@@ -37,7 +37,7 @@ public fun FashionButton(
             defaultElevation = 0.dp,
             pressedElevation = 0.dp,
         ),
-    icon: AiutaIcons.AiutaIcon? = null,
+    icon: AiutaIcon? = null,
     isEnable: Boolean = true,
     isLoading: Boolean = false,
     text: String? = null,

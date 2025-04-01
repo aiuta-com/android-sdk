@@ -7,13 +7,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import coil3.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcons
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
+import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcon
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
 public fun AiutaIcon(
-    icon: AiutaIcons.AiutaIcon,
+    icon: AiutaIcon,
     contentDescription: String?,
     modifier: Modifier = Modifier,
     tint: Color = LocalContentColor.current.copy(alpha = LocalContentAlpha.current),
@@ -21,7 +21,7 @@ public fun AiutaIcon(
     Icon(
         painter =
             when (icon) {
-                is AiutaResourceIcons.AiutaResourceIcon -> painterResource(icon.resource)
+                is AiutaResourceIcon -> painterResource(icon.resource)
                 else -> rememberAsyncImagePainter(icon.resource)
             },
         contentDescription = contentDescription,
