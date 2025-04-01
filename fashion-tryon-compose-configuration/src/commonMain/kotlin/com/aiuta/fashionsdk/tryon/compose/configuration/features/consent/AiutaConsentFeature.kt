@@ -1,9 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent
 
+import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
 
+@Immutable
 public interface AiutaConsentFeature {
     public interface Builder {
         public fun build(): AiutaConsentFeature

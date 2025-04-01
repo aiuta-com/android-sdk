@@ -9,7 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.aiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
@@ -83,18 +83,15 @@ fun MainScreen() {
 
         val mockAiutaConfiguration =
             remember {
-                AiutaTryOnConfiguration.Builder()
-                    .setAiuta(viewModel.aiuta)
-                    .setLanguage(
-                        language =
-                        EnglishLanguage(
-                            brand = "YOUR brand",
-                            termsOfServiceUrl = "https://brand.com/tos",
-                            privacyPolicyUrl = "https://brand.com/pp",
-                            onboardingPageConsentSupplementaryPoints = emptyList(),
-                        ),
+                aiutaTryOnConfiguration {
+                    aiuta = viewModel.aiuta
+                    language = EnglishLanguage(
+                        brand = "YOUR brand",
+                        termsOfServiceUrl = "https://brand.com/tos",
+                        privacyPolicyUrl = "https://brand.com/pp",
+                        onboardingPageConsentSupplementaryPoints = emptyList(),
                     )
-                    .build()
+                }
             }
 
         val mockAiutaTheme =

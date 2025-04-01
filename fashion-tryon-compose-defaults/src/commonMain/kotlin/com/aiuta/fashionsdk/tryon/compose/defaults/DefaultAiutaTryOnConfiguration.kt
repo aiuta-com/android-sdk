@@ -21,26 +21,19 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
                 field = newAiuta
             }
 
-        public fun build(): AiutaTryOnConfiguration {
-            val features =
-                aiutaTryOnFeatures {
-                    defaultWelcomeScreen()
-                    defaultOnboarding()
-                    defaultConsent()
-                }
-
-            return aiutaTryOnConfigurationBuilder
-                .setFeatures(features)
-                .setLanguage(
-                    EnglishLanguage(
-                        brand = "YOUR brand",
-                        termsOfServiceUrl = "https://brand.com/tos",
-                        privacyPolicyUrl = "https://brand.com/pp",
-                        onboardingPageConsentSupplementaryPoints = emptyList(),
-                    ),
-                )
-                .build()
-        }
+        public fun build(): AiutaTryOnConfiguration = aiutaTryOnConfigurationBuilder.apply {
+            features = aiutaTryOnFeatures {
+                defaultWelcomeScreen()
+                defaultOnboarding()
+                defaultConsent()
+            }
+            language = EnglishLanguage(
+                brand = "YOUR brand",
+                termsOfServiceUrl = "https://brand.com/tos",
+                privacyPolicyUrl = "https://brand.com/pp",
+                onboardingPageConsentSupplementaryPoints = emptyList(),
+            )
+        }.build()
     }
 }
 

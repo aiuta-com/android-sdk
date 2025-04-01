@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.configuration
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration.Builder
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
@@ -14,6 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.HostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.AiutaToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.DefaultAiutaToggles
+import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.tryon
 
@@ -42,6 +43,7 @@ public class AiutaTryOnConfiguration private constructor(
     /**
      * Public [Builder] for initialize [AiutaTryOnConfiguration] class
      */
+    @AiutaDsl
     public class Builder {
         public var aiuta: Aiuta? = null
         public var features: AiutaTryOnFeatures? = null
@@ -51,53 +53,28 @@ public class AiutaTryOnConfiguration private constructor(
         public var hostMetadata: HostMetadata? = null
         public var toggles: AiutaToggles? = null
 
-        public fun setAiuta(aiuta: Aiuta): Builder = apply { this.aiuta = aiuta }
-
-        public fun setFeatures(features: AiutaTryOnFeatures): Builder = apply { this.features = features }
-
-        @Deprecated("Will be split by features")
-        public fun setDataProvider(dataProvider: AiutaDataProvider): Builder = apply { this.dataProvider = dataProvider }
-
-        @Deprecated("Will be split by features")
-        public fun setDimensions(dimensions: AiutaDimensions): Builder = apply { this.dimensions = dimensions }
-
-        @Deprecated("Will be split by features")
-        public fun setLanguage(language: AiutaTryOnLanguage): Builder = apply { this.language = language }
-
-        @Deprecated("Will be split by features")
-        public fun setHostMetadata(hostMetadata: HostMetadata): Builder = apply { this.hostMetadata = hostMetadata }
-
-        @Deprecated("Will be split by features")
-        public fun setToggles(toggles: AiutaToggles): Builder = apply { this.toggles = toggles }
-
         public fun build(): AiutaTryOnConfiguration {
-            // Init default
+            val parentClass = "AiutaTryOnConfiguration"
+
+            // Default
             val internalToggles = toggles ?: DefaultAiutaToggles
             val internalHostMetadata = hostMetadata ?: DefaultHostMetadata
 
-            // Check props without default initialization
-            val internalAiuta =
-                this.aiuta.checkNotNullWithDescription(
-                    property = "aiuta",
-                    methodToCall = "setAiuta()",
-                )
-            val internalLanguage =
-                this.language.checkNotNullWithDescription(
-                    property = "language",
-                    methodToCall = "setLanguage()",
-                )
-            val internalFeatures =
-                this.features.checkNotNullWithDescription(
-                    property = "features",
-                    methodToCall = "setFeatures()",
-                )
-
             return AiutaTryOnConfiguration(
-                aiuta = internalAiuta,
-                features = internalFeatures,
+                aiuta = aiuta.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "aiuta",
+                ),
+                features = features.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "features",
+                ),
                 dataProvider = dataProvider,
                 dimensions = dimensions,
-                language = internalLanguage,
+                language = language.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "language",
+                ),
                 hostMetadata = internalHostMetadata,
                 toggles = internalToggles,
             ).also {
@@ -105,29 +82,8 @@ public class AiutaTryOnConfiguration private constructor(
             }
         }
     }
-
-    private companion object {
-        fun <T> T?.checkNotNullWithDescription(
-            property: String,
-            methodToCall: String,
-        ): T = checkNotNull(
-            value = this,
-            lazyMessage = {
-                propertyIsNull(
-                    property = property,
-                    methodToCall = methodToCall,
-                )
-            },
-        )
-
-        fun propertyIsNull(
-            property: String,
-            methodToCall: String,
-        ): String = """
-                AiutaTryOnConfiguration: $property is null, therefore cannot init AiutaTryOnConfiguration.
-                Please, call $methodToCall before build()
-        """.trimIndent()
-    }
 }
 
-public inline fun aiutaTryOnConfiguration(block: Builder.() -> Unit): AiutaTryOnConfiguration = Builder().apply(block).build()
+public inline fun aiutaTryOnConfiguration(
+    block: AiutaTryOnConfiguration.Builder.() -> Unit,
+): AiutaTryOnConfiguration = AiutaTryOnConfiguration.Builder().apply(block).build()

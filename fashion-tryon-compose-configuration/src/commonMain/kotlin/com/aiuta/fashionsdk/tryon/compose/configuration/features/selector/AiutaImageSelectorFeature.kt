@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector
 
+import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
@@ -10,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.strings.AiutaImageSelectorFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
+@Immutable
 public class AiutaImageSelectorFeature private constructor(
     // Features
     public val camera: AiutaImageSelectorCamera?,
