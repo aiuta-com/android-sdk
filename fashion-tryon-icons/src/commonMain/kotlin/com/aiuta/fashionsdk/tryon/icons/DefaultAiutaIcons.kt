@@ -35,6 +35,7 @@ import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcons
 /**
  * Default implementation of [AiutaIcons].
  */
+@Deprecated("Migrate to defaults")
 public fun defaultAiutaIcons(): AiutaIcons {
     return AiutaResourceIcons(
         recent100 = AiutaResourceIcon(Res.drawable.ic_recent_100),
@@ -68,6 +69,7 @@ public fun defaultAiutaIcons(): AiutaIcons {
     )
 }
 
+@Deprecated("Migrate to defaults")
 @Composable
 public fun rememberDefaultAiutaIcons(): AiutaIcons {
     return remember { defaultAiutaIcons() }
