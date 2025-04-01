@@ -4,30 +4,34 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaTryOnFeatures internal constructor(
-    public val consent: AiutaConsentFeature?,
-    public val onboarding: AiutaOnboardingFeature?,
+public class AiutaTryOnFeatures private constructor(
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
+    public val onboarding: AiutaOnboardingFeature?,
+    public val consent: AiutaConsentFeature?,
+    public var imageSelector: AiutaImageSelectorFeature,
 ) {
     @AiutaDsl
     public class Builder {
-        public var consent: AiutaConsentFeature? = null
-        public var onboarding: AiutaOnboardingFeature? = null
         public var welcomeScreen: AiutaWelcomeScreenFeature? = null
+        public var onboarding: AiutaOnboardingFeature? = null
+        public var consent: AiutaConsentFeature? = null
+        public var imageSelector: AiutaImageSelectorFeature? = null
 
         public fun build(): AiutaTryOnFeatures {
-            // Init default
-            val internalConsent = consent
-            val internalOnboarding = onboarding
-            val internalWelcomeScreen = welcomeScreen
-
+            val parentClass = "AiutaTryOnFeatures"
             return AiutaTryOnFeatures(
-                consent = internalConsent,
-                onboarding = internalOnboarding,
-                welcomeScreen = internalWelcomeScreen,
+                welcomeScreen = welcomeScreen,
+                onboarding = onboarding,
+                consent = consent,
+                imageSelector = imageSelector.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "imageSelector",
+                ),
             )
         }
     }

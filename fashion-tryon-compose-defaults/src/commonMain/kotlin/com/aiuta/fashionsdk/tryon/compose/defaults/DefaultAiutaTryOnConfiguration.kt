@@ -24,9 +24,9 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
         public fun build(): AiutaTryOnConfiguration {
             val features =
                 aiutaTryOnFeatures {
-                    defaultConsent()
-                    defaultOnboarding()
                     defaultWelcomeScreen()
+                    defaultOnboarding()
+                    defaultConsent()
                 }
 
             return aiutaTryOnConfigurationBuilder

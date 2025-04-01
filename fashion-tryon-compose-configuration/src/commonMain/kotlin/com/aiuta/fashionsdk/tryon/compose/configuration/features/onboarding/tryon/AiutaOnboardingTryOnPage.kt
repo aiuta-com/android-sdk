@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.try
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.images.AiutaOnboardingTryOnPageImages
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.strings.AiutaOnboardingTryOnPageStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
@@ -31,4 +32,10 @@ public class AiutaOnboardingTryOnPage(
             )
         }
     }
+}
+
+public inline fun AiutaOnboardingFeature.Builder.tryOnPage(
+    block: AiutaOnboardingTryOnPage.Builder.() -> Unit,
+) {
+    tryOnPage = AiutaOnboardingTryOnPage.Builder().apply(block).build()
 }

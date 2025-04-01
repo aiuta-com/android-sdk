@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.typogra
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaWelcomeScreenFeature internal constructor(
+public class AiutaWelcomeScreenFeature private constructor(
     public val images: AiutaWelcomeScreenFeatureImages,
     public val icons: AiutaWelcomeScreenFeatureIcons,
     public val strings: AiutaWelcomeScreenFeatureStrings,

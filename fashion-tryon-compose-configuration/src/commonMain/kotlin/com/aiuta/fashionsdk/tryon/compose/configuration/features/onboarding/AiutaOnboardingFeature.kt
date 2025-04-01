@@ -10,9 +10,11 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryo
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaOnboardingFeature(
+public class AiutaOnboardingFeature private constructor(
+    // Features
     public val tryOnPage: AiutaOnboardingTryOnPage,
     public val bestResultsPage: AiutaOnboardingBestResultsPage? = null,
+    // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
 ) {
@@ -22,16 +24,6 @@ public class AiutaOnboardingFeature(
         public var bestResultsPage: AiutaOnboardingBestResultsPage? = null
         public var strings: AiutaOnboardingFeatureStrings? = null
         public var shapes: AiutaOnboardingFeatureShapes? = null
-
-        public inline fun tryOnPage(block: AiutaOnboardingTryOnPage.Builder.() -> Unit) {
-            tryOnPage = AiutaOnboardingTryOnPage.Builder().apply(block).build()
-        }
-
-        public inline fun bestResultsPage(
-            block: AiutaOnboardingBestResultsPage.Builder.() -> Unit,
-        ) {
-            bestResultsPage = AiutaOnboardingBestResultsPage.Builder().apply(block).build()
-        }
 
         public fun build(): AiutaOnboardingFeature {
             val parentClass = "AiutaOnboardingFeature"

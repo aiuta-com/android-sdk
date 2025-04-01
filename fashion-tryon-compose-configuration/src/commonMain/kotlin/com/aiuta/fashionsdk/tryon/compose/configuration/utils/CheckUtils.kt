@@ -18,5 +18,5 @@ internal fun propertyIsNull(
     property: String,
 ): String = """
         $parentClass: $property is null, therefore cannot init $parentClass.
-        Please, call initialize $property in $parentClass builder
+        Please, call initialize of $property in $parentClass builder dsl
 """.trimIndent()

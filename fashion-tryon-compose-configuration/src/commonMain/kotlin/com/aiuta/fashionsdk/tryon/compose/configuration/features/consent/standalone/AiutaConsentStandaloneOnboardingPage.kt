@@ -6,9 +6,9 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standal
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.strings.AiutaConsentStandaloneOnboardingPageStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaConsentStandaloneOnboardingPage(
+public class AiutaConsentStandaloneOnboardingPage private constructor(
     public val strings: AiutaConsentStandaloneOnboardingPageStrings,
-    public val dataProvider: AiutaConsentStandaloneOnboardingPageDataProvider? = null,
+    public val dataProvider: AiutaConsentStandaloneOnboardingPageDataProvider?,
 ) : AiutaConsentFeature {
     @AiutaDsl
     public class Builder : AiutaConsentFeature.Builder {

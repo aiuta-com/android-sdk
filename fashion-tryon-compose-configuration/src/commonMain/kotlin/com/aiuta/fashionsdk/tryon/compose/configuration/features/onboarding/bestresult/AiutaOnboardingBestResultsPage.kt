@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult
 
 import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.icons.AiutaOnboardingBestResultsPageIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.images.AiutaOnboardingBestResultsPageImages
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.strings.AiutaOnboardingBestResultsPageStrings
@@ -43,4 +44,10 @@ public class AiutaOnboardingBestResultsPage(
             )
         }
     }
+}
+
+public inline fun AiutaOnboardingFeature.Builder.bestResultsPage(
+    block: AiutaOnboardingBestResultsPage.Builder.() -> Unit,
+) {
+    bestResultsPage = AiutaOnboardingBestResultsPage.Builder().apply(block).build()
 }

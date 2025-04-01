@@ -1,12 +1,14 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults.features.onboarding
 
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.bestResultsPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.strings.AiutaOnboardingBestResultsPageStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.toggles.AiutaOnboardingBestResultsPageToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.onboarding
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.strings.AiutaOnboardingTryOnPageStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.tryOnPage
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.onboarding.bestresult.DefaultAiutaOnboardingBestResultsPageIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.images.features.onboarding.bestresult.DefaultsAiutaOnboardingBestResultsPageImages
 import com.aiuta.fashionsdk.tryon.compose.defaults.images.features.onboarding.tryon.DefaultAiutaOnboardingTryOnPageImages
