@@ -15,19 +15,19 @@ public interface AiutaWelcomeScreenFeatureTypography {
     ) : AiutaWelcomeScreenFeatureTypography {
         public constructor() : this(
             welcomeTitle =
-                TextStyle(
-                    fontFamily = FontFamily.Default,
-                    fontWeight = FontWeight.Black,
-                    fontSize = 40.sp,
-                    lineHeight = 44.sp,
-                ),
+            TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Black,
+                fontSize = 40.sp,
+                lineHeight = 44.sp,
+            ),
             welcomeDescription =
-                TextStyle(
-                    fontFamily = FontFamily.Default,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp,
-                    lineHeight = 24.sp,
-                ),
+            TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Medium,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+            ),
         )
     }
 }

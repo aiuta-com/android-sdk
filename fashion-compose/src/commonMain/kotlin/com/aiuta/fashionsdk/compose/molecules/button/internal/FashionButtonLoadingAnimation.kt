@@ -43,17 +43,17 @@ internal fun FashionButtonLoadingAnimation(
             animatable.animateTo(
                 targetValue = 1f,
                 animationSpec =
-                    infiniteRepeatable(
-                        animation =
-                            keyframes {
-                                durationMillis = 1200
-                                0.0f at 0 using LinearOutSlowInEasing
-                                1.0f at 300 using LinearOutSlowInEasing
-                                0.0f at 600 using LinearOutSlowInEasing
-                                0.0f at 1200 using LinearOutSlowInEasing
-                            },
-                        repeatMode = RepeatMode.Restart,
-                    ),
+                infiniteRepeatable(
+                    animation =
+                    keyframes {
+                        durationMillis = 1200
+                        0.0f at 0 using LinearOutSlowInEasing
+                        1.0f at 300 using LinearOutSlowInEasing
+                        0.0f at 600 using LinearOutSlowInEasing
+                        0.0f at 1200 using LinearOutSlowInEasing
+                    },
+                    repeatMode = RepeatMode.Restart,
+                ),
             )
         }
     }
@@ -68,20 +68,20 @@ internal fun FashionButtonLoadingAnimation(
         circleValues.forEach { value ->
             Box(
                 modifier =
-                    Modifier
-                        .size(circleSize)
-                        .graphicsLayer {
-                            translationY = -value * distance
-                            alpha =
-                                value.coerceIn(
-                                    minimumValue = 0.2f,
-                                    maximumValue = 1f,
-                                )
-                        }
-                        .background(
-                            color = circleColor,
-                            shape = CircleShape,
-                        ),
+                Modifier
+                    .size(circleSize)
+                    .graphicsLayer {
+                        translationY = -value * distance
+                        alpha =
+                            value.coerceIn(
+                                minimumValue = 0.2f,
+                                maximumValue = 1f,
+                            )
+                    }
+                    .background(
+                        color = circleColor,
+                        shape = CircleShape,
+                    ),
             )
         }
     }

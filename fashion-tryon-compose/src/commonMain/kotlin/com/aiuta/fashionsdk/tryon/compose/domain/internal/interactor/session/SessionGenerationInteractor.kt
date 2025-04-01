@@ -56,10 +56,8 @@ internal class SessionGenerationInteractor(
     }
 
     companion object {
-        fun getInstance(coilContext: PlatformContext): SessionGenerationInteractor {
-            return SessionGenerationInteractor(
-                warmUpInteractor = WarmUpInteractor(coilContext),
-            )
-        }
+        fun getInstance(coilContext: PlatformContext): SessionGenerationInteractor = SessionGenerationInteractor(
+            warmUpInteractor = WarmUpInteractor(coilContext),
+        )
     }
 }

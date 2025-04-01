@@ -7,6 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
@@ -24,16 +25,10 @@ import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
 // TODO Refactor sample
 fun MainViewController() = ComposeUIViewController {
     val aiuta = remember {
-        Aiuta.Builder()
-            .setAuthenticationStrategy(
-                authenticationStrategy =
-                    ApiKeyAuthenticationStrategy(
-                        apiKey = "TODO",
-                    ),
-            )
-            .setSubscriptionId("TODO")
-            .setPlatformContext(AiutaPlatformContext())
-            .build()
+        aiuta {
+            authenticationStrategy = ApiKeyAuthenticationStrategy("TODO")
+            platformContext = AiutaPlatformContext()
+        }
     }
     val aiutaTryOn = remember { aiuta.tryon }
     val activeSKUItems = remember { mutableStateOf<List<SKUGenerationItem>?>(null) }
@@ -54,7 +49,6 @@ fun MainViewController() = ComposeUIViewController {
 
 
     activeSKUItems.value?.firstOrNull()?.let { firstActiveSKUItem ->
-
         val mockSKUItem =
             remember {
                 SKUItem(

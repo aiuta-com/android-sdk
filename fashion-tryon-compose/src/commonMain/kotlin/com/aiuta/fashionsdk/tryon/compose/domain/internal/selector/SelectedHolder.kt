@@ -38,19 +38,13 @@ internal class SelectedHolder<T> : SynchronizedObject() {
         }
     }
 
-    fun getList(): List<T> {
-        return itemsMap.keys.toList()
-    }
+    fun getList(): List<T> = itemsMap.keys.toList()
 
-    fun getCount(): Int {
-        return itemsMap.size
-    }
+    fun getCount(): Int = itemsMap.size
 
     fun isEmpty(): Boolean = itemsMap.isEmpty()
 
-    fun contain(item: T?): Boolean {
-        return item?.let { itemsMap.contains(it) } ?: false
-    }
+    fun contain(item: T?): Boolean = item?.let { itemsMap.contains(it) } ?: false
 
     fun remove(item: T) {
         synchronized(this) {

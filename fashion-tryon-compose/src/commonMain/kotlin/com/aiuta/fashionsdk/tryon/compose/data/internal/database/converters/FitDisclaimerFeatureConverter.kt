@@ -7,12 +7,8 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.fea
 @ProvidedTypeConverter
 internal class FitDisclaimerFeatureConverter : BaseSerializedConverter() {
     @TypeConverter
-    fun restoreFitDisclaimerFeature(rawString: String?): FitDisclaimerFeature? {
-        return restore(rawString)
-    }
+    fun restoreFitDisclaimerFeature(rawString: String?): FitDisclaimerFeature? = restore(rawString)
 
     @TypeConverter
-    fun saveFitDisclaimerFeature(config: FitDisclaimerFeature): String? {
-        return save(config)
-    }
+    fun saveFitDisclaimerFeature(config: FitDisclaimerFeature): String? = save(config)
 }

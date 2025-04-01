@@ -45,24 +45,24 @@ fun MainScreen() {
                     localizedOldPrice = "$41.99",
                     store = "MOCK STORE",
                     generateMoreSKU =
-                        activeSKUItems.value?.mapIndexed { index, skuItem ->
-                            SKUItem(
-                                skuId = skuItem.skuId,
-                                catalogName = skuItem.catalogName,
-                                description = "MOCK 90s straight leg jeans in light blue",
-                                imageUrls = skuItem.imageUrls,
-                                localizedPrice = "$34.99",
-                                localizedOldPrice = "$41.99",
-                                store = "MOCK STORE",
-                                inWishlist = index % 2 == 0,
-                            )
-                        } ?: emptyList(),
+                    activeSKUItems.value?.mapIndexed { index, skuItem ->
+                        SKUItem(
+                            skuId = skuItem.skuId,
+                            catalogName = skuItem.catalogName,
+                            description = "MOCK 90s straight leg jeans in light blue",
+                            imageUrls = skuItem.imageUrls,
+                            localizedPrice = "$34.99",
+                            localizedOldPrice = "$41.99",
+                            store = "MOCK STORE",
+                            inWishlist = index % 2 == 0,
+                        )
+                    } ?: emptyList(),
                     inWishlist = false,
                     additionalShareInfo =
-                        """
+                    """
                         You can find more information about this item here:
                         https://some-cool-website.com/product
-                        """.trimIndent(),
+                    """.trimIndent(),
                 )
             }
 
@@ -87,12 +87,12 @@ fun MainScreen() {
                     .setAiuta(viewModel.aiuta)
                     .setLanguage(
                         language =
-                            EnglishLanguage(
-                                brand = "YOUR brand",
-                                termsOfServiceUrl = "https://brand.com/tos",
-                                privacyPolicyUrl = "https://brand.com/pp",
-                                onboardingPageConsentSupplementaryPoints = emptyList(),
-                            ),
+                        EnglishLanguage(
+                            brand = "YOUR brand",
+                            termsOfServiceUrl = "https://brand.com/tos",
+                            privacyPolicyUrl = "https://brand.com/pp",
+                            onboardingPageConsentSupplementaryPoints = emptyList(),
+                        ),
                     )
                     .build()
             }

@@ -120,7 +120,7 @@ internal abstract class AppDatabase : RoomDatabase() {
                     val cachedSubscriptionId = aiutaCodeDao.getCodes().firstOrNull()?.subscriptionId
 
                     // Invalidate all records, if we have new Aiuta instance
-                    if (cachedSubscriptionId != aiuta.subscriptionId) {
+                    if (cachedSubscriptionId != aiuta.authenticationStrategy.subscriptionId) {
                         if (cachedSubscriptionId != null) {
                             // Delete all records
                             database.generatedOperationDao().removeAll()
@@ -131,9 +131,9 @@ internal abstract class AppDatabase : RoomDatabase() {
                         // Update code
                         aiutaCodeDao.replaceAll(
                             aiutaCodeEntity =
-                                AiutaCodeEntity(
-                                    subscriptionId = aiuta.subscriptionId,
-                                ),
+                            AiutaCodeEntity(
+                                subscriptionId = aiuta.authenticationStrategy.subscriptionId,
+                            ),
                         )
                     }
                 }

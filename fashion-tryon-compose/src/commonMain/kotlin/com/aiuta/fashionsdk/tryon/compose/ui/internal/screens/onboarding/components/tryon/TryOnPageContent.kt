@@ -63,11 +63,11 @@ internal fun TryOnPageContent(
     ) {
         ImagesBlock(
             modifier =
-                Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .fillMaxWidth()
-                    .weight(0.65f)
-                    .padding(horizontal = 20.dp),
+            Modifier
+                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth()
+                .weight(0.65f)
+                .padding(horizontal = 20.dp),
             currentPageTransition = currentPageTransition,
             onboardingController = onboardingController,
             state = state,
@@ -75,9 +75,9 @@ internal fun TryOnPageContent(
 
         CentredTextBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .weight(0.35f),
+            Modifier
+                .fillMaxWidth()
+                .weight(0.35f),
             title = tryOnPageFeature.strings.onboardingTryOnTitle,
             subtitle = tryOnPageFeature.strings.onboardingTryOnDescription,
         )
@@ -99,16 +99,16 @@ private fun ImagesBlock(
     ) {
         currentPageTransition.AnimatedContent(
             modifier =
-                Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(0.8f),
+            Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(0.8f),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { page ->
             AiutaImage(
                 modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clip(onboardingFeature.shapes.onboardingImageLShape),
+                Modifier
+                    .fillMaxSize()
+                    .clip(onboardingFeature.shapes.onboardingImageLShape),
                 image = page.mainImage,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
@@ -117,9 +117,9 @@ private fun ImagesBlock(
 
         Column(
             modifier =
-                Modifier
-                    .align(Alignment.CenterStart)
-                    .width(90.dp),
+            Modifier
+                .align(Alignment.CenterStart)
+                .width(90.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

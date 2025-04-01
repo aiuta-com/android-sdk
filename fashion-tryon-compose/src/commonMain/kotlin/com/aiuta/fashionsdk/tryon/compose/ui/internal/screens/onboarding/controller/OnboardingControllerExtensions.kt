@@ -118,11 +118,9 @@ internal fun OnboardingController.updateSupplementAgreementState(
 }
 
 @Composable
-internal fun OnboardingController.listenIsPrimaryButtonEnabled(): State<Boolean> {
-    return remember(
-        state.value,
-        isMandatoryAgreementChecked.value,
-    ) {
-        mutableStateOf(state.value !is ConsentPage || isMandatoryAgreementChecked.value)
-    }
+internal fun OnboardingController.listenIsPrimaryButtonEnabled(): State<Boolean> = remember(
+    state.value,
+    isMandatoryAgreementChecked.value,
+) {
+    mutableStateOf(state.value !is ConsentPage || isMandatoryAgreementChecked.value)
 }

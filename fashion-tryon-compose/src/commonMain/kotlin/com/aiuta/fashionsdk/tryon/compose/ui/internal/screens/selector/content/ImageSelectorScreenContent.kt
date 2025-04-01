@@ -44,25 +44,25 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
 
     Column(
         modifier =
-            modifier
-                .background(theme.colors.background)
-                .windowInsetsPadding(WindowInsets.navigationBars),
+        modifier
+            .background(theme.colors.background)
+            .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MainAppBar(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         Spacer(Modifier.height(16.dp))
 
         screenStateTransition.AnimatedContent(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
+            Modifier
+                .fillMaxWidth()
+                .weight(1f),
         ) { state ->
             when (state) {
                 ImageSelectorScreenState.EMPTY_SCREEN -> {

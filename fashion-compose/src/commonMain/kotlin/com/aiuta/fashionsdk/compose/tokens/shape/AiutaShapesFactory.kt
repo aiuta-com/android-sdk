@@ -18,17 +18,15 @@ public fun aiutaShapes(
     bottomSheetRadiusDp: Dp = 16.dp,
     buttonLRadiusDp: Dp = 8.dp,
     buttonMRadiusDp: Dp = 8.dp,
-): AiutaShapes {
-    return AiutaShapes(
-        mainImage = RoundedCornerShape(mainImageRadiusDp),
-        previewImage = RoundedCornerShape(previewImageRadiusDp),
-        onboardingImage = RoundedCornerShape(onboardingImageRadiusDp),
-        bottomSheet =
-            RoundedCornerShape(
-                topStart = bottomSheetRadiusDp,
-                topEnd = bottomSheetRadiusDp,
-            ),
-        buttonL = RoundedCornerShape(buttonLRadiusDp),
-        buttonM = RoundedCornerShape(buttonMRadiusDp),
-    )
-}
+): AiutaShapes = AiutaShapes(
+    mainImage = RoundedCornerShape(mainImageRadiusDp),
+    previewImage = RoundedCornerShape(previewImageRadiusDp),
+    onboardingImage = RoundedCornerShape(onboardingImageRadiusDp),
+    bottomSheet =
+    RoundedCornerShape(
+        topStart = bottomSheetRadiusDp,
+        topEnd = bottomSheetRadiusDp,
+    ),
+    buttonL = RoundedCornerShape(buttonLRadiusDp),
+    buttonM = RoundedCornerShape(buttonMRadiusDp),
+)

@@ -11,9 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 
 @Composable
-internal fun rememberAiutaTryOnLoadingActionsController(): AiutaTryOnLoadingActionsController {
-    return remember { AiutaTryOnLoadingActionsController() }
-}
+internal fun rememberAiutaTryOnLoadingActionsController(): AiutaTryOnLoadingActionsController = remember { AiutaTryOnLoadingActionsController() }
 
 @Immutable
 internal class AiutaTryOnLoadingActionsController(

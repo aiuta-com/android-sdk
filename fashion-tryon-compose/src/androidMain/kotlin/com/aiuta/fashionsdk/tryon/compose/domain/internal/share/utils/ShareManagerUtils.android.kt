@@ -79,11 +79,11 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
 
         InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(
             event =
-                ShareEvent(
-                    pageId = pageId?.let { Json.decodeFromString(it) },
-                    productId = productId,
-                    target = clickedComponent?.packageName,
-                ),
+            ShareEvent(
+                pageId = pageId?.let { Json.decodeFromString(it) },
+                productId = productId,
+                target = clickedComponent?.packageName,
+            ),
         )
     }
 }

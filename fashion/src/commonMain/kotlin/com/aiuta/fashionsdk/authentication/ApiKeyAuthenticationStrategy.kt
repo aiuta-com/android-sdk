@@ -10,6 +10,7 @@ package com.aiuta.fashionsdk.authentication
  */
 public class ApiKeyAuthenticationStrategy(
     public val apiKey: String,
+    override val subscriptionId: String = apiKey,
 ) : AuthenticationStrategy {
     init {
         check(

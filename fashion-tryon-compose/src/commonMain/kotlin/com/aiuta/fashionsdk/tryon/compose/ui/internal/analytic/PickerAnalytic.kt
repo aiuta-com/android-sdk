@@ -14,11 +14,11 @@ internal fun FashionTryOnController.sendPickerAnalytic(
 ) {
     analytic.sendEvent(
         event =
-            AiutaAnalyticsPickerEvent(
-                event = event,
-                pageId = pageId,
-                productId = activeSKUItem.value.skuId,
-            ),
+        AiutaAnalyticsPickerEvent(
+            event = event,
+            pageId = pageId,
+            productId = activeSKUItem.value.skuId,
+        ),
     )
 }
 

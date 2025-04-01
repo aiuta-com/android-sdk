@@ -24,24 +24,24 @@ internal fun LikeButton(
 
     Box(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.background,
-                    shape = CircleShape,
-                )
-                .clickableUnindicated {
-                    onClick(isLiked)
-                },
+        modifier
+            .background(
+                color = theme.colors.background,
+                shape = CircleShape,
+            )
+            .clickableUnindicated {
+                onClick(isLiked)
+            },
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(
             modifier = Modifier.size(iconSize),
             icon =
-                if (isLiked) {
-                    theme.icons.wishlistFill24
-                } else {
-                    theme.icons.wishlist24
-                },
+            if (isLiked) {
+                theme.icons.wishlistFill24
+            } else {
+                theme.icons.wishlist24
+            },
             contentDescription = null,
             tint = Color.Unspecified,
         )

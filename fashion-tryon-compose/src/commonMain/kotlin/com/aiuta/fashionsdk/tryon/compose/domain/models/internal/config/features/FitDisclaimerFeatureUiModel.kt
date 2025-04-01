@@ -9,9 +9,7 @@ internal class FitDisclaimerFeatureUiModel(
     val text: MultiLanguagePhraseUiModel? = null,
 )
 
-internal fun FitDisclaimerFeature.toUiModel(): FitDisclaimerFeatureUiModel {
-    return FitDisclaimerFeatureUiModel(
-        title = title.toUiModel(),
-        text = text?.toUiModel(),
-    )
-}
+internal fun FitDisclaimerFeature.toUiModel(): FitDisclaimerFeatureUiModel = FitDisclaimerFeatureUiModel(
+    title = title.toUiModel(),
+    text = text?.toUiModel(),
+)

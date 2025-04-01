@@ -27,12 +27,8 @@ internal interface GeneratedOperationInteractor {
     )
 
     companion object {
-        fun getInstance(aiuta: Aiuta): GeneratedOperationInteractor {
-            return LocalGeneratedOperationInteractor.getInstance(aiuta.platformContext)
-        }
+        fun getInstance(aiuta: Aiuta): GeneratedOperationInteractor = LocalGeneratedOperationInteractor.getInstance(aiuta.platformContext)
 
-        fun getInstance(dataProvider: AiutaDataProvider): GeneratedOperationInteractor {
-            return HostGeneratedOperationInteractor.getInstance(dataProvider)
-        }
+        fun getInstance(dataProvider: AiutaDataProvider): GeneratedOperationInteractor = HostGeneratedOperationInteractor.getInstance(dataProvider)
     }
 }

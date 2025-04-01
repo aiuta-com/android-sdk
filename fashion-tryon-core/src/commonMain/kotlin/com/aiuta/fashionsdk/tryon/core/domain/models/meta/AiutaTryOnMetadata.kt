@@ -14,16 +14,12 @@ public class AiutaTryOnMetadata private constructor(
         private var uploadSecondsTimestamp: ValueTimeMark? = null
         private var tryOnSecondsTimestamp: ValueTimeMark? = null
 
-        public fun setTryOnDuration(): Builder {
-            return apply {
-                this.tryOnSecondsTimestamp = markNow()
-            }
+        public fun setTryOnDuration(): Builder = apply {
+            this.tryOnSecondsTimestamp = markNow()
         }
 
-        public fun setUploadDuration(): Builder {
-            return apply {
-                this.uploadSecondsTimestamp = markNow()
-            }
+        public fun setUploadDuration(): Builder = apply {
+            this.uploadSecondsTimestamp = markNow()
         }
 
         public fun build(): AiutaTryOnMetadata {
@@ -74,11 +70,9 @@ public class AiutaTryOnMetadata private constructor(
         private fun propertyNotValid(
             property: String,
             methodToCall: String,
-        ): String {
-            return """
+        ): String = """
                 AiutaTryOnMetadata: $property is null, therefore cannot init AiutaTryOnMetadata.
                 Please, call $methodToCall before build()
-                """.trimIndent()
-        }
+        """.trimIndent()
     }
 }

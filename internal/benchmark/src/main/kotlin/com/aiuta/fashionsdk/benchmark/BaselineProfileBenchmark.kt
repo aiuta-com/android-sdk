@@ -35,10 +35,10 @@ class BaselineProfileBenchmark {
         benchmarkRule.measureRepeated(
             packageName = "sample.tryon",
             metrics =
-                listOf(
-                    FrameTimingMetric(),
-                    StartupTimingMetric(),
-                ),
+            listOf(
+                FrameTimingMetric(),
+                StartupTimingMetric(),
+            ),
             iterations = 3,
             startupMode = StartupMode.COLD,
             compilationMode = compilationMode,

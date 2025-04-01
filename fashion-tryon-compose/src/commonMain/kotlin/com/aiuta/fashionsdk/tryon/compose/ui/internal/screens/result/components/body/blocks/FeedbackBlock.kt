@@ -103,13 +103,13 @@ internal fun FeedbackBlock(
         if (title != null) {
             controller.bottomSheetNavigator.show(
                 newSheetScreen =
-                    NavigationBottomSheetScreen.Feedback(
-                        title = title,
-                        itemIndex = itemIndex,
-                        options = options,
-                        extraOption = extraOption,
-                        extraOptionTitle = extraOptionTitle,
-                    ),
+                NavigationBottomSheetScreen.Feedback(
+                    title = title,
+                    itemIndex = itemIndex,
+                    options = options,
+                    extraOption = extraOption,
+                    extraOptionTitle = extraOptionTitle,
+                ),
             )
         } else {
             generationResultController.showThanksFeedbackBlock()
@@ -202,26 +202,26 @@ private fun ReactionIcon(
 
     Box(
         modifier =
-            finalModifier
-                .clip(CircleShape)
-                .hazeChild(hazeState) {
-                    val sharedColor = theme.colors.background.copy(alpha = 0.4f)
+        finalModifier
+            .clip(CircleShape)
+            .hazeChild(hazeState) {
+                val sharedColor = theme.colors.background.copy(alpha = 0.4f)
 
-                    blurRadius = 10.dp
-                    backgroundColor = sharedColor
-                    tints = listOf(HazeTint(sharedColor))
-                    fallbackTint = HazeTint(sharedColor)
-                },
+                blurRadius = 10.dp
+                backgroundColor = sharedColor
+                tints = listOf(HazeTint(sharedColor))
+                fallbackTint = HazeTint(sharedColor)
+            },
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(24.dp)
-                    .clickableUnindicated {
-                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                        onClick()
-                    },
+            Modifier
+                .size(24.dp)
+                .clickableUnindicated {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onClick()
+                },
             icon = icon,
             contentDescription = null,
             tint = theme.colors.background.copy(alpha = 0.7f),

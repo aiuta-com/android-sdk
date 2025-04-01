@@ -22,9 +22,9 @@ internal fun Modifier.placeholderFadeConnecting(
             shape = RoundedCornerShape(shapeDp),
             color = theme.colors.neutral.copy(alpha = 0.2f),
             highlight =
-                PlaceholderHighlight.fade(
-                    highlightColor = theme.colors.neutral,
-                ),
+            PlaceholderHighlight.fade(
+                highlightColor = theme.colors.neutral,
+            ),
         )
 
     return this then placeholderModifier

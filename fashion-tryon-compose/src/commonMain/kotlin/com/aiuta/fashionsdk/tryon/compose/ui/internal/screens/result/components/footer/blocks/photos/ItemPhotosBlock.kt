@@ -141,29 +141,29 @@ private fun ItemPhotosBlock(
             ) {
                 SubcomposeAsyncImage(
                     modifier =
-                        finalImageModifier
-                            .onGloballyPositioned { coordinates ->
-                                parentImageOffset = coordinates.positionInRoot()
-                                imageSize = coordinates.size.toSize()
-                            }
-                            .clickableUnindicated {
-                                controller.zoomImageController.openZoomImageScreen(
-                                    model =
-                                        ZoomImageUiModel(
-                                            imageSize = imageSize,
-                                            initialCornerRadius = sharedRadius,
-                                            imageUrl = url,
-                                            parentImageOffset = parentImageOffset,
-                                            additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
-                                            originPageId = AiutaAnalyticPageId.RESULTS,
-                                        ),
-                                )
-                            },
+                    finalImageModifier
+                        .onGloballyPositioned { coordinates ->
+                            parentImageOffset = coordinates.positionInRoot()
+                            imageSize = coordinates.size.toSize()
+                        }
+                        .clickableUnindicated {
+                            controller.zoomImageController.openZoomImageScreen(
+                                model =
+                                ZoomImageUiModel(
+                                    imageSize = imageSize,
+                                    initialCornerRadius = sharedRadius,
+                                    imageUrl = url,
+                                    parentImageOffset = parentImageOffset,
+                                    additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
+                                    originPageId = AiutaAnalyticPageId.RESULTS,
+                                ),
+                            )
+                        },
                     model =
-                        ImageRequest.Builder(coilContext)
-                            .data(url)
-                            .crossfade(true)
-                            .build(),
+                    ImageRequest.Builder(coilContext)
+                        .data(url)
+                        .crossfade(true)
+                        .build(),
                     loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
                     error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
                     contentScale = ContentScale.Crop,

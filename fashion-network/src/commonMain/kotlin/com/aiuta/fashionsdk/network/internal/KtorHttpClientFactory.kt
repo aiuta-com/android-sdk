@@ -29,7 +29,6 @@ import io.ktor.serialization.kotlinx.json.json
 
 internal class KtorHttpClientFactory(
     private val authenticationStrategy: AuthenticationStrategy,
-    private val subscriptionId: String,
     private val isLoggingEnabled: Boolean = true, // TODO Migrate from config?
     host: String? = null,
     encodedPath: String? = null,
@@ -37,49 +36,44 @@ internal class KtorHttpClientFactory(
     private val internalHost = host ?: DEFAULT_HOST
     private val internalEncodedPath = encodedPath ?: DEFAULT_ENCODED_PATH
 
-    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installSerialization() =
-        apply {
-            install(ContentNegotiation) {
-                json(jsonSerializer)
+    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installSerialization() = apply {
+        install(ContentNegotiation) {
+            json(jsonSerializer)
+        }
+    }
+
+    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installLogging() = apply {
+        if (isLoggingEnabled) {
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
             }
         }
+    }
 
-    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installLogging() =
-        apply {
-            if (isLoggingEnabled) {
-                install(Logging) {
-                    logger = Logger.DEFAULT
-                    level = LogLevel.ALL
-                }
+    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installDefaultRequest() = apply {
+        install(DefaultRequest) {
+            header(HttpHeaders.ContentType, ContentType.Application.Json)
+            url {
+                protocol = URLProtocol.HTTPS
+                host = internalHost
+                encodedPath = internalEncodedPath
             }
         }
+    }
 
-    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installDefaultRequest() =
-        apply {
-            install(DefaultRequest) {
-                header(HttpHeaders.ContentType, ContentType.Application.Json)
-                url {
-                    protocol = URLProtocol.HTTPS
-                    host = internalHost
-                    encodedPath = internalEncodedPath
-                }
-            }
-        }
+    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installAuthentication(): HttpClientConfig<T> = apply {
+        install(Auth) {
+            when (authenticationStrategy) {
+                is ApiKeyAuthenticationStrategy ->
+                    apiKey {
+                        setApiKey(authenticationStrategy.apiKey)
+                    }
 
-    private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installAuthentication(): HttpClientConfig<T> {
-        return apply {
-            install(Auth) {
-                when (authenticationStrategy) {
-                    is ApiKeyAuthenticationStrategy ->
-                        apiKey {
-                            setApiKey(authenticationStrategy.apiKey)
-                        }
-
-                    is JWTAuthenticationStrategy ->
-                        jwt {
-                            loadTokens { authenticationStrategy.getJWT(it) }
-                        }
-                }
+                is JWTAuthenticationStrategy ->
+                    jwt {
+                        loadTokens { authenticationStrategy.getJWT(it) }
+                    }
             }
         }
     }
@@ -87,22 +81,20 @@ internal class KtorHttpClientFactory(
     private fun HttpClient.addDynamicHeader() {
         plugin(HttpSend).intercept { request ->
             if (request.url.host == internalHost) {
-                request.installSubscriptionIdHeader(subscriptionId)
+                request.installSubscriptionIdHeader(authenticationStrategy.subscriptionId)
             }
 
             handleErrors { execute(request) }
         }
     }
 
-    public fun create(): Lazy<HttpClient> {
-        return lazy {
-            HttpClient {
-                installAuthentication()
-                installSerialization()
-                installLogging()
-                installDefaultRequest()
-            }.apply { addDynamicHeader() }
-        }
+    public fun create(): Lazy<HttpClient> = lazy {
+        HttpClient {
+            installAuthentication()
+            installSerialization()
+            installLogging()
+            installDefaultRequest()
+        }.apply { addDynamicHeader() }
     }
 
     private companion object {

@@ -1,9 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults
 
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration.Builder
-import com.aiuta.fashionsdk.tryon.compose.configuration.annotations.AiutaTryOnConfigurationDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.aiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.consent.defaultConsent
@@ -11,7 +10,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.features.onboarding.defaultOn
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.welcome.defaultWelcomeScreen
 
 public class DefaultAiutaTryOnConfiguration private constructor() {
-    @AiutaTryOnConfigurationDsl
+    @AiutaDsl
     public class Builder {
         private var aiutaTryOnConfigurationBuilder: AiutaTryOnConfiguration.Builder =
             AiutaTryOnConfiguration.Builder()

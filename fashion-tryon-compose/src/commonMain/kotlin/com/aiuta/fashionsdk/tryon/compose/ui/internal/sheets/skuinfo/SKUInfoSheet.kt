@@ -65,10 +65,10 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
         ) { _, imageUrl ->
             ImageContainer(
                 modifier =
-                    Modifier.size(
-                        width = 154.dp,
-                        height = 202.dp,
-                    ),
+                Modifier.size(
+                    width = 154.dp,
+                    height = 202.dp,
+                ),
                 imageUrl = imageUrl,
             )
         }
@@ -78,9 +78,9 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
 
     SKUInfo(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = sharedHorizontalPadding),
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = sharedHorizontalPadding),
         skuItem = skuInfo.skuItem,
     )
 
@@ -88,9 +88,9 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
 
     ButtonsContainer(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = sharedHorizontalPadding),
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = sharedHorizontalPadding),
         skuInfo = skuInfo,
     )
 }
@@ -104,14 +104,14 @@ private fun ImageContainer(
 
     SubcomposeAsyncImage(
         modifier =
-            modifier
-                .clip(RoundedCornerShape(8.dp))
-                .background(theme.colors.background),
+        modifier
+            .clip(RoundedCornerShape(8.dp))
+            .background(theme.colors.background),
         model =
-            ImageRequest.Builder(LocalPlatformContext.current)
-                .data(imageUrl)
-                .crossfade(true)
-                .build(),
+        ImageRequest.Builder(LocalPlatformContext.current)
+            .data(imageUrl)
+            .crossfade(true)
+            .build(),
         loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
         error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
         contentScale = ContentScale.Crop,
@@ -138,15 +138,15 @@ private fun ButtonsContainer(
         if (configuration.toggles.isWishlistAvailable) {
             FashionButton(
                 modifier =
-                    Modifier
-                        .weight(1f)
-                        .fillMaxHeight(),
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
                 icon =
-                    if (activeSKUItem.inWishlist) {
-                        theme.icons.wishlistFill24
-                    } else {
-                        theme.icons.wishlist24
-                    },
+                if (activeSKUItem.inWishlist) {
+                    theme.icons.wishlistFill24
+                } else {
+                    theme.icons.wishlist24
+                },
                 text = stringResources.addToWish,
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
@@ -163,19 +163,19 @@ private fun ButtonsContainer(
 
         FashionButton(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
+            Modifier
+                .weight(1f)
+                .fillMaxHeight(),
             text =
-                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    stringResources.addToCart
-                } else {
-                    stringResources.tryOn
-                },
+            if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                stringResources.addToCart
+            } else {
+                stringResources.tryOn
+            },
             icon =
-                theme.icons.magic20.takeIf {
-                    skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
-                },
+            theme.icons.magic20.takeIf {
+                skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
+            },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             onClick = {

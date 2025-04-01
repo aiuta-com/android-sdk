@@ -39,16 +39,16 @@ internal fun BestResultPageItem(
 
         AiutaIcon(
             modifier =
-                Modifier
-                    .align(Alignment.TopStart)
-                    .padding(10.dp)
-                    .size(24.dp),
+            Modifier
+                .align(Alignment.TopStart)
+                .padding(10.dp)
+                .size(24.dp),
             icon =
-                if (isGoodImage) {
-                    bestResultFeature.icons.onboardingBestResultsGood24
-                } else {
-                    bestResultFeature.icons.onboardingBestResultsBad24
-                },
+            if (isGoodImage) {
+                bestResultFeature.icons.onboardingBestResultsGood24
+            } else {
+                bestResultFeature.icons.onboardingBestResultsBad24
+            },
             contentDescription = null,
             tint = Color.Unspecified,
         )

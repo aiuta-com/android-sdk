@@ -43,9 +43,9 @@ internal fun PriceInfo(
             Text(
                 text = skuItem.localizedPrice,
                 style =
-                    theme.typography.price.copy(
-                        textDecoration = solveGeneralPriceDecoration(skuItem),
-                    ),
+                theme.typography.price.copy(
+                    textDecoration = solveGeneralPriceDecoration(skuItem),
+                ),
                 color = solveGeneralPriceColor(skuItem),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

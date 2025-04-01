@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.annotations.AiutaTryOnConfigurationDsl
+import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
@@ -12,7 +12,7 @@ public class AiutaTryOnFeatures internal constructor(
     public val onboarding: AiutaOnboardingFeature?,
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
 ) {
-    @AiutaTryOnConfigurationDsl
+    @AiutaDsl
     public class Builder {
         public var consent: AiutaConsentFeature? = null
         public var onboarding: AiutaOnboardingFeature? = null

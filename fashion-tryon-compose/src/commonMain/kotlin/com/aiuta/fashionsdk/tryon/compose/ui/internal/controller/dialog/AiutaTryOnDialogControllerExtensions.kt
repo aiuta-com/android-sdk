@@ -14,10 +14,8 @@ internal fun AiutaTryOnDialogController.hideDialog() {
 }
 
 @Composable
-internal fun AiutaTryOnDialogController.isDialogVisible(): State<Boolean> {
-    return remember(state.value) {
-        derivedStateOf {
-            state.value != null
-        }
+internal fun AiutaTryOnDialogController.isDialogVisible(): State<Boolean> = remember(state.value) {
+    derivedStateOf {
+        state.value != null
     }
 }

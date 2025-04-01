@@ -86,4 +86,5 @@ public class CustomLanguage(
     override val virtualTryOn: String,
     override val share: String,
     override val defaultErrorMessage: String,
-) : AiutaTryOnLanguage, InternalAiutaTryOnLanguage
+) : AiutaTryOnLanguage,
+    InternalAiutaTryOnLanguage

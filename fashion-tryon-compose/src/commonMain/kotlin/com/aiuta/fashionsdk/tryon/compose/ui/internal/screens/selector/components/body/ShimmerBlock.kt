@@ -34,14 +34,14 @@ internal fun ShimmerBlock(
             initialValue = 1f,
             targetValue = -1f,
             animationSpec =
-                infiniteRepeatable(
-                    animation =
-                        tween(
-                            durationMillis = durationMillis,
-                            easing = LinearEasing,
-                        ),
-                    repeatMode = RepeatMode.Restart,
+            infiniteRepeatable(
+                animation =
+                tween(
+                    durationMillis = durationMillis,
+                    easing = LinearEasing,
                 ),
+                repeatMode = RepeatMode.Restart,
+            ),
             label = "Shimmer loading animation",
         )
 
@@ -56,10 +56,10 @@ internal fun ShimmerBlock(
             color = loadingAnimationGradient.first(),
             topLeft = Offset(0f, size.height * translateAnimation.value),
             size =
-                Size(
-                    width = size.width,
-                    height = with(density) { lineHeight.toPx() },
-                ),
+            Size(
+                width = size.width,
+                height = with(density) { lineHeight.toPx() },
+            ),
         )
 
         // Down gradient
@@ -69,17 +69,17 @@ internal fun ShimmerBlock(
             )
         drawRect(
             brush =
-                Brush.verticalGradient(
-                    loadingAnimationGradient,
-                    startY = size.height * translateAnimation.value,
-                    endY = size.height * translateAnimation.value + rectHeight,
-                ),
+            Brush.verticalGradient(
+                loadingAnimationGradient,
+                startY = size.height * translateAnimation.value,
+                endY = size.height * translateAnimation.value + rectHeight,
+            ),
             topLeft = Offset(0f, size.height * translateAnimation.value),
             size =
-                Size(
-                    width = size.width,
-                    height = rectHeight,
-                ),
+            Size(
+                width = size.width,
+                height = rectHeight,
+            ),
         )
     }
 }

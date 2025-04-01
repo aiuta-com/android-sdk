@@ -7,9 +7,7 @@ public class SupplementaryConsent(
     public val isObtained: Boolean,
 )
 
-public fun SupplementaryConsent.toAnalytic(): AiutaSupplementaryConsent {
-    return AiutaSupplementaryConsent(
-        consentText = consentText,
-        isObtained = isObtained,
-    )
-}
+public fun SupplementaryConsent.toAnalytic(): AiutaSupplementaryConsent = AiutaSupplementaryConsent(
+    consentText = consentText,
+    isObtained = isObtained,
+)

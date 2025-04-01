@@ -24,16 +24,16 @@ internal fun TextButton(
 
     Box(
         modifier =
-            modifier
-                .background(
-                    color = backgroundColor,
-                    shape = theme.shapes.buttonM,
-                )
-                .clickableUnindicated { onClick() }
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 8.dp,
-                ),
+        modifier
+            .background(
+                color = backgroundColor,
+                shape = theme.shapes.buttonM,
+            )
+            .clickableUnindicated { onClick() }
+            .padding(
+                horizontal = 16.dp,
+                vertical = 8.dp,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Text(

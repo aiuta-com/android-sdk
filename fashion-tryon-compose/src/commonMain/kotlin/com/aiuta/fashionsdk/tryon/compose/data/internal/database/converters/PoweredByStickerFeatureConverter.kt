@@ -7,12 +7,8 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.fea
 @ProvidedTypeConverter
 internal class PoweredByStickerFeatureConverter : BaseSerializedConverter() {
     @TypeConverter
-    fun restoreAiutaStylistBanner(rawString: String?): PoweredByStickerFeature? {
-        return restore(rawString)
-    }
+    fun restoreAiutaStylistBanner(rawString: String?): PoweredByStickerFeature? = restore(rawString)
 
     @TypeConverter
-    fun saveAiutaStylistBanner(config: PoweredByStickerFeature): String? {
-        return save(config)
-    }
+    fun saveAiutaStylistBanner(config: PoweredByStickerFeature): String? = save(config)
 }

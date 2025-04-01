@@ -13,10 +13,8 @@ internal class AiutaAnalyticImpl(
     override val analyticFlow: Flow<ExternalAnalyticEvent> = internalAnalytic.analyticFlow
 
     companion object {
-        fun create(aiuta: Aiuta): AiutaAnalytic {
-            return AiutaAnalyticImpl(
-                internalAnalytic = aiuta.internalAiutaAnalytic,
-            )
-        }
+        fun create(aiuta: Aiuta): AiutaAnalytic = AiutaAnalyticImpl(
+            internalAnalytic = aiuta.internalAiutaAnalytic,
+        )
     }
 }

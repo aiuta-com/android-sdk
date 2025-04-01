@@ -24,9 +24,9 @@ internal fun AppBar(
 ) {
     Box(
         modifier =
-            modifier
-                .padding(vertical = 14.dp)
-                .windowInsetsPadding(WindowInsets.statusBars),
+        modifier
+            .padding(vertical = 14.dp)
+            .windowInsetsPadding(WindowInsets.statusBars),
     ) {
         navigationIcon()
 
@@ -45,9 +45,9 @@ internal fun AppBarIcon(
 ) {
     AiutaIcon(
         modifier =
-            modifier
-                .size(24.dp)
-                .clickableUnindicated { onClick() },
+        modifier
+            .size(24.dp)
+            .clickableUnindicated { onClick() },
         icon = icon,
         tint = color,
         contentDescription = null,

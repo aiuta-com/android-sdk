@@ -13,13 +13,11 @@ public fun aiutaThemeToggles(
     isDelimitersExtended: Boolean = false,
     isProductFistImageExtendedPaddingApplied: Boolean = false,
     isBlurOutlinesEnabled: Boolean = false,
-): AiutaThemeToggles {
-    return AiutaThemeToggles(
-        isOnboardingAppBarExtended = isOnboardingAppBarExtended,
-        isMainAppbarReversed = isMainAppbarReversed,
-        isShadowsReduced = isShadowsReduced,
-        isDelimitersExtended = isDelimitersExtended,
-        isProductFistImageExtendedPaddingApplied = isProductFistImageExtendedPaddingApplied,
-        isBlurOutlinesEnabled = isBlurOutlinesEnabled,
-    )
-}
+): AiutaThemeToggles = AiutaThemeToggles(
+    isOnboardingAppBarExtended = isOnboardingAppBarExtended,
+    isMainAppbarReversed = isMainAppbarReversed,
+    isShadowsReduced = isShadowsReduced,
+    isDelimitersExtended = isDelimitersExtended,
+    isProductFistImageExtendedPaddingApplied = isProductFistImageExtendedPaddingApplied,
+    isBlurOutlinesEnabled = isBlurOutlinesEnabled,
+)

@@ -26,9 +26,9 @@ internal fun CentredTextBlock(
 
         TextBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
             title = title,
             subtitle = subtitle,
         )

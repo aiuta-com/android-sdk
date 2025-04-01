@@ -11,19 +11,15 @@ internal val Aiuta.onboardingInteractor: OnboardingInteractor
 internal class OnboardingInteractor(
     private val onboardingDataSource: OnboardingDataSource,
 ) {
-    suspend fun shouldShowOnboarding(): Boolean {
-        return onboardingDataSource.count() <= 0
-    }
+    suspend fun shouldShowOnboarding(): Boolean = onboardingDataSource.count() <= 0
 
     suspend fun setOnboardingAsFinished() {
         onboardingDataSource.insert(OnboardingEntity())
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): OnboardingInteractor {
-            return OnboardingInteractor(
-                onboardingDataSource = OnboardingDataSource.getInstance(platformContext),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): OnboardingInteractor = OnboardingInteractor(
+            onboardingDataSource = OnboardingDataSource.getInstance(platformContext),
+        )
     }
 }

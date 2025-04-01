@@ -49,26 +49,26 @@ internal fun OnboardingAppBar(
             if (theme.toggles.isOnboardingAppBarExtended) {
                 titleTransition.AnimatedContent(
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.Center),
+                    Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Center),
                     transitionSpec = { transitionAnimation },
                 ) { state ->
                     state.pageTitle?.let { pageTitle ->
                         Text(
                             modifier =
-                                Modifier
-                                    .fillMaxWidth()
-                                    .align(Alignment.Center),
+                            Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.Center),
                             text =
-                                buildAnnotatedStringFromHtml(
-                                    input = pageTitle,
-                                    isClickable = false,
-                                ),
+                            buildAnnotatedStringFromHtml(
+                                input = pageTitle,
+                                isClickable = false,
+                            ),
                             style =
-                                theme.typography.navbar.copy(
-                                    fontSynthesis = FontSynthesis.All,
-                                ),
+                            theme.typography.navbar.copy(
+                                fontSynthesis = FontSynthesis.All,
+                            ),
                             color = theme.colors.primary,
                             textAlign = TextAlign.Center,
                         )
@@ -85,11 +85,11 @@ internal fun OnboardingAppBar(
                     onClick = {
                         controller.clickClose(
                             pageId =
-                                when (onboardingController.state.value) {
-                                    is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS
-                                    is BestResultPage -> AiutaAnalyticPageId.BEST_RESULTS
-                                    is ConsentPage -> AiutaAnalyticPageId.CONSENT
-                                },
+                            when (onboardingController.state.value) {
+                                is TryOnPage -> AiutaAnalyticPageId.HOW_IT_WORKS
+                                is BestResultPage -> AiutaAnalyticPageId.BEST_RESULTS
+                                is ConsentPage -> AiutaAnalyticPageId.CONSENT
+                            },
                         )
                     },
                 )

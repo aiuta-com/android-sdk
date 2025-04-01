@@ -44,21 +44,21 @@ internal fun IndicatorItem(
     val shape = RoundedCornerShape(indicatorSmallSize / 2)
     Box(
         modifier =
-            Modifier
-                .clip(shape)
-                .then(
-                    if (orientation == IndicatorOrientation.HORIZONTAL) {
-                        Modifier.size(size, indicatorSmallSize)
-                    } else {
-                        Modifier.size(indicatorSmallSize, size)
-                    },
-                )
-                .background(
-                    color =
-                        color.copy(
-                            alpha = (inactiveColorAlpha + (1 - inactiveColorAlpha) * abs(progress)),
-                        ),
-                    shape = shape,
+        Modifier
+            .clip(shape)
+            .then(
+                if (orientation == IndicatorOrientation.HORIZONTAL) {
+                    Modifier.size(size, indicatorSmallSize)
+                } else {
+                    Modifier.size(indicatorSmallSize, size)
+                },
+            )
+            .background(
+                color =
+                color.copy(
+                    alpha = (inactiveColorAlpha + (1 - inactiveColorAlpha) * abs(progress)),
                 ),
+                shape = shape,
+            ),
     )
 }

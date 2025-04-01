@@ -24,26 +24,26 @@ internal fun ImageSelectorBlock(
 
     Box(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.neutral,
-                    shape = theme.shapes.mainImage,
-                ),
+        modifier
+            .background(
+                color = theme.colors.neutral,
+                shape = theme.shapes.mainImage,
+            ),
     ) {
         ImageSelectorPhoto(
             modifier =
-                Modifier
-                    .fillMaxSize()
-                    .haze(hazeState),
+            Modifier
+                .fillMaxSize()
+                .haze(hazeState),
         )
 
         ImageSelectorBottom(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 12.dp)
-                    .padding(bottom = 24.dp)
-                    .align(Alignment.BottomCenter),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp)
+                .padding(bottom = 24.dp)
+                .align(Alignment.BottomCenter),
             hazeState = hazeState,
             uploadPhoto = uploadPhoto,
         )

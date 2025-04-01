@@ -31,10 +31,10 @@ internal fun rememberGenerationResultController(): GenerationResultController {
     val bottomSheetScaffoldState =
         rememberBottomSheetScaffoldState(
             bottomSheetState =
-                BottomSheetState(
-                    initialValue = BottomSheetValue.Collapsed,
-                    density = density,
-                ),
+            BottomSheetState(
+                initialValue = BottomSheetValue.Collapsed,
+                density = density,
+            ),
         )
 
     return remember(density) {

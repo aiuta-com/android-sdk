@@ -113,38 +113,36 @@ internal class ZoomState(
     internal fun canConsumeGesture(
         pan: Offset,
         zoom: Float,
-    ): Boolean {
-        return shouldConsumeEvent ?: run {
-            var consume = true
-            if (zoom == 1f) { // One finger gesture
-                if (scale == 1f) { // Not zoomed
-                    consume = false
-                } else {
-                    val ratio = (abs(pan.x) / abs(pan.y))
-                    if (ratio > 3) { // HORIZONTAL drag
-                        if ((pan.x < 0) && (_offsetX.value == _offsetX.lowerBound)) {
-                            // Drag R to L when right edge of the content is shown.
-                            consume = false
-                        }
-                        if ((pan.x > 0) && (_offsetX.value == _offsetX.upperBound)) {
-                            // Drag L to R when left edge of the content is shown.
-                            consume = false
-                        }
-                    } else if (ratio < 0.33) { // VERTICAL drag
-                        if ((pan.y < 0) && (_offsetY.value == _offsetY.lowerBound)) {
-                            // Drag bottom to top when bottom edge of the content is shown.
-                            consume = false
-                        }
-                        if ((pan.y > 0) && (_offsetY.value == _offsetY.upperBound)) {
-                            // Drag top to bottom when top edge of the content is shown.
-                            consume = false
-                        }
+    ): Boolean = shouldConsumeEvent ?: run {
+        var consume = true
+        if (zoom == 1f) { // One finger gesture
+            if (scale == 1f) { // Not zoomed
+                consume = false
+            } else {
+                val ratio = (abs(pan.x) / abs(pan.y))
+                if (ratio > 3) { // HORIZONTAL drag
+                    if ((pan.x < 0) && (_offsetX.value == _offsetX.lowerBound)) {
+                        // Drag R to L when right edge of the content is shown.
+                        consume = false
+                    }
+                    if ((pan.x > 0) && (_offsetX.value == _offsetX.upperBound)) {
+                        // Drag L to R when left edge of the content is shown.
+                        consume = false
+                    }
+                } else if (ratio < 0.33) { // VERTICAL drag
+                    if ((pan.y < 0) && (_offsetY.value == _offsetY.lowerBound)) {
+                        // Drag bottom to top when bottom edge of the content is shown.
+                        consume = false
+                    }
+                    if ((pan.y > 0) && (_offsetY.value == _offsetY.upperBound)) {
+                        // Drag top to bottom when top edge of the content is shown.
+                        consume = false
                     }
                 }
             }
-            shouldConsumeEvent = consume
-            consume
         }
+        shouldConsumeEvent = consume
+        consume
     }
 
     internal suspend fun applyGesture(
@@ -245,26 +243,25 @@ internal class ZoomState(
         return Rect(-boundX, -boundY, boundX, boundY)
     }
 
-    internal suspend fun endGesture() =
-        coroutineScope {
-            val velocity = velocityTracker.calculateVelocity()
-            if (velocity.x != 0f) {
-                launch {
-                    _offsetX.animateDecay(velocity.x, velocityDecay)
-                }
-            }
-            if (velocity.y != 0f) {
-                launch {
-                    _offsetY.animateDecay(velocity.y, velocityDecay)
-                }
-            }
-
-            if (_scale.value < 1f) {
-                launch {
-                    _scale.animateTo(1f)
-                }
+    internal suspend fun endGesture() = coroutineScope {
+        val velocity = velocityTracker.calculateVelocity()
+        if (velocity.x != 0f) {
+            launch {
+                _offsetX.animateDecay(velocity.x, velocityDecay)
             }
         }
+        if (velocity.y != 0f) {
+            launch {
+                _offsetY.animateDecay(velocity.y, velocityDecay)
+            }
+        }
+
+        if (_scale.value < 1f) {
+            launch {
+                _scale.animateTo(1f)
+            }
+        }
+    }
 }
 
 /**

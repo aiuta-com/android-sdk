@@ -51,38 +51,24 @@ public class AiutaTryOnConfiguration private constructor(
         public var hostMetadata: HostMetadata? = null
         public var toggles: AiutaToggles? = null
 
-        public fun setAiuta(aiuta: Aiuta): Builder {
-            return apply { this.aiuta = aiuta }
-        }
+        public fun setAiuta(aiuta: Aiuta): Builder = apply { this.aiuta = aiuta }
 
-        public fun setFeatures(features: AiutaTryOnFeatures): Builder {
-            return apply { this.features = features }
-        }
+        public fun setFeatures(features: AiutaTryOnFeatures): Builder = apply { this.features = features }
 
         @Deprecated("Will be split by features")
-        public fun setDataProvider(dataProvider: AiutaDataProvider): Builder {
-            return apply { this.dataProvider = dataProvider }
-        }
+        public fun setDataProvider(dataProvider: AiutaDataProvider): Builder = apply { this.dataProvider = dataProvider }
 
         @Deprecated("Will be split by features")
-        public fun setDimensions(dimensions: AiutaDimensions): Builder {
-            return apply { this.dimensions = dimensions }
-        }
+        public fun setDimensions(dimensions: AiutaDimensions): Builder = apply { this.dimensions = dimensions }
 
         @Deprecated("Will be split by features")
-        public fun setLanguage(language: AiutaTryOnLanguage): Builder {
-            return apply { this.language = language }
-        }
+        public fun setLanguage(language: AiutaTryOnLanguage): Builder = apply { this.language = language }
 
         @Deprecated("Will be split by features")
-        public fun setHostMetadata(hostMetadata: HostMetadata): Builder {
-            return apply { this.hostMetadata = hostMetadata }
-        }
+        public fun setHostMetadata(hostMetadata: HostMetadata): Builder = apply { this.hostMetadata = hostMetadata }
 
         @Deprecated("Will be split by features")
-        public fun setToggles(toggles: AiutaToggles): Builder {
-            return apply { this.toggles = toggles }
-        }
+        public fun setToggles(toggles: AiutaToggles): Builder = apply { this.toggles = toggles }
 
         public fun build(): AiutaTryOnConfiguration {
             // Init default
@@ -124,29 +110,24 @@ public class AiutaTryOnConfiguration private constructor(
         fun <T> T?.checkNotNullWithDescription(
             property: String,
             methodToCall: String,
-        ): T {
-            return checkNotNull(
-                value = this,
-                lazyMessage = {
-                    propertyIsNull(
-                        property = property,
-                        methodToCall = methodToCall,
-                    )
-                },
-            )
-        }
+        ): T = checkNotNull(
+            value = this,
+            lazyMessage = {
+                propertyIsNull(
+                    property = property,
+                    methodToCall = methodToCall,
+                )
+            },
+        )
 
         fun propertyIsNull(
             property: String,
             methodToCall: String,
-        ): String {
-            return """
+        ): String = """
                 AiutaTryOnConfiguration: $property is null, therefore cannot init AiutaTryOnConfiguration.
                 Please, call $methodToCall before build()
-                """.trimIndent()
-        }
+        """.trimIndent()
     }
 }
 
-public inline fun aiutaTryOnConfiguration(block: Builder.() -> Unit): AiutaTryOnConfiguration =
-    Builder().apply(block).build()
+public inline fun aiutaTryOnConfiguration(block: Builder.() -> Unit): AiutaTryOnConfiguration = Builder().apply(block).build()

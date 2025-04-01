@@ -15,14 +15,14 @@ internal fun FashionTryOnController.sendOnboardingEvent(
 ) {
     analytic.sendEvent(
         event =
-            AiutaAnalyticOnboardingEvent(
-                event = eventType,
-                pageId = pageId,
-                productId = productId,
-                supplementaryConsents =
-                    supplementaryConsents
-                        ?.takeIf { it.isNotEmpty() }
-                        ?.map { it.toAnalytic() },
-            ),
+        AiutaAnalyticOnboardingEvent(
+            event = eventType,
+            pageId = pageId,
+            productId = productId,
+            supplementaryConsents =
+            supplementaryConsents
+                ?.takeIf { it.isNotEmpty() }
+                ?.map { it.toAnalytic() },
+        ),
     )
 }

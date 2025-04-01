@@ -63,10 +63,10 @@ internal fun ModelsListBlock(
                 val imageModel =
                     rememberAsyncImagePainter(
                         model =
-                            ImageRequest.Builder(coilContext)
-                                .data(category.models.getOrNull(index)?.url)
-                                .crossfade(true)
-                                .build(),
+                        ImageRequest.Builder(coilContext)
+                            .data(category.models.getOrNull(index)?.url)
+                            .crossfade(true)
+                            .build(),
                     )
                 val imageModelState = imageModel.state.collectAsState()
 
@@ -116,14 +116,14 @@ internal fun ModelsListBlock(
                 ) {
                     Image(
                         modifier =
-                            Modifier
-                                .width(itemWidth.value)
-                                .height(itemHeight.value)
-                                .clip(RoundedCornerShape(8.dp))
-                                .placeholderFadeConnecting(
-                                    shapeDp = 8.dp,
-                                    visible = isShimmerVisible.value,
-                                ),
+                        Modifier
+                            .width(itemWidth.value)
+                            .height(itemHeight.value)
+                            .clip(RoundedCornerShape(8.dp))
+                            .placeholderFadeConnecting(
+                                shapeDp = 8.dp,
+                                visible = isShimmerVisible.value,
+                            ),
                         painter = imageModel,
                         contentDescription = null,
                         contentScale = ContentScale.Crop,

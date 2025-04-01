@@ -61,10 +61,10 @@ internal fun ModelSelectorShowContent(
     val imageModel =
         rememberAsyncImagePainter(
             model =
-                ImageRequest.Builder(coilContext)
-                    .data(activeImageModel.value?.url)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(coilContext)
+                .data(activeImageModel.value?.url)
+                .crossfade(true)
+                .build(),
         )
     val imageModelState = imageModel.state.collectAsState()
     val isMainImageShimmerVisible =
@@ -78,15 +78,15 @@ internal fun ModelSelectorShowContent(
     ) {
         Image(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .padding(horizontal = imageHorizontalPadding)
-                    .clip(RoundedCornerShape(24.dp))
-                    .placeholderFadeConnecting(
-                        shapeDp = 24.dp,
-                        visible = isMainImageShimmerVisible.value,
-                    ),
+            Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .padding(horizontal = imageHorizontalPadding)
+                .clip(RoundedCornerShape(24.dp))
+                .placeholderFadeConnecting(
+                    shapeDp = 24.dp,
+                    visible = isMainImageShimmerVisible.value,
+                ),
             painter = imageModel,
             contentScale = ContentScale.Crop,
             contentDescription = null,
@@ -116,22 +116,22 @@ internal fun ModelSelectorShowContent(
 
             FashionButton(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
                 text = stringResources.tryOn,
                 style =
-                    if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
-                        FashionButtonStyles.gradientColors(
-                            contentColor = theme.colors.onDark,
-                            gradientBackground =
-                                Brush.horizontalGradient(
-                                    theme.gradients.tryOnButtonBackground,
-                                ),
-                        )
-                    } else {
-                        FashionButtonStyles.primaryStyle(theme)
-                    },
+                if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
+                    FashionButtonStyles.gradientColors(
+                        contentColor = theme.colors.onDark,
+                        gradientBackground =
+                        Brush.horizontalGradient(
+                            theme.gradients.tryOnButtonBackground,
+                        ),
+                    )
+                } else {
+                    FashionButtonStyles.primaryStyle(theme)
+                },
                 size = FashionButtonSizes.lSize(),
                 icon = theme.icons.magic20,
                 onClick = {

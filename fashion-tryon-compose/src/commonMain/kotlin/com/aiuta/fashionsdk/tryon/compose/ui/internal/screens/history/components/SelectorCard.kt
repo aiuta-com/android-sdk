@@ -40,12 +40,12 @@ internal fun SelectorCard(
 
     Row(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.primary,
-                    shape = theme.shapes.buttonM,
-                )
-                .padding(16.dp),
+        modifier
+            .background(
+                color = theme.colors.primary,
+                shape = theme.shapes.buttonM,
+            )
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(
@@ -74,11 +74,11 @@ internal fun SelectorCard(
             ) { state ->
                 TextButton(
                     text =
-                        if (state == SelectorMode.ALL_IS_SELECTED) {
-                            stringResources.historySelectorEnableButtonUnselectAll
-                        } else {
-                            stringResources.historySelectorEnableButtonSelectAll
-                        },
+                    if (state == SelectorMode.ALL_IS_SELECTED) {
+                        stringResources.historySelectorEnableButtonUnselectAll
+                    } else {
+                        stringResources.historySelectorEnableButtonSelectAll
+                    },
                     backgroundColor = Color.Transparent,
                     textColor = theme.colors.onDark,
                 ) {

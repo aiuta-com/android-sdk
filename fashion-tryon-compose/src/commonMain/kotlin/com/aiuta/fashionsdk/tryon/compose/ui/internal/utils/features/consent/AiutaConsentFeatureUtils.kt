@@ -17,21 +17,15 @@ internal fun consentFeature(): AiutaConsentFeature? {
 
 @Composable
 @ReadOnlyComposable
-internal fun consentBuiltInFeature(): AiutaConsentBuiltInWithOnboardingPage? {
-    return consentFeature() as? AiutaConsentBuiltInWithOnboardingPage
-}
+internal fun consentBuiltInFeature(): AiutaConsentBuiltInWithOnboardingPage? = consentFeature() as? AiutaConsentBuiltInWithOnboardingPage
 
 @Composable
 @ReadOnlyComposable
-internal fun consentStandaloneFeature(): AiutaConsentStandaloneOnboardingPage? {
-    return consentFeature() as? AiutaConsentStandaloneOnboardingPage
-}
+internal fun consentStandaloneFeature(): AiutaConsentStandaloneOnboardingPage? = consentFeature() as? AiutaConsentStandaloneOnboardingPage
 
 @Composable
 @ReadOnlyComposable
-internal fun strictConsentStandaloneFeature(): AiutaConsentStandaloneOnboardingPage {
-    return checkFeatureAvailability(
-        name = "AiutaConsentFeature.StandaloneOnboardingPage",
-        feature = consentStandaloneFeature(),
-    )
-}
+internal fun strictConsentStandaloneFeature(): AiutaConsentStandaloneOnboardingPage = checkFeatureAvailability(
+    name = "AiutaConsentFeature.StandaloneOnboardingPage",
+    feature = consentStandaloneFeature(),
+)

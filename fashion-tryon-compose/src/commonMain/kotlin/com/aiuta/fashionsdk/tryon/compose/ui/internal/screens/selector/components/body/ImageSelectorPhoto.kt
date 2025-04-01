@@ -45,9 +45,9 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
 
     Box(
         modifier =
-            modifier
-                .clip(sharedCornerShape)
-                .clipToBounds(),
+        modifier
+            .clip(sharedCornerShape)
+            .clipToBounds(),
         contentAlignment = Alignment.Center,
     ) {
         lastSavedPhotoUrisTransition.AnimatedContent(
@@ -56,9 +56,9 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
         ) { images ->
             ImagesContainer(
                 modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clip(sharedCornerShape),
+                Modifier
+                    .fillMaxSize()
+                    .clip(sharedCornerShape),
                 getImages = { images },
             )
         }

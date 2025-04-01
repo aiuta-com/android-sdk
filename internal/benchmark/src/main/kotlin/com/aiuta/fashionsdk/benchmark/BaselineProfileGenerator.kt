@@ -12,12 +12,11 @@ class BaselineProfileGenerator {
     val baselineProfileRule = BaselineProfileRule()
 
     @Test
-    fun generate() =
-        baselineProfileRule.collect(
-            packageName = "sample.tryon",
-        ) {
-            pressHome()
-            startActivityAndWait()
-            device.waitForIdle()
-        }
+    fun generate() = baselineProfileRule.collect(
+        packageName = "sample.tryon",
+    ) {
+        pressHome()
+        startActivityAndWait()
+        device.waitForIdle()
+    }
 }

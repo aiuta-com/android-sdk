@@ -29,10 +29,8 @@ internal suspend fun getFashionIOException(response: HttpResponse): FashionIOExc
     return null
 }
 
-private suspend fun HttpResponse.getErrorMessages(): List<String> {
-    return try {
-        body<FashionErrorBody>().detail.map { it.msg }
-    } catch (e: Exception) {
-        emptyList()
-    }
+private suspend fun HttpResponse.getErrorMessages(): List<String> = try {
+    body<FashionErrorBody>().detail.map { it.msg }
+} catch (e: Exception) {
+    emptyList()
 }

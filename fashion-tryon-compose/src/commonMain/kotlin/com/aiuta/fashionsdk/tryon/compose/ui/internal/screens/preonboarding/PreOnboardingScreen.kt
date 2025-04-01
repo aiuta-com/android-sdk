@@ -57,10 +57,10 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 
         AppBar(
             modifier =
-                Modifier
-                    .align(Alignment.TopCenter)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .align(Alignment.TopCenter)
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
             actions = {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
@@ -137,11 +137,11 @@ private fun StartButton(
 
     Box(
         modifier =
-            modifier
-                .clip(RoundedCornerShape(4.dp))
-                .background(theme.colors.background)
-                .clickableUnindicated { onClick() }
-                .padding(vertical = 16.dp),
+        modifier
+            .clip(RoundedCornerShape(4.dp))
+            .background(theme.colors.background)
+            .clickableUnindicated { onClick() }
+            .padding(vertical = 16.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(

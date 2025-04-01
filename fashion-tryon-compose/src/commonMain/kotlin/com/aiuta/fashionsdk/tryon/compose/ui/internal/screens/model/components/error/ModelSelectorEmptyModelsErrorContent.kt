@@ -42,9 +42,9 @@ internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
 
         Text(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = textHorizontalPadding),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = textHorizontalPadding),
             text = stringResources.modelSelectorErrorEmptyModelsList,
             style = theme.typography.regular,
             color = theme.colors.primary,

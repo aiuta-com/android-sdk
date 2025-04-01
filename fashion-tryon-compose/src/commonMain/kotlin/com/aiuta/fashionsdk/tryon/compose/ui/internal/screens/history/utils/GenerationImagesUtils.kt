@@ -35,10 +35,10 @@ internal fun FashionTryOnController.deleteGeneratedImages(
         } catch (e: Exception) {
             showErrorState(
                 errorState =
-                    DeleteGeneratedImagesToastErrorState(
-                        controller = this@deleteGeneratedImages,
-                        loadingActionsController = loadingActionsController,
-                    ),
+                DeleteGeneratedImagesToastErrorState(
+                    controller = this@deleteGeneratedImages,
+                    loadingActionsController = loadingActionsController,
+                ),
             )
         }
     }

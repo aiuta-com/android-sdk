@@ -9,25 +9,21 @@ private val sharedInteractionSource = MutableInteractionSource()
 public fun Modifier.conditional(
     condition: Boolean,
     modifier: Modifier.() -> Modifier,
-): Modifier {
-    return if (condition) {
-        then(modifier(Modifier))
-    } else {
-        this
-    }
+): Modifier = if (condition) {
+    then(modifier(Modifier))
+} else {
+    this
 }
 
 public fun Modifier.clickableUnindicated(
     enabled: Boolean = true,
     onClick: () -> Unit,
-): Modifier {
-    return this then
-        Modifier.clickable(
-            interactionSource = sharedInteractionSource,
-            indication = null,
-            enabled = enabled,
-            onClickLabel = null,
-            role = null,
-            onClick,
-        )
-}
+): Modifier = this then
+    Modifier.clickable(
+        interactionSource = sharedInteractionSource,
+        indication = null,
+        enabled = enabled,
+        onClickLabel = null,
+        role = null,
+        onClick,
+    )

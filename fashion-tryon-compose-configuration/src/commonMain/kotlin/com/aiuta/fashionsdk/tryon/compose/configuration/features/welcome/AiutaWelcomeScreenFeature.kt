@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.annotations.AiutaTryOnConfigurationDsl
+import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.icons.AiutaWelcomeScreenFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.images.AiutaWelcomeScreenFeatureImages
@@ -16,7 +16,7 @@ public class AiutaWelcomeScreenFeature internal constructor(
     public val strings: AiutaWelcomeScreenFeatureStrings,
     public val typography: AiutaWelcomeScreenFeatureTypography,
 ) {
-    @AiutaTryOnConfigurationDsl
+    @AiutaDsl
     public class Builder {
         public var images: AiutaWelcomeScreenFeatureImages? = null
         public var icons: AiutaWelcomeScreenFeatureIcons? = null
@@ -27,26 +27,22 @@ public class AiutaWelcomeScreenFeature internal constructor(
             val parentClass = "AiutaWelcomeScreenFeature"
 
             return AiutaWelcomeScreenFeature(
-                images =
-                    this.images.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "images",
-                    ),
-                icons =
-                    this.icons.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "icons",
-                    ),
-                strings =
-                    this.strings.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "strings",
-                    ),
-                typography =
-                    this.typography.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "typography",
-                    ),
+                images = images.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "images",
+                ),
+                icons = icons.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "icons",
+                ),
+                strings = strings.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "strings",
+                ),
+                typography = typography.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "typography",
+                ),
             )
         }
     }

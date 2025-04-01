@@ -13,33 +13,31 @@ internal fun newImageUri(
     fileDateFormat: String = "yyyy_MM_dd_hh_mm_ss_SSSZ",
     fileExtension: String = "jpeg",
     locale: Locale = Locale.getDefault(),
-): Uri? {
-    return try {
-        // Get path of images
-        val directory = File(context.cacheDir, "images")
-        directory.mkdirs()
+): Uri? = try {
+    // Get path of images
+    val directory = File(context.cacheDir, "images")
+    directory.mkdirs()
 
-        // Get new file
-        val file =
-            File.createTempFile(
-                SimpleDateFormat(
-                    fileDateFormat,
-                    locale,
-                ).format(Date()),
-                ".$fileExtension",
-                directory,
-            )
-        // Authority of provider
-        val authority = "${context.packageName}.aiuta.tryon.compose.fileprovider"
-
-        // Return uri of the file
-        FileProvider.getUriForFile(
-            context,
-            authority,
-            file,
+    // Get new file
+    val file =
+        File.createTempFile(
+            SimpleDateFormat(
+                fileDateFormat,
+                locale,
+            ).format(Date()),
+            ".$fileExtension",
+            directory,
         )
-    } catch (e: Exception) {
-        // Fallback with null
-        null
-    }
+    // Authority of provider
+    val authority = "${context.packageName}.aiuta.tryon.compose.fileprovider"
+
+    // Return uri of the file
+    FileProvider.getUriForFile(
+        context,
+        authority,
+        file,
+    )
+} catch (e: Exception) {
+    // Fallback with null
+    null
 }

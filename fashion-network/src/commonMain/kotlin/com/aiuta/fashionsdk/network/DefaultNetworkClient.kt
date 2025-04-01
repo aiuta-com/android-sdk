@@ -15,13 +15,11 @@ public fun defaultNetworkClient(
     aiuta: Aiuta,
     host: String? = null,
     encodedPath: String? = null,
-): NetworkClient {
-    return KtorNetworkClient.create(
-        aiuta = aiuta,
-        host = host,
-        encodedPath = encodedPath,
-    )
-}
+): NetworkClient = KtorNetworkClient.create(
+    aiuta = aiuta,
+    host = host,
+    encodedPath = encodedPath,
+)
 
 /**
  * Creating new instance of [NetworkClient]
@@ -41,10 +39,8 @@ public fun createNetworkClient(
     aiuta: Aiuta,
     host: String? = null,
     encodedPath: String? = null,
-): NetworkClient {
-    return KtorNetworkClient.buildKtorNetworkClient(
-        aiuta = aiuta,
-        host = host,
-        encodedPath = encodedPath,
-    )
-}
+): NetworkClient = KtorNetworkClient.buildKtorNetworkClient(
+    aiuta = aiuta,
+    host = host,
+    encodedPath = encodedPath,
+)

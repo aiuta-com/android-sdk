@@ -24,13 +24,13 @@ internal fun IconButton(
 
     Box(
         modifier =
-            modifier
-                .size(38.dp)
-                .background(
-                    color = theme.colors.background,
-                    shape = CircleShape,
-                )
-                .clickableUnindicated { onClick() },
+        modifier
+            .size(38.dp)
+            .background(
+                color = theme.colors.background,
+                shape = CircleShape,
+            )
+            .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(

@@ -17,10 +17,8 @@ internal fun solveGeneralPriceColor(activeSKUItem: SKUItem): Color {
     }
 }
 
-internal fun solveGeneralPriceDecoration(activeSKUItem: SKUItem): TextDecoration? {
-    return if (activeSKUItem.localizedOldPrice?.isNotBlank() == true) {
-        TextDecoration.LineThrough
-    } else {
-        null
-    }
+internal fun solveGeneralPriceDecoration(activeSKUItem: SKUItem): TextDecoration? = if (activeSKUItem.localizedOldPrice?.isNotBlank() == true) {
+    TextDecoration.LineThrough
+} else {
+    null
 }

@@ -60,16 +60,16 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
     Column(
         modifier =
-            modifier
-                .background(theme.colors.background)
-                .windowInsetsPadding(WindowInsets.navigationBars),
+        modifier
+            .background(theme.colors.background)
+            .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         OnboardingAppBar(
             modifier =
-                Modifier
-                    .padding(horizontal = generalHorizontalPadding)
-                    .fillMaxWidth(),
+            Modifier
+                .padding(horizontal = generalHorizontalPadding)
+                .fillMaxWidth(),
             onboardingController = onboardingController,
         )
 
@@ -77,30 +77,31 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
 
         OnboardingScreenContent(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
+            Modifier
+                .fillMaxWidth()
+                .weight(1f),
             onboardingController = onboardingController,
         )
 
         FashionButton(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = generalHorizontalPadding),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = generalHorizontalPadding),
             text =
-                with(onboardingController) {
-                    val currentState = state.value
-                    when {
-                        currentState != onboardingStatesQueue.last() -> onboardingFeature.strings.onboardingButtonNext
+            with(onboardingController) {
+                val currentState = state.value
+                when {
+                    currentState != onboardingStatesQueue.last() -> onboardingFeature.strings.onboardingButtonNext
 
-                        currentState is TryOnPage && currentState.internalPages.getOrNull(
+                    currentState is TryOnPage &&
+                        currentState.internalPages.getOrNull(
                             onboardingController.pagerState.settledPage,
                         ) != currentState.internalPages.last() -> onboardingFeature.strings.onboardingButtonNext
 
-                        else -> onboardingFeature.strings.onboardingButtonStart
-                    }
-                },
+                    else -> onboardingFeature.strings.onboardingButtonStart
+                }
+            },
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             isEnable = onboardingController.listenIsPrimaryButtonEnabled().value,

@@ -67,22 +67,20 @@ internal actual class ShareManagerV2 {
         productId: String?,
         imageUrls: List<String>,
         watermark: AiutaImage?,
-    ): Result<Unit> {
-        return runCatching {
-            val images =
-                imageUrls.mapNotNull { url ->
-                    val uiimage = urlToUIImage(coilContext, url)
-                    uiimage?.let { AiutaPlatformImage(it) }
-                }
+    ): Result<Unit> = runCatching {
+        val images =
+            imageUrls.mapNotNull { url ->
+                val uiimage = urlToUIImage(coilContext, url)
+                uiimage?.let { AiutaPlatformImage(it) }
+            }
 
-            shareImages(
-                content = content,
-                pageId = pageId,
-                productId = productId,
-                images = images,
-                watermark = watermark,
-            )
-        }
+        shareImages(
+            content = content,
+            pageId = pageId,
+            productId = productId,
+            images = images,
+            watermark = watermark,
+        )
     }
 
     @OptIn(ExperimentalForeignApi::class)
@@ -100,19 +98,17 @@ internal actual class ShareManagerV2 {
     private suspend fun urlToUIImage(
         coilContext: PlatformContext,
         imageUrl: String,
-    ): UIImage? {
-        return try {
-            val request =
-                ImageRequest.Builder(coilContext)
-                    .data(imageUrl)
-                    .build()
-            val resultImage = SingletonImageLoader.get(coilContext).execute(request).image
+    ): UIImage? = try {
+        val request =
+            ImageRequest.Builder(coilContext)
+                .data(imageUrl)
+                .build()
+        val resultImage = SingletonImageLoader.get(coilContext).execute(request).image
 
-            resultImage?.let { convertImage(resultImage) }
-        } catch (e: Exception) {
-            // Failed to resolve bitmap
-            null
-        }
+        resultImage?.let { convertImage(resultImage) }
+    } catch (e: Exception) {
+        // Failed to resolve bitmap
+        null
     }
 
     @OptIn(ExperimentalForeignApi::class)
@@ -148,6 +144,4 @@ internal actual class ShareManagerV2 {
 }
 
 @Composable
-internal actual fun rememberShareManagerV2(): ShareManagerV2 {
-    return remember { ShareManagerV2() }
-}
+internal actual fun rememberShareManagerV2(): ShareManagerV2 = remember { ShareManagerV2() }

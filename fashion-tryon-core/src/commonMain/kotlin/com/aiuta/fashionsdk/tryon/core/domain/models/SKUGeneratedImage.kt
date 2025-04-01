@@ -10,9 +10,7 @@ public class SKUGeneratedImage(
     public val url: String,
 )
 
-internal fun GeneratedImage.toPublic(): SKUGeneratedImage {
-    return SKUGeneratedImage(
-        id = id,
-        url = url,
-    )
-}
+internal fun GeneratedImage.toPublic(): SKUGeneratedImage = SKUGeneratedImage(
+    id = id,
+    url = url,
+)

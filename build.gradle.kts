@@ -96,13 +96,12 @@ allprojects {
         kotlin {
             target("**/*.kt", "**/*.kts")
             targetExclude(
+                "**/build/**/*.kt",
                 "**/MainViewController.kt",
             )
-            ktlint(
-                libs.versions.ktlint.get(),
-            ).setEditorConfigPath("${project.rootDir}/.editorconfig")
+            ktlint(libs.versions.ktlint.get()).editorConfigOverride(ktlintRules)
             endWithNewline()
-            indentWithSpaces()
+            leadingTabsToSpaces()
             trimTrailingWhitespace()
         }
     }
@@ -113,4 +112,13 @@ allprojects {
     } else {
         extensions.configure<SpotlessExtension>(configureSpotless)
     }
+}
+
+private val ktlintRules = buildMap {
+    put("ktlint_code_style", "intellij_idea")
+
+    put("ktlint_standard_max-line-length", "disabled")
+
+    put("ktlint_standard_parameter-wrapping", "disabled")
+    put("ktlint_standard_property-wrapping", "disabled")
 }

@@ -17,9 +17,7 @@ public fun aiutaGradients(
             Color.Transparent,
         ),
     tryOnButtonBackground: List<Color> = emptyList(),
-): AiutaGradients {
-    return AiutaGradients(
-        loadingAnimation = loadingAnimationGradient,
-        tryOnButtonBackground = tryOnButtonBackground,
-    )
-}
+): AiutaGradients = AiutaGradients(
+    loadingAnimation = loadingAnimationGradient,
+    tryOnButtonBackground = tryOnButtonBackground,
+)

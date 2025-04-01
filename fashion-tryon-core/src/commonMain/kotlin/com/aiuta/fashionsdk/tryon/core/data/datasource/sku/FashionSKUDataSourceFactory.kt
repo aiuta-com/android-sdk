@@ -8,7 +8,7 @@ internal val Aiuta.skuDataSourceFactory: FashionSKUDataSource
     get() =
         FashionSKURemoteDataSource(
             networkClient =
-                defaultNetworkClient(
-                    aiuta = this,
-                ),
+            defaultNetworkClient(
+                aiuta = this,
+            ),
         )

@@ -11,38 +11,34 @@ internal object Installation {
     private var installationId: String? = null
     private var storage: InstallationStorage? = null
 
-    suspend fun id(platformContext: AiutaPlatformContext): String {
-        return mutex.withLock {
-            val currentInstallationId = installationId
+    suspend fun id(platformContext: AiutaPlatformContext): String = mutex.withLock {
+        val currentInstallationId = installationId
 
-            if (currentInstallationId == null) {
-                val currentStorage = initStorage(platformContext)
+        if (currentInstallationId == null) {
+            val currentStorage = initStorage(platformContext)
 
-                val solvedInstallationId =
-                    try {
-                        val savedInstallationId = storage?.readInstallationId()
+            val solvedInstallationId =
+                try {
+                    val savedInstallationId = storage?.readInstallationId()
 
-                        checkNotNull(savedInstallationId)
+                    checkNotNull(savedInstallationId)
 
-                        savedInstallationId
-                    } catch (e: Exception) {
-                        generateAndStoreId(currentStorage)
-                    }
+                    savedInstallationId
+                } catch (e: Exception) {
+                    generateAndStoreId(currentStorage)
+                }
 
-                // Just update id
-                installationId = solvedInstallationId
+            // Just update id
+            installationId = solvedInstallationId
 
-                solvedInstallationId
-            } else {
-                currentInstallationId
-            }
+            solvedInstallationId
+        } else {
+            currentInstallationId
         }
     }
 
-    private fun initStorage(platformContext: AiutaPlatformContext): InstallationStorage {
-        return storage ?: buildInstallationStorage(platformContext).also {
-            storage = it
-        }
+    private fun initStorage(platformContext: AiutaPlatformContext): InstallationStorage = storage ?: buildInstallationStorage(platformContext).also {
+        storage = it
     }
 
     private suspend fun generateAndStoreId(storage: InstallationStorage): String {

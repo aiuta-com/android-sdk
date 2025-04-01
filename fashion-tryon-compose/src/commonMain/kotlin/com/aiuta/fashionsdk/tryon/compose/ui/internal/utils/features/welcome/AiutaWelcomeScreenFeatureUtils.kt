@@ -17,6 +17,4 @@ internal fun strictWelcomeScreenFeature(): AiutaWelcomeScreenFeature {
     )
 }
 
-internal fun AiutaTryOnConfiguration.isWelcomeScreenFeatureAvailable(): Boolean {
-    return features.welcomeScreen != null
-}
+internal fun AiutaTryOnConfiguration.isWelcomeScreenFeatureAvailable(): Boolean = features.welcomeScreen != null

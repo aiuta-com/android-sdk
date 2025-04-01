@@ -24,11 +24,11 @@ internal fun ColumnScope.SheetDivider() {
 
     Divider(
         modifier =
-            Modifier
-                .width(dividerWidth)
-                .height(3.dp)
-                .clip(RoundedCornerShape(6.dp))
-                .align(Alignment.CenterHorizontally),
+        Modifier
+            .width(dividerWidth)
+            .height(3.dp)
+            .clip(RoundedCornerShape(6.dp))
+            .align(Alignment.CenterHorizontally),
         color = Color(0xFFC5C5C5),
     )
 }

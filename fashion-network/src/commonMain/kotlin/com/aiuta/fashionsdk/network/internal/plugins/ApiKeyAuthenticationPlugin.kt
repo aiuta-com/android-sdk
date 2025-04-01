@@ -33,13 +33,9 @@ internal class ApiKeyAuthProvider(
     override val sendWithoutRequest: Boolean
         get() = error("Deprecated")
 
-    override fun sendWithoutRequest(request: HttpRequestBuilder): Boolean {
-        return sendWithoutRequestCallback(request)
-    }
+    override fun sendWithoutRequest(request: HttpRequestBuilder): Boolean = sendWithoutRequestCallback(request)
 
-    override fun isApplicable(auth: HttpAuthHeader): Boolean {
-        return auth.authScheme == HEADER_API_KEY
-    }
+    override fun isApplicable(auth: HttpAuthHeader): Boolean = auth.authScheme == HEADER_API_KEY
 
     override suspend fun addRequestHeaders(
         request: HttpRequestBuilder,

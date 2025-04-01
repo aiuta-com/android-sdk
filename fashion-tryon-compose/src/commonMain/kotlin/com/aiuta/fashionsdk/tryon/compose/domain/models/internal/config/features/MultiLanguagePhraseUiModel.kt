@@ -17,13 +17,11 @@ internal class MultiLanguagePhraseUiModel(
     val turkishTranslation: String? = null,
 )
 
-internal fun MultiLanguagePhrase.toUiModel(): MultiLanguagePhraseUiModel {
-    return MultiLanguagePhraseUiModel(
-        englishTranslation = englishTranslation,
-        russianTranslation = russianTranslation,
-        turkishTranslation = turkishTranslation,
-    )
-}
+internal fun MultiLanguagePhrase.toUiModel(): MultiLanguagePhraseUiModel = MultiLanguagePhraseUiModel(
+    englishTranslation = englishTranslation,
+    russianTranslation = russianTranslation,
+    turkishTranslation = turkishTranslation,
+)
 
 @Composable
 internal fun MultiLanguagePhraseUiModel.toTranslatedString(): String? {

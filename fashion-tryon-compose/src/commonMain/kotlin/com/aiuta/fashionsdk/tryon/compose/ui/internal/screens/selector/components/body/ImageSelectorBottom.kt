@@ -75,13 +75,13 @@ internal fun ImageSelectorBottom(
     val bottomState =
         updateTransition(
             targetState =
-                when {
-                    generationStatus.value == SKUGenerationUIStatus.LOADING -> {
-                        ImageSelectorState.GENERATION_LOADING
-                    }
+            when {
+                generationStatus.value == SKUGenerationUIStatus.LOADING -> {
+                    ImageSelectorState.GENERATION_LOADING
+                }
 
-                    else -> ImageSelectorState.LAST_IMAGE_SAVED
-                },
+                else -> ImageSelectorState.LAST_IMAGE_SAVED
+            },
             label = "bottomState",
         )
 
@@ -93,20 +93,20 @@ internal fun ImageSelectorBottom(
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
                     modifier =
-                        sharedModifier.conditional(!theme.toggles.isBlurOutlinesEnabled) {
-                            sharedBlurModifer
-                        },
+                    sharedModifier.conditional(!theme.toggles.isBlurOutlinesEnabled) {
+                        sharedBlurModifer
+                    },
                     text = stringResources.imageSelectorChangeButton,
                     style =
-                        if (theme.toggles.isBlurOutlinesEnabled) {
-                            FashionButtonStyles.primaryStyle(theme)
-                        } else {
-                            FashionButtonStyles.secondaryStyle(
-                                backgroundColor = Color.Transparent,
-                                contentColor = theme.colors.primary,
-                                borderColor = Color.Transparent,
-                            )
-                        },
+                    if (theme.toggles.isBlurOutlinesEnabled) {
+                        FashionButtonStyles.primaryStyle(theme)
+                    } else {
+                        FashionButtonStyles.secondaryStyle(
+                            backgroundColor = Color.Transparent,
+                            contentColor = theme.colors.primary,
+                            borderColor = Color.Transparent,
+                        )
+                    },
                     size = sharedButtonSize,
                     onClick = {
                         if (countGeneratedOperation.value == 0) {
@@ -137,12 +137,12 @@ internal fun ImageSelectorBottom(
 
                 Row(
                     modifier =
-                        finalModifier
-                            .then(sharedBlurModifer)
-                            .padding(
-                                horizontal = 24.dp,
-                                vertical = 12.dp,
-                            ),
+                    finalModifier
+                        .then(sharedBlurModifer)
+                        .padding(
+                            horizontal = 24.dp,
+                            vertical = 12.dp,
+                        ),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {
@@ -152,16 +152,16 @@ internal fun ImageSelectorBottom(
                             initialValue = 0F,
                             targetValue = 360F,
                             animationSpec =
-                                infiniteRepeatable(
-                                    animation = tween(2000, easing = LinearEasing),
-                                ),
+                            infiniteRepeatable(
+                                animation = tween(2000, easing = LinearEasing),
+                            ),
                         )
 
                     AiutaIcon(
                         modifier =
-                            Modifier
-                                .size(14.dp)
-                                .rotate(angle.value),
+                        Modifier
+                            .size(14.dp)
+                            .rotate(angle.value),
                         icon = theme.icons.loading14,
                         tint = theme.colors.primary,
                         contentDescription = null,

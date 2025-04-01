@@ -103,22 +103,16 @@ internal fun FashionTryOnController.deactivateGeneration() {
 }
 
 // Generations
-internal inline fun <reified T : SKUGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> {
-    return generationOperations.mapNotNull { it as? T }
+internal inline fun <reified T : SKUGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> = generationOperations.mapNotNull { it as? T }
+
+@Composable
+internal fun FashionTryOnController.subscribeToSuccessOperations(): State<List<SKUGenerationOperation.SuccessOperation>> = remember(generationOperations) {
+    derivedStateOf { tryToGetOperations() }
 }
 
 @Composable
-internal fun FashionTryOnController.subscribeToSuccessOperations(): State<List<SKUGenerationOperation.SuccessOperation>> {
-    return remember(generationOperations) {
-        derivedStateOf { tryToGetOperations() }
-    }
-}
-
-@Composable
-internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<SKUGenerationOperation.LoadingOperation>> {
-    return remember(generationOperations) {
-        derivedStateOf { tryToGetOperations() }
-    }
+internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<SKUGenerationOperation.LoadingOperation>> = remember(generationOperations) {
+    derivedStateOf { tryToGetOperations() }
 }
 
 // Auto try on mode
@@ -168,37 +162,29 @@ internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
 }
 
 @Composable
-internal fun FashionTryOnController.isAppbarSelectAvailable(): State<Boolean> {
-    return remember(selectorState.value) {
-        derivedStateOf {
-            selectorState.value == SelectorMode.DISABLED
-        }
+internal fun FashionTryOnController.isAppbarSelectAvailable(): State<Boolean> = remember(selectorState.value) {
+    derivedStateOf {
+        selectorState.value == SelectorMode.DISABLED
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> {
-    return remember(selectorState.value) {
-        derivedStateOf {
-            selectorState.value != SelectorMode.DISABLED
-        }
+internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> = remember(selectorState.value) {
+    derivedStateOf {
+        selectorState.value != SelectorMode.DISABLED
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> {
-    return remember(lastSavedImages.value) {
-        derivedStateOf {
-            lastSavedImages.value.isNotEmpty()
-        }
+internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> = remember(lastSavedImages.value) {
+    derivedStateOf {
+        lastSavedImages.value.isNotEmpty()
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> {
-    return remember(fashionTryOnErrorState.value) {
-        derivedStateOf {
-            fashionTryOnErrorState.value != null
-        }
+internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> = remember(fashionTryOnErrorState.value) {
+    derivedStateOf {
+        fashionTryOnErrorState.value != null
     }
 }

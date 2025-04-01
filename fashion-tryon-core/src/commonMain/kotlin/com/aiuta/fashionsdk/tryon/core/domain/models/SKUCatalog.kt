@@ -13,9 +13,7 @@ public class SKUCatalog(
     public val catalogName: String,
 )
 
-internal fun SKUCatalogDTO.toPublic(): SKUCatalog {
-    return SKUCatalog(
-        id = id,
-        catalogName = catalogName,
-    )
-}
+internal fun SKUCatalogDTO.toPublic(): SKUCatalog = SKUCatalog(
+    id = id,
+    catalogName = catalogName,
+)

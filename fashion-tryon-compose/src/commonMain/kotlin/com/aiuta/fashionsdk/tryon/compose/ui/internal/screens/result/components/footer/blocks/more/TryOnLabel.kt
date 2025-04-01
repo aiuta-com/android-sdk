@@ -24,15 +24,15 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
 
     Row(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.brand,
-                    shape = RoundedCornerShape(8.dp),
-                )
-                .padding(
-                    horizontal = 10.dp,
-                    vertical = 8.dp,
-                ),
+        modifier
+            .background(
+                color = theme.colors.brand,
+                shape = RoundedCornerShape(8.dp),
+            )
+            .padding(
+                horizontal = 10.dp,
+                vertical = 8.dp,
+            ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AiutaIcon(

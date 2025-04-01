@@ -7,11 +7,9 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.RussianAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.TurkishAiutaTryOnLanguage
 
-internal fun InternalAiutaTryOnLanguage.isoCode(): String? {
-    return when (this) {
-        is EnglishAiutaTryOnLanguage -> EnglishLanguage.CODE
-        is RussianAiutaTryOnLanguage -> RussianLanguage.CODE
-        is TurkishAiutaTryOnLanguage -> TurkishLanguage.CODE
-        else -> null
-    }
+internal fun InternalAiutaTryOnLanguage.isoCode(): String? = when (this) {
+    is EnglishAiutaTryOnLanguage -> EnglishLanguage.CODE
+    is RussianAiutaTryOnLanguage -> RussianLanguage.CODE
+    is TurkishAiutaTryOnLanguage -> TurkishLanguage.CODE
+    else -> null
 }

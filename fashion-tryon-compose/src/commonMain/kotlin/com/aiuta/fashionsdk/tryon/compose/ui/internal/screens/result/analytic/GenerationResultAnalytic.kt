@@ -13,13 +13,13 @@ internal fun FashionTryOnController.sendGenerationFeedback(
 
     analytic.sendEvent(
         event =
-            AiutaAnalyticsFeedbackEvent(
-                event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
-                negativeFeedbackOptionIndex = optionIndex,
-                negativeFeedbackText = feedback,
-                pageId = AiutaAnalyticPageId.RESULTS,
-                productId = activeSKUItem.skuId,
-            ),
+        AiutaAnalyticsFeedbackEvent(
+            event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
+            negativeFeedbackOptionIndex = optionIndex,
+            negativeFeedbackText = feedback,
+            pageId = AiutaAnalyticPageId.RESULTS,
+            productId = activeSKUItem.skuId,
+        ),
     )
 }
 
@@ -28,10 +28,10 @@ internal fun FashionTryOnController.sendLikeGenerationFeedback() {
 
     analytic.sendEvent(
         event =
-            AiutaAnalyticsFeedbackEvent(
-                event = AiutaAnalyticsFeedbackEventType.POSITIVE,
-                pageId = AiutaAnalyticPageId.RESULTS,
-                productId = activeSKUItem.skuId,
-            ),
+        AiutaAnalyticsFeedbackEvent(
+            event = AiutaAnalyticsFeedbackEventType.POSITIVE,
+            pageId = AiutaAnalyticPageId.RESULTS,
+            productId = activeSKUItem.skuId,
+        ),
     )
 }

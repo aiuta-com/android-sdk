@@ -16,51 +16,49 @@ import kotlinx.coroutines.flow.runningReduce
  * @return Flow<[PagerProgress]>
  **/
 @OptIn(ExperimentalCoroutinesApi::class)
-internal fun PagerState.getProgressFlow(): Flow<PagerProgress> {
-    return snapshotFlow { currentPage }
-        .flatMapLatest { currentPage ->
-            snapshotFlow { currentPageOffsetFraction }.map { Pair(it, currentPage) }
-        }
-        .flatMapLatest { pair ->
-            snapshotFlow { isScrollInProgress }.map { PagerProgress(pair.first, pair.second, it) }
-        }
-        .runningReduce { last, new ->
-            when {
-                // page in idle state
-                !new.isScrollInProgress -> new
+internal fun PagerState.getProgressFlow(): Flow<PagerProgress> = snapshotFlow { currentPage }
+    .flatMapLatest { currentPage ->
+        snapshotFlow { currentPageOffsetFraction }.map { Pair(it, currentPage) }
+    }
+    .flatMapLatest { pair ->
+        snapshotFlow { isScrollInProgress }.map { PagerProgress(pair.first, pair.second, it) }
+    }
+    .runningReduce { last, new ->
+        when {
+            // page in idle state
+            !new.isScrollInProgress -> new
 
-                // scroll to left (forward) and active page is changed
-                last.position < new.position -> {
-                    val offset = 1 + new.offset
-                    if (offset > 1) {
-                        // scroll is very big. User's just jumped over page.
-                        // User's just jumped from n position to n+2.
-                        // Return final state of page with index n+1
-                        PagerProgress(1f, last.position + 1, false)
-                    } else {
-                        PagerProgress(offset, last.position, true)
-                    }
-                }
-
-                // scroll to right (back) and active page is changed
-                last.position > new.position -> {
-                    val offset = -1 + new.offset
-                    if (offset < -1) {
-                        // scroll is very big. User's just jumped over page.
-                        // User's just jumped from n position to n-2.
-                        // Return final state of page with index n-1
-                        PagerProgress(-1f, last.position - 1, false)
-                    } else {
-                        PagerProgress(offset, last.position, true)
-                    }
-                }
-
-                // page is not changed
-                else -> {
-                    PagerProgress(new.offset, last.position, true)
+            // scroll to left (forward) and active page is changed
+            last.position < new.position -> {
+                val offset = 1 + new.offset
+                if (offset > 1) {
+                    // scroll is very big. User's just jumped over page.
+                    // User's just jumped from n position to n+2.
+                    // Return final state of page with index n+1
+                    PagerProgress(1f, last.position + 1, false)
+                } else {
+                    PagerProgress(offset, last.position, true)
                 }
             }
+
+            // scroll to right (back) and active page is changed
+            last.position > new.position -> {
+                val offset = -1 + new.offset
+                if (offset < -1) {
+                    // scroll is very big. User's just jumped over page.
+                    // User's just jumped from n position to n-2.
+                    // Return final state of page with index n-1
+                    PagerProgress(-1f, last.position - 1, false)
+                } else {
+                    PagerProgress(offset, last.position, true)
+                }
+            }
+
+            // page is not changed
+            else -> {
+                PagerProgress(new.offset, last.position, true)
+            }
         }
-}
+    }
 
 internal data class PagerProgress(val offset: Float, val position: Int, val isScrollInProgress: Boolean)

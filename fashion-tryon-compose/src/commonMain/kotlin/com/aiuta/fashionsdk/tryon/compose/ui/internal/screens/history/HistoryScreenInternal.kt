@@ -90,9 +90,9 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
     ) {
         HistoryAppBar(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         HistoryScreenInternal(
@@ -126,9 +126,9 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
 
     Box(
         modifier =
-            modifier
-                .fillMaxSize()
-                .background(color = theme.colors.background),
+        modifier
+            .fillMaxSize()
+            .background(color = theme.colors.background),
     ) {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
@@ -160,12 +160,12 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
 
                 ImageContainer(
                     modifier =
-                        Modifier
-                            .animateItem()
-                            .onGloballyPositioned { coordinates ->
-                                parentImageOffset = coordinates.positionInRoot()
-                                imageSize = coordinates.size.toSize()
-                            },
+                    Modifier
+                        .animateItem()
+                        .onGloballyPositioned { coordinates ->
+                            parentImageOffset = coordinates.positionInRoot()
+                            imageSize = coordinates.size.toSize()
+                        },
                     imageUrl = generatedImage?.imageUrl,
                     isEdit = isSelectModeActive,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
@@ -184,13 +184,13 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                             else -> {
                                 controller.zoomImageController.openZoomImageScreen(
                                     model =
-                                        ZoomImageUiModel(
-                                            imageSize = imageSize,
-                                            initialCornerRadius = sharedRadius,
-                                            imageUrl = generatedImage?.imageUrl,
-                                            parentImageOffset = parentImageOffset,
-                                            originPageId = AiutaAnalyticPageId.HISTORY,
-                                        ),
+                                    ZoomImageUiModel(
+                                        imageSize = imageSize,
+                                        initialCornerRadius = sharedRadius,
+                                        imageUrl = generatedImage?.imageUrl,
+                                        parentImageOffset = parentImageOffset,
+                                        originPageId = AiutaAnalyticPageId.HISTORY,
+                                    ),
                                 )
                             }
                         }
@@ -224,26 +224,26 @@ private fun ImageContainer(
 
     Box(
         modifier =
-            modifier
-                .fillMaxWidth()
-                .height(178.dp)
-                .clip(theme.shapes.previewImage)
-                .background(color = theme.colors.background)
-                .clickableUnindicated { onClick() },
+        modifier
+            .fillMaxWidth()
+            .height(178.dp)
+            .clip(theme.shapes.previewImage)
+            .background(color = theme.colors.background)
+            .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
     ) {
         SubcomposeAsyncImage(
             modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
+            Modifier
+                .clipToBounds()
+                .fillMaxSize(),
             model =
-                ImageRequest.Builder(coilContext)
-                    .data(imageUrl)
-                    // Do that, because thumbnail size is too small for zoom screen
-                    .size(ORIGINAL)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(coilContext)
+                .data(imageUrl)
+                // Do that, because thumbnail size is too small for zoom screen
+                .size(ORIGINAL)
+                .crossfade(true)
+                .build(),
             loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
             error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             contentScale = ContentScale.Crop,
@@ -252,22 +252,22 @@ private fun ImageContainer(
 
         AnimatedVisibility(
             modifier =
-                Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp),
+            Modifier
+                .align(Alignment.TopEnd)
+                .padding(8.dp),
             visible = isEdit,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             Box(
                 modifier =
-                    Modifier
-                        .size(24.dp)
-                        .border(width = 1.dp, color = theme.colors.onDark, shape = CircleShape)
-                        .background(
-                            color = if (isSelectedItem) theme.colors.aiuta else theme.colors.neutral,
-                            shape = CircleShape,
-                        ),
+                Modifier
+                    .size(24.dp)
+                    .border(width = 1.dp, color = theme.colors.onDark, shape = CircleShape)
+                    .background(
+                        color = if (isSelectedItem) theme.colors.aiuta else theme.colors.neutral,
+                        shape = CircleShape,
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
                 if (isSelectedItem) {
@@ -283,18 +283,18 @@ private fun ImageContainer(
 
         AnimatedVisibility(
             modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
+            Modifier
+                .clipToBounds()
+                .fillMaxSize(),
             visible = isLoading,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             LoadingProgress(
                 modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f)),
+                Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.5f)),
                 circleColor = Color.White,
             )
         }
@@ -316,12 +316,12 @@ private fun BoxScope.HistoryScreenInterface(
 
     AnimatedVisibility(
         modifier =
-            Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(horizontal = 8.dp)
-                .padding(bottom = 8.dp),
+        Modifier
+            .align(Alignment.BottomCenter)
+            .fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.navigationBars)
+            .padding(horizontal = 8.dp)
+            .padding(bottom = 8.dp),
         visible = controller.isSelectModeActive().value,
         enter = fadeIn(),
         exit = fadeOut(),

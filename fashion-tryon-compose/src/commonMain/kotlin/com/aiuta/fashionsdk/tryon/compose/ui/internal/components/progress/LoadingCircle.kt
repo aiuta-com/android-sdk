@@ -31,9 +31,9 @@ internal fun LoadingProgress(
             initialValue = 0F,
             targetValue = 360F,
             animationSpec =
-                infiniteRepeatable(
-                    animation = tween(2000, easing = LinearEasing),
-                ),
+            infiniteRepeatable(
+                animation = tween(2000, easing = LinearEasing),
+            ),
         )
 
     Box(
@@ -42,10 +42,10 @@ internal fun LoadingProgress(
     ) {
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(circleSize)
-                    .align(Alignment.Center)
-                    .rotate(angle.value),
+            Modifier
+                .size(circleSize)
+                .align(Alignment.Center)
+                .rotate(angle.value),
             icon = theme.icons.loading14,
             tint = circleColor,
             contentDescription = null,

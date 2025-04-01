@@ -30,17 +30,17 @@ internal fun SmallIconButton(
 
     Box(
         modifier =
-            modifier
-                .size(36.dp)
-                .background(
-                    color = backgroundColor,
-                    shape = CircleShape,
-                )
-                .clickableUnindicated {
-                    if (isActive) {
-                        onClick()
-                    }
-                },
+        modifier
+            .size(36.dp)
+            .background(
+                color = backgroundColor,
+                shape = CircleShape,
+            )
+            .clickableUnindicated {
+                if (isActive) {
+                    onClick()
+                }
+            },
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(

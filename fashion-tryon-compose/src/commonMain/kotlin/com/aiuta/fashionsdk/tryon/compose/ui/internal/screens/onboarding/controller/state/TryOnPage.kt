@@ -8,7 +8,8 @@ import kotlin.uuid.Uuid
 
 internal class TryOnPage(
     tryOnPageFeature: AiutaOnboardingTryOnPage,
-) : OnboardingState, Iterable<TryOnPage.InternalPage> {
+) : OnboardingState,
+    Iterable<TryOnPage.InternalPage> {
     @Immutable
     data class InternalPage(
         val mainImage: AiutaImage,
@@ -27,15 +28,11 @@ internal class TryOnPage(
         }
     }
 
-    override fun iterator(): Iterator<InternalPage> {
-        return internalPages.iterator()
-    }
+    override fun iterator(): Iterator<InternalPage> = internalPages.iterator()
 
     override val pageTitle: String? = tryOnPageFeature.strings.onboardingTryOnPageTitle
 
-    override fun pageSize(): Int {
-        return internalPages.size
-    }
+    override fun pageSize(): Int = internalPages.size
 
     companion object {
         const val INTERNAL_PAGES_SIZE = 3

@@ -61,33 +61,33 @@ internal fun ModelsCategoryBlock(
     val textColor =
         animateColorAsState(
             targetValue =
-                if (isActive) {
-                    theme.colors.primary
-                } else {
-                    theme.colors.secondary
-                },
+            if (isActive) {
+                theme.colors.primary
+            } else {
+                theme.colors.secondary
+            },
         )
 
     Text(
         modifier =
-            if (isActive) {
-                sharedModifier.drawBehind {
-                    val strokeWidthPx = 4.dp.toPx()
-                    val verticalOffset = size.height + 6.sp.toPx()
+        if (isActive) {
+            sharedModifier.drawBehind {
+                val strokeWidthPx = 4.dp.toPx()
+                val verticalOffset = size.height + 6.sp.toPx()
 
-                    val horizontalPadding = 5.dp.toPx()
+                val horizontalPadding = 5.dp.toPx()
 
-                    drawLine(
-                        color = theme.colors.brand,
-                        strokeWidth = strokeWidthPx,
-                        start = Offset(-horizontalPadding, verticalOffset),
-                        end = Offset(size.width + horizontalPadding, verticalOffset),
-                        cap = StrokeCap.Round,
-                    )
-                }
-            } else {
-                sharedModifier
-            },
+                drawLine(
+                    color = theme.colors.brand,
+                    strokeWidth = strokeWidthPx,
+                    start = Offset(-horizontalPadding, verticalOffset),
+                    end = Offset(size.width + horizontalPadding, verticalOffset),
+                    cap = StrokeCap.Round,
+                )
+            }
+        } else {
+            sharedModifier
+        },
         text = category,
         style = theme.typography.smallButton,
         color = textColor.value,

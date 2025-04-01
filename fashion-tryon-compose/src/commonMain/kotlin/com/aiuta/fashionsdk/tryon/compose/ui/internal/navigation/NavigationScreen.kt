@@ -38,9 +38,7 @@ internal interface NavigationScreen {
     }
 }
 
-internal fun defaultStartScreen(): NavigationScreen {
-    return NavigationScreen.Splash
-}
+internal fun defaultStartScreen(): NavigationScreen = NavigationScreen.Splash
 
 // Stack
 private val screenStacks =
@@ -54,6 +52,4 @@ private val screenStacks =
         NavigationScreen.History,
     )
 
-internal fun screenPosition(screen: NavigationScreen): Int {
-    return screenStacks.indexOf(screen)
-}
+internal fun screenPosition(screen: NavigationScreen): Int = screenStacks.indexOf(screen)

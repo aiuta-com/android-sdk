@@ -42,9 +42,9 @@ internal fun GenerationResultFooterList(
 
         itemDescriptionBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         spacerBlock(index = 1, height = 32.dp)
@@ -63,9 +63,9 @@ internal fun GenerationResultFooterList(
 
             generateMoreTitleBlock(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
             )
 
             spacerBlock(index = 4, height = 32.dp)

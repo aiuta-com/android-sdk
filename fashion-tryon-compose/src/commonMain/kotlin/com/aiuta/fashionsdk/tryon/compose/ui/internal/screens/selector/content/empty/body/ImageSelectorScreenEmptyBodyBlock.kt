@@ -49,23 +49,23 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
     Column(
         modifier =
-            modifier
-                .padding(horizontal = 26.dp)
-                .background(
-                    color = theme.colors.neutral,
-                    shape = RoundedCornerShape(24.dp),
-                )
-                .padding(horizontal = 40.dp),
+        modifier
+            .padding(horizontal = 26.dp)
+            .background(
+                color = theme.colors.neutral,
+                shape = RoundedCornerShape(24.dp),
+            )
+            .padding(horizontal = 40.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(60.dp))
 
         ImagesBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-                    .padding(imageBlockPadding),
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(imageBlockPadding),
         )
 
         Spacer(Modifier.height(60.dp))
@@ -98,9 +98,9 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             onClick = {
                 controller.bottomSheetNavigator.show(
                     newSheetScreen =
-                        NavigationBottomSheetScreen.ImagePicker(
-                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                        ),
+                    NavigationBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    ),
                 )
             },
         )
@@ -122,11 +122,11 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.imageSelectorSelectModelButton,
                 style =
-                    FashionButtonStyles.secondaryStyle(
-                        backgroundColor = theme.colors.background,
-                        contentColor = theme.colors.primary,
-                        borderColor = Color.Transparent,
-                    ),
+                FashionButtonStyles.secondaryStyle(
+                    backgroundColor = theme.colors.background,
+                    contentColor = theme.colors.primary,
+                    borderColor = Color.Transparent,
+                ),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.navigateTo(NavigationScreen.ModelSelector)
@@ -152,23 +152,23 @@ private fun ImagesBlock(modifier: Modifier = Modifier) {
     ) {
         ImageContainer(
             modifier =
-                Modifier
-                    .align(Alignment.Center)
-                    .graphicsLayer {
-                        translationX = paddingPx
-                        rotationZ = 10f
-                    },
+            Modifier
+                .align(Alignment.Center)
+                .graphicsLayer {
+                    translationX = paddingPx
+                    rotationZ = 10f
+                },
             image = theme.images.selectorEmptySmallImage2,
         )
 
         ImageContainer(
             modifier =
-                Modifier
-                    .align(Alignment.Center)
-                    .graphicsLayer {
-                        translationX = -paddingPx
-                        rotationZ = -12f
-                    },
+            Modifier
+                .align(Alignment.Center)
+                .graphicsLayer {
+                    translationX = -paddingPx
+                    rotationZ = -12f
+                },
             image = theme.images.selectorEmptySmallImage1,
         )
     }
@@ -185,21 +185,21 @@ private fun ImageContainer(
 
     AiutaImage(
         modifier =
-            modifier
-                .fillMaxHeight()
-                .aspectRatio(0.63f)
-                .dropShadow(
-                    shape = sharedShape,
-                    color = theme.colors.primary.copy(alpha = 0.06f),
-                    blur = (13.42).dp,
-                    offsetY = (13.42).dp,
-                )
-                .clip(sharedShape)
-                .border(
-                    width = 4.dp,
-                    color = theme.colors.onDark,
-                    shape = sharedShape,
-                ),
+        modifier
+            .fillMaxHeight()
+            .aspectRatio(0.63f)
+            .dropShadow(
+                shape = sharedShape,
+                color = theme.colors.primary.copy(alpha = 0.06f),
+                blur = (13.42).dp,
+                offsetY = (13.42).dp,
+            )
+            .clip(sharedShape)
+            .border(
+                width = 4.dp,
+                color = theme.colors.onDark,
+                shape = sharedShape,
+            ),
         image = image,
         contentDescription = null,
     )

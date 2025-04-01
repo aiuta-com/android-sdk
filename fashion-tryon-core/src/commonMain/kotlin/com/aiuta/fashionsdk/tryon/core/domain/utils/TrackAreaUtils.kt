@@ -9,51 +9,45 @@ internal suspend fun <T> AiutaTryOnImpl.trackTryOnArea(
     typeArea: AiutaTryOnExceptionType,
     container: SKUGenerationContainer,
     action: suspend () -> T,
-): T {
-    return trackTryOnAreaExceptionWithRetryLambda(
-        container = container,
-        type = typeArea,
-        retryAction = {
-            retryAction(
-                times = typeArea.toRetryCount(retryPolicies),
-                delay = retryPolicies.retryDelay,
-                action = action,
-            )
-        },
-    )
-}
+): T = trackTryOnAreaExceptionWithRetryLambda(
+    container = container,
+    type = typeArea,
+    retryAction = {
+        retryAction(
+            times = typeArea.toRetryCount(retryPolicies),
+            delay = retryPolicies.retryDelay,
+            action = action,
+        )
+    },
+)
 
 internal suspend fun <T> AiutaTryOnImpl.trackSpecificTryOnArea(
     typeArea: AiutaTryOnExceptionType,
     failingTypes: Set<AiutaTryOnExceptionType>,
     container: SKUGenerationContainer,
     action: suspend () -> T,
-): T {
-    return trackTryOnAreaExceptionWithRetryLambda(
-        container = container,
-        type = typeArea,
-        retryAction = {
-            retryActionWithSpecificTypes(
-                times = typeArea.toRetryCount(retryPolicies),
-                failingTypes = failingTypes,
-                action = action,
-            )
-        },
-    )
-}
+): T = trackTryOnAreaExceptionWithRetryLambda(
+    container = container,
+    type = typeArea,
+    retryAction = {
+        retryActionWithSpecificTypes(
+            times = typeArea.toRetryCount(retryPolicies),
+            failingTypes = failingTypes,
+            action = action,
+        )
+    },
+)
 
 internal suspend fun <T> AiutaTryOnImpl.trackTryOnAreaExceptionWithRetryLambda(
     type: AiutaTryOnExceptionType,
     container: SKUGenerationContainer,
     retryAction: suspend () -> T,
-): T {
-    return trackException(
-        container = container,
-        action = {
-            tryOnExceptionArea(
-                type = type,
-                action = retryAction,
-            )
-        },
-    )
-}
+): T = trackException(
+    container = container,
+    action = {
+        tryOnExceptionArea(
+            type = type,
+            action = retryAction,
+        )
+    },
+)

@@ -18,27 +18,23 @@ internal class LocalGeneratedImageInteractor(
     override suspend fun insertAll(
         generatedSkuId: String,
         images: List<GeneratedImageUIModel>,
-    ) {
-        return generatedImageDatasource.insertAll(
-            generatedImages = images.map { it.toEntity() },
-        )
-    }
+    ) = generatedImageDatasource.insertAll(
+        generatedImages = images.map { it.toEntity() },
+    )
 
-    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> {
-        return Pager(
-            config =
-                PagingConfig(
-                    pageSize = DEFAULT_PAGE_SIZE,
-                ),
-            pagingSourceFactory = {
-                generatedImageDatasource.pagingSource()
-            },
-        )
-            .flow
-            .map { pagingData ->
-                pagingData.map { it.toUiModel() }
-            }
-    }
+    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = Pager(
+        config =
+        PagingConfig(
+            pageSize = DEFAULT_PAGE_SIZE,
+        ),
+        pagingSourceFactory = {
+            generatedImageDatasource.pagingSource()
+        },
+    )
+        .flow
+        .map { pagingData ->
+            pagingData.map { it.toUiModel() }
+        }
 
     override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
         generatedImageDatasource.remove(
@@ -46,24 +42,18 @@ internal class LocalGeneratedImageInteractor(
         )
     }
 
-    override suspend fun removeAll() {
-        return generatedImageDatasource.removeAll()
-    }
+    override suspend fun removeAll() = generatedImageDatasource.removeAll()
 
-    override fun countFlow(): Flow<Int> {
-        return generatedImageDatasource.countFlow()
-    }
+    override fun countFlow(): Flow<Int> = generatedImageDatasource.countFlow()
 
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
-        fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedImageInteractor {
-            return LocalGeneratedImageInteractor(
-                generatedImageDatasource =
-                    GeneratedImageDatasource.getInstance(
-                        platformContext = platformContext,
-                    ),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedImageInteractor = LocalGeneratedImageInteractor(
+            generatedImageDatasource =
+            GeneratedImageDatasource.getInstance(
+                platformContext = platformContext,
+            ),
+        )
     }
 }

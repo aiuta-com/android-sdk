@@ -62,9 +62,9 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
         actions = {
             Text(
                 modifier =
-                    Modifier
-                        .align(Alignment.CenterEnd)
-                        .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
+                Modifier
+                    .align(Alignment.CenterEnd)
+                    .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
                 text = stringResources.appBarSelect,
                 style = theme.typography.navbar,
                 color = selectColorTransition.value,

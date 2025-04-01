@@ -17,13 +17,11 @@ internal class PingOperationSliceImpl(
 ) : PingOperationSlice {
     private val mutex = Mutex()
 
-    override suspend fun operationPing(operationId: String): List<GeneratedImage> {
-        return mutex.withLock {
-            ping(
-                operationId = operationId,
-                delaySequenceIterator = delaySequenceFactory().iterator(),
-            )
-        }
+    override suspend fun operationPing(operationId: String): List<GeneratedImage> = mutex.withLock {
+        ping(
+            operationId = operationId,
+            delaySequenceIterator = delaySequenceFactory().iterator(),
+        )
     }
 
     private suspend fun ping(

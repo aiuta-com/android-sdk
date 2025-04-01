@@ -19,15 +19,15 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
 
     Box(
         modifier =
-            modifier
-                .background(
-                    shape = RoundedCornerShape(100.dp),
-                    color = theme.colors.neutral,
-                )
-                .padding(
-                    horizontal = 12.dp,
-                    vertical = 8.dp,
-                ),
+        modifier
+            .background(
+                shape = RoundedCornerShape(100.dp),
+                color = theme.colors.neutral,
+            )
+            .padding(
+                horizontal = 12.dp,
+                vertical = 8.dp,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Text(

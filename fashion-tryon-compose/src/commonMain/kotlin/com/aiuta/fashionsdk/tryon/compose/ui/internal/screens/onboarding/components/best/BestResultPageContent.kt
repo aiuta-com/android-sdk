@@ -35,18 +35,18 @@ internal fun BestResultPageContent(
     ) {
         BestImagesBlock(
             modifier =
-                Modifier
-                    .weight(0.65f)
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp),
+            Modifier
+                .weight(0.65f)
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp),
             state = state,
         )
 
         CentredTextBlock(
             modifier =
-                Modifier
-                    .weight(0.35f)
-                    .fillMaxWidth(),
+            Modifier
+                .weight(0.35f)
+                .fillMaxWidth(),
             title = bestResultsPageFeature.strings.onboardingBestResultsTitle,
             subtitle = bestResultsPageFeature.strings.onboardingBestResultsDescription,
         )

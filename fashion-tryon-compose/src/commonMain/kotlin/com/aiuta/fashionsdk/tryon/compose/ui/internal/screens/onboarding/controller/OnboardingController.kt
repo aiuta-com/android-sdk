@@ -52,10 +52,10 @@ internal fun rememberOnboardingController(): OnboardingController {
     return remember {
         OnboardingController(
             supplementPoint =
-                (consentFeature as? AiutaConsentStandaloneOnboardingPage)
-                    ?.strings
-                    ?.optionalConsentsHtml
-                    .orEmpty(),
+            (consentFeature as? AiutaConsentStandaloneOnboardingPage)
+                ?.strings
+                ?.optionalConsentsHtml
+                .orEmpty(),
             onboardingStatesQueue = onboardingStatesQueue,
             pagerState = pagerState,
             scope = scope,

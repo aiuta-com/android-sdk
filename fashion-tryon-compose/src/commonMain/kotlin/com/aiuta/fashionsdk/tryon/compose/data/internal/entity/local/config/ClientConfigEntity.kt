@@ -29,23 +29,21 @@ internal class ClientConfigEntity(
     val predefinedTryOnModels: List<TryOnModelsCategory>? = null,
 )
 
-internal fun ClientConfigEntity.toDTO() =
-    ClientConfig(
-        etag = etag,
-        clientConfiguration =
-            ClientConfiguration(
-                poweredByStickerFeature = poweredByStickerFeature,
-                feedbackFeature = feedbackFeature,
-                fitDisclaimerFeature = fitDisclaimerFeature,
-                predefinedTryOnModels = predefinedTryOnModels,
-            ),
-    )
+internal fun ClientConfigEntity.toDTO() = ClientConfig(
+    etag = etag,
+    clientConfiguration =
+    ClientConfiguration(
+        poweredByStickerFeature = poweredByStickerFeature,
+        feedbackFeature = feedbackFeature,
+        fitDisclaimerFeature = fitDisclaimerFeature,
+        predefinedTryOnModels = predefinedTryOnModels,
+    ),
+)
 
-internal fun ClientConfig.toEntity() =
-    ClientConfigEntity(
-        etag = etag,
-        poweredByStickerFeature = clientConfiguration.poweredByStickerFeature,
-        feedbackFeature = clientConfiguration.feedbackFeature,
-        fitDisclaimerFeature = clientConfiguration.fitDisclaimerFeature,
-        predefinedTryOnModels = clientConfiguration.predefinedTryOnModels,
-    )
+internal fun ClientConfig.toEntity() = ClientConfigEntity(
+    etag = etag,
+    poweredByStickerFeature = clientConfiguration.poweredByStickerFeature,
+    feedbackFeature = clientConfiguration.feedbackFeature,
+    fitDisclaimerFeature = clientConfiguration.fitDisclaimerFeature,
+    predefinedTryOnModels = clientConfiguration.predefinedTryOnModels,
+)

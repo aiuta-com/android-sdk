@@ -15,33 +15,27 @@ import kotlinx.coroutines.flow.map
 internal class LocalGeneratedOperationInteractor(
     private val generatedOperationDatasource: GeneratedOperationDatasource,
 ) : GeneratedOperationInteractor {
-    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> {
-        return Pager(
-            config =
-                PagingConfig(
-                    pageSize = DEFAULT_PAGE_SIZE,
-                ),
-            pagingSourceFactory = {
-                generatedOperationDatasource.pagingGeneratedOperationWithImagesSource()
-            },
-        )
-            .flow
-            .map { pagingData ->
-                pagingData.filter { it.sourceImages.isNotEmpty() }
-            }
-            .map { pagingData ->
-                pagingData.map { it.toUiModel() }
-            }
-    }
+    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = Pager(
+        config =
+        PagingConfig(
+            pageSize = DEFAULT_PAGE_SIZE,
+        ),
+        pagingSourceFactory = {
+            generatedOperationDatasource.pagingGeneratedOperationWithImagesSource()
+        },
+    )
+        .flow
+        .map { pagingData ->
+            pagingData.filter { it.sourceImages.isNotEmpty() }
+        }
+        .map { pagingData ->
+            pagingData.map { it.toUiModel() }
+        }
 
-    override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? {
-        return generatedOperationDatasource.getFirstGeneratedOperationWithImages()?.toUiModel()
-    }
+    override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? = generatedOperationDatasource.getFirstGeneratedOperationWithImages()?.toUiModel()
 
     // Raw operation
-    override suspend fun createOperation(imageId: String): String {
-        return generatedOperationDatasource.createOperation().id
-    }
+    override suspend fun createOperation(imageId: String): String = generatedOperationDatasource.createOperation().id
 
     override suspend fun deleteOperation(operation: GeneratedOperationUIModel) {
         generatedOperationDatasource.deleteOperation(operation.operationId)
@@ -51,9 +45,7 @@ internal class LocalGeneratedOperationInteractor(
         operations.forEach { operation -> deleteOperation(operation) }
     }
 
-    override fun countGeneratedOperation(): Flow<Int> {
-        return generatedOperationDatasource.countGeneratedOperation()
-    }
+    override fun countGeneratedOperation(): Flow<Int> = generatedOperationDatasource.countGeneratedOperation()
 
     override suspend fun createImage(
         sourceImageId: String,
@@ -70,13 +62,11 @@ internal class LocalGeneratedOperationInteractor(
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
-        fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedOperationInteractor {
-            return LocalGeneratedOperationInteractor(
-                generatedOperationDatasource =
-                    GeneratedOperationDatasource.getInstance(
-                        platformContext = platformContext,
-                    ),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedOperationInteractor = LocalGeneratedOperationInteractor(
+            generatedOperationDatasource =
+            GeneratedOperationDatasource.getInstance(
+                platformContext = platformContext,
+            ),
+        )
     }
 }

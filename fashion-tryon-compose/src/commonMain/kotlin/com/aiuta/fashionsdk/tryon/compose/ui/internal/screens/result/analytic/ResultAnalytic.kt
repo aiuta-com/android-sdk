@@ -12,10 +12,10 @@ internal fun FashionTryOnController.sendResultEvent(
 ) {
     analytic.sendEvent(
         event =
-            AiutaAnalyticsResultsEvent(
-                event = event,
-                productId = productId,
-                pageId = pageId,
-            ),
+        AiutaAnalyticsResultsEvent(
+            event = event,
+            productId = productId,
+            pageId = pageId,
+        ),
     )
 }

@@ -12,22 +12,18 @@ import kotlinx.coroutines.flow.map
 internal class HostGeneratedOperationInteractor(
     private val dataProvider: AiutaDataProvider,
 ) : GeneratedOperationInteractor {
-    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> {
-        return dataProvider.uploadedImagesFlow
-            .map { images ->
-                images.map { image -> image.toOperationUiModel() }
-            }
-            .map { images -> PagingData.from(images) }
-    }
+    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = dataProvider.uploadedImagesFlow
+        .map { images ->
+            images.map { image -> image.toOperationUiModel() }
+        }
+        .map { images -> PagingData.from(images) }
 
     override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? {
         val firstImage = dataProvider.uploadedImagesFlow.value.firstOrNull()
         return firstImage?.let { firstImage.toOperationUiModel() }
     }
 
-    override suspend fun createOperation(imageId: String): String {
-        return imageId
-    }
+    override suspend fun createOperation(imageId: String): String = imageId
 
     override suspend fun deleteOperation(operation: GeneratedOperationUIModel) {
         dataProvider.deleteUploadedImagesAction(operation.toPublic())
@@ -41,9 +37,7 @@ internal class HostGeneratedOperationInteractor(
         )
     }
 
-    override fun countGeneratedOperation(): Flow<Int> {
-        return dataProvider.uploadedImagesFlow.map { images -> images.size }
-    }
+    override fun countGeneratedOperation(): Flow<Int> = dataProvider.uploadedImagesFlow.map { images -> images.size }
 
     override suspend fun createImage(
         sourceImageId: String,
@@ -61,8 +55,6 @@ internal class HostGeneratedOperationInteractor(
     }
 
     companion object {
-        fun getInstance(dataProvider: AiutaDataProvider): HostGeneratedOperationInteractor {
-            return HostGeneratedOperationInteractor(dataProvider = dataProvider)
-        }
+        fun getInstance(dataProvider: AiutaDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
     }
 }

@@ -177,6 +177,4 @@ private fun needToAutoscroll(
     progress: PagerProgress,
     indicatorCount: Int,
     pageCount: Int,
-): Boolean {
-    return progress.position in (indicatorCount / 2) until pageCount - (indicatorCount / 2)
-}
+): Boolean = progress.position in (indicatorCount / 2) until pageCount - (indicatorCount / 2)

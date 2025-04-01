@@ -49,15 +49,15 @@ public fun FashionButton(
 
     Button(
         modifier =
-            modifier
-                .conditional(style is GradientButtonStyle) {
-                    (style as? GradientButtonStyle)?.gradientBackground?.let {
-                        background(
-                            brush = it,
-                            shape = size.shape,
-                        )
-                    } ?: this
-                },
+        modifier
+            .conditional(style is GradientButtonStyle) {
+                (style as? GradientButtonStyle)?.gradientBackground?.let {
+                    background(
+                        brush = it,
+                        shape = size.shape,
+                    )
+                } ?: this
+            },
         shape = size.shape,
         border = style.border,
         colors = style.colors.buttonColors,
@@ -85,9 +85,9 @@ public fun FashionButton(
                             AiutaIcon(
                                 modifier = Modifier.size(size.iconSize),
                                 tint =
-                                    style.colors.buttonColors.contentColor(
-                                        enabled = isEnable,
-                                    ).value,
+                                style.colors.buttonColors.contentColor(
+                                    enabled = isEnable,
+                                ).value,
                                 icon = icon,
                                 contentDescription = contentDescription,
                             )
@@ -97,19 +97,19 @@ public fun FashionButton(
                                 style = size.textStyle,
                                 textAlign = TextAlign.Center,
                                 color =
-                                    style.colors.buttonColors.contentColor(
-                                        enabled = isEnable,
-                                    ).value,
+                                style.colors.buttonColors.contentColor(
+                                    enabled = isEnable,
+                                ).value,
                                 overflow = TextOverflow.Ellipsis,
                                 modifier =
-                                    Modifier.padding(
-                                        start =
-                                            if (icon != null) {
-                                                size.iconSpacing
-                                            } else {
-                                                0.dp
-                                            },
-                                    ),
+                                Modifier.padding(
+                                    start =
+                                    if (icon != null) {
+                                        size.iconSpacing
+                                    } else {
+                                        0.dp
+                                    },
+                                ),
                                 text = text,
                             )
                         }

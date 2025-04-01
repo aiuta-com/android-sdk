@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.annotations.AiutaTryOnConfigurationDsl
+import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
@@ -16,7 +16,7 @@ public class AiutaOnboardingFeature(
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
 ) {
-    @AiutaTryOnConfigurationDsl
+    @AiutaDsl
     public class Builder {
         public var tryOnPage: AiutaOnboardingTryOnPage? = null
         public var bestResultsPage: AiutaOnboardingBestResultsPage? = null
@@ -37,22 +37,19 @@ public class AiutaOnboardingFeature(
             val parentClass = "AiutaOnboardingFeature"
 
             return AiutaOnboardingFeature(
-                tryOnPage =
-                    this.tryOnPage.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "tryOnPage",
-                    ),
+                tryOnPage = tryOnPage.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "tryOnPage",
+                ),
                 bestResultsPage = this.bestResultsPage,
-                strings =
-                    this.strings.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "strings",
-                    ),
-                shapes =
-                    this.shapes.checkNotNullWithDescription(
-                        parentClass = parentClass,
-                        property = "shapes",
-                    ),
+                strings = strings.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "strings",
+                ),
+                shapes = shapes.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "shapes",
+                ),
             )
         }
     }

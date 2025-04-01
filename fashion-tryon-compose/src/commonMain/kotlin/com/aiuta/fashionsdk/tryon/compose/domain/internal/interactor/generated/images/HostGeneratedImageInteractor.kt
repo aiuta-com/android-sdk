@@ -21,13 +21,11 @@ internal class HostGeneratedImageInteractor(
         )
     }
 
-    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> {
-        return dataProvider.generatedImagesFlow
-            .map { images ->
-                images.map { image -> image.toImageUiModel() }
-            }
-            .map { images -> PagingData.from(images) }
-    }
+    override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = dataProvider.generatedImagesFlow
+        .map { images ->
+            images.map { image -> image.toImageUiModel() }
+        }
+        .map { images -> PagingData.from(images) }
 
     override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
         dataProvider.deleteGeneratedImagesAction(
@@ -39,13 +37,9 @@ internal class HostGeneratedImageInteractor(
         // Ignore this, because host should solve current list of generations
     }
 
-    override fun countFlow(): Flow<Int> {
-        return dataProvider.generatedImagesFlow.map { images -> images.size }
-    }
+    override fun countFlow(): Flow<Int> = dataProvider.generatedImagesFlow.map { images -> images.size }
 
     companion object {
-        fun getInstance(dataProvider: AiutaDataProvider): HostGeneratedImageInteractor {
-            return HostGeneratedImageInteractor(dataProvider = dataProvider)
-        }
+        fun getInstance(dataProvider: AiutaDataProvider): HostGeneratedImageInteractor = HostGeneratedImageInteractor(dataProvider = dataProvider)
     }
 }

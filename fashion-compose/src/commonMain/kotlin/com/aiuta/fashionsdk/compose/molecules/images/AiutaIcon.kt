@@ -20,10 +20,10 @@ public fun AiutaIcon(
 ) {
     Icon(
         painter =
-            when (icon) {
-                is AiutaResourceIcon -> painterResource(icon.resource)
-                else -> rememberAsyncImagePainter(icon.resource)
-            },
+        when (icon) {
+            is AiutaResourceIcon -> painterResource(icon.resource)
+            else -> rememberAsyncImagePainter(icon.resource)
+        },
         contentDescription = contentDescription,
         modifier = modifier,
         tint = if (icon.shouldDrawAsIs) Color.Unspecified else tint,

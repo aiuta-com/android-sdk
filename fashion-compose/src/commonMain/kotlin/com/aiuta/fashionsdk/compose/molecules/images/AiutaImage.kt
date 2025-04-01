@@ -24,10 +24,10 @@ public fun AiutaImage(
     androidx.compose.foundation.Image(
         modifier = modifier,
         painter =
-            when (image) {
-                is AiutaResourceImage -> painterResource(image.resource)
-                else -> rememberAsyncImagePainter(image.resource)
-            },
+        when (image) {
+            is AiutaResourceImage -> painterResource(image.resource)
+            else -> rememberAsyncImagePainter(image.resource)
+        },
         contentScale = contentScale,
         contentDescription = contentDescription,
         alignment = alignment,

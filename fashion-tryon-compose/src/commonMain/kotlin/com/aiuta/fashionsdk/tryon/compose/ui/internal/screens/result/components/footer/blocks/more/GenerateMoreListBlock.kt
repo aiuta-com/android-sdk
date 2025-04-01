@@ -46,14 +46,14 @@ internal fun LazyGridScope.generateMoreListBlock(skuItem: SKUItem) {
         ) { index, skuItem ->
             GenerationMoreItem(
                 modifier =
-                    Modifier
-                        .padding(vertical = 4.dp)
-                        .padding(
-                            start = if (index % 2 == 0) 16.dp else 4.dp,
-                            end = if (index % 2 == 0) 4.dp else 16.dp,
-                        )
-                        .aspectRatio(0.6f)
-                        .fillMaxWidth(),
+                Modifier
+                    .padding(vertical = 4.dp)
+                    .padding(
+                        start = if (index % 2 == 0) 16.dp else 4.dp,
+                        end = if (index % 2 == 0) 4.dp else 16.dp,
+                    )
+                    .aspectRatio(0.6f)
+                    .fillMaxWidth(),
                 skuItem = skuItem,
             )
         }
@@ -73,46 +73,46 @@ private fun GenerationMoreItem(
 
     Column(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.background,
-                    shape = sharedCornerShape,
+        modifier
+            .background(
+                color = theme.colors.background,
+                shape = sharedCornerShape,
+            )
+            .border(
+                width = 1.dp,
+                color = theme.colors.neutral2,
+                shape = sharedCornerShape,
+            )
+            .padding(8.dp)
+            .clickableUnindicated {
+                controller.bottomSheetNavigator.show(
+                    newSheetScreen =
+                    NavigationBottomSheetScreen.SKUInfo(
+                        primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.TRY_ON,
+                        originPageId = AiutaAnalyticPageId.RESULTS,
+                        skuItem = skuItem,
+                    ),
                 )
-                .border(
-                    width = 1.dp,
-                    color = theme.colors.neutral2,
-                    shape = sharedCornerShape,
-                )
-                .padding(8.dp)
-                .clickableUnindicated {
-                    controller.bottomSheetNavigator.show(
-                        newSheetScreen =
-                            NavigationBottomSheetScreen.SKUInfo(
-                                primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.TRY_ON,
-                                originPageId = AiutaAnalyticPageId.RESULTS,
-                                skuItem = skuItem,
-                            ),
-                    )
-                },
+            },
         horizontalAlignment = Alignment.Start,
     ) {
         Box(
             modifier =
-                Modifier
-                    .aspectRatio(0.81f)
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(20.dp)),
+            Modifier
+                .aspectRatio(0.81f)
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp)),
         ) {
             SubcomposeAsyncImage(
                 modifier =
-                    Modifier
-                        .clipToBounds()
-                        .fillMaxSize(),
+                Modifier
+                    .clipToBounds()
+                    .fillMaxSize(),
                 model =
-                    ImageRequest.Builder(coilContext)
-                        .data(skuItem.imageUrls.firstOrNull())
-                        .crossfade(true)
-                        .build(),
+                ImageRequest.Builder(coilContext)
+                    .data(skuItem.imageUrls.firstOrNull())
+                    .crossfade(true)
+                    .build(),
                 loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
                 error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
                 contentScale = ContentScale.Crop,
@@ -121,20 +121,20 @@ private fun GenerationMoreItem(
 
             TryOnLabel(
                 modifier =
-                    Modifier
-                        .align(Alignment.BottomEnd)
-                        .padding(
-                            horizontal = 8.dp,
-                            vertical = 6.dp,
-                        ),
+                Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        horizontal = 8.dp,
+                        vertical = 6.dp,
+                    ),
             )
 
             LikeButton(
                 modifier =
-                    Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(6.dp)
-                        .size(28.dp),
+                Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(6.dp)
+                    .size(28.dp),
                 isLiked = skuItem.inWishlist,
                 iconSize = 16.dp,
                 onClick = {

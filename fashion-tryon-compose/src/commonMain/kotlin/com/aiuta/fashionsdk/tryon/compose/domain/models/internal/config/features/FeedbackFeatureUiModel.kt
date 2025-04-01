@@ -12,12 +12,10 @@ internal class FeedbackFeatureUiModel(
     val gratitudeMessage: MultiLanguagePhraseUiModel? = null,
 )
 
-internal fun FeedbackFeature.toUiModel(): FeedbackFeatureUiModel {
-    return FeedbackFeatureUiModel(
-        title = title?.toUiModel(),
-        mainOptions = mainOptions.map { it.toUiModel() },
-        plaintextOption = plaintextOption?.toUiModel(),
-        plaintextTitle = plaintextTitle?.toUiModel(),
-        gratitudeMessage = gratitudeMessage?.toUiModel(),
-    )
-}
+internal fun FeedbackFeature.toUiModel(): FeedbackFeatureUiModel = FeedbackFeatureUiModel(
+    title = title?.toUiModel(),
+    mainOptions = mainOptions.map { it.toUiModel() },
+    plaintextOption = plaintextOption?.toUiModel(),
+    plaintextTitle = plaintextTitle?.toUiModel(),
+    gratitudeMessage = gratitudeMessage?.toUiModel(),
+)

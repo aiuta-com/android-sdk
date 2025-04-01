@@ -31,17 +31,15 @@ internal actual class ShareManagerV2(
         productId: String?,
         images: List<AiutaPlatformImage>,
         watermark: AiutaImage?,
-    ): Result<Unit> {
-        return runCatching {
-            val imageUris = images.mapNotNull { bitmapToUri(it.bitmap) }
+    ): Result<Unit> = runCatching {
+        val imageUris = images.mapNotNull { bitmapToUri(it.bitmap) }
 
-            context.shareContent(
-                content = content,
-                pageId = pageId,
-                productId = productId,
-                fileUris = imageUris,
-            )
-        }
+        context.shareContent(
+            content = content,
+            pageId = pageId,
+            productId = productId,
+            fileUris = imageUris,
+        )
     }
 
     actual suspend fun shareImages(
@@ -51,22 +49,20 @@ internal actual class ShareManagerV2(
         productId: String?,
         imageUrls: List<String>,
         watermark: AiutaImage?,
-    ): Result<Unit> {
-        return runCatching {
-            val images =
-                imageUrls.mapNotNull { url ->
-                    val bitmap = urlToBitmap(coilContext, url)
-                    bitmap?.let { AiutaPlatformImage(it) }
-                }
+    ): Result<Unit> = runCatching {
+        val images =
+            imageUrls.mapNotNull { url ->
+                val bitmap = urlToBitmap(coilContext, url)
+                bitmap?.let { AiutaPlatformImage(it) }
+            }
 
-            shareImages(
-                content = content,
-                pageId = pageId,
-                productId = productId,
-                images = images,
-                watermark = watermark,
-            )
-        }
+        shareImages(
+            content = content,
+            pageId = pageId,
+            productId = productId,
+            images = images,
+            watermark = watermark,
+        )
     }
 
     private suspend fun bitmapToUri(
@@ -113,18 +109,16 @@ internal actual class ShareManagerV2(
     private suspend fun urlToBitmap(
         coilContext: PlatformContext,
         imageUrl: String,
-    ): Bitmap? {
-        return try {
-            val request =
-                ImageRequest.Builder(coilContext)
-                    .data(imageUrl)
-                    .allowHardware(false)
-                    .build()
-            SingletonImageLoader.get(coilContext).execute(request).image?.toBitmap()
-        } catch (e: Exception) {
-            // Failed to resolve bitmap
-            null
-        }
+    ): Bitmap? = try {
+        val request =
+            ImageRequest.Builder(coilContext)
+                .data(imageUrl)
+                .allowHardware(false)
+                .build()
+        SingletonImageLoader.get(coilContext).execute(request).image?.toBitmap()
+    } catch (e: Exception) {
+        // Failed to resolve bitmap
+        null
     }
 }
 

@@ -23,42 +23,38 @@ import com.aiuta.fashionsdk.compose.tokens.images.onboarding.AiutaOnboardingImag
  * Default implementation of [AiutaImages].
  */
 @Deprecated("Migrate to defaults")
-public fun defaultAiutaImages(): AiutaImages {
-    return AiutaImages(
-        preonboardingImage = null,
-        onboardingImages =
-            AiutaOnboardingImages(
-                onboardingTryOnMainImage1 = AiutaResourceImage(Res.drawable.onboarding_main_1),
-                onboardingTryOnMainImage2 = AiutaResourceImage(Res.drawable.onboarding_main_2),
-                onboardingTryOnMainImage3 = AiutaResourceImage(Res.drawable.onboarding_main_3),
-                onboardingTryOnItemImage1 = AiutaResourceImage(Res.drawable.onboarding_item_1),
-                onboardingTryOnItemImage2 = AiutaResourceImage(Res.drawable.onboarding_item_2),
-                onboardingTryOnItemImage3 = AiutaResourceImage(Res.drawable.onboarding_item_3),
-                onboardingBestResulBadImage1 =
-                    AiutaResourceImage(
-                        Res.drawable.onboarding_bad_image_1,
-                    ),
-                onboardingBestResulBadImage2 =
-                    AiutaResourceImage(
-                        Res.drawable.onboarding_bad_image_2,
-                    ),
-                onboardingBestResulGoodImage1 =
-                    AiutaResourceImage(
-                        Res.drawable.onboarding_good_image_1,
-                    ),
-                onboardingBestResulGoodImage2 =
-                    AiutaResourceImage(
-                        Res.drawable.onboarding_good_image_2,
-                    ),
-            ),
-        selectorEmptySmallImage1 = AiutaResourceImage(Res.drawable.selector_empty_small_image_1),
-        selectorEmptySmallImage2 = AiutaResourceImage(Res.drawable.onboarding_good_image_1),
-        feedbackThanksImage = AiutaResourceImage(Res.drawable.ic_heart),
-    )
-}
+public fun defaultAiutaImages(): AiutaImages = AiutaImages(
+    preonboardingImage = null,
+    onboardingImages =
+    AiutaOnboardingImages(
+        onboardingTryOnMainImage1 = AiutaResourceImage(Res.drawable.onboarding_main_1),
+        onboardingTryOnMainImage2 = AiutaResourceImage(Res.drawable.onboarding_main_2),
+        onboardingTryOnMainImage3 = AiutaResourceImage(Res.drawable.onboarding_main_3),
+        onboardingTryOnItemImage1 = AiutaResourceImage(Res.drawable.onboarding_item_1),
+        onboardingTryOnItemImage2 = AiutaResourceImage(Res.drawable.onboarding_item_2),
+        onboardingTryOnItemImage3 = AiutaResourceImage(Res.drawable.onboarding_item_3),
+        onboardingBestResulBadImage1 =
+        AiutaResourceImage(
+            Res.drawable.onboarding_bad_image_1,
+        ),
+        onboardingBestResulBadImage2 =
+        AiutaResourceImage(
+            Res.drawable.onboarding_bad_image_2,
+        ),
+        onboardingBestResulGoodImage1 =
+        AiutaResourceImage(
+            Res.drawable.onboarding_good_image_1,
+        ),
+        onboardingBestResulGoodImage2 =
+        AiutaResourceImage(
+            Res.drawable.onboarding_good_image_2,
+        ),
+    ),
+    selectorEmptySmallImage1 = AiutaResourceImage(Res.drawable.selector_empty_small_image_1),
+    selectorEmptySmallImage2 = AiutaResourceImage(Res.drawable.onboarding_good_image_1),
+    feedbackThanksImage = AiutaResourceImage(Res.drawable.ic_heart),
+)
 
 @Deprecated("Migrate to defaults")
 @Composable
-public fun rememberDefaultAiutaImages(): AiutaImages {
-    return remember { defaultAiutaImages() }
-}
+public fun rememberDefaultAiutaImages(): AiutaImages = remember { defaultAiutaImages() }

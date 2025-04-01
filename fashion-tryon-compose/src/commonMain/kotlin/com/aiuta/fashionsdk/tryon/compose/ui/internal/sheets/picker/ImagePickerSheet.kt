@@ -124,13 +124,13 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                     controller.bottomSheetNavigator.hide()
                     dialogController.showDialog(
                         dialogState =
-                            AiutaTryOnDialogState(
-                                title = stringResources.dialogCameraPermissionTitle,
-                                description = stringResources.dialogCameraPermissionDescription,
-                                confirmButton = stringResources.dialogCameraPermissionConfirmButton,
-                                onConfirm = permissionsController::openAppSettings,
-                                onDismiss = dialogController::hideDialog,
-                            ),
+                        AiutaTryOnDialogState(
+                            title = stringResources.dialogCameraPermissionTitle,
+                            description = stringResources.dialogCameraPermissionDescription,
+                            confirmButton = stringResources.dialogCameraPermissionConfirmButton,
+                            onConfirm = permissionsController::openAppSettings,
+                            onDismiss = dialogController::hideDialog,
+                        ),
                     )
                 },
             )
@@ -204,9 +204,9 @@ private fun PickerButton(
 
         Box(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
+            Modifier
+                .weight(1f)
+                .fillMaxHeight(),
         ) {
             Text(
                 modifier = Modifier.align(Alignment.CenterStart),
@@ -218,9 +218,9 @@ private fun PickerButton(
             if (shouldDrawDivider) {
                 Divider(
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.BottomCenter),
+                    Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter),
                     color = theme.colors.neutral,
                 )
             }

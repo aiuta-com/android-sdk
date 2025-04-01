@@ -102,12 +102,12 @@ internal fun GenerationResultBody(
         generations.getOrNull(index)?.let { sessionImage ->
             PagerItem(
                 modifier =
-                    Modifier
-                        .graphicsLayer {
-                            alpha = alphaItem.value
-                        }
-                        .fillMaxWidth()
-                        .fillMaxHeight(heightFraction.value),
+                Modifier
+                    .graphicsLayer {
+                        alpha = alphaItem.value
+                    }
+                    .fillMaxWidth()
+                    .fillMaxHeight(heightFraction.value),
                 sessionImage = sessionImage,
                 itemIndex = index,
                 generationResultController = generationResultController,
@@ -152,33 +152,33 @@ private fun PagerItem(
     ) {
         SubcomposeAsyncImage(
             modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize()
-                    .haze(hazeState)
-                    .onGloballyPositioned { coordinates ->
-                        parentImageOffset = coordinates.positionInRoot()
-                        imageSize = coordinates.size.toSize()
-                    }
-                    .clickableUnindicated {
-                        controller.zoomImageController.openZoomImageScreen(
-                            model =
-                                ZoomImageUiModel(
-                                    imageSize = imageSize,
-                                    initialCornerRadius = sharedCornerRadius,
-                                    imageUrl = sessionImage.imageUrl,
-                                    parentImageOffset = parentImageOffset,
-                                    additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
-                                    originPageId = AiutaAnalyticPageId.RESULTS,
-                                ),
-                        )
-                    },
+            Modifier
+                .clipToBounds()
+                .fillMaxSize()
+                .haze(hazeState)
+                .onGloballyPositioned { coordinates ->
+                    parentImageOffset = coordinates.positionInRoot()
+                    imageSize = coordinates.size.toSize()
+                }
+                .clickableUnindicated {
+                    controller.zoomImageController.openZoomImageScreen(
+                        model =
+                        ZoomImageUiModel(
+                            imageSize = imageSize,
+                            initialCornerRadius = sharedCornerRadius,
+                            imageUrl = sessionImage.imageUrl,
+                            parentImageOffset = parentImageOffset,
+                            additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
+                            originPageId = AiutaAnalyticPageId.RESULTS,
+                        ),
+                    )
+                },
             model =
-                ImageRequest.Builder(coilContext)
-                    .data(sessionImage.imageUrl)
-                    .size(ORIGINAL)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(coilContext)
+                .data(sessionImage.imageUrl)
+                .size(ORIGINAL)
+                .crossfade(true)
+                .build(),
             loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
             error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             contentScale = ContentScale.Crop,
@@ -221,26 +221,26 @@ internal fun BoxScope.PagerItemInterface(
         Box(modifier = Modifier.fillMaxSize()) {
             ActionBlock(
                 modifier =
-                    Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(12.dp),
+                Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(12.dp),
                 imageUrl = sessionImage.imageUrl,
             )
 
             GenerateMoreBlock(
                 modifier =
-                    Modifier
-                        .align(Alignment.BottomStart)
-                        .padding(12.dp),
+                Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(12.dp),
             )
         }
     }
 
     FeedbackBlock(
         modifier =
-            Modifier
-                .align(Alignment.BottomEnd)
-                .padding(12.dp),
+        Modifier
+            .align(Alignment.BottomEnd)
+            .padding(12.dp),
         sessionImage = sessionImage,
         itemIndex = itemIndex,
         hazeState = hazeState,

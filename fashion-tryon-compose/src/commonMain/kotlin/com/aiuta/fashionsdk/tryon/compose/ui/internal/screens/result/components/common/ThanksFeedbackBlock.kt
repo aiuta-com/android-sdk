@@ -92,12 +92,12 @@ private fun ThanksFeedbackBlockContent(
 
     Column(
         modifier =
-            modifier
-                .width(168.dp)
-                .background(
-                    color = Color.Black.copy(alpha = 0.8f),
-                    shape = RoundedCornerShape(24.dp),
-                ),
+        modifier
+            .width(168.dp)
+            .background(
+                color = Color.Black.copy(alpha = 0.8f),
+                shape = RoundedCornerShape(24.dp),
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(45.dp))

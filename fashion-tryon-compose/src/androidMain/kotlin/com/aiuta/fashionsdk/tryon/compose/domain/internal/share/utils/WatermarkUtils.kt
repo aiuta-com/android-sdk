@@ -75,6 +75,4 @@ private fun Context.getBitmapFromVectorDrawable(
     return bitmap
 }
 
-internal fun Context.solveDrawableFromWatermark(watermarkRes: Int?): Drawable? {
-    return watermarkRes?.let { ContextCompat.getDrawable(this, it) }
-}
+internal fun Context.solveDrawableFromWatermark(watermarkRes: Int?): Drawable? = watermarkRes?.let { ContextCompat.getDrawable(this, it) }

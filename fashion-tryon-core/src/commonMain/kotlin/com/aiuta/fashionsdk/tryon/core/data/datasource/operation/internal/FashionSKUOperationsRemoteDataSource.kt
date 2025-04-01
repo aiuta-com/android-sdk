@@ -22,38 +22,32 @@ internal class FashionSKUOperationsRemoteDataSource(
 ) : FashionSKUOperationsDataSource {
     override suspend fun createSKUOperation(
         request: CreateSKUOperationRequest,
-    ): CreateSKUOperationResponse {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.post(
-                urlString = PATH_SKU_OPERATIONS,
-            ) {
-                setBody(request)
-            }.body()
-        }
+    ): CreateSKUOperationResponse = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.post(
+            urlString = PATH_SKU_OPERATIONS,
+        ) {
+            setBody(request)
+        }.body()
     }
 
     override suspend fun getSKUOperations(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUOperation> {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = PATH_SKU_OPERATIONS,
-            ) {
-                url {
-                    saveAppend(paginationOffset)
-                    saveAppendLimit(paginationLimit)
-                }
-            }.body()
-        }
+    ): PageContainer<SKUOperation> = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = PATH_SKU_OPERATIONS,
+        ) {
+            url {
+                saveAppend(paginationOffset)
+                saveAppendLimit(paginationLimit)
+            }
+        }.body()
     }
 
-    override suspend fun getSKUOperation(operationId: String): SKUOperation {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = "$PATH_SKU_OPERATIONS/$operationId",
-            ).body()
-        }
+    override suspend fun getSKUOperation(operationId: String): SKUOperation = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = "$PATH_SKU_OPERATIONS/$operationId",
+        ).body()
     }
 
     private companion object {

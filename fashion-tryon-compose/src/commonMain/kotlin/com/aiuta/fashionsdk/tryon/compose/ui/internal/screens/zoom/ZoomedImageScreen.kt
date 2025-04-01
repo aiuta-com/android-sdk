@@ -186,24 +186,24 @@ private fun ZoomedImageScreenContent(
     ) {
         SubcomposeAsyncImage(
             modifier =
-                Modifier
-                    .offset { imageOffset.value }
-                    .size(
-                        width = imageSize.value.width.toDp(LocalDensity.current),
-                        height = imageSize.value.height.toDp(LocalDensity.current),
-                    )
-                    .clip(RoundedCornerShape(cornerRadius.value))
-                    .zoomable(
-                        zoomState = screenState.imageZoomState,
-                        onTap = {
-                            screenState.closeZoomImageScreen(scope)
-                        },
-                    ),
+            Modifier
+                .offset { imageOffset.value }
+                .size(
+                    width = imageSize.value.width.toDp(LocalDensity.current),
+                    height = imageSize.value.height.toDp(LocalDensity.current),
+                )
+                .clip(RoundedCornerShape(cornerRadius.value))
+                .zoomable(
+                    zoomState = screenState.imageZoomState,
+                    onTap = {
+                        screenState.closeZoomImageScreen(scope)
+                    },
+                ),
             model =
-                ImageRequest.Builder(coilContext)
-                    .data(screenState.sharedImage.value.imageUrl)
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(coilContext)
+                .data(screenState.sharedImage.value.imageUrl)
+                .crossfade(true)
+                .build(),
             loading = {
                 LoadingProgress(
                     modifier = Modifier.fillMaxSize(),
@@ -213,17 +213,17 @@ private fun ZoomedImageScreenContent(
             error = {
                 Box(
                     modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .clipToBounds()
-                            .background(backgroundColor.value),
+                    Modifier
+                        .fillMaxSize()
+                        .clipToBounds()
+                        .background(backgroundColor.value),
                     contentAlignment = Alignment.Center,
                 ) {
                     ErrorProgress(
                         modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight(0.7f),
+                        Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.7f),
                         background = Color.White.copy(0.1f),
                         iconTint = interfaceColor.value,
                     )
@@ -235,22 +235,22 @@ private fun ZoomedImageScreenContent(
 
         Row(
             modifier =
-                Modifier
-                    .align(Alignment.TopStart)
-                    .fillMaxWidth()
-                    .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(top = 14.dp)
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .align(Alignment.TopStart)
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.statusBars)
+                .padding(top = 14.dp)
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             AiutaIcon(
                 modifier =
-                    Modifier
-                        .size(24.dp)
-                        .clickableUnindicated {
-                            screenState.closeZoomImageScreen(scope)
-                        },
+                Modifier
+                    .size(24.dp)
+                    .clickableUnindicated {
+                        screenState.closeZoomImageScreen(scope)
+                    },
                 icon = theme.icons.close24,
                 contentDescription = null,
                 tint = interfaceColor.value,
@@ -259,23 +259,23 @@ private fun ZoomedImageScreenContent(
             if (aiutaConfiguration.toggles.isShareAvailable) {
                 Text(
                     modifier =
-                        Modifier
-                            .clickableUnindicated {
-                                scope.launch {
-                                    val imageUrls =
-                                        listOfNotNull(
-                                            screenState.sharedImage.value.imageUrl,
-                                        )
-                                    shareManager.shareImages(
-                                        coilContext = coilContext,
-                                        content = screenState.sharedImage.value.additionalShareInfo,
-                                        imageUrls = imageUrls,
-                                        productId = controller.activeSKUItem.value.skuId,
-                                        pageId = screenState.sharedImage.value.originPageId,
-                                        watermark = theme.watermark,
+                    Modifier
+                        .clickableUnindicated {
+                            scope.launch {
+                                val imageUrls =
+                                    listOfNotNull(
+                                        screenState.sharedImage.value.imageUrl,
                                     )
-                                }
-                            },
+                                shareManager.shareImages(
+                                    coilContext = coilContext,
+                                    content = screenState.sharedImage.value.additionalShareInfo,
+                                    imageUrls = imageUrls,
+                                    productId = controller.activeSKUItem.value.skuId,
+                                    pageId = screenState.sharedImage.value.originPageId,
+                                    watermark = theme.watermark,
+                                )
+                            }
+                        },
                     text = stringResources.share,
                     style = theme.typography.button,
                     color = interfaceColor.value,

@@ -39,11 +39,11 @@ internal fun ModelSelectorLoadingContent(modifier: Modifier = Modifier) {
     ) {
         Box(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .padding(horizontal = imageHorizontalPadding)
-                    .placeholderFadeConnecting(shapeDp = 24.dp),
+            Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .padding(horizontal = imageHorizontalPadding)
+                .placeholderFadeConnecting(shapeDp = 24.dp),
         )
 
         Spacer(Modifier.height(26.dp))
@@ -124,10 +124,10 @@ private fun ModelsListShimmer(
 
         Box(
             modifier =
-                Modifier
-                    .width(itemWidth.value)
-                    .height(itemHeight.value)
-                    .placeholderFadeConnecting(shapeDp = 8.dp),
+            Modifier
+                .width(itemWidth.value)
+                .height(itemHeight.value)
+                .placeholderFadeConnecting(shapeDp = 8.dp),
         )
     }
 }

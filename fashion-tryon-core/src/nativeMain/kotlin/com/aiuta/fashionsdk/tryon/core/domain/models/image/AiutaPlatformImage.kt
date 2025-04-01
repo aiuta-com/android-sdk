@@ -82,7 +82,5 @@ actual class AiutaPlatformImage(
         return resizedImage
     }
 
-    private fun UIImage.jpegDataWithQuality(quality: Double): NSData? {
-        return UIImageJPEGRepresentation(this, quality)
-    }
+    private fun UIImage.jpegDataWithQuality(quality: Double): NSData? = UIImageJPEGRepresentation(this, quality)
 }

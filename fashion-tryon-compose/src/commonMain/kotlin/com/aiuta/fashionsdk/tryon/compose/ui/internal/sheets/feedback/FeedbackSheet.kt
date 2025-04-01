@@ -97,11 +97,11 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                     feedbackData.extraOptionTitle?.let { extraOptionTitle ->
                         controller.bottomSheetNavigator.change(
                             newSheetScreen =
-                                NavigationBottomSheetScreen.ExtraFeedback(
-                                    extraOptionTitle = extraOptionTitle,
-                                    optionIndex = feedbackData.options.size,
-                                    itemIndex = feedbackData.itemIndex,
-                                ),
+                            NavigationBottomSheetScreen.ExtraFeedback(
+                                extraOptionTitle = extraOptionTitle,
+                                optionIndex = feedbackData.options.size,
+                                itemIndex = feedbackData.itemIndex,
+                            ),
                         )
                     }
                 },
@@ -119,14 +119,14 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
         if (!isVisibleButton) {
             Text(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .clickableUnindicated {
-                            controller.sendGenerationFeedback(
-                                optionIndex = feedbackData.options.indexOf(selectedOption.value),
-                            )
-                            controller.bottomSheetNavigator.hide()
-                        },
+                Modifier
+                    .fillMaxWidth()
+                    .clickableUnindicated {
+                        controller.sendGenerationFeedback(
+                            optionIndex = feedbackData.options.indexOf(selectedOption.value),
+                        )
+                        controller.bottomSheetNavigator.hide()
+                    },
                 text = stringResources.feedbackSheetSkip,
                 style = theme.typography.chips,
                 color = theme.colors.secondary,
@@ -163,42 +163,42 @@ private fun OptionItem(
 
     Box(
         modifier =
-            modifier
-                .border(
-                    width = 2.dp,
-                    color =
-                        if (isSelected) {
-                            theme.colors.primary
-                        } else {
-                            Color.Transparent
-                        },
-                    shape = theme.shapes.buttonM,
-                )
-                .background(
-                    color =
-                        if (isSelected) {
-                            theme.colors.background
-                        } else {
-                            theme.colors.neutral
-                        },
-                    shape = theme.shapes.buttonM,
-                )
-                .clickableUnindicated { onClick() }
-                .padding(
-                    horizontal = 12.dp,
-                    vertical = 10.dp,
-                ),
+        modifier
+            .border(
+                width = 2.dp,
+                color =
+                if (isSelected) {
+                    theme.colors.primary
+                } else {
+                    Color.Transparent
+                },
+                shape = theme.shapes.buttonM,
+            )
+            .background(
+                color =
+                if (isSelected) {
+                    theme.colors.background
+                } else {
+                    theme.colors.neutral
+                },
+                shape = theme.shapes.buttonM,
+            )
+            .clickableUnindicated { onClick() }
+            .padding(
+                horizontal = 12.dp,
+                vertical = 10.dp,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = option,
             style = theme.typography.chips,
             color =
-                if (isSelected) {
-                    theme.colors.primary
-                } else {
-                    theme.colors.secondary
-                },
+            if (isSelected) {
+                theme.colors.primary
+            } else {
+                theme.colors.secondary
+            },
             textAlign = TextAlign.Center,
         )
     }

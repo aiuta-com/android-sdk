@@ -53,9 +53,9 @@ internal fun ConsentPageContent(
 
     LazyColumn(
         modifier =
-            modifier
-                .padding(horizontal = 24.dp)
-                .padding(bottom = 8.dp),
+        modifier
+            .padding(horizontal = 24.dp)
+            .padding(bottom = 8.dp),
     ) {
         item(
             key = "CONSENT_HEADER",
@@ -74,9 +74,9 @@ internal fun ConsentPageContent(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text =
-                    buildAnnotatedStringFromHtml(
-                        consentStandaloneFeature.strings.consentDescriptionHtml,
-                    ),
+                buildAnnotatedStringFromHtml(
+                    consentStandaloneFeature.strings.consentDescriptionHtml,
+                ),
                 style = theme.typography.regular,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Start,
@@ -164,18 +164,18 @@ private fun AgreePoint(
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             Checkbox(
                 modifier =
-                    Modifier
-                        .size(20.dp)
-                        .alignBy(CenterAlignmentLine)
-                        .createCenterAlignmentLine(),
+                Modifier
+                    .size(20.dp)
+                    .alignBy(CenterAlignmentLine)
+                    .createCenterAlignmentLine(),
                 checked = isAgreementChecked,
                 onCheckedChange = onAgreementCheckedChange,
                 colors =
-                    CheckboxDefaults.colors(
-                        checkedColor = theme.colors.brand,
-                        uncheckedColor = theme.colors.neutral,
-                        checkmarkColor = theme.colors.onDark,
-                    ),
+                CheckboxDefaults.colors(
+                    checkedColor = theme.colors.brand,
+                    uncheckedColor = theme.colors.neutral,
+                    checkmarkColor = theme.colors.onDark,
+                ),
             )
         }
 
@@ -183,13 +183,13 @@ private fun AgreePoint(
 
         Text(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .clickableUnindicated {
-                        onAgreementCheckedChange(!isAgreementChecked)
-                    }
-                    .alignBy(CenterAlignmentLine)
-                    .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
+            Modifier
+                .weight(1f)
+                .clickableUnindicated {
+                    onAgreementCheckedChange(!isAgreementChecked)
+                }
+                .alignBy(CenterAlignmentLine)
+                .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
             text = text,
             style = theme.typography.regular,
             color = theme.colors.primary,

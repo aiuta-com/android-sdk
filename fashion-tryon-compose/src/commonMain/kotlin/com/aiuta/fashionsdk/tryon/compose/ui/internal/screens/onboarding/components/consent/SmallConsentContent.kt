@@ -44,9 +44,9 @@ internal fun SmallConsentContent(
         consentBuiltInFeature?.let {
             Column(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
             ) {
                 Spacer(Modifier.height(24.dp))
 

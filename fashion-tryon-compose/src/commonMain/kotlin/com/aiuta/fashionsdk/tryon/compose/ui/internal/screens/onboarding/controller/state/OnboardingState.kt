@@ -6,7 +6,5 @@ import androidx.compose.runtime.Immutable
 internal sealed interface OnboardingState {
     val pageTitle: String?
 
-    fun pageSize(): Int {
-        return 1
-    }
+    fun pageSize(): Int = 1
 }

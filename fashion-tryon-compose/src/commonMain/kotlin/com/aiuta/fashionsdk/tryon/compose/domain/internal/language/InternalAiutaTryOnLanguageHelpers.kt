@@ -13,38 +13,34 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.translations.
 @Composable
 internal fun resolveInternalLanguage(
     selectedLanguage: AiutaTryOnLanguage,
-): InternalAiutaTryOnLanguage {
-    return remember(selectedLanguage) {
-        solveInternalLanguage(language = selectedLanguage)
-    }
+): InternalAiutaTryOnLanguage = remember(selectedLanguage) {
+    solveInternalLanguage(language = selectedLanguage)
 }
 
-private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTryOnLanguage {
-    return when (language) {
-        is EnglishLanguage ->
-            EnglishAiutaTryOnLanguage(
-                brand = language.brand,
-                termsOfServiceUrl = language.termsOfServiceUrl,
-                privacyPolicyUrl = language.privacyPolicyUrl,
-                onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
-            )
+private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTryOnLanguage = when (language) {
+    is EnglishLanguage ->
+        EnglishAiutaTryOnLanguage(
+            brand = language.brand,
+            termsOfServiceUrl = language.termsOfServiceUrl,
+            privacyPolicyUrl = language.privacyPolicyUrl,
+            onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
+        )
 
-        is TurkishLanguage ->
-            TurkishAiutaTryOnLanguage(
-                brand = language.brand,
-                termsOfServiceUrl = language.termsOfServiceUrl,
-                privacyPolicyUrl = language.privacyPolicyUrl,
-                onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
-            )
+    is TurkishLanguage ->
+        TurkishAiutaTryOnLanguage(
+            brand = language.brand,
+            termsOfServiceUrl = language.termsOfServiceUrl,
+            privacyPolicyUrl = language.privacyPolicyUrl,
+            onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
+        )
 
-        is RussianLanguage ->
-            RussianAiutaTryOnLanguage(
-                brand = language.brand,
-                termsOfServiceUrl = language.termsOfServiceUrl,
-                privacyPolicyUrl = language.privacyPolicyUrl,
-                onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
-            )
+    is RussianLanguage ->
+        RussianAiutaTryOnLanguage(
+            brand = language.brand,
+            termsOfServiceUrl = language.termsOfServiceUrl,
+            privacyPolicyUrl = language.privacyPolicyUrl,
+            onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
+        )
 
-        else -> language as CustomLanguage
-    }
+    else -> language as CustomLanguage
 }

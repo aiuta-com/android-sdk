@@ -28,6 +28,4 @@ internal fun strictBestResultFeature(): AiutaOnboardingBestResultsPage {
     )
 }
 
-internal fun AiutaTryOnConfiguration.isOnboardingFeatureAvailable(): Boolean {
-    return features.onboarding != null
-}
+internal fun AiutaTryOnConfiguration.isOnboardingFeatureAvailable(): Boolean = features.onboarding != null

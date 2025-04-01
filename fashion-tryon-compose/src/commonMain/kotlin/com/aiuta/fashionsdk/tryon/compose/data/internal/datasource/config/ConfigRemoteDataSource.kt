@@ -14,18 +14,16 @@ import kotlinx.coroutines.withContext
 internal class ConfigRemoteDataSource(
     private val networkClient: NetworkClient,
 ) {
-    suspend fun getBackendConfig(etag: String?): ClientConfig {
-        return withContext(Dispatchers.IO) {
-            val request =
-                networkClient.httpClient.value.get(BACKEND_CONFIG_PATH) {
-                    header(IF_NOT_MATCH_HEADER_PARAM, etag)
-                }
+    suspend fun getBackendConfig(etag: String?): ClientConfig = withContext(Dispatchers.IO) {
+        val request =
+            networkClient.httpClient.value.get(BACKEND_CONFIG_PATH) {
+                header(IF_NOT_MATCH_HEADER_PARAM, etag)
+            }
 
-            ClientConfig(
-                etag = request.headers[ETAG_HEADER_PARAM],
-                clientConfiguration = request.body(),
-            )
-        }
+        ClientConfig(
+            etag = request.headers[ETAG_HEADER_PARAM],
+            clientConfiguration = request.body(),
+        )
     }
 
     companion object {
@@ -34,13 +32,11 @@ internal class ConfigRemoteDataSource(
         private const val IF_NOT_MATCH_HEADER_PARAM = "if-none-match"
         private const val ETAG_HEADER_PARAM = "etag"
 
-        fun getInstance(aiuta: Aiuta): ConfigRemoteDataSource {
-            return ConfigRemoteDataSource(
-                networkClient =
-                    defaultNetworkClient(
-                        aiuta = aiuta,
-                    ),
-            )
-        }
+        fun getInstance(aiuta: Aiuta): ConfigRemoteDataSource = ConfigRemoteDataSource(
+            networkClient =
+            defaultNetworkClient(
+                aiuta = aiuta,
+            ),
+        )
     }
 }

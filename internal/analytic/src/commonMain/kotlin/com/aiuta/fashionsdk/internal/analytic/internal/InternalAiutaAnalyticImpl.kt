@@ -25,7 +25,8 @@ import kotlinx.coroutines.withContext
 internal class InternalAiutaAnalyticImpl(
     private val platformContext: AiutaPlatformContext,
     private val networkClient: NetworkClient,
-) : InternalAiutaAnalytic, BaseUpdater() {
+) : BaseUpdater(),
+    InternalAiutaAnalytic {
     private val _analyticFlow = MutableSharedFlow<ExternalAnalyticEvent?>(extraBufferCapacity = 10)
     override val analyticFlow: Flow<ExternalAnalyticEvent> = _analyticFlow.mapNotNull { it }
 
@@ -59,16 +60,14 @@ internal class InternalAiutaAnalyticImpl(
     }
 
     companion object {
-        fun getInstance(aiuta: Aiuta): InternalAiutaAnalytic {
-            return InternalAiutaAnalyticImpl(
-                platformContext = aiuta.platformContext,
-                networkClient =
-                    createNetworkClient(
-                        aiuta = aiuta,
-                        host = AnalyticConfig.DEFAULT_ENDPOINT,
-                        encodedPath = AnalyticConfig.DEFAULT_ENCODED_PATH,
-                    ),
-            )
-        }
+        fun getInstance(aiuta: Aiuta): InternalAiutaAnalytic = InternalAiutaAnalyticImpl(
+            platformContext = aiuta.platformContext,
+            networkClient =
+            createNetworkClient(
+                aiuta = aiuta,
+                host = AnalyticConfig.DEFAULT_ENDPOINT,
+                encodedPath = AnalyticConfig.DEFAULT_ENCODED_PATH,
+            ),
+        )
     }
 }

@@ -55,11 +55,11 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
 
         AnimatedVisibility(
             modifier =
-                Modifier
-                    .align(Alignment.BottomCenter)
-                    .windowInsetsPadding(WindowInsets.navigationBars)
-                    .padding(bottom = 16.dp)
-                    .fillMaxWidth(),
+            Modifier
+                .align(Alignment.BottomCenter)
+                .windowInsetsPadding(WindowInsets.navigationBars)
+                .padding(bottom = 16.dp)
+                .fillMaxWidth(),
             visible = controller.isErrorStateVisible().value,
             enter = fadeIn(),
             exit = fadeOut(),
@@ -76,9 +76,9 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
 
                 NavigationErrorCard(
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp),
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
                     errorState = state,
                 )
             }

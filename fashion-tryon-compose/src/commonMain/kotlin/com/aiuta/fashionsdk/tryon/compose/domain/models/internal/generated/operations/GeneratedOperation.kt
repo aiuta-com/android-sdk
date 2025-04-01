@@ -15,32 +15,26 @@ internal data class GeneratedOperationUIModel(
     }
 }
 
-internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel {
-    return GeneratedOperationUIModel(
-        operationId = operation.id,
-        urlImages =
-            sourceImages.map {
-                UrlImage(
-                    imageId = it.id,
-                    imageUrl = it.imageUrl,
-                )
-            },
-    )
-}
+internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
+    operationId = operation.id,
+    urlImages =
+    sourceImages.map {
+        UrlImage(
+            imageId = it.id,
+            imageUrl = it.imageUrl,
+        )
+    },
+)
 
 // History image
-internal fun AiutaHistoryImage.toOperationUiModel(): GeneratedOperationUIModel {
-    return GeneratedOperationUIModel(
-        operationId = id,
-        urlImages = listOf(UrlImage(imageId = id, imageUrl = url)),
-    )
-}
+internal fun AiutaHistoryImage.toOperationUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
+    operationId = id,
+    urlImages = listOf(UrlImage(imageId = id, imageUrl = url)),
+)
 
-internal fun GeneratedOperationUIModel.toPublic(): List<AiutaHistoryImage> {
-    return urlImages.map { image ->
-        AiutaHistoryImage(
-            id = image.imageId,
-            url = image.imageUrl,
-        )
-    }
+internal fun GeneratedOperationUIModel.toPublic(): List<AiutaHistoryImage> = urlImages.map { image ->
+    AiutaHistoryImage(
+        id = image.imageId,
+        url = image.imageUrl,
+    )
 }

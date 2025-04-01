@@ -26,15 +26,15 @@ internal fun DisclaimerBlock(modifier: Modifier = Modifier) {
 
     DisclaimerBlockContent(
         modifier =
-            modifier
-                .clickableUnindicated {
-                    controller.bottomSheetNavigator.show(
-                        newSheetScreen =
-                            NavigationBottomSheetScreen.FitDisclaimer(
-                                text = stringResources.fitDisclaimerBody,
-                            ),
-                    )
-                },
+        modifier
+            .clickableUnindicated {
+                controller.bottomSheetNavigator.show(
+                    newSheetScreen =
+                    NavigationBottomSheetScreen.FitDisclaimer(
+                        text = stringResources.fitDisclaimerBody,
+                    ),
+                )
+            },
         title = stringResources.fitDisclaimerTitle,
     )
 }
@@ -48,11 +48,11 @@ private fun DisclaimerBlockContent(
 
     Row(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.neutral,
-                    shape = theme.shapes.bottomSheet,
-                ),
+        modifier
+            .background(
+                color = theme.colors.neutral,
+                shape = theme.shapes.bottomSheet,
+            ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {

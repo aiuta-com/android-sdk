@@ -7,12 +7,8 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.fea
 @ProvidedTypeConverter
 internal class FeedbackFeatureConverter : BaseSerializedConverter() {
     @TypeConverter
-    fun restoreFeedbackFeature(rawString: String?): FeedbackFeature? {
-        return restore(rawString)
-    }
+    fun restoreFeedbackFeature(rawString: String?): FeedbackFeature? = restore(rawString)
 
     @TypeConverter
-    fun saveFeedbackFeature(config: FeedbackFeature): String? {
-        return save(config)
-    }
+    fun saveFeedbackFeature(config: FeedbackFeature): String? = save(config)
 }

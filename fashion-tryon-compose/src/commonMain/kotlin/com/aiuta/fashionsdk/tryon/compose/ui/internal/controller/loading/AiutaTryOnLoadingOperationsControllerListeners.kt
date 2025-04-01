@@ -100,10 +100,10 @@ private fun AiutaTryOnLoadingActionsController.showErrorDeletingGeneratedImagesL
 
                         controller.showErrorState(
                             errorState =
-                                DeleteGeneratedImagesToastErrorState(
-                                    controller = controller,
-                                    loadingActionsController = this@showErrorDeletingGeneratedImagesListener,
-                                ),
+                            DeleteGeneratedImagesToastErrorState(
+                                controller = controller,
+                                loadingActionsController = this@showErrorDeletingGeneratedImagesListener,
+                            ),
                         )
                     }
                 }
@@ -200,10 +200,10 @@ private fun AiutaTryOnLoadingActionsController.showErrorDeletingUploadedImagesLi
 
                         controller.showErrorState(
                             errorState =
-                                DeleteUploadedImagesToastErrorState(
-                                    controller = controller,
-                                    loadingActionsController = this@showErrorDeletingUploadedImagesListener,
-                                ),
+                            DeleteUploadedImagesToastErrorState(
+                                controller = controller,
+                                loadingActionsController = this@showErrorDeletingUploadedImagesListener,
+                            ),
                         )
                     }
                 }

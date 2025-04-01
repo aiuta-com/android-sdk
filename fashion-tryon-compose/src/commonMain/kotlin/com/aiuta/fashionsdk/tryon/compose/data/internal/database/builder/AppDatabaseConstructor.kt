@@ -15,16 +15,14 @@ internal expect fun getDatabaseBuilder(
     platformContext: AiutaPlatformContext,
 ): RoomDatabase.Builder<AppDatabase>
 
-internal fun buildRoomDatabase(platformContext: AiutaPlatformContext): AppDatabase {
-    return getDatabaseBuilder(platformContext)
-        .setDriver(BundledSQLiteDriver())
-        .setQueryCoroutineContext(Dispatchers.IO)
-        // Config
-        .addTypeConverter(PoweredByStickerFeatureConverter())
-        .addTypeConverter(FeedbackFeatureConverter())
-        .addTypeConverter(FitDisclaimerFeatureConverter())
-        .addTypeConverter(TryOnModelsCategoriesConverter())
-        // Fallback
-        .fallbackToDestructiveMigration(true)
-        .build()
-}
+internal fun buildRoomDatabase(platformContext: AiutaPlatformContext): AppDatabase = getDatabaseBuilder(platformContext)
+    .setDriver(BundledSQLiteDriver())
+    .setQueryCoroutineContext(Dispatchers.IO)
+    // Config
+    .addTypeConverter(PoweredByStickerFeatureConverter())
+    .addTypeConverter(FeedbackFeatureConverter())
+    .addTypeConverter(FitDisclaimerFeatureConverter())
+    .addTypeConverter(TryOnModelsCategoriesConverter())
+    // Fallback
+    .fallbackToDestructiveMigration(true)
+    .build()

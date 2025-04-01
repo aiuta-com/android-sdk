@@ -33,16 +33,12 @@ internal fun TryOnModelsCategory.toUiModel(
     }
 }
 
-internal fun TryOnModelsCategory.TryOnModel.toUiModel(): TryOnModelsCategoryUiModel.TryOnModelUiModel {
-    return TryOnModelsCategoryUiModel.TryOnModelUiModel(
-        id = this.id,
-        url = this.url,
-    )
-}
+internal fun TryOnModelsCategory.TryOnModel.toUiModel(): TryOnModelsCategoryUiModel.TryOnModelUiModel = TryOnModelsCategoryUiModel.TryOnModelUiModel(
+    id = this.id,
+    url = this.url,
+)
 
-internal fun TryOnModelsCategoryUiModel.TryOnModelUiModel.toUrlImage(): UrlImage {
-    return UrlImage(
-        imageId = id,
-        imageUrl = url,
-    )
-}
+internal fun TryOnModelsCategoryUiModel.TryOnModelUiModel.toUrlImage(): UrlImage = UrlImage(
+    imageId = id,
+    imageUrl = url,
+)

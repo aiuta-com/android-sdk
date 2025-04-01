@@ -155,23 +155,23 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     FashionButton(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = sharedHorizontalPadding),
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = sharedHorizontalPadding),
         text =
-            if (aiutaConfiguration.toggles.isTryonWithModelsAvailable) {
-                stringResources.generatedOperationsSheetUploadNewButtonWithModels
-            } else {
-                stringResources.generatedOperationsSheetUploadNewButton
-            },
+        if (aiutaConfiguration.toggles.isTryonWithModelsAvailable) {
+            stringResources.generatedOperationsSheetUploadNewButtonWithModels
+        } else {
+            stringResources.generatedOperationsSheetUploadNewButton
+        },
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
         onClick = {
             controller.bottomSheetNavigator.change(
                 newSheetScreen =
-                    NavigationBottomSheetScreen.ImagePicker(
-                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                    ),
+                NavigationBottomSheetScreen.ImagePicker(
+                    originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                ),
             )
         },
     )
@@ -213,14 +213,14 @@ private fun OperationItem(
     ) {
         SubcomposeAsyncImage(
             modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
+            Modifier
+                .clipToBounds()
+                .fillMaxSize(),
             model =
-                ImageRequest.Builder(coilContext)
-                    .data(generatedOperation.sourceImageUrls.firstOrNull())
-                    .crossfade(true)
-                    .build(),
+            ImageRequest.Builder(coilContext)
+                .data(generatedOperation.sourceImageUrls.firstOrNull())
+                .crossfade(true)
+                .build(),
             loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
             error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             onError = { imageState.value = it },
@@ -230,58 +230,58 @@ private fun OperationItem(
 
         AnimatedVisibility(
             modifier =
-                Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(8.dp),
+            Modifier
+                .align(Alignment.BottomEnd)
+                .padding(8.dp),
             visible = isTrashVisible.value,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             AiutaIcon(
                 modifier =
-                    Modifier
-                        .size(24.dp)
-                        .clickableUnindicated {
-                            scope.launch {
-                                with(controller) {
-                                    sendPickerAnalytic(
-                                        event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
-                                        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                                    )
+                Modifier
+                    .size(24.dp)
+                    .clickableUnindicated {
+                        scope.launch {
+                            with(controller) {
+                                sendPickerAnalytic(
+                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
+                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                )
 
-                                    // Add operation to loading list
-                                    loadingActionsController.loadingUploadsHolder.put(
-                                        generatedOperation,
-                                    )
+                                // Add operation to loading list
+                                loadingActionsController.loadingUploadsHolder.put(
+                                    generatedOperation,
+                                )
 
-                                    // Delete operations
-                                    generatedOperationInteractor.deleteOperation(generatedOperation)
-                                    // If local mode - let's remove from loading
-                                    generatedOperationInteractor.cleanLoadingUploads(
-                                        cleanAction = {
-                                            loadingActionsController.loadingUploadsHolder.remove(
-                                                generatedOperation,
-                                            )
-                                        },
-                                    )
+                                // Delete operations
+                                generatedOperationInteractor.deleteOperation(generatedOperation)
+                                // If local mode - let's remove from loading
+                                generatedOperationInteractor.cleanLoadingUploads(
+                                    cleanAction = {
+                                        loadingActionsController.loadingUploadsHolder.remove(
+                                            generatedOperation,
+                                        )
+                                    },
+                                )
 
-                                    // If active images is deleted and it's local mode - let's get new first
-                                    val isLocalMode =
-                                        generatedOperationInteractor is LocalGeneratedOperationInteractor
-                                    val isActiveOperationDeleted =
-                                        lastSavedOperation.value?.operationId == generatedOperation.operationId
-                                    if (isActiveOperationDeleted && isLocalMode) {
-                                        // Try to get new first
-                                        val newFirstOperation =
-                                            generatedOperationInteractor
-                                                .getFirstGeneratedOperation()
+                                // If active images is deleted and it's local mode - let's get new first
+                                val isLocalMode =
+                                    generatedOperationInteractor is LocalGeneratedOperationInteractor
+                                val isActiveOperationDeleted =
+                                    lastSavedOperation.value?.operationId == generatedOperation.operationId
+                                if (isActiveOperationDeleted && isLocalMode) {
+                                    // Try to get new first
+                                    val newFirstOperation =
+                                        generatedOperationInteractor
+                                            .getFirstGeneratedOperation()
 
-                                        // Try to update with new or set as empty
-                                        updateActiveOperationOrSetEmpty(newFirstOperation)
-                                    }
+                                    // Try to update with new or set as empty
+                                    updateActiveOperationOrSetEmpty(newFirstOperation)
                                 }
                             }
-                        },
+                        }
+                    },
                 icon = theme.icons.trash24,
                 contentDescription = null,
                 tint = theme.colors.background,
@@ -290,18 +290,18 @@ private fun OperationItem(
 
         AnimatedVisibility(
             modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
+            Modifier
+                .clipToBounds()
+                .fillMaxSize(),
             visible = isLoadingScrimVisible.value,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             LoadingProgress(
                 modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f)),
+                Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.5f)),
                 circleColor = Color.White,
             )
         }

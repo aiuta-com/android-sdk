@@ -10,9 +10,7 @@ import kotlinx.datetime.toLocalDateTime
 internal class TimeSaver(
     private val timeDataSource: TimeDataSource,
 ) {
-    fun getCurrentTime(): LocalDateTime {
-        return Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-    }
+    fun getCurrentTime(): LocalDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 
     suspend fun saveCurrentTime(key: String) {
         val currentTime = getCurrentTime()
@@ -32,10 +30,8 @@ internal class TimeSaver(
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): TimeSaver {
-            return TimeSaver(
-                timeDataSource = TimeDataSource.getInstance(platformContext),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): TimeSaver = TimeSaver(
+            timeDataSource = TimeDataSource.getInstance(platformContext),
+        )
     }
 }

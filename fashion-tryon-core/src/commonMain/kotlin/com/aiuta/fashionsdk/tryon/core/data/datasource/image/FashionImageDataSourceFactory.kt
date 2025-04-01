@@ -8,7 +8,7 @@ internal val Aiuta.imageDataSourceFactory: FashionImageDataSource
     get() =
         FashionImageRemoteDataSource(
             networkClient =
-                defaultNetworkClient(
-                    aiuta = this,
-                ),
+            defaultNetworkClient(
+                aiuta = this,
+            ),
         )

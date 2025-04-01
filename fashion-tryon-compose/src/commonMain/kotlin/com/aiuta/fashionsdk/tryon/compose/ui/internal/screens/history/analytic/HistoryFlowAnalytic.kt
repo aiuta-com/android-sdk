@@ -8,10 +8,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnCon
 internal fun FashionTryOnController.sendHistoryEvent(eventType: AiutaAnalyticsHistoryEventType) {
     analytic.sendEvent(
         event =
-            AiutaAnalyticsHistoryEvent(
-                event = eventType,
-                pageId = AiutaAnalyticPageId.HISTORY,
-                productId = activeSKUItem.value.skuId,
-            ),
+        AiutaAnalyticsHistoryEvent(
+            event = eventType,
+            pageId = AiutaAnalyticPageId.HISTORY,
+            productId = activeSKUItem.value.skuId,
+        ),
     )
 }

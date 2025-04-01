@@ -7,15 +7,14 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 internal object FashionButtonColors {
     @Composable
-    fun primaryColors(theme: AiutaTheme) =
-        DefaultFashionButtonColor(
-            buttonColors =
-                ButtonDefaults.buttonColors(
-                    backgroundColor = theme.colors.brand,
-                    contentColor = theme.colors.onDark,
-                ),
-            rippleColor = theme.colors.brand.copy(alpha = 0.1f),
-        )
+    fun primaryColors(theme: AiutaTheme) = DefaultFashionButtonColor(
+        buttonColors =
+        ButtonDefaults.buttonColors(
+            backgroundColor = theme.colors.brand,
+            contentColor = theme.colors.onDark,
+        ),
+        rippleColor = theme.colors.brand.copy(alpha = 0.1f),
+    )
 
     @Composable
     fun primaryColors(
@@ -23,35 +22,33 @@ internal object FashionButtonColors {
         contentColor: Color,
     ) = DefaultFashionButtonColor(
         buttonColors =
-            ButtonDefaults.buttonColors(
-                backgroundColor = backgroundColor,
-                contentColor = contentColor,
-            ),
+        ButtonDefaults.buttonColors(
+            backgroundColor = backgroundColor,
+            contentColor = contentColor,
+        ),
         rippleColor = backgroundColor.copy(alpha = 0.1f),
     )
 
     @Composable
-    fun secondaryColors(theme: AiutaTheme) =
-        OutlineFashionButtonColor(
-            buttonColors =
-                ButtonDefaults.outlinedButtonColors(
-                    backgroundColor = theme.colors.background,
-                    contentColor = theme.colors.primary,
-                ),
-            borderColor = theme.colors.neutral2,
-            rippleColor = theme.colors.primary.copy(alpha = 0.05f),
-        )
+    fun secondaryColors(theme: AiutaTheme) = OutlineFashionButtonColor(
+        buttonColors =
+        ButtonDefaults.outlinedButtonColors(
+            backgroundColor = theme.colors.background,
+            contentColor = theme.colors.primary,
+        ),
+        borderColor = theme.colors.neutral2,
+        rippleColor = theme.colors.primary.copy(alpha = 0.05f),
+    )
 
     @Composable
-    fun transparentColors(contentColor: Color) =
-        DefaultFashionButtonColor(
-            buttonColors =
-                ButtonDefaults.buttonColors(
-                    backgroundColor = Color.Transparent,
-                    contentColor = contentColor,
-                ),
-            rippleColor = Color.Black.copy(alpha = 0.05f),
-        )
+    fun transparentColors(contentColor: Color) = DefaultFashionButtonColor(
+        buttonColors =
+        ButtonDefaults.buttonColors(
+            backgroundColor = Color.Transparent,
+            contentColor = contentColor,
+        ),
+        rippleColor = Color.Black.copy(alpha = 0.05f),
+    )
 
     @Composable
     fun secondaryColors(
@@ -60,10 +57,10 @@ internal object FashionButtonColors {
         borderColor: Color,
     ) = OutlineFashionButtonColor(
         buttonColors =
-            ButtonDefaults.outlinedButtonColors(
-                backgroundColor = backgroundColor,
-                contentColor = contentColor,
-            ),
+        ButtonDefaults.outlinedButtonColors(
+            backgroundColor = backgroundColor,
+            contentColor = contentColor,
+        ),
         borderColor = borderColor,
         rippleColor = contentColor.copy(alpha = 0.05f),
     )

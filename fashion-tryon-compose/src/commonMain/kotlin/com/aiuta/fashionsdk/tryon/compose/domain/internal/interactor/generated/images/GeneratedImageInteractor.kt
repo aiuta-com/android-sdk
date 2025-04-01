@@ -21,12 +21,8 @@ internal interface GeneratedImageInteractor {
     fun countFlow(): Flow<Int>
 
     companion object {
-        fun getInstance(aiuta: Aiuta): GeneratedImageInteractor {
-            return LocalGeneratedImageInteractor.getInstance(aiuta.platformContext)
-        }
+        fun getInstance(aiuta: Aiuta): GeneratedImageInteractor = LocalGeneratedImageInteractor.getInstance(aiuta.platformContext)
 
-        fun getInstance(dataProvider: AiutaDataProvider): GeneratedImageInteractor {
-            return HostGeneratedImageInteractor.getInstance(dataProvider)
-        }
+        fun getInstance(dataProvider: AiutaDataProvider): GeneratedImageInteractor = HostGeneratedImageInteractor.getInstance(dataProvider)
     }
 }

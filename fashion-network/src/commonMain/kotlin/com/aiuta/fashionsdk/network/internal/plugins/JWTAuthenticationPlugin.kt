@@ -45,13 +45,9 @@ internal class JWTProvider(
     override val sendWithoutRequest: Boolean
         get() = error("Deprecated")
 
-    override fun sendWithoutRequest(request: HttpRequestBuilder): Boolean {
-        return sendWithoutRequestCallback(request)
-    }
+    override fun sendWithoutRequest(request: HttpRequestBuilder): Boolean = sendWithoutRequestCallback(request)
 
-    override fun isApplicable(auth: HttpAuthHeader): Boolean {
-        return true
-    }
+    override fun isApplicable(auth: HttpAuthHeader): Boolean = true
 
     override suspend fun addRequestHeaders(
         request: HttpRequestBuilder,
@@ -84,19 +80,15 @@ internal class JWTProvider(
     }
 
     @OptIn(InternalSerializationApi::class)
-    private fun HttpRequestBuilder?.solveJsonBody(): String? {
-        return try {
-            this?.bodyType?.type?.let { type ->
-                val actualSerializer =
-                    jsonSerializer.serializersModule.getContextual(type) ?: type.serializer()
-                jsonSerializer.encodeToString(actualSerializer as KSerializer<Any>, body)
-            }
-        } catch (e: Exception) {
-            null
+    private fun HttpRequestBuilder?.solveJsonBody(): String? = try {
+        this?.bodyType?.type?.let { type ->
+            val actualSerializer =
+                jsonSerializer.serializersModule.getContextual(type) ?: type.serializer()
+            jsonSerializer.encodeToString(actualSerializer as KSerializer<Any>, body)
         }
+    } catch (e: Exception) {
+        null
     }
 
-    private fun HttpResponse.solveJsonBody(): String? {
-        return (request.content as? TextContent)?.text
-    }
+    private fun HttpResponse.solveJsonBody(): String? = (request.content as? TextContent)?.text
 }

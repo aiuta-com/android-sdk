@@ -34,9 +34,9 @@ internal fun ImagesContainer(
             SubcomposeAsyncImage(
                 modifier = modifier,
                 model =
-                    ImageRequest.Builder(coilContext)
-                        .data(image.image.imageUrl)
-                        .build(),
+                ImageRequest.Builder(coilContext)
+                    .data(image.image.imageUrl)
+                    .build(),
                 contentDescription = null,
                 loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
                 error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },

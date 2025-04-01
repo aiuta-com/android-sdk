@@ -37,13 +37,13 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
 
             controller.bottomSheetNavigator.show(
                 newSheetScreen =
-                    if (countGeneratedOperation.value > 1) {
-                        NavigationBottomSheetScreen.GeneratedOperations
-                    } else {
-                        NavigationBottomSheetScreen.ImagePicker(
-                            originPageId = AiutaAnalyticPageId.RESULTS,
-                        )
-                    },
+                if (countGeneratedOperation.value > 1) {
+                    NavigationBottomSheetScreen.GeneratedOperations
+                } else {
+                    NavigationBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticPageId.RESULTS,
+                    )
+                },
             )
         },
     )

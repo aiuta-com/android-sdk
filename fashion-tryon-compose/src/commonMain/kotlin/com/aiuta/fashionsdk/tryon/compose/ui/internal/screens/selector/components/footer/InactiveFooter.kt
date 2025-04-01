@@ -82,10 +82,10 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
     ) {
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(16.dp)
-                    .alignBy(CenterAlignmentLine)
-                    .createCenterAlignmentLine(),
+            Modifier
+                .size(16.dp)
+                .alignBy(CenterAlignmentLine)
+                .createCenterAlignmentLine(),
             icon = theme.icons.lock16,
             contentDescription = null,
             tint = theme.colors.secondary,
@@ -93,10 +93,10 @@ private fun ProtectionPoint(modifier: Modifier = Modifier) {
 
         Text(
             modifier =
-                Modifier
-                    .wrapContentWidth()
-                    .alignBy(CenterAlignmentLine)
-                    .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
+            Modifier
+                .wrapContentWidth()
+                .alignBy(CenterAlignmentLine)
+                .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
             text = stringResources.imageSelectorProtectionPoint,
             style = theme.typography.description,
             color = theme.colors.secondary,

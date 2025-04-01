@@ -8,9 +8,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 internal actual fun buildAnnotatedStringFromHtml(
     input: String,
     isClickable: Boolean,
-): AnnotatedString {
-    return buildAnnotatedString {
-        // TODO Support Native platform
-        append(input)
-    }
+): AnnotatedString = buildAnnotatedString {
+    // TODO Support Native platform
+    append(input)
 }

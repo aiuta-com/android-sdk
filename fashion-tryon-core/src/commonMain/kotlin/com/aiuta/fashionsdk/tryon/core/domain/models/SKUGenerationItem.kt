@@ -15,11 +15,9 @@ public data class SKUGenerationItem(
     val title: String,
 )
 
-internal fun SKUItemDTO.toPublic(): SKUGenerationItem {
-    return SKUGenerationItem(
-        skuId = skuId,
-        catalogName = skuCatalogName,
-        imageUrls = imageUrls,
-        title = title,
-    )
-}
+internal fun SKUItemDTO.toPublic(): SKUGenerationItem = SKUGenerationItem(
+    skuId = skuId,
+    catalogName = skuCatalogName,
+    imageUrls = imageUrls,
+    title = title,
+)

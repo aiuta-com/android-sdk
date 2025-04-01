@@ -62,9 +62,9 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
         sheetContent = {
             GenerationResultFooterList(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
+                Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
                 generationResultController = generationResultController,
             )
         },
@@ -75,9 +75,9 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
     ) { paddings ->
         Box(
             modifier =
-                Modifier
-                    .padding(paddings)
-                    .background(theme.colors.background),
+            Modifier
+                .padding(paddings)
+                .background(theme.colors.background),
         ) {
             BottomSheetScaffoldContent(
                 modifier = Modifier.fillMaxSize(),
@@ -107,18 +107,18 @@ private fun BottomSheetScaffoldContent(
     ) {
         MainAppBar(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         Spacer(Modifier.height(16.dp))
 
         GenerationResultBody(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
+            Modifier
+                .fillMaxWidth()
+                .weight(1f),
             generationResultController = generationResultController,
         )
 
@@ -126,9 +126,9 @@ private fun BottomSheetScaffoldContent(
 
         DisclaimerBlock(
             modifier =
-                Modifier
-                    .height(25.dp)
-                    .fillMaxWidth(),
+            Modifier
+                .height(25.dp)
+                .fillMaxWidth(),
         )
     }
 }

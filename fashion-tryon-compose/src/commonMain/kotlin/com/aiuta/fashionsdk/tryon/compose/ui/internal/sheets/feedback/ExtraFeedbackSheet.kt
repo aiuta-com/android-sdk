@@ -48,24 +48,24 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
 
     Column(
         modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp)
-                .windowInsetsPadding(WindowInsets.statusBars)
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .windowInsetsPadding(WindowInsets.ime),
+        Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
+            .windowInsetsPadding(WindowInsets.statusBars)
+            .windowInsetsPadding(WindowInsets.navigationBars)
+            .windowInsetsPadding(WindowInsets.ime),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(14.dp))
 
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(24.dp)
-                    .align(Alignment.End)
-                    .clickableUnindicated {
-                        controller.bottomSheetNavigator.hide()
-                    },
+            Modifier
+                .size(24.dp)
+                .align(Alignment.End)
+                .clickableUnindicated {
+                    controller.bottomSheetNavigator.hide()
+                },
             icon = theme.icons.close24,
             contentDescription = null,
             tint = theme.colors.primary,
@@ -85,22 +85,22 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
 
         TextField(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .heightIn(min = 160.dp)
-                    .animateContentSize(),
+            Modifier
+                .fillMaxWidth()
+                .heightIn(min = 160.dp)
+                .animateContentSize(),
             value = feedbackText.value,
             textStyle = theme.typography.regular,
             onValueChange = { feedbackText.value = it },
             shape = RoundedCornerShape(16.dp),
             colors =
-                TextFieldDefaults.textFieldColors(
-                    textColor = theme.colors.primary,
-                    backgroundColor = theme.colors.neutral,
-                    cursorColor = theme.colors.primary,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                ),
+            TextFieldDefaults.textFieldColors(
+                textColor = theme.colors.primary,
+                backgroundColor = theme.colors.neutral,
+                cursorColor = theme.colors.primary,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+            ),
         )
 
         Spacer(Modifier.weight(1f))

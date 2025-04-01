@@ -25,56 +25,48 @@ internal class FashionImageRemoteDataSource(
     override suspend fun createUploadedImage(
         fileName: String,
         fileByteArray: ByteArray,
-    ): UploadedImage {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.submitFormWithBinaryData(
-                url = PATH_UPLOADED_IMAGES,
-                formData =
-                    formData {
-                        append(
-                            key = KEY_IMAGE_DATA,
-                            value = fileByteArray,
-                            headers =
-                                Headers.build {
-                                    append(HttpHeaders.ContentType, "image/${fileName.extension}")
-                                    append(HttpHeaders.ContentDisposition, "filename=\"$fileName\"")
-                                },
-                        )
+    ): UploadedImage = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.submitFormWithBinaryData(
+            url = PATH_UPLOADED_IMAGES,
+            formData =
+            formData {
+                append(
+                    key = KEY_IMAGE_DATA,
+                    value = fileByteArray,
+                    headers =
+                    Headers.build {
+                        append(HttpHeaders.ContentType, "image/${fileName.extension}")
+                        append(HttpHeaders.ContentDisposition, "filename=\"$fileName\"")
                     },
-            ).body()
-        }
+                )
+            },
+        ).body()
     }
 
     override suspend fun getUploadedImages(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<UploadedImage> {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = PATH_UPLOADED_IMAGES,
-            ) {
-                url {
-                    saveAppend(paginationOffset)
-                    saveAppendLimit(paginationLimit)
-                }
-            }.body()
-        }
+    ): PageContainer<UploadedImage> = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = PATH_UPLOADED_IMAGES,
+        ) {
+            url {
+                saveAppend(paginationOffset)
+                saveAppendLimit(paginationLimit)
+            }
+        }.body()
     }
 
-    override suspend fun getUploadedImage(imageId: String): UploadedImage {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = "$PATH_UPLOADED_IMAGES/$imageId",
-            ).body()
-        }
+    override suspend fun getUploadedImage(imageId: String): UploadedImage = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = "$PATH_UPLOADED_IMAGES/$imageId",
+        ).body()
     }
 
-    override suspend fun deleteUploadedImage(imageId: String): Boolean {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.delete(
-                urlString = "$PATH_UPLOADED_IMAGES/$imageId",
-            ).body()
-        }
+    override suspend fun deleteUploadedImage(imageId: String): Boolean = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.delete(
+            urlString = "$PATH_UPLOADED_IMAGES/$imageId",
+        ).body()
     }
 
     private companion object {

@@ -54,16 +54,16 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
 
     Column(
         modifier =
-            modifier
-                .background(theme.colors.background)
-                .windowInsetsPadding(WindowInsets.navigationBars),
+        modifier
+            .background(theme.colors.background)
+            .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ModelSelectorAppBar(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         Spacer(Modifier.height(16.dp))

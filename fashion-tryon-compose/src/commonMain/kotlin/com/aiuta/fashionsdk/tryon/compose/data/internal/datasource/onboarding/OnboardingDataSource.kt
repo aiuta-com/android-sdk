@@ -17,17 +17,13 @@ internal class OnboardingDataSource(
         }
     }
 
-    suspend fun count(): Int {
-        return withContext(Dispatchers.IO) {
-            onboardingDao.count()
-        }
+    suspend fun count(): Int = withContext(Dispatchers.IO) {
+        onboardingDao.count()
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): OnboardingDataSource {
-            return OnboardingDataSource(
-                onboardingDao = AppDatabase.getInstance(platformContext).onboardingDao(),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): OnboardingDataSource = OnboardingDataSource(
+            onboardingDao = AppDatabase.getInstance(platformContext).onboardingDao(),
+        )
     }
 }

@@ -48,9 +48,9 @@ internal fun ModelSelectorGeneralErrorContent(
 
         Text(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = textHorizontalPadding),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = textHorizontalPadding),
             text = stringResources.defaultErrorMessage,
             style = theme.typography.regular,
             color = theme.colors.primary,

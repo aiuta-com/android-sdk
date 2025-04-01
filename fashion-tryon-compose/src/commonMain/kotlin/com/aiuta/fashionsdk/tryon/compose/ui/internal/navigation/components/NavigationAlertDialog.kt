@@ -46,25 +46,25 @@ internal fun NavigationAlertDialog(
         shape = RoundedCornerShape(32.dp),
         properties = DialogProperties(usePlatformDefaultWidth = false),
         title =
-            state.title?.let {
-                {
-                    Column(
-                        modifier = sharedModifier,
-                        verticalArrangement = Arrangement.Center,
-                    ) {
-                        Spacer(Modifier.height(24.dp))
+        state.title?.let {
+            {
+                Column(
+                    modifier = sharedModifier,
+                    verticalArrangement = Arrangement.Center,
+                ) {
+                    Spacer(Modifier.height(24.dp))
 
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = state.title,
-                            style = theme.typography.titleL,
-                            color = theme.colors.primary,
-                            overflow = TextOverflow.Ellipsis,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = state.title,
+                        style = theme.typography.titleL,
+                        color = theme.colors.primary,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center,
+                    )
                 }
-            },
+            }
+        },
         text = {
             Text(
                 modifier = Modifier.fillMaxWidth(),

@@ -21,45 +21,39 @@ internal class FashionSKURemoteDataSource(
     override suspend fun getSKUCatalogs(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUCatalogDTO> {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = PATH_SKU_CATALOGS,
-            ) {
-                url {
-                    saveAppend(paginationOffset)
-                    saveAppendLimit(paginationLimit)
-                }
-            }.body()
-        }
+    ): PageContainer<SKUCatalogDTO> = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = PATH_SKU_CATALOGS,
+        ) {
+            url {
+                saveAppend(paginationOffset)
+                saveAppendLimit(paginationLimit)
+            }
+        }.body()
     }
 
     override suspend fun getSKUItems(
         skuCatalogName: String,
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUItemDTO> {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = "$PATH_SKU_ITEMS/$skuCatalogName",
-            ) {
-                url {
-                    saveAppend(paginationOffset)
-                    saveAppendLimit(paginationLimit)
-                }
-            }.body()
-        }
+    ): PageContainer<SKUItemDTO> = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = "$PATH_SKU_ITEMS/$skuCatalogName",
+        ) {
+            url {
+                saveAppend(paginationOffset)
+                saveAppendLimit(paginationLimit)
+            }
+        }.body()
     }
 
     override suspend fun getSKUItem(
         skuCatalogName: String,
         skuId: String,
-    ): SKUItemDTO {
-        return withContext(Dispatchers.IO) {
-            networkClient.httpClient.value.get(
-                urlString = "$PATH_SKU_ITEMS/$skuCatalogName/$skuId",
-            ).body()
-        }
+    ): SKUItemDTO = withContext(Dispatchers.IO) {
+        networkClient.httpClient.value.get(
+            urlString = "$PATH_SKU_ITEMS/$skuCatalogName/$skuId",
+        ).body()
     }
 
     private companion object {

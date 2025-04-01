@@ -103,21 +103,19 @@ public fun aiutaTypography(
             fontSize = 12.sp,
             lineHeight = 18.sp,
         ),
-): AiutaTypography {
-    return AiutaTypography(
-        titleXL = titleXL,
-        welcomeText = welcomeText,
-        titleL = titleL,
-        titleM = titleM,
-        navbar = navbar,
-        regular = regular,
-        button = button,
-        smallButton = smallButton,
-        cells = cells,
-        chips = chips,
-        productName = productName,
-        price = price,
-        brandName = brandName,
-        description = description,
-    )
-}
+): AiutaTypography = AiutaTypography(
+    titleXL = titleXL,
+    welcomeText = welcomeText,
+    titleL = titleL,
+    titleM = titleM,
+    navbar = navbar,
+    regular = regular,
+    button = button,
+    smallButton = smallButton,
+    cells = cells,
+    chips = chips,
+    productName = productName,
+    price = price,
+    brandName = brandName,
+    description = description,
+)

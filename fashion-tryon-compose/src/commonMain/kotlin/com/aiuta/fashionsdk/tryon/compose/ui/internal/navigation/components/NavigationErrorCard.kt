@@ -36,12 +36,12 @@ internal fun NavigationErrorCard(
 
     Row(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.error,
-                    shape = theme.shapes.buttonM,
-                )
-                .padding(16.dp),
+        modifier
+            .background(
+                color = theme.colors.error,
+                shape = theme.shapes.buttonM,
+            )
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AiutaIcon(
@@ -66,11 +66,11 @@ internal fun NavigationErrorCard(
         FashionButton(
             text = stringResources.tryAgain,
             style =
-                FashionButtonStyles.secondaryStyle(
-                    backgroundColor = theme.colors.background,
-                    contentColor = theme.colors.primary,
-                    borderColor = Color.Transparent,
-                ),
+            FashionButtonStyles.secondaryStyle(
+                backgroundColor = theme.colors.background,
+                contentColor = theme.colors.primary,
+                borderColor = Color.Transparent,
+            ),
             size = FashionButtonSizes.mSize(),
             onClick = {
                 errorState.onRetry()

@@ -40,18 +40,18 @@ internal fun ImageSelectorScreenNonEmptyContent(modifier: Modifier = Modifier) {
             uploadPhoto = {
                 controller.bottomSheetNavigator.show(
                     newSheetScreen =
-                        NavigationBottomSheetScreen.ImagePicker(
-                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                        ),
+                    NavigationBottomSheetScreen.ImagePicker(
+                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    ),
                 )
             },
         )
 
         ImageSelectorFooter(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(),
+            Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(),
             isTryOnButtonVisible = isTryOnButtonVisible,
         )
     }

@@ -21,20 +21,18 @@ public fun aiutaDarkColors(
     neutral: Color = Color(0xFF1D1D1D),
     neutral2: Color = Color(0xFF2C2C2E),
     neutral3: Color = Color(0xFF48484A),
-): AiutaColors {
-    return AiutaColors(
-        primary = primary,
-        secondary = secondary,
-        tertiary = tertiary,
-        onDark = onDark,
-        onError = onError,
-        brand = brand,
-        error = error,
-        aiuta = aiuta,
-        background = background,
-        neutral = neutral,
-        neutral2 = neutral2,
-        neutral3 = neutral3,
-        accent = accent,
-    )
-}
+): AiutaColors = AiutaColors(
+    primary = primary,
+    secondary = secondary,
+    tertiary = tertiary,
+    onDark = onDark,
+    onError = onError,
+    brand = brand,
+    error = error,
+    aiuta = aiuta,
+    background = background,
+    neutral = neutral,
+    neutral2 = neutral2,
+    neutral3 = neutral3,
+    accent = accent,
+)

@@ -42,22 +42,22 @@ internal fun ItemContent(
 
     AiutaImage(
         modifier =
-            modifier
-                .width(widthTransition.value)
-                .height(heightTransition.value)
-                .shadow(
-                    elevation = 10.dp,
-                    shape = cornerRadius,
-                    ambientColor = Color.Black,
-                    spotColor = Color.Black,
-                )
-                .background(
-                    color = theme.colors.background,
-                    shape = cornerRadius,
-                )
-                .clickableUnindicated {
-                    onClick()
-                },
+        modifier
+            .width(widthTransition.value)
+            .height(heightTransition.value)
+            .shadow(
+                elevation = 10.dp,
+                shape = cornerRadius,
+                ambientColor = Color.Black,
+                spotColor = Color.Black,
+            )
+            .background(
+                color = theme.colors.background,
+                shape = cornerRadius,
+            )
+            .clickableUnindicated {
+                onClick()
+            },
         image = itemImage,
         contentDescription = null,
     )

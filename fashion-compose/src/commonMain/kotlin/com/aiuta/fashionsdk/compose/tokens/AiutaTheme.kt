@@ -66,18 +66,16 @@ public fun aiutaTheme(
     images: AiutaImages,
     shapes: AiutaShapes = DefaultAiutaShapes,
     watermark: AiutaImage? = null,
-): AiutaTheme {
-    return AiutaTheme(
-        icons = icons,
-        colors = colors,
-        gradients = gradients,
-        images = images,
-        toggles = toggles,
-        typography = typography,
-        shapes = shapes,
-        watermark = watermark,
-    )
-}
+): AiutaTheme = AiutaTheme(
+    icons = icons,
+    colors = colors,
+    gradients = gradients,
+    images = images,
+    toggles = toggles,
+    typography = typography,
+    shapes = shapes,
+    watermark = watermark,
+)
 
 /**
  * Composable function to create an instance of [AiutaTheme] with composable remember.
@@ -94,24 +92,22 @@ public fun rememberAiutaTheme(
     images: AiutaImages,
     shapes: AiutaShapes = DefaultAiutaShapes,
     watermark: AiutaImage? = null,
-): AiutaTheme {
-    return remember(
-        icons,
-        colors,
-        gradients,
-        typography,
-        shapes,
-        watermark,
-    ) {
-        aiutaTheme(
-            icons = icons,
-            colors = colors,
-            gradients = gradients,
-            toggles = toggles,
-            typography = typography,
-            images = images,
-            shapes = shapes,
-            watermark = watermark,
-        )
-    }
+): AiutaTheme = remember(
+    icons,
+    colors,
+    gradients,
+    typography,
+    shapes,
+    watermark,
+) {
+    aiutaTheme(
+        icons = icons,
+        colors = colors,
+        gradients = gradients,
+        toggles = toggles,
+        typography = typography,
+        images = images,
+        shapes = shapes,
+        watermark = watermark,
+    )
 }

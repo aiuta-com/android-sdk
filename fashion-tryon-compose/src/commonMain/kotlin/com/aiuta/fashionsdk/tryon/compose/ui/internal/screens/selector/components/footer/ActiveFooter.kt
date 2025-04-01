@@ -58,26 +58,26 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 
         Column(
             modifier =
-                Modifier
-                    .dropShadow(
-                        shape = theme.shapes.bottomSheet,
-                        color = theme.colors.primary.copy(alpha = 0.04f),
-                        blur = 15.dp,
-                        offsetY = (-10).dp,
-                    )
-                    .background(
-                        color = theme.colors.background,
-                        shape = theme.shapes.bottomSheet,
-                    )
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .dropShadow(
+                    shape = theme.shapes.bottomSheet,
+                    color = theme.colors.primary.copy(alpha = 0.04f),
+                    blur = 15.dp,
+                    offsetY = (-10).dp,
+                )
+                .background(
+                    color = theme.colors.background,
+                    shape = theme.shapes.bottomSheet,
+                )
+                .padding(horizontal = 16.dp),
         ) {
             Spacer(Modifier.height(16.dp))
 
             SKUBlock(
                 modifier =
-                    Modifier
-                        .height(40.dp)
-                        .fillMaxWidth(),
+                Modifier
+                    .height(40.dp)
+                    .fillMaxWidth(),
             )
 
             Spacer(Modifier.height(24.dp))
@@ -86,17 +86,17 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResources.tryOn,
                 style =
-                    if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
-                        FashionButtonStyles.gradientColors(
-                            contentColor = theme.colors.onDark,
-                            gradientBackground =
-                                Brush.horizontalGradient(
-                                    theme.gradients.tryOnButtonBackground,
-                                ),
-                        )
-                    } else {
-                        FashionButtonStyles.primaryStyle(theme)
-                    },
+                if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
+                    FashionButtonStyles.gradientColors(
+                        contentColor = theme.colors.onDark,
+                        gradientBackground =
+                        Brush.horizontalGradient(
+                            theme.gradients.tryOnButtonBackground,
+                        ),
+                    )
+                } else {
+                    FashionButtonStyles.primaryStyle(theme)
+                },
                 size = FashionButtonSizes.lSize(),
                 icon = theme.icons.magic20,
                 onClick = {
@@ -126,29 +126,29 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
     Row(
         modifier =
-            modifier
-                .clickableUnindicated {
-                    controller.bottomSheetNavigator.show(
-                        NavigationBottomSheetScreen.SKUInfo(
-                            primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
-                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                            skuItem = activeSKUItem,
-                        ),
-                    )
-                },
+        modifier
+            .clickableUnindicated {
+                controller.bottomSheetNavigator.show(
+                    NavigationBottomSheetScreen.SKUInfo(
+                        primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
+                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                        skuItem = activeSKUItem,
+                    ),
+                )
+            },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             modifier =
-                Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(0.7f)
-                    .border(
-                        width = 1.dp,
-                        color = theme.colors.neutral2,
-                        shape = sharedCorner,
-                    )
-                    .clip(sharedCorner),
+            Modifier
+                .fillMaxHeight()
+                .aspectRatio(0.7f)
+                .border(
+                    width = 1.dp,
+                    color = theme.colors.neutral2,
+                    shape = sharedCorner,
+                )
+                .clip(sharedCorner),
             painter = rememberAsyncImagePainter(activeSKUItem.imageUrls.firstOrNull()),
             contentDescription = null,
             contentScale = ContentScale.Crop,
@@ -181,9 +181,9 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(16.dp)
-                    .align(Alignment.CenterVertically),
+            Modifier
+                .size(16.dp)
+                .align(Alignment.CenterVertically),
             icon = theme.icons.arrow16,
             contentDescription = null,
             tint = theme.colors.neutral3,

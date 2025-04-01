@@ -12,40 +12,36 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Extension for using [getSKUItems] method with [androidx.paging] library
  */
-public fun AiutaTryOn.getSKUItems(catalogName: String): Flow<PagingData<SKUGenerationItem>> {
-    return Pager(
-        config =
-            PagingConfig(
-                pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE,
-                enablePlaceholders = false,
-            ),
-        pagingSourceFactory = {
-            ContainerPagingSource {
-                getSKUItems(
-                    catalogName = catalogName,
-                    paginationOffset = it,
-                )
-            }
-        },
-    ).flow
-}
+public fun AiutaTryOn.getSKUItems(catalogName: String): Flow<PagingData<SKUGenerationItem>> = Pager(
+    config =
+    PagingConfig(
+        pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE,
+        enablePlaceholders = false,
+    ),
+    pagingSourceFactory = {
+        ContainerPagingSource {
+            getSKUItems(
+                catalogName = catalogName,
+                paginationOffset = it,
+            )
+        }
+    },
+).flow
 
 /**
  * Extension for using [getSKUCatalogs] method with [androidx.paging] library
  */
-public fun AiutaTryOn.getSKUCatalogs(): Flow<PagingData<SKUCatalog>> {
-    return Pager(
-        config =
-            PagingConfig(
-                pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE,
-                enablePlaceholders = false,
-            ),
-        pagingSourceFactory = {
-            ContainerPagingSource {
-                getSKUCatalogs(
-                    paginationOffset = it,
-                )
-            }
-        },
-    ).flow
-}
+public fun AiutaTryOn.getSKUCatalogs(): Flow<PagingData<SKUCatalog>> = Pager(
+    config =
+    PagingConfig(
+        pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE,
+        enablePlaceholders = false,
+    ),
+    pagingSourceFactory = {
+        ContainerPagingSource {
+            getSKUCatalogs(
+                paginationOffset = it,
+            )
+        }
+    },
+).flow

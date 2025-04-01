@@ -39,37 +39,35 @@ internal sealed interface SKUGenerationOperation {
     ) : SKUGenerationOperation
 }
 
-internal fun SKUGenerationStatus.toOperation(): SKUGenerationOperation {
-    return when (this) {
-        is SKUGenerationStatus.LoadingGenerationStatus.StartGeneration ->
-            SKUGenerationOperation.LoadingOperation.StartGenerationOperation(
-                operationId = statusId,
-            )
+internal fun SKUGenerationStatus.toOperation(): SKUGenerationOperation = when (this) {
+    is SKUGenerationStatus.LoadingGenerationStatus.StartGeneration ->
+        SKUGenerationOperation.LoadingOperation.StartGenerationOperation(
+            operationId = statusId,
+        )
 
-        is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage ->
-            SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation(
-                operationId = statusId,
-            )
+    is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage ->
+        SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation(
+            operationId = statusId,
+        )
 
-        is SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing ->
-            SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation(
-                operationId = statusId,
-            )
+    is SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing ->
+        SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation(
+            operationId = statusId,
+        )
 
-        is SKUGenerationStatus.ErrorGenerationStatus ->
-            SKUGenerationOperation.ErrorOperation(
-                operationId = statusId,
-                errorMessage = errorMessage,
-                exception = exception,
-            )
+    is SKUGenerationStatus.ErrorGenerationStatus ->
+        SKUGenerationOperation.ErrorOperation(
+            operationId = statusId,
+            errorMessage = errorMessage,
+            exception = exception,
+        )
 
-        is SKUGenerationStatus.SuccessGenerationStatus ->
-            SKUGenerationOperation.SuccessOperation(
-                operationId = statusId,
-                uploadedSourceImageId = sourceImageId,
-                uploadedSourceImage = sourceImageUrl,
-                generatedImages = images.map { it.toUiModel() },
-                metadata = metadata,
-            )
-    }
+    is SKUGenerationStatus.SuccessGenerationStatus ->
+        SKUGenerationOperation.SuccessOperation(
+            operationId = statusId,
+            uploadedSourceImageId = sourceImageId,
+            uploadedSourceImage = sourceImageUrl,
+            generatedImages = images.map { it.toUiModel() },
+            metadata = metadata,
+        )
 }

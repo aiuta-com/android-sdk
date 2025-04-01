@@ -18,23 +18,21 @@ internal class TimeDataSource(
         withContext(Dispatchers.IO) {
             timeDao.insert(
                 timestamp =
-                    TimestampEntity(
-                        timestampKey = key,
-                        timestamp = timestamp,
-                    ),
+                TimestampEntity(
+                    timestampKey = key,
+                    timestamp = timestamp,
+                ),
             )
         }
     }
 
-    suspend fun getTimestamp(key: String): TimestampEntity? {
-        return withContext(Dispatchers.IO) {
-            timeDao
-                .getTimestamps(
-                    limit = 1,
-                    key = key,
-                )
-                .firstOrNull()
-        }
+    suspend fun getTimestamp(key: String): TimestampEntity? = withContext(Dispatchers.IO) {
+        timeDao
+            .getTimestamps(
+                limit = 1,
+                key = key,
+            )
+            .firstOrNull()
     }
 
     suspend fun deleteTimestamp(key: String) {
@@ -44,10 +42,8 @@ internal class TimeDataSource(
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): TimeDataSource {
-            return TimeDataSource(
-                timeDao = AppDatabase.getInstance(platformContext).timeDao(),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): TimeDataSource = TimeDataSource(
+            timeDao = AppDatabase.getInstance(platformContext).timeDao(),
+        )
     }
 }

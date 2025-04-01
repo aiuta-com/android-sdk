@@ -24,18 +24,17 @@ public object FashionButtonSizes {
         iconSpacing: Dp = IconSpacing,
         shape: Shape = LocalTheme.current.shapes.buttonL,
         textStyle: TextStyle = LocalTheme.current.typography.button,
-    ): FashionButtonSize =
-        DefaultFashionButtonSize(
-            paddingValues =
-                PaddingValues(
-                    vertical = verticalPadding,
-                    horizontal = horizontalPadding,
-                ),
-            iconSize = iconSize,
-            iconSpacing = iconSpacing,
-            shape = shape,
-            textStyle = textStyle,
-        )
+    ): FashionButtonSize = DefaultFashionButtonSize(
+        paddingValues =
+        PaddingValues(
+            vertical = verticalPadding,
+            horizontal = horizontalPadding,
+        ),
+        iconSize = iconSize,
+        iconSpacing = iconSpacing,
+        shape = shape,
+        textStyle = textStyle,
+    )
 
     @Composable
     public fun mSize(
@@ -45,16 +44,15 @@ public object FashionButtonSizes {
         iconSpacing: Dp = IconSpacing,
         shape: Shape = LocalTheme.current.shapes.buttonM,
         textStyle: TextStyle = LocalTheme.current.typography.smallButton,
-    ): FashionButtonSize =
-        DefaultFashionButtonSize(
-            paddingValues =
-                PaddingValues(
-                    vertical = verticalPadding,
-                    horizontal = horizontalPadding,
-                ),
-            iconSize = iconSize,
-            iconSpacing = iconSpacing,
-            shape = shape,
-            textStyle = textStyle,
-        )
+    ): FashionButtonSize = DefaultFashionButtonSize(
+        paddingValues =
+        PaddingValues(
+            vertical = verticalPadding,
+            horizontal = horizontalPadding,
+        ),
+        iconSize = iconSize,
+        iconSpacing = iconSpacing,
+        shape = shape,
+        textStyle = textStyle,
+    )
 }
