@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.strings
 
-public interface AiutaStandaloneOnboardingPageStrings {
+public interface AiutaConsentStandaloneOnboardingPageStrings {
     public val consentPageTitle: String?
     public val consentTitle: String
     public val consentDescriptionHtml: String
@@ -9,11 +9,11 @@ public interface AiutaStandaloneOnboardingPageStrings {
     public val consentFooterHtml: String?
 
     public class Default(
-        brand: String,
-        termsOfServiceUrl: String,
-        privacyPolicyUrl: String,
-        hostOptionalConsentsHtml: List<String>,
-    ) : AiutaStandaloneOnboardingPageStrings {
+        brand: String = "Aiuta",
+        termsOfServiceUrl: String = "https://aiuta.com/legal/terms-of-service.html",
+        privacyPolicyUrl: String = "https://aiuta.com/legal/privacy-policy.html",
+        hostOptionalConsentsHtml: List<String> = emptyList(),
+    ) : AiutaConsentStandaloneOnboardingPageStrings {
         override val consentPageTitle: String = "<b>Step 3/3</b> - Consent"
         override val consentTitle: String = "Consent"
         override val consentDescriptionHtml: String =

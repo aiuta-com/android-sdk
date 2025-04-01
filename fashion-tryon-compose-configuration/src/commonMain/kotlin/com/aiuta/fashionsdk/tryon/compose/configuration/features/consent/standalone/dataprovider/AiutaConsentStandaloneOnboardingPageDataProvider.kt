@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standa
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.SupplementaryConsent
 import kotlinx.coroutines.flow.StateFlow
 
-public class AiutaStandaloneOnboardingPageDataProvider(
+public class AiutaConsentStandaloneOnboardingPageDataProvider(
     public val isUserConsentObtainedFlow: StateFlow<Boolean>,
     public val obtainUserConsentAction: (List<SupplementaryConsent>) -> Unit,
 )

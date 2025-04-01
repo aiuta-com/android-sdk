@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration.Builder
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
@@ -42,13 +43,13 @@ public class AiutaTryOnConfiguration private constructor(
      * Public [Builder] for initialize [AiutaTryOnConfiguration] class
      */
     public class Builder {
-        private var aiuta: Aiuta? = null
-        private var features: AiutaTryOnFeatures? = null
-        private var dataProvider: AiutaDataProvider? = null
-        private var dimensions: AiutaDimensions? = null
-        private var language: AiutaTryOnLanguage? = null
-        private var hostMetadata: HostMetadata? = null
-        private var toggles: AiutaToggles? = null
+        public var aiuta: Aiuta? = null
+        public var features: AiutaTryOnFeatures? = null
+        public var dataProvider: AiutaDataProvider? = null
+        public var dimensions: AiutaDimensions? = null
+        public var language: AiutaTryOnLanguage? = null
+        public var hostMetadata: HostMetadata? = null
+        public var toggles: AiutaToggles? = null
 
         public fun setAiuta(aiuta: Aiuta): Builder {
             return apply { this.aiuta = aiuta }
@@ -58,22 +59,27 @@ public class AiutaTryOnConfiguration private constructor(
             return apply { this.features = features }
         }
 
+        @Deprecated("Will be split by features")
         public fun setDataProvider(dataProvider: AiutaDataProvider): Builder {
             return apply { this.dataProvider = dataProvider }
         }
 
+        @Deprecated("Will be split by features")
         public fun setDimensions(dimensions: AiutaDimensions): Builder {
             return apply { this.dimensions = dimensions }
         }
 
+        @Deprecated("Will be split by features")
         public fun setLanguage(language: AiutaTryOnLanguage): Builder {
             return apply { this.language = language }
         }
 
+        @Deprecated("Will be split by features")
         public fun setHostMetadata(hostMetadata: HostMetadata): Builder {
             return apply { this.hostMetadata = hostMetadata }
         }
 
+        @Deprecated("Will be split by features")
         public fun setToggles(toggles: AiutaToggles): Builder {
             return apply { this.toggles = toggles }
         }
@@ -141,3 +147,6 @@ public class AiutaTryOnConfiguration private constructor(
         }
     }
 }
+
+public inline fun aiutaTryOnConfiguration(block: Builder.() -> Unit): AiutaTryOnConfiguration =
+    Builder().apply(block).build()

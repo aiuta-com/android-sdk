@@ -32,6 +32,7 @@ include(
     ":fashion-network-paging",
     ":fashion-tryon-compose",
     ":fashion-tryon-compose-configuration",
+    ":fashion-tryon-compose-defaults",
     ":fashion-tryon-compose-defaults-icons",
     ":fashion-tryon-compose-defaults-images",
     ":fashion-tryon-core",

@@ -22,6 +22,7 @@ import com.aiuta.fashionsdk.compose.tokens.images.onboarding.AiutaOnboardingImag
 /**
  * Default implementation of [AiutaImages].
  */
+@Deprecated("Migrate to defaults")
 public fun defaultAiutaImages(): AiutaImages {
     return AiutaImages(
         preonboardingImage = null,
@@ -56,6 +57,7 @@ public fun defaultAiutaImages(): AiutaImages {
     )
 }
 
+@Deprecated("Migrate to defaults")
 @Composable
 public fun rememberDefaultAiutaImages(): AiutaImages {
     return remember { defaultAiutaImages() }

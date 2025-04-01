@@ -1,44 +1,38 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.tryon.compose.configuration.annotations.AiutaTryOnConfigurationDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 
 @Immutable
-public class AiutaTryOnFeatures private constructor(
-    public val welcomeScreen: AiutaWelcomeScreenFeature?,
-    public val onboarding: AiutaOnboardingFeature?,
+public class AiutaTryOnFeatures internal constructor(
     public val consent: AiutaConsentFeature?,
+    public val onboarding: AiutaOnboardingFeature?,
+    public val welcomeScreen: AiutaWelcomeScreenFeature?,
 ) {
+    @AiutaTryOnConfigurationDsl
     public class Builder {
-        private var welcomeScreen: AiutaWelcomeScreenFeature? = null
-        private var onboarding: AiutaOnboardingFeature? = null
-        private var consent: AiutaConsentFeature? = null
-
-        public fun setWelcomeScreen(welcomeScreen: AiutaWelcomeScreenFeature): Builder {
-            return apply { this.welcomeScreen = welcomeScreen }
-        }
-
-        public fun setOnboarding(onboarding: AiutaOnboardingFeature): Builder {
-            return apply { this.onboarding = onboarding }
-        }
-
-        public fun setConsent(consent: AiutaConsentFeature): Builder {
-            return apply { this.consent = consent }
-        }
+        public var consent: AiutaConsentFeature? = null
+        public var onboarding: AiutaOnboardingFeature? = null
+        public var welcomeScreen: AiutaWelcomeScreenFeature? = null
 
         public fun build(): AiutaTryOnFeatures {
             // Init default
-            val internalWelcomeScreen = welcomeScreen
-            val internalOnboarding = onboarding
             val internalConsent = consent
+            val internalOnboarding = onboarding
+            val internalWelcomeScreen = welcomeScreen
 
             return AiutaTryOnFeatures(
-                welcomeScreen = internalWelcomeScreen,
-                onboarding = internalOnboarding,
                 consent = internalConsent,
+                onboarding = internalOnboarding,
+                welcomeScreen = internalWelcomeScreen,
             )
         }
     }
 }
+
+public inline fun aiutaTryOnFeatures(
+    block: AiutaTryOnFeatures.Builder.() -> Unit,
+): AiutaTryOnFeatures = AiutaTryOnFeatures.Builder().apply(block).build()

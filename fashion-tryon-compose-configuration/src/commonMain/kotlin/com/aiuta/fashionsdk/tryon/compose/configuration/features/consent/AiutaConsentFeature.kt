@@ -1,16 +1,23 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.strings.AiutaBuiltInWithOnboardingStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.dataprovider.AiutaStandaloneOnboardingPageDataProvider
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.strings.AiutaStandaloneOnboardingPageStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
 
 public interface AiutaConsentFeature {
-    public class BuiltInWithOnboarding(
-        public val strings: AiutaBuiltInWithOnboardingStrings,
-    ) : AiutaConsentFeature
+    public interface Builder {
+        public fun build(): AiutaConsentFeature
+    }
+}
 
-    public class StandaloneOnboardingPage(
-        public val strings: AiutaStandaloneOnboardingPageStrings,
-        public val dataProvider: AiutaStandaloneOnboardingPageDataProvider? = null,
-    ) : AiutaConsentFeature
+public inline fun AiutaTryOnFeatures.Builder.builtInConsent(
+    block: AiutaConsentBuiltInWithOnboardingPage.Builder.() -> Unit,
+) {
+    consent = AiutaConsentBuiltInWithOnboardingPage.Builder().apply(block).build()
+}
+
+public inline fun AiutaTryOnFeatures.Builder.standaloneConsent(
+    block: AiutaConsentStandaloneOnboardingPage.Builder.() -> Unit,
+) {
+    consent = AiutaConsentStandaloneOnboardingPage.Builder().apply(block).build()
 }

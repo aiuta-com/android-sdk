@@ -52,6 +52,9 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.fashionTryonCompose)
+            implementation(projects.fashionTryonComposeDefaults)
+
+            // TODO Delete
             implementation(projects.fashionTryonImages)
             implementation(projects.fashionTryonIcons)
 

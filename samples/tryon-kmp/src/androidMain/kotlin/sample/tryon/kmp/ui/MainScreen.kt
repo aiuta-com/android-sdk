@@ -9,11 +9,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
-import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
 import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
@@ -82,27 +80,11 @@ fun MainScreen() {
                 )
             }
 
-        val mockAiutaTryOnFeatures =
-            remember {
-                AiutaTryOnFeatures.Builder()
-                    .build()
-            }
-
         val mockAiutaConfiguration =
             remember {
-                AiutaTryOnConfiguration.Builder()
-                    .setAiuta(viewModel.aiuta)
-                    .setFeatures(mockAiutaTryOnFeatures)
-                    .setLanguage(
-                        language =
-                            EnglishLanguage(
-                                brand = "YOUR brand",
-                                termsOfServiceUrl = "https://brand.com/tos",
-                                privacyPolicyUrl = "https://brand.com/pp",
-                                onboardingPageConsentSupplementaryPoints = emptyList(),
-                            ),
-                    )
-                    .build()
+                defaultAiutaTryOnConfiguration {
+                    aiuta = viewModel.aiuta
+                }
             }
 
         val mockAiutaTheme =
