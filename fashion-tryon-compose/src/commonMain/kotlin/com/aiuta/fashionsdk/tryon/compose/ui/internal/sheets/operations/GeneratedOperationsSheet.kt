@@ -45,7 +45,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.LocalGeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
@@ -71,7 +71,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val uploadsHistoryFeature = strictProvideFeature<AiutaImageSelectorUploadsHistory>()
+    val uploadsHistoryFeature = strictProvideFeature<AiutaImageSelectorUploadsHistoryFeature>()
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =

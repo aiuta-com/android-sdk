@@ -3,25 +3,25 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
 public class AiutaOnboardingFeature private constructor(
     // Features
-    public val tryOnPage: AiutaOnboardingTryOnPage,
-    public val bestResultsPage: AiutaOnboardingBestResultsPage? = null,
+    public val tryOnPage: AiutaOnboardingTryOnPageFeature,
+    public val bestResultsPage: AiutaOnboardingBestResultsPageFeature? = null,
     // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
 ) : AiutaFeature {
 
     public class Builder : AiutaFeature.Builder {
-        public var tryOnPage: AiutaOnboardingTryOnPage? = null
-        public var bestResultsPage: AiutaOnboardingBestResultsPage? = null
+        public var tryOnPage: AiutaOnboardingTryOnPageFeature? = null
+        public var bestResultsPage: AiutaOnboardingBestResultsPageFeature? = null
         public var strings: AiutaOnboardingFeatureStrings? = null
         public var shapes: AiutaOnboardingFeatureShapes? = null
 

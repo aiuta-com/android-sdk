@@ -5,16 +5,16 @@ import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.exceptions.NoSuchFeatureException
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPage
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGallery
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
@@ -30,18 +30,18 @@ public class AiutaTryOnFeatures private constructor(
         AiutaWelcomeScreenFeature::class -> welcomeScreen
         // Onboarding
         AiutaOnboardingFeature::class -> onboarding
-        AiutaOnboardingTryOnPage::class -> onboarding?.tryOnPage
-        AiutaOnboardingBestResultsPage::class -> onboarding?.bestResultsPage
+        AiutaOnboardingTryOnPageFeature::class -> onboarding?.tryOnPage
+        AiutaOnboardingBestResultsPageFeature::class -> onboarding?.bestResultsPage
         // Consent
         AiutaConsentFeature::class -> consent
-        AiutaConsentStandaloneOnboardingPage::class -> consent
-        AiutaConsentBuiltInWithOnboardingPage::class -> consent
+        AiutaConsentStandaloneOnboardingPageFeature::class -> consent
+        AiutaConsentBuiltInWithOnboardingPageFeature::class -> consent
         // Image selector
         AiutaImageSelectorFeature::class -> imageSelector
-        AiutaImageSelectorCamera::class -> imageSelector.camera
-        AiutaImageSelectorPhotoGallery::class -> imageSelector.photoGallery
-        AiutaImageSelectorPredefinedModel::class -> imageSelector.predefinedModels
-        AiutaImageSelectorUploadsHistory::class -> imageSelector.uploadsHistory
+        AiutaImageSelectorCameraFeature::class -> imageSelector.camera
+        AiutaImageSelectorPhotoGalleryFeature::class -> imageSelector.photoGallery
+        AiutaImageSelectorPredefinedModelFeature::class -> imageSelector.predefinedModels
+        AiutaImageSelectorUploadsHistoryFeature::class -> imageSelector.uploadsHistory
         else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 

@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.contro
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 internal class TryOnPage(
-    tryOnPageFeature: AiutaOnboardingTryOnPage,
+    tryOnPageFeature: AiutaOnboardingTryOnPageFeature,
 ) : OnboardingState,
     Iterable<TryOnPage.InternalPage> {
     @Immutable

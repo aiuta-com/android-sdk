@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
@@ -127,7 +127,7 @@ internal fun AiutaTryOnLoadingActionsController.deletingUploadedImagesListener(
 private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistory>()
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
     val dataProvider = uploadsHistoryFeature?.dataProvider
 
     // Observe external changes of generated images and delete
@@ -184,7 +184,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
 private fun AiutaTryOnLoadingActionsController.showErrorDeletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistory>()
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
     val dataProvider = uploadsHistoryFeature?.dataProvider
 
     dataProvider?.let {

@@ -24,9 +24,9 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGallery
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
@@ -57,9 +57,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
 
-    val cameraFeature = provideFeature<AiutaImageSelectorCamera>()
-    val photoGalleryFeature = provideFeature<AiutaImageSelectorPhotoGallery>()
-    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModel>()
+    val cameraFeature = provideFeature<AiutaImageSelectorCameraFeature>()
+    val photoGalleryFeature = provideFeature<AiutaImageSelectorPhotoGalleryFeature>()
+    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModelFeature>()
 
     val pickerFeatures = remember {
         listOfNotNull(
@@ -129,20 +129,20 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                 modifier = sharedModifier,
                 shouldDrawDivider = index != pickerFeatures.lastIndex,
                 icon = when (feature) {
-                    is AiutaImageSelectorCamera -> feature.icons.camera24
-                    is AiutaImageSelectorPhotoGallery -> feature.icons.gallery24
-                    is AiutaImageSelectorPredefinedModel -> feature.icons.selectModels24
+                    is AiutaImageSelectorCameraFeature -> feature.icons.camera24
+                    is AiutaImageSelectorPhotoGalleryFeature -> feature.icons.gallery24
+                    is AiutaImageSelectorPredefinedModelFeature -> feature.icons.selectModels24
                     else -> throw NotSupportedImageSourceException()
                 },
                 text = when (feature) {
-                    is AiutaImageSelectorCamera -> feature.strings.cameraButtonTakePhoto
-                    is AiutaImageSelectorPhotoGallery -> feature.strings.galleryButtonSelectPhoto
-                    is AiutaImageSelectorPredefinedModel -> feature.strings.predefinedModelPageTitle
+                    is AiutaImageSelectorCameraFeature -> feature.strings.cameraButtonTakePhoto
+                    is AiutaImageSelectorPhotoGalleryFeature -> feature.strings.galleryButtonSelectPhoto
+                    is AiutaImageSelectorPredefinedModelFeature -> feature.strings.predefinedModelPageTitle
                     else -> throw NotSupportedImageSourceException()
                 },
                 onClick = {
                     when (feature) {
-                        is AiutaImageSelectorCamera -> {
+                        is AiutaImageSelectorCameraFeature -> {
                             scope.actionWithPermission(
                                 permission = Permission.CAMERA,
                                 permissionsController = permissionsController,
@@ -165,7 +165,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             )
                         }
 
-                        is AiutaImageSelectorPhotoGallery -> {
+                        is AiutaImageSelectorPhotoGalleryFeature -> {
                             controller.sendPickerAnalytic(
                                 event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
                                 pageId = pickerData.originPageId,
@@ -183,7 +183,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                             )
                         }
 
-                        is AiutaImageSelectorPredefinedModel -> {
+                        is AiutaImageSelectorPredefinedModelFeature -> {
                             controller.bottomSheetNavigator.hide()
                             controller.navigateTo(NavigationScreen.ModelSelector)
                         }

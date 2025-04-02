@@ -15,7 +15,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
@@ -25,7 +25,7 @@ internal fun BestResultPageItem(
     isGoodImage: Boolean,
 ) {
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
-    val bestResultFeature = strictProvideFeature<AiutaOnboardingBestResultsPage>()
+    val bestResultFeature = strictProvideFeature<AiutaOnboardingBestResultsPageFeature>()
 
     Box(
         modifier = modifier.clip(onboardingFeature.shapes.onboardingImageSShape),

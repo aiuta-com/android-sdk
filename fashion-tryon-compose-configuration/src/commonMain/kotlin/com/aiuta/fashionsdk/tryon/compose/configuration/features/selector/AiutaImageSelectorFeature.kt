@@ -3,31 +3,31 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGallery
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.images.AiutaImageSelectorFeatureImages
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.strings.AiutaImageSelectorFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
 public class AiutaImageSelectorFeature private constructor(
     // Features
-    public val camera: AiutaImageSelectorCamera?,
-    public val photoGallery: AiutaImageSelectorPhotoGallery,
-    public val predefinedModels: AiutaImageSelectorPredefinedModel?,
-    public val uploadsHistory: AiutaImageSelectorUploadsHistory?,
+    public val camera: AiutaImageSelectorCameraFeature?,
+    public val photoGallery: AiutaImageSelectorPhotoGalleryFeature,
+    public val predefinedModels: AiutaImageSelectorPredefinedModelFeature?,
+    public val uploadsHistory: AiutaImageSelectorUploadsHistoryFeature?,
     // General
     public val images: AiutaImageSelectorFeatureImages,
     public val strings: AiutaImageSelectorFeatureStrings,
 ) : AiutaFeature {
 
     public class Builder : AiutaFeature.Builder {
-        public var camera: AiutaImageSelectorCamera? = null
-        public var photoGallery: AiutaImageSelectorPhotoGallery? = null
-        public var predefinedModels: AiutaImageSelectorPredefinedModel? = null
-        public var uploadsHistory: AiutaImageSelectorUploadsHistory? = null
+        public var camera: AiutaImageSelectorCameraFeature? = null
+        public var photoGallery: AiutaImageSelectorPhotoGalleryFeature? = null
+        public var predefinedModels: AiutaImageSelectorPredefinedModelFeature? = null
+        public var uploadsHistory: AiutaImageSelectorUploadsHistoryFeature? = null
         public var images: AiutaImageSelectorFeatureImages? = null
         public var strings: AiutaImageSelectorFeatureStrings? = null
 

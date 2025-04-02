@@ -29,7 +29,7 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -48,7 +48,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
     val imageBlockPadding = screenSize.widthDp * 0.15f
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
-    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModel>()
+    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModelFeature>()
 
     Column(
         modifier =

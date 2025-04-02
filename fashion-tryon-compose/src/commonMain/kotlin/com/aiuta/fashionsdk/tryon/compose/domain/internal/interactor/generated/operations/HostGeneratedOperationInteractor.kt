@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toPublic
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class HostGeneratedOperationInteractor(
-    private val dataProvider: AiutaImageSelectorUploadsHistoryDataProvider,
+    private val dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider,
 ) : GeneratedOperationInteractor {
     override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = dataProvider.uploadedImages
         .map { images ->
@@ -55,6 +55,6 @@ internal class HostGeneratedOperationInteractor(
     }
 
     companion object {
-        fun getInstance(dataProvider: AiutaImageSelectorUploadsHistoryDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
+        fun getInstance(dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
     }
 }

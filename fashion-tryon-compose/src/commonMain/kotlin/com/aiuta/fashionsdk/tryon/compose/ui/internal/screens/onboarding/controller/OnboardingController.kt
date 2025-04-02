@@ -10,7 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
@@ -38,7 +38,7 @@ internal fun rememberOnboardingController(): OnboardingController {
             }
 
             // Consent
-            if (consentFeature is AiutaConsentStandaloneOnboardingPage) {
+            if (consentFeature is AiutaConsentStandaloneOnboardingPageFeature) {
                 rawOnboardingQueue.add(ConsentPage(consentFeature))
             }
 
@@ -54,7 +54,7 @@ internal fun rememberOnboardingController(): OnboardingController {
     return remember {
         OnboardingController(
             supplementPoint =
-            (consentFeature as? AiutaConsentStandaloneOnboardingPage)
+            (consentFeature as? AiutaConsentStandaloneOnboardingPageFeature)
                 ?.strings
                 ?.optionalConsentsHtml
                 .orEmpty(),
