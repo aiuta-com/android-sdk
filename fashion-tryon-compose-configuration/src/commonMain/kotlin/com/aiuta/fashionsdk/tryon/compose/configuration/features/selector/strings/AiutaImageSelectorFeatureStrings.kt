@@ -6,6 +6,7 @@ public interface AiutaImageSelectorFeatureStrings {
     public val imageSelectorDescriptionEmpty: String
     public val imageSelectorButtonUploadImage: String
     public val imageSelectorButtonTryOn: String
+    public val imageSelectorButtonChangePhoto: String
 
     public class Default : AiutaImageSelectorFeatureStrings {
         override val imageSelectorPageTitle: String = "Virtual Try-on"
@@ -13,5 +14,6 @@ public interface AiutaImageSelectorFeatureStrings {
         override val imageSelectorDescriptionEmpty: String = "Select a photo where you are standing straight and clearly visible"
         override val imageSelectorButtonUploadImage: String = "Upload a photo"
         override val imageSelectorButtonTryOn: String = "Try on"
+        override val imageSelectorButtonChangePhoto: String = "Change photo"
     }
 }
