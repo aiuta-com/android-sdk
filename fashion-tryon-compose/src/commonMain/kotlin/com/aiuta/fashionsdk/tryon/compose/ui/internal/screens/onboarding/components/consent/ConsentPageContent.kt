@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateMandatoryAgreementState
@@ -34,7 +35,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmentLine
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.consent.strictConsentStandaloneFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun ConsentPageContent(
@@ -43,7 +44,7 @@ internal fun ConsentPageContent(
 ) {
     val theme = LocalTheme.current
 
-    val consentStandaloneFeature = strictConsentStandaloneFeature()
+    val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneOnboardingPage>()
     val supplementaryPoints =
         remember {
             consentStandaloneFeature.strings.optionalConsentsHtml.take(5)

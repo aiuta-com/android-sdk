@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera
 
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.icons.AiutaImageSelectorCameraIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.strings.AiutaImageSelectorCameraStrings
@@ -9,13 +9,13 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDe
 public class AiutaImageSelectorCamera private constructor(
     public val icons: AiutaImageSelectorCameraIcons,
     public val strings: AiutaImageSelectorCameraStrings,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+
+    public class Builder : AiutaFeature.Builder {
         public var icons: AiutaImageSelectorCameraIcons? = null
         public var strings: AiutaImageSelectorCameraStrings? = null
 
-        public fun build(): AiutaImageSelectorCamera {
+        public override fun build(): AiutaImageSelectorCamera {
             val parentClass = "AiutaImageSelectorCamera"
 
             return AiutaImageSelectorCamera(

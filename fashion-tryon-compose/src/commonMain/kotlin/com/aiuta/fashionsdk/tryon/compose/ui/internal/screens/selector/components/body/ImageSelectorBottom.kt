@@ -30,13 +30,14 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.conditional
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.ButtonsMode
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
@@ -50,7 +51,8 @@ internal fun ImageSelectorBottom(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
 
     val generationStatus = controller.generationStatus
     val countGeneratedOperation =
@@ -92,16 +94,14 @@ internal fun ImageSelectorBottom(
         when (state) {
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
-                    modifier =
-                    sharedModifier.conditional(!theme.toggles.isBlurOutlinesEnabled) {
-                        sharedBlurModifer
+                    modifier = when (imageSelectorFeature.uploadsHistory?.buttons?.mode) {
+                        ButtonsMode.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                        else -> sharedModifier
                     },
-                    text = stringResources.imageSelectorChangeButton,
-                    style =
-                    if (theme.toggles.isBlurOutlinesEnabled) {
-                        FashionButtonStyles.primaryStyle(theme)
-                    } else {
-                        FashionButtonStyles.secondaryStyle(
+                    text = imageSelectorFeature.strings.imageSelectorButtonChangePhoto,
+                    style = when (imageSelectorFeature.uploadsHistory?.buttons?.mode) {
+                        ButtonsMode.BLURRED -> FashionButtonStyles.primaryStyle(theme)
+                        else -> FashionButtonStyles.secondaryStyle(
                             backgroundColor = Color.Transparent,
                             contentColor = theme.colors.primary,
                             borderColor = Color.Transparent,

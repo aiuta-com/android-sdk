@@ -32,6 +32,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
@@ -45,6 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
@@ -131,6 +133,8 @@ private fun ButtonsContainer(
 
     val activeSKUItem = controller.activeSKUItem.value
 
+    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+
     Row(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
@@ -170,7 +174,7 @@ private fun ButtonsContainer(
             if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                 stringResources.addToCart
             } else {
-                stringResources.tryOn
+                imageSelectorFeature.strings.imageSelectorButtonTryOn
             },
             icon =
             theme.icons.magic20.takeIf {

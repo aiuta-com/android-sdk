@@ -9,19 +9,21 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.consent.consentFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
-    val consentFeature = consentFeature()
-    val onboardingFeature = strictOnboardingFeature()
+    val consentFeature = provideFeature<AiutaConsentFeature>()
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
     val onboardingStatesQueue =
         remember {

@@ -27,17 +27,18 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_BOTTOM_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.placeholderFadeConnecting
 
 @Composable
@@ -47,10 +48,10 @@ internal fun ModelSelectorShowContent(
 ) {
     val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
+    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
 
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
     val bottomPadding = screenSize.heightDp * MODEL_IMAGE_BOTTOM_PADDING_COEF
@@ -119,7 +120,7 @@ internal fun ModelSelectorShowContent(
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                text = stringResources.tryOn,
+                text = imageSelectorFeature.strings.imageSelectorButtonTryOn,
                 style =
                 if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
                     FashionButtonStyles.gradientColors(

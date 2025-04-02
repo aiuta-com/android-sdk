@@ -15,17 +15,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictBestResultFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun BestResultPageContent(
     modifier: Modifier = Modifier,
     state: BestResultPage,
 ) {
-    val bestResultsPageFeature = strictBestResultFeature()
+    val bestResultsPageFeature = strictProvideFeature<AiutaOnboardingBestResultsPage>()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.BEST_RESULTS)
 

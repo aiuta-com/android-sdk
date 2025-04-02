@@ -9,34 +9,7 @@ internal interface InternalAiutaTryOnLanguage {
     val appBarHistory: String
     val appBarSelect: String
 
-    // Pre Onboarding
-    val preOnboardingTitle: String
-    val preOnboardingSubtitle: String
-    val preOnboardingButton: String
-
-    // Onboarding
-    val onboardingButtonNext: String
-    val onboardingButtonStart: String
-    val onboardingPageTryonTopic: String
-    val onboardingPageTryonSubtopic: String
-    val onboardingPageTryonConsent: String
-    val onboardingPageBestResultTopic: String
-    val onboardingPageBestResultSubtopic: String
-    val onboardingPageConsentTopic: String
-    val onboardingPageConsentBody: String
-    val onboardingPageConsentAgreePoint: String
-    val onboardingPageConsentSupplementaryPoints: List<String>
-    val onboardingAppbarTryonPage: String
-    val onboardingAppbarBestResultPage: String
-    val onboardingAppbarConsentPage: String
-    val onboardingPageConsentFooter: String?
-
     // Image selector
-    val imageSelectorUploadTitle: String
-    val imageSelectorUploadSubtitle: String
-    val imageSelectorUploadButton: String
-    val imageSelectorSelectModelButton: String
-    val imageSelectorOr: String
     val imageSelectorChangeButton: String
 
     val imageSelectorPoweredByAiuta: String

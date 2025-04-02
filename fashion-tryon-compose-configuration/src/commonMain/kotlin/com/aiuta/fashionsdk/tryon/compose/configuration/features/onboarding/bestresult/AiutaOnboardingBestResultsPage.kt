@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult
 
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.icons.AiutaOnboardingBestResultsPageIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.images.AiutaOnboardingBestResultsPageImages
@@ -13,15 +13,15 @@ public class AiutaOnboardingBestResultsPage(
     public val icons: AiutaOnboardingBestResultsPageIcons,
     public val strings: AiutaOnboardingBestResultsPageStrings,
     public val toggles: AiutaOnboardingBestResultsPageToggles,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+
+    public class Builder : AiutaFeature.Builder {
         public var images: AiutaOnboardingBestResultsPageImages? = null
         public var icons: AiutaOnboardingBestResultsPageIcons? = null
         public var strings: AiutaOnboardingBestResultsPageStrings? = null
         public var toggles: AiutaOnboardingBestResultsPageToggles? = null
 
-        public fun build(): AiutaOnboardingBestResultsPage {
+        public override fun build(): AiutaOnboardingBestResultsPage {
             val parentClass = "AiutaOnboardingBestResultsPage"
 
             return AiutaOnboardingBestResultsPage(

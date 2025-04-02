@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -23,6 +24,10 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGallery
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
@@ -36,6 +41,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.exceptions.NotSupportedImageSourceException
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.selector.model.predefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.actionWithPermission
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera.rememberCameraManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.gallery.rememberGalleryManager
@@ -52,8 +60,15 @@ import kotlinx.coroutines.launch
 internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScreen.ImagePicker) {
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
-    val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
+
+    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModel>()
+
+    val pickerFeatures = remember {
+        listOfNotNull<AiutaFeature>(
+            predefinedModelFeature,
+        )
+    }
 
     val sharedModifier =
         Modifier
@@ -109,67 +124,77 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
 
     Spacer(Modifier.height(4.dp))
 
-    PickerButton(
-        modifier = sharedModifier,
-        icon = theme.icons.takePhoto24,
-        text = stringResources.pickerSheetTakePhoto,
-        onClick = {
-            scope.actionWithPermission(
-                permission = Permission.CAMERA,
-                permissionsController = permissionsController,
-                onGranted = {
-                    cameraManager.launch()
+    pickerFeatures.forEachIndexed { index, feature ->
+        key("feature_$index") {
+            PickerButton(
+                modifier = sharedModifier,
+                shouldDrawDivider = index != pickerFeatures.lastIndex,
+                icon = when (feature) {
+                    is AiutaImageSelectorCamera -> feature.icons.camera24
+                    is AiutaImageSelectorPhotoGallery -> feature.icons.gallery24
+                    is AiutaImageSelectorPredefinedModel -> feature.icons.selectModels24
+                    else -> throw NotSupportedImageSourceException()
                 },
-                onAlwaysDenied = {
-                    controller.bottomSheetNavigator.hide()
-                    dialogController.showDialog(
-                        dialogState =
-                        AiutaTryOnDialogState(
-                            title = stringResources.dialogCameraPermissionTitle,
-                            description = stringResources.dialogCameraPermissionDescription,
-                            confirmButton = stringResources.dialogCameraPermissionConfirmButton,
-                            onConfirm = permissionsController::openAppSettings,
-                            onDismiss = dialogController::hideDialog,
-                        ),
-                    )
+                text = when (feature) {
+                    is AiutaImageSelectorCamera -> feature.strings.cameraButtonTakePhoto
+                    is AiutaImageSelectorPhotoGallery -> feature.strings.galleryButtonSelectPhoto
+                    is AiutaImageSelectorPredefinedModel -> feature.strings.predefinedModelPageTitle
+                    else -> throw NotSupportedImageSourceException()
                 },
-            )
-        },
-    )
+                onClick = {
+                    when (feature) {
+                        is AiutaImageSelectorCamera -> {
+                            scope.actionWithPermission(
+                                permission = Permission.CAMERA,
+                                permissionsController = permissionsController,
+                                onGranted = {
+                                    cameraManager.launch()
+                                },
+                                onAlwaysDenied = {
+                                    controller.bottomSheetNavigator.hide()
+                                    dialogController.showDialog(
+                                        dialogState =
+                                        AiutaTryOnDialogState(
+                                            title = stringResources.dialogCameraPermissionTitle,
+                                            description = stringResources.dialogCameraPermissionDescription,
+                                            confirmButton = stringResources.dialogCameraPermissionConfirmButton,
+                                            onConfirm = permissionsController::openAppSettings,
+                                            onDismiss = dialogController::hideDialog,
+                                        ),
+                                    )
+                                },
+                            )
+                        }
 
-    PickerButton(
-        modifier = sharedModifier,
-        icon = theme.icons.photoLibrary24,
-        text = stringResources.pickerSheetChooseLibrary,
-        onClick = {
-            controller.sendPickerAnalytic(
-                event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
-                pageId = pickerData.originPageId,
-            )
-            scope.actionWithPermission(
-                permission = Permission.GALLERY,
-                permissionsController = permissionsController,
-                onGranted = {
-                    galleryManager.launch()
-                },
-                onAlwaysDenied = {
-                    // Show nothing
-                    controller.bottomSheetNavigator.hide()
-                },
-            )
-        },
-    )
+                        is AiutaImageSelectorPhotoGallery -> {
+                            controller.sendPickerAnalytic(
+                                event = AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED,
+                                pageId = pickerData.originPageId,
+                            )
+                            scope.actionWithPermission(
+                                permission = Permission.GALLERY,
+                                permissionsController = permissionsController,
+                                onGranted = {
+                                    galleryManager.launch()
+                                },
+                                onAlwaysDenied = {
+                                    // Show nothing
+                                    controller.bottomSheetNavigator.hide()
+                                },
+                            )
+                        }
 
-    PickerButton(
-        modifier = sharedModifier,
-        icon = theme.icons.selectModel24,
-        text = stringResources.modelSelect,
-        shouldDrawDivider = false,
-        onClick = {
-            controller.bottomSheetNavigator.hide()
-            controller.navigateTo(NavigationScreen.ModelSelector)
-        },
-    )
+                        is AiutaImageSelectorPredefinedModel -> {
+                            controller.bottomSheetNavigator.hide()
+                            controller.navigateTo(NavigationScreen.ModelSelector)
+                        }
+
+                        else -> throw NotSupportedImageSourceException()
+                    }
+                },
+            )
+        }
+    }
 }
 
 @Composable

@@ -23,6 +23,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
@@ -41,7 +42,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
@@ -49,7 +50,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
 
-    val onboardingFeature = strictOnboardingFeature()
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
     val onboardingController = rememberOnboardingController()
 
     val generalHorizontalPadding = 16.dp

@@ -18,6 +18,7 @@ kotlin {
                 api(projects.fashionCompose)
                 api(projects.fashionTryonCore)
 
+                implementation(compose.foundation)
                 implementation(compose.ui)
 
                 implementation(projects.internal.analytic)

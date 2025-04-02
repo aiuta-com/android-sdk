@@ -7,44 +7,12 @@ internal class RussianAiutaTryOnLanguage(
     brand: String,
     termsOfServiceUrl: String,
     privacyPolicyUrl: String,
-    override val onboardingPageConsentSupplementaryPoints: List<String>,
 ) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
 
-    // Pre Onboarding
-    override val preOnboardingTitle: String = "Примерьте на себе"
-    override val preOnboardingSubtitle: String =
-        "Добро пожаловать в виртуальную примерочную.\nПримерьте вещь прямо на своём фото"
-    override val preOnboardingButton: String = "Начать"
-
-    // Onboarding
-    override val onboardingButtonNext: String = "Далее"
-    override val onboardingButtonStart: String = "Начать"
-    override val onboardingPageTryonTopic: String = "Примерьте перед покупкой"
-    override val onboardingPageTryonSubtopic: String = "Загрузите своё фото и порадуйтесь новому образу"
-    override val onboardingPageTryonConsent: String = "Ваши фотографии будут обрабатываться в соответствии с <b><a href=\"$termsOfServiceUrl\">Условиями использования</a></b>"
-    override val onboardingPageBestResultTopic: String = "Для лучшего качества примерки"
-    override val onboardingPageBestResultSubtopic: String = "Используйте фото с хорошим освещением и прямой позой"
-    override val onboardingPageConsentTopic: String = "Согласие"
-    override val onboardingPageConsentBody: String =
-        "Чтобы примерить товары виртуально, вы соглашаетесь на обработку вашего фото c $brand." +
-            " Ваши данные будут обработаны в соответствии с <b><a href=\"$privacyPolicyUrl\">Политикой конфиденциальности</a></b> " +
-            "и <b><a href=\"$termsOfServiceUrl\">Условиями использования.</a></b>"
-    override val onboardingPageConsentAgreePoint: String =
-        "Я соглашаюсь на обработку моего фото c $brand"
-    override val onboardingAppbarTryonPage: String = "<b>Шаг 1/3</b> - Как это работает"
-    override val onboardingAppbarBestResultPage: String = "<b>Шаг 2/3</b> - Лучшие результаты"
-    override val onboardingAppbarConsentPage: String = "<b>Шаг 3/3</b> - Согласие"
-    override val onboardingPageConsentFooter: String? = null
-
     // Image selector
-    override val imageSelectorUploadTitle: String = "Загрузите свою фотографию"
-    override val imageSelectorUploadSubtitle: String = "Выберите фотографию, где вы стоите прямо и хорошо видны"
-    override val imageSelectorUploadButton: String = "Загрузить фото"
-    override val imageSelectorSelectModelButton: String = "Выберите свою модель"
-    override val imageSelectorOr: String = "Или"
     override val imageSelectorChangeButton: String = "Заменить фото"
     override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
     override val imageSelectorProtectionPoint: String = "Ваши фото защищены и видны только вам"

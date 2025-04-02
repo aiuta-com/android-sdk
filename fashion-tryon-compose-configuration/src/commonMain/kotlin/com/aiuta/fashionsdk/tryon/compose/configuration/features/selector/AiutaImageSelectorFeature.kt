@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGallery
@@ -21,9 +21,9 @@ public class AiutaImageSelectorFeature private constructor(
     // General
     public val images: AiutaImageSelectorFeatureImages,
     public val strings: AiutaImageSelectorFeatureStrings,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+
+    public class Builder : AiutaFeature.Builder {
         public var camera: AiutaImageSelectorCamera? = null
         public var photoGallery: AiutaImageSelectorPhotoGallery? = null
         public var predefinedModels: AiutaImageSelectorPredefinedModel? = null
@@ -31,7 +31,7 @@ public class AiutaImageSelectorFeature private constructor(
         public var images: AiutaImageSelectorFeatureImages? = null
         public var strings: AiutaImageSelectorFeatureStrings? = null
 
-        public fun build(): AiutaImageSelectorFeature {
+        public override fun build(): AiutaImageSelectorFeature {
             val parentClass = "AiutaImageSelectorFeature"
 
             return AiutaImageSelectorFeature(

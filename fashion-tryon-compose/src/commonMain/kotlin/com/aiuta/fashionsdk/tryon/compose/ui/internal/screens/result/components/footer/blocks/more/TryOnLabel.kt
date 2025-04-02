@@ -15,12 +15,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun TryOnLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
 
     Row(
         modifier =
@@ -45,7 +47,7 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
         Spacer(Modifier.width(7.dp))
 
         Text(
-            text = stringResources.tryOn,
+            text = imageSelectorFeature.strings.imageSelectorButtonTryOn,
             style = theme.typography.smallButton,
             color = theme.colors.onDark,
             textAlign = TextAlign.Start,

@@ -25,13 +25,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.shapes.onboardingImageLShape
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.onboarding.strictOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun TryOnPageContent(
@@ -39,7 +40,7 @@ internal fun TryOnPageContent(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val tryOnPageFeature = strictOnboardingFeature().tryOnPage
+    val tryOnPageFeature = strictProvideFeature<AiutaOnboardingTryOnPage>()
 
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
@@ -91,7 +92,7 @@ private fun ImagesBlock(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val onboardingFeature = strictOnboardingFeature()
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
     Box(
         modifier = modifier,

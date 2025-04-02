@@ -23,7 +23,6 @@ private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTr
             brand = language.brand,
             termsOfServiceUrl = language.termsOfServiceUrl,
             privacyPolicyUrl = language.privacyPolicyUrl,
-            onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
         )
 
     is TurkishLanguage ->
@@ -31,7 +30,6 @@ private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTr
             brand = language.brand,
             termsOfServiceUrl = language.termsOfServiceUrl,
             privacyPolicyUrl = language.privacyPolicyUrl,
-            onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
         )
 
     is RussianLanguage ->
@@ -39,7 +37,6 @@ private fun solveInternalLanguage(language: AiutaTryOnLanguage): InternalAiutaTr
             brand = language.brand,
             termsOfServiceUrl = language.termsOfServiceUrl,
             privacyPolicyUrl = language.privacyPolicyUrl,
-            onboardingPageConsentSupplementaryPoints = language.onboardingPageConsentSupplementaryPoints,
         )
 
     else -> language as CustomLanguage

@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.icons.AiutaWelcomeScreenFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.images.AiutaWelcomeScreenFeatureImages
@@ -15,15 +15,15 @@ public class AiutaWelcomeScreenFeature private constructor(
     public val icons: AiutaWelcomeScreenFeatureIcons,
     public val strings: AiutaWelcomeScreenFeatureStrings,
     public val typography: AiutaWelcomeScreenFeatureTypography,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+
+    public class Builder : AiutaFeature.Builder {
         public var images: AiutaWelcomeScreenFeatureImages? = null
         public var icons: AiutaWelcomeScreenFeatureIcons? = null
         public var strings: AiutaWelcomeScreenFeatureStrings? = null
         public var typography: AiutaWelcomeScreenFeatureTypography? = null
 
-        public fun build(): AiutaWelcomeScreenFeature {
+        public override fun build(): AiutaWelcomeScreenFeature {
             val parentClass = "AiutaWelcomeScreenFeature"
 
             return AiutaWelcomeScreenFeature(

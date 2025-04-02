@@ -7,45 +7,12 @@ internal class TurkishAiutaTryOnLanguage(
     brand: String,
     termsOfServiceUrl: String,
     privacyPolicyUrl: String,
-    override val onboardingPageConsentSupplementaryPoints: List<String>,
 ) : InternalAiutaTryOnLanguage {
     // App bar
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
 
-    // Pre Onboarding
-    override val preOnboardingTitle: String = "Üzerinde Dene"
-    override val preOnboardingSubtitle: String =
-        "Sanal Deneme'ye hoş geldiniz.\nÜrünü fotoğrafınızın üzerinde deneyin"
-    override val preOnboardingButton: String = "Başlayalım"
-
-    // Onboarding
-    override val onboardingButtonNext: String = "Başla"
-    override val onboardingButtonStart: String = "Devam Et"
-
-    override val onboardingPageTryonTopic: String = "Satın almadan önce dene"
-    override val onboardingPageTryonSubtopic: String = "Fotoğrafını yükle ve üzerinde nasıl göründüğüne bak"
-    override val onboardingPageTryonConsent: String = "Fotoğraflarınız <b><a href=\"$termsOfServiceUrl\">Kullanım Koşullarına</a></b> göre işlenecektir"
-    override val onboardingPageBestResultTopic: String = "En iyi sonuçlar için"
-    override val onboardingPageBestResultSubtopic: String = "İyi ışıklandırılmış, düz bir arka planı olan, dik durduğunuz bir fotoğraf kullanın"
-    override val onboardingPageConsentTopic: String = "Onay"
-    override val onboardingPageConsentBody: String =
-        "Ürünleri dijital olarak denemek için, $brand fotoğrafınızı işlemesine izin verirsiniz." +
-            " Verileriniz $brand <b><a href=\"$privacyPolicyUrl\">Gizlilik Bildirimi</a></b> " +
-            "ve <b><a href=\"$termsOfServiceUrl\">Kullanım Koşulları</a></b> doğrultusunda işlenecektir."
-    override val onboardingPageConsentAgreePoint: String =
-        "$brand'ın fotoğrafımı işlemesine izin veriyorum"
-    override val onboardingAppbarTryonPage: String = "<b>Adım 1/3</b> - Nasıl çalışır"
-    override val onboardingAppbarBestResultPage: String = "<b>Adım 2/3</b> - En iyi sonuçlar"
-    override val onboardingAppbarConsentPage: String = "<b>Adım 3/3</b> - Onay"
-    override val onboardingPageConsentFooter: String? = null
-
     // Image selector
-    override val imageSelectorUploadTitle: String = "Fotoğrafınızı yükleyin"
-    override val imageSelectorUploadSubtitle: String = "Dik durduğunuz ve net göründüğünüz bir fotoğraf seçin"
-    override val imageSelectorUploadButton: String = "Fotoğraf yükle"
-    override val imageSelectorSelectModelButton: String = "Modelinizi seçin"
-    override val imageSelectorOr: String = "Veya"
     override val imageSelectorChangeButton: String = "Fotoğrafını değiştir"
     override val imageSelectorPoweredByAiuta: String = "Tarafından desteklenmektedir Aiuta"
     override val imageSelectorProtectionPoint: String = "Fotoğraflarınız koruma altındadır ve yalnızca size görünür"

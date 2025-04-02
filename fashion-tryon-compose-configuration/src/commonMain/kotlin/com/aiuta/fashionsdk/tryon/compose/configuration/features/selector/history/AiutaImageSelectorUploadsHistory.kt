@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history
 
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryButtons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryDataProvider
@@ -11,14 +11,13 @@ public class AiutaImageSelectorUploadsHistory private constructor(
     public val strings: AiutaImageSelectorUploadsHistoryStrings,
     public val buttons: AiutaImageSelectorUploadsHistoryButtons,
     public val dataProvider: AiutaImageSelectorUploadsHistoryDataProvider?,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+    public class Builder : AiutaFeature.Builder {
         public var strings: AiutaImageSelectorUploadsHistoryStrings? = null
         public var buttons: AiutaImageSelectorUploadsHistoryButtons? = null
         public var dataProvider: AiutaImageSelectorUploadsHistoryDataProvider? = null
 
-        public fun build(): AiutaImageSelectorUploadsHistory {
+        public override fun build(): AiutaImageSelectorUploadsHistory {
             val parentClass = "AiutaImageSelectorUploadsHistory"
 
             return AiutaImageSelectorUploadsHistory(

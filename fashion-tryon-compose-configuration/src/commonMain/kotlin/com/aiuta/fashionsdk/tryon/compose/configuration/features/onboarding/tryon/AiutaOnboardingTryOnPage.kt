@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.images.AiutaOnboardingTryOnPageImages
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.strings.AiutaOnboardingTryOnPageStrings
@@ -11,13 +11,13 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDe
 public class AiutaOnboardingTryOnPage(
     public val images: AiutaOnboardingTryOnPageImages,
     public val strings: AiutaOnboardingTryOnPageStrings,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+
+    public class Builder : AiutaFeature.Builder {
         public var images: AiutaOnboardingTryOnPageImages? = null
         public var strings: AiutaOnboardingTryOnPageStrings? = null
 
-        public fun build(): AiutaOnboardingTryOnPage {
+        public override fun build(): AiutaOnboardingTryOnPage {
             val parentClass = "AiutaOnboardingTryOnPage"
 
             return AiutaOnboardingTryOnPage(

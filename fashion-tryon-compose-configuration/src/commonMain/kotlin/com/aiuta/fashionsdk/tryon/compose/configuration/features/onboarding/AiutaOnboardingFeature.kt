@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
@@ -17,15 +17,15 @@ public class AiutaOnboardingFeature private constructor(
     // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
-) {
-    @AiutaDsl
-    public class Builder {
+) : AiutaFeature {
+
+    public class Builder : AiutaFeature.Builder {
         public var tryOnPage: AiutaOnboardingTryOnPage? = null
         public var bestResultsPage: AiutaOnboardingBestResultsPage? = null
         public var strings: AiutaOnboardingFeatureStrings? = null
         public var shapes: AiutaOnboardingFeatureShapes? = null
 
-        public fun build(): AiutaOnboardingFeature {
+        public override fun build(): AiutaOnboardingFeature {
             val parentClass = "AiutaOnboardingFeature"
 
             return AiutaOnboardingFeature(

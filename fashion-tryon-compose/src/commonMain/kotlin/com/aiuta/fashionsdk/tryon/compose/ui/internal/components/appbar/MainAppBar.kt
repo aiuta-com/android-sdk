@@ -11,21 +11,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun MainAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
+    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
 
     val historyButton: @Composable BoxScope.(modifier: Modifier) -> Unit = { innerModifier ->
@@ -68,7 +69,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = stringResources.virtualTryOn,
+                text = imageSelectorFeature.strings.imageSelectorPageTitle,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,

@@ -14,7 +14,7 @@ class MainApplication : Application() {
 
     private fun initFashion() {
         aiuta = aiuta {
-            authenticationStrategy = ApiKeyAuthenticationStrategy(BuildConfig.SAMPLES_TRYON_API_KEY)
+            authenticationStrategy = ApiKeyAuthenticationStrategy("OLDDEMO") // TODO
             platformContext = AiutaPlatformContext(application = this@MainApplication)
         }
     }

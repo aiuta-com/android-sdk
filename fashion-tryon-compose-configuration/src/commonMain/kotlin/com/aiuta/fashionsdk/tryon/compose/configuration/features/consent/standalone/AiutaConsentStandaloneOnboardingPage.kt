@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone
 
-import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.dataprovider.AiutaConsentStandaloneOnboardingPageDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.strings.AiutaConsentStandaloneOnboardingPageStrings
@@ -10,8 +10,8 @@ public class AiutaConsentStandaloneOnboardingPage private constructor(
     public val strings: AiutaConsentStandaloneOnboardingPageStrings,
     public val dataProvider: AiutaConsentStandaloneOnboardingPageDataProvider?,
 ) : AiutaConsentFeature {
-    @AiutaDsl
-    public class Builder : AiutaConsentFeature.Builder {
+
+    public class Builder : AiutaFeature.Builder {
         public var strings: AiutaConsentStandaloneOnboardingPageStrings? = null
         public var dataProvider: AiutaConsentStandaloneOnboardingPageDataProvider? = null
 

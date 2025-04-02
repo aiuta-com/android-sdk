@@ -7,17 +7,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun ModelSelectorAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val predefinedModelFeature = strictProvideFeature<AiutaImageSelectorPredefinedModel>()
 
     AppBar(
         modifier = modifier,
@@ -32,7 +34,7 @@ internal fun ModelSelectorAppBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = stringResources.modelSelect,
+                text = predefinedModelFeature.strings.predefinedModelPageTitle,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,
