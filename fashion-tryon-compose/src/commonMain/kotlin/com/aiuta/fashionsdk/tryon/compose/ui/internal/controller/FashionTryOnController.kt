@@ -48,7 +48,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
 
-    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistory>()
+    val uploadsHistoryFeature = aiutaTryOnConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistory>()
 
     val activeSKUItem =
         remember {

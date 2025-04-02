@@ -10,14 +10,12 @@ import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.images.AiutaOnboardingBestResultsPageImages
 
 public class DefaultsAiutaOnboardingBestResultsPageImages : AiutaOnboardingBestResultsPageImages {
-    override val onboardingBestResultsGood: List<AiutaImage> =
-        listOf(
-            AiutaResourceImage(Res.drawable.onboarding_good_image_1),
-            AiutaResourceImage(Res.drawable.onboarding_good_image_2),
-        )
-    override val onboardingBestResultsBad: List<AiutaImage> =
-        listOf(
-            AiutaResourceImage(Res.drawable.onboarding_bad_image_1),
-            AiutaResourceImage(Res.drawable.onboarding_bad_image_2),
-        )
+    override val onboardingBestResultsGood: List<AiutaImage> = listOf(
+        AiutaResourceImage(Res.drawable.onboarding_good_image_1),
+        AiutaResourceImage(Res.drawable.onboarding_good_image_2),
+    )
+    override val onboardingBestResultsBad: List<AiutaImage> = listOf(
+        AiutaResourceImage(Res.drawable.onboarding_bad_image_1),
+        AiutaResourceImage(Res.drawable.onboarding_bad_image_2),
+    )
 }

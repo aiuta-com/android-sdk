@@ -5,6 +5,8 @@ import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.exceptions.NoSuchFeatureException
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPage
@@ -32,13 +34,15 @@ public class AiutaTryOnFeatures private constructor(
         AiutaOnboardingBestResultsPage::class -> onboarding?.bestResultsPage
         // Consent
         AiutaConsentFeature::class -> consent
+        AiutaConsentStandaloneOnboardingPage::class -> consent
+        AiutaConsentBuiltInWithOnboardingPage::class -> consent
         // Image selector
         AiutaImageSelectorFeature::class -> imageSelector
         AiutaImageSelectorCamera::class -> imageSelector.camera
         AiutaImageSelectorPhotoGallery::class -> imageSelector.photoGallery
         AiutaImageSelectorPredefinedModel::class -> imageSelector.predefinedModels
         AiutaImageSelectorUploadsHistory::class -> imageSelector.uploadsHistory
-        else -> throw NoSuchFeatureException()
+        else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 
     public inline fun <reified T : AiutaFeature> strictProvideFeature(): T = checkNotNull(provideFeature()) {

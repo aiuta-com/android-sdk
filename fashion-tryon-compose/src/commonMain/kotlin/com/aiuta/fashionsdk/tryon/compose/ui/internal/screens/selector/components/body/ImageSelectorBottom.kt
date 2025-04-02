@@ -100,12 +100,11 @@ internal fun ImageSelectorBottom(
                     },
                     text = imageSelectorFeature.strings.imageSelectorButtonChangePhoto,
                     style = when (imageSelectorFeature.uploadsHistory?.buttons?.mode) {
-                        ButtonsMode.BLURRED -> FashionButtonStyles.primaryStyle(theme)
-                        else -> FashionButtonStyles.secondaryStyle(
+                        ButtonsMode.BLURRED -> FashionButtonStyles.primaryStyle(
                             backgroundColor = Color.Transparent,
                             contentColor = theme.colors.primary,
-                            borderColor = Color.Transparent,
                         )
+                        else -> FashionButtonStyles.primaryStyle(theme)
                     },
                     size = sharedButtonSize,
                     onClick = {

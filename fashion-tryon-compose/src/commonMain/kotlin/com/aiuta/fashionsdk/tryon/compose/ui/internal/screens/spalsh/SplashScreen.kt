@@ -14,7 +14,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.consent.consentStandaloneFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.flow.first

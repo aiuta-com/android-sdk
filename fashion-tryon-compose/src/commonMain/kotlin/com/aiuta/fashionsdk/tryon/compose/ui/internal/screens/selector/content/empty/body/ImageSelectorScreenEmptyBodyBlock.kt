@@ -36,7 +36,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.selector.model.predefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
 
