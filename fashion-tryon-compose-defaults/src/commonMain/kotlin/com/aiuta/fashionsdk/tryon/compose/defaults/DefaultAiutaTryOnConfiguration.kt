@@ -22,7 +22,7 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
             }
 
         public fun build(): AiutaTryOnConfiguration = aiutaTryOnConfigurationBuilder.apply {
-            features = aiutaTryOnFeatures {
+            aiutaTryOnFeatures {
                 defaultWelcomeScreen()
                 defaultOnboarding()
                 defaultConsent()

@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
@@ -37,6 +38,8 @@ public class AiutaTryOnFeatures private constructor(
     }
 }
 
-public inline fun aiutaTryOnFeatures(
+public inline fun AiutaTryOnConfiguration.Builder.aiutaTryOnFeatures(
     block: AiutaTryOnFeatures.Builder.() -> Unit,
-): AiutaTryOnFeatures = AiutaTryOnFeatures.Builder().apply(block).build()
+) {
+    features = AiutaTryOnFeatures.Builder().apply(block).build()
+}
