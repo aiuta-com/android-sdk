@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toPublic
@@ -10,16 +10,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class HostGeneratedOperationInteractor(
-    private val dataProvider: AiutaDataProvider,
+    private val dataProvider: AiutaImageSelectorUploadsHistoryDataProvider,
 ) : GeneratedOperationInteractor {
-    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = dataProvider.uploadedImagesFlow
+    override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = dataProvider.uploadedImages
         .map { images ->
             images.map { image -> image.toOperationUiModel() }
         }
         .map { images -> PagingData.from(images) }
 
     override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? {
-        val firstImage = dataProvider.uploadedImagesFlow.value.firstOrNull()
+        val firstImage = dataProvider.uploadedImages.value.firstOrNull()
         return firstImage?.let { firstImage.toOperationUiModel() }
     }
 
@@ -37,7 +37,7 @@ internal class HostGeneratedOperationInteractor(
         )
     }
 
-    override fun countGeneratedOperation(): Flow<Int> = dataProvider.uploadedImagesFlow.map { images -> images.size }
+    override fun countGeneratedOperation(): Flow<Int> = dataProvider.uploadedImages.map { images -> images.size }
 
     override suspend fun createImage(
         sourceImageId: String,
@@ -55,6 +55,6 @@ internal class HostGeneratedOperationInteractor(
     }
 
     companion object {
-        fun getInstance(dataProvider: AiutaDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
+        fun getInstance(dataProvider: AiutaImageSelectorUploadsHistoryDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
     }
 }

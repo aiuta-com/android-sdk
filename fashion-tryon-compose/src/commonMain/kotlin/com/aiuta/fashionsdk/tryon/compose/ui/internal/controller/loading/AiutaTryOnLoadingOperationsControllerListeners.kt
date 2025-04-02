@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
@@ -14,6 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -125,8 +127,8 @@ internal fun AiutaTryOnLoadingActionsController.deletingUploadedImagesListener(
 private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistory>()
+    val dataProvider = uploadsHistoryFeature?.dataProvider
 
     // Observe external changes of generated images and delete
     dataProvider?.let {
@@ -135,7 +137,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
 
         LaunchedEffect(Unit) {
             dataProvider
-                .uploadedImagesFlow
+                .uploadedImages
                 .map { operations ->
                     // Make as list to compensate forEach with inner contains
                     operations.map { operation -> operation.toOperationUiModel() }.toSet()
@@ -182,13 +184,13 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
 private fun AiutaTryOnLoadingActionsController.showErrorDeletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistory>()
+    val dataProvider = uploadsHistoryFeature?.dataProvider
 
     dataProvider?.let {
         LaunchedEffect(Unit) {
             dataProvider
-                .isErrorDeletingUploadedImagesFlow
+                .isErrorDeletingUploadedImages
                 .onEach { isHostErrorDeletingUploaded ->
                     if (isHostErrorDeletingUploaded) {
                         // Move from loading to retry

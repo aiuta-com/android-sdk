@@ -12,6 +12,7 @@ import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
@@ -32,6 +33,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScr
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +47,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     skuForGeneration: SKUItem,
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
+
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistory>()
 
     val activeSKUItem =
         remember {
@@ -82,7 +86,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         }
     val generatedOperationInteractor =
         remember {
-            aiutaTryOnConfiguration.dataProvider?.let { dataProvider ->
+            uploadsHistoryFeature?.dataProvider?.let { dataProvider ->
                 GeneratedOperationInteractor.getInstance(dataProvider)
             } ?: GeneratedOperationInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
         }

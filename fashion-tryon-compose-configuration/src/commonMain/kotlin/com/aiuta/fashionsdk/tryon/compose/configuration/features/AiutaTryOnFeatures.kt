@@ -21,7 +21,7 @@ public class AiutaTryOnFeatures private constructor(
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
     public val onboarding: AiutaOnboardingFeature?,
     public val consent: AiutaConsentFeature?,
-    public var imageSelector: AiutaImageSelectorFeature,
+    public val imageSelector: AiutaImageSelectorFeature,
 ) {
     public inline fun <reified T : AiutaFeature> provideFeature(): T? = when (T::class) {
         // Welcome

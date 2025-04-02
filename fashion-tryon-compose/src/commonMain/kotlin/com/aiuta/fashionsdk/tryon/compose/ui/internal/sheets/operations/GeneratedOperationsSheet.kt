@@ -45,6 +45,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.LocalGeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
@@ -54,12 +55,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.Loadin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
 import kotlinx.coroutines.launch
@@ -69,7 +70,8 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val uploadsHistoryFeature = strictProvideFeature<AiutaImageSelectorUploadsHistory>()
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =
@@ -96,7 +98,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     Text(
         modifier = Modifier.padding(horizontal = sharedHorizontalPadding),
-        text = stringResources.generatedOperationsSheetPreviously,
+        text = uploadsHistoryFeature.strings.uploadsHistoryTitle,
         style = theme.typography.titleM,
         color = theme.colors.primary,
         fontWeight = FontWeight.Bold,
@@ -133,7 +135,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                             // Host notification
                             val image = generatedOperation.urlImages.firstOrNull()
                             image?.let {
-                                aiutaConfiguration.dataProvider?.selectUploadedImageAction?.invoke(
+                                uploadsHistoryFeature.dataProvider?.selectUploadedImageAction?.invoke(
                                     AiutaHistoryImage(id = image.imageId, url = image.imageUrl),
                                 )
                             }
@@ -158,12 +160,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         Modifier
             .fillMaxWidth()
             .padding(horizontal = sharedHorizontalPadding),
-        text =
-        if (aiutaConfiguration.toggles.isTryonWithModelsAvailable) {
-            stringResources.generatedOperationsSheetUploadNewButtonWithModels
-        } else {
-            stringResources.generatedOperationsSheetUploadNewButton
-        },
+        text = uploadsHistoryFeature.strings.uploadsHistoryButtonNewPhoto,
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
         onClick = {

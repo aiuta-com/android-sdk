@@ -24,7 +24,6 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCamera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGallery
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModel
@@ -32,7 +31,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
@@ -43,7 +41,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScree
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.exceptions.NotSupportedImageSourceException
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.selector.model.predefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.actionWithPermission
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera.rememberCameraManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.gallery.rememberGalleryManager
@@ -54,18 +51,20 @@ import dev.icerock.moko.permissions.compose.BindEffect
 import dev.icerock.moko.permissions.compose.PermissionsControllerFactory
 import dev.icerock.moko.permissions.compose.rememberPermissionsControllerFactory
 import dev.icerock.moko.permissions.gallery.GALLERY
-import kotlinx.coroutines.launch
 
 @Composable
 internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScreen.ImagePicker) {
     val controller = LocalController.current
     val dialogController = LocalAiutaTryOnDialogController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
+    val cameraFeature = provideFeature<AiutaImageSelectorCamera>()
+    val photoGalleryFeature = provideFeature<AiutaImageSelectorPhotoGallery>()
     val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModel>()
 
     val pickerFeatures = remember {
-        listOfNotNull<AiutaFeature>(
+        listOfNotNull(
+            cameraFeature,
+            photoGalleryFeature,
             predefinedModelFeature,
         )
     }
@@ -155,9 +154,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                                     dialogController.showDialog(
                                         dialogState =
                                         AiutaTryOnDialogState(
-                                            title = stringResources.dialogCameraPermissionTitle,
-                                            description = stringResources.dialogCameraPermissionDescription,
-                                            confirmButton = stringResources.dialogCameraPermissionConfirmButton,
+                                            title = feature.strings.cameraTitlePermission,
+                                            description = feature.strings.cameraDescriptionPermission,
+                                            confirmButton = feature.strings.cameraButtonPermissionOpenSettings,
                                             onConfirm = permissionsController::openAppSettings,
                                             onDismiss = dialogController::hideDialog,
                                         ),
