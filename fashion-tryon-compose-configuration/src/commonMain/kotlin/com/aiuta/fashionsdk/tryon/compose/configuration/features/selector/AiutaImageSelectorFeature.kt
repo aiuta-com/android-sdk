@@ -57,6 +57,6 @@ public class AiutaImageSelectorFeature private constructor(
 
 public inline fun AiutaTryOnFeatures.Builder.imageSelector(
     block: AiutaImageSelectorFeature.Builder.() -> Unit,
-) {
+): AiutaTryOnFeatures.Builder = apply {
     imageSelector = AiutaImageSelectorFeature.Builder().apply(block).build()
 }

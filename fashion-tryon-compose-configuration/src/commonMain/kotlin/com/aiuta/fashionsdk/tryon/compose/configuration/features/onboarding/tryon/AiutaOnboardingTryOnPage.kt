@@ -36,6 +36,6 @@ public class AiutaOnboardingTryOnPage(
 
 public inline fun AiutaOnboardingFeature.Builder.tryOnPage(
     block: AiutaOnboardingTryOnPage.Builder.() -> Unit,
-) {
+): AiutaOnboardingFeature.Builder = apply {
     tryOnPage = AiutaOnboardingTryOnPage.Builder().apply(block).build()
 }

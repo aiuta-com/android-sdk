@@ -48,6 +48,6 @@ public class AiutaOnboardingBestResultsPage(
 
 public inline fun AiutaOnboardingFeature.Builder.bestResultsPage(
     block: AiutaOnboardingBestResultsPage.Builder.() -> Unit,
-) {
+): AiutaOnboardingFeature.Builder = apply {
     bestResultsPage = AiutaOnboardingBestResultsPage.Builder().apply(block).build()
 }

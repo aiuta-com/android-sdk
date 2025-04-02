@@ -34,6 +34,6 @@ public class AiutaImageSelectorPhotoGallery private constructor(
 
 public inline fun AiutaImageSelectorFeature.Builder.photoGallery(
     block: AiutaImageSelectorPhotoGallery.Builder.() -> Unit,
-) {
+): AiutaImageSelectorFeature.Builder = apply {
     photoGallery = AiutaImageSelectorPhotoGallery.Builder().apply(block).build()
 }

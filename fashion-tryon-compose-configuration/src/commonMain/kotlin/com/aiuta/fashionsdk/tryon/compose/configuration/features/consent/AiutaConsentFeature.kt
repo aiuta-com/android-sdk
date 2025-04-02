@@ -11,12 +11,12 @@ public interface AiutaConsentFeature : AiutaFeature
 
 public inline fun AiutaTryOnFeatures.Builder.builtInConsent(
     block: AiutaConsentBuiltInWithOnboardingPage.Builder.() -> Unit,
-) {
+): AiutaTryOnFeatures.Builder = apply {
     consent = AiutaConsentBuiltInWithOnboardingPage.Builder().apply(block).build()
 }
 
 public inline fun AiutaTryOnFeatures.Builder.standaloneConsent(
     block: AiutaConsentStandaloneOnboardingPage.Builder.() -> Unit,
-) {
+): AiutaTryOnFeatures.Builder = apply {
     consent = AiutaConsentStandaloneOnboardingPage.Builder().apply(block).build()
 }

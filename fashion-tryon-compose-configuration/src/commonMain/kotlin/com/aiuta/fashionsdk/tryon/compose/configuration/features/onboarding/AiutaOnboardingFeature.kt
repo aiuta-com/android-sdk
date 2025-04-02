@@ -49,6 +49,6 @@ public class AiutaOnboardingFeature private constructor(
 
 public inline fun AiutaTryOnFeatures.Builder.onboarding(
     block: AiutaOnboardingFeature.Builder.() -> Unit,
-) {
+): AiutaTryOnFeatures.Builder = apply {
     onboarding = AiutaOnboardingFeature.Builder().apply(block).build()
 }

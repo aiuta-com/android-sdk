@@ -37,6 +37,6 @@ public class AiutaImageSelectorUploadsHistory private constructor(
 
 public inline fun AiutaImageSelectorFeature.Builder.uploadsHistory(
     block: AiutaImageSelectorUploadsHistory.Builder.() -> Unit,
-) {
+): AiutaImageSelectorFeature.Builder = apply {
     uploadsHistory = AiutaImageSelectorUploadsHistory.Builder().apply(block).build()
 }

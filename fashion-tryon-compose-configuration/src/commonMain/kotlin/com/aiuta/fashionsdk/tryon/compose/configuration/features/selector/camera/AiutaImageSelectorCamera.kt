@@ -34,6 +34,6 @@ public class AiutaImageSelectorCamera private constructor(
 
 public inline fun AiutaImageSelectorFeature.Builder.camera(
     block: AiutaImageSelectorCamera.Builder.() -> Unit,
-) {
+): AiutaImageSelectorFeature.Builder = apply {
     camera = AiutaImageSelectorCamera.Builder().apply(block).build()
 }

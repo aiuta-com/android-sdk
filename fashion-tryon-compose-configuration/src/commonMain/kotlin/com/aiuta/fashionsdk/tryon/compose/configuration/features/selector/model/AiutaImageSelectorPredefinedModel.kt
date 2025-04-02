@@ -33,6 +33,6 @@ public class AiutaImageSelectorPredefinedModel private constructor(
 
 public inline fun AiutaImageSelectorFeature.Builder.predefinedModels(
     block: AiutaImageSelectorPredefinedModel.Builder.() -> Unit,
-) {
+): AiutaImageSelectorFeature.Builder = apply {
     predefinedModels = AiutaImageSelectorPredefinedModel.Builder().apply(block).build()
 }

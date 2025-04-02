@@ -22,20 +22,21 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
                 field = newAiuta
             }
 
-        public fun build(): AiutaTryOnConfiguration = aiutaTryOnConfigurationBuilder.apply {
-            aiutaTryOnFeatures {
-                defaultWelcomeScreen()
-                defaultOnboarding()
-                defaultConsent()
-                defaultImageSelector()
-            }
-            language = EnglishLanguage(
-                brand = "YOUR brand",
-                termsOfServiceUrl = "https://brand.com/tos",
-                privacyPolicyUrl = "https://brand.com/pp",
-                onboardingPageConsentSupplementaryPoints = emptyList(),
-            )
-        }.build()
+        public fun build(): AiutaTryOnConfiguration = aiutaTryOnConfigurationBuilder
+            .apply {
+                aiutaTryOnFeatures {
+                    defaultWelcomeScreen()
+                    defaultOnboarding()
+                    defaultConsent()
+                    defaultImageSelector()
+                }
+                language = EnglishLanguage(
+                    brand = "YOUR brand",
+                    termsOfServiceUrl = "https://brand.com/tos",
+                    privacyPolicyUrl = "https://brand.com/pp",
+                    onboardingPageConsentSupplementaryPoints = emptyList(),
+                )
+            }.build()
     }
 }
 

@@ -50,6 +50,6 @@ public class AiutaWelcomeScreenFeature private constructor(
 
 public inline fun AiutaTryOnFeatures.Builder.welcomeScreen(
     block: AiutaWelcomeScreenFeature.Builder.() -> Unit,
-) {
+): AiutaTryOnFeatures.Builder = apply {
     welcomeScreen = AiutaWelcomeScreenFeature.Builder().apply(block).build()
 }

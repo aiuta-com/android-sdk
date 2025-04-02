@@ -78,6 +78,6 @@ public class AiutaTryOnFeatures private constructor(
 
 public inline fun AiutaTryOnConfiguration.Builder.aiutaTryOnFeatures(
     block: AiutaTryOnFeatures.Builder.() -> Unit,
-) {
+): AiutaTryOnConfiguration.Builder = apply {
     features = AiutaTryOnFeatures.Builder().apply(block).build()
 }
