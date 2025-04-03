@@ -23,6 +23,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
@@ -33,6 +34,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
     public val imageSelector: AiutaImageSelectorFeature,
     public val tryOn: AiutaTryOnFeature,
     public val share: AiutaShareFeature?,
+    public val wishlist: AiutaWishlistFeature?,
 ) {
     public inline fun <reified T : AiutaTryOnConfigurationFeature> provideFeature(): T? = when (T::class) {
         // Welcome
@@ -60,6 +62,8 @@ public class AiutaTryOnConfigurationFeatures private constructor(
         // Share
         AiutaShareFeature::class -> share
         AiutaShareWatermarkFeature::class -> share?.watermark
+        // Wishlist
+        AiutaWishlistFeature::class -> wishlist
         else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 
@@ -80,6 +84,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
         public var imageSelector: AiutaImageSelectorFeature? = null
         public var tryOn: AiutaTryOnFeature? = null
         public var share: AiutaShareFeature? = null
+        public var wishlist: AiutaWishlistFeature? = null
 
         public fun build(): AiutaTryOnConfigurationFeatures {
             val parentClass = "AiutaTryOnConfigurationFeatures"
@@ -96,6 +101,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
                     property = "tryOn",
                 ),
                 share = share,
+                wishlist = wishlist,
             )
         }
     }
