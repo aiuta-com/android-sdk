@@ -1,5 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
@@ -10,6 +13,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.features.onboarding.defaultOn
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.selector.defaultImageSelector
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.welcome.defaultWelcomeScreen
 
+@Immutable
 public class DefaultAiutaTryOnConfiguration private constructor() {
     @AiutaDsl
     public class Builder {
@@ -43,3 +47,8 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
 public inline fun defaultAiutaTryOnConfiguration(
     block: DefaultAiutaTryOnConfiguration.Builder.() -> Unit,
 ): AiutaTryOnConfiguration = DefaultAiutaTryOnConfiguration.Builder().apply(block).build()
+
+@Composable
+public fun rememberDefaultAiutaTryOnConfiguration(
+    block: DefaultAiutaTryOnConfiguration.Builder.() -> Unit,
+): AiutaTryOnConfiguration = remember { defaultAiutaTryOnConfiguration(block) }

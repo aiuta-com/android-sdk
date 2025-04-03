@@ -15,7 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.tryon
@@ -84,12 +84,9 @@ fun MainViewController() = ComposeUIViewController {
                 )
             }
 
-        val mockAiutaConfiguration =
-            remember {
-                defaultAiutaTryOnConfiguration {
-                    this.aiuta = aiuta
-                }
-            }
+        val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration {
+            this.aiuta = aiuta
+        }
 
         val mockAiutaTheme =
             rememberAiutaTheme(

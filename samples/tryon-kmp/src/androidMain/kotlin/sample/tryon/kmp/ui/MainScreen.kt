@@ -11,7 +11,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
 import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
@@ -80,12 +80,9 @@ fun MainScreen() {
                 )
             }
 
-        val mockAiutaConfiguration =
-            remember {
-                defaultAiutaTryOnConfiguration {
-                    aiuta = viewModel.aiuta
-                }
-            }
+        val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration {
+            aiuta = viewModel.aiuta
+        }
 
         val mockAiutaTheme =
             rememberAiutaTheme(

@@ -1,6 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
@@ -87,3 +89,8 @@ public class AiutaTryOnConfiguration private constructor(
 public inline fun aiutaTryOnConfiguration(
     block: AiutaTryOnConfiguration.Builder.() -> Unit,
 ): AiutaTryOnConfiguration = AiutaTryOnConfiguration.Builder().apply(block).build()
+
+@Composable
+public fun rememberAiutaTryOnConfiguration(
+    block: AiutaTryOnConfiguration.Builder.() -> Unit,
+): AiutaTryOnConfiguration = remember { aiutaTryOnConfiguration(block) }
