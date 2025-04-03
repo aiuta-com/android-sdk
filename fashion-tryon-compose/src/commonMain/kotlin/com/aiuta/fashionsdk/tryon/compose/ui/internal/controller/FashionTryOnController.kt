@@ -155,7 +155,7 @@ internal class FashionTryOnController(
     public val bottomSheetNavigator: BottomSheetNavigator,
     // Error state
     public val fashionTryOnErrorState: MutableState<ToastErrorState?>,
-    // Edit mode
+    // Edit changePhotoButtonStyle
     internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder(),
     // Data

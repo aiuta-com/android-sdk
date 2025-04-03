@@ -349,7 +349,7 @@ private fun BoxScope.HistoryScreenInterface(
                             .getList()
                             .map { it.imageUrl }
 
-                    // After get list, let's deactivate select mode
+                    // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()
 
                     controller.sendHistoryEvent(

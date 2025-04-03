@@ -2,19 +2,19 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.histo
 
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryFeatureButtons
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 public class AiutaImageSelectorUploadsHistoryFeature private constructor(
     public val strings: AiutaImageSelectorUploadsHistoryFeatureStrings,
-    public val buttons: AiutaImageSelectorUploadsHistoryFeatureButtons,
+    public val styles: AiutaImageSelectorUploadsHistoryFeatureStyles,
     public val dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider?,
 ) : AiutaFeature {
     public class Builder : AiutaFeature.Builder {
         public var strings: AiutaImageSelectorUploadsHistoryFeatureStrings? = null
-        public var buttons: AiutaImageSelectorUploadsHistoryFeatureButtons? = null
+        public var styles: AiutaImageSelectorUploadsHistoryFeatureStyles? = null
         public var dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider? = null
 
         public override fun build(): AiutaImageSelectorUploadsHistoryFeature {
@@ -25,9 +25,9 @@ public class AiutaImageSelectorUploadsHistoryFeature private constructor(
                     parentClass = parentClass,
                     property = "strings",
                 ),
-                buttons = buttons.checkNotNullWithDescription(
+                styles = styles.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "buttons",
+                    property = "styles",
                 ),
                 dataProvider = dataProvider,
             )

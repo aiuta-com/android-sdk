@@ -238,7 +238,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuratio
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata {
 	public static final field $stable I
 	public fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;)V
-	public final fun getMode ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
+	public final fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadataKt {

@@ -82,7 +82,7 @@ internal fun FashionTryOnController.hideErrorState() {
     fashionTryOnErrorState.value = null
 }
 
-// Edit mode
+// Edit changePhotoButtonStyle
 internal fun FashionTryOnController.activateSelectMode() {
     selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
 }
@@ -115,7 +115,7 @@ internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<S
     derivedStateOf { tryToGetOperations() }
 }
 
-// Auto try on mode
+// Auto try on changePhotoButtonStyle
 internal fun FashionTryOnController.activateAutoTryOn() {
     isAutoTryOnEnabled.value = true
 }

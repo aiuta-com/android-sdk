@@ -15,7 +15,7 @@ internal fun FashionTryOnController.deleteGeneratedImages(
         try {
             val images = selectorHolder.getList()
 
-            // After getting list, let's deactivate select mode
+            // After getting list, let's deactivate select changePhotoButtonStyle
             deactivateSelectMode()
 
             // Show as loading
@@ -23,7 +23,7 @@ internal fun FashionTryOnController.deleteGeneratedImages(
 
             // Delete in db
             generatedImageInteractor.remove(images)
-            // Clean, if it local mode
+            // Clean, if it local changePhotoButtonStyle
             generatedImageInteractor.cleanLoadingGenerations(
                 cleanAction = {
                     loadingActionsController.loadingGenerationsHolder.remove(images)

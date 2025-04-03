@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.strings.AiutaImageSelectorCameraFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.photoGallery
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.strings.AiutaImageSelectorPhotoGalleryFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryFeatureButtons
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.uploadsHistory
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.imageSelector
@@ -33,7 +33,7 @@ public fun AiutaTryOnFeatures.Builder.defaultImageSelector() {
         }
         uploadsHistory {
             strings = AiutaImageSelectorUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
-            buttons = AiutaImageSelectorUploadsHistoryFeatureButtons.Default()
+            buttons = AiutaImageSelectorUploadsHistoryFeatureStyles.Default()
         }
         images = DefaultAiutaImageSelectorFeatureImages()
         strings = AiutaImageSelectorFeatureStrings.Default()

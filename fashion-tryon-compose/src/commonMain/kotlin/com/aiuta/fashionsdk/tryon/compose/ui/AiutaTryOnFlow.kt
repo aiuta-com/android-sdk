@@ -80,7 +80,7 @@ public fun AiutaTryOnFlow(
                 }
 
                 controller.currentScreen.value == NavigationScreen.History -> {
-                    // Use custom, because we need deactivate select mode first
+                    // Use custom, because we need deactivate select changePhotoButtonStyle first
                     controller.deactivateSelectMode()
                     controller.navigateBack()
                 }

@@ -253,7 +253,7 @@ private fun OperationItem(
 
                                 // Delete operations
                                 generatedOperationInteractor.deleteOperation(generatedOperation)
-                                // If local mode - let's remove from loading
+                                // If local changePhotoButtonStyle - let's remove from loading
                                 generatedOperationInteractor.cleanLoadingUploads(
                                     cleanAction = {
                                         loadingActionsController.loadingUploadsHolder.remove(
@@ -262,7 +262,7 @@ private fun OperationItem(
                                     },
                                 )
 
-                                // If active images is deleted and it's local mode - let's get new first
+                                // If active images is deleted and it's local changePhotoButtonStyle - let's get new first
                                 val isLocalMode =
                                     generatedOperationInteractor is LocalGeneratedOperationInteractor
                                 val isActiveOperationDeleted =

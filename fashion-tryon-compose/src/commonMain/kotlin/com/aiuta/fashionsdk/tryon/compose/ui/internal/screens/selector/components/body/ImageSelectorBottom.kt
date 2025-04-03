@@ -94,12 +94,12 @@ internal fun ImageSelectorBottom(
         when (state) {
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
-                    modifier = when (imageSelectorFeature.uploadsHistory?.buttons?.mode) {
+                    modifier = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
                         ButtonsMode.BLURRED -> sharedModifier.then(sharedBlurModifer)
                         else -> sharedModifier
                     },
                     text = imageSelectorFeature.strings.imageSelectorButtonChangePhoto,
-                    style = when (imageSelectorFeature.uploadsHistory?.buttons?.mode) {
+                    style = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
                         ButtonsMode.BLURRED -> FashionButtonStyles.primaryStyle(
                             backgroundColor = Color.Transparent,
                             contentColor = theme.colors.primary,
