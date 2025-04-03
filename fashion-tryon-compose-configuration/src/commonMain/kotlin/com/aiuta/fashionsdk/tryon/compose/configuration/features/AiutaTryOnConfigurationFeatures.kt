@@ -15,7 +15,13 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
@@ -26,6 +32,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
     public val consent: AiutaConsentFeature?,
     public val imageSelector: AiutaImageSelectorFeature,
     public val tryOn: AiutaTryOnFeature,
+    public val share: AiutaShareFeature?,
 ) {
     public inline fun <reified T : AiutaTryOnConfigurationFeature> provideFeature(): T? = when (T::class) {
         // Welcome
@@ -46,6 +53,13 @@ public class AiutaTryOnConfigurationFeatures private constructor(
         AiutaImageSelectorUploadsHistoryFeature::class -> imageSelector.uploadsHistory
         // Try on
         AiutaTryOnFeature::class -> tryOn
+        AiutaTryOnLoadingPageFeature::class -> tryOn.loadingPage
+        AiutaTryOnFitDisclaimerFeature::class -> tryOn.fitDisclaimer
+        AiutaTryOnFeedbackFeature::class -> tryOn.feedback
+        AiutaTryOnGenerationsHistoryFeature::class -> tryOn.generationsHistory
+        // Share
+        AiutaShareFeature::class -> share
+        AiutaShareWatermarkFeature::class -> share?.watermark
         else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 
@@ -65,6 +79,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
         public var consent: AiutaConsentFeature? = null
         public var imageSelector: AiutaImageSelectorFeature? = null
         public var tryOn: AiutaTryOnFeature? = null
+        public var share: AiutaShareFeature? = null
 
         public fun build(): AiutaTryOnConfigurationFeatures {
             val parentClass = "AiutaTryOnConfigurationFeatures"
@@ -80,6 +95,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
                     parentClass = parentClass,
                     property = "tryOn",
                 ),
+                share = share,
             )
         }
     }
