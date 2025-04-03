@@ -1,33 +1,30 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 @Composable
-internal fun LoadingProgress(
+internal fun AiutaLoadingIcon(
     modifier: Modifier = Modifier,
-    circleSize: Dp = 24.dp,
     circleColor: Color = LocalTheme.current.colors.brand,
 ) {
-    val theme = LocalTheme.current
+    val loadingPageFeature = provideFeature<AiutaTryOnLoadingPageFeature>()
 
-    val infiniteTransition = rememberInfiniteTransition()
-    val angle =
-        infiniteTransition.animateFloat(
+    loadingPageFeature?.icons?.loading14?.let { loading14 ->
+        val infiniteTransition = rememberInfiniteTransition()
+        val angle = infiniteTransition.animateFloat(
             initialValue = 0F,
             targetValue = 360F,
             animationSpec =
@@ -36,19 +33,11 @@ internal fun LoadingProgress(
             ),
         )
 
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center,
-    ) {
         AiutaIcon(
-            modifier =
-            Modifier
-                .size(circleSize)
-                .align(Alignment.Center)
-                .rotate(angle.value),
-            icon = theme.icons.loading14,
+            modifier = modifier.rotate(angle.value),
+            icon = loading14,
             tint = circleColor,
             contentDescription = null,
         )
-    }
+    } ?: CircularProgressIndicator(modifier = modifier, color = circleColor)
 }

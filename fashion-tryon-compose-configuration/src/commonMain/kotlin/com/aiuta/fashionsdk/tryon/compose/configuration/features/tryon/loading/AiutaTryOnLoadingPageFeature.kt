@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.i
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaTryOnLoadingPageFeature(
+public class AiutaTryOnLoadingPageFeature private constructor(
     public val icons: AiutaTryOnLoadingPageFeatureIcons,
     public val strings: AiutaTryOnLoadingPageFeatureStrings,
 ) : AiutaTryOnConfigurationFeature {

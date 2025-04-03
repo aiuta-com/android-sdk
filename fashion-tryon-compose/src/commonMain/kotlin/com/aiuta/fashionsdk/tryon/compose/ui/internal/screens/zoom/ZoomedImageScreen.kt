@@ -46,8 +46,8 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -205,7 +205,7 @@ private fun ZoomedImageScreenContent(
                 .crossfade(true)
                 .build(),
             loading = {
-                LoadingProgress(
+                AiutaLoadingIcon(
                     modifier = Modifier.fillMaxSize(),
                     circleColor = interfaceColor.value,
                 )

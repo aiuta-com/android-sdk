@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.best
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.toggles.AiutaOnboardingBestResultsPageFeatureToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaOnboardingBestResultsPageFeature(
+public class AiutaOnboardingBestResultsPageFeature private constructor(
     public val images: AiutaOnboardingBestResultsPageFeatureImages,
     public val icons: AiutaOnboardingBestResultsPageFeatureIcons,
     public val strings: AiutaOnboardingBestResultsPageFeatureStrings,

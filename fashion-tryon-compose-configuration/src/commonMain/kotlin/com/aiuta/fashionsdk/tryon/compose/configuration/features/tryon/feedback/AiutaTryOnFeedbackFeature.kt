@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.strings.AiutaTryOnFeedbackFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaTryOnFeedbackFeature(
+public class AiutaTryOnFeedbackFeature private constructor(
     // Features
     public val otherFeedback: AiutaTryOnFeedbackOtherFeature?,
     // General

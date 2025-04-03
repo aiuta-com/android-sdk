@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.datapr
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.icons.AiutaWishlistFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaWishlistFeature(
+public class AiutaWishlistFeature private constructor(
     public val icons: AiutaWishlistFeatureIcons,
     public val dataProvider: AiutaWishlistFeatureDataProvider,
 ) : AiutaTryOnConfigurationFeature {

@@ -50,8 +50,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
@@ -218,7 +218,7 @@ private fun OperationItem(
                 .data(generatedOperation.sourceImageUrls.firstOrNull())
                 .crossfade(true)
                 .build(),
-            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+            loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
             error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             onError = { imageState.value = it },
             contentScale = ContentScale.Crop,
@@ -294,7 +294,7 @@ private fun OperationItem(
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            LoadingProgress(
+            AiutaLoadingIcon(
                 modifier =
                 Modifier
                     .fillMaxSize()

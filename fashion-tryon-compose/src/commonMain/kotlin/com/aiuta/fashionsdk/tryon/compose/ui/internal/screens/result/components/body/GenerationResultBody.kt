@@ -43,8 +43,8 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.FeedbackBlock
@@ -179,7 +179,7 @@ private fun PagerItem(
                 .size(ORIGINAL)
                 .crossfade(true)
                 .build(),
-            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
+            loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
             error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
             contentScale = ContentScale.Crop,
             contentDescription = null,

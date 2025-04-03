@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryo
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaOnboardingTryOnPageFeature(
+public class AiutaOnboardingTryOnPageFeature private constructor(
     public val images: AiutaOnboardingTryOnPageFeatureImages,
     public val strings: AiutaOnboardingTryOnPageFeatureStrings,
 ) : AiutaTryOnConfigurationFeature {

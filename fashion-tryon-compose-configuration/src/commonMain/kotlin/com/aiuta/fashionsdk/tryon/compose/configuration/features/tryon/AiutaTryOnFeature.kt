@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.styles.Ai
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.toggles.AiutaTryOnFeatureToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaTryOnFeature(
+public class AiutaTryOnFeature private constructor(
     // Features
     public val loadingPage: AiutaTryOnLoadingPageFeature,
     public val fitDisclaimer: AiutaTryOnFitDisclaimerFeature?,

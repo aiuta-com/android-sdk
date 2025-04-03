@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.icons.Aiu
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
-public class AiutaShareFeature(
+public class AiutaShareFeature private constructor(
     // Features
     public val watermark: AiutaShareWatermarkFeature?,
     // General
