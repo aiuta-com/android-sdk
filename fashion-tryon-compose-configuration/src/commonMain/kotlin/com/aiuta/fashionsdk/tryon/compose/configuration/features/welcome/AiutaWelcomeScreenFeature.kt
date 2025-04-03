@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.icons.AiutaWelcomeScreenFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.images.AiutaWelcomeScreenFeatureImages
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.strings.AiutaWelcomeScreenFeatureStrings
@@ -15,9 +15,9 @@ public class AiutaWelcomeScreenFeature private constructor(
     public val icons: AiutaWelcomeScreenFeatureIcons,
     public val strings: AiutaWelcomeScreenFeatureStrings,
     public val typography: AiutaWelcomeScreenFeatureTypography,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var images: AiutaWelcomeScreenFeatureImages? = null
         public var icons: AiutaWelcomeScreenFeatureIcons? = null
         public var strings: AiutaWelcomeScreenFeatureStrings? = null
@@ -48,8 +48,8 @@ public class AiutaWelcomeScreenFeature private constructor(
     }
 }
 
-public inline fun AiutaTryOnFeatures.Builder.welcomeScreen(
+public inline fun AiutaTryOnConfigurationFeatures.Builder.welcomeScreen(
     block: AiutaWelcomeScreenFeature.Builder.() -> Unit,
-): AiutaTryOnFeatures.Builder = apply {
+): AiutaTryOnConfigurationFeatures.Builder = apply {
     welcomeScreen = AiutaWelcomeScreenFeature.Builder().apply(block).build()
 }

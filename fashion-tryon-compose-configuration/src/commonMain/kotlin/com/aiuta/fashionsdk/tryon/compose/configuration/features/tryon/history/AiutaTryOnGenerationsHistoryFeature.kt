@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.icons.AiutaTryOnGenerationsHistoryFeatureIcons
@@ -9,9 +9,9 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDe
 public class AiutaTryOnGenerationsHistoryFeature(
     public val icons: AiutaTryOnGenerationsHistoryFeatureIcons,
     public val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider?,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var icons: AiutaTryOnGenerationsHistoryFeatureIcons? = null
         public var dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider? = null
 

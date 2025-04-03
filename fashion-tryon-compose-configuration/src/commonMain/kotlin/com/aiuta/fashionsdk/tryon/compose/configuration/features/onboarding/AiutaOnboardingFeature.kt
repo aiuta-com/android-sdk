@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
@@ -17,9 +17,9 @@ public class AiutaOnboardingFeature private constructor(
     // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var tryOnPage: AiutaOnboardingTryOnPageFeature? = null
         public var bestResultsPage: AiutaOnboardingBestResultsPageFeature? = null
         public var strings: AiutaOnboardingFeatureStrings? = null
@@ -47,8 +47,8 @@ public class AiutaOnboardingFeature private constructor(
     }
 }
 
-public inline fun AiutaTryOnFeatures.Builder.onboarding(
+public inline fun AiutaTryOnConfigurationFeatures.Builder.onboarding(
     block: AiutaOnboardingFeature.Builder.() -> Unit,
-): AiutaTryOnFeatures.Builder = apply {
+): AiutaTryOnConfigurationFeatures.Builder = apply {
     onboarding = AiutaOnboardingFeature.Builder().apply(block).build()
 }

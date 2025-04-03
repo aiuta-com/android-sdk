@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
@@ -21,9 +21,9 @@ public class AiutaImageSelectorFeature private constructor(
     // General
     public val images: AiutaImageSelectorFeatureImages,
     public val strings: AiutaImageSelectorFeatureStrings,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var camera: AiutaImageSelectorCameraFeature? = null
         public var photoGallery: AiutaImageSelectorPhotoGalleryFeature? = null
         public var predefinedModels: AiutaImageSelectorPredefinedModelFeature? = null
@@ -55,8 +55,8 @@ public class AiutaImageSelectorFeature private constructor(
     }
 }
 
-public inline fun AiutaTryOnFeatures.Builder.imageSelector(
+public inline fun AiutaTryOnConfigurationFeatures.Builder.imageSelector(
     block: AiutaImageSelectorFeature.Builder.() -> Unit,
-): AiutaTryOnFeatures.Builder = apply {
+): AiutaTryOnConfigurationFeatures.Builder = apply {
     imageSelector = AiutaImageSelectorFeature.Builder().apply(block).build()
 }

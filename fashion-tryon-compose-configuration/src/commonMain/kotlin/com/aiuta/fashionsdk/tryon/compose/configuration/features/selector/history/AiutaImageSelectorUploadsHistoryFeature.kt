@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
@@ -11,8 +11,8 @@ public class AiutaImageSelectorUploadsHistoryFeature private constructor(
     public val strings: AiutaImageSelectorUploadsHistoryFeatureStrings,
     public val styles: AiutaImageSelectorUploadsHistoryFeatureStyles,
     public val dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider?,
-) : AiutaFeature {
-    public class Builder : AiutaFeature.Builder {
+) : AiutaTryOnConfigurationFeature {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var strings: AiutaImageSelectorUploadsHistoryFeatureStrings? = null
         public var styles: AiutaImageSelectorUploadsHistoryFeatureStyles? = null
         public var dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider? = null

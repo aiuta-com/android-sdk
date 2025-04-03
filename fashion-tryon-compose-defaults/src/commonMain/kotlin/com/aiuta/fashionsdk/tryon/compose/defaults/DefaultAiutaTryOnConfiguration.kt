@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.defaults
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.aiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.features
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.consent.defaultConsent
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.onboarding.defaultOnboarding
@@ -24,7 +24,7 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
 
         public fun build(): AiutaTryOnConfiguration = aiutaTryOnConfigurationBuilder
             .apply {
-                aiutaTryOnFeatures {
+                features {
                     defaultWelcomeScreen()
                     defaultOnboarding()
                     defaultConsent()

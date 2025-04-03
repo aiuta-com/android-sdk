@@ -20,14 +20,14 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWe
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaTryOnFeatures private constructor(
+public class AiutaTryOnConfigurationFeatures private constructor(
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
     public val onboarding: AiutaOnboardingFeature?,
     public val consent: AiutaConsentFeature?,
     public val imageSelector: AiutaImageSelectorFeature,
     public val tryOn: AiutaTryOnFeature,
 ) {
-    public inline fun <reified T : AiutaFeature> provideFeature(): T? = when (T::class) {
+    public inline fun <reified T : AiutaTryOnConfigurationFeature> provideFeature(): T? = when (T::class) {
         // Welcome
         AiutaWelcomeScreenFeature::class -> welcomeScreen
         // Onboarding
@@ -49,14 +49,14 @@ public class AiutaTryOnFeatures private constructor(
         else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 
-    public inline fun <reified T : AiutaFeature> strictProvideFeature(): T = checkNotNull(provideFeature()) {
+    public inline fun <reified T : AiutaTryOnConfigurationFeature> strictProvideFeature(): T = checkNotNull(provideFeature()) {
         """
                 Feature ${T::class.qualifiedName} is not initialized, therefore we can't provide it.
-                Please, don't use it or create instance of AiutaTryOnFeatures with this feature.
+                Please, don't use it or create instance of AiutaTryOnConfigurationFeatures with this feature.
         """.trimIndent()
     }
 
-    public inline fun <reified T : AiutaFeature> isFeatureInitialize(): Boolean = provideFeature<T>() != null
+    public inline fun <reified T : AiutaTryOnConfigurationFeature> isFeatureInitialize(): Boolean = provideFeature<T>() != null
 
     @AiutaDsl
     public class Builder {
@@ -66,9 +66,9 @@ public class AiutaTryOnFeatures private constructor(
         public var imageSelector: AiutaImageSelectorFeature? = null
         public var tryOn: AiutaTryOnFeature? = null
 
-        public fun build(): AiutaTryOnFeatures {
-            val parentClass = "AiutaTryOnFeatures"
-            return AiutaTryOnFeatures(
+        public fun build(): AiutaTryOnConfigurationFeatures {
+            val parentClass = "AiutaTryOnConfigurationFeatures"
+            return AiutaTryOnConfigurationFeatures(
                 welcomeScreen = welcomeScreen,
                 onboarding = onboarding,
                 consent = consent,
@@ -85,8 +85,8 @@ public class AiutaTryOnFeatures private constructor(
     }
 }
 
-public inline fun AiutaTryOnConfiguration.Builder.aiutaTryOnFeatures(
-    block: AiutaTryOnFeatures.Builder.() -> Unit,
+public inline fun AiutaTryOnConfiguration.Builder.features(
+    block: AiutaTryOnConfigurationFeatures.Builder.() -> Unit,
 ): AiutaTryOnConfiguration.Builder = apply {
-    features = AiutaTryOnFeatures.Builder().apply(block).build()
+    features = AiutaTryOnConfigurationFeatures.Builder().apply(block).build()
 }

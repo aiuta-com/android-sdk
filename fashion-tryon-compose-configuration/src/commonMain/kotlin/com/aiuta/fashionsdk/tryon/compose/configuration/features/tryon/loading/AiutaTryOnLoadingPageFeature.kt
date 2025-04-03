@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.icons.AiutaTryOnLoadingPageFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
@@ -9,9 +9,9 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDe
 public class AiutaTryOnLoadingPageFeature(
     public val icons: AiutaTryOnLoadingPageFeatureIcons,
     public val strings: AiutaTryOnLoadingPageFeatureStrings,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var icons: AiutaTryOnLoadingPageFeatureIcons? = null
         public var strings: AiutaTryOnLoadingPageFeatureStrings? = null
 

@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.icons.AiutaImageSelectorPhotoGalleryFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.strings.AiutaImageSelectorPhotoGalleryFeatureStrings
@@ -9,9 +9,9 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDe
 public class AiutaImageSelectorPhotoGalleryFeature private constructor(
     public val icons: AiutaImageSelectorPhotoGalleryFeatureIcons,
     public val strings: AiutaImageSelectorPhotoGalleryFeatureStrings,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var icons: AiutaImageSelectorPhotoGalleryFeatureIcons? = null
         public var strings: AiutaImageSelectorPhotoGalleryFeatureStrings? = null
 

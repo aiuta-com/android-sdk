@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults.features.selector
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.camera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.strings.AiutaImageSelectorCameraFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.photoGallery
@@ -17,7 +17,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.selector.galle
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.selector.model.DefaultAiutaImageSelectorPredefinedModelFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.images.features.selector.DefaultAiutaImageSelectorFeatureImages
 
-public fun AiutaTryOnFeatures.Builder.defaultImageSelector() {
+public fun AiutaTryOnConfigurationFeatures.Builder.defaultImageSelector() {
     imageSelector {
         camera {
             icons = DefaultAiutaImageSelectorCameraFeatureIcons()

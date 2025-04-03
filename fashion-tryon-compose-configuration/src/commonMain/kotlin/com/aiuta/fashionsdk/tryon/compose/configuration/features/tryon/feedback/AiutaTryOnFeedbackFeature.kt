@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.icons.AiutaTryOnFeedbackFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.strings.AiutaTryOnFeedbackFeatureStrings
@@ -9,9 +9,9 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDe
 public class AiutaTryOnFeedbackFeature(
     public val icons: AiutaTryOnFeedbackFeatureIcons,
     public val strings: AiutaTryOnFeedbackFeatureStrings,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var icons: AiutaTryOnFeedbackFeatureIcons? = null
         public var strings: AiutaTryOnFeedbackFeatureStrings? = null
 

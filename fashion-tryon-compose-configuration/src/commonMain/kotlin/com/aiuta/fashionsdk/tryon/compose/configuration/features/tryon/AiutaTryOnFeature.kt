@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.dataprovider.AiutaTryOnFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
@@ -23,9 +23,9 @@ public class AiutaTryOnFeature(
     public val strings: AiutaTryOnFeatureStrings,
     public val styles: AiutaTryOnFeatureStyles,
     public val dataProvider: AiutaTryOnFeatureDataProvider?,
-) : AiutaFeature {
+) : AiutaTryOnConfigurationFeature {
 
-    public class Builder : AiutaFeature.Builder {
+    public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var loadingPage: AiutaTryOnLoadingPageFeature? = null
         public var fitDisclaimer: AiutaTryOnFitDisclaimerFeature? = null
         public var feedback: AiutaTryOnFeedbackFeature? = null
@@ -64,8 +64,8 @@ public class AiutaTryOnFeature(
     }
 }
 
-public inline fun AiutaTryOnFeatures.Builder.tryOn(
+public inline fun AiutaTryOnConfigurationFeatures.Builder.tryOn(
     block: AiutaTryOnFeature.Builder.() -> Unit,
-): AiutaTryOnFeatures.Builder = apply {
+): AiutaTryOnConfigurationFeatures.Builder = apply {
     tryOn = AiutaTryOnFeature.Builder().apply(block).build()
 }

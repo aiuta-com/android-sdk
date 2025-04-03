@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.dimensions.AiutaDimensions
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnFeatures
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic.sendConfigurationEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.AiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.DefaultHostMetadata
@@ -25,7 +25,7 @@ import com.aiuta.fashionsdk.tryon.core.tryon
 @Immutable
 public class AiutaTryOnConfiguration private constructor(
     public val aiuta: Aiuta,
-    public val features: AiutaTryOnFeatures,
+    public val features: AiutaTryOnConfigurationFeatures,
     @Deprecated("Will be split by features")
     public val dataProvider: AiutaDataProvider?,
     @Deprecated("Will be split by features")
@@ -46,7 +46,7 @@ public class AiutaTryOnConfiguration private constructor(
     @AiutaDsl
     public class Builder {
         public var aiuta: Aiuta? = null
-        public var features: AiutaTryOnFeatures? = null
+        public var features: AiutaTryOnConfigurationFeatures? = null
         public var dataProvider: AiutaDataProvider? = null
         public var dimensions: AiutaDimensions? = null
         public var language: AiutaTryOnLanguage? = null
