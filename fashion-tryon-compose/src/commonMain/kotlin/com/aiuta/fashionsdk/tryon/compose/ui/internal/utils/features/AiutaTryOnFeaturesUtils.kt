@@ -21,3 +21,10 @@ internal inline fun <reified T : AiutaTryOnConfigurationFeature> strictProvideFe
 }
 
 internal inline fun <reified T : AiutaTryOnConfigurationFeature> AiutaTryOnConfiguration.isFeatureInitialize(): Boolean = features.isFeatureInitialize<T>()
+
+@Composable
+@ReadOnlyComposable
+internal inline fun <reified T : AiutaTryOnConfigurationFeature> isFeatureInitialize(): Boolean {
+    val aiutaConfiguration = LocalAiutaConfiguration.current
+    return aiutaConfiguration.isFeatureInitialize<T>()
+}

@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.dataprovider.AiutaTryOnFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -33,13 +34,14 @@ internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: 
 internal fun FashionTryOnController.clickAddToCart(
     pageId: AiutaAnalyticPageId,
     skuId: String,
+    dataProvider: AiutaTryOnFeatureDataProvider,
 ) {
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_CART,
         pageId = pageId,
         productId = skuId,
     )
-    aiutaTryOnListeners.addToCartClick(activeSKUItem.value)
+    dataProvider.addToCartClick(activeSKUItem.value)
 }
 
 internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticPageId? = null) {

@@ -6,10 +6,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendTerminateEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,12 +33,11 @@ internal fun FashionTryOnController.generationNavigationListener() {
 }
 
 @Composable
-internal fun FashionTryOnController.historyAvailabilityListener(
-    configuration: AiutaTryOnConfiguration,
-) {
+internal fun FashionTryOnController.historyAvailabilityListener() {
     // We should delete all generations, if history not available
+    val isGenerationsHistoryFeatureAvailable = isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
     LaunchedEffect(Unit) {
-        if (!configuration.toggles.isHistoryAvailable) {
+        if (!isGenerationsHistoryFeatureAvailable) {
             generatedImageInteractor.removeAll()
         }
     }
@@ -53,10 +55,10 @@ internal fun FashionTryOnController.updationActiveSKUItemListener() {
 }
 
 @Composable
-internal fun FashionTryOnController.generationCancellationListener(
-    configuration: AiutaTryOnConfiguration,
-) {
-    if (!configuration.toggles.isBackgroundExecutionAllowed) {
+internal fun FashionTryOnController.generationCancellationListener() {
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+
+    if (!tryOnFeature.toggles.isBackgroundExecutionAllowed) {
         val lifecycleOwner = LocalLifecycleOwner.current
 
         DisposableEffect(lifecycleOwner) {

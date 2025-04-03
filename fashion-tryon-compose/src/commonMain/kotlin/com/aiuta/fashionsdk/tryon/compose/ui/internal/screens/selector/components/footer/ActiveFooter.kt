@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
@@ -53,6 +54,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val stringResources = LocalAiutaTryOnStringResources.current
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     Column(
         modifier = modifier,
@@ -78,8 +80,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
             Spacer(Modifier.height(16.dp))
 
             SKUBlock(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .height(40.dp)
                     .fillMaxWidth(),
             )
@@ -89,18 +90,12 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = imageSelectorFeature.strings.imageSelectorButtonTryOn,
-                style =
-                if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
+                style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
                         contentColor = theme.colors.onDark,
-                        gradientBackground =
-                        Brush.horizontalGradient(
-                            theme.gradients.tryOnButtonBackground,
-                        ),
+                        gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
                     )
-                } else {
-                    FashionButtonStyles.primaryStyle(theme)
-                },
+                } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 icon = theme.icons.magic20,
                 onClick = {
@@ -108,7 +103,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                         aiutaConfiguration = aiutaConfiguration,
                         coilContext = coilContext,
                         dialogController = dialogController,
-                        stringResources = stringResources,
+                        tryOnFeatureStrings = stringResources,
                         origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
                 },
@@ -129,17 +124,15 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
     val sharedCorner = RoundedCornerShape(size = 8.dp)
 
     Row(
-        modifier =
-        modifier
-            .clickableUnindicated {
-                controller.bottomSheetNavigator.show(
-                    NavigationBottomSheetScreen.SKUInfo(
-                        primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
-                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                        skuItem = activeSKUItem,
-                    ),
-                )
-            },
+        modifier = modifier.clickableUnindicated {
+            controller.bottomSheetNavigator.show(
+                NavigationBottomSheetScreen.SKUInfo(
+                    primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
+                    originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    skuItem = activeSKUItem,
+                ),
+            )
+        },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(

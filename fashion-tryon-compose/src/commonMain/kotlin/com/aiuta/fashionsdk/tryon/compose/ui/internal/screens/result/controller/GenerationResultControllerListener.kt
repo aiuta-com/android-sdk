@@ -28,7 +28,7 @@ internal fun GenerateMoreListener() {
                 aiutaConfiguration = aiutaConfiguration,
                 coilContext = coilContext,
                 dialogController = dialogController,
-                stringResources = stringResources,
+                tryOnFeatureStrings = stringResources,
                 origin = StartTryOnEvent.TryOnOrigin.RETAKE_BUTTON,
             )
             controller.navigateBack()

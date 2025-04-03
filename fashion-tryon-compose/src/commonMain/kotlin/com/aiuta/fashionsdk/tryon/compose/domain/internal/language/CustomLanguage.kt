@@ -11,9 +11,6 @@ public class CustomLanguage(
     override val imageSelectorChangeButton: String,
     override val imageSelectorPoweredByAiuta: String,
     override val imageSelectorProtectionPoint: String,
-    override val imageSelectorUploadingImage: String,
-    override val imageSelectorScanningBody: String,
-    override val imageSelectorGeneratingOutfit: String,
     override val modelSelectorCategories: List<TranslationWord>,
     override val modelSelectorErrorEmptyModelsList: String,
     // History

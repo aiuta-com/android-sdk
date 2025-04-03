@@ -109,7 +109,6 @@ internal fun GenerationResultBody(
                     .fillMaxWidth()
                     .fillMaxHeight(heightFraction.value),
                 sessionImage = sessionImage,
-                itemIndex = index,
                 generationResultController = generationResultController,
                 pageOffset = pageOffset,
             )
@@ -121,7 +120,6 @@ internal fun GenerationResultBody(
 private fun PagerItem(
     modifier: Modifier = Modifier,
     sessionImage: SessionImageUIModel,
-    itemIndex: Int,
     generationResultController: GenerationResultController,
     pageOffset: State<Float>,
 ) {
@@ -188,7 +186,6 @@ private fun PagerItem(
         PagerItemInterface(
             modifier = Modifier.fillMaxSize(),
             sessionImage = sessionImage,
-            itemIndex = itemIndex,
             generationResultController = generationResultController,
             hazeState = hazeState,
             pageOffset = pageOffset,
@@ -200,7 +197,6 @@ private fun PagerItem(
 internal fun BoxScope.PagerItemInterface(
     modifier: Modifier = Modifier,
     sessionImage: SessionImageUIModel,
-    itemIndex: Int,
     generationResultController: GenerationResultController,
     hazeState: HazeState,
     pageOffset: State<Float>,
@@ -242,7 +238,6 @@ internal fun BoxScope.PagerItemInterface(
             .align(Alignment.BottomEnd)
             .padding(12.dp),
         sessionImage = sessionImage,
-        itemIndex = itemIndex,
         hazeState = hazeState,
         generationResultController = generationResultController,
         isInterfaceVisible = isVisible,

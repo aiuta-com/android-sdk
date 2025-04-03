@@ -17,10 +17,6 @@ internal class RussianAiutaTryOnLanguage(
     override val imageSelectorPoweredByAiuta: String = "Powered by Aiuta"
     override val imageSelectorProtectionPoint: String = "Ваши фото защищены и видны только вам"
 
-    override val imageSelectorUploadingImage: String = "Загружаем фото"
-    override val imageSelectorScanningBody: String = "Сканируем"
-    override val imageSelectorGeneratingOutfit: String = "Генерируем образ"
-
     // Model selector
     override val modelSelectorCategories: List<TranslationWord> =
         listOf(

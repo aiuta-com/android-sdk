@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.GenerationResultBody
@@ -33,6 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.rememberGenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
@@ -102,21 +104,22 @@ private fun BottomSheetScaffoldContent(
     modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+
     Column(
         modifier = modifier,
     ) {
         MainAppBar(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
+            title = tryOnFeature.strings.tryOnPageTitle,
         )
 
         Spacer(Modifier.height(16.dp))
 
         GenerationResultBody(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
             generationResultController = generationResultController,
@@ -125,8 +128,7 @@ private fun BottomSheetScaffoldContent(
         Spacer(Modifier.height(32.dp))
 
         DisclaimerBlock(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .height(25.dp)
                 .fillMaxWidth(),
         )

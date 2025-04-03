@@ -18,6 +18,8 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -33,6 +35,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
@@ -134,6 +137,16 @@ private fun ButtonsContainer(
     val activeSKUItem = controller.activeSKUItem.value
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+
+    val isPrimaryButtonVisible = remember {
+        derivedStateOf {
+            when (skuInfo.primaryButtonState) {
+                PrimaryButtonState.ADD_TO_CART -> tryOnFeature.dataProvider != null
+                PrimaryButtonState.TRY_ON -> true
+            }
+        }
+    }
 
     Row(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
@@ -165,35 +178,37 @@ private fun ButtonsContainer(
             Spacer(Modifier.width(8.dp))
         }
 
-        FashionButton(
-            modifier =
-            Modifier
-                .weight(1f)
-                .fillMaxHeight(),
-            text =
-            if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                stringResources.addToCart
-            } else {
-                imageSelectorFeature.strings.imageSelectorButtonTryOn
-            },
-            icon =
-            theme.icons.magic20.takeIf {
-                skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
-            },
-            style = FashionButtonStyles.primaryStyle(theme),
-            size = FashionButtonSizes.lSize(),
-            onClick = {
-                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.clickAddToCart(
-                        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                        skuId = skuInfo.skuItem.skuId,
-                    )
+        if (isPrimaryButtonVisible.value) {
+            FashionButton(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                text = if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    tryOnFeature.strings.tryOnButtonAddToCart
                 } else {
-                    controller.changeActiveSKU(skuInfo.skuItem)
-                    controller.bottomSheetNavigator.hide()
-                    controller.navigateBack()
-                }
-            },
-        )
+                    imageSelectorFeature.strings.imageSelectorButtonTryOn
+                },
+                icon = theme.icons.magic20.takeIf {
+                    skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
+                },
+                style = FashionButtonStyles.primaryStyle(theme),
+                size = FashionButtonSizes.lSize(),
+                onClick = {
+                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                        tryOnFeature.dataProvider?.let { dataProvider ->
+                            controller.clickAddToCart(
+                                pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                skuId = skuInfo.skuItem.skuId,
+                                dataProvider = dataProvider,
+                            )
+                        }
+                    } else {
+                        controller.changeActiveSKU(skuInfo.skuItem)
+                        controller.bottomSheetNavigator.hide()
+                        controller.navigateBack()
+                    }
+                },
+            )
+        }
     }
 }

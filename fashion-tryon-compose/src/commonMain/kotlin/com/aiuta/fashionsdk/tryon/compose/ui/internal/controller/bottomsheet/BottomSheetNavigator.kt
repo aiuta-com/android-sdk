@@ -74,9 +74,7 @@ internal class BottomSheetNavigator(
             }
 
             is NavigationBottomSheetScreen.Feedback -> {
-                FeedbackSheet(
-                    feedbackData = bottomScreen,
-                )
+                FeedbackSheet()
             }
 
             is NavigationBottomSheetScreen.ExtraFeedback -> {
@@ -86,9 +84,7 @@ internal class BottomSheetNavigator(
             }
 
             is NavigationBottomSheetScreen.FitDisclaimer -> {
-                FitDisclaimerSheet(
-                    text = bottomScreen.text,
-                )
+                FitDisclaimerSheet()
             }
 
             is NavigationBottomSheetScreen.GeneratedOperations -> {

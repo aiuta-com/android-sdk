@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
@@ -15,6 +16,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.S
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 
 // Configs
 internal val skippedBackStackScreens =
@@ -153,10 +155,14 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
+    val isGenerationsHistoryFeatureAvailable = isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
 
     return remember(generationStatus.value) {
         derivedStateOf {
-            generationStatus.value != SKUGenerationUIStatus.LOADING && historyImageCount.value != 0
+            val isGenerationNotLoading = generationStatus.value != SKUGenerationUIStatus.LOADING
+            val isGenerationsHistoryNotEmpty = historyImageCount.value != 0
+
+            isGenerationNotLoading && isGenerationsHistoryFeatureAvailable && isGenerationsHistoryNotEmpty
         }
     }
 }

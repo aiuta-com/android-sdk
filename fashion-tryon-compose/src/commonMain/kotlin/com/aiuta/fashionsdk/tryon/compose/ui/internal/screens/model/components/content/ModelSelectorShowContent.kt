@@ -28,6 +28,7 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
@@ -52,6 +53,7 @@ internal fun ModelSelectorShowContent(
 
     val screenSize = rememberScreenSize()
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
     val bottomPadding = screenSize.heightDp * MODEL_IMAGE_BOTTOM_PADDING_COEF
@@ -121,18 +123,12 @@ internal fun ModelSelectorShowContent(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
                 text = imageSelectorFeature.strings.imageSelectorButtonTryOn,
-                style =
-                if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
+                style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
                         contentColor = theme.colors.onDark,
-                        gradientBackground =
-                        Brush.horizontalGradient(
-                            theme.gradients.tryOnButtonBackground,
-                        ),
+                        gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
                     )
-                } else {
-                    FashionButtonStyles.primaryStyle(theme)
-                },
+                } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 icon = theme.icons.magic20,
                 onClick = {

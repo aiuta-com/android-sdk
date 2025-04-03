@@ -10,12 +10,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun AiutaLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     Box(
         modifier =
@@ -31,7 +33,7 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = stringResources.imageSelectorPoweredByAiuta,
+            text = tryOnFeature.strings.tryOnPoweredByAiuta,
             style = theme.typography.smallButton,
             color = theme.colors.primary,
         )

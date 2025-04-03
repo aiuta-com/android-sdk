@@ -26,7 +26,7 @@ internal fun ImageSelectorAutoTryOnListener() {
                 aiutaConfiguration = aiutaConfiguration,
                 coilContext = coilContext,
                 dialogController = dialogController,
-                stringResources = stringResources,
+                tryOnFeatureStrings = stringResources,
                 origin = StartTryOnEvent.TryOnOrigin.SELECTED_PHOTO,
             )
         }

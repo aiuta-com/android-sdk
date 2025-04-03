@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
@@ -22,11 +22,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appb
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
-internal fun MainAppBar(modifier: Modifier = Modifier) {
+internal fun MainAppBar(
+    modifier: Modifier = Modifier,
+    title: String,
+) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
 
     val historyButton: @Composable BoxScope.(modifier: Modifier) -> Unit = { innerModifier ->
@@ -36,8 +38,10 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
+            val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
+
             AppBarIcon(
-                icon = theme.icons.history24,
+                icon = generationsHistoryFeature.icons.history24,
                 color = theme.colors.primary,
                 onClick = {
                     controller.navigateTo(NavigationScreen.History)
@@ -69,7 +73,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = imageSelectorFeature.strings.imageSelectorPageTitle,
+                text = title,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,

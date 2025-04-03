@@ -3,9 +3,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 import coil3.PlatformContext
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
@@ -47,7 +47,7 @@ internal fun FashionTryOnController.startGeneration(
     aiutaConfiguration: AiutaTryOnConfiguration,
     coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
-    stringResources: InternalAiutaTryOnLanguage,
+    tryOnFeatureStrings: AiutaTryOnFeatureStrings,
     // Analytic
     origin: StartTryOnEvent.TryOnOrigin,
 ) {
@@ -84,7 +84,7 @@ internal fun FashionTryOnController.startGeneration(
                     coilContext = coilContext,
                     dialogController = dialogController,
                     operation = operation,
-                    stringResources = stringResources,
+                    tryOnFeatureStrings = tryOnFeatureStrings,
                     generatedOperationFactory = generatedOperationFactory,
                 )
             }
@@ -183,7 +183,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
     coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
     operation: SKUGenerationOperation,
-    stringResources: InternalAiutaTryOnLanguage,
+    tryOnFeatureStrings: AiutaTryOnFeatureStrings,
     generatedOperationFactory: GeneratedOperationFactory,
 ) {
     when (operation) {
@@ -249,7 +249,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                             controller = this@solveOperationCollecting,
                             dialogController = dialogController,
                             coilContext = coilContext,
-                            stringResources = stringResources,
+                            tryOnFeatureStrings = tryOnFeatureStrings,
                         ),
                     )
                 }
@@ -270,8 +270,8 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     dialogController.showDialog(
                         dialogState =
                         AiutaTryOnDialogState(
-                            description = stringResources.dialogInvalidImageDescription,
-                            confirmButton = stringResources.imageSelectorChangeButton,
+                            description = tryOnFeatureStrings.tryOnDialogDescriptionInvalidImage,
+                            confirmButton = tryOnFeatureStrings.tryOnDialogButtonInvalidImage,
                             onConfirm = dialogController::hideDialog,
                         ),
                     )
@@ -285,7 +285,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                             controller = this@solveOperationCollecting,
                             dialogController = dialogController,
                             coilContext = coilContext,
-                            stringResources = stringResources,
+                            tryOnFeatureStrings = tryOnFeatureStrings,
                         ),
                     )
                 }

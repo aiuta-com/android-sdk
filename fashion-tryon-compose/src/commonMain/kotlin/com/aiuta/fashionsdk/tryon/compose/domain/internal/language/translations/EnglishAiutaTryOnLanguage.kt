@@ -18,10 +18,6 @@ internal class EnglishAiutaTryOnLanguage(
     override val imageSelectorProtectionPoint: String =
         "Your photos are protected and visible only to you"
 
-    override val imageSelectorUploadingImage: String = "Uploading image"
-    override val imageSelectorScanningBody: String = "Scanning your body"
-    override val imageSelectorGeneratingOutfit: String = "Generating outfit"
-
     // Model selector
     override val modelSelectorCategories: List<TranslationWord> =
         listOf(

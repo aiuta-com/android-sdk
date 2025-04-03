@@ -30,19 +30,20 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendGenerationFeedback
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.ExtraFeedback) {
     val controller = LocalController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
+
+    val otherFeedbackFeature = strictProvideFeature<AiutaTryOnFeedbackOtherFeature>()
 
     val feedbackText = remember { mutableStateOf("") }
 
@@ -58,24 +59,23 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
     ) {
         Spacer(Modifier.height(14.dp))
 
-        AiutaIcon(
-            modifier =
-            Modifier
-                .size(24.dp)
+        Text(
+            modifier = Modifier
                 .align(Alignment.End)
                 .clickableUnindicated {
                     controller.bottomSheetNavigator.hide()
                 },
-            icon = theme.icons.close24,
-            contentDescription = null,
-            tint = theme.colors.primary,
+            text = otherFeedbackFeature.strings.otherFeedbackButtonCancel,
+            style = theme.typography.regular,
+            color = theme.colors.primary,
+            textAlign = TextAlign.Center,
         )
 
         Spacer(Modifier.height(32.dp))
 
         Text(
             modifier = Modifier.align(Alignment.Start),
-            text = data.extraOptionTitle,
+            text = otherFeedbackFeature.strings.otherFeedbackTitle,
             style = theme.typography.titleL,
             color = theme.colors.primary,
             textAlign = TextAlign.Start,
@@ -107,7 +107,7 @@ internal fun ColumnScope.ExtraFeedbackSheet(data: NavigationBottomSheetScreen.Ex
 
         FashionButton(
             modifier = Modifier.fillMaxWidth().windowInsetsPadding(WindowInsets.ime),
-            text = stringResources.feedbackSheetSendFeedback,
+            text = otherFeedbackFeature.strings.otherFeedbackButtonSend,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             onClick = {

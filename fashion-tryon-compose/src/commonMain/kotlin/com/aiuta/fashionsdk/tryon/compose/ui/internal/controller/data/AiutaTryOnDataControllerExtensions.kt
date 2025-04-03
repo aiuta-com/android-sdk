@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data
 
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.TryOnModelsCategoryUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUiModel
 
@@ -10,13 +9,6 @@ internal suspend fun AiutaTryOnDataController.preloadConfig() {
     } catch (e: Exception) {
         // Failed to preload config
     }
-}
-
-internal suspend fun AiutaTryOnDataController.provideFeedbackFeature(): FeedbackFeatureUiModel? = try {
-    configRepository.getFeedbackFeature()?.toUiModel()
-} catch (e: Exception) {
-    // Failed to solve feedback feature
-    null
 }
 
 internal suspend fun AiutaTryOnDataController.provideTryOnModelsCategories(

@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import kotlinx.coroutines.flow.Flow
 
@@ -23,6 +23,6 @@ internal interface GeneratedImageInteractor {
     companion object {
         fun getInstance(aiuta: Aiuta): GeneratedImageInteractor = LocalGeneratedImageInteractor.getInstance(aiuta.platformContext)
 
-        fun getInstance(dataProvider: AiutaDataProvider): GeneratedImageInteractor = HostGeneratedImageInteractor.getInstance(dataProvider)
+        fun getInstance(dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider): GeneratedImageInteractor = HostGeneratedImageInteractor.getInstance(dataProvider)
     }
 }

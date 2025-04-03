@@ -18,41 +18,26 @@ public interface AiutaIcons {
     // x100
     public val recent100: AiutaIcon?
 
-    // x82
-    public val welcomeScreen82: AiutaIcon
-
     // x36
     public val error36: AiutaIcon
-    public val like36: AiutaIcon
-    public val dislike36: AiutaIcon
     public val imageError36: AiutaIcon
 
     // x24
     public val back24: AiutaIcon
     public val camera24: AiutaIcon
-    public val checkCorrect24: AiutaIcon
-    public val checkNotCorrect24: AiutaIcon
     public val close24: AiutaIcon
-    public val history24: AiutaIcon
     public val magic20: AiutaIcon
-    public val photoLibrary24: AiutaIcon
     public val trash24: AiutaIcon
-    public val takePhoto24: AiutaIcon
-    public val selectModel24: AiutaIcon
     public val share24: AiutaIcon
     public val wishlist24: AiutaIcon
     public val wishlistFill24: AiutaIcon
 
     // x20
     public val check20: AiutaIcon
-    public val info20: AiutaIcon
 
     // x16
     public val lock16: AiutaIcon
     public val arrow16: AiutaIcon
-
-    // x14
-    public val loading14: AiutaIcon
 }
 
 @Immutable

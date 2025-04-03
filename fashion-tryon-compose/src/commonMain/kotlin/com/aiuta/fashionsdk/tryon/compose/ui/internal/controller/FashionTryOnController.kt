@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
@@ -48,6 +49,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     val coilContext = LocalPlatformContext.current
 
     val uploadsHistoryFeature = aiutaTryOnConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val generationsHistoryFeature = aiutaTryOnConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
 
     val activeSKUItem =
         remember {
@@ -77,9 +79,10 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         }
 
     // Data providers
+    // TODO Support empty data providers
     val generatedImageInteractor =
         remember {
-            aiutaTryOnConfiguration.dataProvider?.let { dataProvider ->
+            generationsHistoryFeature?.dataProvider?.let { dataProvider ->
                 GeneratedImageInteractor.getInstance(dataProvider)
             } ?: GeneratedImageInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
         }
@@ -136,8 +139,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }.also {
         it.generationNavigationListener()
-        it.generationCancellationListener(aiutaTryOnConfiguration)
-        it.historyAvailabilityListener(aiutaTryOnConfiguration)
+        it.generationCancellationListener()
+        it.historyAvailabilityListener()
         it.updationActiveSKUItemListener()
     }
 }

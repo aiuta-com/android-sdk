@@ -17,10 +17,6 @@ internal class TurkishAiutaTryOnLanguage(
     override val imageSelectorPoweredByAiuta: String = "Tarafından desteklenmektedir Aiuta"
     override val imageSelectorProtectionPoint: String = "Fotoğraflarınız koruma altındadır ve yalnızca size görünür"
 
-    override val imageSelectorUploadingImage: String = "Resim yükleme"
-    override val imageSelectorScanningBody: String = "Vücudunu taramak"
-    override val imageSelectorGeneratingOutfit: String = "Ürün uygulanıyor"
-
     override val modelSelectorCategories: List<TranslationWord> =
         listOf(
             TranslationWord(id = "woman", translation = "Kadın"),

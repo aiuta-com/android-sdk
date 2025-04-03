@@ -5,13 +5,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGeneratedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteUploadedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
@@ -33,14 +33,15 @@ internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener(
 @Composable
 private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesListener() {
     val controller = LocalController.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+
+    val generationsHistoryFeature = provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val dataProvider = generationsHistoryFeature?.dataProvider
 
     // Observe external changes of generated images and delete
     dataProvider?.let {
         LaunchedEffect(Unit) {
             dataProvider
-                .generatedImagesFlow
+                .generatedImages
                 .map { images ->
                     // Make as list to compensate forEach with inner contains
                     images.map { image -> image.toImageUiModel() }.toSet()
@@ -84,13 +85,13 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
 private fun AiutaTryOnLoadingActionsController.showErrorDeletingGeneratedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+    val generationsHistoryFeature = provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val dataProvider = generationsHistoryFeature?.dataProvider
 
     dataProvider?.let {
         LaunchedEffect(Unit) {
             dataProvider
-                .isErrorDeletingGeneratedImagesFlow
+                .isErrorDeletingGeneratedImages
                 .onEach { isHostErrorDeletingGenerated ->
                     if (isHostErrorDeletingGenerated) {
                         // Move from loading to retry

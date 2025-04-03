@@ -6,6 +6,6 @@ public interface AiutaImageSelectorUploadsHistoryFeatureStyles {
     public val changePhotoButtonStyle: ButtonsMode
 
     public class Default : AiutaImageSelectorUploadsHistoryFeatureStyles {
-        override val changePhotoButtonStyle: ButtonsMode = ButtonsMode.PRIMARY
+        override val changePhotoButtonStyle: ButtonsMode = ButtonsMode.BLURRED
     }
 }

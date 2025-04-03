@@ -19,17 +19,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.selector.ImageSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.content.empty.ImageSelectorScreenEmptyContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.content.nonempty.ImageSelectorScreenNonEmptyContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
+
+    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
 
     val screenState =
         remember {
@@ -54,6 +58,7 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
+            title = imageSelectorFeature.strings.imageSelectorPageTitle,
         )
 
         Spacer(Modifier.height(16.dp))
