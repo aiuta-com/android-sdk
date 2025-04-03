@@ -188,7 +188,7 @@ private fun ButtonsContainer(
                 } else {
                     imageSelectorFeature.strings.imageSelectorButtonTryOn
                 },
-                icon = theme.icons.magic20.takeIf {
+                icon = tryOnFeature.icons.magic20.takeIf {
                     skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
                 },
                 style = FashionButtonStyles.primaryStyle(theme),

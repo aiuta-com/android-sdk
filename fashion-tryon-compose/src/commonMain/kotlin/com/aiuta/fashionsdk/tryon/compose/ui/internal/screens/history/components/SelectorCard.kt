@@ -19,9 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 @Composable
 internal fun SelectorCard(
@@ -34,9 +35,10 @@ internal fun SelectorCard(
     onShare: () -> Unit,
     onDelete: () -> Unit,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
+
+    val shareFeature = provideFeature<AiutaShareFeature>()
 
     Row(
         modifier =
@@ -99,11 +101,11 @@ internal fun SelectorCard(
                 onDelete()
             }
 
-            if (aiutaConfiguration.toggles.isShareAvailable) {
+            shareFeature?.let {
                 Spacer(Modifier.width(16.dp))
 
                 SmallIconButton(
-                    icon = theme.icons.share24,
+                    icon = shareFeature.icons.share24,
                     isActive = isActionActive,
                 ) {
                     onShare()

@@ -15,8 +15,6 @@ import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
  */
 @Immutable
 public interface AiutaIcons {
-    // x100
-    public val recent100: AiutaIcon?
 
     // x36
     public val error36: AiutaIcon
@@ -26,18 +24,12 @@ public interface AiutaIcons {
     public val back24: AiutaIcon
     public val camera24: AiutaIcon
     public val close24: AiutaIcon
-    public val magic20: AiutaIcon
     public val trash24: AiutaIcon
-    public val share24: AiutaIcon
     public val wishlist24: AiutaIcon
     public val wishlistFill24: AiutaIcon
 
     // x20
     public val check20: AiutaIcon
-
-    // x16
-    public val lock16: AiutaIcon
-    public val arrow16: AiutaIcon
 }
 
 @Immutable

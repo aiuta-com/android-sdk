@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
@@ -23,6 +24,7 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     Row(
         modifier =
@@ -39,7 +41,7 @@ internal fun TryOnLabel(modifier: Modifier = Modifier) {
     ) {
         AiutaIcon(
             modifier = Modifier.size(20.dp),
-            icon = theme.icons.magic20,
+            icon = tryOnFeature.icons.magic20,
             contentDescription = null,
             tint = theme.colors.onDark,
         )

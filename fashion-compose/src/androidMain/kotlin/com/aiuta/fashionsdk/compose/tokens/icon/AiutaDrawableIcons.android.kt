@@ -13,8 +13,6 @@ import android.graphics.drawable.Drawable
  * @see AiutaIcons
  */
 public class AiutaDrawableIcons(
-    // x100
-    public override val recent100: AiutaDrawableIcon?,
     // x36
     public override val error36: AiutaDrawableIcon,
     public override val imageError36: AiutaDrawableIcon,
@@ -23,15 +21,10 @@ public class AiutaDrawableIcons(
     public override val camera24: AiutaDrawableIcon,
     public override val close24: AiutaDrawableIcon,
     public override val trash24: AiutaDrawableIcon,
-    public override val magic20: AiutaDrawableIcon,
-    public override val share24: AiutaDrawableIcon,
     public override val wishlist24: AiutaDrawableIcon,
     public override val wishlistFill24: AiutaDrawableIcon,
     // x20
     public override val check20: AiutaDrawableIcon,
-    // x16
-    public override val lock16: AiutaDrawableIcon,
-    public override val arrow16: AiutaDrawableIcon,
 ) : AiutaIcons
 
 public class AiutaDrawableIcon(

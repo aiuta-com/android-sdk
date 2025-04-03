@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -391,17 +390,6 @@ private fun BoxScope.HistoryScreenEmpty(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            theme.icons.recent100?.let {
-                AiutaIcon(
-                    modifier = Modifier.size(100.dp),
-                    icon = it,
-                    contentDescription = null,
-                    tint = theme.colors.tertiary,
-                )
-
-                Spacer(Modifier.height(36.dp))
-            }
-
             Text(
                 modifier = Modifier.padding(horizontal = 30.dp),
                 text = stringResources.historyEmptyDescription,

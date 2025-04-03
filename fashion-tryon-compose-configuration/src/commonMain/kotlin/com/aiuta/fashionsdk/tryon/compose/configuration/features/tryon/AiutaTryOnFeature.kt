@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.dataprovi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.icons.AiutaTryOnFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.styles.AiutaTryOnFeatureStyles
@@ -19,6 +20,7 @@ public class AiutaTryOnFeature private constructor(
     public val feedback: AiutaTryOnFeedbackFeature?,
     public val generationsHistory: AiutaTryOnGenerationsHistoryFeature?,
     // General
+    public val icons: AiutaTryOnFeatureIcons,
     public val toggles: AiutaTryOnFeatureToggles,
     public val strings: AiutaTryOnFeatureStrings,
     public val styles: AiutaTryOnFeatureStyles,
@@ -30,6 +32,7 @@ public class AiutaTryOnFeature private constructor(
         public var fitDisclaimer: AiutaTryOnFitDisclaimerFeature? = null
         public var feedback: AiutaTryOnFeedbackFeature? = null
         public var generationsHistory: AiutaTryOnGenerationsHistoryFeature? = null
+        public var icons: AiutaTryOnFeatureIcons? = null
         public var toggles: AiutaTryOnFeatureToggles? = null
         public var strings: AiutaTryOnFeatureStrings? = null
         public var styles: AiutaTryOnFeatureStyles? = null
@@ -46,6 +49,10 @@ public class AiutaTryOnFeature private constructor(
                 fitDisclaimer = fitDisclaimer,
                 feedback = feedback,
                 generationsHistory = generationsHistory,
+                icons = icons.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "icons",
+                ),
                 toggles = toggles.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "toggles",

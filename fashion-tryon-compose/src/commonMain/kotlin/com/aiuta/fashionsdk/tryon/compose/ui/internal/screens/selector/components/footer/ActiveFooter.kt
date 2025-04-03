@@ -37,7 +37,6 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaI
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
@@ -51,7 +50,6 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
@@ -97,13 +95,13 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                     )
                 } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                icon = theme.icons.magic20,
+                icon = tryOnFeature.icons.magic20,
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
                         coilContext = coilContext,
                         dialogController = dialogController,
-                        tryOnFeatureStrings = stringResources,
+                        tryOnFeatureStrings = tryOnFeature.strings,
                         origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
                 },
@@ -119,8 +117,9 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
+    val activeSKUItem = controller.activeSKUItem.value
     val sharedCorner = RoundedCornerShape(size = 8.dp)
 
     Row(
@@ -181,7 +180,7 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
             Modifier
                 .size(16.dp)
                 .align(Alignment.CenterVertically),
-            icon = theme.icons.arrow16,
+            icon = tryOnFeature.icons.arrow16,
             contentDescription = null,
             tint = theme.colors.neutral3,
         )

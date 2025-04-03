@@ -13,8 +13,6 @@ import org.jetbrains.compose.resources.DrawableResource
  * @see AiutaIcons
  */
 public class AiutaResourceIcons(
-    // x100
-    public override val recent100: AiutaResourceIcon?,
     // x36
     public override val error36: AiutaResourceIcon,
     public override val imageError36: AiutaResourceIcon,
@@ -22,16 +20,11 @@ public class AiutaResourceIcons(
     public override val back24: AiutaResourceIcon,
     public override val camera24: AiutaResourceIcon,
     public override val close24: AiutaResourceIcon,
-    public override val magic20: AiutaResourceIcon,
     public override val trash24: AiutaResourceIcon,
-    public override val share24: AiutaResourceIcon,
     public override val wishlist24: AiutaResourceIcon,
     public override val wishlistFill24: AiutaResourceIcon,
     // x20
     public override val check20: AiutaResourceIcon,
-    // x16
-    public override val lock16: AiutaResourceIcon,
-    public override val arrow16: AiutaResourceIcon,
 ) : AiutaIcons
 
 public class AiutaResourceIcon(

@@ -130,7 +130,7 @@ internal fun ModelSelectorShowContent(
                     )
                 } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                icon = theme.icons.magic20,
+                icon = tryOnFeature.icons.magic20,
                 onClick = {
                     activeImageModel.value?.let { model ->
                         // Save model
