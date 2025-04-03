@@ -5,4 +5,5 @@ import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 public interface AiutaTryOnFeedbackFeatureIcons {
     public val like36: AiutaIcon
     public val dislike36: AiutaIcon
+    public val gratitude40: AiutaIcon
 }

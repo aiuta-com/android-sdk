@@ -3,5 +3,5 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 
 public interface AiutaTryOnLoadingPageFeatureIcons {
-    public val loading14: AiutaIcon
+    public val loading14: AiutaIcon?
 }

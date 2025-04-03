@@ -20,6 +20,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermark
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
@@ -58,6 +59,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
         AiutaTryOnLoadingPageFeature::class -> tryOn.loadingPage
         AiutaTryOnFitDisclaimerFeature::class -> tryOn.fitDisclaimer
         AiutaTryOnFeedbackFeature::class -> tryOn.feedback
+        AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback
         AiutaTryOnGenerationsHistoryFeature::class -> tryOn.generationsHistory
         // Share
         AiutaShareFeature::class -> share
