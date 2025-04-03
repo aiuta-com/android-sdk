@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons
+package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.styles
 
 public enum class ButtonsMode { PRIMARY, BLURRED }
 

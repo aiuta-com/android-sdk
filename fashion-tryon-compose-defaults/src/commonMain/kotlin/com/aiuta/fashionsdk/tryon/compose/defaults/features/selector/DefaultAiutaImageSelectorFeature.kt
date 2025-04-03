@@ -5,8 +5,8 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.strings.AiutaImageSelectorCameraFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.photoGallery
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.strings.AiutaImageSelectorPhotoGalleryFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.styles.AiutaImageSelectorUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.uploadsHistory
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.imageSelector
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.predefinedModels

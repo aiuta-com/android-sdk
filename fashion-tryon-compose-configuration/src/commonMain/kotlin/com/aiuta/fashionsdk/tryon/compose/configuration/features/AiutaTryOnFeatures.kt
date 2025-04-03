@@ -15,6 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
@@ -24,6 +25,7 @@ public class AiutaTryOnFeatures private constructor(
     public val onboarding: AiutaOnboardingFeature?,
     public val consent: AiutaConsentFeature?,
     public val imageSelector: AiutaImageSelectorFeature,
+    public val tryOn: AiutaTryOnFeature,
 ) {
     public inline fun <reified T : AiutaFeature> provideFeature(): T? = when (T::class) {
         // Welcome
@@ -42,6 +44,8 @@ public class AiutaTryOnFeatures private constructor(
         AiutaImageSelectorPhotoGalleryFeature::class -> imageSelector.photoGallery
         AiutaImageSelectorPredefinedModelFeature::class -> imageSelector.predefinedModels
         AiutaImageSelectorUploadsHistoryFeature::class -> imageSelector.uploadsHistory
+        // Try on
+        AiutaTryOnFeature::class -> tryOn
         else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 
@@ -60,6 +64,7 @@ public class AiutaTryOnFeatures private constructor(
         public var onboarding: AiutaOnboardingFeature? = null
         public var consent: AiutaConsentFeature? = null
         public var imageSelector: AiutaImageSelectorFeature? = null
+        public var tryOn: AiutaTryOnFeature? = null
 
         public fun build(): AiutaTryOnFeatures {
             val parentClass = "AiutaTryOnFeatures"
@@ -70,6 +75,10 @@ public class AiutaTryOnFeatures private constructor(
                 imageSelector = imageSelector.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "imageSelector",
+                ),
+                tryOn = tryOn.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "tryOn",
                 ),
             )
         }

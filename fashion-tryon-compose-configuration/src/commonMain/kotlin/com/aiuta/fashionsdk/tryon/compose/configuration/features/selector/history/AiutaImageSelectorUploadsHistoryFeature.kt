@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.histo
 
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.buttons.AiutaImageSelectorUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.styles.AiutaImageSelectorUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
 public class AiutaImageSelectorUploadsHistoryFeature private constructor(
