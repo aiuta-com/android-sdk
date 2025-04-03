@@ -5,6 +5,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.dataprovider.AiutaTryOnFeatureDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -13,22 +14,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.se
 internal fun FashionTryOnController.clickAddToWishListActiveSKU(
     pageId: AiutaAnalyticPageId,
     skuId: String,
+    updatedWishlistState: Boolean,
+    dataProvider: AiutaWishlistFeatureDataProvider,
 ) {
     sendResultEvent(
         event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST,
         pageId = pageId,
         productId = skuId,
     )
-    aiutaTryOnListeners.addToWishlistClick(activeSKUItem.value)
-}
-
-internal fun FashionTryOnController.clickAddToWishListGenerateMoreItem(skuItem: SKUItem) {
-    sendResultEvent(
-        event = AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST,
-        pageId = AiutaAnalyticPageId.RESULTS,
-        productId = skuItem.skuId,
-    )
-    aiutaTryOnListeners.addToWishlistClick(skuItem)
+    dataProvider.changeInWishlistStateAction(skuId, updatedWishlistState)
 }
 
 internal fun FashionTryOnController.clickAddToCart(

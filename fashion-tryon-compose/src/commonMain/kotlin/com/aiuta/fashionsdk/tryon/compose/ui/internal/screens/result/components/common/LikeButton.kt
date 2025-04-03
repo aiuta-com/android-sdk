@@ -12,12 +12,14 @@ import androidx.compose.ui.unit.Dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 
 @Composable
 internal fun LikeButton(
     modifier: Modifier = Modifier,
     isLiked: Boolean,
     iconSize: Dp,
+    wishlistFeature: AiutaWishlistFeature,
     onClick: (currentState: Boolean) -> Unit,
 ) {
     val theme = LocalTheme.current
@@ -36,11 +38,10 @@ internal fun LikeButton(
     ) {
         AiutaIcon(
             modifier = Modifier.size(iconSize),
-            icon =
-            if (isLiked) {
-                theme.icons.wishlistFill24
+            icon = if (isLiked) {
+                wishlistFeature.icons.wishlistFill24
             } else {
-                theme.icons.wishlist24
+                wishlistFeature.icons.wishlist24
             },
             contentDescription = null,
             tint = Color.Unspecified,

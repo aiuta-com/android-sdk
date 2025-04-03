@@ -36,20 +36,22 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
 
 @Composable
 internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
@@ -130,7 +132,6 @@ private fun ButtonsContainer(
     skuInfo: NavigationBottomSheetScreen.SKUInfo,
 ) {
     val controller = LocalController.current
-    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
 
@@ -138,6 +139,7 @@ private fun ButtonsContainer(
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
     val isPrimaryButtonVisible = remember {
         derivedStateOf {
@@ -152,17 +154,18 @@ private fun ButtonsContainer(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (configuration.toggles.isWishlistAvailable) {
+        wishlistFeature?.let {
+            val inWishlist = wishlistFeature.inWishlistListener()
+
             FashionButton(
                 modifier =
                 Modifier
                     .weight(1f)
                     .fillMaxHeight(),
-                icon =
-                if (activeSKUItem.inWishlist) {
-                    theme.icons.wishlistFill24
+                icon = if (inWishlist.value) {
+                    wishlistFeature.icons.wishlistFill24
                 } else {
-                    theme.icons.wishlist24
+                    wishlistFeature.icons.wishlist24
                 },
                 text = stringResources.addToWish,
                 style = FashionButtonStyles.secondaryStyle(theme),
@@ -170,6 +173,8 @@ private fun ButtonsContainer(
                 onClick = {
                     controller.clickAddToWishListActiveSKU(
                         pageId = skuInfo.originPageId,
+                        updatedWishlistState = !inWishlist.value,
+                        dataProvider = wishlistFeature.dataProvider,
                         skuId = activeSKUItem.skuId,
                     )
                 },

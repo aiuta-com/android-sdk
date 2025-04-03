@@ -101,6 +101,5 @@ internal val DefaultSKUItem by lazy {
         imageUrls = emptyList(),
         localizedPrice = "",
         store = "",
-        inWishlist = false,
     )
 }
