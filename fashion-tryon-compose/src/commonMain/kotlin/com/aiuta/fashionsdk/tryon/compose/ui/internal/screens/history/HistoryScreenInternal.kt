@@ -51,9 +51,11 @@ import coil3.request.crossfade
 import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.images.painterResource
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
@@ -72,6 +74,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import kotlinx.coroutines.launch
@@ -307,11 +310,16 @@ private fun BoxScope.HistoryScreenInterface(
     val controller = LocalController.current
     val coilContext = LocalPlatformContext.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-    val theme = LocalTheme.current
+
+    val shareFeature = provideFeature<AiutaShareFeature>()
 
     val scope = rememberCoroutineScope()
     val generatedImages = getGeneratedImages()
     val shareManager = rememberShareManagerV2()
+
+    val watermarkPainter = shareFeature?.watermark?.images?.logo?.let { logo ->
+        painterResource(logo)
+    }
 
     AnimatedVisibility(
         modifier =
@@ -348,6 +356,9 @@ private fun BoxScope.HistoryScreenInterface(
                             .getList()
                             .map { it.imageUrl }
 
+                    val skuIds = listOf(controller.activeSKUItem.value.skuId)
+                    val shareText = shareFeature?.dataProvider?.requestShareTextAction?.invoke(skuIds)
+
                     // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()
 
@@ -356,11 +367,11 @@ private fun BoxScope.HistoryScreenInterface(
                     )
 
                     shareManager.shareImages(
-                        coilContext = coilContext,
+                        content = shareText,
                         pageId = AiutaAnalyticPageId.HISTORY,
                         productId = controller.activeSKUItem.value.skuId,
                         imageUrls = imageUrls,
-                        watermark = theme.watermark,
+                        watermark = watermarkPainter,
                     )
                 }
             },

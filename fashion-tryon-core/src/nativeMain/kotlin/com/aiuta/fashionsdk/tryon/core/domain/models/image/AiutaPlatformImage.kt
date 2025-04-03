@@ -19,7 +19,7 @@ import platform.UIKit.UIGraphicsGetImageFromCurrentImageContext
 import platform.UIKit.UIImage
 import platform.UIKit.UIImageJPEGRepresentation
 
-actual class AiutaPlatformImage(
+public actual class AiutaPlatformImage(
     private val image: UIImage,
 ) {
     public actual val byteArray: ByteArray by lazy { toByteArray() }

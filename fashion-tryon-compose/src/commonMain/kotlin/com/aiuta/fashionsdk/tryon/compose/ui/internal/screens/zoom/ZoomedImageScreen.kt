@@ -44,12 +44,13 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.compose.tokens.images.painterResource
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
@@ -59,6 +60,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.TRANSITION_ANIM_DURATION
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toIntOffset
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.launch
 
 @Composable
@@ -172,11 +174,12 @@ private fun ZoomedImageScreenContent(
     imageOffset: State<IntOffset>,
     imageSize: State<Size>,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val theme = LocalTheme.current
     val stringResources = LocalAiutaTryOnStringResources.current
+
+    val shareFeature = provideFeature<AiutaShareFeature>()
 
     val scope = rememberCoroutineScope()
     val shareManager = rememberShareManagerV2()
@@ -256,23 +259,28 @@ private fun ZoomedImageScreenContent(
                 tint = interfaceColor.value,
             )
 
-            if (aiutaConfiguration.toggles.isShareAvailable) {
+            shareFeature?.let {
+                val watermarkPainter = shareFeature
+                    .watermark
+                    ?.images
+                    ?.logo
+                    ?.let { logo -> painterResource(logo) }
+
                 Text(
                     modifier =
                     Modifier
                         .clickableUnindicated {
                             scope.launch {
-                                val imageUrls =
-                                    listOfNotNull(
-                                        screenState.sharedImage.value.imageUrl,
-                                    )
+                                val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
+                                val skuIds = listOf(controller.activeSKUItem.value.skuId)
+                                val shareText = shareFeature.dataProvider?.requestShareTextAction?.invoke(skuIds)
+
                                 shareManager.shareImages(
-                                    coilContext = coilContext,
-                                    content = screenState.sharedImage.value.additionalShareInfo,
-                                    imageUrls = imageUrls,
-                                    productId = controller.activeSKUItem.value.skuId,
+                                    content = shareText,
                                     pageId = screenState.sharedImage.value.originPageId,
-                                    watermark = theme.watermark,
+                                    productId = controller.activeSKUItem.value.skuId,
+                                    imageUrls = imageUrls,
+                                    watermark = watermarkPainter,
                                 )
                             }
                         },

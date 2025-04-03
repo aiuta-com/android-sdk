@@ -5,15 +5,21 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Canvas
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.drawscope.CanvasDrawScope
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
+import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.toBitmap
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaDrawableImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
@@ -23,16 +29,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal actual class ShareManagerV2(
+    private val coilContext: PlatformContext,
     private val context: Context,
+    private val density: Density,
+    private val layoutDirection: LayoutDirection,
 ) {
     actual suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
         images: List<AiutaPlatformImage>,
-        watermark: AiutaImage?,
+        watermark: Painter?,
     ): Result<Unit> = runCatching {
-        val imageUris = images.mapNotNull { bitmapToUri(it.bitmap) }
+        val imageUris = images.mapNotNull { image ->
+            bitmapToUri(
+                bitmap = image.bitmap,
+                watermarkPainter = watermark,
+            )
+        }
 
         context.shareContent(
             content = content,
@@ -43,16 +57,15 @@ internal actual class ShareManagerV2(
     }
 
     actual suspend fun shareImages(
-        coilContext: PlatformContext,
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
         imageUrls: List<String>,
-        watermark: AiutaImage?,
+        watermark: Painter?,
     ): Result<Unit> = runCatching {
         val images =
             imageUrls.mapNotNull { url ->
-                val bitmap = urlToBitmap(coilContext, url)
+                val bitmap = urlToBitmap(url)
                 bitmap?.let { AiutaPlatformImage(it) }
             }
 
@@ -67,7 +80,7 @@ internal actual class ShareManagerV2(
 
     private suspend fun bitmapToUri(
         bitmap: Bitmap,
-        watermark: AiutaImage? = null,
+        watermarkPainter: Painter? = null,
     ): Uri? {
         val bitmapConfig = bitmap.config ?: return null
         return try {
@@ -75,19 +88,7 @@ internal actual class ShareManagerV2(
                 val mutableBitmap = bitmap.copy(bitmapConfig, true)
                 val modifierBitmap =
                     try {
-                        val proceedWatermark =
-                            when (watermark) {
-                                is AiutaResourceImage ->
-                                    TODO(
-                                        "Need to implement work with jetbrains resources",
-                                    )
-
-                                is AiutaDrawableImage -> watermark.resource
-
-                                else -> null
-                            }
-
-                        proceedWatermark?.let {
+                        watermarkPainter?.toImageBitmap()?.let { proceedWatermark ->
                             context.addWatermark(
                                 source = mutableBitmap,
                                 watermark = proceedWatermark,
@@ -106,10 +107,7 @@ internal actual class ShareManagerV2(
         }
     }
 
-    private suspend fun urlToBitmap(
-        coilContext: PlatformContext,
-        imageUrl: String,
-    ): Bitmap? = try {
+    private suspend fun urlToBitmap(imageUrl: String): Bitmap? = try {
         val request =
             ImageRequest.Builder(coilContext)
                 .data(imageUrl)
@@ -120,11 +118,31 @@ internal actual class ShareManagerV2(
         // Failed to resolve bitmap
         null
     }
+
+    private fun Painter.toImageBitmap(): ImageBitmap {
+        val size = intrinsicSize
+        val bitmap = ImageBitmap(size.width.toInt(), size.height.toInt())
+        val canvas = Canvas(bitmap)
+        CanvasDrawScope().draw(density, layoutDirection, canvas, size) {
+            draw(size)
+        }
+        return bitmap
+    }
 }
 
 @Composable
 internal actual fun rememberShareManagerV2(): ShareManagerV2 {
+    val coilContext = LocalPlatformContext.current
     val context = LocalContext.current
+    val density = LocalDensity.current
+    val layoutDirection = LocalLayoutDirection.current
 
-    return remember { ShareManagerV2(context) }
+    return remember {
+        ShareManagerV2(
+            coilContext = coilContext,
+            context = context,
+            density = density,
+            layoutDirection = layoutDirection,
+        )
+    }
 }
