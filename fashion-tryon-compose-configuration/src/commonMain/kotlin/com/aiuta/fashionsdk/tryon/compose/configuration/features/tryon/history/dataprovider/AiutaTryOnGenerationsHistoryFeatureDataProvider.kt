@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.dataprovider
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHistoryImage
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 

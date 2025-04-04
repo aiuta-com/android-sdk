@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaI
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.styles.AiutaImageSelectorUploadsHistoryFeatureStyles
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaImageSelectorUploadsHistoryFeature private constructor(
     public val strings: AiutaImageSelectorUploadsHistoryFeatureStrings,

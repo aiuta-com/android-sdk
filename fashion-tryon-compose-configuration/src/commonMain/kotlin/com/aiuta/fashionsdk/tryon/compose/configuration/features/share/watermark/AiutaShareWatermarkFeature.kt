@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermar
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermark.images.AiutaShareWatermarkFeatureImages
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaShareWatermarkFeature(
     public val images: AiutaShareWatermarkFeatureImages,

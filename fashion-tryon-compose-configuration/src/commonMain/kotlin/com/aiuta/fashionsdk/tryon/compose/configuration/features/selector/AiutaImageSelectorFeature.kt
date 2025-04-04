@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.histor
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.images.AiutaImageSelectorFeatureImages
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.strings.AiutaImageSelectorFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
 public class AiutaImageSelectorFeature private constructor(

@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.other.strings.AiutaTryOnFeedbackOtherFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaTryOnFeedbackOtherFeature private constructor(
     public val strings: AiutaTryOnFeedbackOtherFeatureStrings,

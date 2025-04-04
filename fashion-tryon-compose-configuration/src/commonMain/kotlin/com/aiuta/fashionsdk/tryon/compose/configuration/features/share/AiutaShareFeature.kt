@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.dataprovi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.icons.AiutaShareFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.strings.AiutaShareFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermark.AiutaShareWatermarkFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaShareFeature private constructor(
     // Features

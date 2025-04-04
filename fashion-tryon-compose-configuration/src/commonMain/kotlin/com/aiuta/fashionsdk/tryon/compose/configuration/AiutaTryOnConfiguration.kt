@@ -10,12 +10,12 @@ import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic.sendConfigurationEvent
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.AiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.HostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.AiutaToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.DefaultAiutaToggles
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.tryon
 

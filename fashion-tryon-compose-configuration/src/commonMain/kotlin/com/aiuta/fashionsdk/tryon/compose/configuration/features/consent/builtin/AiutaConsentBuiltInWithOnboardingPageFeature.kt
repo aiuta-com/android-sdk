@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builti
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.builtin.strings.AiutaConsentBuiltInWithOnboardingPageFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaConsentBuiltInWithOnboardingPageFeature private constructor(
     public val strings: AiutaConsentBuiltInWithOnboardingPageFeatureStrings,

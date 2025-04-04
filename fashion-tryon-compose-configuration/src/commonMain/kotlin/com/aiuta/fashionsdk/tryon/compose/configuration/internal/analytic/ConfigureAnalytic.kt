@@ -17,7 +17,7 @@ internal fun AiutaTryOnConfiguration.sendConfigurationEvent() {
             isWishlistAvailable = toggles.isWishlistAvailable,
             isPreOnboardingAvailable = toggles.isPreOnboardingAvailable,
             isShareAvailable = toggles.isShareAvailable,
-            isHostDataProviderEnabled = dataProvider != null,
+            isHostDataProviderEnabled = false, // TODO Refactor property
         ),
     )
 }

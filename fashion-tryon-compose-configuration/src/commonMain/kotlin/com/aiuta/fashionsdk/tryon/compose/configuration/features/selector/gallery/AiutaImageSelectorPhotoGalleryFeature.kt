@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.icons.AiutaImageSelectorPhotoGalleryFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.strings.AiutaImageSelectorPhotoGalleryFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaImageSelectorPhotoGalleryFeature private constructor(
     public val icons: AiutaImageSelectorPhotoGalleryFeatureIcons,

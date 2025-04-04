@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider
+package com.aiuta.fashionsdk.tryon.compose.configuration.models.consent
 
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent
 

@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.dataprovider
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.SupplementaryConsent
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.consent.SupplementaryConsent
 import kotlinx.coroutines.flow.StateFlow
 
 public class AiutaConsentStandaloneOnboardingPageFeatureDataProvider(

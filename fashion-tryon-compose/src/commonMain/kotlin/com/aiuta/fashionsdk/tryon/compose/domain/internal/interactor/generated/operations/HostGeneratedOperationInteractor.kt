@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.tryon.compose.configuration.dataprovider.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toPublic

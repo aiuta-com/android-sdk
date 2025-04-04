@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.icons.AiutaTryOnRepickingFeatureIcons
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaTryOnRepickingFeature private constructor(
     public val icons: AiutaTryOnRepickingFeatureIcons,

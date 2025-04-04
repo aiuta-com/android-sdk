@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.icons.A
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.images.AiutaWelcomeScreenFeatureImages
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.strings.AiutaWelcomeScreenFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.typography.AiutaWelcomeScreenFeatureTypography
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
 public class AiutaWelcomeScreenFeature private constructor(

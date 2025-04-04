@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.utils
+package com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils
 
 internal fun <T> T?.checkNotNullWithDescription(
     parentClass: String,

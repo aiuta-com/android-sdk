@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.icons.AiutaTryOnFitDisclaimerFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.strings.AiutaTryOnFitDisclaimerFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaTryOnFitDisclaimerFeature private constructor(
     public val icons: AiutaTryOnFitDisclaimerFeatureIcons,

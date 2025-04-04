@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryO
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.icons.AiutaTryOnGenerationsHistoryFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.strings.AiutaTryOnGenerationsHistoryFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaTryOnGenerationsHistoryFeature private constructor(
     public val icons: AiutaTryOnGenerationsHistoryFeatureIcons,
