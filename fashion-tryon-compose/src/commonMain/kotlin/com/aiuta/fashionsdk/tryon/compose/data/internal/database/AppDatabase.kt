@@ -8,9 +8,6 @@ import androidx.room.TypeConverters
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FeedbackFeatureConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FitDisclaimerFeatureConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PoweredByStickerFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
@@ -36,7 +33,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 12
+internal const val DATABASE_VERSION = 13
 internal const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(
@@ -66,9 +63,6 @@ internal const val DATABASE_NAME = "fashionsdk-database"
 @TypeConverters(
     value = [
         // Config
-        PoweredByStickerFeatureConverter::class,
-        FeedbackFeatureConverter::class,
-        FitDisclaimerFeatureConverter::class,
         TryOnModelsCategoriesConverter::class,
     ],
 )

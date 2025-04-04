@@ -43,11 +43,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
-import coil3.request.crossfade
 import coil3.size.SizeResolver.Companion.ORIGINAL
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.painterResource
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
@@ -59,7 +58,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -225,20 +223,14 @@ private fun ImageContainer(
             .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
     ) {
-        SubcomposeAsyncImage(
-            modifier =
-            Modifier
+        AiutaImage(
+            modifier = Modifier
                 .clipToBounds()
                 .fillMaxSize(),
-            model =
-            ImageRequest.Builder(coilContext)
-                .data(imageUrl)
-                // Do that, because thumbnail size is too small for zoom screen
-                .size(ORIGINAL)
-                .crossfade(true)
-                .build(),
-            loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
-            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+            // Do that, because thumbnail size is too small for zoom screen
+            imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
+            imageUrl = imageUrl,
+            shape = theme.shapes.previewImage,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

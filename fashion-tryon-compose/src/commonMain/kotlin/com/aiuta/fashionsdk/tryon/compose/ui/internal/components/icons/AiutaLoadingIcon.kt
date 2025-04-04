@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
@@ -39,5 +40,9 @@ internal fun AiutaLoadingIcon(
             tint = circleColor,
             contentDescription = null,
         )
-    } ?: CircularProgressIndicator(modifier = modifier, color = circleColor)
+    } ?: CircularProgressIndicator(
+        modifier = modifier,
+        color = circleColor,
+        strokeWidth = 1.dp,
+    )
 }

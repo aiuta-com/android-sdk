@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,13 +24,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
@@ -39,10 +35,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaW
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -108,18 +101,14 @@ private fun ImageContainer(
 ) {
     val theme = LocalTheme.current
 
-    SubcomposeAsyncImage(
-        modifier =
-        modifier
-            .clip(RoundedCornerShape(8.dp))
+    val sharedShape = RoundedCornerShape(8.dp)
+
+    AiutaImage(
+        modifier = modifier
+            .clip(sharedShape)
             .background(theme.colors.background),
-        model =
-        ImageRequest.Builder(LocalPlatformContext.current)
-            .data(imageUrl)
-            .crossfade(true)
-            .build(),
-        loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
-        error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+        imageUrl = imageUrl,
+        shape = sharedShape,
         contentScale = ContentScale.Crop,
         contentDescription = null,
     )
@@ -132,7 +121,6 @@ private fun ButtonsContainer(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val activeSKUItem = controller.activeSKUItem.value
 

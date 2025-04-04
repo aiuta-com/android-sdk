@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -33,15 +34,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.util.lerp
 import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
@@ -139,9 +136,8 @@ private fun ItemPhotosBlock(
                 modifier = sharedSharedModifier,
                 contentAlignment = Alignment.Center,
             ) {
-                SubcomposeAsyncImage(
-                    modifier =
-                    finalImageModifier
+                AiutaImage(
+                    modifier = finalImageModifier
                         .onGloballyPositioned { coordinates ->
                             parentImageOffset = coordinates.positionInRoot()
                             imageSize = coordinates.size.toSize()
@@ -157,13 +153,8 @@ private fun ItemPhotosBlock(
                                 ),
                             )
                         },
-                    model =
-                    ImageRequest.Builder(coilContext)
-                        .data(url)
-                        .crossfade(true)
-                        .build(),
-                    loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
-                    error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+                    imageUrl = url,
+                    shape = theme.shapes.previewImage,
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
                 )

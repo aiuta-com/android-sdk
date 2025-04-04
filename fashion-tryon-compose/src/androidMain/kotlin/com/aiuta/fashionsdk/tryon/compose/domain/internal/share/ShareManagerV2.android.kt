@@ -38,43 +38,26 @@ internal actual class ShareManagerV2(
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
-        images: List<AiutaPlatformImage>,
+        imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> = runCatching {
-        val imageUris = images.mapNotNull { image ->
-            bitmapToUri(
-                bitmap = image.bitmap,
-                watermarkPainter = watermark,
-            )
-        }
+        val imageUris = imageUrls
+            .mapNotNull { url ->
+                val bitmap = urlToBitmap(url)
+                bitmap?.let { AiutaPlatformImage(it) }
+            }
+            .mapNotNull { image ->
+                bitmapToUri(
+                    bitmap = image.bitmap,
+                    watermarkPainter = watermark,
+                )
+            }
 
         context.shareContent(
             content = content,
             pageId = pageId,
             productId = productId,
             fileUris = imageUris,
-        )
-    }
-
-    actual suspend fun shareImages(
-        content: String?,
-        pageId: AiutaAnalyticPageId,
-        productId: String?,
-        imageUrls: List<String>,
-        watermark: Painter?,
-    ): Result<Unit> = runCatching {
-        val images =
-            imageUrls.mapNotNull { url ->
-                val bitmap = urlToBitmap(url)
-                bitmap?.let { AiutaPlatformImage(it) }
-            }
-
-        shareImages(
-            content = content,
-            pageId = pageId,
-            productId = productId,
-            images = images,
-            watermark = watermark,
         )
     }
 

@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -24,11 +23,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
-import coil3.compose.rememberAsyncImagePainter
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
@@ -132,9 +131,8 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
         },
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
-            modifier =
-            Modifier
+        AiutaImage(
+            modifier = Modifier
                 .fillMaxHeight()
                 .aspectRatio(0.7f)
                 .border(
@@ -143,7 +141,8 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
                     shape = sharedCorner,
                 )
                 .clip(sharedCorner),
-            painter = rememberAsyncImagePainter(activeSKUItem.imageUrls.firstOrNull()),
+            imageUrl = activeSKUItem.imageUrls.firstOrNull(),
+            shape = sharedCorner,
             contentDescription = null,
             contentScale = ContentScale.Crop,
         )

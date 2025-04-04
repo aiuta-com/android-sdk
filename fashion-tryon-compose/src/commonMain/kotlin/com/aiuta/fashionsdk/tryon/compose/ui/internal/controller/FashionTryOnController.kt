@@ -13,6 +13,7 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
@@ -34,6 +35,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScr
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,8 +50,11 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
 
-    val uploadsHistoryFeature = aiutaTryOnConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
-    val generationsHistoryFeature = aiutaTryOnConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val uploadsHistoryFeature =
+        aiutaTryOnConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val generationsHistoryFeature =
+        aiutaTryOnConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val tryOnFeature = aiutaTryOnConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
 
     val activeSKUItem =
         remember {
@@ -139,9 +144,12 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }.also {
         it.generationNavigationListener()
-        it.generationCancellationListener()
-        it.historyAvailabilityListener()
-        it.updationActiveSKUItemListener()
+        it.generationCancellationListener(
+            tryOnFeature = tryOnFeature,
+        )
+        it.historyAvailabilityListener(
+            isGenerationsHistoryFeatureAvailable = aiutaTryOnConfiguration.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>(),
+        )
     }
 }
 

@@ -44,44 +44,24 @@ internal actual class ShareManagerV2(
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
-        images: List<AiutaPlatformImage>,
-        watermark: Painter?,
-    ): Result<Unit> {
-        // TODO Add watermark
-        return runCatching {
-            val urls =
-                withContext(Dispatchers.IO) {
-                    images.mapNotNull { image -> saveFile(image.byteArray) }
-                }
-            val activityViewController = UIActivityViewController(urls, null)
-
-            UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
-                activityViewController,
-                animated = true,
-                completion = null,
-            )
-        }
-    }
-
-    actual suspend fun shareImages(
-        content: String?,
-        pageId: AiutaAnalyticPageId,
-        productId: String?,
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> = runCatching {
-        val images =
-            imageUrls.mapNotNull { url ->
+        val images = imageUrls
+            .mapNotNull { url ->
                 val uiimage = urlToUIImage(url)
                 uiimage?.let { AiutaPlatformImage(it) }
             }
 
-        shareImages(
-            content = content,
-            pageId = pageId,
-            productId = productId,
-            images = images,
-            watermark = watermark,
+        val urls = withContext(Dispatchers.IO) {
+            images.mapNotNull { image -> saveFile(image.byteArray) }
+        }
+        val activityViewController = UIActivityViewController(urls, null)
+
+        UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
+            activityViewController,
+            animated = true,
+            completion = null,
         )
     }
 

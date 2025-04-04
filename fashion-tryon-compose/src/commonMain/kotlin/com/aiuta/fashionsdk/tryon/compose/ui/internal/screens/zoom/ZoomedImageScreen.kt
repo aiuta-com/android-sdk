@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -26,7 +24,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.lerp
@@ -38,20 +35,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.images.painterResource
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
@@ -174,10 +165,8 @@ private fun ZoomedImageScreenContent(
     imageOffset: State<IntOffset>,
     imageSize: State<Size>,
 ) {
-    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val shareFeature = provideFeature<AiutaShareFeature>()
 
@@ -187,9 +176,8 @@ private fun ZoomedImageScreenContent(
     Box(
         modifier = modifier.background(color = backgroundColor.value),
     ) {
-        SubcomposeAsyncImage(
-            modifier =
-            Modifier
+        AiutaImage(
+            modifier = Modifier
                 .offset { imageOffset.value }
                 .size(
                     width = imageSize.value.width.toDp(LocalDensity.current),
@@ -202,36 +190,8 @@ private fun ZoomedImageScreenContent(
                         screenState.closeZoomImageScreen(scope)
                     },
                 ),
-            model =
-            ImageRequest.Builder(coilContext)
-                .data(screenState.sharedImage.value.imageUrl)
-                .crossfade(true)
-                .build(),
-            loading = {
-                AiutaLoadingIcon(
-                    modifier = Modifier.fillMaxSize(),
-                    circleColor = interfaceColor.value,
-                )
-            },
-            error = {
-                Box(
-                    modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clipToBounds()
-                        .background(backgroundColor.value),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    ErrorProgress(
-                        modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight(0.7f),
-                        background = Color.White.copy(0.1f),
-                        iconTint = interfaceColor.value,
-                    )
-                }
-            },
+            imageUrl = screenState.sharedImage.value.imageUrl,
+            shapeDp = cornerRadius.value,
             contentScale = contentScale,
             contentDescription = null,
         )

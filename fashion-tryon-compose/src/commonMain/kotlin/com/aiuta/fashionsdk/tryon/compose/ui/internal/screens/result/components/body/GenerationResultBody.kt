@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -34,17 +35,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
-import coil3.request.crossfade
 import coil3.size.SizeResolver.Companion.ORIGINAL
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.FeedbackBlock
@@ -148,7 +146,7 @@ private fun PagerItem(
                 shape = RoundedCornerShape(sharedCornerRadius),
             ),
     ) {
-        SubcomposeAsyncImage(
+        AiutaImage(
             modifier =
             Modifier
                 .clipToBounds()
@@ -169,14 +167,9 @@ private fun PagerItem(
                         ),
                     )
                 },
-            model =
-            ImageRequest.Builder(coilContext)
-                .data(sessionImage.imageUrl)
-                .size(ORIGINAL)
-                .crossfade(true)
-                .build(),
-            loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
-            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+            imageUrl = sessionImage.imageUrl,
+            shapeDp = sharedCornerRadius,
+            imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

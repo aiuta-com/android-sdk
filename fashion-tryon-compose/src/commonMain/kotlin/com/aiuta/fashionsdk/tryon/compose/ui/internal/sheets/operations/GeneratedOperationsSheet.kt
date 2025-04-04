@@ -19,7 +19,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -31,15 +30,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImagePainter
-import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
+import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
@@ -51,9 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.o
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
@@ -67,7 +60,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun ColumnScope.GeneratedOperationsSheet() {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val theme = LocalTheme.current
 
@@ -180,47 +172,32 @@ private fun OperationItem(
     generatedOperation: GeneratedOperationUIModel,
     onClick: () -> Unit,
 ) {
-    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
-    val imageState =
-        remember {
-            mutableStateOf<AsyncImagePainter.State>(AsyncImagePainter.State.Empty)
+    val isLoadingScrimVisible = remember {
+        derivedStateOf {
+            loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
         }
+    }
 
-    val isLoadingScrimVisible =
-        remember {
-            derivedStateOf {
-                loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
-            }
+    val isTrashVisible = remember {
+        derivedStateOf {
+            !isLoadingScrimVisible.value
         }
-
-    val isTrashVisible =
-        remember {
-            derivedStateOf {
-                !isLoadingScrimVisible.value
-            }
-        }
+    }
 
     Box(
         modifier = modifier.clickableUnindicated(!isLoadingScrimVisible.value) { onClick() },
     ) {
-        SubcomposeAsyncImage(
-            modifier =
-            Modifier
+        AiutaImage(
+            modifier = Modifier
                 .clipToBounds()
                 .fillMaxSize(),
-            model =
-            ImageRequest.Builder(coilContext)
-                .data(generatedOperation.sourceImageUrls.firstOrNull())
-                .crossfade(true)
-                .build(),
-            loading = { AiutaLoadingIcon(modifier = Modifier.fillMaxSize()) },
-            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
-            onError = { imageState.value = it },
+            imageUrl = generatedOperation.sourceImageUrls.firstOrNull(),
+            shape = theme.shapes.previewImage,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )

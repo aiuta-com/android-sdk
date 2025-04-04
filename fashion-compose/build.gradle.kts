@@ -24,6 +24,7 @@ kotlin {
                 implementation(compose.material)
                 implementation(libs.coil3.compose)
                 implementation(libs.coil3.network.ktor3)
+                implementation(libs.compose.placeholder)
             }
         }
         appleMain {

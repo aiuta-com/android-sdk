@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress
+package com.aiuta.fashionsdk.compose.molecules.progress
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
