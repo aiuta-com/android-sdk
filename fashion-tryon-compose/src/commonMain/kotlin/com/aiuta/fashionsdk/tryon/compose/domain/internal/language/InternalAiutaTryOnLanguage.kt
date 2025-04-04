@@ -8,9 +8,6 @@ internal interface InternalAiutaTryOnLanguage {
     val appBarHistory: String
     val appBarSelect: String
 
-    // Model selector
-    val modelSelectorErrorEmptyModelsList: String
-
     // History
     val historySelectorEnableButtonSelectAll: String
     val historySelectorEnableButtonUnselectAll: String

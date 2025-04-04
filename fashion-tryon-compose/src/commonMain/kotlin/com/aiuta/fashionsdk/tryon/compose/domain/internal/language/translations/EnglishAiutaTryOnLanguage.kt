@@ -11,8 +11,6 @@ internal class EnglishAiutaTryOnLanguage(
     override val appBarHistory: String = "History"
     override val appBarSelect: String = "Select"
 
-    override val modelSelectorErrorEmptyModelsList: String = "The models list is empty"
-
     // History
     override val historySelectorEnableButtonSelectAll: String = "Select all"
     override val historySelectorEnableButtonUnselectAll: String = "Unselect all"

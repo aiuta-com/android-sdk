@@ -11,8 +11,6 @@ internal class RussianAiutaTryOnLanguage(
     override val appBarHistory: String = "История"
     override val appBarSelect: String = "Выбрать"
 
-    override val modelSelectorErrorEmptyModelsList: String = "Список моделей пуст"
-
     // History
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
     override val historySelectorEnableButtonUnselectAll: String = "Снять выделение"

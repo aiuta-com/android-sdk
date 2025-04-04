@@ -6,8 +6,6 @@ public class CustomLanguage(
     // App bar
     override val appBarHistory: String,
     override val appBarSelect: String,
-    // Image selector
-    override val modelSelectorErrorEmptyModelsList: String,
     // History
     override val historySelectorEnableButtonSelectAll: String,
     override val historySelectorEnableButtonUnselectAll: String,

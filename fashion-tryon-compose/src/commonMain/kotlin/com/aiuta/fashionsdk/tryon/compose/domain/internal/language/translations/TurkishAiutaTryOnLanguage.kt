@@ -11,9 +11,6 @@ internal class TurkishAiutaTryOnLanguage(
     override val appBarHistory: String = "Geçmiş"
     override val appBarSelect: String = "Seç"
 
-    // Image selector
-    override val modelSelectorErrorEmptyModelsList: String = "Model listesi boş"
-
     // History
     override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"
     override val historySelectorEnableButtonUnselectAll: String = "Tümünü Kaldır"
