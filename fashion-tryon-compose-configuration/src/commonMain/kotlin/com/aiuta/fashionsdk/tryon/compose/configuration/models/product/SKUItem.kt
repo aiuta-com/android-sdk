@@ -1,8 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.models.product
 
 import androidx.compose.runtime.Immutable
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 /**
  * Provided sku for generation with meta info
@@ -24,7 +22,4 @@ public data class SKUItem(
     public val localizedPrice: String,
     public val localizedOldPrice: String? = null,
     public val store: String,
-) {
-    @OptIn(ExperimentalUuidApi::class)
-    public val uniqueGeneratedId: String = Uuid.random().toString()
-}
+)
