@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.icons.AiutaTryOnFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnRepickingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.styles.AiutaTryOnFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.toggles.AiutaTryOnFeatureToggles
@@ -19,6 +20,7 @@ public class AiutaTryOnFeature private constructor(
     public val fitDisclaimer: AiutaTryOnFitDisclaimerFeature?,
     public val feedback: AiutaTryOnFeedbackFeature?,
     public val generationsHistory: AiutaTryOnGenerationsHistoryFeature?,
+    public val repicking: AiutaTryOnRepickingFeature?,
     // General
     public val icons: AiutaTryOnFeatureIcons,
     public val toggles: AiutaTryOnFeatureToggles,
@@ -32,6 +34,8 @@ public class AiutaTryOnFeature private constructor(
         public var fitDisclaimer: AiutaTryOnFitDisclaimerFeature? = null
         public var feedback: AiutaTryOnFeedbackFeature? = null
         public var generationsHistory: AiutaTryOnGenerationsHistoryFeature? = null
+        public var repicking: AiutaTryOnRepickingFeature? = null
+
         public var icons: AiutaTryOnFeatureIcons? = null
         public var toggles: AiutaTryOnFeatureToggles? = null
         public var strings: AiutaTryOnFeatureStrings? = null
@@ -49,6 +53,7 @@ public class AiutaTryOnFeature private constructor(
                 fitDisclaimer = fitDisclaimer,
                 feedback = feedback,
                 generationsHistory = generationsHistory,
+                repicking = repicking,
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "icons",
