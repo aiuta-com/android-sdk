@@ -33,7 +33,6 @@ import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -51,7 +50,6 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
 
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     Column(
@@ -87,7 +85,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = imageSelectorFeature.strings.imageSelectorButtonTryOn,
+                text = tryOnFeature.strings.tryOnButtonTryOn,
                 style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
                         contentColor = theme.colors.onDark,

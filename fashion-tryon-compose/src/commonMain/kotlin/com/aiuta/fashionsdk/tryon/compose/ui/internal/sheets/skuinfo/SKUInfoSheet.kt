@@ -34,7 +34,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
@@ -137,7 +136,6 @@ private fun ButtonsContainer(
 
     val activeSKUItem = controller.activeSKUItem.value
 
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
     val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
@@ -191,7 +189,7 @@ private fun ButtonsContainer(
                 text = if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     tryOnFeature.strings.tryOnButtonAddToCart
                 } else {
-                    imageSelectorFeature.strings.imageSelectorButtonTryOn
+                    tryOnFeature.strings.tryOnButtonTryOn
                 },
                 icon = tryOnFeature.icons.magic20.takeIf {
                     skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON

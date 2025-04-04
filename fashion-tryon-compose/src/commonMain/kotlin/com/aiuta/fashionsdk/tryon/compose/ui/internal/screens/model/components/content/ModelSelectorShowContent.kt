@@ -27,7 +27,6 @@ import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
 import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
@@ -52,7 +51,6 @@ internal fun ModelSelectorShowContent(
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
@@ -122,7 +120,7 @@ internal fun ModelSelectorShowContent(
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                text = imageSelectorFeature.strings.imageSelectorButtonTryOn,
+                text = tryOnFeature.strings.tryOnButtonTryOn,
                 style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
                         contentColor = theme.colors.onDark,
