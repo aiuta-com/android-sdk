@@ -4,6 +4,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.dataprovider.AiutaShareFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.icons.AiutaShareFeatureIcons
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.strings.AiutaShareFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.utils.checkNotNullWithDescription
 
@@ -12,12 +13,14 @@ public class AiutaShareFeature private constructor(
     public val watermark: AiutaShareWatermarkFeature?,
     // General
     public val icons: AiutaShareFeatureIcons,
+    public val strings: AiutaShareFeatureStrings,
     public val dataProvider: AiutaShareFeatureDataProvider?,
 ) : AiutaTryOnConfigurationFeature {
 
     public class Builder : AiutaTryOnConfigurationFeature.Builder {
         public var watermark: AiutaShareWatermarkFeature? = null
         public var icons: AiutaShareFeatureIcons? = null
+        public var strings: AiutaShareFeatureStrings? = null
         public var dataProvider: AiutaShareFeatureDataProvider? = null
 
         public override fun build(): AiutaShareFeature {
@@ -28,6 +31,10 @@ public class AiutaShareFeature private constructor(
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "icons",
+                ),
+                strings = strings.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "strings",
                 ),
                 dataProvider = dataProvider,
             )

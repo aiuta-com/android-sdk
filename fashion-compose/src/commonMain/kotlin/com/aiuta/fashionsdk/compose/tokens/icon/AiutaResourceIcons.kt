@@ -18,11 +18,8 @@ public class AiutaResourceIcons(
     public override val imageError36: AiutaResourceIcon,
     // x24
     public override val back24: AiutaResourceIcon,
-    public override val camera24: AiutaResourceIcon,
     public override val close24: AiutaResourceIcon,
     public override val trash24: AiutaResourceIcon,
-    public override val wishlist24: AiutaResourceIcon,
-    public override val wishlistFill24: AiutaResourceIcon,
     // x20
     public override val check20: AiutaResourceIcon,
 ) : AiutaIcons

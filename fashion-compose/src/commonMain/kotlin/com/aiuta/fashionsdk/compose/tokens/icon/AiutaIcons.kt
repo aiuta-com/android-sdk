@@ -22,11 +22,8 @@ public interface AiutaIcons {
 
     // x24
     public val back24: AiutaIcon
-    public val camera24: AiutaIcon
     public val close24: AiutaIcon
     public val trash24: AiutaIcon
-    public val wishlist24: AiutaIcon
-    public val wishlistFill24: AiutaIcon
 
     // x20
     public val check20: AiutaIcon

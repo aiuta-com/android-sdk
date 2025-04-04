@@ -18,11 +18,8 @@ public class AiutaDrawableIcons(
     public override val imageError36: AiutaDrawableIcon,
     // x24
     public override val back24: AiutaDrawableIcon,
-    public override val camera24: AiutaDrawableIcon,
     public override val close24: AiutaDrawableIcon,
     public override val trash24: AiutaDrawableIcon,
-    public override val wishlist24: AiutaDrawableIcon,
-    public override val wishlistFill24: AiutaDrawableIcon,
     // x20
     public override val check20: AiutaDrawableIcon,
 ) : AiutaIcons

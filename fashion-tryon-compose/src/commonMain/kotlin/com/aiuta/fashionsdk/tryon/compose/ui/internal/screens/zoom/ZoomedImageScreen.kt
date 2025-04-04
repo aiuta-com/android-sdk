@@ -267,24 +267,23 @@ private fun ZoomedImageScreenContent(
                     ?.let { logo -> painterResource(logo) }
 
                 Text(
-                    modifier =
-                    Modifier
-                        .clickableUnindicated {
-                            scope.launch {
-                                val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
-                                val skuIds = listOf(controller.activeSKUItem.value.skuId)
-                                val shareText = shareFeature.dataProvider?.requestShareTextAction?.invoke(skuIds)
+                    modifier = Modifier.clickableUnindicated {
+                        scope.launch {
+                            val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
+                            val skuIds = listOf(controller.activeSKUItem.value.skuId)
+                            val shareText =
+                                shareFeature.dataProvider?.requestShareTextAction?.invoke(skuIds)
 
-                                shareManager.shareImages(
-                                    content = shareText,
-                                    pageId = screenState.sharedImage.value.originPageId,
-                                    productId = controller.activeSKUItem.value.skuId,
-                                    imageUrls = imageUrls,
-                                    watermark = watermarkPainter,
-                                )
-                            }
-                        },
-                    text = stringResources.share,
+                            shareManager.shareImages(
+                                content = shareText,
+                                pageId = screenState.sharedImage.value.originPageId,
+                                productId = controller.activeSKUItem.value.skuId,
+                                imageUrls = imageUrls,
+                                watermark = watermarkPainter,
+                            )
+                        }
+                    },
+                    text = shareFeature.strings.shareButton,
                     style = theme.typography.button,
                     color = interfaceColor.value,
                 )
