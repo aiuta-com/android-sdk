@@ -14,6 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.features.selector.defaultImag
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.share.defaultShare
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.tryon.defaultTryOn
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.welcome.defaultWelcomeScreen
+import com.aiuta.fashionsdk.tryon.compose.defaults.features.wishlist.defaultWishlist
 
 @Immutable
 public class DefaultAiutaTryOnConfiguration private constructor() {
@@ -37,6 +38,7 @@ public class DefaultAiutaTryOnConfiguration private constructor() {
                     defaultImageSelector()
                     defaultTryOn()
                     defaultShare()
+                    defaultWishlist()
                 }
                 language = EnglishLanguage(
                     brand = "YOUR brand",
