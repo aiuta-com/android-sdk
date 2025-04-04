@@ -10,19 +10,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarSelectAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun HistoryAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
 
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 
@@ -53,7 +55,7 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = stringResources.appBarHistory,
+                text = generationsHistoryFeature.strings.generationsHistoryPageTitle,
                 style = theme.typography.navbar,
                 color = theme.colors.primary,
                 textAlign = TextAlign.Center,
@@ -61,11 +63,10 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
         },
         actions = {
             Text(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .align(Alignment.CenterEnd)
                     .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
-                text = stringResources.appBarSelect,
+                text = generationsHistoryFeature.strings.generationsHistoryButtonSelect,
                 style = theme.typography.navbar,
                 color = selectColorTransition.value,
             )

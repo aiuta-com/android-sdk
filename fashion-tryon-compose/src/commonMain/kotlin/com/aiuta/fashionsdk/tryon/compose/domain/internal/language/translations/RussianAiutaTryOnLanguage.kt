@@ -7,14 +7,9 @@ internal class RussianAiutaTryOnLanguage(
     termsOfServiceUrl: String,
     privacyPolicyUrl: String,
 ) : InternalAiutaTryOnLanguage {
-    // App bar
-    override val appBarHistory: String = "История"
-    override val appBarSelect: String = "Выбрать"
-
     // History
     override val historySelectorEnableButtonSelectAll: String = "Выбрать все"
     override val historySelectorEnableButtonUnselectAll: String = "Снять выделение"
-    override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // General
     override val cancel: String = "Отмена"

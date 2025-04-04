@@ -22,7 +22,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -41,7 +40,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
@@ -63,7 +61,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
@@ -200,11 +197,6 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
             }
         }
 
-        HistoryScreenEmpty(
-            modifier = Modifier.fillMaxSize(),
-            getGeneratedImages = { generatedImages },
-        )
-
         HistoryScreenInterface(
             getGeneratedImages = { generatedImages },
         )
@@ -307,7 +299,6 @@ private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
 ) {
     val controller = LocalController.current
-    val coilContext = LocalPlatformContext.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
 
     val shareFeature = provideFeature<AiutaShareFeature>()
@@ -381,32 +372,5 @@ private fun BoxScope.HistoryScreenInterface(
                 )
             },
         )
-    }
-}
-
-@Composable
-private fun BoxScope.HistoryScreenEmpty(
-    modifier: Modifier = Modifier,
-    getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
-) {
-    val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
-
-    val generatedImages = getGeneratedImages()
-
-    if (generatedImages.itemCount == 0) {
-        Column(
-            modifier = modifier.background(theme.colors.background),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                modifier = Modifier.padding(horizontal = 30.dp),
-                text = stringResources.historyEmptyDescription,
-                style = theme.typography.regular,
-                color = theme.colors.primary,
-                textAlign = TextAlign.Center,
-            )
-        }
     }
 }

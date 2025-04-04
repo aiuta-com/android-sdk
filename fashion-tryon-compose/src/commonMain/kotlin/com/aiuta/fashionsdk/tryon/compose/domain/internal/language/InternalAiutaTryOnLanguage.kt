@@ -4,14 +4,9 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 internal interface InternalAiutaTryOnLanguage {
-    // App bar
-    val appBarHistory: String
-    val appBarSelect: String
-
     // History
     val historySelectorEnableButtonSelectAll: String
     val historySelectorEnableButtonUnselectAll: String
-    val historyEmptyDescription: String
 
     // Bottom sheets
 

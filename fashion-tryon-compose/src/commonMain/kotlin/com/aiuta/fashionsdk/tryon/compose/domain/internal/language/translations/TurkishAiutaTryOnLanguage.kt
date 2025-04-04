@@ -7,14 +7,9 @@ internal class TurkishAiutaTryOnLanguage(
     termsOfServiceUrl: String,
     privacyPolicyUrl: String,
 ) : InternalAiutaTryOnLanguage {
-    // App bar
-    override val appBarHistory: String = "Geçmiş"
-    override val appBarSelect: String = "Seç"
-
     // History
     override val historySelectorEnableButtonSelectAll: String = "Tümünü seçin"
     override val historySelectorEnableButtonUnselectAll: String = "Tümünü Kaldır"
-    override val historyEmptyDescription: String = "İlk ürün denemenizden sonra deneme geçmişiniz burada saklanacaktır"
 
     // Invalid image
 

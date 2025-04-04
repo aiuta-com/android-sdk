@@ -7,15 +7,10 @@ internal class EnglishAiutaTryOnLanguage(
     termsOfServiceUrl: String,
     privacyPolicyUrl: String,
 ) : InternalAiutaTryOnLanguage {
-    // App bar
-    override val appBarHistory: String = "History"
-    override val appBarSelect: String = "Select"
 
     // History
     override val historySelectorEnableButtonSelectAll: String = "Select all"
     override val historySelectorEnableButtonUnselectAll: String = "Unselect all"
-    override val historyEmptyDescription: String =
-        "Once you try on first item your try-on history would be stored here"
 
     // General
     override val cancel: String = "Cancel"
