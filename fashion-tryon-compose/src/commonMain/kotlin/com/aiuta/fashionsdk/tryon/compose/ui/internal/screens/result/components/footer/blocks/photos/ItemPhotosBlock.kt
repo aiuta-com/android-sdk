@@ -148,13 +148,11 @@ private fun ItemPhotosBlock(
                         }
                         .clickableUnindicated {
                             controller.zoomImageController.openZoomImageScreen(
-                                model =
-                                ZoomImageUiModel(
+                                model = ZoomImageUiModel(
                                     imageSize = imageSize,
                                     initialCornerRadius = sharedRadius,
                                     imageUrl = url,
                                     parentImageOffset = parentImageOffset,
-                                    additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
                                     originPageId = AiutaAnalyticPageId.RESULTS,
                                 ),
                             )

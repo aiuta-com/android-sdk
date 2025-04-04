@@ -14,7 +14,6 @@ import kotlin.uuid.Uuid
  * @param localizedPrice - The price of the SKU. Should be formatted with a currency symbol.
  * @param localizedOldPrice - The old price of the SKU, if available. Should be formatted with a currency symbol.
  * @param store - Name of store
- * @param additionalShareInfo - Some additional info for sharing generated item
  */
 @Immutable
 public data class SKUItem(
@@ -25,8 +24,6 @@ public data class SKUItem(
     public val localizedPrice: String,
     public val localizedOldPrice: String? = null,
     public val store: String,
-    @Deprecated("Migrate to provider")
-    public val additionalShareInfo: String? = null,
 ) {
     @OptIn(ExperimentalUuidApi::class)
     public val uniqueGeneratedId: String = Uuid.random().toString()

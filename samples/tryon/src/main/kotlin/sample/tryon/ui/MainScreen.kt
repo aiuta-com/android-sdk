@@ -44,11 +44,6 @@ fun MainScreen() {
                     localizedPrice = "$34.99",
                     localizedOldPrice = "$41.99",
                     store = "MOCK STORE",
-                    additionalShareInfo =
-                    """
-                        You can find more information about this item here:
-                        https://some-cool-website.com/product
-                    """.trimIndent(),
                 )
             }
 

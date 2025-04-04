@@ -185,8 +185,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
 
                             else -> {
                                 controller.zoomImageController.openZoomImageScreen(
-                                    model =
-                                    ZoomImageUiModel(
+                                    model = ZoomImageUiModel(
                                         imageSize = imageSize,
                                         initialCornerRadius = sharedRadius,
                                         imageUrl = generatedImage?.imageUrl,

@@ -160,13 +160,11 @@ private fun PagerItem(
                 }
                 .clickableUnindicated {
                     controller.zoomImageController.openZoomImageScreen(
-                        model =
-                        ZoomImageUiModel(
+                        model = ZoomImageUiModel(
                             imageSize = imageSize,
                             initialCornerRadius = sharedCornerRadius,
                             imageUrl = sessionImage.imageUrl,
                             parentImageOffset = parentImageOffset,
-                            additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
                             originPageId = AiutaAnalyticPageId.RESULTS,
                         ),
                     )

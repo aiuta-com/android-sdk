@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
@@ -36,7 +35,6 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
  * @see AiutaTryOn
  * @see AiutaTryOnListeners
  */
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
