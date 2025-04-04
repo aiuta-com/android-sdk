@@ -33,7 +33,7 @@ public fun AiutaTryOnConfigurationFeatures.Builder.defaultImageSelector() {
         }
         uploadsHistory {
             strings = AiutaImageSelectorUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
-            buttons = AiutaImageSelectorUploadsHistoryFeatureStyles.Default()
+            styles = AiutaImageSelectorUploadsHistoryFeatureStyles.Default()
         }
         images = DefaultAiutaImageSelectorFeatureImages()
         strings = AiutaImageSelectorFeatureStrings.Default()
