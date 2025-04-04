@@ -19,7 +19,6 @@ internal interface InternalAiutaTryOnLanguage {
     // Bottom sheets
 
     // General
-    val addToWish: String
     val cancel: String
     val tryAgain: String
     val defaultErrorMessage: String

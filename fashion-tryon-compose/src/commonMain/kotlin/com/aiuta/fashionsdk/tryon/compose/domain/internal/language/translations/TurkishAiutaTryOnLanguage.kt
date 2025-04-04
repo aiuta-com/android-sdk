@@ -22,7 +22,6 @@ internal class TurkishAiutaTryOnLanguage(
     // Invalid image
 
     // General
-    override val addToWish: String = "Listelerime ekle"
     override val cancel: String = "Vazgeç"
     override val tryAgain: String = "Tekrar dene"
     override val defaultErrorMessage: String = "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin"

@@ -13,7 +13,6 @@ public class CustomLanguage(
     override val historySelectorEnableButtonUnselectAll: String,
     override val historyEmptyDescription: String,
     // General
-    override val addToWish: String,
     override val cancel: String,
     override val tryAgain: String,
     override val defaultErrorMessage: String,

@@ -20,7 +20,6 @@ internal class EnglishAiutaTryOnLanguage(
         "Once you try on first item your try-on history would be stored here"
 
     // General
-    override val addToWish: String = "Wishlist"
     override val cancel: String = "Cancel"
     override val tryAgain: String = "Try again"
     override val defaultErrorMessage: String = "Something went wrong. Please try again later"

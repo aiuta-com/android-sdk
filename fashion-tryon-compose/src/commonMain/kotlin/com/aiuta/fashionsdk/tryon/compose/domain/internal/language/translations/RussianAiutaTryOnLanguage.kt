@@ -19,7 +19,6 @@ internal class RussianAiutaTryOnLanguage(
     override val historyEmptyDescription: String = "История ваших примерок будет сохранена здесь"
 
     // General
-    override val addToWish: String = "В избранное"
     override val cancel: String = "Отмена"
     override val tryAgain: String = "Попробовать снова"
     override val defaultErrorMessage: String =

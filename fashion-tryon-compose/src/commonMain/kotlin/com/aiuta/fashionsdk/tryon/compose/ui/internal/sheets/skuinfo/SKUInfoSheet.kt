@@ -165,7 +165,7 @@ private fun ButtonsContainer(
                 } else {
                     wishlistFeature.icons.wishlist24
                 },
-                text = stringResources.addToWish,
+                text = wishlistFeature.strings.wishlistButtonAdd,
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
                 onClick = {
