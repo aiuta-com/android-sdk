@@ -37,7 +37,9 @@ internal object Installation {
         }
     }
 
-    private fun initStorage(platformContext: AiutaPlatformContext): InstallationStorage = storage ?: buildInstallationStorage(platformContext).also {
+    private fun initStorage(
+        platformContext: AiutaPlatformContext,
+    ): InstallationStorage = storage ?: buildInstallationStorage(platformContext).also {
         storage = it
     }
 

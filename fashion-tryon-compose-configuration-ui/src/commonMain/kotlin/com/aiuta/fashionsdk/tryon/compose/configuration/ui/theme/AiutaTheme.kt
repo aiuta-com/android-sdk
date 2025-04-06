@@ -5,9 +5,12 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceCon
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.button.AiutaButtonTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.color.AiutaColorTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.error.AiutaErrorSnackbarTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.image.AiutaImageTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.label.AiutaLabelTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.pagebar.AiutaPageBarTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.AiutaProductBarTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.selection.AiutaSelectionSnackbarTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.sheet.AiutaBottomSheetTheme
 
 @Immutable
@@ -18,6 +21,9 @@ public class AiutaTheme private constructor(
     public val button: AiutaButtonTheme,
     public val pageBar: AiutaPageBarTheme,
     public val bottomSheet: AiutaBottomSheetTheme,
+    public val selectionSnackbar: AiutaSelectionSnackbarTheme,
+    public val errorSnackbar: AiutaErrorSnackbarTheme,
+    public val productBar: AiutaProductBarTheme,
 ) {
     public class Builder {
         public var color: AiutaColorTheme? = null
@@ -26,6 +32,9 @@ public class AiutaTheme private constructor(
         public var button: AiutaButtonTheme? = null
         public var pageBar: AiutaPageBarTheme? = null
         public var bottomSheet: AiutaBottomSheetTheme? = null
+        public var selectionSnackbar: AiutaSelectionSnackbarTheme? = null
+        public var errorSnackbar: AiutaErrorSnackbarTheme? = null
+        public var productBar: AiutaProductBarTheme? = null
 
         public fun build(): AiutaTheme {
             val parentClass = "AiutaTheme"
@@ -54,6 +63,18 @@ public class AiutaTheme private constructor(
                 bottomSheet = bottomSheet.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "bottomSheet",
+                ),
+                selectionSnackbar = selectionSnackbar.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "selectionSnackbar",
+                ),
+                errorSnackbar = errorSnackbar.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "errorSnackbar",
+                ),
+                productBar = productBar.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "productBar",
                 ),
             )
         }
