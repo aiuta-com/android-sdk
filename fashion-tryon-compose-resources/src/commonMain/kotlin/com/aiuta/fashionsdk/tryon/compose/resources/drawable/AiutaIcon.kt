@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources
+package com.aiuta.fashionsdk.tryon.compose.resources.drawable
 
 import androidx.compose.runtime.Immutable
 

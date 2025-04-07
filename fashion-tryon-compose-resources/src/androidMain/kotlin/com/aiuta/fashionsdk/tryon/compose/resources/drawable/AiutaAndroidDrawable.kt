@@ -1,8 +1,7 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources.icon
+package com.aiuta.fashionsdk.tryon.compose.resources.drawable
 
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources.AiutaDrawableResource
 
 public class AiutaAndroidDrawable(
     public override val resource: Drawable,

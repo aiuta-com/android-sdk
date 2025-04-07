@@ -74,7 +74,7 @@ public class AiutaTheme private constructor(
                 ),
                 productBar = productBar.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "errorSnackbar",
+                    property = "productBar",
                 ),
             )
         }

@@ -7,11 +7,11 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources.AiutaCompos
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.selection.icons.AiutaSelectionSnackbarThemeIcons
 
-public class DefaultAiutaSelectionSnackbarThemeIcons: AiutaSelectionSnackbarThemeIcons {
+public class DefaultAiutaSelectionSnackbarThemeIcons : AiutaSelectionSnackbarThemeIcons {
     override val trash24: AiutaIcon = AiutaIcon(
-        iconResource = AiutaComposeDrawableResource(Res.drawable.ic_trash_24)
+        iconResource = AiutaComposeDrawableResource(Res.drawable.ic_trash_24),
     )
     override val check20: AiutaIcon = AiutaIcon(
-        iconResource = AiutaComposeDrawableResource(Res.drawable.ic_check_20)
+        iconResource = AiutaComposeDrawableResource(Res.drawable.ic_check_20),
     )
 }

@@ -9,17 +9,19 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.compose.configuration.ui")
+androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.compose.resources")
 
 kotlin {
     sourceSets {
+        androidMain {
+            dependencies {
+                implementation(libs.androidx.annotation)
+            }
+        }
         commonMain {
             dependencies {
-                api(projects.fashionTryonComposeResources)
-
                 implementation(compose.components.resources)
-                implementation(compose.foundation)
-                implementation(compose.ui)
+                implementation(compose.runtime)
             }
         }
     }
