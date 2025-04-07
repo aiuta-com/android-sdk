@@ -17,6 +17,7 @@ kotlin {
             dependencies {
                 api(projects.fashionCompose)
                 api(projects.fashionTryonCore)
+                api(projects.fashionTryonComposeResources)
 
                 implementation(compose.foundation)
                 implementation(compose.ui)

@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.images
 
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 
 public interface AiutaOnboardingTryOnPageFeatureImages {
     public class OnboardingTryOnItem(
-        public val itemPhoto: AiutaImage,
-        public val itemPreview: AiutaImage,
+        public val itemPhoto: AiutaDrawableResource,
+        public val itemPreview: AiutaDrawableResource,
     )
 
     public val onboardingTryOnItems: List<OnboardingTryOnItem>

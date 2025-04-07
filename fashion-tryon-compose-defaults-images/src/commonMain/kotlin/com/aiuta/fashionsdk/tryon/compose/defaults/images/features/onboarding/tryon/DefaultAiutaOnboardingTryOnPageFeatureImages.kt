@@ -7,23 +7,23 @@ import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboa
 import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboarding_main_1
 import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboarding_main_2
 import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboarding_main_3
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.images.AiutaOnboardingTryOnPageFeatureImages
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
 
 public class DefaultAiutaOnboardingTryOnPageFeatureImages : AiutaOnboardingTryOnPageFeatureImages {
     override val onboardingTryOnItems: List<AiutaOnboardingTryOnPageFeatureImages.OnboardingTryOnItem> =
         listOf(
             AiutaOnboardingTryOnPageFeatureImages.OnboardingTryOnItem(
-                itemPhoto = AiutaResourceImage(Res.drawable.onboarding_main_1),
-                itemPreview = AiutaResourceImage(Res.drawable.onboarding_item_1),
+                itemPhoto = AiutaComposeDrawableResource(Res.drawable.onboarding_main_1),
+                itemPreview = AiutaComposeDrawableResource(Res.drawable.onboarding_item_1),
             ),
             AiutaOnboardingTryOnPageFeatureImages.OnboardingTryOnItem(
-                itemPhoto = AiutaResourceImage(Res.drawable.onboarding_main_2),
-                itemPreview = AiutaResourceImage(Res.drawable.onboarding_item_2),
+                itemPhoto = AiutaComposeDrawableResource(Res.drawable.onboarding_main_2),
+                itemPreview = AiutaComposeDrawableResource(Res.drawable.onboarding_item_2),
             ),
             AiutaOnboardingTryOnPageFeatureImages.OnboardingTryOnItem(
-                itemPhoto = AiutaResourceImage(Res.drawable.onboarding_main_3),
-                itemPreview = AiutaResourceImage(Res.drawable.onboarding_item_3),
+                itemPhoto = AiutaComposeDrawableResource(Res.drawable.onboarding_main_3),
+                itemPreview = AiutaComposeDrawableResource(Res.drawable.onboarding_item_3),
             ),
         )
 }

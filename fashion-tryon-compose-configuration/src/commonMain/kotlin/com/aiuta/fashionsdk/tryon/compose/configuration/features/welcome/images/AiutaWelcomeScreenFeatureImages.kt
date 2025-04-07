@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.images
 
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 
 public interface AiutaWelcomeScreenFeatureImages {
-    public val welcomeBackground: AiutaImage
+    public val welcomeBackground: AiutaDrawableResource
 }
