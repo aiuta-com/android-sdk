@@ -119,7 +119,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
         .startSKUGeneration(
             container =
             SKUGenerationPlatformImageContainer(
-                aiutaPlatformImage = image,
+                platformImage = image,
                 skuId = activeSKUItem.value.skuId,
                 skuCatalogName = activeSKUItem.value.catalogName,
             ),

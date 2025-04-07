@@ -186,8 +186,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaDrawableIcons$A
 	public static final field $stable I
 	public fun <init> (Landroid/graphics/drawable/Drawable;Z)V
 	public synthetic fun <init> (Landroid/graphics/drawable/Drawable;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun getResource ()Landroid/graphics/drawable/Drawable;
-	public synthetic fun getResource ()Ljava/lang/Object;
+	public fun getIconResource ()Landroid/graphics/drawable/Drawable;
+	public synthetic fun getIconResource ()Ljava/lang/Object;
 	public fun getShouldDrawAsIs ()Z
 }
 
@@ -220,7 +220,7 @@ public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIc
 }
 
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/icon/AiutaIcons$AiutaIcon {
-	public abstract fun getResource ()Ljava/lang/Object;
+	public abstract fun getIconResource ()Ljava/lang/Object;
 	public abstract fun getShouldDrawAsIs ()Z
 }
 
@@ -283,20 +283,20 @@ public final class com/aiuta/fashionsdk/compose/tokens/icon/AiutaResourceIcons$A
 	public static final field $stable I
 	public fun <init> (Lorg/jetbrains/compose/resources/DrawableResource;Z)V
 	public synthetic fun <init> (Lorg/jetbrains/compose/resources/DrawableResource;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun getResource ()Ljava/lang/Object;
-	public fun getResource ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public synthetic fun getIconResource ()Ljava/lang/Object;
+	public fun getIconResource ()Lorg/jetbrains/compose/resources/DrawableResource;
 	public fun getShouldDrawAsIs ()Z
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/images/AiutaDrawableImage : com/aiuta/fashionsdk/compose/tokens/images/AiutaImage {
 	public static final field $stable I
 	public fun <init> (Landroid/graphics/drawable/Drawable;)V
-	public fun getResource ()Landroid/graphics/drawable/Drawable;
-	public synthetic fun getResource ()Ljava/lang/Object;
+	public fun getIconResource ()Landroid/graphics/drawable/Drawable;
+	public synthetic fun getIconResource ()Ljava/lang/Object;
 }
 
 public abstract interface class com/aiuta/fashionsdk/compose/tokens/images/AiutaImage {
-	public abstract fun getResource ()Ljava/lang/Object;
+	public abstract fun getIconResource ()Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/images/AiutaImages {
@@ -312,8 +312,8 @@ public final class com/aiuta/fashionsdk/compose/tokens/images/AiutaImages {
 public final class com/aiuta/fashionsdk/compose/tokens/images/AiutaResourceImage : com/aiuta/fashionsdk/compose/tokens/images/AiutaImage {
 	public static final field $stable I
 	public fun <init> (Lorg/jetbrains/compose/resources/DrawableResource;)V
-	public synthetic fun getResource ()Ljava/lang/Object;
-	public fun getResource ()Lorg/jetbrains/compose/resources/DrawableResource;
+	public synthetic fun getIconResource ()Ljava/lang/Object;
+	public fun getIconResource ()Lorg/jetbrains/compose/resources/DrawableResource;
 }
 
 public final class com/aiuta/fashionsdk/compose/tokens/images/onboarding/AiutaOnboardingImages {

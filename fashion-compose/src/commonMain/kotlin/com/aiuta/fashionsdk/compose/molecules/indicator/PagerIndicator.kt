@@ -40,6 +40,7 @@ import kotlinx.coroutines.flow.shareIn
  * @param orientation orientation of this view
  **/
 @OptIn(ExperimentalFoundationApi::class)
+@Deprecated("Use from another package")
 @Composable
 public fun PagerIndicator(
     modifier: Modifier = Modifier,

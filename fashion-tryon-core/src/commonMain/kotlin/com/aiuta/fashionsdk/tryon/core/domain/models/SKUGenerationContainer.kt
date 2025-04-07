@@ -21,7 +21,7 @@ public sealed interface SKUGenerationContainer {
  * @see SKUGenerationContainer
  */
 public class SKUGenerationPlatformImageContainer(
-    public val aiutaPlatformImage: AiutaPlatformImage,
+    public val platformImage: AiutaPlatformImage,
     override val skuId: String,
     override val skuCatalogName: String? = null,
 ) : SKUGenerationContainer

@@ -18,7 +18,7 @@ internal class UploadImageSliceImpl(
         fileName: String,
     ): UploadedImage {
         // Compress, resize and transform to byte array
-        val byteArray = container.aiutaPlatformImage.byteArray
+        val byteArray = container.platformImage.byteArray
 
         // Upload image to backend
         return try {

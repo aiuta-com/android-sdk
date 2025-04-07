@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.pagebar.icons
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.models.icon.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources.AiutaIcon
 
 public interface AiutaPageBarThemeIcons {
     public val back24: AiutaIcon

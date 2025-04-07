@@ -28,6 +28,7 @@ import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.utils.conditional
 
+@Deprecated("Use from another package")
 @Composable
 public fun FashionButton(
     modifier: Modifier = Modifier,

@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
 import com.aiuta.fashionsdk.compose.tokens.icon.AiutaResourceIcon
 import org.jetbrains.compose.resources.painterResource
 
+@Deprecated("Use from another package")
 @Composable
 public fun AiutaIcon(
     icon: AiutaIcon,

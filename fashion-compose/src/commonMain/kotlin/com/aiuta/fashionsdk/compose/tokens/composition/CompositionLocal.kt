@@ -5,6 +5,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 
 // Theme
+@Deprecated("Use LocalTheme from another package")
 public val LocalTheme: ProvidableCompositionLocal<AiutaTheme> =
     staticCompositionLocalOf {
         noLocalProvidedFor("LocalTheme")

@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models.image
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import com.aiuta.fashionsdk.tryon.core.domain.models.compressor.CompressionConfig
@@ -19,6 +20,7 @@ import platform.UIKit.UIGraphicsGetImageFromCurrentImageContext
 import platform.UIKit.UIImage
 import platform.UIKit.UIImageJPEGRepresentation
 
+@Immutable
 public actual class AiutaPlatformImage(
     private val image: UIImage,
 ) {

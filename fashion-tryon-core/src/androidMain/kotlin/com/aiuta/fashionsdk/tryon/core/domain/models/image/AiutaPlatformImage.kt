@@ -3,11 +3,13 @@ package com.aiuta.fashionsdk.tryon.core.domain.models.image
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import com.aiuta.fashionsdk.tryon.core.domain.models.compressor.CompressionConfig
 import java.io.ByteArrayOutputStream
 
+@Immutable
 public actual class AiutaPlatformImage(
     public val bitmap: Bitmap,
 ) {

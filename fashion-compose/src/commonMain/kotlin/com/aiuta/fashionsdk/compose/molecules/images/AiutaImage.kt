@@ -24,6 +24,7 @@ import com.aiuta.fashionsdk.compose.tokens.images.AiutaResourceImage
 import com.aiuta.fashionsdk.compose.tokens.utils.placeholderFadeConnecting
 import org.jetbrains.compose.resources.painterResource
 
+@Deprecated("Use from another package")
 @Composable
 public fun AiutaImage(
     image: AiutaImage,

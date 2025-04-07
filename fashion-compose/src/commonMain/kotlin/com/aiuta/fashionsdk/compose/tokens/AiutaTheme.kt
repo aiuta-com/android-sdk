@@ -34,6 +34,7 @@ import com.aiuta.fashionsdk.compose.tokens.typography.DefaultAiutaTypography
  * @see AiutaImages
  * @see AiutaShapes
  */
+@Deprecated("Use AiutaTheme from another package")
 @Immutable
 public class AiutaTheme(
     public val colors: AiutaColors,
@@ -57,6 +58,7 @@ public class AiutaTheme(
  *
  * @return An instance of [AiutaTheme]
  */
+@Deprecated("Use AiutaTheme from another package")
 public fun aiutaTheme(
     icons: AiutaIcons,
     colors: AiutaColors = DefaultAiutaColors,
@@ -82,6 +84,7 @@ public fun aiutaTheme(
  *
  * @return An instance of [AiutaTheme].
  */
+@Deprecated("Use AiutaTheme from another package")
 @Composable
 public fun rememberAiutaTheme(
     icons: AiutaIcons,
