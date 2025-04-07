@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun PriceInfo(
@@ -29,8 +29,8 @@ internal fun PriceInfo(
         if (localizedOldPrice?.isNotBlank() == true) {
             Text(
                 text = localizedOldPrice,
-                style = theme.typography.price,
-                color = theme.colors.accent,
+                style = theme.productBar.typography.price,
+                color = theme.productBar.colors.discountedPrice,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -42,8 +42,7 @@ internal fun PriceInfo(
         if (skuItem.localizedPrice.isNotBlank()) {
             Text(
                 text = skuItem.localizedPrice,
-                style =
-                theme.typography.price.copy(
+                style = theme.productBar.typography.price.copy(
                     textDecoration = solveGeneralPriceDecoration(skuItem),
                 ),
                 color = solveGeneralPriceColor(skuItem),

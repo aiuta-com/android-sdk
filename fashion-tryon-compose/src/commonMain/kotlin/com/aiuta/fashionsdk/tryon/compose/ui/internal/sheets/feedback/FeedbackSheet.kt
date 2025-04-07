@@ -20,11 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -34,6 +29,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDiv
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ColumnScope.FeedbackSheet() {
@@ -66,8 +66,8 @@ internal fun ColumnScope.FeedbackSheet() {
     Text(
         modifier = sharedModifier,
         text = feedbackFeature.strings.tryOnFeedbackTitle,
-        style = theme.typography.titleM,
-        color = theme.colors.primary,
+        style = theme.label.typography.titleM,
+        color = theme.color.primary,
         textAlign = TextAlign.Center,
     )
 
@@ -129,8 +129,8 @@ internal fun ColumnScope.FeedbackSheet() {
                         controller.bottomSheetNavigator.hide()
                     },
                 text = feedbackFeature.strings.tryOnFeedbackButtonSkip,
-                style = theme.typography.chips,
-                color = theme.colors.secondary,
+                style = theme.label.typography.subtle,
+                color = theme.color.secondary,
                 textAlign = TextAlign.Center,
             )
         } else {
@@ -168,19 +168,19 @@ private fun OptionItem(
             .border(
                 width = 2.dp,
                 color = if (isSelected) {
-                    theme.colors.primary
+                    theme.color.primary
                 } else {
                     Color.Transparent
                 },
-                shape = theme.shapes.buttonM,
+                shape = theme.button.shapes.buttonSShape,
             )
             .background(
                 color = if (isSelected) {
-                    theme.colors.background
+                    theme.color.background
                 } else {
-                    theme.colors.neutral
+                    theme.color.neutral
                 },
-                shape = theme.shapes.buttonM,
+                shape = theme.button.shapes.buttonSShape,
             )
             .clickableUnindicated { onClick() }
             .padding(
@@ -191,11 +191,11 @@ private fun OptionItem(
     ) {
         Text(
             text = option,
-            style = theme.typography.chips,
+            style = theme.bottomSheet.typography.chipsButton,
             color = if (isSelected) {
-                theme.colors.primary
+                theme.color.primary
             } else {
-                theme.colors.secondary
+                theme.color.secondary
             },
             textAlign = TextAlign.Center,
         )

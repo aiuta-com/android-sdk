@@ -19,10 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -43,6 +39,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
@@ -62,7 +62,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     Column(
         modifier =
         modifier
-            .background(theme.colors.background)
+            .background(theme.color.background)
             .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

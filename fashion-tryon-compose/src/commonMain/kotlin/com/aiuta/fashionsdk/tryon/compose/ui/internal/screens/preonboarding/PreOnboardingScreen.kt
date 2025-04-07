@@ -19,10 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
@@ -35,6 +31,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScree
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
@@ -46,7 +46,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
     Box(
-        modifier = modifier.background(theme.colors.background),
+        modifier = modifier.background(theme.color.background),
         contentAlignment = Alignment.Center,
     ) {
         AiutaImage(
@@ -65,7 +65,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
             actions = {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    icon = theme.icons.close24,
+                    icon = theme.pageBar.icons.close24,
                     color = Color.White,
                     onClick = controller::clickClose,
                 )
@@ -140,15 +140,15 @@ private fun StartButton(
         modifier =
         modifier
             .clip(RoundedCornerShape(4.dp))
-            .background(theme.colors.background)
+            .background(theme.color.background)
             .clickableUnindicated { onClick() }
             .padding(vertical = 16.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = welcomeScreenFeature.strings.welcomeButtonStart,
-            style = theme.typography.button,
-            color = theme.colors.primary,
+            style = theme.button.typography.buttonM,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
     }

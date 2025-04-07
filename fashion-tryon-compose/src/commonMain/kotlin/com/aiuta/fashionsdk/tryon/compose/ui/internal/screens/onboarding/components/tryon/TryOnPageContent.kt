@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
@@ -33,6 +32,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun TryOnPageContent(

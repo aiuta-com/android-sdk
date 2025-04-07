@@ -20,7 +20,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -31,6 +30,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.e
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.loading.ModelSelectorLoadingContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.controller.initModelSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
@@ -57,7 +57,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
     Column(
         modifier =
         modifier
-            .background(theme.colors.background)
+            .background(theme.color.background)
             .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {

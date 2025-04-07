@@ -18,11 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun SelectorCard(
@@ -36,7 +35,6 @@ internal fun SelectorCard(
     onDelete: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val shareFeature = provideFeature<AiutaShareFeature>()
 
@@ -44,8 +42,8 @@ internal fun SelectorCard(
         modifier =
         modifier
             .background(
-                color = theme.colors.primary,
-                shape = theme.shapes.buttonM,
+                color = theme.color.primary,
+                shape = theme.button.shapes.buttonMShape,
             )
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -54,9 +52,9 @@ internal fun SelectorCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             TextButton(
-                text = stringResources.cancel,
-                backgroundColor = theme.colors.onDark,
-                textColor = theme.colors.primary,
+                text = theme.selectionSnackbar.strings.cancel,
+                backgroundColor = theme.color.onDark,
+                textColor = theme.color.primary,
             ) {
                 onCancel()
             }
@@ -77,12 +75,12 @@ internal fun SelectorCard(
                 TextButton(
                     text =
                     if (state == SelectorMode.ALL_IS_SELECTED) {
-                        stringResources.historySelectorEnableButtonUnselectAll
+                        theme.selectionSnackbar.strings.unselectAll
                     } else {
-                        stringResources.historySelectorEnableButtonSelectAll
+                        theme.selectionSnackbar.strings.selectAll
                     },
                     backgroundColor = Color.Transparent,
-                    textColor = theme.colors.onDark,
+                    textColor = theme.color.onDark,
                 ) {
                     if (state == SelectorMode.ALL_IS_SELECTED) {
                         onDeselectAll()
@@ -95,7 +93,7 @@ internal fun SelectorCard(
             Spacer(Modifier.weight(1f))
 
             SmallIconButton(
-                icon = theme.icons.trash24,
+                icon = theme.selectionSnackbar.icons.trash24,
                 isActive = isActionActive,
             ) {
                 onDelete()

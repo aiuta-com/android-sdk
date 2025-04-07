@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun AiutaLabel(modifier: Modifier = Modifier) {
@@ -24,7 +24,7 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
         modifier
             .background(
                 shape = RoundedCornerShape(100.dp),
-                color = theme.colors.neutral,
+                color = theme.color.neutral,
             )
             .padding(
                 horizontal = 12.dp,
@@ -34,8 +34,8 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
     ) {
         Text(
             text = tryOnFeature.strings.tryOnPoweredByAiuta,
-            style = theme.typography.smallButton,
-            color = theme.colors.primary,
+            style = theme.button.typography.buttonS,
+            color = theme.color.primary,
         )
     }
 }

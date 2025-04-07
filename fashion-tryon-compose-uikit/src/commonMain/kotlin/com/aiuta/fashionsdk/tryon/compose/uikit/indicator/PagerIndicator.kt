@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.uikit.indicator
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.height
@@ -39,7 +38,6 @@ import kotlinx.coroutines.flow.shareIn
  * @param inactiveColorAlpha alpha of inactive indicator. Color of inactive indicator is [color]
  * @param orientation orientation of this view
  **/
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 public fun PagerIndicator(
     modifier: Modifier = Modifier,

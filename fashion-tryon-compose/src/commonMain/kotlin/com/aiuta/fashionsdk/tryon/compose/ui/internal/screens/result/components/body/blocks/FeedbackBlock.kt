@@ -20,18 +20,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendLikeGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.hazeChild
@@ -124,25 +124,17 @@ private fun ReactionIcon(
     val haptic = LocalHapticFeedback.current
     val theme = LocalTheme.current
 
-    val sizeModifier = modifier.size(38.dp)
-    val finalModifier =
-        if (theme.toggles.isBlurOutlinesEnabled) {
-            sizeModifier
-                .border(
-                    width = 1.dp,
-                    color = theme.colors.neutral2,
-                    shape = CircleShape,
-                )
-        } else {
-            sizeModifier
-        }
-
     Box(
-        modifier =
-        finalModifier
+        modifier = modifier
+            .size(38.dp)
+            .border(
+                width = 1.dp,
+                color = theme.color.border,
+                shape = CircleShape,
+            )
             .clip(CircleShape)
             .hazeChild(hazeState) {
-                val sharedColor = theme.colors.background.copy(alpha = 0.4f)
+                val sharedColor = theme.color.background.copy(alpha = 0.4f)
 
                 blurRadius = 10.dp
                 backgroundColor = sharedColor
@@ -161,7 +153,7 @@ private fun ReactionIcon(
                 },
             icon = icon,
             contentDescription = null,
-            tint = theme.colors.background.copy(alpha = 0.7f),
+            tint = theme.color.background.copy(alpha = 0.7f),
         )
     }
 }

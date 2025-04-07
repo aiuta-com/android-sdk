@@ -30,13 +30,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
@@ -56,6 +49,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controll
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 @Composable
@@ -70,7 +70,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
         Modifier
             .width(148.dp)
             .height(254.dp)
-            .clip(theme.shapes.previewImage)
+            .clip(theme.image.shapes.imageSShape)
 
     val generatedOperations =
         controller.generatedOperationInteractor
@@ -91,8 +91,8 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
     Text(
         modifier = Modifier.padding(horizontal = sharedHorizontalPadding),
         text = uploadsHistoryFeature.strings.uploadsHistoryTitle,
-        style = theme.typography.titleM,
-        color = theme.colors.primary,
+        style = theme.label.typography.titleM,
+        color = theme.color.primary,
         fontWeight = FontWeight.Bold,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
@@ -197,7 +197,7 @@ private fun OperationItem(
                 .clipToBounds()
                 .fillMaxSize(),
             imageUrl = generatedOperation.sourceImageUrls.firstOrNull(),
-            shape = theme.shapes.previewImage,
+            shape = theme.image.shapes.imageSShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
@@ -256,9 +256,9 @@ private fun OperationItem(
                             }
                         }
                     },
-                icon = theme.icons.trash24,
+                icon = theme.selectionSnackbar.icons.trash24,
                 contentDescription = null,
-                tint = theme.colors.background,
+                tint = theme.color.background,
             )
         }
 

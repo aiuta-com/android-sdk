@@ -21,15 +21,10 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -38,6 +33,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememb
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
@@ -55,7 +55,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         modifier
             .padding(horizontal = 26.dp)
             .background(
-                color = theme.colors.neutral,
+                color = theme.color.neutral,
                 shape = RoundedCornerShape(24.dp),
             )
             .padding(horizontal = 40.dp),
@@ -76,8 +76,8 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = imageSelectorFeature.strings.imageSelectorTitleEmpty,
-            style = theme.typography.titleM,
-            color = theme.colors.primary,
+            style = theme.label.typography.titleM,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
 
@@ -86,8 +86,8 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = imageSelectorFeature.strings.imageSelectorDescriptionEmpty,
-            style = theme.typography.chips,
-            color = theme.colors.primary,
+            style = theme.label.typography.subtle,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
 
@@ -114,8 +114,8 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = predefinedModelFeature.strings.predefinedModelOr,
-                style = theme.typography.chips,
-                color = theme.colors.primary,
+                style = theme.label.typography.subtle,
+                color = theme.color.primary,
                 textAlign = TextAlign.Center,
             )
 
@@ -126,8 +126,8 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
                 text = predefinedModelFeature.strings.predefinedModelPageTitle,
                 style =
                 FashionButtonStyles.secondaryStyle(
-                    backgroundColor = theme.colors.background,
-                    contentColor = theme.colors.primary,
+                    backgroundColor = theme.color.background,
+                    contentColor = theme.color.primary,
                     borderColor = Color.Transparent,
                 ),
                 size = FashionButtonSizes.lSize(),
@@ -178,7 +178,7 @@ private fun ImagesBlock(modifier: Modifier = Modifier) {
 @Composable
 private fun ImageContainer(
     modifier: Modifier = Modifier,
-    image: AiutaImage?,
+    image: AiutaDrawableResource?,
 ) {
     if (image == null) return
 
@@ -187,20 +187,19 @@ private fun ImageContainer(
     val sharedShape = RoundedCornerShape(16.dp)
 
     AiutaImage(
-        modifier =
-        modifier
+        modifier = modifier
             .fillMaxHeight()
             .aspectRatio(0.63f)
             .dropShadow(
                 shape = sharedShape,
-                color = theme.colors.primary.copy(alpha = 0.06f),
+                color = theme.color.primary.copy(alpha = 0.06f),
                 blur = (13.42).dp,
                 offsetY = (13.42).dp,
             )
             .clip(sharedShape)
             .border(
                 width = 4.dp,
-                color = theme.colors.onDark,
+                color = theme.color.onDark,
                 shape = sharedShape,
             ),
         image = image,

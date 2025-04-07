@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -29,20 +28,18 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.util.lerp
-import coil3.compose.LocalPlatformContext
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 internal fun LazyGridScope.itemPhotosBlock(
     modifier: Modifier = Modifier,
@@ -65,17 +62,10 @@ private fun ItemPhotosBlock(
     modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
-    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
-    val density = LocalDensity.current
     val theme = LocalTheme.current
 
     val activeSKUItem = controller.activeSKUItem.value
-
-    val sharedRadius =
-        with(density) {
-            theme.shapes.previewImage.topStart.toPx(Size.Unspecified, density).toDp()
-        }
 
     val bottomSheetState =
         generationResultController
@@ -102,9 +92,9 @@ private fun ItemPhotosBlock(
         Modifier
             .height(226.dp)
             .width(170.dp)
-            .clip(theme.shapes.previewImage)
-            .background(theme.colors.neutral)
-    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.shapes.previewImage)
+            .clip(theme.image.shapes.imageSShape)
+            .background(theme.color.neutral)
+    val sharedImageModifier = Modifier.fillMaxSize().clip(theme.image.shapes.imageSShape)
 
     LazyRow(
         modifier = modifier.alpha(alphaRow.value),
@@ -121,7 +111,7 @@ private fun ItemPhotosBlock(
             var imageSize by remember { mutableStateOf(Size.Zero) }
 
             val finalImageModifier =
-                if (theme.toggles.isProductFistImageExtendedPaddingApplied && index == 0) {
+                if (theme.productBar.toggles.isProductFistImageExtendedPaddingApplied && index == 0) {
                     sharedImageModifier.padding(
                         top = 24.dp,
                         start = 32.dp,
@@ -146,7 +136,7 @@ private fun ItemPhotosBlock(
                             controller.zoomImageController.openZoomImageScreen(
                                 model = ZoomImageUiModel(
                                     imageSize = imageSize,
-                                    initialCornerRadius = sharedRadius,
+                                    initialCornerRadius = theme.image.shapes.imageS,
                                     imageUrl = url,
                                     parentImageOffset = parentImageOffset,
                                     originPageId = AiutaAnalyticPageId.RESULTS,
@@ -154,7 +144,7 @@ private fun ItemPhotosBlock(
                             )
                         },
                     imageUrl = url,
-                    shape = theme.shapes.previewImage,
+                    shape = theme.image.shapes.imageSShape,
                     contentScale = ContentScale.Crop,
                     contentDescription = null,
                 )

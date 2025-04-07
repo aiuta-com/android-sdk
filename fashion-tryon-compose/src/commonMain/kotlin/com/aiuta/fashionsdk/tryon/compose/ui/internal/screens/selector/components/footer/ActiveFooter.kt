@@ -23,13 +23,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
@@ -40,6 +33,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBotto
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
@@ -61,14 +61,14 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
             modifier =
             Modifier
                 .dropShadow(
-                    shape = theme.shapes.bottomSheet,
-                    color = theme.colors.primary.copy(alpha = 0.04f),
+                    shape = theme.bottomSheet.shapes.bottomSheetShape,
+                    color = theme.color.primary.copy(alpha = 0.04f),
                     blur = 15.dp,
                     offsetY = (-10).dp,
                 )
                 .background(
-                    color = theme.colors.background,
-                    shape = theme.shapes.bottomSheet,
+                    color = theme.color.background,
+                    shape = theme.bottomSheet.shapes.bottomSheetShape,
                 )
                 .padding(horizontal = 16.dp),
         ) {
@@ -87,7 +87,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 text = tryOnFeature.strings.tryOnButtonTryOn,
                 style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
-                        contentColor = theme.colors.onDark,
+                        contentColor = theme.color.onDark,
                         gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
                     )
                 } ?: FashionButtonStyles.primaryStyle(theme),
@@ -137,7 +137,7 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
                 .aspectRatio(0.7f)
                 .border(
                     width = 1.dp,
-                    color = theme.colors.neutral2,
+                    color = theme.color.border,
                     shape = sharedCorner,
                 )
                 .clip(sharedCorner),
@@ -155,8 +155,8 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = activeSKUItem.store,
-                style = theme.typography.brandName,
-                color = theme.colors.primary,
+                style = theme.productBar.typography.brand,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
 
@@ -164,8 +164,8 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
             Text(
                 text = activeSKUItem.description,
-                style = theme.typography.productName,
-                color = theme.colors.primary,
+                style = theme.productBar.typography.product,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
         }
@@ -179,7 +179,7 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
                 .align(Alignment.CenterVertically),
             icon = tryOnFeature.icons.arrow16,
             contentDescription = null,
-            tint = theme.colors.neutral3,
+            tint = theme.color.outline,
         )
     }
 }

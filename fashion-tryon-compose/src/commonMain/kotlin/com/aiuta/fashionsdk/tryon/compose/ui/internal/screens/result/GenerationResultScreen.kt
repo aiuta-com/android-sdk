@@ -19,8 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -35,6 +33,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun GenerationResultScreen(modifier: Modifier = Modifier) {
@@ -70,16 +70,16 @@ private fun GenerationResultScreenContent(modifier: Modifier = Modifier) {
                 generationResultController = generationResultController,
             )
         },
-        sheetBackgroundColor = theme.colors.background,
-        backgroundColor = theme.colors.neutral,
-        sheetShape = theme.shapes.bottomSheet,
+        sheetBackgroundColor = theme.color.background,
+        backgroundColor = theme.color.neutral,
+        sheetShape = theme.bottomSheet.shapes.bottomSheetShape,
         sheetPeekHeight = sheetHeight,
     ) { paddings ->
         Box(
             modifier =
             Modifier
                 .padding(paddings)
-                .background(theme.colors.background),
+                .background(theme.color.background),
         ) {
             BottomSheetScaffoldContent(
                 modifier = Modifier.fillMaxSize(),
@@ -154,7 +154,7 @@ private fun BottomSheetScaffoldScrim(
     val scrimColor =
         lerp(
             start = Color.Transparent,
-            stop = theme.colors.primary.copy(alpha = 0.6f),
+            stop = theme.color.primary.copy(alpha = 0.6f),
             fraction = sheetProgress,
         )
 

@@ -10,10 +10,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun SmallIconButton(
@@ -24,7 +24,7 @@ internal fun SmallIconButton(
 ) {
     val theme = LocalTheme.current
     val backgroundColor by animateColorAsState(
-        targetValue = if (isActive) theme.colors.onDark else theme.colors.onDark.copy(alpha = 0.4f),
+        targetValue = if (isActive) theme.color.onDark else theme.color.onDark.copy(alpha = 0.4f),
         label = "backgroundColor",
     )
 
@@ -47,7 +47,7 @@ internal fun SmallIconButton(
             modifier = Modifier.size(24.dp),
             icon = icon,
             contentDescription = null,
-            tint = theme.colors.primary,
+            tint = theme.color.primary,
         )
     }
 }

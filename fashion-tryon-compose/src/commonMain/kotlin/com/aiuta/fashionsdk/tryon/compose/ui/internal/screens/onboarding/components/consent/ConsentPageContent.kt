@@ -24,8 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -36,6 +34,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmentLine
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ConsentPageContent(
@@ -65,8 +65,8 @@ internal fun ConsentPageContent(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = consentStandaloneFeature.strings.consentTitle,
-                style = theme.typography.titleL,
-                color = theme.colors.primary,
+                style = theme.label.typography.titleL,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
 
@@ -78,8 +78,8 @@ internal fun ConsentPageContent(
                 buildAnnotatedStringFromHtml(
                     consentStandaloneFeature.strings.consentDescriptionHtml,
                 ),
-                style = theme.typography.regular,
-                color = theme.colors.primary,
+                style = theme.label.typography.regular,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
 
@@ -136,8 +136,8 @@ internal fun ConsentPageContent(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = buildAnnotatedStringFromHtml(footerText),
-                    style = theme.typography.regular,
-                    color = theme.colors.primary,
+                    style = theme.label.typography.regular,
+                    color = theme.color.primary,
                     textAlign = TextAlign.Start,
                 )
             }
@@ -173,9 +173,9 @@ private fun AgreePoint(
                 onCheckedChange = onAgreementCheckedChange,
                 colors =
                 CheckboxDefaults.colors(
-                    checkedColor = theme.colors.brand,
-                    uncheckedColor = theme.colors.neutral,
-                    checkmarkColor = theme.colors.onDark,
+                    checkedColor = theme.color.brand,
+                    uncheckedColor = theme.color.neutral,
+                    checkmarkColor = theme.color.onDark,
                 ),
             )
         }
@@ -192,8 +192,8 @@ private fun AgreePoint(
                 .alignBy(CenterAlignmentLine)
                 .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
             text = text,
-            style = theme.typography.regular,
-            color = theme.colors.primary,
+            style = theme.label.typography.regular,
+            color = theme.color.primary,
             textAlign = TextAlign.Start,
             onTextLayout = { textLayout: TextLayoutResult ->
                 topTextPosition = textLayout.getLineTop(lineIndexToCenter)

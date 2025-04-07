@@ -21,14 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 @Composable
 internal fun ThanksFeedbackBlock(
@@ -108,8 +108,8 @@ private fun ThanksFeedbackBlockContent(
         Text(
             modifier = Modifier.padding(horizontal = 24.dp),
             text = feedbackFeature.strings.tryOnFeedbackGratitudeText,
-            style = theme.typography.regular,
-            color = theme.colors.onDark,
+            style = theme.label.typography.regular,
+            color = theme.color.onDark,
             textAlign = TextAlign.Center,
         )
 

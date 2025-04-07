@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import io.github.fornewid.placeholder.foundation.PlaceholderHighlight
 import io.github.fornewid.placeholder.foundation.fade
 import io.github.fornewid.placeholder.foundation.placeholder
@@ -19,10 +19,10 @@ internal fun Modifier.placeholderFadeConnecting(
     val placeholderModifier = Modifier.placeholder(
         visible = visible,
         shape = RoundedCornerShape(shapeDp),
-        color = theme.colors.neutral.copy(alpha = 0.2f),
+        color = theme.color.neutral.copy(alpha = 0.2f),
         highlight =
         PlaceholderHighlight.fade(
-            highlightColor = theme.colors.neutral,
+            highlightColor = theme.color.neutral,
         ),
     )
 

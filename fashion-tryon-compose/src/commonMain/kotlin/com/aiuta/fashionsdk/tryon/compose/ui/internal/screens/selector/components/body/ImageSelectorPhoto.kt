@@ -13,13 +13,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.imageSource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images.ImagesContainer
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
@@ -28,7 +28,7 @@ internal fun ImageSelectorPhoto(modifier: Modifier = Modifier) {
 
     val generationStatus = controller.generationStatus
 
-    val sharedCornerShape = theme.shapes.mainImage
+    val sharedCornerShape = theme.image.shapes.imageLShape
 
     // Animation
     val lastSavedPhotoUrisTransition =

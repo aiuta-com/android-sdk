@@ -24,11 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
@@ -44,6 +39,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDiv
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
@@ -106,7 +106,7 @@ private fun ImageContainer(
     AiutaImage(
         modifier = modifier
             .clip(sharedShape)
-            .background(theme.colors.background),
+            .background(theme.color.background),
         imageUrl = imageUrl,
         shape = sharedShape,
         contentScale = ContentScale.Crop,

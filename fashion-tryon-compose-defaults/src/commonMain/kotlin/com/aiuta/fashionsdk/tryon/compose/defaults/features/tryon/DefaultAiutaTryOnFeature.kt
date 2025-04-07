@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.g
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.strings.AiutaTryOnGenerationsHistoryFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.loadingPage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.styles.AiutaTryOnLoadingPageFeatureStyles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.repicking
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.styles.AiutaTryOnFeatureStyles
@@ -28,6 +29,7 @@ public fun AiutaTryOnConfigurationFeatures.Builder.defaultTryOn() {
         loadingPage {
             icons = DefaultAiutaTryOnLoadingPageFeatureIcons()
             strings = AiutaTryOnLoadingPageFeatureStrings.Default()
+            styles = AiutaTryOnLoadingPageFeatureStyles.Default()
         }
         fitDisclaimer {
             icons = DefaultAiutaTryOnFitDisclaimerFeatureIcons()

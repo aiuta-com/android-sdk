@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfi
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.toggles.AiutaOnboardingFeatureToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
@@ -17,6 +18,7 @@ public class AiutaOnboardingFeature private constructor(
     // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
+    public val toggles: AiutaOnboardingFeatureToggles,
 ) : AiutaTryOnConfigurationFeature {
 
     public class Builder : AiutaTryOnConfigurationFeature.Builder {
@@ -24,6 +26,7 @@ public class AiutaOnboardingFeature private constructor(
         public var bestResultsPage: AiutaOnboardingBestResultsPageFeature? = null
         public var strings: AiutaOnboardingFeatureStrings? = null
         public var shapes: AiutaOnboardingFeatureShapes? = null
+        public var toggles: AiutaOnboardingFeatureToggles? = null
 
         public override fun build(): AiutaOnboardingFeature {
             val parentClass = "AiutaOnboardingFeature"
@@ -41,6 +44,10 @@ public class AiutaOnboardingFeature private constructor(
                 shapes = shapes.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "shapes",
+                ),
+                toggles = toggles.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "toggles",
                 ),
             )
         }

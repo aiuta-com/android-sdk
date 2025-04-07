@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun SKUInfo(
@@ -27,16 +27,16 @@ internal fun SKUInfo(
     ) {
         Text(
             text = skuItem.store,
-            style = theme.typography.brandName,
-            color = theme.colors.primary,
+            style = theme.productBar.typography.brand,
+            color = theme.color.primary,
         )
 
         Spacer(Modifier.height(2.dp))
 
         Text(
             text = skuItem.description,
-            style = theme.typography.productName,
-            color = theme.colors.primary,
+            style = theme.productBar.typography.product,
+            color = theme.color.primary,
         )
 
         Spacer(Modifier.height(4.dp))

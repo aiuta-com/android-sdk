@@ -10,7 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 
@@ -23,12 +23,10 @@ internal fun ImageSelectorBlock(
     val hazeState = remember { HazeState() }
 
     Box(
-        modifier =
-        modifier
-            .background(
-                color = theme.colors.neutral,
-                shape = theme.shapes.mainImage,
-            ),
+        modifier = modifier.background(
+            color = theme.color.neutral,
+            shape = theme.image.shapes.imageLShape,
+        ),
     ) {
         ImageSelectorPhoto(
             modifier =

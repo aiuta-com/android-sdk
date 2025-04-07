@@ -17,7 +17,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.isDialogVisible
@@ -27,6 +26,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.DEFA
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationAlertDialog
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.NavigationErrorCard
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import kotlinx.coroutines.delay
 
 @Composable
@@ -36,16 +36,16 @@ internal fun NavigationContainer(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     Box(
-        modifier = modifier.background(theme.colors.background),
+        modifier = modifier.background(theme.color.background),
     ) {
         ModalBottomSheetLayout(
             modifier = Modifier.fillMaxSize(),
             sheetState = controller.bottomSheetNavigator.sheetState,
-            sheetBackgroundColor = theme.colors.background,
+            sheetBackgroundColor = theme.color.background,
             sheetContent = controller.bottomSheetNavigator.sheetContent,
-            sheetContentColor = theme.colors.primary,
-            sheetShape = theme.shapes.bottomSheet,
-            scrimColor = theme.colors.primary.copy(alpha = 0.6f),
+            sheetContentColor = theme.color.primary,
+            sheetShape = theme.bottomSheet.shapes.bottomSheetShape,
+            scrimColor = theme.color.primary.copy(alpha = 0.6f),
             content = {
                 NavigationContent(
                     modifier = Modifier.fillMaxSize(),

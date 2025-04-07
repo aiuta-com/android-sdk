@@ -13,13 +13,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 @Composable
 internal fun ModelSelectorGeneralErrorContent(
@@ -27,7 +26,6 @@ internal fun ModelSelectorGeneralErrorContent(
     onRetry: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val screenSize = rememberScreenSize()
     val textHorizontalPadding = screenSize.widthDp * 0.26f
@@ -39,8 +37,8 @@ internal fun ModelSelectorGeneralErrorContent(
     ) {
         AiutaIcon(
             modifier = Modifier.size(36.dp),
-            icon = theme.icons.error36,
-            tint = theme.colors.primary,
+            icon = theme.errorSnackbar.icons.error36,
+            tint = theme.color.primary,
             contentDescription = null,
         )
 
@@ -51,16 +49,16 @@ internal fun ModelSelectorGeneralErrorContent(
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = textHorizontalPadding),
-            text = stringResources.defaultErrorMessage,
-            style = theme.typography.regular,
-            color = theme.colors.primary,
+            text = theme.errorSnackbar.strings.defaultErrorMessage,
+            style = theme.label.typography.regular,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
 
         Spacer(Modifier.height(8.dp))
 
         FashionButton(
-            text = stringResources.tryAgain,
+            text = theme.errorSnackbar.strings.tryAgainButton,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.mSize(),
             onClick = onRetry,

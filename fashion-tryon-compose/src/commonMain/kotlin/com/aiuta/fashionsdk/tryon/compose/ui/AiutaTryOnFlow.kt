@@ -3,11 +3,12 @@ package com.aiuta.fashionsdk.tryon.compose.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -35,14 +36,14 @@ public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTryOnListeners: AiutaTryOnListeners,
-    aiutaTheme: AiutaTheme,
+    aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
     skuForGeneration: SKUItem,
 ) {
     NavigationInitialisation(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaTryOnListeners = aiutaTryOnListeners,
-        aiutaTheme = aiutaTheme,
+        aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
         skuForGeneration = skuForGeneration,
     ) {
         sendSessionEvent(SessionEvent.FlowType.TRY_ON)

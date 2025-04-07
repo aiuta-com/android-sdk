@@ -9,10 +9,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun IconButton(
@@ -27,7 +27,7 @@ internal fun IconButton(
         modifier
             .size(38.dp)
             .background(
-                color = theme.colors.background,
+                color = theme.color.background,
                 shape = CircleShape,
             )
             .clickableUnindicated { onClick() },

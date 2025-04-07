@@ -4,9 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImageWrapper
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun ImagesContainer(
@@ -16,7 +16,6 @@ internal fun ImagesContainer(
     val theme = LocalTheme.current
 
     val images = getImages()
-    val sharedCornerShape = theme.shapes.mainImage
 
     when (val image = images.firstOrNull()) {
         is LastSavedImageWrapper.SavedPlatformImage -> {
@@ -32,7 +31,7 @@ internal fun ImagesContainer(
             AiutaImage(
                 modifier = modifier,
                 imageUrl = image.image.imageUrl,
-                shape = sharedCornerShape,
+                shape = theme.image.shapes.imageLShape,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
             )

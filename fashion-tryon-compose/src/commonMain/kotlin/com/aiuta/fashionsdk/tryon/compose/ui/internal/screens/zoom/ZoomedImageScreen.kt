@@ -35,11 +35,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.images.painterResource
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
@@ -52,6 +47,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.TRANSIT
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toIntOffset
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 @Composable
@@ -93,7 +93,7 @@ internal fun ZoomedImageScreen(
             derivedStateOf {
                 lerp(
                     Color.Transparent,
-                    theme.colors.onDark,
+                    theme.color.onDark,
                     sharedElementProgress.value,
                 )
             }
@@ -214,7 +214,7 @@ private fun ZoomedImageScreenContent(
                     .clickableUnindicated {
                         screenState.closeZoomImageScreen(scope)
                     },
-                icon = theme.icons.close24,
+                icon = theme.pageBar.icons.close24,
                 contentDescription = null,
                 tint = interfaceColor.value,
             )
@@ -244,7 +244,7 @@ private fun ZoomedImageScreenContent(
                         }
                     },
                     text = shareFeature.strings.shareButton,
-                    style = theme.typography.button,
+                    style = theme.button.typography.buttonM,
                     color = interfaceColor.value,
                 )
             }

@@ -11,7 +11,6 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.dimensions.AiutaDimensio
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic.sendConfigurationEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
-import com.aiuta.fashionsdk.tryon.compose.configuration.language.AiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.HostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.AiutaToggles
@@ -30,8 +29,6 @@ public class AiutaTryOnConfiguration private constructor(
     @Deprecated("Will be split by features")
     public val dimensions: AiutaDimensions?,
     @Deprecated("Will be split by features")
-    public val language: AiutaTryOnLanguage,
-    @Deprecated("Will be split by features")
     public val hostMetadata: HostMetadata,
     @Deprecated("Will be split by features")
     public val toggles: AiutaToggles,
@@ -47,7 +44,6 @@ public class AiutaTryOnConfiguration private constructor(
         public var aiuta: Aiuta? = null
         public var features: AiutaTryOnConfigurationFeatures? = null
         public var dimensions: AiutaDimensions? = null
-        public var language: AiutaTryOnLanguage? = null
         public var hostMetadata: HostMetadata? = null
         public var toggles: AiutaToggles? = null
 
@@ -68,10 +64,6 @@ public class AiutaTryOnConfiguration private constructor(
                     property = "features",
                 ),
                 dimensions = dimensions,
-                language = language.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "language",
-                ),
                 hostMetadata = internalHostMetadata,
                 toggles = internalToggles,
             ).also {

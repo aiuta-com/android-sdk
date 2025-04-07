@@ -6,21 +6,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
-import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
-import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
 import com.aiuta.fashionsdk.tryon.core.tryon
-import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
-import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
 
 // TODO Refactor sample
 fun MainViewController() = ComposeUIViewController {
@@ -77,22 +73,23 @@ fun MainViewController() = ComposeUIViewController {
                 )
             }
 
-        val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration {
-            this.aiuta = aiuta
-        }
+        val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration(
+            aiuta = aiuta,
+        )
 
-        val mockAiutaTheme =
-            rememberAiutaTheme(
-                icons = rememberDefaultAiutaIcons(),
-                images = rememberDefaultAiutaImages(),
-            )
-
+        val mockAiutaUIConfiguration = rememberDefaultAiutaUserInterfaceConfiguration(
+            actions = object : AiutaUserInterfaceActions {
+                override val closeClick: () -> Unit = {
+                    println("Rise Close")
+                }
+            },
+        )
 
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiutaTryOnConfiguration = mockAiutaConfiguration,
             aiutaTryOnListeners = mockAiutaTryOnListeners,
-            aiutaTheme = mockAiutaTheme,
+            aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
             skuForGeneration = mockSKUItem,
         )
     }

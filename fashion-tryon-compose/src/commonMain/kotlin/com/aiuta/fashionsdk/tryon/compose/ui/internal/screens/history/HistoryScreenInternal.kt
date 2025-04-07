@@ -39,17 +39,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.images.painterResource
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
@@ -72,6 +66,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.op
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 private const val FULL_SIZE_SPAN = 3
@@ -83,7 +82,7 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticPageId.HISTORY)
 
     Column(
-        modifier = modifier.background(theme.colors.background),
+        modifier = modifier.background(theme.color.background),
     ) {
         HistoryAppBar(
             modifier =
@@ -102,7 +101,6 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
 private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-    val density = LocalDensity.current
     val theme = LocalTheme.current
 
     val generatedImages =
@@ -111,13 +109,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
             .generatedImagesFlow()
             .collectAsLazyPagingItems()
 
-    val sharedRadius =
-        with(density) {
-            theme.shapes.previewImage.topStart.toPx(
-                Size.Unspecified,
-                density,
-            ).toDp()
-        }
+    val sharedRadius = theme.image.shapes.imageS
 
     HistoryScreenListeners(generatedImages = generatedImages)
 
@@ -125,7 +117,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
         modifier =
         modifier
             .fillMaxSize()
-            .background(color = theme.colors.background),
+            .background(color = theme.color.background),
     ) {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
@@ -218,8 +210,8 @@ private fun ImageContainer(
         modifier
             .fillMaxWidth()
             .height(178.dp)
-            .clip(theme.shapes.previewImage)
-            .background(color = theme.colors.background)
+            .clip(theme.image.shapes.imageSShape)
+            .background(color = theme.color.background)
             .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
     ) {
@@ -230,7 +222,7 @@ private fun ImageContainer(
             // Do that, because thumbnail size is too small for zoom screen
             imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
             imageUrl = imageUrl,
-            shape = theme.shapes.previewImage,
+            shape = theme.image.shapes.imageSShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
@@ -248,9 +240,9 @@ private fun ImageContainer(
                 modifier =
                 Modifier
                     .size(24.dp)
-                    .border(width = 1.dp, color = theme.colors.onDark, shape = CircleShape)
+                    .border(width = 1.dp, color = theme.color.onDark, shape = CircleShape)
                     .background(
-                        color = if (isSelectedItem) theme.colors.aiuta else theme.colors.neutral,
+                        color = if (isSelectedItem) theme.color.brand else theme.color.neutral,
                         shape = CircleShape,
                     ),
                 contentAlignment = Alignment.Center,
@@ -258,9 +250,9 @@ private fun ImageContainer(
                 if (isSelectedItem) {
                     AiutaIcon(
                         modifier = Modifier.size(20.dp),
-                        icon = theme.icons.check20,
+                        icon = theme.selectionSnackbar.icons.check20,
                         contentDescription = null,
-                        tint = theme.colors.onDark,
+                        tint = theme.color.onDark,
                     )
                 }
             }

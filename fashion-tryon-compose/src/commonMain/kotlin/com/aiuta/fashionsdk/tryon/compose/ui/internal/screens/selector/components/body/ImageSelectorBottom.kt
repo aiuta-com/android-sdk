@@ -1,11 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.body
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -24,12 +19,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.styles.ButtonsMode
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.styles.AiutaButtonsStyle
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -38,6 +30,10 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.Im
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
 import dev.chrisbanes.haze.hazeChild
@@ -52,6 +48,7 @@ internal fun ImageSelectorBottom(
     val theme = LocalTheme.current
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
 
     val generationStatus = controller.generationStatus
     val countGeneratedOperation =
@@ -62,7 +59,7 @@ internal fun ImageSelectorBottom(
     val sharedModifier = Modifier.wrapContentWidth()
     val sharedButtonSize = FashionButtonSizes.mSize()
 
-    val sharedColor = theme.colors.background.copy(alpha = 0.4f)
+    val sharedColor = theme.color.background.copy(alpha = 0.4f)
     val sharedBlurModifer =
         Modifier
             .clip(sharedButtonSize.shape)
@@ -94,15 +91,16 @@ internal fun ImageSelectorBottom(
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 FashionButton(
                     modifier = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
-                        ButtonsMode.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                        AiutaButtonsStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
                         else -> sharedModifier
                     },
                     text = imageSelectorFeature.strings.imageSelectorButtonChangePhoto,
                     style = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
-                        ButtonsMode.BLURRED -> FashionButtonStyles.primaryStyle(
+                        AiutaButtonsStyle.BLURRED -> FashionButtonStyles.primaryStyle(
                             backgroundColor = Color.Transparent,
-                            contentColor = theme.colors.primary,
+                            contentColor = theme.color.primary,
                         )
+
                         else -> FashionButtonStyles.primaryStyle(theme)
                     },
                     size = sharedButtonSize,
@@ -119,16 +117,15 @@ internal fun ImageSelectorBottom(
             }
 
             ImageSelectorState.GENERATION_LOADING -> {
-                val finalModifier =
-                    if (theme.toggles.isBlurOutlinesEnabled) {
-                        sharedModifier.border(
-                            width = 1.dp,
-                            color = theme.colors.neutral2,
-                            shape = sharedButtonSize.shape,
-                        )
-                    } else {
-                        sharedModifier
-                    }
+                val finalModifier = if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsStyle.BLURRED) {
+                    sharedModifier.border(
+                        width = 1.dp,
+                        color = theme.color.border,
+                        shape = sharedButtonSize.shape,
+                    )
+                } else {
+                    sharedModifier
+                }
 
                 val solvedText = solveLoadingGenerationText()
                 val textTransition = updateTransition(solvedText.value)
@@ -144,20 +141,9 @@ internal fun ImageSelectorBottom(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {
-                    val infiniteTransition = rememberInfiniteTransition()
-                    val angle =
-                        infiniteTransition.animateFloat(
-                            initialValue = 0F,
-                            targetValue = 360F,
-                            animationSpec =
-                            infiniteRepeatable(
-                                animation = tween(2000, easing = LinearEasing),
-                            ),
-                        )
-
                     AiutaLoadingIcon(
                         modifier = Modifier.size(14.dp),
-                        circleColor = theme.colors.primary,
+                        circleColor = theme.color.primary,
                     )
 
                     Spacer(Modifier.width(8.dp))
@@ -167,8 +153,8 @@ internal fun ImageSelectorBottom(
                     ) { text ->
                         Text(
                             text = text,
-                            style = theme.typography.smallButton,
-                            color = theme.colors.primary,
+                            style = sharedButtonSize.textStyle,
+                            color = theme.color.primary,
                             textAlign = TextAlign.Center,
                         )
                     }

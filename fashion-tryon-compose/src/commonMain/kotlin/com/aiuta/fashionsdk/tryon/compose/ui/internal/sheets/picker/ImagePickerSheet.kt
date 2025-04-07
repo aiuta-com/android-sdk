@@ -19,15 +19,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -44,6 +41,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeat
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.actionWithPermission
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera.rememberCameraManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.gallery.rememberGalleryManager
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import dev.icerock.moko.permissions.Permission
 import dev.icerock.moko.permissions.PermissionsController
 import dev.icerock.moko.permissions.camera.CAMERA
@@ -205,23 +205,21 @@ private fun PickerButton(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val rawModifier = modifier.clickableUnindicated { onClick() }
-    val finalModifier =
-        if (theme.toggles.isDelimitersExtended) {
-            rawModifier.padding(start = 16.dp)
-        } else {
-            rawModifier.padding(horizontal = 16.dp)
-        }
 
     Row(
-        modifier = finalModifier,
+        modifier = modifier
+            .clickableUnindicated { onClick() }
+            .padding(
+                start = 16.dp.takeIf { theme.bottomSheet.toggles.extendDelimitersToTheLeft } ?: 0.dp,
+                end = 16.dp.takeIf { theme.bottomSheet.toggles.extendDelimitersToTheRight } ?: 0.dp,
+            ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AiutaIcon(
             modifier = Modifier.size(24.dp),
             icon = icon,
             contentDescription = null,
-            tint = theme.colors.brand,
+            tint = theme.color.brand,
         )
 
         Spacer(Modifier.width(16.dp))
@@ -235,8 +233,8 @@ private fun PickerButton(
             Text(
                 modifier = Modifier.align(Alignment.CenterStart),
                 text = text,
-                style = theme.typography.cells,
-                color = theme.colors.primary,
+                style = theme.bottomSheet.typography.iconButton,
+                color = theme.color.primary,
             )
 
             if (shouldDrawDivider) {
@@ -245,7 +243,7 @@ private fun PickerButton(
                     Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter),
-                    color = theme.colors.neutral,
+                    color = theme.color.neutral,
                 )
             }
         }

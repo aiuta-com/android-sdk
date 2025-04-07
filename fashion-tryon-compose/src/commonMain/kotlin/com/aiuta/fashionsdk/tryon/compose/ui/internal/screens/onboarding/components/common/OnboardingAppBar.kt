@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.style.TextAlign
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
@@ -21,7 +21,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun OnboardingAppBar(
@@ -31,6 +33,8 @@ internal fun OnboardingAppBar(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
+
     val titleTransition = updateTransition(onboardingController.state.value)
 
     AppBar(
@@ -38,15 +42,15 @@ internal fun OnboardingAppBar(
         navigationIcon = {
             AppBarIcon(
                 modifier = Modifier.align(Alignment.CenterStart),
-                icon = theme.icons.back24,
-                color = theme.colors.primary,
+                icon = theme.pageBar.icons.back24,
+                color = theme.color.primary,
                 onClick = {
                     onboardingController.previousPage(controller)
                 },
             )
         },
         title = {
-            if (theme.toggles.isOnboardingAppBarExtended) {
+            if (onboardingFeature.toggles.isAppBarExtended) {
                 titleTransition.AnimatedContent(
                     modifier =
                     Modifier
@@ -66,10 +70,10 @@ internal fun OnboardingAppBar(
                                 isClickable = false,
                             ),
                             style =
-                            theme.typography.navbar.copy(
+                            theme.pageBar.typography.pageTitle.copy(
                                 fontSynthesis = FontSynthesis.All,
                             ),
-                            color = theme.colors.primary,
+                            color = theme.color.primary,
                             textAlign = TextAlign.Center,
                         )
                     }
@@ -77,11 +81,11 @@ internal fun OnboardingAppBar(
             }
         },
         actions = {
-            if (theme.toggles.isOnboardingAppBarExtended) {
+            if (onboardingFeature.toggles.isAppBarExtended) {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    icon = theme.icons.close24,
-                    color = theme.colors.primary,
+                    icon = theme.pageBar.icons.close24,
+                    color = theme.color.primary,
                     onClick = {
                         controller.clickClose(
                             pageId =

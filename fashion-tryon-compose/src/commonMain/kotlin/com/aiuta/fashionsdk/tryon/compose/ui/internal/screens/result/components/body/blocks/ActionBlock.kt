@@ -9,7 +9,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.images.painterResource
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
@@ -22,6 +21,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 import kotlinx.coroutines.launch
 
 @Composable

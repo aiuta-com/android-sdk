@@ -13,11 +13,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 @Composable
 internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
@@ -35,8 +35,8 @@ internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
     ) {
         AiutaIcon(
             modifier = Modifier.size(36.dp),
-            icon = theme.icons.error36,
-            tint = theme.colors.primary,
+            icon = theme.errorSnackbar.icons.error36,
+            tint = theme.color.primary,
             contentDescription = null,
         )
 
@@ -48,8 +48,8 @@ internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
                 .fillMaxWidth()
                 .padding(horizontal = textHorizontalPadding),
             text = predefinedModelFeature.strings.predefinedModelErrorEmptyModelsList,
-            style = theme.typography.regular,
-            color = theme.colors.primary,
+            style = theme.label.typography.regular,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
     }

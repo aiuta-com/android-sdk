@@ -18,10 +18,10 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.resources.AiutaDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.uikit.internal.painter.painterResource
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.utils.placeholderFadeConnecting
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 
 @Composable
 public fun AiutaImage(

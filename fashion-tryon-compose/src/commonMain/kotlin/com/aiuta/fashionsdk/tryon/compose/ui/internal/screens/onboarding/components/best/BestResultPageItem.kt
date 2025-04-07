@@ -11,17 +11,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun BestResultPageItem(
     modifier: Modifier = Modifier,
-    image: AiutaImage,
+    image: AiutaDrawableResource,
     isGoodImage: Boolean,
 ) {
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()

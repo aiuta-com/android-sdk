@@ -3,8 +3,6 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -17,10 +15,10 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.TryOnModelsCategoryUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ModelsCategoriesBlock(
@@ -62,9 +60,9 @@ internal fun ModelsCategoryBlock(
         animateColorAsState(
             targetValue =
             if (isActive) {
-                theme.colors.primary
+                theme.color.primary
             } else {
-                theme.colors.secondary
+                theme.color.secondary
             },
         )
 
@@ -78,7 +76,7 @@ internal fun ModelsCategoryBlock(
                 val horizontalPadding = 5.dp.toPx()
 
                 drawLine(
-                    color = theme.colors.brand,
+                    color = theme.color.brand,
                     strokeWidth = strokeWidthPx,
                     start = Offset(-horizontalPadding, verticalOffset),
                     end = Offset(size.width + horizontalPadding, verticalOffset),
@@ -89,7 +87,7 @@ internal fun ModelsCategoryBlock(
             sharedModifier
         },
         text = category,
-        style = theme.typography.smallButton,
+        style = theme.button.typography.buttonS,
         color = textColor.value,
         textAlign = TextAlign.Center,
     )

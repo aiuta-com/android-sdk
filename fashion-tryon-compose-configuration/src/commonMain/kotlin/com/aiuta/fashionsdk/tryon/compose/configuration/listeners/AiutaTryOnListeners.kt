@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
  * @param closeClick - user click close button or make back press, which should also
  * navigate back to host app
  */
+@Deprecated("Migrate to separate providers")
 @Immutable
 public class AiutaTryOnListeners(
     public val addToWishlistClick: (skuItem: SKUItem) -> Unit,

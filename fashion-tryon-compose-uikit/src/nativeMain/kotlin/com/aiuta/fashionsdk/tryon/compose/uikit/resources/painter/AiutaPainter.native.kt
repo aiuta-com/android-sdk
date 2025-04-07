@@ -1,0 +1,23 @@
+package com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.toComposeImageBitmap
+import coil3.compose.rememberAsyncImagePainter
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIOSSkia
+
+@Composable
+public actual fun painterResource(drawableResource: AiutaDrawableResource): Painter {
+    return when (drawableResource) {
+        // Multiplatform
+        is AiutaComposeDrawableResource -> org.jetbrains.compose.resources.painterResource(drawableResource.resource)
+        // IOS
+        is AiutaIOSSkia -> {
+            val imageBitmap = drawableResource.resource.toComposeImageBitmap()
+            return rememberAsyncImagePainter(model = imageBitmap)
+        }
+        else -> rememberAsyncImagePainter(model = drawableResource.resource)
+    }
+}

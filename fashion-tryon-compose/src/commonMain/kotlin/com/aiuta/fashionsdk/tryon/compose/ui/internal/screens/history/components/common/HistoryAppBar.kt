@@ -8,8 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -18,6 +16,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun HistoryAppBar(modifier: Modifier = Modifier) {
@@ -30,9 +30,9 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
 
     val actionColorCalculation: (Boolean) -> Color = { active ->
         if (active) {
-            theme.colors.primary
+            theme.color.primary
         } else {
-            theme.colors.secondary
+            theme.color.secondary
         }
     }
 
@@ -47,8 +47,8 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
         navigationIcon = {
             AppBarIcon(
                 modifier = Modifier.align(Alignment.CenterStart),
-                icon = theme.icons.back24,
-                color = theme.colors.primary,
+                icon = theme.pageBar.icons.back24,
+                color = theme.color.primary,
                 onClick = controller::navigateBack,
             )
         },
@@ -56,8 +56,8 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
                 text = generationsHistoryFeature.strings.generationsHistoryPageTitle,
-                style = theme.typography.navbar,
-                color = theme.colors.primary,
+                style = theme.pageBar.typography.pageTitle,
+                color = theme.color.primary,
                 textAlign = TextAlign.Center,
             )
         },
@@ -67,7 +67,7 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
                     .align(Alignment.CenterEnd)
                     .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
                 text = generationsHistoryFeature.strings.generationsHistoryButtonSelect,
-                style = theme.typography.navbar,
+                style = theme.pageBar.typography.pageTitle,
                 color = selectColorTransition.value,
             )
         },

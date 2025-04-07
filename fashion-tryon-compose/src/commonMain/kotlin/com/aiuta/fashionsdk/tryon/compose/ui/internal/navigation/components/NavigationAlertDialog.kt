@@ -15,14 +15,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.hideDialog
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun NavigationAlertDialog(
@@ -30,7 +29,6 @@ internal fun NavigationAlertDialog(
     state: AiutaTryOnDialogState,
 ) {
     val dialogController = LocalAiutaTryOnDialogController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
     val sharedModifier =
@@ -41,8 +39,8 @@ internal fun NavigationAlertDialog(
     AlertDialog(
         modifier = modifier.padding(horizontal = 16.dp),
         onDismissRequest = dialogController::hideDialog,
-        backgroundColor = theme.colors.background,
-        contentColor = theme.colors.primary,
+        backgroundColor = theme.color.background,
+        contentColor = theme.color.primary,
         shape = RoundedCornerShape(32.dp),
         properties = DialogProperties(usePlatformDefaultWidth = false),
         title =
@@ -57,8 +55,8 @@ internal fun NavigationAlertDialog(
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = state.title,
-                        style = theme.typography.titleL,
-                        color = theme.colors.primary,
+                        style = theme.label.typography.titleL,
+                        color = theme.color.primary,
                         overflow = TextOverflow.Ellipsis,
                         textAlign = TextAlign.Center,
                     )
@@ -69,8 +67,8 @@ internal fun NavigationAlertDialog(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = state.description,
-                style = theme.typography.regular,
-                color = theme.colors.secondary,
+                style = theme.label.typography.regular,
+                color = theme.color.secondary,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
             )
@@ -96,7 +94,7 @@ internal fun NavigationAlertDialog(
 
                     FashionButton(
                         modifier = Modifier.fillMaxWidth(),
-                        text = stringResources.cancel,
+                        text = theme.selectionSnackbar.strings.cancel,
                         style = FashionButtonStyles.secondaryStyle(theme),
                         size = FashionButtonSizes.lSize(),
                         onClick = state.onDismiss,

@@ -4,16 +4,19 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.colors.AiutaProductBarThemeColors
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles.AiutaProductBarThemeToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.typography.AiutaProductBarThemeTypography
 
 @Immutable
 public class AiutaProductBarTheme private constructor(
     public val typography: AiutaProductBarThemeTypography,
     public val colors: AiutaProductBarThemeColors,
+    public val toggles: AiutaProductBarThemeToggles,
 ) {
     public class Builder {
         public var typography: AiutaProductBarThemeTypography? = null
         public var colors: AiutaProductBarThemeColors? = null
+        public var toggles: AiutaProductBarThemeToggles? = null
 
         public fun build(): AiutaProductBarTheme {
             val parentClass = "AiutaProductBarTheme"
@@ -26,6 +29,10 @@ public class AiutaProductBarTheme private constructor(
                 colors = colors.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "colors",
+                ),
+                toggles = toggles.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "toggles",
                 ),
             )
         }

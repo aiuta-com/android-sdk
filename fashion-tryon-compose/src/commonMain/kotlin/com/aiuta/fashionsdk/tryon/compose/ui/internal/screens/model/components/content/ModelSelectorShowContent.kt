@@ -15,11 +15,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
@@ -32,6 +27,11 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.utils.MODEL_IMAGE_HORIZONTAL_PADDING_COEF
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun ModelSelectorShowContent(
@@ -98,7 +98,7 @@ internal fun ModelSelectorShowContent(
                 text = tryOnFeature.strings.tryOnButtonTryOn,
                 style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
-                        contentColor = theme.colors.onDark,
+                        contentColor = theme.color.onDark,
                         gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
                     )
                 } ?: FashionButtonStyles.primaryStyle(theme),

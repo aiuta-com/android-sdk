@@ -13,6 +13,7 @@ import androidx.compose.runtime.Immutable
  * @param localizedOldPrice - The old price of the SKU, if available. Should be formatted with a currency symbol.
  * @param store - Name of store
  */
+// TODO Rename to Product
 @Immutable
 public data class SKUItem(
     public val skuId: String,
