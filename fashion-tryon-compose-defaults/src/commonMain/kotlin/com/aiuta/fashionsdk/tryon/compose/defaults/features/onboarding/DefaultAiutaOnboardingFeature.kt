@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.best
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.onboarding
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.toggles.AiutaOnboardingFeatureToggles
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.strings.AiutaOnboardingTryOnPageFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.tryOnPage
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.onboarding.bestresult.DefaultAiutaOnboardingBestResultsPageFeatureIcons
@@ -27,5 +28,6 @@ public fun AiutaTryOnConfigurationFeatures.Builder.defaultOnboarding() {
         }
         strings = AiutaOnboardingFeatureStrings.Default()
         shapes = AiutaOnboardingFeatureShapes.Default()
+        toggles = AiutaOnboardingFeatureToggles.Default()
     }
 }

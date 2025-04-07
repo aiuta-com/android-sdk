@@ -4,7 +4,6 @@ import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.AiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
@@ -20,11 +19,6 @@ internal val LocalAnalytic: ProvidableCompositionLocal<InternalAiutaAnalytic> =
 internal val LocalAiutaConfiguration: ProvidableCompositionLocal<AiutaTryOnConfiguration> =
     staticCompositionLocalOf {
         noLocalProvidedFor("LocalAiutaConfiguration")
-    }
-
-internal val LocalAiutaTryOnStringResources: ProvidableCompositionLocal<InternalAiutaTryOnLanguage> =
-    staticCompositionLocalOf {
-        noLocalProvidedFor("LocalAiutaTryOnStringResources")
     }
 
 // Controllers

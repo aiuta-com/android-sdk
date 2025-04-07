@@ -48,7 +48,7 @@ internal fun ColumnScope.TextBlock(
     Text(
         modifier = modifier,
         text = title,
-        style = theme.label.typography.titleLtitleL,
+        style = theme.label.typography.titleL,
         color = theme.color.primary,
         textAlign = TextAlign.Start,
     )
