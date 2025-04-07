@@ -32,7 +32,7 @@ public class AiutaProductBarTheme private constructor(
     }
 }
 
-public inline fun AiutaTheme.Builder.image(
+public inline fun AiutaTheme.Builder.productBar(
     block: AiutaProductBarTheme.Builder.() -> Unit,
 ): AiutaTheme.Builder = apply {
     productBar = AiutaProductBarTheme.Builder().apply(block).build()
