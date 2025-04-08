@@ -7,7 +7,6 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.configuration.dimensions.AiutaDimensions
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic.sendConfigurationEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
@@ -27,8 +26,6 @@ public class AiutaTryOnConfiguration private constructor(
     public val aiuta: Aiuta,
     public val features: AiutaTryOnConfigurationFeatures,
     @Deprecated("Will be split by features")
-    public val dimensions: AiutaDimensions?,
-    @Deprecated("Will be split by features")
     public val hostMetadata: HostMetadata,
     @Deprecated("Will be split by features")
     public val toggles: AiutaToggles,
@@ -43,7 +40,6 @@ public class AiutaTryOnConfiguration private constructor(
     public class Builder {
         public var aiuta: Aiuta? = null
         public var features: AiutaTryOnConfigurationFeatures? = null
-        public var dimensions: AiutaDimensions? = null
         public var hostMetadata: HostMetadata? = null
         public var toggles: AiutaToggles? = null
 
@@ -63,7 +59,6 @@ public class AiutaTryOnConfiguration private constructor(
                     parentClass = parentClass,
                     property = "features",
                 ),
-                dimensions = dimensions,
                 hostMetadata = internalHostMetadata,
                 toggles = internalToggles,
             ).also {
