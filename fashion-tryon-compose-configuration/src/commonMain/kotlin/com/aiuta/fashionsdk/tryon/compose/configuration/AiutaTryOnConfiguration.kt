@@ -12,8 +12,6 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic.sendCo
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.HostMetadata
-import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.AiutaToggles
-import com.aiuta.fashionsdk.tryon.compose.configuration.toggles.DefaultAiutaToggles
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.tryon
 
@@ -27,8 +25,6 @@ public class AiutaTryOnConfiguration private constructor(
     public val features: AiutaTryOnConfigurationFeatures,
     @Deprecated("Will be split by features")
     public val hostMetadata: HostMetadata,
-    @Deprecated("Will be split by features")
-    public val toggles: AiutaToggles,
 ) {
     public val aiutaTryOn: AiutaTryOn by lazy { aiuta.tryon }
     public val aiutaAnalytic: InternalAiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
@@ -41,13 +37,11 @@ public class AiutaTryOnConfiguration private constructor(
         public var aiuta: Aiuta? = null
         public var features: AiutaTryOnConfigurationFeatures? = null
         public var hostMetadata: HostMetadata? = null
-        public var toggles: AiutaToggles? = null
 
         public fun build(): AiutaTryOnConfiguration {
             val parentClass = "AiutaTryOnConfiguration"
 
             // Default
-            val internalToggles = toggles ?: DefaultAiutaToggles
             val internalHostMetadata = hostMetadata ?: DefaultHostMetadata
 
             return AiutaTryOnConfiguration(
@@ -60,7 +54,6 @@ public class AiutaTryOnConfiguration private constructor(
                     property = "features",
                 ),
                 hostMetadata = internalHostMetadata,
-                toggles = internalToggles,
             ).also {
                 it.sendConfigurationEvent()
             }

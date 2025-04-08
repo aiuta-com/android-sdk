@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 import coil3.PlatformContext
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
@@ -369,7 +370,7 @@ private suspend fun FashionTryOnController.saveGenerations(
     operation: ProductGenerationOperation.SuccessOperation,
 ) {
     // Save generations for history, if operation is success and history available
-    if (aiutaConfiguration.toggles.isHistoryAvailable) {
+    if (aiutaConfiguration.features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()) {
         generatedImageInteractor.insertAll(
             generatedProductId = activeProductItem.value.id,
             images = operation.generatedImages,
