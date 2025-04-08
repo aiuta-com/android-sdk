@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import coil3.compose.LocalPlatformContext
 import coil3.compose.setSingletonImageLoaderFactory
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -29,7 +28,6 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaTryOnListeners: AiutaTryOnListeners,
     aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
     productItem: ProductItem,
     content: @Composable () -> Unit,
@@ -43,7 +41,7 @@ internal fun NavigationInitialisation(
     ) {
         val controller = rememberFashionTryOnController(
             aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-            aiutaTryOnListeners = aiutaTryOnListeners,
+            aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
             productItem = productItem,
         )
 

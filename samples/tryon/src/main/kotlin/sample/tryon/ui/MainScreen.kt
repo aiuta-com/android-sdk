@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
@@ -45,21 +44,6 @@ fun MainScreen() {
                 )
             }
 
-        val mockAiutaTryOnListeners =
-            remember {
-                AiutaTryOnListeners(
-                    addToWishlistClick = {
-                        context.makeToast("Rise Add to wishlist")
-                    },
-                    addToCartClick = {
-                        context.makeToast("Rise Add to cart")
-                    },
-                    closeClick = {
-                        context.makeToast("Rise Close")
-                    },
-                )
-            }
-
         val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration(
             aiuta = viewModel.aiuta,
         )
@@ -75,7 +59,6 @@ fun MainScreen() {
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiutaTryOnConfiguration = mockAiutaConfiguration,
-            aiutaTryOnListeners = mockAiutaTryOnListeners,
             aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
             productForGeneration = mockProductItem,
         )

@@ -10,7 +10,6 @@ import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
-import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
@@ -58,21 +57,6 @@ fun MainViewController() = ComposeUIViewController {
                 )
             }
 
-        val mockAiutaTryOnListeners =
-            remember {
-                AiutaTryOnListeners(
-                    addToWishlistClick = {
-                        println("Rise Add to wishlist")
-                    },
-                    addToCartClick = {
-                        println("Rise Add to cart")
-                    },
-                    closeClick = {
-                        println("Rise Close")
-                    },
-                )
-            }
-
         val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration(
             aiuta = aiuta,
         )
@@ -88,7 +72,6 @@ fun MainViewController() = ComposeUIViewController {
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
             aiutaTryOnConfiguration = mockAiutaConfiguration,
-            aiutaTryOnListeners = mockAiutaTryOnListeners,
             aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
             productForGeneration = mockProductItem,
         )

@@ -15,8 +15,9 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
@@ -45,7 +46,7 @@ import kotlinx.coroutines.cancel
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaTryOnListeners: AiutaTryOnListeners,
+    aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
     productItem: ProductItem,
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
@@ -84,7 +85,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             activeProductItem = activeProductItem,
             aiuta = aiutaTryOnConfiguration.aiuta,
             aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
-            aiutaTryOnListeners = aiutaTryOnListeners,
+            aiutaUserInterfaceActions = aiutaUserInterfaceConfiguration.actions,
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = aiutaTryOnConfiguration.aiuta.onboardingInteractor,
@@ -105,18 +106,15 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 @Immutable
 internal class FashionTryOnController(
     // General navigation
-    internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque(),
     public val zoomImageController: ZoomImageController,
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
-    // Edit changePhotoButtonStyle
-    val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder(),
     // Data
     public val activeProductItem: MutableState<ProductItem>,
     // Domain
     public val aiuta: Aiuta,
     public val aiutaTryOn: AiutaTryOn,
-    public val aiutaTryOnListeners: AiutaTryOnListeners,
+    public val aiutaUserInterfaceActions: AiutaUserInterfaceActions,
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val generatedOperationInteractor: GeneratedOperationInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
@@ -129,6 +127,7 @@ internal class FashionTryOnController(
     internal val generationOperations: SnapshotStateList<ProductGenerationOperation> = mutableStateListOf()
 
     // General navigation
+    internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque()
     public val currentScreen: MutableState<NavigationScreen> = mutableStateOf(defaultStartScreen())
 
     // Error state
@@ -136,6 +135,7 @@ internal class FashionTryOnController(
 
     // Edit changePhotoButtonStyle
     internal val selectorState: MutableState<SelectorMode> = mutableStateOf(SelectorMode.DISABLED)
+    val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder()
 
     // Data
     public val lastSavedImages: MutableState<LastSavedImages> = mutableStateOf(LastSavedImages.Empty)

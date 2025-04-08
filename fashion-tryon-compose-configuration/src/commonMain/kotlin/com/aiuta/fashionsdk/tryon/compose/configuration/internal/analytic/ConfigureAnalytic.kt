@@ -13,8 +13,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.meta.AiutaMode
 
 internal fun AiutaTryOnConfiguration.sendConfigurationEvent() {
     aiutaAnalytic.sendEvent(
-        event =
-        ConfigureEvent(
+        event = ConfigureEvent(
             mode = hostMetadata.mode.toSDKMode(),
             authenticationType = aiuta.toAuthenticationType(),
             isHistoryEnable = features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>(),

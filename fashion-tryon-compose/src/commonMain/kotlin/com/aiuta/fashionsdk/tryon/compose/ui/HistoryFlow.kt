@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
@@ -33,20 +32,17 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
  *
  * @see Aiuta
  * @see AiutaTryOn
- * @see AiutaTryOnListeners
  */
 @Composable
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaTryOnListeners: AiutaTryOnListeners,
     aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
 ) {
     NavigationInitialisation(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
-        aiutaTryOnListeners = aiutaTryOnListeners,
         productItem = DefaultProductItem,
     ) {
         sendSessionEvent(SessionEvent.FlowType.HISTORY)

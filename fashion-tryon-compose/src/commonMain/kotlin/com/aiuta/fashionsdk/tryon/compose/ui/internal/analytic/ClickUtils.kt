@@ -43,7 +43,7 @@ internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticPageId? = nu
         pageId = pageId ?: currentScreen.value.exitPageId,
         productItem = activeProductItem.value,
     )
-    aiutaTryOnListeners.closeClick(activeProductItem.value)
+    aiutaUserInterfaceActions.closeClick()
 }
 
 // Senders

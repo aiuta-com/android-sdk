@@ -5,7 +5,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
@@ -35,14 +34,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHand
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaTryOnListeners: AiutaTryOnListeners,
     aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
     productForGeneration: ProductItem,
 ) {
     NavigationInitialisation(
         modifier = modifier,
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-        aiutaTryOnListeners = aiutaTryOnListeners,
         aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
         productItem = productForGeneration,
     ) {
@@ -51,9 +48,7 @@ public fun AiutaTryOnFlow(
         val controller = LocalController.current
         val scope = rememberCoroutineScope()
 
-        NavigationContainer(
-            modifier = modifier,
-        )
+        NavigationContainer(modifier = modifier)
 
         // Move screen here, because full view should be on the top of navigation
         with(controller) {
