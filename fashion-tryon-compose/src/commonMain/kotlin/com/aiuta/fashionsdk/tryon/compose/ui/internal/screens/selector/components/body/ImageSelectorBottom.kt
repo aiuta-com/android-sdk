@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.styles.AiutaButtonsStyle
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
@@ -28,6 +29,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.models.ImageSelectorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.solveLoadingGenerationText
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
@@ -49,6 +51,7 @@ internal fun ImageSelectorBottom(
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
 
     val generationStatus = controller.generationStatus
     val countGeneratedOperation =
@@ -89,31 +92,33 @@ internal fun ImageSelectorBottom(
     ) { state ->
         when (state) {
             ImageSelectorState.LAST_IMAGE_SAVED -> {
-                FashionButton(
-                    modifier = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
-                        AiutaButtonsStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
-                        else -> sharedModifier
-                    },
-                    text = imageSelectorFeature.strings.imageSelectorButtonChangePhoto,
-                    style = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
-                        AiutaButtonsStyle.BLURRED -> FashionButtonStyles.primaryStyle(
-                            backgroundColor = Color.Transparent,
-                            contentColor = theme.color.primary,
-                        )
-
-                        else -> FashionButtonStyles.primaryStyle(theme)
-                    },
-                    size = sharedButtonSize,
-                    onClick = {
-                        if (countGeneratedOperation.value == 0) {
-                            uploadPhoto()
-                        } else {
-                            controller.bottomSheetNavigator.show(
-                                NavigationBottomSheetScreen.GeneratedOperations,
+                uploadsHistoryFeature?.let {
+                    FashionButton(
+                        modifier = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
+                            AiutaButtonsStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                            else -> sharedModifier
+                        },
+                        text = uploadsHistoryFeature.strings.uploadsHistoryButtonChangePhoto,
+                        style = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
+                            AiutaButtonsStyle.BLURRED -> FashionButtonStyles.primaryStyle(
+                                backgroundColor = Color.Transparent,
+                                contentColor = theme.color.primary,
                             )
-                        }
-                    },
-                )
+
+                            else -> FashionButtonStyles.primaryStyle(theme)
+                        },
+                        size = sharedButtonSize,
+                        onClick = {
+                            if (countGeneratedOperation.value == 0) {
+                                uploadPhoto()
+                            } else {
+                                controller.bottomSheetNavigator.show(
+                                    NavigationBottomSheetScreen.GeneratedOperations,
+                                )
+                            }
+                        },
+                    )
+                }
             }
 
             ImageSelectorState.GENERATION_LOADING -> {

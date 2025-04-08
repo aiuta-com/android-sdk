@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.histo
 public interface AiutaImageSelectorUploadsHistoryFeatureStrings {
     public val uploadsHistoryTitle: String
     public val uploadsHistoryButtonNewPhoto: String
+    public val uploadsHistoryButtonChangePhoto: String
 
     public class Default(
         isPredefinedModelAvailable: Boolean,
@@ -13,5 +14,6 @@ public interface AiutaImageSelectorUploadsHistoryFeatureStrings {
         } else {
             "+ New photo"
         }
+        override val uploadsHistoryButtonChangePhoto: String = "Change photo"
     }
 }
