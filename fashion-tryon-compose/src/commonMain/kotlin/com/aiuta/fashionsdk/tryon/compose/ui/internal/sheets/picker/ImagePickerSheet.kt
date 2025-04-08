@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -206,46 +207,48 @@ private fun PickerButton(
 ) {
     val theme = LocalTheme.current
 
-    Row(
-        modifier = modifier
-            .clickableUnindicated { onClick() }
-            .padding(
-                start = 16.dp.takeIf { theme.bottomSheet.toggles.extendDelimitersToTheLeft } ?: 0.dp,
-                end = 16.dp.takeIf { theme.bottomSheet.toggles.extendDelimitersToTheRight } ?: 0.dp,
-            ),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        AiutaIcon(
-            modifier = Modifier.size(24.dp),
-            icon = icon,
-            contentDescription = null,
-            tint = theme.color.brand,
-        )
-
-        Spacer(Modifier.width(16.dp))
-
-        Box(
-            modifier =
-            Modifier
-                .weight(1f)
-                .fillMaxHeight(),
+    Column {
+        Row(
+            modifier = modifier
+                .clickableUnindicated { onClick() }
+                .padding(start = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                modifier = Modifier.align(Alignment.CenterStart),
-                text = text,
-                style = theme.bottomSheet.typography.iconButton,
-                color = theme.color.primary,
+            AiutaIcon(
+                modifier = Modifier.size(24.dp),
+                icon = icon,
+                contentDescription = null,
+                tint = theme.color.brand,
             )
 
-            if (shouldDrawDivider) {
-                Divider(
-                    modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter),
-                    color = theme.color.neutral,
+            Spacer(Modifier.width(16.dp))
+
+            Box(
+                modifier = Modifier.weight(1f).fillMaxHeight(),
+            ) {
+                Text(
+                    modifier = Modifier.align(Alignment.CenterStart),
+                    text = text,
+                    style = theme.bottomSheet.typography.iconButton,
+                    color = theme.color.primary,
                 )
             }
+        }
+
+        if (shouldDrawDivider) {
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 56.dp.takeIf {
+                            theme.bottomSheet.toggles.extendDelimitersToTheLeft
+                        } ?: 0.dp,
+                        end = 16.dp.takeIf {
+                            theme.bottomSheet.toggles.extendDelimitersToTheRight
+                        } ?: 0.dp,
+                    ),
+                color = theme.color.neutral,
+            )
         }
     }
 }
