@@ -62,7 +62,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     val zoomImageController = rememberZoomImageController(constraints = constraints)
 
     // Data providers
-    // TODO Support empty data providers
     val generatedImageInteractor = remember {
         GeneratedImageInteractor.getInstance(
             aiuta = aiutaTryOnConfiguration.aiuta,
@@ -70,9 +69,10 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         )
     }
     val generatedOperationInteractor = remember {
-        uploadsHistoryFeature?.dataProvider?.let { dataProvider ->
-            GeneratedOperationInteractor.getInstance(dataProvider)
-        } ?: GeneratedOperationInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
+        GeneratedOperationInteractor.getInstance(
+            aiuta = aiutaTryOnConfiguration.aiuta,
+            uploadsHistoryFeature = uploadsHistoryFeature,
+        )
     }
 
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
@@ -139,8 +139,7 @@ internal class FashionTryOnController(
     val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder()
 
     // Data
-    public val lastSavedImages: MutableState<LastSavedImages> =
-        mutableStateOf(LastSavedImages.Empty)
+    public val lastSavedImages: MutableState<LastSavedImages> = mutableStateOf(LastSavedImages.Empty)
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?> = mutableStateOf(null)
 
     // Domain

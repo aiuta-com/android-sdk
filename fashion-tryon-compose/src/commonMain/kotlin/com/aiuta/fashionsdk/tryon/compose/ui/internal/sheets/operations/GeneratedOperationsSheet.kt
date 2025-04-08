@@ -72,10 +72,9 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
             .height(254.dp)
             .clip(theme.image.shapes.imageSShape)
 
-    val generatedOperations =
-        controller.generatedOperationInteractor
-            .getGeneratedOperationFlow()
-            .collectAsLazyPagingItems()
+    val generatedOperations = controller.generatedOperationInteractor
+        .getGeneratedOperationFlow()
+        .collectAsLazyPagingItems()
 
     sendPickerAnalytic(
         event = AiutaAnalyticsPickerEventType.UPLOADS_HISTORY_OPENED,

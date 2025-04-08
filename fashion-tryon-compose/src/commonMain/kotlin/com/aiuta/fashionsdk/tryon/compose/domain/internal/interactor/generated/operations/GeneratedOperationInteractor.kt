@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import kotlinx.coroutines.flow.Flow
 
@@ -27,8 +27,22 @@ internal interface GeneratedOperationInteractor {
     )
 
     companion object {
-        fun getInstance(aiuta: Aiuta): GeneratedOperationInteractor = LocalGeneratedOperationInteractor.getInstance(aiuta.platformContext)
-
-        fun getInstance(dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider): GeneratedOperationInteractor = HostGeneratedOperationInteractor.getInstance(dataProvider)
+        fun getInstance(
+            aiuta: Aiuta,
+            uploadsHistoryFeature: AiutaImageSelectorUploadsHistoryFeature?,
+        ): GeneratedOperationInteractor = when {
+            // Feature not initialized
+            uploadsHistoryFeature == null -> EmptyGeneratedOperationInteractor()
+            // Data provider not initialized -> let's use local
+            uploadsHistoryFeature.dataProvider == null -> LocalGeneratedOperationInteractor.getInstance(
+                platformContext = aiuta.platformContext,
+            )
+            // Data provider initialized -> let's use host
+            else -> HostGeneratedOperationInteractor.getInstance(
+                dataProvider = uploadsHistoryFeature.dataProvider!!,
+            )
+        }
     }
 }
+
+internal fun GeneratedOperationInteractor.isEmptyInteractor(): Boolean = this is EmptyGeneratedOperationInteractor

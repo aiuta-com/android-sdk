@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.isEmptyInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
@@ -298,35 +299,41 @@ private suspend fun FashionTryOnController.refreshActiveImage(
     generatedOperationFactory: GeneratedOperationFactory,
     operation: ProductGenerationOperation.SuccessOperation,
 ) {
-    // Refresh only if active operation with local image
-    if (lastSavedImages.value is LastSavedImages.PlatformImageSource) {
-        val warmUpInteractor = WarmUpInteractor(coilContext)
+    when {
+        // Feature of operation is not initialized - skip saving operation
+        generatedOperationInteractor.isEmptyInteractor() -> {
+            updateActiveOperationOrSetEmpty(null)
+        }
 
-        val currentOperationId =
-            generatedOperationFactory.getOperationId(
+        // Refresh only if active operation with local image
+        lastSavedImages.value is LastSavedImages.PlatformImageSource -> {
+            val warmUpInteractor = WarmUpInteractor(coilContext)
+
+            val currentOperationId = generatedOperationFactory.getOperationId(
                 imageId = operation.uploadedSourceImageId,
             )
-        if (lastSavedOperation.value?.operationId != currentOperationId) {
-            val images =
-                operation.generatedImages.map { image ->
-                    UrlImage(
-                        imageId = image.id,
-                        imageUrl = image.imageUrl,
-                    )
+            if (lastSavedOperation.value?.operationId != currentOperationId) {
+                val images =
+                    operation.generatedImages.map { image ->
+                        UrlImage(
+                            imageId = image.id,
+                            imageUrl = image.imageUrl,
+                        )
+                    }
+
+                // Warm up for smooth change
+                images.firstOrNull()?.let { image ->
+                    warmUpInteractor.saveWarmUp(image.imageUrl)
                 }
 
-            // Warm up for smooth change
-            images.firstOrNull()?.let { image ->
-                warmUpInteractor.saveWarmUp(image.imageUrl)
-            }
-
-            // Change to new
-            val newOperation =
-                GeneratedOperationUIModel(
+                // Change to new
+                val newOperation = GeneratedOperationUIModel(
                     operationId = currentOperationId,
                     urlImages = images,
                 )
-            updateActiveOperationOrSetEmpty(newOperation)
+
+                updateActiveOperationOrSetEmpty(newOperation)
+            }
         }
     }
 }

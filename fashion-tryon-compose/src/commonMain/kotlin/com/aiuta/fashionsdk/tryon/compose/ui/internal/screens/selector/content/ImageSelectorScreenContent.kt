@@ -47,15 +47,13 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
     val screenStateTransition = updateTransition(screenState.value)
 
     Column(
-        modifier =
-        modifier
+        modifier = modifier
             .background(theme.color.background)
             .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         MainAppBar(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             title = tryOnFeature.strings.tryOnPageTitle,
@@ -64,8 +62,7 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(16.dp))
 
         screenStateTransition.AnimatedContent(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
         ) { state ->
