@@ -2,13 +2,15 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.contro
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.consent.SupplementaryConsent
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.toEntity
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -40,28 +42,30 @@ internal fun OnboardingController.nextPage(
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
             val skuItem = controller.activeProductItem.value
-            val consentStandaloneFeature = configuration.features.consent as? AiutaConsentStandaloneOnboardingPageFeature
+            val consentStandaloneFeature =
+                configuration.features.consent as? AiutaConsentStandaloneOnboardingPageFeature
 
             // Close onboarding and move on
-            controller.onboardingInteractor.setOnboardingAsFinished()
+            val obtainedConsentId = consentsCheckList.mapNotNull { consentModel ->
+                consentModel.consent.id.takeIf { consentModel.isObtained }
+            }
+            controller.onboardingInteractor.setOnboardingAsFinished(
+                consents = consentsCheckList.map { it.toEntity() },
+            )
 
             // Consent
-            val supplementaryConsents =
-                supplementPointsMap.map { item ->
-                    SupplementaryConsent(
-                        consentText = item.key,
-                        isObtained = item.value,
-                    )
-                }
             controller.sendOnboardingEvent(
                 eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
                 pageId = AiutaAnalyticPageId.CONSENT,
                 productId = skuItem.id,
-                supplementaryConsents = supplementaryConsents,
+                supplementaryConsents = consentsCheckList.map { consentModel ->
+                    AiutaSupplementaryConsent(
+                        consentText = consentModel.consent.consentHtml,
+                        isObtained = consentModel.isObtained,
+                    )
+                },
             )
-            consentStandaloneFeature?.dataProvider?.obtainUserConsentAction?.invoke(
-                supplementaryConsents,
-            )
+            consentStandaloneFeature?.dataProvider?.obtainConsentAction?.invoke(obtainedConsentId)
 
             // Finish
             controller.sendOnboardingEvent(
@@ -80,10 +84,9 @@ internal fun OnboardingController.previousPage(controller: FashionTryOnControlle
         val previousPageIndex = pagerState.settledPage - 1
         val isFirstPage = pagerState.settledPage == 0
 
-        val previousState =
-            onboardingStatesQueue.getOrNull(
-                index = (previousPageIndex - TryOnPage.INTERNAL_PAGES_LAST_INDEX).coerceAtLeast(0),
-            ).takeIf { !isFirstPage }
+        val previousState = onboardingStatesQueue.getOrNull(
+            index = (previousPageIndex - TryOnPage.INTERNAL_PAGES_LAST_INDEX).coerceAtLeast(0),
+        ).takeIf { !isFirstPage }
 
         if (previousState != null) {
             // Skip for Try on page case
@@ -106,21 +109,33 @@ internal fun OnboardingController.changeInternalTryOnPage(newPage: Int) {
 }
 
 // Agreement
-internal fun OnboardingController.updateMandatoryAgreementState(newState: Boolean) {
-    isMandatoryAgreementChecked.value = newState
-}
-
-internal fun OnboardingController.updateSupplementAgreementState(
-    point: String,
+internal fun OnboardingController.updateConsentState(
+    consent: AiutaConsentUiModel,
     newState: Boolean,
 ) {
-    supplementPointsMap[point] = newState
+    val consentIndex = consentsCheckList.indexOf(consent)
+    if (consentIndex >= 0) {
+        consentsCheckList[consentIndex] = consent.copy(
+            isObtained = newState,
+        )
+    }
 }
 
 @Composable
 internal fun OnboardingController.listenIsPrimaryButtonEnabled(): State<Boolean> = remember(
     state.value,
-    isMandatoryAgreementChecked.value,
+    consentsCheckList,
 ) {
-    mutableStateOf(state.value !is ConsentPage || isMandatoryAgreementChecked.value)
+    derivedStateOf {
+        val isNotConsentPage = state.value !is ConsentPage
+        val isAllMandatoryChecked = consentsCheckList.all { consentModel ->
+            if (consentModel.consent.isRequired) {
+                consentModel.isObtained
+            } else {
+                true
+            }
+        }
+
+        isNotConsentPage || isAllMandatoryChecked
+    }
 }

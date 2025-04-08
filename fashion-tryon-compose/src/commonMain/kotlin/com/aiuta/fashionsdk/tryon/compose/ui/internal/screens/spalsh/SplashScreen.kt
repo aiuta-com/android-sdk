@@ -48,12 +48,43 @@ internal fun SplashScreen(
         }
 
         // Solve should show onboarding or not
-        val isUserConsentObtainedFlowRaw =
-            consentStandaloneFeature?.dataProvider?.isUserConsentObtainedFlow?.value
-        val shouldShowOnboardingFromHost =
-            isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
-        val shouldShowOnboarding =
-            controller.onboardingInteractor.shouldShowOnboarding() || shouldShowOnboardingFromHost
+        val isOnboardingPassed = controller.onboardingInteractor.isOnboardingPassed()
+
+        val shouldShowOnboarding = when {
+            // Onboarding not provided
+            !configuration.isFeatureInitialize<AiutaOnboardingFeature>() -> false
+            // SDK didn't show onboarding
+            !isOnboardingPassed -> true
+
+            consentStandaloneFeature != null -> {
+                // This is standalone consent
+                val localAllConsentIds = controller.onboardingInteractor.getConsentIds().sorted()
+                val localObtainedConsentIds = controller.onboardingInteractor.getObtainedConsentIds().sorted()
+
+                val hostAllConsentIds = consentStandaloneFeature.data.consents.map { it.id }
+                val hostObtainedConsentIds = consentStandaloneFeature.dataProvider?.obtainedConsentsIds?.value?.sorted()
+                val hostRequiredConsentsIds = consentStandaloneFeature.data.consents.mapNotNull { consent ->
+                    if (consent.isRequired) {
+                        consent.id
+                    } else {
+                        null
+                    }
+                }
+
+                when {
+                    // If host and SDK have not same obtained consents (with data provider)
+                    hostObtainedConsentIds != null && hostObtainedConsentIds != localObtainedConsentIds -> true
+                    // If host and SDK have not same required consents
+                    !localObtainedConsentIds.containsAll(hostRequiredConsentsIds) -> true
+                    // If host and SDK have not same list of all consents, but host give short list of already obtained consents -> let's don't show
+                    hostAllConsentIds.size < localAllConsentIds.size && localObtainedConsentIds.containsAll(hostAllConsentIds) -> false
+                    // If host and SDK have not same list of all consents
+                    hostAllConsentIds != localAllConsentIds -> true
+                    else -> false
+                }
+            }
+            else -> false
+        }
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =

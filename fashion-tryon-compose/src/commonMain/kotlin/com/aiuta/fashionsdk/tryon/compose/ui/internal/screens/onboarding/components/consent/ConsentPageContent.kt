@@ -28,8 +28,7 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateMandatoryAgreementState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateSupplementAgreementState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateConsentState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmentLine
@@ -45,10 +44,6 @@ internal fun ConsentPageContent(
     val theme = LocalTheme.current
 
     val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
-    val supplementaryPoints =
-        remember {
-            consentStandaloneFeature.strings.optionalConsentsHtml.take(5)
-        }
 
     sendPageEvent(pageId = AiutaAnalyticPageId.CONSENT)
 
@@ -86,43 +81,29 @@ internal fun ConsentPageContent(
             Spacer(Modifier.height(28.dp))
         }
 
-        item(
-            key = "CONSENT_MANDATORY_POINT",
-            contentType = { "CONSENT_MANDATORY_POINT_TYPE" },
-        ) {
+        itemsIndexed(
+            items = onboardingController.consentsCheckList,
+            key = { _, consentModel -> consentModel.consent.id },
+            contentType = { _, _ -> "CONSENT_POINT_TYPE" },
+        ) { index, consentModel ->
+            if (index == 0) {
+                Spacer(Modifier.height(28.dp))
+            }
+
             AgreePoint(
                 modifier = Modifier.fillMaxWidth(),
-                text = consentStandaloneFeature.strings.mandatoryConsentHtml,
-                isAgreementChecked = onboardingController.isMandatoryAgreementChecked.value,
-                onAgreementCheckedChange = onboardingController::updateMandatoryAgreementState,
+                text = consentModel.consent.consentHtml,
+                isAgreementChecked = consentModel.isObtained,
+                onAgreementCheckedChange = { newState ->
+                    onboardingController.updateConsentState(
+                        consent = consentModel,
+                        newState = newState,
+                    )
+                },
             )
-        }
 
-        consentStandaloneFeature.dataProvider?.let {
-            itemsIndexed(
-                items = supplementaryPoints,
-                key = { _, point -> point },
-                contentType = { index, point -> "CONSENT_SUPPLEMENTARY_POINT_TYPE_$index-$point" },
-            ) { index, point ->
-                if (index == 0) {
-                    Spacer(Modifier.height(28.dp))
-                }
-
-                AgreePoint(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = point,
-                    isAgreementChecked = onboardingController.supplementPointsMap[point] ?: false,
-                    onAgreementCheckedChange = { newState ->
-                        onboardingController.updateSupplementAgreementState(
-                            point = point,
-                            newState = newState,
-                        )
-                    },
-                )
-
-                if (index != supplementaryPoints.lastIndex) {
-                    Spacer(Modifier.height(40.dp))
-                }
+            if (index != consentStandaloneFeature.data.consents.lastIndex) {
+                Spacer(Modifier.height(40.dp))
             }
         }
 
@@ -191,7 +172,7 @@ private fun AgreePoint(
                 }
                 .alignBy(CenterAlignmentLine)
                 .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
-            text = text,
+            text = buildAnnotatedStringFromHtml(text),
             style = theme.label.typography.regular,
             color = theme.color.primary,
             textAlign = TextAlign.Start,

@@ -9,8 +9,8 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.
 @Dao
 internal interface OnboardingDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(onboardingEntity: OnboardingEntity)
+    suspend fun insert(entity: OnboardingEntity)
 
-    @Query("SELECT count(id) FROM onboarding_checker")
-    suspend fun count(): Int
+    @Query("SELECT * FROM onboarding_state LIMIT 1")
+    suspend fun getOnboardingEntity(): OnboardingEntity?
 }
