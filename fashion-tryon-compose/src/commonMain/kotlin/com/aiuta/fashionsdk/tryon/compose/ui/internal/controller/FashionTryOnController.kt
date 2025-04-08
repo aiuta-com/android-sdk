@@ -56,32 +56,9 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         aiutaTryOnConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
     val tryOnFeature = aiutaTryOnConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
 
-    val activeProductItem =
-        remember {
-            mutableStateOf(productItem)
-        }
+    val activeProductItem = remember { mutableStateOf(productItem) }
 
-    val zoomImageController =
-        rememberZoomImageController(
-            constraints = constraints,
-        )
-
-    val defaultCurrentScreen =
-        remember {
-            mutableStateOf(defaultStartScreen())
-        }
-    val defaultLastSavedImages =
-        remember {
-            mutableStateOf<LastSavedImages>(LastSavedImages.Empty)
-        }
-    val defaultSavedOperation =
-        remember {
-            mutableStateOf<GeneratedOperationUIModel?>(null)
-        }
-    val defaultIsGenerationActive =
-        remember {
-            mutableStateOf(false)
-        }
+    val zoomImageController = rememberZoomImageController(constraints = constraints)
 
     // Data providers
     // TODO Support empty data providers
@@ -98,44 +75,16 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             } ?: GeneratedOperationInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
         }
 
-    val defaultSelectorState =
-        remember {
-            mutableStateOf(SelectorMode.DISABLED)
-        }
-
-    val defaultFashionTryOnErrorState =
-        remember {
-            mutableStateOf<ToastErrorState?>(null)
-        }
-
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
-
-    // Generation state
-    val defaultGenerationUIStatus =
-        remember {
-            mutableStateOf(ProductGenerationUIStatus.IDLE)
-        }
-    val defaultGenerationOperations =
-        remember {
-            mutableStateListOf<ProductGenerationOperation>()
-        }
 
     return remember {
         FashionTryOnController(
-            generationStatus = defaultGenerationUIStatus,
-            generationOperations = defaultGenerationOperations,
-            currentScreen = defaultCurrentScreen,
             bottomSheetNavigator = defaultBottomSheetNavigator,
-            fashionTryOnErrorState = defaultFashionTryOnErrorState,
-            selectorState = defaultSelectorState,
             zoomImageController = zoomImageController,
-            lastSavedImages = defaultLastSavedImages,
-            lastSavedOperation = defaultSavedOperation,
             activeProductItem = activeProductItem,
             aiuta = aiutaTryOnConfiguration.aiuta,
             aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnListeners,
-            isGenerationActive = defaultIsGenerationActive,
             generatedImageInteractor = generatedImageInteractor,
             generatedOperationInteractor = generatedOperationInteractor,
             onboardingInteractor = aiutaTryOnConfiguration.aiuta.onboardingInteractor,
@@ -155,29 +104,19 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
 @Immutable
 internal class FashionTryOnController(
-    // Generation state
-    internal val generationStatus: MutableState<ProductGenerationUIStatus>,
-    internal val generationOperations: SnapshotStateList<ProductGenerationOperation>,
     // General navigation
-    public val currentScreen: MutableState<NavigationScreen>,
     internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque(),
     public val zoomImageController: ZoomImageController,
     // Bottom sheet navigation
     public val bottomSheetNavigator: BottomSheetNavigator,
-    // Error state
-    public val fashionTryOnErrorState: MutableState<ToastErrorState?>,
     // Edit changePhotoButtonStyle
-    internal val selectorState: MutableState<SelectorMode>,
     val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder(),
     // Data
-    public val lastSavedImages: MutableState<LastSavedImages>,
-    public val lastSavedOperation: MutableState<GeneratedOperationUIModel?>,
     public val activeProductItem: MutableState<ProductItem>,
     // Domain
     public val aiuta: Aiuta,
     public val aiutaTryOn: AiutaTryOn,
     public val aiutaTryOnListeners: AiutaTryOnListeners,
-    public val isGenerationActive: MutableState<Boolean>,
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val generatedOperationInteractor: GeneratedOperationInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
@@ -185,6 +124,26 @@ internal class FashionTryOnController(
     // Analytic
     internal val analytic: InternalAiutaAnalytic,
 ) {
+    // Generation state
+    internal val generationStatus: MutableState<ProductGenerationUIStatus> = mutableStateOf(ProductGenerationUIStatus.IDLE)
+    internal val generationOperations: SnapshotStateList<ProductGenerationOperation> = mutableStateListOf()
+
+    // General navigation
+    public val currentScreen: MutableState<NavigationScreen> = mutableStateOf(defaultStartScreen())
+
+    // Error state
+    public val fashionTryOnErrorState: MutableState<ToastErrorState?> = mutableStateOf(null)
+
+    // Edit changePhotoButtonStyle
+    internal val selectorState: MutableState<SelectorMode> = mutableStateOf(SelectorMode.DISABLED)
+
+    // Data
+    public val lastSavedImages: MutableState<LastSavedImages> = mutableStateOf(LastSavedImages.Empty)
+    public val lastSavedOperation: MutableState<GeneratedOperationUIModel?> = mutableStateOf(null)
+
+    // Domain
+    public val isGenerationActive: MutableState<Boolean> = mutableStateOf(false)
+
     // Utils
     private var internalGenerationScope: CoroutineScope? = null
     internal val generationScope: CoroutineScope

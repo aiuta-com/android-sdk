@@ -3,11 +3,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import coil3.compose.LocalPlatformContext
 import coil3.compose.setSingletonImageLoaderFactory
-import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
@@ -43,12 +41,6 @@ internal fun NavigationInitialisation(
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        val internalAnalytic =
-            remember {
-                aiutaTryOnConfiguration
-                    .aiuta
-                    .internalAiutaAnalytic
-            }
         val controller = rememberFashionTryOnController(
             aiutaTryOnConfiguration = aiutaTryOnConfiguration,
             aiutaTryOnListeners = aiutaTryOnListeners,
@@ -56,7 +48,7 @@ internal fun NavigationInitialisation(
         )
 
         CompositionLocalProvider(
-            LocalAnalytic provides internalAnalytic,
+            LocalAnalytic provides controller.analytic,
             LocalController provides controller,
             LocalTheme provides aiutaUserInterfaceConfiguration.theme,
             LocalAiutaConfiguration provides aiutaTryOnConfiguration,
