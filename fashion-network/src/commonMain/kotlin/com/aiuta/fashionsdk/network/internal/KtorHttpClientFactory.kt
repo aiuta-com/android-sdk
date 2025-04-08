@@ -65,15 +65,13 @@ internal class KtorHttpClientFactory(
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installAuthentication(): HttpClientConfig<T> = apply {
         install(Auth) {
             when (authenticationStrategy) {
-                is ApiKeyAuthenticationStrategy ->
-                    apiKey {
-                        setApiKey(authenticationStrategy.apiKey)
-                    }
+                is ApiKeyAuthenticationStrategy -> apiKey {
+                    setApiKey(authenticationStrategy.apiKey)
+                }
 
-                is JWTAuthenticationStrategy ->
-                    jwt {
-                        loadTokens { authenticationStrategy.getJWT(it) }
-                    }
+                is JWTAuthenticationStrategy -> jwt {
+                    loadTokens { authenticationStrategy.getJWT(it) }
+                }
             }
         }
     }

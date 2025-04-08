@@ -352,10 +352,9 @@ private fun FashionTryOnController.refreshOperation(newOperation: ProductGenerat
 private suspend fun FashionTryOnController.addSuccessGenerations(
     newOperation: ProductGenerationOperation.SuccessOperation,
 ): Boolean = try {
-    val result =
-        measureTimedValue {
-            sessionGenerationInteractor.addGenerations(newOperation.generatedImages)
-        }
+    val result = measureTimedValue {
+        sessionGenerationInteractor.addGenerations(newOperation.generatedImages)
+    }
 
     sendSuccessTryOnEvent(
         metadata = newOperation.metadata,

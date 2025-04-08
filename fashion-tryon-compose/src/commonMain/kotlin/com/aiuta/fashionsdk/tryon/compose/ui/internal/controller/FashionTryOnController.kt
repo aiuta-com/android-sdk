@@ -61,20 +61,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     val zoomImageController = rememberZoomImageController(constraints = constraints)
 
-    // Data providers
-    val generatedImageInteractor = remember {
-        GeneratedImageInteractor.getInstance(
-            aiuta = aiutaTryOnConfiguration.aiuta,
-            generationsHistoryFeature = generationsHistoryFeature,
-        )
-    }
-    val generatedOperationInteractor = remember {
-        GeneratedOperationInteractor.getInstance(
-            aiuta = aiutaTryOnConfiguration.aiuta,
-            uploadsHistoryFeature = uploadsHistoryFeature,
-        )
-    }
-
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
 
     return remember {
@@ -85,10 +71,19 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             aiuta = aiutaTryOnConfiguration.aiuta,
             aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
             aiutaUserInterfaceActions = aiutaUserInterfaceConfiguration.actions,
-            generatedImageInteractor = generatedImageInteractor,
-            generatedOperationInteractor = generatedOperationInteractor,
+            generatedImageInteractor = GeneratedImageInteractor.getInstance(
+                aiuta = aiutaTryOnConfiguration.aiuta,
+                generationsHistoryFeature = generationsHistoryFeature,
+            ),
+            generatedOperationInteractor = GeneratedOperationInteractor.getInstance(
+                aiuta = aiutaTryOnConfiguration.aiuta,
+                uploadsHistoryFeature = uploadsHistoryFeature,
+            ),
             onboardingInteractor = aiutaTryOnConfiguration.aiuta.onboardingInteractor,
-            sessionGenerationInteractor = SessionGenerationInteractor.getInstance(coilContext),
+            sessionGenerationInteractor = SessionGenerationInteractor.getInstance(
+                coilContext = coilContext,
+                generationsHistoryFeature = generationsHistoryFeature,
+            ),
             analytic = aiutaTryOnConfiguration.aiutaAnalytic,
         )
     }.also {

@@ -48,11 +48,16 @@ internal fun FeedbackBlock(
 
     val feedbackFeature = provideFeature<AiutaTryOnFeedbackFeature>()
 
-    val isFeedbackVisible = remember {
+    val isFeedbackVisible = remember(
+        sessionImage,
+        isInterfaceVisible.value,
+        feedbackFeature,
+    ) {
         derivedStateOf {
+            val isFeedbackNotProvided = !sessionImage.isFeedbackProvided
             val isFeedbackFeatureInit = feedbackFeature != null
 
-            isFeedbackFeatureInit && isInterfaceVisible.value
+            isFeedbackNotProvided && isFeedbackFeatureInit && isInterfaceVisible.value
         }
     }
 
