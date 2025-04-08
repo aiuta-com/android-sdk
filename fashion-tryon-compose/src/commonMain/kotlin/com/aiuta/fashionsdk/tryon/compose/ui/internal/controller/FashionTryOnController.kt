@@ -63,18 +63,17 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 
     // Data providers
     // TODO Support empty data providers
-    val generatedImageInteractor =
-        remember {
-            generationsHistoryFeature?.dataProvider?.let { dataProvider ->
-                GeneratedImageInteractor.getInstance(dataProvider)
-            } ?: GeneratedImageInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
-        }
-    val generatedOperationInteractor =
-        remember {
-            uploadsHistoryFeature?.dataProvider?.let { dataProvider ->
-                GeneratedOperationInteractor.getInstance(dataProvider)
-            } ?: GeneratedOperationInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
-        }
+    val generatedImageInteractor = remember {
+        GeneratedImageInteractor.getInstance(
+            aiuta = aiutaTryOnConfiguration.aiuta,
+            generationsHistoryFeature = generationsHistoryFeature,
+        )
+    }
+    val generatedOperationInteractor = remember {
+        uploadsHistoryFeature?.dataProvider?.let { dataProvider ->
+            GeneratedOperationInteractor.getInstance(dataProvider)
+        } ?: GeneratedOperationInteractor.getInstance(aiutaTryOnConfiguration.aiuta)
+    }
 
     val defaultBottomSheetNavigator = rememberBottomSheetNavigator()
 
@@ -123,8 +122,10 @@ internal class FashionTryOnController(
     internal val analytic: InternalAiutaAnalytic,
 ) {
     // Generation state
-    internal val generationStatus: MutableState<ProductGenerationUIStatus> = mutableStateOf(ProductGenerationUIStatus.IDLE)
-    internal val generationOperations: SnapshotStateList<ProductGenerationOperation> = mutableStateListOf()
+    internal val generationStatus: MutableState<ProductGenerationUIStatus> =
+        mutableStateOf(ProductGenerationUIStatus.IDLE)
+    internal val generationOperations: SnapshotStateList<ProductGenerationOperation> =
+        mutableStateListOf()
 
     // General navigation
     internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque()
@@ -138,7 +139,8 @@ internal class FashionTryOnController(
     val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder()
 
     // Data
-    public val lastSavedImages: MutableState<LastSavedImages> = mutableStateOf(LastSavedImages.Empty)
+    public val lastSavedImages: MutableState<LastSavedImages> =
+        mutableStateOf(LastSavedImages.Empty)
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?> = mutableStateOf(null)
 
     // Domain

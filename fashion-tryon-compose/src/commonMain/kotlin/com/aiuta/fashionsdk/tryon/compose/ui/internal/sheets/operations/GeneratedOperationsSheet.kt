@@ -203,8 +203,7 @@ private fun OperationItem(
         )
 
         AnimatedVisibility(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(8.dp),
             visible = isTrashVisible.value,
@@ -212,8 +211,7 @@ private fun OperationItem(
             exit = fadeOut(),
         ) {
             AiutaIcon(
-                modifier =
-                Modifier
+                modifier = Modifier
                     .size(24.dp)
                     .clickableUnindicated {
                         scope.launch {

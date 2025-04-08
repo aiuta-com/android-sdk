@@ -118,8 +118,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
 ): List<Flow<ProductGenerationStatus>> = platformImageSource.platformImages.map { image ->
     aiutaTryOn
         .startProductGeneration(
-            container =
-            ProductGenerationPlatformImageContainer(
+            container = ProductGenerationPlatformImageContainer(
                 platformImage = image,
                 productId = activeProductItem.value.id,
                 productCatalogName = activeProductItem.value.catalogName,
@@ -129,10 +128,9 @@ private fun FashionTryOnController.startGenerationWithUriSource(
             // Notify (or create locally) about new operation, after success
             // Also need update active operation, if we change local URI to backend URL
             if (status is ProductGenerationStatus.SuccessGenerationStatus) {
-                val currentOperationId =
-                    generatedOperationFactory.getOperationId(
-                        imageId = status.sourceImageId,
-                    )
+                val currentOperationId = generatedOperationFactory.getOperationId(
+                    imageId = status.sourceImageId,
+                )
 
                 generatedOperationInteractor.createImage(
                     sourceImageId = status.sourceImageId,
@@ -149,8 +147,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 ): List<Flow<ProductGenerationStatus>> = urlSource.urlImages.map { sourceImage ->
     aiutaTryOn
         .startProductGeneration(
-            container =
-            ProductGenerationUrlContainer(
+            container = ProductGenerationUrlContainer(
                 fileId = sourceImage.imageId,
                 fileUrl = sourceImage.imageUrl,
                 productId = activeProductItem.value.id,
@@ -164,10 +161,9 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
                 lastSavedImages.value is LastSavedImages.UrlSource.PregeneratedModels
 
             if (isModelSource && status is ProductGenerationStatus.SuccessGenerationStatus) {
-                val currentOperationId =
-                    generatedOperationFactory.getOperationId(
-                        imageId = status.sourceImageId,
-                    )
+                val currentOperationId = generatedOperationFactory.getOperationId(
+                    imageId = status.sourceImageId,
+                )
 
                 generatedOperationInteractor.createImage(
                     sourceImageId = status.sourceImageId,

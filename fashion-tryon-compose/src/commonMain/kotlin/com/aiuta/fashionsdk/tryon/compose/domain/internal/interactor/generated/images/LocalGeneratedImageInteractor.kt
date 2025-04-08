@@ -50,8 +50,7 @@ internal class LocalGeneratedImageInteractor(
         private const val DEFAULT_PAGE_SIZE = 10
 
         fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedImageInteractor = LocalGeneratedImageInteractor(
-            generatedImageDatasource =
-            GeneratedImageDatasource.getInstance(
+            generatedImageDatasource = GeneratedImageDatasource.getInstance(
                 platformContext = platformContext,
             ),
         )
