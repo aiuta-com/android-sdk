@@ -230,14 +230,14 @@ private fun ZoomedImageScreenContent(
                     modifier = Modifier.clickableUnindicated {
                         scope.launch {
                             val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
-                            val skuIds = listOf(controller.activeSKUItem.value.skuId)
+                            val skuIds = listOf(controller.activeProductItem.value.id)
                             val shareText =
                                 shareFeature.dataProvider?.requestShareTextAction?.invoke(skuIds)
 
                             shareManager.shareImages(
                                 content = shareText,
                                 pageId = screenState.sharedImage.value.originPageId,
-                                productId = controller.activeSKUItem.value.skuId,
+                                productId = controller.activeProductItem.value.id,
                                 imageUrls = imageUrls,
                                 watermark = watermarkPainter,
                             )

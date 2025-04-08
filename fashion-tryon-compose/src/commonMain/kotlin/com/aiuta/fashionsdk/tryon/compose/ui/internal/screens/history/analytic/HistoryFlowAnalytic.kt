@@ -11,7 +11,7 @@ internal fun FashionTryOnController.sendHistoryEvent(eventType: AiutaAnalyticsHi
         AiutaAnalyticsHistoryEvent(
             event = eventType,
             pageId = AiutaAnalyticPageId.HISTORY,
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
         ),
     )
 }

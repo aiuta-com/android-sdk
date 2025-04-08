@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
-internal fun SKUInfo(
+internal fun ProductInfo(
     modifier: Modifier = Modifier,
-    skuItem: SKUItem,
+    productItem: ProductItem,
 ) {
     val theme = LocalTheme.current
 
@@ -26,7 +26,7 @@ internal fun SKUInfo(
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = skuItem.store,
+            text = productItem.store,
             style = theme.productBar.typography.brand,
             color = theme.color.primary,
         )
@@ -34,7 +34,7 @@ internal fun SKUInfo(
         Spacer(Modifier.height(2.dp))
 
         Text(
-            text = skuItem.description,
+            text = productItem.description,
             style = theme.productBar.typography.product,
             color = theme.color.primary,
         )
@@ -43,7 +43,7 @@ internal fun SKUInfo(
 
         PriceInfo(
             modifier = Modifier.fillMaxWidth(),
-            skuItem = skuItem,
+            productItem = productItem,
         )
     }
 }

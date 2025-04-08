@@ -5,10 +5,10 @@ import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.network.paging.utils.saveAppend
 import com.aiuta.fashionsdk.network.utils.saveAppendLimit
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOperationsDataSource
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSKUOperationRequest
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSKUOperationResponse
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.SKUOperation
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionProductOperationsDataSource
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateProductOperationRequest
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateProductOperationResponse
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.ProductOperation
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.post
@@ -17,12 +17,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
-internal class FashionSKUOperationsRemoteDataSource(
+internal class FashionProductOperationsRemoteDataSource(
     private val networkClient: NetworkClient,
-) : FashionSKUOperationsDataSource {
-    override suspend fun createSKUOperation(
-        request: CreateSKUOperationRequest,
-    ): CreateSKUOperationResponse = withContext(Dispatchers.IO) {
+) : FashionProductOperationsDataSource {
+    override suspend fun createProductOperation(
+        request: CreateProductOperationRequest,
+    ): CreateProductOperationResponse = withContext(Dispatchers.IO) {
         networkClient.httpClient.value.post(
             urlString = PATH_SKU_OPERATIONS,
         ) {
@@ -30,10 +30,10 @@ internal class FashionSKUOperationsRemoteDataSource(
         }.body()
     }
 
-    override suspend fun getSKUOperations(
+    override suspend fun getProductOperations(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUOperation> = withContext(Dispatchers.IO) {
+    ): PageContainer<ProductOperation> = withContext(Dispatchers.IO) {
         networkClient.httpClient.value.get(
             urlString = PATH_SKU_OPERATIONS,
         ) {
@@ -44,7 +44,7 @@ internal class FashionSKUOperationsRemoteDataSource(
         }.body()
     }
 
-    override suspend fun getSKUOperation(operationId: String): SKUOperation = withContext(Dispatchers.IO) {
+    override suspend fun getProductOperation(operationId: String): ProductOperation = withContext(Dispatchers.IO) {
         networkClient.httpClient.value.get(
             urlString = "$PATH_SKU_OPERATIONS/$operationId",
         ).body()

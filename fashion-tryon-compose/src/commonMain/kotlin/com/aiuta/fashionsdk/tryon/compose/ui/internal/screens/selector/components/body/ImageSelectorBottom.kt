@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.styles.AiutaButtonsStyle
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -74,7 +74,7 @@ internal fun ImageSelectorBottom(
         updateTransition(
             targetState =
             when {
-                generationStatus.value == SKUGenerationUIStatus.LOADING -> {
+                generationStatus.value == ProductGenerationUIStatus.LOADING -> {
                     ImageSelectorState.GENERATION_LOADING
                 }
 

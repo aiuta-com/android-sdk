@@ -7,7 +7,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendTerminateEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 
@@ -19,7 +19,7 @@ internal fun FashionTryOnController.generationNavigationListener() {
     LaunchedEffect(currentScreen.value) {
         if (currentScreen.value == NavigationScreen.ImageSelector) {
             if (!isGenerationActive.value) {
-                generationStatus.value = SKUGenerationUIStatus.IDLE
+                generationStatus.value = ProductGenerationUIStatus.IDLE
             }
             generationOperations.clear()
         }
@@ -50,7 +50,7 @@ internal fun FashionTryOnController.generationCancellationListener(
                 LifecycleEventObserver { _, event ->
                     if (event == Lifecycle.Event.ON_DESTROY) {
                         // Notify analytic about termination
-                        if (generationStatus.value == SKUGenerationUIStatus.LOADING) {
+                        if (generationStatus.value == ProductGenerationUIStatus.LOADING) {
                             sendTerminateEvent()
                         }
 

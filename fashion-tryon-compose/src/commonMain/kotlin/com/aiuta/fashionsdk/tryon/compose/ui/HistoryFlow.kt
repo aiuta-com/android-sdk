@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -47,7 +47,7 @@ public fun HistoryFlow(
         aiutaTryOnConfiguration = aiutaTryOnConfiguration,
         aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
         aiutaTryOnListeners = aiutaTryOnListeners,
-        skuForGeneration = DefaultSKUItem,
+        productItem = DefaultProductItem,
     ) {
         sendSessionEvent(SessionEvent.FlowType.HISTORY)
 
@@ -92,9 +92,9 @@ public fun HistoryFlow(
     }
 }
 
-internal val DefaultSKUItem by lazy {
-    SKUItem(
-        skuId = "",
+internal val DefaultProductItem by lazy {
+    ProductItem(
+        id = "",
         description = "",
         imageUrls = emptyList(),
         localizedPrice = "",

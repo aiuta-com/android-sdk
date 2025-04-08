@@ -9,7 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
@@ -21,24 +21,24 @@ fun MainScreen() {
     val viewModel: MainViewModel = viewModel()
     val context = LocalContext.current
 
-    val activeSKUItems = viewModel.activeSKUItems.collectAsStateWithLifecycle()
-    val firstActiveSKUItem =
-        remember(activeSKUItems.value) {
-            activeSKUItems.value?.firstOrNull()
+    val activeProductItems = viewModel.activeProductItems.collectAsStateWithLifecycle()
+    val firstActiveProductItem =
+        remember(activeProductItems.value) {
+            activeProductItems.value?.firstOrNull()
         }
 
     LaunchedEffect(Unit) {
         viewModel.init()
     }
 
-    firstActiveSKUItem?.let {
-        val mockSKUItem =
+    firstActiveProductItem?.let {
+        val mockProductItem =
             remember {
-                SKUItem(
-                    skuId = firstActiveSKUItem.skuId,
-                    catalogName = firstActiveSKUItem.catalogName,
+                ProductItem(
+                    id = firstActiveProductItem.productId,
+                    catalogName = firstActiveProductItem.catalogName,
                     description = "MOCK 90s straight leg jeans in light blue",
-                    imageUrls = firstActiveSKUItem.imageUrls,
+                    imageUrls = firstActiveProductItem.imageUrls,
                     localizedPrice = "$34.99",
                     localizedOldPrice = "$41.99",
                     store = "MOCK STORE",
@@ -77,7 +77,7 @@ fun MainScreen() {
             aiutaTryOnConfiguration = mockAiutaConfiguration,
             aiutaTryOnListeners = mockAiutaTryOnListeners,
             aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
-            skuForGeneration = mockSKUItem,
+            productForGeneration = mockProductItem,
         )
     }
 }

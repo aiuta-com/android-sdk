@@ -20,7 +20,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
     repickingFeature?.let {
         val controller = LocalController.current
 
-        val activeSKUItem = controller.activeSKUItem.value
+        val activeSKUItem = controller.activeProductItem.value
         val countGeneratedOperation =
             controller.generatedOperationInteractor
                 .countGeneratedOperation()
@@ -35,7 +35,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
                 controller.sendResultEvent(
                     event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
                     pageId = AiutaAnalyticPageId.RESULTS,
-                    productId = activeSKUItem.skuId,
+                    productId = activeSKUItem.id,
                 )
 
                 controller.bottomSheetNavigator.show(

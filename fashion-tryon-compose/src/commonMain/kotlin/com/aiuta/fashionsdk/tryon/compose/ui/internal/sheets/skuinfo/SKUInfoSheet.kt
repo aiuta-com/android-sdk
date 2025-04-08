@@ -29,12 +29,12 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryO
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -46,7 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
-internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
+internal fun ColumnScope.ProductInfoSheet(productInfo: NavigationBottomSheetScreen.ProductInfo) {
     val sharedHorizontalPadding = 16.dp
 
     SheetDivider()
@@ -59,7 +59,7 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         itemsIndexed(
-            items = skuInfo.skuItem.imageUrls,
+            items = productInfo.productItem.imageUrls,
             key = { index, _ -> index },
         ) { _, imageUrl ->
             ImageContainer(
@@ -75,12 +75,12 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
 
     Spacer(Modifier.height(16.dp))
 
-    SKUInfo(
+    ProductInfo(
         modifier =
         Modifier
             .fillMaxWidth()
             .padding(horizontal = sharedHorizontalPadding),
-        skuItem = skuInfo.skuItem,
+        productItem = productInfo.productItem,
     )
 
     Spacer(Modifier.height(24.dp))
@@ -90,7 +90,7 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
         Modifier
             .fillMaxWidth()
             .padding(horizontal = sharedHorizontalPadding),
-        skuInfo = skuInfo,
+        productInfo = productInfo,
     )
 }
 
@@ -117,19 +117,19 @@ private fun ImageContainer(
 @Composable
 private fun ButtonsContainer(
     modifier: Modifier = Modifier,
-    skuInfo: NavigationBottomSheetScreen.SKUInfo,
+    productInfo: NavigationBottomSheetScreen.ProductInfo,
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
 
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
     val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
     val isPrimaryButtonVisible = remember {
         derivedStateOf {
-            when (skuInfo.primaryButtonState) {
+            when (productInfo.primaryButtonState) {
                 PrimaryButtonState.ADD_TO_CART -> tryOnFeature.dataProvider != null
                 PrimaryButtonState.TRY_ON -> true
             }
@@ -158,10 +158,10 @@ private fun ButtonsContainer(
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
                 onClick = {
                     controller.clickAddToWishListActiveSKU(
-                        pageId = skuInfo.originPageId,
+                        pageId = productInfo.originPageId,
                         updatedWishlistState = !inWishlist.value,
                         dataProvider = wishlistFeature.dataProvider,
-                        skuId = activeSKUItem.skuId,
+                        productId = activeSKUItem.id,
                     )
                 },
             )
@@ -174,27 +174,27 @@ private fun ButtonsContainer(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
-                text = if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                text = if (productInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                     tryOnFeature.strings.tryOnButtonAddToCart
                 } else {
                     tryOnFeature.strings.tryOnButtonTryOn
                 },
                 icon = tryOnFeature.icons.magic20.takeIf {
-                    skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
+                    productInfo.primaryButtonState == PrimaryButtonState.TRY_ON
                 },
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
-                    if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    if (productInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
                         tryOnFeature.dataProvider?.let { dataProvider ->
                             controller.clickAddToCart(
                                 pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                                skuId = skuInfo.skuItem.skuId,
+                                productId = productInfo.productItem.id,
                                 dataProvider = dataProvider,
                             )
                         }
                     } else {
-                        controller.changeActiveSKU(skuInfo.skuItem)
+                        controller.changeActiveSKU(productInfo.productItem)
                         controller.bottomSheetNavigator.hide()
                         controller.navigateBack()
                     }

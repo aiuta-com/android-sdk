@@ -119,7 +119,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
                 controller.sendOnboardingEvent(
                     eventType = AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED,
                     pageId = AiutaAnalyticPageId.WELCOME,
-                    productId = controller.activeSKUItem.value.skuId,
+                    productId = controller.activeProductItem.value.id,
                     supplementaryConsents = null,
                 )
                 controller.navigateTo(NavigationScreen.Onboarding)

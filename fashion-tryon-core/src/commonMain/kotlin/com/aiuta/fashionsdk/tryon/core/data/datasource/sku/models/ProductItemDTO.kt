@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class SKUItemDTO(
+internal data class ProductItemDTO(
     @SerialName("category_google_id")
     val categoryGoogleId: String,
     @SerialName("category_google_name")

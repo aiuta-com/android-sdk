@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 public interface AiutaTryOnGenerationsHistoryFeatureDataProvider {
     public val generatedImages: StateFlow<List<AiutaHistoryImage>>
-    public val addGeneratedImagesAction: (skuId: String, images: List<AiutaHistoryImage>) -> Unit
+    public val addGeneratedImagesAction: (productId: String, images: List<AiutaHistoryImage>) -> Unit
     public val isErrorDeletingGeneratedImages: SharedFlow<Boolean>
     public val deleteGeneratedImagesAction: (List<AiutaHistoryImage>) -> Unit
 }

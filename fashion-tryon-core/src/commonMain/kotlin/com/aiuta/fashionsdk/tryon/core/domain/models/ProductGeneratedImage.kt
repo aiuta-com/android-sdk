@@ -5,12 +5,12 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.Generate
 /**
  * Model of generated image after ping operations
  */
-public class SKUGeneratedImage(
+public class ProductGeneratedImage(
     public val id: String,
     public val url: String,
 )
 
-internal fun GeneratedImage.toPublic(): SKUGeneratedImage = SKUGeneratedImage(
+internal fun GeneratedImage.toPublic(): ProductGeneratedImage = ProductGeneratedImage(
     id = id,
     url = url,
 )

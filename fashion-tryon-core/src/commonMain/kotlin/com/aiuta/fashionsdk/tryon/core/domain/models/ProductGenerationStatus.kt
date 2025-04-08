@@ -5,9 +5,9 @@ import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 /**
- * Status sku generation
+ * Status product generation
  */
-public sealed interface SKUGenerationStatus {
+public sealed interface ProductGenerationStatus {
     public val statusId: String
 
     /**
@@ -17,14 +17,14 @@ public sealed interface SKUGenerationStatus {
         override val statusId: String,
         public val sourceImageId: String,
         public val sourceImageUrl: String,
-        public val images: List<SKUGeneratedImage> = emptyList(),
+        public val images: List<ProductGeneratedImage> = emptyList(),
         public val metadata: AiutaTryOnMetadata,
-    ) : SKUGenerationStatus
+    ) : ProductGenerationStatus
 
     /**
      * Generation is in progress
      */
-    public sealed interface LoadingGenerationStatus : SKUGenerationStatus {
+    public sealed interface LoadingGenerationStatus : ProductGenerationStatus {
         /**
          * Only start generation process
          */
@@ -57,7 +57,7 @@ public sealed interface SKUGenerationStatus {
         override val statusId: String,
         public val errorMessage: String? = null,
         public val exception: Exception? = null,
-    ) : SKUGenerationStatus
+    ) : ProductGenerationStatus
 }
 
 @OptIn(ExperimentalUuidApi::class)

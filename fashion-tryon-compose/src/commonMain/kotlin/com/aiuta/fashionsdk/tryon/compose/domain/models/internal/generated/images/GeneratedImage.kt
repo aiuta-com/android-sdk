@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.imag
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGeneratedImage
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGeneratedImage
 
 @Immutable
 internal data class GeneratedImageUIModel(
@@ -26,7 +26,7 @@ internal fun GeneratedImageUIModel.toSessionUiModel(): SessionImageUIModel = Ses
     imageUrl = imageUrl,
 )
 
-internal fun SKUGeneratedImage.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
+internal fun ProductGeneratedImage.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
     id = id,
     imageUrl = url,
 )

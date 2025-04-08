@@ -3,14 +3,14 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toUiModel
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 
 @Immutable
-internal sealed interface SKUGenerationOperation {
+internal sealed interface ProductGenerationOperation {
     val operationId: String
 
-    sealed interface LoadingOperation : SKUGenerationOperation {
+    sealed interface LoadingOperation : ProductGenerationOperation {
         class StartGenerationOperation(
             override val operationId: String,
         ) : LoadingOperation
@@ -30,40 +30,40 @@ internal sealed interface SKUGenerationOperation {
         val uploadedSourceImage: String,
         val generatedImages: List<GeneratedImageUIModel>,
         val metadata: AiutaTryOnMetadata,
-    ) : SKUGenerationOperation
+    ) : ProductGenerationOperation
 
     class ErrorOperation(
         override val operationId: String,
         val errorMessage: String? = null,
         val exception: Exception? = null,
-    ) : SKUGenerationOperation
+    ) : ProductGenerationOperation
 }
 
-internal fun SKUGenerationStatus.toOperation(): SKUGenerationOperation = when (this) {
-    is SKUGenerationStatus.LoadingGenerationStatus.StartGeneration ->
-        SKUGenerationOperation.LoadingOperation.StartGenerationOperation(
+internal fun ProductGenerationStatus.toOperation(): ProductGenerationOperation = when (this) {
+    is ProductGenerationStatus.LoadingGenerationStatus.StartGeneration ->
+        ProductGenerationOperation.LoadingOperation.StartGenerationOperation(
             operationId = statusId,
         )
 
-    is SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage ->
-        SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation(
+    is ProductGenerationStatus.LoadingGenerationStatus.UploadedSourceImage ->
+        ProductGenerationOperation.LoadingOperation.UploadedSourceImageOperation(
             operationId = statusId,
         )
 
-    is SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing ->
-        SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation(
+    is ProductGenerationStatus.LoadingGenerationStatus.GenerationProcessing ->
+        ProductGenerationOperation.LoadingOperation.GenerationProcessingOperation(
             operationId = statusId,
         )
 
-    is SKUGenerationStatus.ErrorGenerationStatus ->
-        SKUGenerationOperation.ErrorOperation(
+    is ProductGenerationStatus.ErrorGenerationStatus ->
+        ProductGenerationOperation.ErrorOperation(
             operationId = statusId,
             errorMessage = errorMessage,
             exception = exception,
         )
 
-    is SKUGenerationStatus.SuccessGenerationStatus ->
-        SKUGenerationOperation.SuccessOperation(
+    is ProductGenerationStatus.SuccessGenerationStatus ->
+        ProductGenerationOperation.SuccessOperation(
             operationId = statusId,
             uploadedSourceImageId = sourceImageId,
             uploadedSourceImage = sourceImageUrl,

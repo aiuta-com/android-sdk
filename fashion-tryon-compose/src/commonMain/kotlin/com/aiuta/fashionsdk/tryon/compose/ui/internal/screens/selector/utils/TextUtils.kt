@@ -6,7 +6,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import kotlinx.coroutines.delay
@@ -24,17 +24,17 @@ internal fun solveLoadingGenerationText(): State<String> {
     LaunchedEffect(operation) {
         loadingText.value =
             when (operation) {
-                is SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation -> {
+                is ProductGenerationOperation.LoadingOperation.GenerationProcessingOperation -> {
                     // Need to wait before showing ping status
                     delay(LOADING_TEXT_DELAY)
                     loadingPageFeature.strings.tryOnLoadingStatusGeneratingOutfit
                 }
 
-                is SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation -> {
+                is ProductGenerationOperation.LoadingOperation.UploadedSourceImageOperation -> {
                     loadingPageFeature.strings.tryOnLoadingStatusScanningBody
                 }
 
-                is SKUGenerationOperation.LoadingOperation.StartGenerationOperation -> {
+                is ProductGenerationOperation.LoadingOperation.StartGenerationOperation -> {
                     loadingPageFeature.strings.tryOnLoadingStatusUploadingImage
                 }
 

@@ -5,23 +5,23 @@ import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.network.paging.utils.saveAppend
 import com.aiuta.fashionsdk.network.utils.saveAppendLimit
-import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
-import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.SKUCatalogDTO
-import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.SKUItemDTO
+import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionProductDataSource
+import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.ProductCatalogDTO
+import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.models.ProductItemDTO
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
-internal class FashionSKURemoteDataSource(
+internal class FashionProductRemoteDataSource(
     private val networkClient: NetworkClient,
-) : FashionSKUDataSource {
+) : FashionProductDataSource {
     // SKU catalogs
-    override suspend fun getSKUCatalogs(
+    override suspend fun getProductCatalogs(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUCatalogDTO> = withContext(Dispatchers.IO) {
+    ): PageContainer<ProductCatalogDTO> = withContext(Dispatchers.IO) {
         networkClient.httpClient.value.get(
             urlString = PATH_SKU_CATALOGS,
         ) {
@@ -32,13 +32,13 @@ internal class FashionSKURemoteDataSource(
         }.body()
     }
 
-    override suspend fun getSKUItems(
-        skuCatalogName: String,
+    override suspend fun getProductItems(
+        productCatalogName: String,
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUItemDTO> = withContext(Dispatchers.IO) {
+    ): PageContainer<ProductItemDTO> = withContext(Dispatchers.IO) {
         networkClient.httpClient.value.get(
-            urlString = "$PATH_SKU_ITEMS/$skuCatalogName",
+            urlString = "$PATH_SKU_ITEMS/$productCatalogName",
         ) {
             url {
                 saveAppend(paginationOffset)
@@ -47,12 +47,12 @@ internal class FashionSKURemoteDataSource(
         }.body()
     }
 
-    override suspend fun getSKUItem(
-        skuCatalogName: String,
-        skuId: String,
-    ): SKUItemDTO = withContext(Dispatchers.IO) {
+    override suspend fun getProductItem(
+        productCatalogName: String,
+        productId: String,
+    ): ProductItemDTO = withContext(Dispatchers.IO) {
         networkClient.httpClient.value.get(
-            urlString = "$PATH_SKU_ITEMS/$skuCatalogName/$skuId",
+            urlString = "$PATH_SKU_ITEMS/$productCatalogName/$productId",
         ).body()
     }
 

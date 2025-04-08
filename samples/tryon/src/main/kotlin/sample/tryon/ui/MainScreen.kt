@@ -11,7 +11,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.tryon.compose.configuration.aiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
@@ -22,10 +22,10 @@ fun MainScreen() {
     val viewModel: MainViewModel = viewModel()
     val context = LocalContext.current
 
-    val activeSKUItems = viewModel.activeSKUItems.collectAsStateWithLifecycle()
+    val activeProductItems = viewModel.activeProductItems.collectAsStateWithLifecycle()
     val firstActiveSKUItem =
-        remember(activeSKUItems.value) {
-            activeSKUItems.value?.firstOrNull()
+        remember(activeProductItems.value) {
+            activeProductItems.value?.firstOrNull()
         }
 
     LaunchedEffect(Unit) {
@@ -33,10 +33,10 @@ fun MainScreen() {
     }
 
     firstActiveSKUItem?.let {
-        val mockSKUItem =
+        val mockProductItem =
             remember {
-                SKUItem(
-                    skuId = firstActiveSKUItem.skuId,
+                ProductItem(
+                    id = firstActiveSKUItem.productId,
                     catalogName = firstActiveSKUItem.catalogName,
                     description = "MOCK 90s straight leg jeans in light blue",
                     imageUrls = firstActiveSKUItem.imageUrls,
@@ -87,7 +87,7 @@ fun MainScreen() {
             aiutaTryOnConfiguration = mockAiutaConfiguration,
             aiutaTryOnListeners = mockAiutaTryOnListeners,
             aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
-            skuForGeneration = mockSKUItem,
+            productForGeneration = mockProductItem,
         )
     }
 }

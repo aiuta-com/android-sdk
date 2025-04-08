@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal enum class SKUOperationStatus {
+internal enum class ProductOperationStatus {
     @SerialName("CREATED")
     CREATED,
 

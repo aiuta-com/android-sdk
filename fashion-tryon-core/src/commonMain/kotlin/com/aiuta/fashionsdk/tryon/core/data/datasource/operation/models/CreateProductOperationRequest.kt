@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class CreateSKUOperationRequest(
+internal data class CreateProductOperationRequest(
     @SerialName("sku_catalog_name")
     val skuCatalogName: String? = null,
     @SerialName("sku_id")

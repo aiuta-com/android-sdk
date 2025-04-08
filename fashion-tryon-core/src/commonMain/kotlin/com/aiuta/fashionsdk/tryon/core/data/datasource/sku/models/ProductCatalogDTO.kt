@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class SKUCatalogDTO(
+internal class ProductCatalogDTO(
     @SerialName("id")
     val id: String,
     @SerialName("sku_catalog_name")

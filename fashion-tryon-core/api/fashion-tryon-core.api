@@ -25,8 +25,8 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGeneratedIma
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationContainer {
-	public abstract fun getSkuCatalogName ()Ljava/lang/String;
-	public abstract fun getSkuId ()Ljava/lang/String;
+	public abstract fun getProductCatalogName ()Ljava/lang/String;
+	public abstract fun getProductId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationItem {
@@ -42,7 +42,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationIt
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCatalogName ()Ljava/lang/String;
 	public final fun getImageUrls ()Ljava/util/List;
-	public final fun getSkuId ()Ljava/lang/String;
+	public final fun getProductId ()Ljava/lang/String;
 	public final fun getTitle ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -53,8 +53,8 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationPl
 	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAiutaPlatformImage ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage;
-	public fun getSkuCatalogName ()Ljava/lang/String;
-	public fun getSkuId ()Ljava/lang/String;
+	public fun getProductCatalogName ()Ljava/lang/String;
+	public fun getProductId ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationStatus {
@@ -112,8 +112,8 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/SKUGenerationUr
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getFileId ()Ljava/lang/String;
 	public final fun getFileUrl ()Ljava/lang/String;
-	public fun getSkuCatalogName ()Ljava/lang/String;
-	public fun getSkuId ()Ljava/lang/String;
+	public fun getProductCatalogName ()Ljava/lang/String;
+	public fun getProductId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/image/AiutaPlatformImage {

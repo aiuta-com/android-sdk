@@ -22,7 +22,7 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
     analytic.sendEvent(
         event =
         SuccessEvent(
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
             uploadDuration = metadata.uploadDurationSeconds.toDouble(DurationUnit.SECONDS),
             tryOnDuration = metadata.tryOnDurationSeconds.toDouble(DurationUnit.SECONDS),
             downloadDuration = downloadDuration.toDouble(DurationUnit.SECONDS),
@@ -36,7 +36,7 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
         AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
             pageId = AiutaAnalyticPageId.LOADING,
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
         ),
     )
 }
@@ -46,7 +46,7 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
     analytic.sendEvent(
         event =
         ErrorEvent(
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
             error = ErrorType.DOWNLOAD_RESULT_FAILED,
         ),
     )
@@ -58,7 +58,7 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
             errorMessage = "Failed to download result",
             pageId = AiutaAnalyticPageId.LOADING,
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
         ),
     )
 }

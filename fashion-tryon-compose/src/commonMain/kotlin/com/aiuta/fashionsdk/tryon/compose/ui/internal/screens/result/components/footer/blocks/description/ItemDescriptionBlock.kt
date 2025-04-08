@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -38,7 +38,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
 
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
@@ -46,9 +46,9 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
         modifier = modifier,
         verticalAlignment = Alignment.Top,
     ) {
-        SKUInfo(
+        ProductInfo(
             modifier = Modifier.weight(1f),
-            skuItem = activeSKUItem,
+            productItem = activeSKUItem,
         )
 
         tryOnFeature.dataProvider?.let { dataProvider ->
@@ -61,7 +61,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
                 onClick = {
                     controller.clickAddToCart(
                         pageId = AiutaAnalyticPageId.RESULTS,
-                        skuId = activeSKUItem.skuId,
+                        productId = activeSKUItem.id,
                         dataProvider = dataProvider,
                     )
                 },

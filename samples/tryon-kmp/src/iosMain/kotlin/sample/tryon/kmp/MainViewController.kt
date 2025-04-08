@@ -9,13 +9,13 @@ import androidx.compose.ui.window.ComposeUIViewController
 import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import com.aiuta.fashionsdk.tryon.core.tryon
 
 // TODO Refactor sample
@@ -27,16 +27,16 @@ fun MainViewController() = ComposeUIViewController {
         }
     }
     val aiutaTryOn = remember { aiuta.tryon }
-    val activeSKUItems = remember { mutableStateOf<List<SKUGenerationItem>?>(null) }
+    val activeSKUItems = remember { mutableStateOf<List<ProductGenerationItem>?>(null) }
 
     LaunchedEffect(Unit) {
         // Let's get catalogs
-        val catalogs = aiutaTryOn.getSKUCatalogs().result
+        val catalogs = aiutaTryOn.getProductCatalogs().result
         println("MainViewController: catalogs - $catalogs")
 
         // Take first catalog and get first page of sku items
         activeSKUItems.value = catalogs.firstOrNull()?.let {
-            aiutaTryOn.getSKUItems(
+            aiutaTryOn.getProductItems(
                 catalogName = it.catalogName,
             )
         }?.result
@@ -45,10 +45,10 @@ fun MainViewController() = ComposeUIViewController {
 
 
     activeSKUItems.value?.firstOrNull()?.let { firstActiveSKUItem ->
-        val mockSKUItem =
+        val mockProductItem =
             remember {
-                SKUItem(
-                    skuId = firstActiveSKUItem.skuId,
+                ProductItem(
+                    id = firstActiveSKUItem.productId,
                     catalogName = firstActiveSKUItem.catalogName,
                     description = "MOCK 90s straight leg jeans in light blue",
                     imageUrls = firstActiveSKUItem.imageUrls,
@@ -90,7 +90,7 @@ fun MainViewController() = ComposeUIViewController {
             aiutaTryOnConfiguration = mockAiutaConfiguration,
             aiutaTryOnListeners = mockAiutaTryOnListeners,
             aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
-            skuForGeneration = mockSKUItem,
+            productForGeneration = mockProductItem,
         )
     }
 }

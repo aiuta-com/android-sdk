@@ -10,8 +10,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.size
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.toOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendErrorDownloadResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartEvent
@@ -29,9 +29,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationPlatformImageContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationUrlContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.isTryOnGenerationAbortedException
 import kotlin.time.measureTimedValue
 import kotlinx.atomicfu.atomic
@@ -69,7 +69,7 @@ internal fun FashionTryOnController.startGeneration(
                     .mapNotNull { status -> status.toOperation() }
                     .catch {
                         if (errorCount.incrementAndGet() == lastSavedImages.value.size) {
-                            generationStatus.value = SKUGenerationUIStatus.IDLE
+                            generationStatus.value = ProductGenerationUIStatus.IDLE
                             deactivateGeneration()
                         }
                     }
@@ -93,7 +93,7 @@ internal fun FashionTryOnController.startGeneration(
 
 private fun FashionTryOnController.solveStartGenerationFlows(
     generatedOperationFactory: GeneratedOperationFactory,
-): List<Flow<SKUGenerationStatus>> = when (val activeImages = lastSavedImages.value) {
+): List<Flow<ProductGenerationStatus>> = when (val activeImages = lastSavedImages.value) {
     is LastSavedImages.PlatformImageSource -> {
         startGenerationWithUriSource(
             platformImageSource = activeImages,
@@ -114,20 +114,20 @@ private fun FashionTryOnController.solveStartGenerationFlows(
 private fun FashionTryOnController.startGenerationWithUriSource(
     platformImageSource: LastSavedImages.PlatformImageSource,
     generatedOperationFactory: GeneratedOperationFactory,
-): List<Flow<SKUGenerationStatus>> = platformImageSource.platformImages.map { image ->
+): List<Flow<ProductGenerationStatus>> = platformImageSource.platformImages.map { image ->
     aiutaTryOn
-        .startSKUGeneration(
+        .startProductGeneration(
             container =
-            SKUGenerationPlatformImageContainer(
+            ProductGenerationPlatformImageContainer(
                 platformImage = image,
-                skuId = activeSKUItem.value.skuId,
-                skuCatalogName = activeSKUItem.value.catalogName,
+                productId = activeProductItem.value.id,
+                productCatalogName = activeProductItem.value.catalogName,
             ),
         )
         .onEach { status ->
             // Notify (or create locally) about new operation, after success
             // Also need update active operation, if we change local URI to backend URL
-            if (status is SKUGenerationStatus.SuccessGenerationStatus) {
+            if (status is ProductGenerationStatus.SuccessGenerationStatus) {
                 val currentOperationId =
                     generatedOperationFactory.getOperationId(
                         imageId = status.sourceImageId,
@@ -145,15 +145,15 @@ private fun FashionTryOnController.startGenerationWithUriSource(
 private fun FashionTryOnController.startGenerationWithUrlSource(
     urlSource: LastSavedImages.UrlSource,
     generatedOperationFactory: GeneratedOperationFactory,
-): List<Flow<SKUGenerationStatus>> = urlSource.urlImages.map { sourceImage ->
+): List<Flow<ProductGenerationStatus>> = urlSource.urlImages.map { sourceImage ->
     aiutaTryOn
-        .startSKUGeneration(
+        .startProductGeneration(
             container =
-            SKUGenerationUrlContainer(
+            ProductGenerationUrlContainer(
                 fileId = sourceImage.imageId,
                 fileUrl = sourceImage.imageUrl,
-                skuId = activeSKUItem.value.skuId,
-                skuCatalogName = activeSKUItem.value.catalogName,
+                productId = activeProductItem.value.id,
+                productCatalogName = activeProductItem.value.catalogName,
             ),
         )
         .onEach { status ->
@@ -162,7 +162,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
             val isModelSource =
                 lastSavedImages.value is LastSavedImages.UrlSource.PregeneratedModels
 
-            if (isModelSource && status is SKUGenerationStatus.SuccessGenerationStatus) {
+            if (isModelSource && status is ProductGenerationStatus.SuccessGenerationStatus) {
                 val currentOperationId =
                     generatedOperationFactory.getOperationId(
                         imageId = status.sourceImageId,
@@ -182,14 +182,14 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
     aiutaConfiguration: AiutaTryOnConfiguration,
     coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
-    operation: SKUGenerationOperation,
+    operation: ProductGenerationOperation,
     tryOnFeatureStrings: AiutaTryOnFeatureStrings,
     generatedOperationFactory: GeneratedOperationFactory,
 ) {
     when (operation) {
-        is SKUGenerationOperation.LoadingOperation -> {
-            if (generationStatus.value != SKUGenerationUIStatus.SUCCESS) {
-                generationStatus.value = SKUGenerationUIStatus.LOADING
+        is ProductGenerationOperation.LoadingOperation -> {
+            if (generationStatus.value != ProductGenerationUIStatus.SUCCESS) {
+                generationStatus.value = ProductGenerationUIStatus.LOADING
             }
 
             // Check is this operation already exist
@@ -212,7 +212,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
             }
         }
 
-        is SKUGenerationOperation.SuccessOperation -> {
+        is ProductGenerationOperation.SuccessOperation -> {
             generalScope.launch {
                 // Try warm up first
                 val isSuccessfullyUpload = addSuccessGenerations(operation)
@@ -223,7 +223,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     saveGenerations(aiutaConfiguration = aiutaConfiguration, operation = operation)
 
                     // Set state as success
-                    generationStatus.value = SKUGenerationUIStatus.SUCCESS
+                    generationStatus.value = ProductGenerationUIStatus.SUCCESS
                     refreshOperation(operation)
 
                     // Navigate to results
@@ -240,7 +240,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     // Negative case
                     // Deactivate generation
                     deactivateGeneration()
-                    generationStatus.value = SKUGenerationUIStatus.IDLE
+                    generationStatus.value = ProductGenerationUIStatus.IDLE
 
                     showErrorState(
                         errorState =
@@ -256,10 +256,10 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
             }
         }
 
-        is SKUGenerationOperation.ErrorOperation -> {
+        is ProductGenerationOperation.ErrorOperation -> {
             // Deactivate generation
             deactivateGeneration()
-            generationStatus.value = SKUGenerationUIStatus.IDLE
+            generationStatus.value = ProductGenerationUIStatus.IDLE
 
             when {
                 operation.exception?.isTryOnGenerationAbortedException() == true -> {
@@ -299,7 +299,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
 private suspend fun FashionTryOnController.refreshActiveImage(
     coilContext: PlatformContext,
     generatedOperationFactory: GeneratedOperationFactory,
-    operation: SKUGenerationOperation.SuccessOperation,
+    operation: ProductGenerationOperation.SuccessOperation,
 ) {
     // Refresh only if active operation with local image
     if (lastSavedImages.value is LastSavedImages.PlatformImageSource) {
@@ -334,7 +334,7 @@ private suspend fun FashionTryOnController.refreshActiveImage(
     }
 }
 
-private fun FashionTryOnController.refreshOperation(newOperation: SKUGenerationOperation) {
+private fun FashionTryOnController.refreshOperation(newOperation: ProductGenerationOperation) {
     generationOperations.forEachIndexed { index, oldOperation ->
         if (oldOperation.operationId == newOperation.operationId) {
             generationOperations[index] = newOperation
@@ -346,7 +346,7 @@ private fun FashionTryOnController.refreshOperation(newOperation: SKUGenerationO
  * @return true, if successfully load images and send analytic
  */
 private suspend fun FashionTryOnController.addSuccessGenerations(
-    newOperation: SKUGenerationOperation.SuccessOperation,
+    newOperation: ProductGenerationOperation.SuccessOperation,
 ): Boolean = try {
     val result =
         measureTimedValue {
@@ -366,12 +366,12 @@ private suspend fun FashionTryOnController.addSuccessGenerations(
 
 private suspend fun FashionTryOnController.saveGenerations(
     aiutaConfiguration: AiutaTryOnConfiguration,
-    operation: SKUGenerationOperation.SuccessOperation,
+    operation: ProductGenerationOperation.SuccessOperation,
 ) {
     // Save generations for history, if operation is success and history available
     if (aiutaConfiguration.toggles.isHistoryAvailable) {
         generatedImageInteractor.insertAll(
-            generatedSkuId = activeSKUItem.value.skuId,
+            generatedProductId = activeProductItem.value.id,
             images = operation.generatedImages,
         )
     }

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class SKUOperation(
+internal data class ProductOperation(
     @SerialName("error")
     val error: String? = null,
     @SerialName("generated_images")
@@ -12,5 +12,5 @@ internal data class SKUOperation(
     @SerialName("id")
     val id: String,
     @SerialName("status")
-    val status: SKUOperationStatus,
+    val status: ProductOperationStatus,
 )

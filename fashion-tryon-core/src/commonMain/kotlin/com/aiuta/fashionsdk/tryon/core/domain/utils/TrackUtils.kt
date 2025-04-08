@@ -3,14 +3,14 @@ package com.aiuta.fashionsdk.tryon.core.domain.utils
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendPublicTryOnErrorEvent
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGenerationException
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.flow.FlowCollector
 
 internal suspend fun <T> AiutaTryOnImpl.trackException(
-    container: SKUGenerationContainer,
+    container: ProductGenerationContainer,
     action: suspend () -> T,
 ): T = try {
     action()
@@ -32,7 +32,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
     throw e
 }
 
-internal suspend fun FlowCollector<SKUGenerationStatus>.errorListener(
+internal suspend fun FlowCollector<ProductGenerationStatus>.errorListener(
     statusId: String,
     action: suspend () -> Unit,
 ) {
@@ -41,7 +41,7 @@ internal suspend fun FlowCollector<SKUGenerationStatus>.errorListener(
     } catch (e: Exception) {
         // Fallback with error
         emit(
-            SKUGenerationStatus.ErrorGenerationStatus(
+            ProductGenerationStatus.ErrorGenerationStatus(
                 statusId = statusId,
                 errorMessage = e.message,
                 exception = e,

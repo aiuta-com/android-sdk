@@ -16,7 +16,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.histor
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
@@ -26,8 +26,8 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolde
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.BottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.bottomsheet.rememberBottomSheetNavigator
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
@@ -46,7 +46,7 @@ import kotlinx.coroutines.cancel
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTryOnListeners: AiutaTryOnListeners,
-    skuForGeneration: SKUItem,
+    productItem: ProductItem,
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
 
@@ -56,9 +56,9 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
         aiutaTryOnConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
     val tryOnFeature = aiutaTryOnConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
 
-    val activeSKUItem =
+    val activeProductItem =
         remember {
-            mutableStateOf(skuForGeneration)
+            mutableStateOf(productItem)
         }
 
     val zoomImageController =
@@ -113,11 +113,11 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     // Generation state
     val defaultGenerationUIStatus =
         remember {
-            mutableStateOf(SKUGenerationUIStatus.IDLE)
+            mutableStateOf(ProductGenerationUIStatus.IDLE)
         }
     val defaultGenerationOperations =
         remember {
-            mutableStateListOf<SKUGenerationOperation>()
+            mutableStateListOf<ProductGenerationOperation>()
         }
 
     return remember {
@@ -131,7 +131,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             zoomImageController = zoomImageController,
             lastSavedImages = defaultLastSavedImages,
             lastSavedOperation = defaultSavedOperation,
-            activeSKUItem = activeSKUItem,
+            activeProductItem = activeProductItem,
             aiuta = aiutaTryOnConfiguration.aiuta,
             aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
             aiutaTryOnListeners = aiutaTryOnListeners,
@@ -156,8 +156,8 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 @Immutable
 internal class FashionTryOnController(
     // Generation state
-    internal val generationStatus: MutableState<SKUGenerationUIStatus>,
-    internal val generationOperations: SnapshotStateList<SKUGenerationOperation>,
+    internal val generationStatus: MutableState<ProductGenerationUIStatus>,
+    internal val generationOperations: SnapshotStateList<ProductGenerationOperation>,
     // General navigation
     public val currentScreen: MutableState<NavigationScreen>,
     internal val backStack: ArrayDeque<NavigationScreen> = ArrayDeque(),
@@ -172,7 +172,7 @@ internal class FashionTryOnController(
     // Data
     public val lastSavedImages: MutableState<LastSavedImages>,
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?>,
-    public val activeSKUItem: MutableState<SKUItem>,
+    public val activeProductItem: MutableState<ProductItem>,
     // Domain
     public val aiuta: Aiuta,
     public val aiutaTryOn: AiutaTryOn,

@@ -23,7 +23,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
 	public final fun getInWishlist ()Z
 	public final fun getLocalizedOldPrice ()Ljava/lang/String;
 	public final fun getLocalizedPrice ()Ljava/lang/String;
-	public final fun getSkuId ()Ljava/lang/String;
+	public final fun getProductId ()Ljava/lang/String;
 	public final fun getStore ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;

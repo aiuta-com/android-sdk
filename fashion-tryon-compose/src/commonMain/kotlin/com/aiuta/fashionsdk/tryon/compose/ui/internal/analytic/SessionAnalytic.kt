@@ -17,7 +17,7 @@ internal fun sendSessionEvent(flow: SessionEvent.FlowType) {
                 event =
                 SessionEvent(
                     flow = flow,
-                    productId = activeSKUItem.value.skuId,
+                    productId = activeProductItem.value.id,
                 ),
             )
         }
@@ -28,7 +28,7 @@ internal fun FashionTryOnController.sendTerminateEvent() {
     analytic.sendEvent(
         event =
         TerminateEvent(
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
         ),
     )
 }

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class CreateSKUOperationResponse(
+internal data class CreateProductOperationResponse(
     @SerialName("details")
     val details: String? = null,
     @SerialName("errors")

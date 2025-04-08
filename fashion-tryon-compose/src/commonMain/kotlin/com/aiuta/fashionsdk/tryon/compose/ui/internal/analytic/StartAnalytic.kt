@@ -7,7 +7,7 @@ internal fun FashionTryOnController.sendStartEvent(origin: StartTryOnEvent.TryOn
     analytic.sendEvent(
         event =
         StartTryOnEvent(
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
             origin = origin,
         ),
     )

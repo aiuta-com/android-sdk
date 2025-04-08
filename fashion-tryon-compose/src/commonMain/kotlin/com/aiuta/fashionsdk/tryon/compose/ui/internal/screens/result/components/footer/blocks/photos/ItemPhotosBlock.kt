@@ -65,7 +65,7 @@ private fun ItemPhotosBlock(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
 
     val bottomSheetState =
         generationResultController

@@ -330,7 +330,7 @@ private fun BoxScope.HistoryScreenInterface(
                             .getList()
                             .map { it.imageUrl }
 
-                    val skuIds = listOf(controller.activeSKUItem.value.skuId)
+                    val skuIds = listOf(controller.activeProductItem.value.id)
                     val shareText = shareFeature?.dataProvider?.requestShareTextAction?.invoke(skuIds)
 
                     // After get list, let's deactivate select changePhotoButtonStyle
@@ -343,7 +343,7 @@ private fun BoxScope.HistoryScreenInterface(
                     shareManager.shareImages(
                         content = shareText,
                         pageId = AiutaAnalyticPageId.HISTORY,
-                        productId = controller.activeSKUItem.value.skuId,
+                        productId = controller.activeProductItem.value.id,
                         imageUrls = imageUrls,
                         watermark = watermarkPainter,
                     )

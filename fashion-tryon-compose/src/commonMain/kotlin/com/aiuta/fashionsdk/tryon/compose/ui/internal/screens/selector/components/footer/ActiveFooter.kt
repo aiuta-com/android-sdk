@@ -74,7 +74,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
         ) {
             Spacer(Modifier.height(16.dp))
 
-            SKUBlock(
+            ProductBlock(
                 modifier = Modifier
                     .height(40.dp)
                     .fillMaxWidth(),
@@ -110,22 +110,22 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun SKUBlock(modifier: Modifier = Modifier) {
+private fun ProductBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
     val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
     val sharedCorner = RoundedCornerShape(size = 8.dp)
 
     Row(
         modifier = modifier.clickableUnindicated {
             controller.bottomSheetNavigator.show(
-                NavigationBottomSheetScreen.SKUInfo(
-                    primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
+                NavigationBottomSheetScreen.ProductInfo(
+                    primaryButtonState = NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState.ADD_TO_CART,
                     originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                    skuItem = activeSKUItem,
+                    productItem = activeSKUItem,
                 ),
             )
         },

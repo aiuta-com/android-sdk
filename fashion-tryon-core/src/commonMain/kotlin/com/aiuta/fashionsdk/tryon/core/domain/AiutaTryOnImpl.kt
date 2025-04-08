@@ -7,19 +7,19 @@ import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.UploadedImage
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionSKUOperationsDataSource
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateSKUOperationRequest
-import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.skuOperationsDataSourceFactory
-import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionSKUDataSource
-import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.skuDataSourceFactory
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.FashionProductOperationsDataSource
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.CreateProductOperationRequest
+import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.productOperationsDataSourceFactory
+import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.FashionProductDataSource
+import com.aiuta.fashionsdk.tryon.core.data.datasource.sku.productDataSourceFactory
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendStartTryOnEvent
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendTryOnPhotoUploadedEvent
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationPlatformImageContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationUrlContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationUrlContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.generateStatusId
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.AiutaTryOnRetryPolicies
@@ -42,15 +42,15 @@ internal class AiutaTryOnImpl(
     internal val retryPolicies: AiutaTryOnRetryPolicies,
     private val pingOperationSlice: PingOperationSlice,
     private val uploadImageSlice: UploadImageSlice,
-    private val skuDataSource: FashionSKUDataSource,
-    private val skuOperationsDataSource: FashionSKUOperationsDataSource,
+    private val productDataSource: FashionProductDataSource,
+    private val productOperationsDataSource: FashionProductOperationsDataSource,
 ) : AiutaTryOn {
-    override suspend fun getSKUCatalogs(
+    override suspend fun getProductCatalogs(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUCatalog> {
+    ): PageContainer<ProductCatalog> {
         val skuCatalogs =
-            skuDataSource.getSKUCatalogs(
+            productDataSource.getProductCatalogs(
                 paginationOffset = paginationOffset,
                 paginationLimit,
             )
@@ -63,14 +63,14 @@ internal class AiutaTryOnImpl(
         )
     }
 
-    override suspend fun getSKUItems(
+    override suspend fun getProductItems(
         catalogName: String,
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
-    ): PageContainer<SKUGenerationItem> {
+    ): PageContainer<ProductGenerationItem> {
         val skuDTOs =
-            skuDataSource.getSKUItems(
-                skuCatalogName = catalogName,
+            productDataSource.getProductItems(
+                productCatalogName = catalogName,
                 paginationOffset = paginationOffset,
                 paginationLimit = paginationLimit,
             )
@@ -83,7 +83,7 @@ internal class AiutaTryOnImpl(
         )
     }
 
-    override fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus> = flow {
+    override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> = flow {
         analytic.sendStartTryOnEvent(container)
         val statusId = generateStatusId()
 
@@ -92,7 +92,7 @@ internal class AiutaTryOnImpl(
 
             // Set loading state with previous image urls
             emit(
-                SKUGenerationStatus.LoadingGenerationStatus.StartGeneration(
+                ProductGenerationStatus.LoadingGenerationStatus.StartGeneration(
                     statusId = statusId,
                 ),
             )
@@ -108,7 +108,7 @@ internal class AiutaTryOnImpl(
             // Update time for meta info of generation
             metadataBuilder.setUploadDuration()
             emit(
-                SKUGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                ProductGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
                     statusId = statusId,
                     sourceImageId = uploadedImage.id,
                     sourceImageUrl = uploadedImage.url,
@@ -121,11 +121,11 @@ internal class AiutaTryOnImpl(
                     typeArea = AiutaTryOnExceptionType.START_OPERATION_FAILED,
                     container = container,
                 ) {
-                    skuOperationsDataSource.createSKUOperation(
+                    productOperationsDataSource.createProductOperation(
                         request =
-                        CreateSKUOperationRequest(
-                            skuCatalogName = container.skuCatalogName,
-                            skuId = container.skuId,
+                        CreateProductOperationRequest(
+                            skuCatalogName = container.productCatalogName,
+                            skuId = container.productId,
                             uploadedImageId = uploadedImage.id,
                         ),
                     )
@@ -133,7 +133,7 @@ internal class AiutaTryOnImpl(
 
             // Wait for the operation, until it is completed
             emit(
-                SKUGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                ProductGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
                     statusId = statusId,
                     sourceImageId = uploadedImage.id,
                     sourceImageUrl = uploadedImage.url,
@@ -156,7 +156,7 @@ internal class AiutaTryOnImpl(
 
             // Finally, emit result
             emit(
-                SKUGenerationStatus.SuccessGenerationStatus(
+                ProductGenerationStatus.SuccessGenerationStatus(
                     statusId = statusId,
                     sourceImageId = uploadedImage.id,
                     sourceImageUrl = uploadedImage.url,
@@ -167,8 +167,8 @@ internal class AiutaTryOnImpl(
         }
     }
 
-    private suspend fun solveUploadingImage(container: SKUGenerationContainer): UploadedImage = when (container) {
-        is SKUGenerationPlatformImageContainer -> {
+    private suspend fun solveUploadingImage(container: ProductGenerationContainer): UploadedImage = when (container) {
+        is ProductGenerationPlatformImageContainer -> {
             uploadImageSlice.uploadImage(
                 container = container,
                 fileName = generateFileName(),
@@ -177,7 +177,7 @@ internal class AiutaTryOnImpl(
             }
         }
 
-        is SKUGenerationUrlContainer -> {
+        is ProductGenerationUrlContainer -> {
             UploadedImage(
                 id = container.fileId,
                 url = container.fileUrl,
@@ -190,8 +190,8 @@ internal class AiutaTryOnImpl(
             analytic = aiuta.internalAiutaAnalytic,
             pingOperationSlice = aiuta.pingOperationSliceFactory,
             uploadImageSlice = aiuta.uploadImageSliceFactory,
-            skuDataSource = aiuta.skuDataSourceFactory,
-            skuOperationsDataSource = aiuta.skuOperationsDataSourceFactory,
+            productDataSource = aiuta.productDataSourceFactory,
+            productOperationsDataSource = aiuta.productOperationsDataSourceFactory,
             retryPolicies = DefaultAiutaTryOnRetryPolicies,
         )
     }

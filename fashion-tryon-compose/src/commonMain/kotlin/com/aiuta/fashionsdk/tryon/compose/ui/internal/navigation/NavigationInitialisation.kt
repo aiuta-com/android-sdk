@@ -10,7 +10,7 @@ import coil3.compose.setSingletonImageLoaderFactory
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
@@ -33,7 +33,7 @@ internal fun NavigationInitialisation(
     aiutaTryOnConfiguration: AiutaTryOnConfiguration,
     aiutaTryOnListeners: AiutaTryOnListeners,
     aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
-    skuForGeneration: SKUItem,
+    productItem: ProductItem,
     content: @Composable () -> Unit,
 ) {
     // Init coil
@@ -52,7 +52,7 @@ internal fun NavigationInitialisation(
         val controller = rememberFashionTryOnController(
             aiutaTryOnConfiguration = aiutaTryOnConfiguration,
             aiutaTryOnListeners = aiutaTryOnListeners,
-            skuForGeneration = skuForGeneration,
+            productItem = productItem,
         )
 
         CompositionLocalProvider(

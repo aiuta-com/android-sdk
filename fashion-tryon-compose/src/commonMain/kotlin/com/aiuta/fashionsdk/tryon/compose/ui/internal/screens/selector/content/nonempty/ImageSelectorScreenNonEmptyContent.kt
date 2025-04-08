@@ -10,7 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -27,7 +27,7 @@ internal fun ImageSelectorScreenNonEmptyContent(modifier: Modifier = Modifier) {
     val isTryOnButtonVisible =
         remember {
             derivedStateOf {
-                generationStatus.value != SKUGenerationUIStatus.LOADING && isLastSavedPhotoAvailable.value
+                generationStatus.value != ProductGenerationUIStatus.LOADING && isLastSavedPhotoAvailable.value
             }
         }
 

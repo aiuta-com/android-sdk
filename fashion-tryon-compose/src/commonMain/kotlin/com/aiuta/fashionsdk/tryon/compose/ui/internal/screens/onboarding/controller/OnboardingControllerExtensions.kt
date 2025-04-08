@@ -39,7 +39,7 @@ internal fun OnboardingController.nextPage(
 
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
-            val skuItem = controller.activeSKUItem.value
+            val skuItem = controller.activeProductItem.value
             val consentStandaloneFeature = configuration.features.consent as? AiutaConsentStandaloneOnboardingPageFeature
 
             // Close onboarding and move on
@@ -56,7 +56,7 @@ internal fun OnboardingController.nextPage(
             controller.sendOnboardingEvent(
                 eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
                 pageId = AiutaAnalyticPageId.CONSENT,
-                productId = skuItem.skuId,
+                productId = skuItem.id,
                 supplementaryConsents = supplementaryConsents,
             )
             consentStandaloneFeature?.dataProvider?.obtainUserConsentAction?.invoke(
@@ -67,7 +67,7 @@ internal fun OnboardingController.nextPage(
             controller.sendOnboardingEvent(
                 eventType = AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED,
                 pageId = AiutaAnalyticPageId.CONSENT,
-                productId = skuItem.skuId,
+                productId = skuItem.id,
                 supplementaryConsents = null,
             )
             controller.popUpAndNavigateTo(NavigationScreen.ImageSelector)

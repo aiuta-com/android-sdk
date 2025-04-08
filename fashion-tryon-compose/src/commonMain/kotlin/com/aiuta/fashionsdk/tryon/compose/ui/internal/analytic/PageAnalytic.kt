@@ -12,7 +12,7 @@ internal fun FashionTryOnController.sendPageEvent(pageId: AiutaAnalyticPageId) {
         event =
         AiutaAnalyticPageEvent(
             pageId = pageId,
-            productId = activeSKUItem.value.skuId,
+            productId = activeProductItem.value.id,
         ),
     )
 }

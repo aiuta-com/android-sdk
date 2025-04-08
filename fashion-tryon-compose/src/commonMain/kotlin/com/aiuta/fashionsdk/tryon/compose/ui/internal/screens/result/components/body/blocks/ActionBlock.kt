@@ -34,7 +34,7 @@ internal fun ActionBlock(
     val shareFeature = provideFeature<AiutaShareFeature>()
     val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
     val shareManager = rememberShareManagerV2()
     val scope = rememberCoroutineScope()
 
@@ -52,20 +52,20 @@ internal fun ActionBlock(
                 onClick = {
                     scope.launch {
                         val imageUrls = listOfNotNull(imageUrl)
-                        val skuIds = listOf(controller.activeSKUItem.value.skuId)
+                        val skuIds = listOf(controller.activeProductItem.value.id)
                         val shareText = shareFeature.dataProvider?.requestShareTextAction?.invoke(skuIds)
 
                         // Analytic
                         controller.sendResultEvent(
                             event = AiutaAnalyticsResultsEventType.RESULT_SHARED,
                             pageId = AiutaAnalyticPageId.RESULTS,
-                            productId = activeSKUItem.skuId,
+                            productId = activeSKUItem.id,
                         )
 
                         shareManager.shareImages(
                             content = shareText,
                             pageId = AiutaAnalyticPageId.RESULTS,
-                            productId = activeSKUItem.skuId,
+                            productId = activeSKUItem.id,
                             imageUrls = imageUrls,
                             watermark = watermarkPainter,
                         )
@@ -89,7 +89,7 @@ internal fun ActionBlock(
                         pageId = AiutaAnalyticPageId.RESULTS,
                         updatedWishlistState = !currentState,
                         dataProvider = wishlistFeature.dataProvider,
-                        skuId = activeSKUItem.skuId,
+                        productId = activeSKUItem.id,
                     )
                 },
             )

@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.listeners
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -17,15 +17,15 @@ import kotlinx.coroutines.flow.StateFlow
 @Deprecated("Migrate to separate providers")
 @Immutable
 public class AiutaTryOnListeners(
-    public val addToWishlistClick: (skuItem: SKUItem) -> Unit,
-    public val addToCartClick: (skuItem: SKUItem) -> Unit,
-    public val closeClick: (skuItem: SKUItem) -> Unit,
+    public val addToWishlistClick: (productItem: ProductItem) -> Unit,
+    public val addToCartClick: (productItem: ProductItem) -> Unit,
+    public val closeClick: (productItem: ProductItem) -> Unit,
 ) {
-    private val internalUpdatedActiveSKUItem: MutableStateFlow<SKUItem?> = MutableStateFlow(null)
-    public val updatedActiveSKUItem: StateFlow<SKUItem?> = internalUpdatedActiveSKUItem
+    private val internalUpdatedActiveProductItem: MutableStateFlow<ProductItem?> = MutableStateFlow(null)
+    public val updatedActiveProductItem: StateFlow<ProductItem?> = internalUpdatedActiveProductItem
 
-    public fun updateActiveSKUItem(skuItem: SKUItem) {
-        internalUpdatedActiveSKUItem.value = skuItem
+    public fun updateActiveSKUItem(productItem: ProductItem) {
+        internalUpdatedActiveProductItem.value = productItem
     }
 }
 
