@@ -8,11 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aiuta.fashionsdk.tryon.compose.configuration.aiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.language.EnglishLanguage
 import com.aiuta.fashionsdk.tryon.compose.configuration.listeners.AiutaTryOnListeners
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
+import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import sample.tryon.MainViewModel
@@ -61,18 +60,9 @@ fun MainScreen() {
                 )
             }
 
-        val mockAiutaConfiguration =
-            remember {
-                aiutaTryOnConfiguration {
-                    aiuta = viewModel.aiuta
-                    language = EnglishLanguage(
-                        brand = "YOUR brand",
-                        termsOfServiceUrl = "https://brand.com/tos",
-                        privacyPolicyUrl = "https://brand.com/pp",
-                        onboardingPageConsentSupplementaryPoints = emptyList(),
-                    )
-                }
-            }
+        val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration(
+            aiuta = viewModel.aiuta,
+        )
 
         val mockAiutaUIConfiguration = rememberDefaultAiutaUserInterfaceConfiguration(
             actions = object : AiutaUserInterfaceActions {
