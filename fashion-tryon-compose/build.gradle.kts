@@ -1,5 +1,5 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibraryV2
+import com.aiuta.fashionsdk.androidLibrary
 
 plugins {
     id("com.android.library")
@@ -12,7 +12,7 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibraryV2(name = "com.aiuta.fashionsdk.tryon.compose") {
+androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose") {
     defaultConfig {
         consumerProguardFiles("shrinker-rules.pro")
     }

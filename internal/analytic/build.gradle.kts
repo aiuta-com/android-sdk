@@ -1,5 +1,5 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibraryV2
+import com.aiuta.fashionsdk.androidLibrary
 import com.aiuta.fashionsdk.versionName
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
@@ -11,7 +11,7 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibraryV2(name = "com.aiuta.fashionsdk.internal.analytic")
+androidLibrary(name = "com.aiuta.fashionsdk.internal.analytic")
 
 buildkonfig {
     packageName = "com.aiuta.fashionsdk.internal.analytic"
