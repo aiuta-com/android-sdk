@@ -1,25 +1,25 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic
+package com.aiuta.fashionsdk.tryon.compose.domain.internal.analytic
 
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.JWTAuthenticationStrategy
 import com.aiuta.fashionsdk.internal.analytic.model.ConfigureEvent
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.meta.AiutaMode
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.meta.AiutaMode
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 
-internal fun AiutaTryOnConfiguration.sendConfigurationEvent() {
-    aiutaAnalytic.sendEvent(
+internal fun AiutaConfiguration.sendConfigurationEvent() {
+    tryOnConfiguration.aiutaAnalytic.sendEvent(
         event = ConfigureEvent(
-            mode = hostMetadata.mode.toSDKMode(),
-            authenticationType = aiuta.toAuthenticationType(),
-            isHistoryEnable = features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>(),
-            isWishlistAvailable = features.isFeatureInitialize<AiutaWishlistFeature>(),
-            isPreOnboardingAvailable = features.isFeatureInitialize<AiutaWelcomeScreenFeature>(),
-            isShareAvailable = features.isFeatureInitialize<AiutaShareFeature>(),
+            mode = userInterface.styleMetaData?.mode?.toSDKMode() ?: ConfigureEvent.SDKMode.FULL_SCREEN,
+            authenticationType = tryOnConfiguration.aiuta.toAuthenticationType(),
+            isHistoryEnable = tryOnConfiguration.features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>(),
+            isWishlistAvailable = tryOnConfiguration.features.isFeatureInitialize<AiutaWishlistFeature>(),
+            isPreOnboardingAvailable = tryOnConfiguration.features.isFeatureInitialize<AiutaWelcomeScreenFeature>(),
+            isShareAvailable = tryOnConfiguration.features.isFeatureInitialize<AiutaShareFeature>(),
             isHostDataProviderEnabled = false, // TODO Refactor property
         ),
     )

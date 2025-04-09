@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.strings
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.models.AiutaStringValidationContainer
-
 public interface AiutaWelcomeScreenFeatureStrings {
     public val welcomeTitle: String
     public val welcomeDescription: String
@@ -13,19 +11,3 @@ public interface AiutaWelcomeScreenFeatureStrings {
         override val welcomeButtonStart: String = "Let’s start"
     }
 }
-
-internal val AiutaWelcomeScreenFeatureStrings.validationList
-    get() = listOf(
-        AiutaStringValidationContainer(
-            propertyName = "welcomeTitle",
-            string = welcomeTitle,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "welcomeDescription",
-            string = welcomeDescription,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "welcomeButtonStart",
-            string = welcomeButtonStart,
-        ),
-    )

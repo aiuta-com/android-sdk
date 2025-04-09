@@ -6,8 +6,8 @@ import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -33,14 +33,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHand
 @Composable
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
-    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
+    aiutaConfiguration: AiutaConfiguration,
     productForGeneration: ProductItem,
 ) {
     NavigationInitialisation(
         modifier = modifier,
-        aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-        aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
+        aiutaConfiguration = aiutaConfiguration,
         productItem = productForGeneration,
     ) {
         sendSessionEvent(SessionEvent.FlowType.TRY_ON)

@@ -1,9 +1,9 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.wishlist
+package com.aiuta.fashionsdk.tryon.compose.domain.internal.validation.features.wishlist
 
 import com.aiuta.fashionsdk.logger.AiutaLogger
-import com.aiuta.fashionsdk.tryon.compose.configuration.debug.AiutaDebugSettings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.validateStringWithSettings
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.validation.validateStringWithSettings
+import com.aiuta.fashionsdk.tryon.compose.domain.models.debug.AiutaDebugSettings
 
 internal fun AiutaWishlistFeature.validateWithSettings(
     logger: AiutaLogger?,

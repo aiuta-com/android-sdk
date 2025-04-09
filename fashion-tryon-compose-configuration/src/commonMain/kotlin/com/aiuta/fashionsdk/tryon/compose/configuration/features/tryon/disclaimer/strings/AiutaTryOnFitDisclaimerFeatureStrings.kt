@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.strings
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.models.AiutaStringValidationContainer
-
 public interface AiutaTryOnFitDisclaimerFeatureStrings {
     public val tryOnFitTitle: String
     public val tryOnFitDescription: String
@@ -13,19 +11,3 @@ public interface AiutaTryOnFitDisclaimerFeatureStrings {
         override val tryOnFitButtonClose: String = "Close"
     }
 }
-
-internal val AiutaTryOnFitDisclaimerFeatureStrings.validationList
-    get() = listOf(
-        AiutaStringValidationContainer(
-            propertyName = "tryOnFitTitle",
-            string = tryOnFitTitle,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "tryOnFitDescription",
-            string = tryOnFitDescription,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "tryOnFitButtonClose",
-            string = tryOnFitButtonClose,
-        ),
-    )

@@ -1,8 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.ui
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.meta.AiutaStyleMetaData
@@ -40,8 +38,3 @@ public class AiutaUserInterfaceConfiguration private constructor(
 public inline fun aiutaUserInterfaceConfiguration(
     block: AiutaUserInterfaceConfiguration.Builder.() -> Unit,
 ): AiutaUserInterfaceConfiguration = AiutaUserInterfaceConfiguration.Builder().apply(block).build()
-
-@Composable
-public fun rememberAiutaUserInterfaceConfiguration(
-    block: AiutaUserInterfaceConfiguration.Builder.() -> Unit,
-): AiutaUserInterfaceConfiguration = remember { aiutaUserInterfaceConfiguration(block) }

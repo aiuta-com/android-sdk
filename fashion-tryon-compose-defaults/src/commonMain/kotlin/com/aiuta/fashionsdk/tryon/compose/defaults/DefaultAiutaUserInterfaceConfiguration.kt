@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.aiutaUserInterfaceConfiguration
@@ -33,8 +31,3 @@ public fun defaultAiutaUserInterfaceConfiguration(
         defaultBottomSheet()
     }
 }
-
-@Composable
-public fun rememberDefaultAiutaUserInterfaceConfiguration(
-    actions: AiutaUserInterfaceActions,
-): AiutaUserInterfaceConfiguration = remember { defaultAiutaUserInterfaceConfiguration(actions) }

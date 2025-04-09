@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.strings
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.models.AiutaStringValidationContainer
-
 public interface AiutaImageSelectorPredefinedModelFeatureStrings {
     public val predefinedModelPageTitle: String
     public val predefinedModelOr: String
@@ -18,19 +16,3 @@ public interface AiutaImageSelectorPredefinedModelFeatureStrings {
         }
     }
 }
-
-internal val AiutaImageSelectorPredefinedModelFeatureStrings.validationList
-    get() = listOf(
-        AiutaStringValidationContainer(
-            propertyName = "predefinedModelPageTitle",
-            string = predefinedModelPageTitle,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "predefinedModelOr",
-            string = predefinedModelOr,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "predefinedModelErrorEmptyModelsList",
-            string = predefinedModelErrorEmptyModelsList,
-        ),
-    )

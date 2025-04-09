@@ -12,8 +12,9 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.logger.DebugAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
-import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.rememberAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import com.aiuta.fashionsdk.tryon.core.tryon
@@ -57,22 +58,21 @@ fun MainViewController() = ComposeUIViewController {
                 )
             }
 
-        val mockAiutaConfiguration = rememberDefaultAiutaTryOnConfiguration(
-            aiuta = aiuta,
-        )
+        val aiutaConfiguration = rememberAiutaConfiguration {
+            userInterface = defaultAiutaUserInterfaceConfiguration(
+                actions = object : AiutaUserInterfaceActions {
+                    override val closeClick: () -> Unit = {
+                        println("Rise Close")
+                    }
+                },
+            )
 
-        val mockAiutaUIConfiguration = rememberDefaultAiutaUserInterfaceConfiguration(
-            actions = object : AiutaUserInterfaceActions {
-                override val closeClick: () -> Unit = {
-                    println("Rise Close")
-                }
-            },
-        )
+            tryOnConfiguration = defaultAiutaTryOnConfiguration(aiuta)
+        }
 
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
-            aiutaTryOnConfiguration = mockAiutaConfiguration,
-            aiutaUserInterfaceConfiguration = mockAiutaUIConfiguration,
+            aiutaConfiguration = aiutaConfiguration,
             productForGeneration = mockProductItem,
         )
     }

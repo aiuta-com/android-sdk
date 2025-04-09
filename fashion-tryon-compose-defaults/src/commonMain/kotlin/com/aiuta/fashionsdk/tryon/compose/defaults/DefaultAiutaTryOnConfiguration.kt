@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.aiutaTryOnConfiguration
@@ -28,8 +26,3 @@ public inline fun defaultAiutaTryOnConfiguration(
         defaultWishlist()
     }
 }
-
-@Composable
-public fun rememberDefaultAiutaTryOnConfiguration(
-    aiuta: Aiuta,
-): AiutaTryOnConfiguration = remember { defaultAiutaTryOnConfiguration(aiuta) }

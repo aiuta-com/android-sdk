@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.configuration.debug
+package com.aiuta.fashionsdk.tryon.compose.domain.models.debug
 
 public enum class AiutaValidationPolicy {
     IGNORE,

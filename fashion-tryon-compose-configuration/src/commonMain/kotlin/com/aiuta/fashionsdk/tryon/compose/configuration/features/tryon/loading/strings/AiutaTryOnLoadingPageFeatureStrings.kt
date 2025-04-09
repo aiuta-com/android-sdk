@@ -1,7 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.models.AiutaStringValidationContainer
-
 public interface AiutaTryOnLoadingPageFeatureStrings {
     public val tryOnLoadingStatusUploadingImage: String
     public val tryOnLoadingStatusScanningBody: String
@@ -13,19 +11,3 @@ public interface AiutaTryOnLoadingPageFeatureStrings {
         override val tryOnLoadingStatusGeneratingOutfit: String = "Generating outfit"
     }
 }
-
-internal val AiutaTryOnLoadingPageFeatureStrings.validationList
-    get() = listOf(
-        AiutaStringValidationContainer(
-            propertyName = "tryOnLoadingStatusUploadingImage",
-            string = tryOnLoadingStatusUploadingImage,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "tryOnLoadingStatusScanningBody",
-            string = tryOnLoadingStatusScanningBody,
-        ),
-        AiutaStringValidationContainer(
-            propertyName = "tryOnLoadingStatusGeneratingOutfit",
-            string = tryOnLoadingStatusGeneratingOutfit,
-        ),
-    )

@@ -6,9 +6,8 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import coil3.compose.LocalPlatformContext
 import coil3.compose.setSingletonImageLoaderFactory
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -27,8 +26,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 @Composable
 internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
-    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
+    aiutaConfiguration: AiutaConfiguration,
     productItem: ProductItem,
     content: @Composable () -> Unit,
 ) {
@@ -40,20 +38,19 @@ internal fun NavigationInitialisation(
         modifier = modifier,
     ) {
         val controller = rememberFashionTryOnController(
-            aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-            aiutaUserInterfaceConfiguration = aiutaUserInterfaceConfiguration,
+            aiutaTryOnConfiguration = aiutaConfiguration.tryOnConfiguration,
+            aiutaUserInterfaceConfiguration = aiutaConfiguration.userInterface,
             productItem = productItem,
         )
 
         CompositionLocalProvider(
             LocalAnalytic provides controller.analytic,
             LocalController provides controller,
-            LocalTheme provides aiutaUserInterfaceConfiguration.theme,
-            LocalAiutaConfiguration provides aiutaTryOnConfiguration,
-            LocalAiutaTryOnDataController provides
-                rememberAiutaTryOnDataController(
-                    aiuta = { aiutaTryOnConfiguration.aiuta },
-                ),
+            LocalTheme provides aiutaConfiguration.userInterface.theme,
+            LocalAiutaConfiguration provides aiutaConfiguration.tryOnConfiguration,
+            LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
+                aiuta = { aiutaConfiguration.tryOnConfiguration.aiuta },
+            ),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
             LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
         ) {
