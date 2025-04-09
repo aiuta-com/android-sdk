@@ -12,12 +12,11 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class LocalGeneratedOperationInteractor(
+internal class DatabaseGeneratedOperationInteractor(
     private val generatedOperationDatasource: GeneratedOperationDatasource,
-) : GeneratedOperationInteractor {
+) : LocalGeneratedOperationInteractor {
     override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = Pager(
-        config =
-        PagingConfig(
+        config = PagingConfig(
             pageSize = DEFAULT_PAGE_SIZE,
         ),
         pagingSourceFactory = {
@@ -37,12 +36,15 @@ internal class LocalGeneratedOperationInteractor(
     // Raw operation
     override suspend fun createOperation(imageId: String): String = generatedOperationDatasource.createOperation().id
 
-    override suspend fun deleteOperation(operation: GeneratedOperationUIModel) {
+    override suspend fun deleteOperation(operation: GeneratedOperationUIModel): Result<Unit> = runCatching {
         generatedOperationDatasource.deleteOperation(operation.operationId)
     }
 
-    override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>) {
-        operations.forEach { operation -> deleteOperation(operation) }
+    override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>): Result<Unit> = runCatching {
+        operations.forEach { operation ->
+            val result = deleteOperation(operation)
+            check(result.isSuccess)
+        }
     }
 
     override fun countGeneratedOperation(): Flow<Int> = generatedOperationDatasource.countGeneratedOperation()
@@ -51,7 +53,7 @@ internal class LocalGeneratedOperationInteractor(
         sourceImageId: String,
         sourceImageUrl: String,
         operationId: String,
-    ) {
+    ): Result<Unit> = runCatching {
         generatedOperationDatasource.createImage(
             imageId = sourceImageId,
             imageUrl = sourceImageUrl,
@@ -62,7 +64,7 @@ internal class LocalGeneratedOperationInteractor(
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
-        fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedOperationInteractor = LocalGeneratedOperationInteractor(
+        fun getInstance(platformContext: AiutaPlatformContext): DatabaseGeneratedOperationInteractor = DatabaseGeneratedOperationInteractor(
             generatedOperationDatasource =
             GeneratedOperationDatasource.getInstance(
                 platformContext = platformContext,

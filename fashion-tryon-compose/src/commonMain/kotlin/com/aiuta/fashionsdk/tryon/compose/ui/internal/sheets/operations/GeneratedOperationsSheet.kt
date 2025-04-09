@@ -34,7 +34,6 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHistoryImage
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.LocalGeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
@@ -42,6 +41,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoad
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingUploadedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
@@ -62,6 +62,8 @@ import kotlinx.coroutines.launch
 internal fun ColumnScope.GeneratedOperationsSheet() {
     val controller = LocalController.current
     val theme = LocalTheme.current
+
+    val scope = rememberCoroutineScope()
 
     val uploadsHistoryFeature = strictProvideFeature<AiutaImageSelectorUploadsHistoryFeature>()
 
@@ -117,26 +119,36 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     generatedOperation = generatedOperation,
                     onClick = {
                         with(controller) {
-                            // Analytic
-                            sendPickerAnalytic(
-                                event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
-                                pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                            )
-
-                            // Host notification
-                            val image = generatedOperation.urlImages.firstOrNull()
-                            image?.let {
-                                uploadsHistoryFeature.dataProvider?.selectUploadedImageAction?.invoke(
-                                    AiutaHistoryImage(id = image.imageId, url = image.imageUrl),
+                            scope.launch {
+                                // Analytic
+                                sendPickerAnalytic(
+                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
+                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                                 )
-                            }
 
-                            // Change
-                            updateActiveOperationOrSetEmpty(generatedOperation)
-                            // Activate auto try on
-                            activateAutoTryOn()
-                            // Move back
-                            bottomSheetNavigator.hide()
+                                // Host notification
+                                val image = generatedOperation.urlImages.firstOrNull()
+                                image?.let {
+                                    runCatching {
+                                        uploadsHistoryFeature
+                                            .dataProvider
+                                            ?.selectUploadedImageAction
+                                            ?.invoke(
+                                                AiutaHistoryImage(
+                                                    id = image.imageId,
+                                                    url = image.imageUrl,
+                                                ),
+                                            )
+                                    }
+                                }
+
+                                // Change
+                                updateActiveOperationOrSetEmpty(generatedOperation)
+                                // Activate auto try on
+                                activateAutoTryOn()
+                                // Move back
+                                bottomSheetNavigator.hide()
+                            }
                         }
                     },
                 )
@@ -226,26 +238,28 @@ private fun OperationItem(
                                 )
 
                                 // Delete operations
-                                generatedOperationInteractor.deleteOperation(generatedOperation)
-                                // If local changePhotoButtonStyle - let's remove from loading
-                                generatedOperationInteractor.cleanLoadingUploads(
-                                    cleanAction = {
+                                generatedOperationInteractor
+                                    .deleteOperation(generatedOperation)
+                                    .listenErrorDeletingUploadedImages(
+                                        controller = controller,
+                                        loadingActionsController = loadingActionsController,
+                                    )
+
+                                // If local - let's remove from loading
+                                val isLocalMode =
+                                    generatedOperationInteractor.cleanLoadingUploads {
                                         loadingActionsController.loadingUploadsHolder.remove(
                                             generatedOperation,
                                         )
-                                    },
-                                )
+                                    }
 
-                                // If active images is deleted and it's local changePhotoButtonStyle - let's get new first
-                                val isLocalMode =
-                                    generatedOperationInteractor is LocalGeneratedOperationInteractor
+                                // If active images is deleted and it's local  - let's get new first
                                 val isActiveOperationDeleted =
                                     lastSavedOperation.value?.operationId == generatedOperation.operationId
                                 if (isActiveOperationDeleted && isLocalMode) {
                                     // Try to get new first
                                     val newFirstOperation =
-                                        generatedOperationInteractor
-                                            .getFirstGeneratedOperation()
+                                        generatedOperationInteractor.getFirstGeneratedOperation()
 
                                     // Try to update with new or set as empty
                                     updateActiveOperationOrSetEmpty(newFirstOperation)

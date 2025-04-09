@@ -121,7 +121,6 @@ internal fun AiutaTryOnLoadingActionsController.deletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
     updateDeletingUploadedImagesListener(controller)
-    showErrorDeletingUploadedImagesListener(controller)
 }
 
 @Composable
@@ -181,36 +180,21 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
     }
 }
 
-@Composable
-private fun AiutaTryOnLoadingActionsController.showErrorDeletingUploadedImagesListener(
+internal fun Result<Unit>.listenErrorDeletingUploadedImages(
     controller: FashionTryOnController,
-) {
-    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
-    val dataProvider = uploadsHistoryFeature?.dataProvider
+    loadingActionsController: AiutaTryOnLoadingActionsController,
+): Result<Unit> = onFailure {
+    // Move from loading to retry
+    val retryOperations = loadingActionsController.loadingUploadsHolder.getList()
+    loadingActionsController.retryUploadsHolder.putAll(retryOperations)
 
-    dataProvider?.let {
-        LaunchedEffect(Unit) {
-            dataProvider
-                .isErrorDeletingUploadedImages
-                .onEach { isHostErrorDeletingUploaded ->
-                    if (isHostErrorDeletingUploaded) {
-                        // Move from loading to retry
-                        val retryOperations = loadingUploadsHolder.getList()
-                        retryUploadsHolder.putAll(retryOperations)
+    // Clean loading
+    loadingActionsController.loadingUploadsHolder.removeAll()
 
-                        // Clean loading
-                        loadingUploadsHolder.removeAll()
-
-                        controller.showErrorState(
-                            errorState =
-                            DeleteUploadedImagesToastErrorState(
-                                controller = controller,
-                                loadingActionsController = this@showErrorDeletingUploadedImagesListener,
-                            ),
-                        )
-                    }
-                }
-                .launchIn(generalScope)
-        }
-    }
+    controller.showErrorState(
+        errorState = DeleteUploadedImagesToastErrorState(
+            controller = controller,
+            loadingActionsController = loadingActionsController,
+        ),
+    )
 }

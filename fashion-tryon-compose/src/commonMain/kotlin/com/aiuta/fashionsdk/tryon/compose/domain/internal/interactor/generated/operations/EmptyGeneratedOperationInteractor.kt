@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.opera
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-internal class EmptyGeneratedOperationInteractor : GeneratedOperationInteractor {
+internal class EmptyGeneratedOperationInteractor : LocalGeneratedOperationInteractor {
 
     override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = flowOf(PagingData.empty())
 
@@ -13,13 +13,9 @@ internal class EmptyGeneratedOperationInteractor : GeneratedOperationInteractor 
 
     override suspend fun createOperation(imageId: String): String = imageId
 
-    override suspend fun deleteOperation(operation: GeneratedOperationUIModel) {
-        // Do nothing
-    }
+    override suspend fun deleteOperation(operation: GeneratedOperationUIModel): Result<Unit> = Result.success(Unit)
 
-    override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>) {
-        // Do nothing
-    }
+    override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>): Result<Unit> = Result.success(Unit)
 
     override fun countGeneratedOperation(): Flow<Int> = flowOf(0)
 
@@ -27,7 +23,5 @@ internal class EmptyGeneratedOperationInteractor : GeneratedOperationInteractor 
         sourceImageId: String,
         sourceImageUrl: String,
         operationId: String,
-    ) {
-        // Do nothing
-    }
+    ): Result<Unit> = Result.success(Unit)
 }

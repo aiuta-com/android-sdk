@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingUploadedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 import kotlinx.coroutines.launch
 
@@ -80,7 +81,12 @@ internal class DeleteUploadedImagesToastErrorState(
                 loadingUploadsHolder.putAll(retryOperations)
 
                 // Execute retry
-                controller.generatedOperationInteractor.deleteOperations(retryOperations)
+                controller.generatedOperationInteractor
+                    .deleteOperations(retryOperations)
+                    .listenErrorDeletingUploadedImages(
+                        controller = controller,
+                        loadingActionsController = loadingActionsController,
+                    )
             }
         }
     }
