@@ -21,9 +21,7 @@ internal class GeneratedImageDatasource(
         }
     }
 
-    fun pagingSource(): PagingSource<Int, GeneratedImageEntity> {
-        return generatedImageDao.pagingSource()
-    }
+    fun pagingSource(): PagingSource<Int, GeneratedImageEntity> = generatedImageDao.pagingSource()
 
     suspend fun remove(generatedImageIds: List<String>) {
         withContext(Dispatchers.IO) {
@@ -43,15 +41,11 @@ internal class GeneratedImageDatasource(
         }
     }
 
-    fun countFlow(): Flow<Int> {
-        return generatedImageDao.countFlow()
-    }
+    fun countFlow(): Flow<Int> = generatedImageDao.countFlow()
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): GeneratedImageDatasource {
-            return GeneratedImageDatasource(
-                generatedImageDao = AppDatabase.getInstance(platformContext).generatedImageDao(),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): GeneratedImageDatasource = GeneratedImageDatasource(
+            generatedImageDao = AppDatabase.getInstance(platformContext).generatedImageDao(),
+        )
     }
 }

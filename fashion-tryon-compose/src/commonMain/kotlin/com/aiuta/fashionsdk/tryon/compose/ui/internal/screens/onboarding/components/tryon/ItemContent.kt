@@ -9,19 +9,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ItemContent(
     modifier: Modifier = Modifier,
-    itemImage: AiutaImage,
+    itemImage: AiutaDrawableResource,
     isActive: Boolean,
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
     val widthTransition =
         animateDpAsState(
@@ -35,26 +38,26 @@ internal fun ItemContent(
             label = "heightTransition",
         )
 
-    val cornerRadius = theme.shapes.onboardingImage
+    val cornerRadius = onboardingFeature.shapes.onboardingImageSShape
 
     AiutaImage(
         modifier =
-            modifier
-                .width(widthTransition.value)
-                .height(heightTransition.value)
-                .shadow(
-                    elevation = 10.dp,
-                    shape = cornerRadius,
-                    ambientColor = Color.Black,
-                    spotColor = Color.Black,
-                )
-                .background(
-                    color = theme.colors.background,
-                    shape = cornerRadius,
-                )
-                .clickableUnindicated {
-                    onClick()
-                },
+        modifier
+            .width(widthTransition.value)
+            .height(heightTransition.value)
+            .shadow(
+                elevation = 10.dp,
+                shape = cornerRadius,
+                ambientColor = Color.Black,
+                spotColor = Color.Black,
+            )
+            .background(
+                color = theme.color.background,
+                shape = cornerRadius,
+            )
+            .clickableUnindicated {
+                onClick()
+            },
         image = itemImage,
         contentDescription = null,
     )

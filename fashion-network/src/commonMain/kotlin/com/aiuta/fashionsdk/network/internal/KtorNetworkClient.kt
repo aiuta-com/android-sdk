@@ -20,7 +20,7 @@ internal class KtorNetworkClient(
             host: String?,
             encodedPath: String?,
         ): NetworkClient {
-            validateCacheInstance(newSubscriptionId = aiuta.subscriptionId)
+            validateCacheInstance(newSubscriptionId = aiuta.authenticationStrategy.subscriptionId)
 
             return instance ?: synchronized(this) {
                 instance ?: buildKtorNetworkClient(
@@ -29,7 +29,7 @@ internal class KtorNetworkClient(
                     encodedPath = encodedPath,
                 ).also {
                     instance = it
-                    cachedSubscriptionId = aiuta.subscriptionId
+                    cachedSubscriptionId = aiuta.authenticationStrategy.subscriptionId
                 }
             }
         }
@@ -38,17 +38,15 @@ internal class KtorNetworkClient(
             aiuta: Aiuta,
             host: String? = null,
             encodedPath: String? = null,
-        ): NetworkClient {
-            return KtorNetworkClient(
-                httpClient =
-                    KtorHttpClientFactory(
-                        authenticationStrategy = aiuta.authenticationStrategy,
-                        subscriptionId = aiuta.subscriptionId,
-                        host = host,
-                        encodedPath = encodedPath,
-                    ).create(),
-            )
-        }
+        ): NetworkClient = KtorNetworkClient(
+            httpClient =
+            KtorHttpClientFactory(
+                authenticationStrategy = aiuta.authenticationStrategy,
+                aiutaLogger = aiuta.logger,
+                host = host,
+                encodedPath = encodedPath,
+            ).create(),
+        )
 
         private fun validateCacheInstance(newSubscriptionId: String) {
             // We should remove cache, if we have new instance of api key

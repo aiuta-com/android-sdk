@@ -3,11 +3,11 @@ package com.aiuta.fashionsdk.tryon.compose.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -28,31 +28,25 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHand
  *
  * @see AiutaTryOnConfiguration
  * @see AiutaTheme
- * @see SKUItem
+ * @see ProductItem
  */
 @Composable
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,
-    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaTryOnListeners: AiutaTryOnListeners,
-    aiutaTheme: AiutaTheme,
-    skuForGeneration: SKUItem,
+    aiutaConfiguration: AiutaConfiguration,
+    productForGeneration: ProductItem,
 ) {
     NavigationInitialisation(
         modifier = modifier,
-        aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-        aiutaTryOnListeners = aiutaTryOnListeners,
-        aiutaTheme = aiutaTheme,
-        skuForGeneration = skuForGeneration,
+        aiutaConfiguration = aiutaConfiguration,
+        productItem = productForGeneration,
     ) {
         sendSessionEvent(SessionEvent.FlowType.TRY_ON)
 
         val controller = LocalController.current
         val scope = rememberCoroutineScope()
 
-        NavigationContainer(
-            modifier = modifier,
-        )
+        NavigationContainer(modifier = modifier)
 
         // Move screen here, because full view should be on the top of navigation
         with(controller) {
@@ -80,7 +74,7 @@ public fun AiutaTryOnFlow(
                 }
 
                 controller.currentScreen.value == NavigationScreen.History -> {
-                    // Use custom, because we need deactivate select mode first
+                    // Use custom, because we need deactivate select changePhotoButtonStyle first
                     controller.deactivateSelectMode()
                     controller.navigateBack()
                 }

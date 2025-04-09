@@ -3,22 +3,15 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import coil3.compose.LocalPlatformContext
 import coil3.compose.setSingletonImageLoaderFactory
-import com.aiuta.fashionsdk.compose.tokens.AiutaTheme
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.resolveInternalLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.rememberAiutaTryOnDataController
@@ -28,14 +21,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.coil.newImageLoader
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun NavigationInitialisation(
     modifier: Modifier = Modifier,
-    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaTryOnListeners: AiutaTryOnListeners,
-    aiutaTheme: AiutaTheme,
-    skuForGeneration: SKUItem,
+    aiutaConfiguration: AiutaConfiguration,
+    productItem: ProductItem,
     content: @Composable () -> Unit,
 ) {
     // Init coil
@@ -45,38 +37,26 @@ internal fun NavigationInitialisation(
     BoxWithConstraints(
         modifier = modifier,
     ) {
-        val internalAnalytic =
-            remember {
-                aiutaTryOnConfiguration
-                    .aiuta
-                    .internalAiutaAnalytic
-            }
-        val controller =
-            rememberFashionTryOnController(
-                aiutaTryOnConfiguration = aiutaTryOnConfiguration,
-                aiutaTryOnListeners = aiutaTryOnListeners,
-                skuForGeneration = skuForGeneration,
-            )
+        val controller = rememberFashionTryOnController(
+            aiutaTryOnConfiguration = aiutaConfiguration.tryOnConfiguration,
+            aiutaUserInterfaceConfiguration = aiutaConfiguration.userInterface,
+            productItem = productItem,
+        )
 
         CompositionLocalProvider(
-            LocalAnalytic provides internalAnalytic,
+            LocalAnalytic provides controller.analytic,
             LocalController provides controller,
-            LocalTheme provides aiutaTheme,
-            LocalAiutaConfiguration provides aiutaTryOnConfiguration,
-            LocalAiutaTryOnStringResources provides
-                resolveInternalLanguage(
-                    selectedLanguage = aiutaTryOnConfiguration.language,
-                ),
-            LocalAiutaTryOnDataController provides
-                rememberAiutaTryOnDataController(
-                    aiuta = { aiutaTryOnConfiguration.aiuta },
-                ),
+            LocalTheme provides aiutaConfiguration.userInterface.theme,
+            LocalAiutaConfiguration provides aiutaConfiguration.tryOnConfiguration,
+            LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
+                aiuta = { aiutaConfiguration.tryOnConfiguration.aiuta },
+            ),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
             LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
         ) {
             // Init listeners
             val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-            loadingActionsController.deletingGeneratedImagesListener(controller)
+            loadingActionsController.deletingGeneratedImagesListener()
             loadingActionsController.deletingUploadedImagesListener(controller)
 
             // Actual content

@@ -1,0 +1,37 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion-logger>
+abstract interface com.aiuta.fashionsdk.logger/AiutaLogger { // com.aiuta.fashionsdk.logger/AiutaLogger|null[0]
+    abstract fun log(com.aiuta.fashionsdk.logger/AiutaLogger.Level, kotlin/String? = ..., kotlin/Throwable? = ..., kotlin/String) // com.aiuta.fashionsdk.logger/AiutaLogger.log|log(com.aiuta.fashionsdk.logger.AiutaLogger.Level;kotlin.String?;kotlin.Throwable?;kotlin.String){}[0]
+
+    final enum class Level : kotlin/Enum<com.aiuta.fashionsdk.logger/AiutaLogger.Level> { // com.aiuta.fashionsdk.logger/AiutaLogger.Level|null[0]
+        enum entry DEBUG // com.aiuta.fashionsdk.logger/AiutaLogger.Level.DEBUG|null[0]
+        enum entry ERROR // com.aiuta.fashionsdk.logger/AiutaLogger.Level.ERROR|null[0]
+        enum entry INFO // com.aiuta.fashionsdk.logger/AiutaLogger.Level.INFO|null[0]
+        enum entry VERBOSE // com.aiuta.fashionsdk.logger/AiutaLogger.Level.VERBOSE|null[0]
+        enum entry WARN // com.aiuta.fashionsdk.logger/AiutaLogger.Level.WARN|null[0]
+
+        final val entries // com.aiuta.fashionsdk.logger/AiutaLogger.Level.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.logger/AiutaLogger.Level> // com.aiuta.fashionsdk.logger/AiutaLogger.Level.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.logger/AiutaLogger.Level // com.aiuta.fashionsdk.logger/AiutaLogger.Level.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.logger/AiutaLogger.Level> // com.aiuta.fashionsdk.logger/AiutaLogger.Level.values|values#static(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.logger/DebugAiutaLogger : com.aiuta.fashionsdk.logger/AiutaLogger { // com.aiuta.fashionsdk.logger/DebugAiutaLogger|null[0]
+    constructor <init>() // com.aiuta.fashionsdk.logger/DebugAiutaLogger.<init>|<init>(){}[0]
+
+    final fun log(com.aiuta.fashionsdk.logger/AiutaLogger.Level, kotlin/String?, kotlin/Throwable?, kotlin/String) // com.aiuta.fashionsdk.logger/DebugAiutaLogger.log|log(com.aiuta.fashionsdk.logger.AiutaLogger.Level;kotlin.String?;kotlin.Throwable?;kotlin.String){}[0]
+}
+
+final fun (com.aiuta.fashionsdk.logger/AiutaLogger).com.aiuta.fashionsdk.logger/d(kotlin/String, kotlin/Throwable? = ..., kotlin/String? = ...) // com.aiuta.fashionsdk.logger/d|d@com.aiuta.fashionsdk.logger.AiutaLogger(kotlin.String;kotlin.Throwable?;kotlin.String?){}[0]
+final fun (com.aiuta.fashionsdk.logger/AiutaLogger).com.aiuta.fashionsdk.logger/e(kotlin/String, kotlin/Throwable? = ..., kotlin/String? = ...) // com.aiuta.fashionsdk.logger/e|e@com.aiuta.fashionsdk.logger.AiutaLogger(kotlin.String;kotlin.Throwable?;kotlin.String?){}[0]
+final fun (com.aiuta.fashionsdk.logger/AiutaLogger).com.aiuta.fashionsdk.logger/i(kotlin/String, kotlin/Throwable? = ..., kotlin/String? = ...) // com.aiuta.fashionsdk.logger/i|i@com.aiuta.fashionsdk.logger.AiutaLogger(kotlin.String;kotlin.Throwable?;kotlin.String?){}[0]
+final fun (com.aiuta.fashionsdk.logger/AiutaLogger).com.aiuta.fashionsdk.logger/v(kotlin/String, kotlin/Throwable? = ..., kotlin/String? = ...) // com.aiuta.fashionsdk.logger/v|v@com.aiuta.fashionsdk.logger.AiutaLogger(kotlin.String;kotlin.Throwable?;kotlin.String?){}[0]
+final fun (com.aiuta.fashionsdk.logger/AiutaLogger).com.aiuta.fashionsdk.logger/w(kotlin/String, kotlin/Throwable? = ..., kotlin/String? = ...) // com.aiuta.fashionsdk.logger/w|w@com.aiuta.fashionsdk.logger.AiutaLogger(kotlin.String;kotlin.Throwable?;kotlin.String?){}[0]

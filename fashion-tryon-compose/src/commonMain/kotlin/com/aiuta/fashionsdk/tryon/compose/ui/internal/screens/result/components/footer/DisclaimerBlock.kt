@@ -12,64 +12,63 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun DisclaimerBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
-    DisclaimerBlockContent(
-        modifier =
-            modifier
-                .clickableUnindicated {
-                    controller.bottomSheetNavigator.show(
-                        newSheetScreen =
-                            NavigationBottomSheetScreen.FitDisclaimer(
-                                text = stringResources.fitDisclaimerBody,
-                            ),
-                    )
-                },
-        title = stringResources.fitDisclaimerTitle,
-    )
+    val fitDisclaimerFeature = provideFeature<AiutaTryOnFitDisclaimerFeature>()
+
+    fitDisclaimerFeature?.let {
+        DisclaimerBlockContent(
+            modifier = modifier.clickableUnindicated {
+                controller.bottomSheetNavigator.show(
+                    newSheetScreen = NavigationBottomSheetScreen.FitDisclaimer,
+                )
+            },
+            fitDisclaimerFeature = fitDisclaimerFeature,
+        )
+    }
 }
 
 @Composable
 private fun DisclaimerBlockContent(
     modifier: Modifier = Modifier,
-    title: String,
+    fitDisclaimerFeature: AiutaTryOnFitDisclaimerFeature,
 ) {
     val theme = LocalTheme.current
 
     Row(
-        modifier =
-            modifier
-                .background(
-                    color = theme.colors.neutral,
-                    shape = theme.shapes.bottomSheet,
-                ),
+        modifier = modifier.background(
+            color = theme.color.neutral,
+            shape = theme.bottomSheet.shapes.bottomSheetShape,
+        ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
         Text(
-            text = title,
-            style = theme.typography.description,
-            color = theme.colors.primary,
+            text = fitDisclaimerFeature.strings.tryOnFitTitle,
+            style = theme.label.typography.regular,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
 
-        Spacer(Modifier.width(4.dp))
+        fitDisclaimerFeature.icons.info20?.let { info20 ->
+            Spacer(Modifier.width(4.dp))
 
-        AiutaIcon(
-            modifier = Modifier.size(20.dp),
-            icon = theme.icons.info20,
-            contentDescription = null,
-            tint = theme.colors.primary,
-        )
+            AiutaIcon(
+                modifier = Modifier.size(20.dp),
+                icon = info20,
+                contentDescription = null,
+                tint = theme.color.primary,
+            )
+        }
     }
 }

@@ -11,26 +11,24 @@ import okio.FileSystem
 internal fun newImageLoader(
     context: PlatformContext,
     debug: Boolean = false,
-): ImageLoader {
-    return ImageLoader.Builder(context)
-        .memoryCache {
-            MemoryCache.Builder()
-                // Set the max size to 25% of the app's available memory.
-                .maxSizePercent(context, percent = 0.25)
-                .build()
+): ImageLoader = ImageLoader.Builder(context)
+    .memoryCache {
+        MemoryCache.Builder()
+            // Set the max size to 25% of the app's available memory.
+            .maxSizePercent(context, percent = 0.25)
+            .build()
+    }
+    .diskCache {
+        DiskCache.Builder()
+            .directory(FileSystem.SYSTEM_TEMPORARY_DIRECTORY / "image_cache")
+            .maxSizeBytes(512L * 1024 * 1024) // 512MB
+            .build()
+    }
+    // Show a short crossfade when loading images asynchronously.
+    .crossfade(true)
+    .apply {
+        if (debug) {
+            logger(DebugLogger())
         }
-        .diskCache {
-            DiskCache.Builder()
-                .directory(FileSystem.SYSTEM_TEMPORARY_DIRECTORY / "image_cache")
-                .maxSizeBytes(512L * 1024 * 1024) // 512MB
-                .build()
-        }
-        // Show a short crossfade when loading images asynchronously.
-        .crossfade(true)
-        .apply {
-            if (debug) {
-                logger(DebugLogger())
-            }
-        }
-        .build()
-}
+    }
+    .build()

@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -26,7 +24,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.lerp
@@ -38,19 +35,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
@@ -59,6 +46,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.TRANSITION_ANIM_DURATION
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toIntOffset
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 @Composable
@@ -100,7 +94,7 @@ internal fun ZoomedImageScreen(
             derivedStateOf {
                 lerp(
                     Color.Transparent,
-                    theme.colors.onDark,
+                    theme.color.onDark,
                     sharedElementProgress.value,
                 )
             }
@@ -172,11 +166,10 @@ private fun ZoomedImageScreenContent(
     imageOffset: State<IntOffset>,
     imageSize: State<Size>,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val shareFeature = provideFeature<AiutaShareFeature>()
 
     val scope = rememberCoroutineScope()
     val shareManager = rememberShareManagerV2()
@@ -184,100 +177,74 @@ private fun ZoomedImageScreenContent(
     Box(
         modifier = modifier.background(color = backgroundColor.value),
     ) {
-        SubcomposeAsyncImage(
-            modifier =
-                Modifier
-                    .offset { imageOffset.value }
-                    .size(
-                        width = imageSize.value.width.toDp(LocalDensity.current),
-                        height = imageSize.value.height.toDp(LocalDensity.current),
-                    )
-                    .clip(RoundedCornerShape(cornerRadius.value))
-                    .zoomable(
-                        zoomState = screenState.imageZoomState,
-                        onTap = {
-                            screenState.closeZoomImageScreen(scope)
-                        },
-                    ),
-            model =
-                ImageRequest.Builder(coilContext)
-                    .data(screenState.sharedImage.value.imageUrl)
-                    .crossfade(true)
-                    .build(),
-            loading = {
-                LoadingProgress(
-                    modifier = Modifier.fillMaxSize(),
-                    circleColor = interfaceColor.value,
+        AiutaImage(
+            modifier = Modifier
+                .offset { imageOffset.value }
+                .size(
+                    width = imageSize.value.width.toDp(LocalDensity.current),
+                    height = imageSize.value.height.toDp(LocalDensity.current),
                 )
-            },
-            error = {
-                Box(
-                    modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .clipToBounds()
-                            .background(backgroundColor.value),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    ErrorProgress(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .fillMaxHeight(0.7f),
-                        background = Color.White.copy(0.1f),
-                        iconTint = interfaceColor.value,
-                    )
-                }
-            },
+                .clip(RoundedCornerShape(cornerRadius.value))
+                .zoomable(
+                    zoomState = screenState.imageZoomState,
+                    onTap = {
+                        screenState.closeZoomImageScreen(scope)
+                    },
+                ),
+            imageUrl = screenState.sharedImage.value.imageUrl,
+            shapeDp = cornerRadius.value,
             contentScale = contentScale,
             contentDescription = null,
         )
 
         Row(
             modifier =
-                Modifier
-                    .align(Alignment.TopStart)
-                    .fillMaxWidth()
-                    .windowInsetsPadding(WindowInsets.statusBars)
-                    .padding(top = 14.dp)
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .align(Alignment.TopStart)
+                .fillMaxWidth()
+                .windowInsetsPadding(WindowInsets.statusBars)
+                .padding(top = 14.dp)
+                .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             AiutaIcon(
                 modifier =
-                    Modifier
-                        .size(24.dp)
-                        .clickableUnindicated {
-                            screenState.closeZoomImageScreen(scope)
-                        },
-                icon = theme.icons.close24,
+                Modifier
+                    .size(24.dp)
+                    .clickableUnindicated {
+                        screenState.closeZoomImageScreen(scope)
+                    },
+                icon = theme.pageBar.icons.close24,
                 contentDescription = null,
                 tint = interfaceColor.value,
             )
 
-            if (aiutaConfiguration.toggles.isShareAvailable) {
+            shareFeature?.let {
+                val watermarkPainter = shareFeature
+                    .watermark
+                    ?.images
+                    ?.logo
+                    ?.let { logo -> painterResource(logo) }
+
                 Text(
-                    modifier =
-                        Modifier
-                            .clickableUnindicated {
-                                scope.launch {
-                                    val imageUrls =
-                                        listOfNotNull(
-                                            screenState.sharedImage.value.imageUrl,
-                                        )
-                                    shareManager.shareImages(
-                                        coilContext = coilContext,
-                                        content = screenState.sharedImage.value.additionalShareInfo,
-                                        imageUrls = imageUrls,
-                                        productId = controller.activeSKUItem.value.skuId,
-                                        pageId = screenState.sharedImage.value.originPageId,
-                                        watermark = theme.watermark,
-                                    )
-                                }
-                            },
-                    text = stringResources.share,
-                    style = theme.typography.button,
+                    modifier = Modifier.clickableUnindicated {
+                        scope.launch {
+                            val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
+                            val skuIds = listOf(controller.activeProductItem.value.id)
+                            val shareText = shareFeature.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+
+                            shareManager.shareImages(
+                                content = shareText?.getOrNull(),
+                                pageId = screenState.sharedImage.value.originPageId,
+                                productId = controller.activeProductItem.value.id,
+                                imageUrls = imageUrls,
+                                watermark = watermarkPainter,
+                            )
+                        }
+                    },
+                    text = shareFeature.strings.shareButton,
+                    style = theme.button.typography.buttonM,
                     color = interfaceColor.value,
                 )
             }

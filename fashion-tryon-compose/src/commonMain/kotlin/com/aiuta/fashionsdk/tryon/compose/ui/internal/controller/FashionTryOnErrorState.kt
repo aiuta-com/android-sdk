@@ -3,10 +3,12 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 import androidx.compose.runtime.Immutable
 import coil3.PlatformContext
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.language.InternalAiutaTryOnLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingGeneratedImages
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingUploadedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
 import kotlinx.coroutines.launch
 
@@ -23,7 +25,7 @@ internal class TryOnToastErrorState(
     coilContext: PlatformContext,
     controller: FashionTryOnController,
     dialogController: AiutaTryOnDialogController,
-    stringResources: InternalAiutaTryOnLanguage,
+    tryOnFeatureStrings: AiutaTryOnFeatureStrings,
 ) : ToastErrorState {
     override val message: String? = null
     override val onRetry: () -> Unit = {
@@ -31,7 +33,7 @@ internal class TryOnToastErrorState(
             aiutaConfiguration = aiutaConfiguration,
             dialogController = dialogController,
             coilContext = coilContext,
-            stringResources = stringResources,
+            tryOnFeatureStrings = tryOnFeatureStrings,
             origin = StartTryOnEvent.TryOnOrigin.RETRY_NOTIFICATION,
         )
     }
@@ -54,7 +56,13 @@ internal class DeleteGeneratedImagesToastErrorState(
                 loadingGenerationsHolder.putAll(retryGenerations)
 
                 // Execute retry
-                controller.generatedImageInteractor.remove(retryGenerations)
+                controller
+                    .generatedImageInteractor
+                    .remove(retryGenerations)
+                    .listenErrorDeletingGeneratedImages(
+                        controller = controller,
+                        loadingActionsController = loadingActionsController,
+                    )
             }
         }
     }
@@ -80,7 +88,12 @@ internal class DeleteUploadedImagesToastErrorState(
                 loadingUploadsHolder.putAll(retryOperations)
 
                 // Execute retry
-                controller.generatedOperationInteractor.deleteOperations(retryOperations)
+                controller.generatedOperationInteractor
+                    .deleteOperations(retryOperations)
+                    .listenErrorDeletingUploadedImages(
+                        controller = controller,
+                        loadingActionsController = loadingActionsController,
+                    )
             }
         }
     }

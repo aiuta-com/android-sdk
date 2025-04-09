@@ -9,5 +9,5 @@ public class FashionIOException(
     public val requestId: String,
     public val date: String,
 ) : Exception(
-        "Backed error. Code: $errorCode, requestId: $requestId, errorMessages - $errorMessages",
-    )
+    "Backed error. Code: $errorCode, requestId: $requestId, errorMessages - $errorMessages",
+)

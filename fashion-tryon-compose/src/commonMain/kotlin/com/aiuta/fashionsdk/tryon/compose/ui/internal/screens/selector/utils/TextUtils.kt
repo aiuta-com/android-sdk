@@ -5,9 +5,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import kotlinx.coroutines.delay
 
 private const val LOADING_TEXT_DELAY = 2000L
@@ -15,30 +16,30 @@ private const val LOADING_TEXT_DELAY = 2000L
 @Composable
 internal fun solveLoadingGenerationText(): State<String> {
     val controller = LocalController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val operation = controller.generationOperations.lastOrNull()
     val loadingText = remember { mutableStateOf("") }
+    val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
 
     LaunchedEffect(operation) {
         loadingText.value =
             when (operation) {
-                is SKUGenerationOperation.LoadingOperation.GenerationProcessingOperation -> {
+                is ProductGenerationOperation.LoadingOperation.GenerationProcessingOperation -> {
                     // Need to wait before showing ping status
                     delay(LOADING_TEXT_DELAY)
-                    stringResources.imageSelectorGeneratingOutfit
+                    loadingPageFeature.strings.tryOnLoadingStatusGeneratingOutfit
                 }
 
-                is SKUGenerationOperation.LoadingOperation.UploadedSourceImageOperation -> {
-                    stringResources.imageSelectorScanningBody
+                is ProductGenerationOperation.LoadingOperation.UploadedSourceImageOperation -> {
+                    loadingPageFeature.strings.tryOnLoadingStatusScanningBody
                 }
 
-                is SKUGenerationOperation.LoadingOperation.StartGenerationOperation -> {
-                    stringResources.imageSelectorUploadingImage
+                is ProductGenerationOperation.LoadingOperation.StartGenerationOperation -> {
+                    loadingPageFeature.strings.tryOnLoadingStatusUploadingImage
                 }
 
                 else -> {
-                    stringResources.imageSelectorScanningBody
+                    loadingPageFeature.strings.tryOnLoadingStatusScanningBody
                 }
             }
     }

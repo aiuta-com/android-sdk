@@ -17,36 +17,34 @@ internal class SelectedHolderTest {
     }
 
     @Test
-    fun `check ConcurrentModificationException on remove by for`(): Unit =
-        runBlocking {
-            // Prepare
-            selectedHolder.putAll(newImageList(range = (0..500)))
+    fun `check ConcurrentModificationException on remove by for`(): Unit = runBlocking {
+        // Prepare
+        selectedHolder.putAll(newImageList(range = (0..500)))
 
-            // Test
-            val images = selectedHolder.getList()
-            images.forEach { image -> selectedHolder.remove(image) }
+        // Test
+        val images = selectedHolder.getList()
+        images.forEach { image -> selectedHolder.remove(image) }
 
-            // Check
-            assertEquals(
-                expected = 0,
-                actual = selectedHolder.getList().size,
-            )
-        }
+        // Check
+        assertEquals(
+            expected = 0,
+            actual = selectedHolder.getList().size,
+        )
+    }
 
     @Test
-    fun `check ConcurrentModificationException on remove`(): Unit =
-        runBlocking {
-            // Prepare
-            selectedHolder.putAll(newImageList(range = (0..500)))
+    fun `check ConcurrentModificationException on remove`(): Unit = runBlocking {
+        // Prepare
+        selectedHolder.putAll(newImageList(range = (0..500)))
 
-            // Test
-            val images = selectedHolder.getList()
-            selectedHolder.remove(images)
+        // Test
+        val images = selectedHolder.getList()
+        selectedHolder.remove(images)
 
-            // Check
-            assertEquals(
-                expected = 0,
-                actual = selectedHolder.getList().size,
-            )
-        }
+        // Check
+        assertEquals(
+            expected = 0,
+            actual = selectedHolder.getList().size,
+        )
+    }
 }

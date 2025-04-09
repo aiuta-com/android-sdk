@@ -11,21 +11,24 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun BestResultPageItem(
     modifier: Modifier = Modifier,
-    image: AiutaImage,
+    image: AiutaDrawableResource,
     isGoodImage: Boolean,
 ) {
-    val theme = LocalTheme.current
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
+    val bestResultFeature = strictProvideFeature<AiutaOnboardingBestResultsPageFeature>()
 
     Box(
-        modifier = modifier.clip(theme.shapes.onboardingImage),
+        modifier = modifier.clip(onboardingFeature.shapes.onboardingImageSShape),
     ) {
         AiutaImage(
             modifier = modifier.fillMaxSize(),
@@ -36,16 +39,16 @@ internal fun BestResultPageItem(
 
         AiutaIcon(
             modifier =
-                Modifier
-                    .align(Alignment.TopStart)
-                    .padding(10.dp)
-                    .size(24.dp),
+            Modifier
+                .align(Alignment.TopStart)
+                .padding(10.dp)
+                .size(24.dp),
             icon =
-                if (isGoodImage) {
-                    theme.icons.checkCorrect24
-                } else {
-                    theme.icons.checkNotCorrect24
-                },
+            if (isGoodImage) {
+                bestResultFeature.icons.onboardingBestResultsGood24
+            } else {
+                bestResultFeature.icons.onboardingBestResultsBad24
+            },
             contentDescription = null,
             tint = Color.Unspecified,
         )

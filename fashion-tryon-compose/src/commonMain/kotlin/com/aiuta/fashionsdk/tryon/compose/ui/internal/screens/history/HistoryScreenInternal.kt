@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +22,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -41,28 +39,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
-import coil3.request.crossfade
 import coil3.size.SizeResolver.Companion.ORIGINAL
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isSelectModeActive
@@ -73,8 +63,15 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 private const val FULL_SIZE_SPAN = 3
@@ -86,13 +83,13 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
     sendPageEvent(pageId = AiutaAnalyticPageId.HISTORY)
 
     Column(
-        modifier = modifier.background(theme.colors.background),
+        modifier = modifier.background(theme.color.background),
     ) {
         HistoryAppBar(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         HistoryScreenInternal(
@@ -105,7 +102,6 @@ internal fun HistoryScreen(modifier: Modifier = Modifier) {
 private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-    val density = LocalDensity.current
     val theme = LocalTheme.current
 
     val generatedImages =
@@ -114,21 +110,15 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
             .generatedImagesFlow()
             .collectAsLazyPagingItems()
 
-    val sharedRadius =
-        with(density) {
-            theme.shapes.previewImage.topStart.toPx(
-                Size.Unspecified,
-                density,
-            ).toDp()
-        }
+    val sharedRadius = theme.image.shapes.imageS
 
     HistoryScreenListeners(generatedImages = generatedImages)
 
     Box(
         modifier =
-            modifier
-                .fillMaxSize()
-                .background(color = theme.colors.background),
+        modifier
+            .fillMaxSize()
+            .background(color = theme.color.background),
     ) {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
@@ -160,12 +150,12 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
 
                 ImageContainer(
                     modifier =
-                        Modifier
-                            .animateItem()
-                            .onGloballyPositioned { coordinates ->
-                                parentImageOffset = coordinates.positionInRoot()
-                                imageSize = coordinates.size.toSize()
-                            },
+                    Modifier
+                        .animateItem()
+                        .onGloballyPositioned { coordinates ->
+                            parentImageOffset = coordinates.positionInRoot()
+                            imageSize = coordinates.size.toSize()
+                        },
                     imageUrl = generatedImage?.imageUrl,
                     isEdit = isSelectModeActive,
                     isSelectedItem = controller.selectorHolder.contain(generatedImage),
@@ -183,14 +173,13 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
 
                             else -> {
                                 controller.zoomImageController.openZoomImageScreen(
-                                    model =
-                                        ZoomImageUiModel(
-                                            imageSize = imageSize,
-                                            initialCornerRadius = sharedRadius,
-                                            imageUrl = generatedImage?.imageUrl,
-                                            parentImageOffset = parentImageOffset,
-                                            originPageId = AiutaAnalyticPageId.HISTORY,
-                                        ),
+                                    model = ZoomImageUiModel(
+                                        imageSize = imageSize,
+                                        initialCornerRadius = sharedRadius,
+                                        imageUrl = generatedImage?.imageUrl,
+                                        parentImageOffset = parentImageOffset,
+                                        originPageId = AiutaAnalyticPageId.HISTORY,
+                                    ),
                                 )
                             }
                         }
@@ -198,11 +187,6 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 )
             }
         }
-
-        HistoryScreenEmpty(
-            modifier = Modifier.fillMaxSize(),
-            getGeneratedImages = { generatedImages },
-        )
 
         HistoryScreenInterface(
             getGeneratedImages = { generatedImages },
@@ -223,78 +207,68 @@ private fun ImageContainer(
     val theme = LocalTheme.current
 
     Box(
-        modifier =
-            modifier
-                .fillMaxWidth()
-                .height(178.dp)
-                .clip(theme.shapes.previewImage)
-                .background(color = theme.colors.background)
-                .clickableUnindicated { onClick() },
+        modifier = modifier
+            .fillMaxWidth()
+            .height(178.dp)
+            .clip(theme.image.shapes.imageSShape)
+            .background(color = theme.color.background)
+            .clickableUnindicated { onClick() },
         contentAlignment = Alignment.Center,
     ) {
-        SubcomposeAsyncImage(
-            modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
-            model =
-                ImageRequest.Builder(coilContext)
-                    .data(imageUrl)
-                    // Do that, because thumbnail size is too small for zoom screen
-                    .size(ORIGINAL)
-                    .crossfade(true)
-                    .build(),
-            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
-            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+        AiutaImage(
+            modifier = Modifier
+                .clipToBounds()
+                .fillMaxSize(),
+            // Do that, because thumbnail size is too small for zoom screen
+            imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
+            imageUrl = imageUrl,
+            shape = theme.image.shapes.imageSShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
 
         AnimatedVisibility(
-            modifier =
-                Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp),
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(8.dp),
             visible = isEdit,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             Box(
                 modifier =
-                    Modifier
-                        .size(24.dp)
-                        .border(width = 1.dp, color = theme.colors.onDark, shape = CircleShape)
-                        .background(
-                            color = if (isSelectedItem) theme.colors.aiuta else theme.colors.neutral,
-                            shape = CircleShape,
-                        ),
+                Modifier
+                    .size(24.dp)
+                    .border(width = 1.dp, color = theme.color.onDark, shape = CircleShape)
+                    .background(
+                        color = if (isSelectedItem) theme.color.brand else theme.color.neutral,
+                        shape = CircleShape,
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
                 if (isSelectedItem) {
                     AiutaIcon(
                         modifier = Modifier.size(20.dp),
-                        icon = theme.icons.check20,
+                        icon = theme.selectionSnackbar.icons.check20,
                         contentDescription = null,
-                        tint = theme.colors.onDark,
+                        tint = theme.color.onDark,
                     )
                 }
             }
         }
 
         AnimatedVisibility(
-            modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
+            modifier = Modifier
+                .clipToBounds()
+                .fillMaxSize(),
             visible = isLoading,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            LoadingProgress(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f)),
+            AiutaBoxedLoadingIcon(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.5f)),
                 circleColor = Color.White,
             )
         }
@@ -306,22 +280,26 @@ private fun BoxScope.HistoryScreenInterface(
     getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
 ) {
     val controller = LocalController.current
-    val coilContext = LocalPlatformContext.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-    val theme = LocalTheme.current
+
+    val shareFeature = provideFeature<AiutaShareFeature>()
 
     val scope = rememberCoroutineScope()
     val generatedImages = getGeneratedImages()
     val shareManager = rememberShareManagerV2()
 
+    val watermarkPainter = shareFeature?.watermark?.images?.logo?.let { logo ->
+        painterResource(logo)
+    }
+
     AnimatedVisibility(
         modifier =
-            Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .windowInsetsPadding(WindowInsets.navigationBars)
-                .padding(horizontal = 8.dp)
-                .padding(bottom = 8.dp),
+        Modifier
+            .align(Alignment.BottomCenter)
+            .fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.navigationBars)
+            .padding(horizontal = 8.dp)
+            .padding(bottom = 8.dp),
         visible = controller.isSelectModeActive().value,
         enter = fadeIn(),
         exit = fadeOut(),
@@ -349,7 +327,10 @@ private fun BoxScope.HistoryScreenInterface(
                             .getList()
                             .map { it.imageUrl }
 
-                    // After get list, let's deactivate select mode
+                    val skuIds = listOf(controller.activeProductItem.value.id)
+                    val shareText = shareFeature?.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+
+                    // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()
 
                     controller.sendHistoryEvent(
@@ -357,11 +338,11 @@ private fun BoxScope.HistoryScreenInterface(
                     )
 
                     shareManager.shareImages(
-                        coilContext = coilContext,
+                        content = shareText?.getOrNull(),
                         pageId = AiutaAnalyticPageId.HISTORY,
-                        productId = controller.activeSKUItem.value.skuId,
+                        productId = controller.activeProductItem.value.id,
                         imageUrls = imageUrls,
-                        watermark = theme.watermark,
+                        watermark = watermarkPainter,
                     )
                 }
             },
@@ -372,43 +353,5 @@ private fun BoxScope.HistoryScreenInterface(
                 )
             },
         )
-    }
-}
-
-@Composable
-private fun BoxScope.HistoryScreenEmpty(
-    modifier: Modifier = Modifier,
-    getGeneratedImages: () -> LazyPagingItems<GeneratedImageUIModel>,
-) {
-    val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
-
-    val generatedImages = getGeneratedImages()
-
-    if (generatedImages.itemCount == 0) {
-        Column(
-            modifier = modifier.background(theme.colors.background),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            theme.icons.recent100?.let {
-                AiutaIcon(
-                    modifier = Modifier.size(100.dp),
-                    icon = it,
-                    contentDescription = null,
-                    tint = theme.colors.tertiary,
-                )
-
-                Spacer(Modifier.height(36.dp))
-            }
-
-            Text(
-                modifier = Modifier.padding(horizontal = 30.dp),
-                text = stringResources.historyEmptyDescription,
-                style = theme.typography.regular,
-                color = theme.colors.primary,
-                textAlign = TextAlign.Center,
-            )
-        }
     }
 }

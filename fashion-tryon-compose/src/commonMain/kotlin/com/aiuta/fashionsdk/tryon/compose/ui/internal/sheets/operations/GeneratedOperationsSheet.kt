@@ -19,7 +19,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -31,57 +30,53 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImagePainter
-import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.LocalGeneratedOperationInteractor
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingUploadedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.controller.GeneratedOperationsSheetListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.itemContentType
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
 
 @Composable
 internal fun ColumnScope.GeneratedOperationsSheet() {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val scope = rememberCoroutineScope()
+
+    val uploadsHistoryFeature = strictProvideFeature<AiutaImageSelectorUploadsHistoryFeature>()
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =
         Modifier
             .width(148.dp)
             .height(254.dp)
-            .clip(theme.shapes.previewImage)
+            .clip(theme.image.shapes.imageSShape)
 
-    val generatedOperations =
-        controller.generatedOperationInteractor
-            .getGeneratedOperationFlow()
-            .collectAsLazyPagingItems()
+    val generatedOperations = controller.generatedOperationInteractor
+        .getGeneratedOperationFlow()
+        .collectAsLazyPagingItems()
 
     sendPickerAnalytic(
         event = AiutaAnalyticsPickerEventType.UPLOADS_HISTORY_OPENED,
@@ -96,9 +91,9 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     Text(
         modifier = Modifier.padding(horizontal = sharedHorizontalPadding),
-        text = stringResources.generatedOperationsSheetPreviously,
-        style = theme.typography.titleM,
-        color = theme.colors.primary,
+        text = uploadsHistoryFeature.strings.uploadsHistoryTitle,
+        style = theme.label.typography.titleM,
+        color = theme.color.primary,
         fontWeight = FontWeight.Bold,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
@@ -124,26 +119,36 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                     generatedOperation = generatedOperation,
                     onClick = {
                         with(controller) {
-                            // Analytic
-                            sendPickerAnalytic(
-                                event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
-                                pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                            )
-
-                            // Host notification
-                            val image = generatedOperation.urlImages.firstOrNull()
-                            image?.let {
-                                aiutaConfiguration.dataProvider?.selectUploadedImageAction?.invoke(
-                                    AiutaHistoryImage(id = image.imageId, url = image.imageUrl),
+                            scope.launch {
+                                // Analytic
+                                sendPickerAnalytic(
+                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
+                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
                                 )
-                            }
 
-                            // Change
-                            updateActiveOperationOrSetEmpty(generatedOperation)
-                            // Activate auto try on
-                            activateAutoTryOn()
-                            // Move back
-                            bottomSheetNavigator.hide()
+                                // Host notification
+                                val image = generatedOperation.urlImages.firstOrNull()
+                                image?.let {
+                                    runCatching {
+                                        uploadsHistoryFeature
+                                            .dataProvider
+                                            ?.selectUploadedImageAction
+                                            ?.invoke(
+                                                AiutaHistoryImage(
+                                                    id = image.imageId,
+                                                    url = image.imageUrl,
+                                                ),
+                                            )
+                                    }
+                                }
+
+                                // Change
+                                updateActiveOperationOrSetEmpty(generatedOperation)
+                                // Activate auto try on
+                                activateAutoTryOn()
+                                // Move back
+                                bottomSheetNavigator.hide()
+                            }
                         }
                     },
                 )
@@ -155,23 +160,18 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     FashionButton(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = sharedHorizontalPadding),
-        text =
-            if (aiutaConfiguration.toggles.isTryonWithModelsAvailable) {
-                stringResources.generatedOperationsSheetUploadNewButtonWithModels
-            } else {
-                stringResources.generatedOperationsSheetUploadNewButton
-            },
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = sharedHorizontalPadding),
+        text = uploadsHistoryFeature.strings.uploadsHistoryButtonNewPhoto,
         style = FashionButtonStyles.primaryStyle(theme),
         size = FashionButtonSizes.lSize(),
         onClick = {
             controller.bottomSheetNavigator.change(
                 newSheetScreen =
-                    NavigationBottomSheetScreen.ImagePicker(
-                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                    ),
+                NavigationBottomSheetScreen.ImagePicker(
+                    originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                ),
             )
         },
     )
@@ -183,125 +183,108 @@ private fun OperationItem(
     generatedOperation: GeneratedOperationUIModel,
     onClick: () -> Unit,
 ) {
-    val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
     val scope = rememberCoroutineScope()
 
-    val imageState =
-        remember {
-            mutableStateOf<AsyncImagePainter.State>(AsyncImagePainter.State.Empty)
+    val isLoadingScrimVisible = remember {
+        derivedStateOf {
+            loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
         }
+    }
 
-    val isLoadingScrimVisible =
-        remember {
-            derivedStateOf {
-                loadingActionsController.loadingUploadsHolder.contain(generatedOperation)
-            }
+    val isTrashVisible = remember {
+        derivedStateOf {
+            !isLoadingScrimVisible.value
         }
-
-    val isTrashVisible =
-        remember {
-            derivedStateOf {
-                !isLoadingScrimVisible.value
-            }
-        }
+    }
 
     Box(
         modifier = modifier.clickableUnindicated(!isLoadingScrimVisible.value) { onClick() },
     ) {
-        SubcomposeAsyncImage(
-            modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
-            model =
-                ImageRequest.Builder(coilContext)
-                    .data(generatedOperation.sourceImageUrls.firstOrNull())
-                    .crossfade(true)
-                    .build(),
-            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
-            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
-            onError = { imageState.value = it },
+        AiutaImage(
+            modifier = Modifier
+                .clipToBounds()
+                .fillMaxSize(),
+            imageUrl = generatedOperation.sourceImageUrls.firstOrNull(),
+            shape = theme.image.shapes.imageSShape,
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
 
         AnimatedVisibility(
-            modifier =
-                Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(8.dp),
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(8.dp),
             visible = isTrashVisible.value,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
             AiutaIcon(
-                modifier =
-                    Modifier
-                        .size(24.dp)
-                        .clickableUnindicated {
-                            scope.launch {
-                                with(controller) {
-                                    sendPickerAnalytic(
-                                        event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
-                                        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickableUnindicated {
+                        scope.launch {
+                            with(controller) {
+                                sendPickerAnalytic(
+                                    event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
+                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                )
+
+                                // Add operation to loading list
+                                loadingActionsController.loadingUploadsHolder.put(
+                                    generatedOperation,
+                                )
+
+                                // Delete operations
+                                generatedOperationInteractor
+                                    .deleteOperation(generatedOperation)
+                                    .listenErrorDeletingUploadedImages(
+                                        controller = controller,
+                                        loadingActionsController = loadingActionsController,
                                     )
 
-                                    // Add operation to loading list
-                                    loadingActionsController.loadingUploadsHolder.put(
-                                        generatedOperation,
-                                    )
-
-                                    // Delete operations
-                                    generatedOperationInteractor.deleteOperation(generatedOperation)
-                                    // If local mode - let's remove from loading
-                                    generatedOperationInteractor.cleanLoadingUploads(
-                                        cleanAction = {
-                                            loadingActionsController.loadingUploadsHolder.remove(
-                                                generatedOperation,
-                                            )
-                                        },
-                                    )
-
-                                    // If active images is deleted and it's local mode - let's get new first
-                                    val isLocalMode =
-                                        generatedOperationInteractor is LocalGeneratedOperationInteractor
-                                    val isActiveOperationDeleted =
-                                        lastSavedOperation.value?.operationId == generatedOperation.operationId
-                                    if (isActiveOperationDeleted && isLocalMode) {
-                                        // Try to get new first
-                                        val newFirstOperation =
-                                            generatedOperationInteractor
-                                                .getFirstGeneratedOperation()
-
-                                        // Try to update with new or set as empty
-                                        updateActiveOperationOrSetEmpty(newFirstOperation)
+                                // If local - let's remove from loading
+                                val isLocalMode =
+                                    generatedOperationInteractor.cleanLoadingUploads {
+                                        loadingActionsController.loadingUploadsHolder.remove(
+                                            generatedOperation,
+                                        )
                                     }
+
+                                // If active images is deleted and it's local  - let's get new first
+                                val isActiveOperationDeleted =
+                                    lastSavedOperation.value?.operationId == generatedOperation.operationId
+                                if (isActiveOperationDeleted && isLocalMode) {
+                                    // Try to get new first
+                                    val newFirstOperation =
+                                        generatedOperationInteractor.getFirstGeneratedOperation()
+
+                                    // Try to update with new or set as empty
+                                    updateActiveOperationOrSetEmpty(newFirstOperation)
                                 }
                             }
-                        },
-                icon = theme.icons.trash24,
+                        }
+                    },
+                icon = theme.selectionSnackbar.icons.trash24,
                 contentDescription = null,
-                tint = theme.colors.background,
+                tint = theme.color.background,
             )
         }
 
         AnimatedVisibility(
-            modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize(),
+            modifier = Modifier
+                .clipToBounds()
+                .fillMaxSize(),
             visible = isLoadingScrimVisible.value,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            LoadingProgress(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .background(Color.Black.copy(alpha = 0.5f)),
+            AiutaBoxedLoadingIcon(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.5f)),
                 circleColor = Color.White,
             )
         }

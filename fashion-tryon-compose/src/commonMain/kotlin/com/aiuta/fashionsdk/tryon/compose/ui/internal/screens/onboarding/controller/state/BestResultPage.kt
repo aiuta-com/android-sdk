@@ -1,20 +1,13 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state
 
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 
 internal class BestResultPage(
-    aiutaImages: AiutaImages,
+    bestResultsPageFeature: AiutaOnboardingBestResultsPageFeature,
 ) : OnboardingState {
-    val goodImages: List<AiutaImage> =
-        listOf(
-            aiutaImages.onboardingImages.onboardingBestResulGoodImage1,
-            aiutaImages.onboardingImages.onboardingBestResulGoodImage2,
-        )
+    override val pageTitle: String? = bestResultsPageFeature.strings.onboardingBestResultsPageTitle
 
-    val badImages: List<AiutaImage> =
-        listOf(
-            aiutaImages.onboardingImages.onboardingBestResulBadImage1,
-            aiutaImages.onboardingImages.onboardingBestResulBadImage2,
-        )
+    val goodImages: List<AiutaDrawableResource> = bestResultsPageFeature.images.onboardingBestResultsGood
+    val badImages: List<AiutaDrawableResource> = bestResultsPageFeature.images.onboardingBestResultsBad
 }

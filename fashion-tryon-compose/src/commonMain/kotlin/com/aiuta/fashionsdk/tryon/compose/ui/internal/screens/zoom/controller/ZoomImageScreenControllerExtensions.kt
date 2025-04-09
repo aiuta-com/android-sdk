@@ -21,26 +21,22 @@ internal fun ZoomImageController.changeZoomState(newZoomState: ZoomImageState) {
 }
 
 // Transition
-internal fun ZoomImageController.activateTransition() =
-    changeTransitionState(
-        TransitionState.ACTIVE,
-    )
+internal fun ZoomImageController.activateTransition() = changeTransitionState(
+    TransitionState.ACTIVE,
+)
 
-internal fun ZoomImageController.deactivateTransition() =
-    changeTransitionState(
-        TransitionState.IDLE,
-    )
+internal fun ZoomImageController.deactivateTransition() = changeTransitionState(
+    TransitionState.IDLE,
+)
 
-internal fun ZoomImageController.isTransitionActive() =
-    transitionState.value == TransitionState.ACTIVE
+internal fun ZoomImageController.isTransitionActive() = transitionState.value == TransitionState.ACTIVE
 
 @Composable
-internal fun ZoomImageController.isTransitionActiveListener() =
-    remember(transitionState.value) {
-        derivedStateOf {
-            isTransitionActive()
-        }
+internal fun ZoomImageController.isTransitionActiveListener() = remember(transitionState.value) {
+    derivedStateOf {
+        isTransitionActive()
     }
+}
 
 internal fun ZoomImageController.changeTransitionState(newTransitionState: TransitionState) {
     transitionState.value = newTransitionState
@@ -62,10 +58,10 @@ internal fun ZoomImageController.closeZoomImageScreen(scope: CoroutineScope) {
         imageZoomState.toggleScale(
             targetScale = 1f,
             position =
-                Offset(
-                    x = maxContentWidth / 2f,
-                    y = maxContentHeight / 2f,
-                ),
+            Offset(
+                x = maxContentWidth / 2f,
+                y = maxContentHeight / 2f,
+            ),
         )
     }
     deactivateTransition()

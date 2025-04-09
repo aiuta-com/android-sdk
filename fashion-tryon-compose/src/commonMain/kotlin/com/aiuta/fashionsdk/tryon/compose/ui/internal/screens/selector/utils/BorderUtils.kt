@@ -19,29 +19,28 @@ internal fun Modifier.dashedBorder(
     dashWidth: Dp = 4.dp,
     gapWidth: Dp = 4.dp,
     cap: StrokeCap = StrokeCap.Round,
-): Modifier =
-    this.drawWithContent {
-        val outline = shape.createOutline(size, layoutDirection, this)
+): Modifier = this.drawWithContent {
+    val outline = shape.createOutline(size, layoutDirection, this)
 
-        val path = Path()
-        path.addOutline(outline)
+    val path = Path()
+    path.addOutline(outline)
 
-        val stroke =
-            Stroke(
-                cap = cap,
-                width = strokeWidth.toPx(),
-                pathEffect =
-                    PathEffect.dashPathEffect(
-                        intervals = floatArrayOf(dashWidth.toPx(), gapWidth.toPx()),
-                        phase = 0f,
-                    ),
-            )
-
-        this.drawContent()
-
-        drawPath(
-            path = path,
-            style = stroke,
-            color = color,
+    val stroke =
+        Stroke(
+            cap = cap,
+            width = strokeWidth.toPx(),
+            pathEffect =
+            PathEffect.dashPathEffect(
+                intervals = floatArrayOf(dashWidth.toPx(), gapWidth.toPx()),
+                phase = 0f,
+            ),
         )
-    }
+
+    this.drawContent()
+
+    drawPath(
+        path = path,
+        style = stroke,
+        color = color,
+    )
+}

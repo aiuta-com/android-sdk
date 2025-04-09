@@ -13,15 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.ToastErrorState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.hideErrorState
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 internal const val DEFAULT_SHOWING_DELAY = 3000L
 
@@ -31,22 +30,21 @@ internal fun NavigationErrorCard(
     errorState: ToastErrorState,
 ) {
     val controller = LocalController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
     val theme = LocalTheme.current
 
     Row(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.error,
-                    shape = theme.shapes.buttonM,
-                )
-                .padding(16.dp),
+        modifier
+            .background(
+                color = theme.errorSnackbar.colors.errorBackground,
+                shape = theme.button.shapes.buttonMShape,
+            )
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         AiutaIcon(
             modifier = Modifier.size(36.dp),
-            icon = theme.icons.error36,
+            icon = theme.errorSnackbar.icons.error36,
             contentDescription = null,
             tint = Color.Unspecified,
         )
@@ -55,22 +53,21 @@ internal fun NavigationErrorCard(
 
         Text(
             modifier = Modifier.weight(1f),
-            text = errorState.message ?: stringResources.defaultErrorMessage,
-            style = theme.typography.chips,
-            color = theme.colors.onError,
+            text = errorState.message ?: theme.errorSnackbar.strings.defaultErrorMessage,
+            style = theme.label.typography.subtle,
+            color = theme.errorSnackbar.colors.errorPrimary,
             overflow = TextOverflow.Ellipsis,
         )
 
         Spacer(Modifier.width(16.dp))
 
         FashionButton(
-            text = stringResources.tryAgain,
-            style =
-                FashionButtonStyles.secondaryStyle(
-                    backgroundColor = theme.colors.background,
-                    contentColor = theme.colors.primary,
-                    borderColor = Color.Transparent,
-                ),
+            text = theme.errorSnackbar.strings.tryAgainButton,
+            style = FashionButtonStyles.secondaryStyle(
+                backgroundColor = theme.color.background,
+                contentColor = theme.color.primary,
+                borderColor = Color.Transparent,
+            ),
             size = FashionButtonSizes.mSize(),
             onClick = {
                 errorState.onRetry()

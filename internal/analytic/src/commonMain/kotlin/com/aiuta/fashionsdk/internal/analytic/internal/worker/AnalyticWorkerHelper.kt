@@ -13,10 +13,8 @@ internal expect suspend fun createAnalyticEnvironment(
 internal suspend fun createAnalyticCompletedEvent(
     platformContext: AiutaPlatformContext,
     event: InternalAnalyticEvent,
-): AnalyticCompletedEvent {
-    return AnalyticCompletedEvent(
-        data = event,
-        environment = createAnalyticEnvironment(platformContext),
-        localDateTime = currentLocalDateTime(),
-    )
-}
+): AnalyticCompletedEvent = AnalyticCompletedEvent(
+    data = event,
+    environment = createAnalyticEnvironment(platformContext),
+    localDateTime = currentLocalDateTime(),
+)

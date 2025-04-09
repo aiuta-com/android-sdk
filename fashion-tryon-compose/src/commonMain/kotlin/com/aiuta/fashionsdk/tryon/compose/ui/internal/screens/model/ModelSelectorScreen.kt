@@ -20,22 +20,24 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.appbar.ModelSelectorAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.content.ModelSelectorShowContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorEmptyModelsErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.error.ModelSelectorGeneralErrorContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.loading.ModelSelectorLoadingContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.controller.initModelSelectorScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
     val dataController = LocalAiutaTryOnDataController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val predefinedModelFeature = strictProvideFeature<AiutaImageSelectorPredefinedModelFeature>()
 
     val screenState =
         remember { mutableStateOf<ModelSelectorScreenState>(ModelSelectorScreenState.Loading) }
@@ -48,22 +50,22 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
         initModelSelectorScreen(
             dataController = dataController,
             screenState = screenState,
-            stringResources = stringResources,
+            predefinedModelCategories = predefinedModelFeature.strings.predefinedModelCategories,
         )
     }
 
     Column(
         modifier =
-            modifier
-                .background(theme.colors.background)
-                .windowInsetsPadding(WindowInsets.navigationBars),
+        modifier
+            .background(theme.color.background)
+            .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ModelSelectorAppBar(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         Spacer(Modifier.height(16.dp))
@@ -90,7 +92,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
                             scope.initModelSelectorScreen(
                                 dataController = dataController,
                                 screenState = screenState,
-                                stringResources = stringResources,
+                                predefinedModelCategories = predefinedModelFeature.strings.predefinedModelCategories,
                                 forceUpdate = true,
                             )
                         },

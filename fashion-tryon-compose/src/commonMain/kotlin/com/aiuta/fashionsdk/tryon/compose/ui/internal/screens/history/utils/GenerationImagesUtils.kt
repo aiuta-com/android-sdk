@@ -5,6 +5,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGenerated
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import kotlinx.coroutines.launch
 
@@ -22,7 +23,12 @@ internal fun FashionTryOnController.deleteGeneratedImages(
             loadingActionsController.loadingGenerationsHolder.putAll(images)
 
             // Delete in db
-            generatedImageInteractor.remove(images)
+            generatedImageInteractor
+                .remove(images)
+                .listenErrorDeletingGeneratedImages(
+                    controller = this@deleteGeneratedImages,
+                    loadingActionsController = loadingActionsController,
+                )
             // Clean, if it local mode
             generatedImageInteractor.cleanLoadingGenerations(
                 cleanAction = {
@@ -34,11 +40,10 @@ internal fun FashionTryOnController.deleteGeneratedImages(
             sessionGenerationInteractor.deleteGenerations(images)
         } catch (e: Exception) {
             showErrorState(
-                errorState =
-                    DeleteGeneratedImagesToastErrorState(
-                        controller = this@deleteGeneratedImages,
-                        loadingActionsController = loadingActionsController,
-                    ),
+                errorState = DeleteGeneratedImagesToastErrorState(
+                    controller = this@deleteGeneratedImages,
+                    loadingActionsController = loadingActionsController,
+                ),
             )
         }
     }

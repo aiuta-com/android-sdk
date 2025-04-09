@@ -35,8 +35,8 @@ kotlin {
         }
         commonMain {
             dependencies {
-                api(projects.fashionCompose)
-                api(projects.fashionTryonCore)
+                api(projects.fashionTryonComposeConfiguration)
+                api(projects.fashionTryonComposeConfigurationUi)
                 api(projects.internal.analytic)
 
                 implementation(compose.material)
@@ -56,6 +56,8 @@ kotlin {
                 implementation(libs.moko.permissions.camera)
                 implementation(libs.moko.permissions.gallery)
                 implementation(libs.moko.compose)
+
+                implementation(projects.fashionTryonComposeUikit)
             }
         }
         appleMain {

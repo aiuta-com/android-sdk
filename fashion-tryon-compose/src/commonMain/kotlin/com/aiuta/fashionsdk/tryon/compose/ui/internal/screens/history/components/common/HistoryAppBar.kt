@@ -8,29 +8,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarSelectAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun HistoryAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
 
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 
     val actionColorCalculation: (Boolean) -> Color = { active ->
         if (active) {
-            theme.colors.primary
+            theme.color.primary
         } else {
-            theme.colors.secondary
+            theme.color.secondary
         }
     }
 
@@ -45,28 +47,27 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
         navigationIcon = {
             AppBarIcon(
                 modifier = Modifier.align(Alignment.CenterStart),
-                icon = theme.icons.back24,
-                color = theme.colors.primary,
+                icon = theme.pageBar.icons.back24,
+                color = theme.color.primary,
                 onClick = controller::navigateBack,
             )
         },
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = stringResources.appBarHistory,
-                style = theme.typography.navbar,
-                color = theme.colors.primary,
+                text = generationsHistoryFeature.strings.generationsHistoryPageTitle,
+                style = theme.pageBar.typography.pageTitle,
+                color = theme.color.primary,
                 textAlign = TextAlign.Center,
             )
         },
         actions = {
             Text(
-                modifier =
-                    Modifier
-                        .align(Alignment.CenterEnd)
-                        .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
-                text = stringResources.appBarSelect,
-                style = theme.typography.navbar,
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
+                text = generationsHistoryFeature.strings.generationsHistoryButtonSelect,
+                style = theme.pageBar.typography.pageTitle,
                 color = selectColorTransition.value,
             )
         },

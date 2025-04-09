@@ -2,12 +2,13 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.painter.Painter
 import coil3.Image
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
+import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.toBitmap
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.generateImageFileName
 import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
@@ -36,53 +37,32 @@ import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIImage
 
-internal actual class ShareManagerV2 {
+internal actual class ShareManagerV2(
+    private val coilContext: PlatformContext,
+) {
     actual suspend fun shareImages(
-        content: String?,
-        pageId: AiutaAnalyticPageId,
-        productId: String?,
-        images: List<AiutaPlatformImage>,
-        watermark: AiutaImage?,
-    ): Result<Unit> {
-        // TODO Add watermark
-        return runCatching {
-            val urls =
-                withContext(Dispatchers.IO) {
-                    images.mapNotNull { image -> saveFile(image.byteArray) }
-                }
-            val activityViewController = UIActivityViewController(urls, null)
-
-            UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
-                activityViewController,
-                animated = true,
-                completion = null,
-            )
-        }
-    }
-
-    actual suspend fun shareImages(
-        coilContext: PlatformContext,
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
         imageUrls: List<String>,
-        watermark: AiutaImage?,
-    ): Result<Unit> {
-        return runCatching {
-            val images =
-                imageUrls.mapNotNull { url ->
-                    val uiimage = urlToUIImage(coilContext, url)
-                    uiimage?.let { AiutaPlatformImage(it) }
-                }
+        watermark: Painter?,
+    ): Result<Unit> = runCatching {
+        val images = imageUrls
+            .mapNotNull { url ->
+                val uiimage = urlToUIImage(url)
+                uiimage?.let { AiutaPlatformImage(it) }
+            }
 
-            shareImages(
-                content = content,
-                pageId = pageId,
-                productId = productId,
-                images = images,
-                watermark = watermark,
-            )
+        val urls = withContext(Dispatchers.IO) {
+            images.mapNotNull { image -> saveFile(image.byteArray) }
         }
+        val activityViewController = UIActivityViewController(urls, null)
+
+        UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
+            activityViewController,
+            animated = true,
+            completion = null,
+        )
     }
 
     @OptIn(ExperimentalForeignApi::class)
@@ -97,22 +77,17 @@ internal actual class ShareManagerV2 {
         return if (saved) NSURL.fileURLWithPath(sharedFile) else null
     }
 
-    private suspend fun urlToUIImage(
-        coilContext: PlatformContext,
-        imageUrl: String,
-    ): UIImage? {
-        return try {
-            val request =
-                ImageRequest.Builder(coilContext)
-                    .data(imageUrl)
-                    .build()
-            val resultImage = SingletonImageLoader.get(coilContext).execute(request).image
+    private suspend fun urlToUIImage(imageUrl: String): UIImage? = try {
+        val request =
+            ImageRequest.Builder(coilContext)
+                .data(imageUrl)
+                .build()
+        val resultImage = SingletonImageLoader.get(coilContext).execute(request).image
 
-            resultImage?.let { convertImage(resultImage) }
-        } catch (e: Exception) {
-            // Failed to resolve bitmap
-            null
-        }
+        resultImage?.let { convertImage(resultImage) }
+    } catch (e: Exception) {
+        // Failed to resolve bitmap
+        null
     }
 
     @OptIn(ExperimentalForeignApi::class)
@@ -149,5 +124,6 @@ internal actual class ShareManagerV2 {
 
 @Composable
 internal actual fun rememberShareManagerV2(): ShareManagerV2 {
-    return remember { ShareManagerV2() }
+    val coilContext = LocalPlatformContext.current
+    return remember { ShareManagerV2(coilContext = coilContext) }
 }

@@ -50,7 +50,7 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
 
             NavigationScreen.Preonboarding -> {
                 PreOnboardingScreen(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = sharedModifier,
                 )
             }
 

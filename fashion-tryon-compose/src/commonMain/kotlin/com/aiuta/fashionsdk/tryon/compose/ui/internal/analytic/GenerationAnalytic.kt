@@ -21,23 +21,23 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
     // Notify internal
     analytic.sendEvent(
         event =
-            SuccessEvent(
-                productId = activeSKUItem.value.skuId,
-                uploadDuration = metadata.uploadDurationSeconds.toDouble(DurationUnit.SECONDS),
-                tryOnDuration = metadata.tryOnDurationSeconds.toDouble(DurationUnit.SECONDS),
-                downloadDuration = downloadDuration.toDouble(DurationUnit.SECONDS),
-                totalDuration = totalDuration.toDouble(DurationUnit.SECONDS),
-            ),
+        SuccessEvent(
+            productId = activeProductItem.value.id,
+            uploadDuration = metadata.uploadDurationSeconds.toDouble(DurationUnit.SECONDS),
+            tryOnDuration = metadata.tryOnDurationSeconds.toDouble(DurationUnit.SECONDS),
+            downloadDuration = downloadDuration.toDouble(DurationUnit.SECONDS),
+            totalDuration = totalDuration.toDouble(DurationUnit.SECONDS),
+        ),
     )
 
     // Notify public
     analytic.sendEvent(
         event =
-            AiutaAnalyticsTryOnEvent(
-                event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
-                pageId = AiutaAnalyticPageId.LOADING,
-                productId = activeSKUItem.value.skuId,
-            ),
+        AiutaAnalyticsTryOnEvent(
+            event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
+            pageId = AiutaAnalyticPageId.LOADING,
+            productId = activeProductItem.value.id,
+        ),
     )
 }
 
@@ -45,20 +45,20 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
     // Notify internal
     analytic.sendEvent(
         event =
-            ErrorEvent(
-                productId = activeSKUItem.value.skuId,
-                error = ErrorType.DOWNLOAD_RESULT_FAILED,
-            ),
+        ErrorEvent(
+            productId = activeProductItem.value.id,
+            error = ErrorType.DOWNLOAD_RESULT_FAILED,
+        ),
     )
 
     // Notify public
     analytic.sendEvent(
         event =
-            AiutaAnalyticsTryOnEvent(
-                event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
-                errorMessage = "Failed to download result",
-                pageId = AiutaAnalyticPageId.LOADING,
-                productId = activeSKUItem.value.skuId,
-            ),
+        AiutaAnalyticsTryOnEvent(
+            event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
+            errorMessage = "Failed to download result",
+            pageId = AiutaAnalyticPageId.LOADING,
+            productId = activeProductItem.value.id,
+        ),
     )
 }

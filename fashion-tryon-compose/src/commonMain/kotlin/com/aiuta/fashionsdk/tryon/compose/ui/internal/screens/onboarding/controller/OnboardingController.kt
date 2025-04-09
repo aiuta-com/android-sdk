@@ -5,58 +5,57 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.toggles.AiutaOnboardingMode
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.AiutaConsentFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
 internal fun rememberOnboardingController(): OnboardingController {
-    val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
-    val configuration = LocalAiutaConfiguration.current
+    val consentFeature = provideFeature<AiutaConsentFeature>()
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
-    val onboardingStatesQueue =
-        remember {
-            when (configuration.toggles.onboardingMode) {
-                AiutaOnboardingMode.STANDARD ->
-                    listOf(
-                        TryOnPage(theme.images),
-                    )
+    val onboardingStatesQueue = remember {
+        val rawOnboardingQueue = mutableListOf<OnboardingState>()
 
-                AiutaOnboardingMode.STANDARD_WITH_CONSENT ->
-                    listOf(
-                        TryOnPage(theme.images),
-                        ConsentPage,
-                    )
+        // Try on page
+        rawOnboardingQueue.add(TryOnPage(onboardingFeature.tryOnPage))
 
-                AiutaOnboardingMode.EXTENDED ->
-                    listOf(
-                        TryOnPage(theme.images),
-                        BestResultPage(theme.images),
-                        ConsentPage,
-                    )
-            }
+        // Best result
+        onboardingFeature.bestResultsPage?.let { bestResultsPageFeature ->
+            rawOnboardingQueue.add(BestResultPage(bestResultsPageFeature))
         }
 
-    val pagerState =
-        rememberPagerState(
-            pageCount = { onboardingStatesQueue.sumOf { it.pageSize() } },
-        )
+        // Consent
+        if (consentFeature is AiutaConsentStandaloneOnboardingPageFeature) {
+            rawOnboardingQueue.add(ConsentPage(consentFeature))
+        }
+
+        rawOnboardingQueue
+    }
+
+    val pagerState = rememberPagerState(
+        pageCount = { onboardingStatesQueue.sumOf { it.pageSize() } },
+    )
     val scope = rememberCoroutineScope()
 
     return remember {
         OnboardingController(
-            supplementPoint = stringResources.onboardingPageConsentSupplementaryPoints,
+            consents =
+            (consentFeature as? AiutaConsentStandaloneOnboardingPageFeature)
+                ?.toUiModels()
+                .orEmpty(),
             onboardingStatesQueue = onboardingStatesQueue,
             pagerState = pagerState,
             scope = scope,
@@ -66,20 +65,25 @@ internal fun rememberOnboardingController(): OnboardingController {
 
 @Immutable
 internal class OnboardingController(
-    supplementPoint: List<String>,
+    consents: List<AiutaConsentUiModel>,
     val onboardingStatesQueue: List<OnboardingState>,
     val pagerState: PagerState,
     internal val scope: CoroutineScope,
 ) {
     // Agreement
-    val isMandatoryAgreementChecked = mutableStateOf(false)
-    val supplementPointsMap =
-        mutableStateMapOf<String, Boolean>(
-            *supplementPoint.map {
-                it to false
-            }.toTypedArray(),
-        )
+    val consentsCheckList = mutableStateListOf(*consents.toTypedArray())
 
     // General state
     val state: MutableState<OnboardingState> = mutableStateOf(onboardingStatesQueue.first())
+}
+
+internal fun AiutaConsentStandaloneOnboardingPageFeature.toUiModels(): List<AiutaConsentUiModel> {
+    val obtainedConsentIds = dataProvider?.obtainedConsentsIds?.value.orEmpty().toSet()
+    val allConsents = data.consents
+    return allConsents.map { consent ->
+        AiutaConsentUiModel(
+            consent = consent,
+            isObtained = obtainedConsentIds.contains(consent.id),
+        )
+    }
 }

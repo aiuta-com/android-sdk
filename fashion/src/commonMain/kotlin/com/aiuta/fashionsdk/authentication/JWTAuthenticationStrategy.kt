@@ -9,4 +9,5 @@ package com.aiuta.fashionsdk.authentication
  */
 public class JWTAuthenticationStrategy(
     public val getJWT: suspend (params: String?) -> String,
+    override val subscriptionId: String,
 ) : AuthenticationStrategy

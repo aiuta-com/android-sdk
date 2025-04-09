@@ -9,29 +9,29 @@ internal fun FashionTryOnController.sendGenerationFeedback(
     optionIndex: Int,
     feedback: String? = null,
 ) {
-    val activeSKUItem = activeSKUItem.value
+    val activeSKUItem = activeProductItem.value
 
     analytic.sendEvent(
         event =
-            AiutaAnalyticsFeedbackEvent(
-                event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
-                negativeFeedbackOptionIndex = optionIndex,
-                negativeFeedbackText = feedback,
-                pageId = AiutaAnalyticPageId.RESULTS,
-                productId = activeSKUItem.skuId,
-            ),
+        AiutaAnalyticsFeedbackEvent(
+            event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
+            negativeFeedbackOptionIndex = optionIndex,
+            negativeFeedbackText = feedback,
+            pageId = AiutaAnalyticPageId.RESULTS,
+            productId = activeSKUItem.id,
+        ),
     )
 }
 
 internal fun FashionTryOnController.sendLikeGenerationFeedback() {
-    val activeSKUItem = activeSKUItem.value
+    val activeSKUItem = activeProductItem.value
 
     analytic.sendEvent(
         event =
-            AiutaAnalyticsFeedbackEvent(
-                event = AiutaAnalyticsFeedbackEventType.POSITIVE,
-                pageId = AiutaAnalyticPageId.RESULTS,
-                productId = activeSKUItem.skuId,
-            ),
+        AiutaAnalyticsFeedbackEvent(
+            event = AiutaAnalyticsFeedbackEventType.POSITIVE,
+            pageId = AiutaAnalyticPageId.RESULTS,
+            productId = activeSKUItem.id,
+        ),
     )
 }

@@ -20,23 +20,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendGenerationFeedback
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen.Feedback) {
+internal fun ColumnScope.FeedbackSheet() {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val feedbackFeature = strictProvideFeature<AiutaTryOnFeedbackFeature>()
+    val feedbackOptions = feedbackFeature.strings.tryOnFeedbackOptions
 
     val sharedModifier =
         Modifier
@@ -60,15 +65,15 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
 
     Text(
         modifier = sharedModifier,
-        text = feedbackData.title,
-        style = theme.typography.titleM,
-        color = theme.colors.primary,
+        text = feedbackFeature.strings.tryOnFeedbackTitle,
+        style = theme.label.typography.titleM,
+        color = theme.color.primary,
         textAlign = TextAlign.Center,
     )
 
     Spacer(Modifier.height(32.dp))
 
-    feedbackData.options.forEachIndexed { index, option ->
+    feedbackOptions.forEachIndexed { index, option ->
         key(option) {
             OptionItem(
                 modifier = sharedModifier,
@@ -79,34 +84,30 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
                 },
             )
 
-            if (index != feedbackData.options.lastIndex) {
+            if (index != feedbackOptions.lastIndex) {
                 Spacer(Modifier.height(12.dp))
             }
         }
     }
 
-    if (feedbackData.isExtraVisible) {
-        feedbackData.extraOption?.let {
-            Spacer(Modifier.height(12.dp))
+    if (isFeatureInitialize<AiutaTryOnFeedbackOtherFeature>()) {
+        val feedbackOtherFeature = strictProvideFeature<AiutaTryOnFeedbackOtherFeature>()
 
-            OptionItem(
-                modifier = sharedModifier,
-                option = it,
-                isSelected = false,
-                onClick = {
-                    feedbackData.extraOptionTitle?.let { extraOptionTitle ->
-                        controller.bottomSheetNavigator.change(
-                            newSheetScreen =
-                                NavigationBottomSheetScreen.ExtraFeedback(
-                                    extraOptionTitle = extraOptionTitle,
-                                    optionIndex = feedbackData.options.size,
-                                    itemIndex = feedbackData.itemIndex,
-                                ),
-                        )
-                    }
-                },
-            )
-        }
+        Spacer(Modifier.height(12.dp))
+
+        OptionItem(
+            modifier = sharedModifier,
+            option = feedbackOtherFeature.strings.otherFeedbackOptionOther,
+            isSelected = false,
+            onClick = {
+                controller.bottomSheetNavigator.change(
+                    newSheetScreen =
+                    NavigationBottomSheetScreen.ExtraFeedback(
+                        optionIndex = feedbackOptions.size,
+                    ),
+                )
+            },
+        )
     }
 
     Spacer(Modifier.height(40.dp))
@@ -119,28 +120,28 @@ internal fun ColumnScope.FeedbackSheet(feedbackData: NavigationBottomSheetScreen
         if (!isVisibleButton) {
             Text(
                 modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .clickableUnindicated {
-                            controller.sendGenerationFeedback(
-                                optionIndex = feedbackData.options.indexOf(selectedOption.value),
-                            )
-                            controller.bottomSheetNavigator.hide()
-                        },
-                text = stringResources.feedbackSheetSkip,
-                style = theme.typography.chips,
-                color = theme.colors.secondary,
+                Modifier
+                    .fillMaxWidth()
+                    .clickableUnindicated {
+                        controller.sendGenerationFeedback(
+                            optionIndex = feedbackOptions.indexOf(selectedOption.value),
+                        )
+                        controller.bottomSheetNavigator.hide()
+                    },
+                text = feedbackFeature.strings.tryOnFeedbackButtonSkip,
+                style = theme.label.typography.subtle,
+                color = theme.color.secondary,
                 textAlign = TextAlign.Center,
             )
         } else {
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResources.feedbackSheetSend,
+                text = feedbackFeature.strings.tryOnFeedbackButtonSend,
                 style = FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.sendGenerationFeedback(
-                        optionIndex = feedbackData.options.indexOf(selectedOption.value),
+                        optionIndex = feedbackOptions.indexOf(selectedOption.value),
                         feedback = selectedOption.value,
                     )
                     controller.bottomSheetNavigator.hide()
@@ -163,42 +164,39 @@ private fun OptionItem(
 
     Box(
         modifier =
-            modifier
-                .border(
-                    width = 2.dp,
-                    color =
-                        if (isSelected) {
-                            theme.colors.primary
-                        } else {
-                            Color.Transparent
-                        },
-                    shape = theme.shapes.buttonM,
-                )
-                .background(
-                    color =
-                        if (isSelected) {
-                            theme.colors.background
-                        } else {
-                            theme.colors.neutral
-                        },
-                    shape = theme.shapes.buttonM,
-                )
-                .clickableUnindicated { onClick() }
-                .padding(
-                    horizontal = 12.dp,
-                    vertical = 10.dp,
-                ),
+        modifier
+            .border(
+                width = 2.dp,
+                color = if (isSelected) {
+                    theme.color.primary
+                } else {
+                    Color.Transparent
+                },
+                shape = theme.button.shapes.buttonSShape,
+            )
+            .background(
+                color = if (isSelected) {
+                    theme.color.background
+                } else {
+                    theme.color.neutral
+                },
+                shape = theme.button.shapes.buttonSShape,
+            )
+            .clickableUnindicated { onClick() }
+            .padding(
+                horizontal = 12.dp,
+                vertical = 10.dp,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = option,
-            style = theme.typography.chips,
-            color =
-                if (isSelected) {
-                    theme.colors.primary
-                } else {
-                    theme.colors.secondary
-                },
+            style = theme.bottomSheet.typography.chipsButton,
+            color = if (isSelected) {
+                theme.color.primary
+            } else {
+                theme.color.secondary
+            },
             textAlign = TextAlign.Center,
         )
     }

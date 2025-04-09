@@ -8,9 +8,6 @@ import androidx.room.TypeConverters
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FeedbackFeatureConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.FitDisclaimerFeatureConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.PoweredByStickerFeatureConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
@@ -18,6 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.Co
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
@@ -25,6 +23,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.Clie
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.ConsentEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 import kotlin.concurrent.Volatile
@@ -36,7 +35,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 12
+internal const val DATABASE_VERSION = 14
 internal const val DATABASE_NAME = "fashionsdk-database"
 
 @Database(
@@ -56,6 +55,7 @@ internal const val DATABASE_NAME = "fashionsdk-database"
 
         // Onboarding saver
         OnboardingEntity::class,
+        ConsentEntity::class,
 
         // Aiuta code checker
         AiutaCodeEntity::class,
@@ -66,9 +66,6 @@ internal const val DATABASE_NAME = "fashionsdk-database"
 @TypeConverters(
     value = [
         // Config
-        PoweredByStickerFeatureConverter::class,
-        FeedbackFeatureConverter::class,
-        FitDisclaimerFeatureConverter::class,
         TryOnModelsCategoriesConverter::class,
     ],
 )
@@ -90,6 +87,8 @@ internal abstract class AppDatabase : RoomDatabase() {
 
     // Onboarding saver
     abstract fun onboardingDao(): OnboardingDao
+
+    abstract fun consentDao(): ConsentDao
 
     // Aiuta code checker
     abstract fun aiutaCodeDao(): AiutaCodeDao
@@ -120,7 +119,7 @@ internal abstract class AppDatabase : RoomDatabase() {
                     val cachedSubscriptionId = aiutaCodeDao.getCodes().firstOrNull()?.subscriptionId
 
                     // Invalidate all records, if we have new Aiuta instance
-                    if (cachedSubscriptionId != aiuta.subscriptionId) {
+                    if (cachedSubscriptionId != aiuta.authenticationStrategy.subscriptionId) {
                         if (cachedSubscriptionId != null) {
                             // Delete all records
                             database.generatedOperationDao().removeAll()
@@ -131,9 +130,9 @@ internal abstract class AppDatabase : RoomDatabase() {
                         // Update code
                         aiutaCodeDao.replaceAll(
                             aiutaCodeEntity =
-                                AiutaCodeEntity(
-                                    subscriptionId = aiuta.subscriptionId,
-                                ),
+                            AiutaCodeEntity(
+                                subscriptionId = aiuta.authenticationStrategy.subscriptionId,
+                            ),
                         )
                     }
                 }

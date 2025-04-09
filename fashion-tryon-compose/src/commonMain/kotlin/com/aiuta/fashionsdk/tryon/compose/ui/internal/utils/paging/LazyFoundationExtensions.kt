@@ -26,14 +26,12 @@ import kotlin.jvm.JvmSuppressWildcards
  */
 internal fun <T : Any> LazyPagingItems<T>.itemKey(
     key: ((item: @JvmSuppressWildcards T) -> Any)? = null,
-): (index: Int) -> Any {
-    return { index ->
-        if (key == null) {
-            getPagingPlaceholderKey(index)
-        } else {
-            val item = peek(index)
-            if (item == null) getPagingPlaceholderKey(index) else key(item)
-        }
+): (index: Int) -> Any = { index ->
+    if (key == null) {
+        getPagingPlaceholderKey(index)
+    } else {
+        val item = peek(index)
+        if (item == null) getPagingPlaceholderKey(index) else key(item)
     }
 }
 
@@ -56,13 +54,11 @@ internal fun <T : Any> LazyPagingItems<T>.itemKey(
  */
 internal fun <T : Any> LazyPagingItems<T>.itemContentType(
     contentType: ((item: @JvmSuppressWildcards T) -> Any?)? = null,
-): (index: Int) -> Any? {
-    return { index ->
-        if (contentType == null) {
-            null
-        } else {
-            val item = peek(index)
-            if (item == null) PagingPlaceholderContentType else contentType(item)
-        }
+): (index: Int) -> Any? = { index ->
+    if (contentType == null) {
+        null
+    } else {
+        val item = peek(index)
+        if (item == null) PagingPlaceholderContentType else contentType(item)
     }
 }

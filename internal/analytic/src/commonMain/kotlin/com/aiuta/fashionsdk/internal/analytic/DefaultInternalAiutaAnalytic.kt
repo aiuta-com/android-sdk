@@ -20,7 +20,7 @@ public object InternalAiutaAnalyticFactory : SynchronizedObject() {
     private var cachedSubscriptionId: String? = null
 
     public fun create(aiuta: Aiuta): InternalAiutaAnalytic {
-        validateCacheInstance(newSubscriptionId = aiuta.subscriptionId)
+        validateCacheInstance(newSubscriptionId = aiuta.authenticationStrategy.subscriptionId)
 
         return instance ?: synchronized(this) {
             instance ?: InternalAiutaAnalyticImpl.getInstance(aiuta).also {
@@ -29,9 +29,7 @@ public object InternalAiutaAnalyticFactory : SynchronizedObject() {
         }
     }
 
-    public fun getInternalAiutaAnalytic(): InternalAiutaAnalytic? {
-        return instance
-    }
+    public fun getInternalAiutaAnalytic(): InternalAiutaAnalytic? = instance
 
     private fun validateCacheInstance(newSubscriptionId: String) {
         // We should remove cache, if we have new instance of api key

@@ -14,26 +14,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.CustomLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.FeedbackFeatureUiModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toTranslatedString
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideFeedbackFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.showThanksFeedbackBlock
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 @Composable
 internal fun ThanksFeedbackBlock(
@@ -41,20 +36,21 @@ internal fun ThanksFeedbackBlock(
     generationResultController: GenerationResultController,
 ) {
     val controller = LocalController.current
-    val dataController = LocalAiutaTryOnDataController.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val feedbackFeature = provideFeature<AiutaTryOnFeedbackFeature>()
 
     val bottomSheetNavigator = controller.bottomSheetNavigator
-    val feedbackData =
-        remember {
-            mutableStateOf<FeedbackFeatureUiModel?>(null)
-        }
-    val gratitudeMessage =
-        (stringResources as? CustomLanguage)?.feedbackSheetGratitude
-            ?: feedbackData.value?.gratitudeMessage?.toTranslatedString()
 
-    LaunchedEffect(Unit) {
-        feedbackData.value = dataController.provideFeedbackFeature()
+    val isVisible = remember(
+        generationResultController.isThanksFeedbackBlockVisible.value,
+    ) {
+        derivedStateOf {
+            val isThanksFeedbackBlockVisible =
+                generationResultController.isThanksFeedbackBlockVisible.value
+            val isFeedbackFeatureAvailable = feedbackFeature != null
+
+            isThanksFeedbackBlockVisible && isFeedbackFeatureAvailable
+        }
     }
 
     LaunchedEffect(bottomSheetNavigator.lastBottomSheetScreen.value) {
@@ -71,14 +67,12 @@ internal fun ThanksFeedbackBlock(
 
     AnimatedVisibility(
         modifier = modifier,
-        visible = generationResultController.isThanksFeedbackBlockVisible.value && gratitudeMessage != null,
+        visible = isVisible.value,
         enter = fadeIn(),
         exit = fadeOut(),
     ) {
-        gratitudeMessage?.let {
-            ThanksFeedbackBlockContent(
-                gratitudeMessage = gratitudeMessage,
-            )
+        feedbackFeature?.let {
+            ThanksFeedbackBlockContent(feedbackFeature = feedbackFeature)
         }
     }
 }
@@ -86,36 +80,36 @@ internal fun ThanksFeedbackBlock(
 @Composable
 private fun ThanksFeedbackBlockContent(
     modifier: Modifier = Modifier,
-    gratitudeMessage: String,
+    feedbackFeature: AiutaTryOnFeedbackFeature,
 ) {
     val theme = LocalTheme.current
 
     Column(
         modifier =
-            modifier
-                .width(168.dp)
-                .background(
-                    color = Color.Black.copy(alpha = 0.8f),
-                    shape = RoundedCornerShape(24.dp),
-                ),
+        modifier
+            .width(168.dp)
+            .background(
+                color = Color.Black.copy(alpha = 0.8f),
+                shape = RoundedCornerShape(24.dp),
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(Modifier.height(45.dp))
 
-        AiutaImage(
+        AiutaIcon(
             modifier = Modifier.size(40.dp),
-            image = theme.images.feedbackThanksImage,
+            icon = feedbackFeature.icons.gratitude40,
             contentDescription = null,
-            contentScale = ContentScale.Fit,
+            tint = Color.Unspecified,
         )
 
         Spacer(Modifier.height(24.dp))
 
         Text(
             modifier = Modifier.padding(horizontal = 24.dp),
-            text = gratitudeMessage,
-            style = theme.typography.regular,
-            color = theme.colors.onDark,
+            text = feedbackFeature.strings.tryOnFeedbackGratitudeText,
+            style = theme.label.typography.regular,
+            color = theme.color.onDark,
             textAlign = TextAlign.Center,
         )
 

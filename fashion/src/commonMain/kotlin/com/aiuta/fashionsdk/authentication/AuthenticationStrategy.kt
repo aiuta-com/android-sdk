@@ -11,4 +11,6 @@ package com.aiuta.fashionsdk.authentication
  * - [ApiKeyAuthenticationStrategy]: Uses an API key for authentication.
  * - [JWTAuthenticationStrategy]: Uses JWT tokens for authentication.
  */
-public sealed interface AuthenticationStrategy
+public sealed interface AuthenticationStrategy {
+    public val subscriptionId: String
+}

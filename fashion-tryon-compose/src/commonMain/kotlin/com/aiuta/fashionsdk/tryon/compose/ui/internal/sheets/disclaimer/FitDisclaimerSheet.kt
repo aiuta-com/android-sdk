@@ -10,24 +10,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
-internal fun ColumnScope.FitDisclaimerSheet(text: String) {
+internal fun ColumnScope.FitDisclaimerSheet() {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
-    val sharedModifier =
-        Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+    val fitDisclaimerFeature = strictProvideFeature<AiutaTryOnFitDisclaimerFeature>()
+
+    val sharedModifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 16.dp)
 
     SheetDivider()
 
@@ -35,9 +36,9 @@ internal fun ColumnScope.FitDisclaimerSheet(text: String) {
 
     Text(
         modifier = sharedModifier,
-        text = text,
-        style = theme.typography.navbar,
-        color = theme.colors.primary,
+        text = fitDisclaimerFeature.strings.tryOnFitDescription,
+        style = theme.pageBar.typography.pageTitle,
+        color = theme.color.primary,
         textAlign = TextAlign.Start,
     )
 
@@ -45,7 +46,7 @@ internal fun ColumnScope.FitDisclaimerSheet(text: String) {
 
     FashionButton(
         modifier = sharedModifier,
-        text = stringResources.close,
+        text = fitDisclaimerFeature.strings.tryOnFitButtonClose,
         style = FashionButtonStyles.secondaryStyle(theme),
         size = FashionButtonSizes.lSize(),
         onClick = {

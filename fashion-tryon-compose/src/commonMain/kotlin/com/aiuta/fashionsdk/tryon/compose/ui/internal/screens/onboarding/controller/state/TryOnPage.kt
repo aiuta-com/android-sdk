@@ -1,47 +1,38 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.images.AiutaImages
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 internal class TryOnPage(
-    aiutaImages: AiutaImages,
-) : OnboardingState, Iterable<TryOnPage.InternalPage> {
+    tryOnPageFeature: AiutaOnboardingTryOnPageFeature,
+) : OnboardingState,
+    Iterable<TryOnPage.InternalPage> {
     @Immutable
     data class InternalPage(
-        val mainImage: AiutaImage,
-        val itemImage: AiutaImage,
+        val mainImage: AiutaDrawableResource,
+        val itemImage: AiutaDrawableResource,
     ) {
         @OptIn(ExperimentalUuidApi::class)
         internal val uniqueGeneratedId: String = Uuid.random().toString()
     }
 
     val internalPages by lazy {
-        listOf(
+        tryOnPageFeature.images.onboardingTryOnItems.map { item ->
             InternalPage(
-                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage1,
-                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage1,
-            ),
-            InternalPage(
-                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage2,
-                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage2,
-            ),
-            InternalPage(
-                mainImage = aiutaImages.onboardingImages.onboardingTryOnMainImage3,
-                itemImage = aiutaImages.onboardingImages.onboardingTryOnItemImage3,
-            ),
-        )
+                mainImage = item.itemPhoto,
+                itemImage = item.itemPreview,
+            )
+        }
     }
 
-    override fun iterator(): Iterator<InternalPage> {
-        return internalPages.iterator()
-    }
+    override fun iterator(): Iterator<InternalPage> = internalPages.iterator()
 
-    override fun pageSize(): Int {
-        return internalPages.size
-    }
+    override val pageTitle: String? = tryOnPageFeature.strings.onboardingTryOnPageTitle
+
+    override fun pageSize(): Int = internalPages.size
 
     companion object {
         const val INTERNAL_PAGES_SIZE = 3

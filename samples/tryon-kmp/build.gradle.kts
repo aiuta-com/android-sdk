@@ -52,8 +52,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(projects.fashionTryonCompose)
-            implementation(projects.fashionTryonImages)
-            implementation(projects.fashionTryonIcons)
+            implementation(projects.fashionTryonComposeDefaults)
 
             implementation(compose.runtime)
             implementation(compose.foundation)

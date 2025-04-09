@@ -9,8 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun TextButton(
@@ -24,21 +24,21 @@ internal fun TextButton(
 
     Box(
         modifier =
-            modifier
-                .background(
-                    color = backgroundColor,
-                    shape = theme.shapes.buttonM,
-                )
-                .clickableUnindicated { onClick() }
-                .padding(
-                    horizontal = 16.dp,
-                    vertical = 8.dp,
-                ),
+        modifier
+            .background(
+                color = backgroundColor,
+                shape = theme.button.shapes.buttonMShape,
+            )
+            .clickableUnindicated { onClick() }
+            .padding(
+                horizontal = 16.dp,
+                vertical = 8.dp,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = text,
-            style = theme.typography.smallButton,
+            style = theme.button.typography.buttonS,
             color = textColor,
         )
     }

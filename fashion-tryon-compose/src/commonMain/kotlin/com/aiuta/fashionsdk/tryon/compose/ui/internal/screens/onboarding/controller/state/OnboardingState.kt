@@ -4,7 +4,7 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 internal sealed interface OnboardingState {
-    fun pageSize(): Int {
-        return 1
-    }
+    val pageTitle: String?
+
+    fun pageSize(): Int = 1
 }

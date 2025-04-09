@@ -151,16 +151,15 @@ private suspend fun AwaitPointerEventScope.forEachPointerEventUntilReleased(
  */
 private suspend fun AwaitPointerEventScope.awaitSecondDown(
     firstUp: PointerInputChange,
-): PointerInputChange? =
-    withTimeoutOrNull(viewConfiguration.doubleTapTimeoutMillis) {
-        val minUptime = firstUp.uptimeMillis + viewConfiguration.doubleTapMinTimeMillis
-        var change: PointerInputChange
-        // The second tap doesn't count if it happens before DoubleTapMinTime of the first tap
-        do {
-            change = awaitFirstDown()
-        } while (change.uptimeMillis < minUptime)
-        change
-    }
+): PointerInputChange? = withTimeoutOrNull(viewConfiguration.doubleTapTimeoutMillis) {
+    val minUptime = firstUp.uptimeMillis + viewConfiguration.doubleTapMinTimeMillis
+    var change: PointerInputChange
+    // The second tap doesn't count if it happens before DoubleTapMinTime of the first tap
+    do {
+        change = awaitFirstDown()
+    } while (change.uptimeMillis < minUptime)
+    change
+}
 
 /**
  * Consume event if the position is changed.

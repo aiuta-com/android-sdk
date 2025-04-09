@@ -23,15 +23,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.changeInternalTryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
 internal fun TryOnPageContent(
@@ -39,7 +40,7 @@ internal fun TryOnPageContent(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val stringResources = LocalAiutaTryOnStringResources.current
+    val tryOnPageFeature = strictProvideFeature<AiutaOnboardingTryOnPageFeature>()
 
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
@@ -63,11 +64,11 @@ internal fun TryOnPageContent(
     ) {
         ImagesBlock(
             modifier =
-                Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .fillMaxWidth()
-                    .weight(0.65f)
-                    .padding(horizontal = 20.dp),
+            Modifier
+                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth()
+                .weight(0.65f)
+                .padding(horizontal = 20.dp),
             currentPageTransition = currentPageTransition,
             onboardingController = onboardingController,
             state = state,
@@ -75,11 +76,11 @@ internal fun TryOnPageContent(
 
         CentredTextBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .weight(0.35f),
-            title = stringResources.onboardingPageTryonTopic,
-            subtitle = stringResources.onboardingPageTryonSubtopic,
+            Modifier
+                .fillMaxWidth()
+                .weight(0.35f),
+            title = tryOnPageFeature.strings.onboardingTryOnTitle,
+            subtitle = tryOnPageFeature.strings.onboardingTryOnDescription,
         )
     }
 }
@@ -91,7 +92,7 @@ private fun ImagesBlock(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val theme = LocalTheme.current
+    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
     Box(
         modifier = modifier,
@@ -99,16 +100,16 @@ private fun ImagesBlock(
     ) {
         currentPageTransition.AnimatedContent(
             modifier =
-                Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(0.8f),
+            Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(0.8f),
             transitionSpec = { fadeIn() togetherWith fadeOut() },
         ) { page ->
             AiutaImage(
                 modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .clip(theme.shapes.mainImage),
+                Modifier
+                    .fillMaxSize()
+                    .clip(onboardingFeature.shapes.onboardingImageLShape),
                 image = page.mainImage,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
@@ -117,9 +118,9 @@ private fun ImagesBlock(
 
         Column(
             modifier =
-                Modifier
-                    .align(Alignment.CenterStart)
-                    .width(90.dp),
+            Modifier
+                .align(Alignment.CenterStart)
+                .width(90.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {

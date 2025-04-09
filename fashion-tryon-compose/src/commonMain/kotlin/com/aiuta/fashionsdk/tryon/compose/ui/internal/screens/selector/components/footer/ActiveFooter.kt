@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.components.footer
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -24,22 +23,23 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
-import coil3.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils.startGeneration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.shadow.dropShadow
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
@@ -48,7 +48,8 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val aiutaConfiguration = LocalAiutaConfiguration.current
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     Column(
         modifier = modifier,
@@ -58,53 +59,46 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 
         Column(
             modifier =
-                Modifier
-                    .dropShadow(
-                        shape = theme.shapes.bottomSheet,
-                        color = theme.colors.primary.copy(alpha = 0.04f),
-                        blur = 15.dp,
-                        offsetY = (-10).dp,
-                    )
-                    .background(
-                        color = theme.colors.background,
-                        shape = theme.shapes.bottomSheet,
-                    )
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .dropShadow(
+                    shape = theme.bottomSheet.shapes.bottomSheetShape,
+                    color = theme.color.primary.copy(alpha = 0.04f),
+                    blur = 15.dp,
+                    offsetY = (-10).dp,
+                )
+                .background(
+                    color = theme.color.background,
+                    shape = theme.bottomSheet.shapes.bottomSheetShape,
+                )
+                .padding(horizontal = 16.dp),
         ) {
             Spacer(Modifier.height(16.dp))
 
-            SKUBlock(
-                modifier =
-                    Modifier
-                        .height(40.dp)
-                        .fillMaxWidth(),
+            ProductBlock(
+                modifier = Modifier
+                    .height(40.dp)
+                    .fillMaxWidth(),
             )
 
             Spacer(Modifier.height(24.dp))
 
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResources.tryOn,
-                style =
-                    if (theme.gradients.tryOnButtonBackground.isNotEmpty()) {
-                        FashionButtonStyles.gradientColors(
-                            contentColor = theme.colors.onDark,
-                            gradientBackground =
-                                Brush.horizontalGradient(
-                                    theme.gradients.tryOnButtonBackground,
-                                ),
-                        )
-                    } else {
-                        FashionButtonStyles.primaryStyle(theme)
-                    },
+                text = tryOnFeature.strings.tryOnButtonTryOn,
+                style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
+                    FashionButtonStyles.gradientColors(
+                        contentColor = theme.color.onDark,
+                        gradientBackground = Brush.horizontalGradient(tryOnButtonGradient),
+                    )
+                } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                icon = theme.icons.magic20,
+                icon = tryOnFeature.icons.magic20,
                 onClick = {
                     controller.startGeneration(
                         aiutaConfiguration = aiutaConfiguration,
                         coilContext = coilContext,
                         dialogController = dialogController,
-                        stringResources = stringResources,
+                        tryOnFeatureStrings = tryOnFeature.strings,
                         origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
                 },
@@ -116,40 +110,39 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun SKUBlock(modifier: Modifier = Modifier) {
+private fun ProductBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
+    val activeSKUItem = controller.activeProductItem.value
     val sharedCorner = RoundedCornerShape(size = 8.dp)
 
     Row(
-        modifier =
-            modifier
-                .clickableUnindicated {
-                    controller.bottomSheetNavigator.show(
-                        NavigationBottomSheetScreen.SKUInfo(
-                            primaryButtonState = NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState.ADD_TO_CART,
-                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                            skuItem = activeSKUItem,
-                        ),
-                    )
-                },
+        modifier = modifier.clickableUnindicated {
+            controller.bottomSheetNavigator.show(
+                NavigationBottomSheetScreen.ProductInfo(
+                    primaryButtonState = NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState.ADD_TO_CART,
+                    originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    productItem = activeSKUItem,
+                ),
+            )
+        },
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Image(
-            modifier =
-                Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(0.7f)
-                    .border(
-                        width = 1.dp,
-                        color = theme.colors.neutral2,
-                        shape = sharedCorner,
-                    )
-                    .clip(sharedCorner),
-            painter = rememberAsyncImagePainter(activeSKUItem.imageUrls.firstOrNull()),
+        AiutaImage(
+            modifier = Modifier
+                .fillMaxHeight()
+                .aspectRatio(0.7f)
+                .border(
+                    width = 1.dp,
+                    color = theme.color.border,
+                    shape = sharedCorner,
+                )
+                .clip(sharedCorner),
+            imageUrl = activeSKUItem.imageUrls.firstOrNull(),
+            shape = sharedCorner,
             contentDescription = null,
             contentScale = ContentScale.Crop,
         )
@@ -162,8 +155,8 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = activeSKUItem.store,
-                style = theme.typography.brandName,
-                color = theme.colors.primary,
+                style = theme.productBar.typography.brand,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
 
@@ -171,8 +164,8 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
             Text(
                 text = activeSKUItem.description,
-                style = theme.typography.productName,
-                color = theme.colors.primary,
+                style = theme.productBar.typography.product,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
         }
@@ -181,12 +174,12 @@ private fun SKUBlock(modifier: Modifier = Modifier) {
 
         AiutaIcon(
             modifier =
-                Modifier
-                    .size(16.dp)
-                    .align(Alignment.CenterVertically),
-            icon = theme.icons.arrow16,
+            Modifier
+                .size(16.dp)
+                .align(Alignment.CenterVertically),
+            icon = tryOnFeature.icons.arrow16,
             contentDescription = null,
-            tint = theme.colors.neutral3,
+            tint = theme.color.outline,
         )
     }
 }

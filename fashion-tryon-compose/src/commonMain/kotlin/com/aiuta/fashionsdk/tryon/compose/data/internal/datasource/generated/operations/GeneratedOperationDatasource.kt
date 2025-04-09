@@ -18,65 +18,51 @@ internal class GeneratedOperationDatasource(
     private val sourceImageDao: SourceImageDao,
 ) {
     // Combined operation
-    fun pagingGeneratedOperationWithImagesSource(): PagingSource<Int, GeneratedOperationWithImages> {
-        return generatedOperationDao.pagingGeneratedOperationWithImagesSource()
-    }
+    fun pagingGeneratedOperationWithImagesSource(): PagingSource<Int, GeneratedOperationWithImages> = generatedOperationDao.pagingGeneratedOperationWithImagesSource()
 
-    suspend fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages? {
-        return withContext(Dispatchers.IO) {
-            generatedOperationDao.getFirstGeneratedOperationWithImages()
-        }
+    suspend fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages? = withContext(Dispatchers.IO) {
+        generatedOperationDao.getFirstGeneratedOperationWithImages()
     }
 
     // Raw operation
-    suspend fun createOperation(): GeneratedOperationEntity {
-        return withContext(Dispatchers.IO) {
-            val newOperation = GeneratedOperationEntity()
-            generatedOperationDao.insertOperation(newOperation)
+    suspend fun createOperation(): GeneratedOperationEntity = withContext(Dispatchers.IO) {
+        val newOperation = GeneratedOperationEntity()
+        generatedOperationDao.insertOperation(newOperation)
 
-            newOperation
-        }
+        newOperation
     }
 
-    suspend fun deleteOperation(operationId: String) {
-        return withContext(Dispatchers.IO) {
-            generatedOperationDao.deleteOperation(operationId)
-            sourceImageDao.deleteImages(operationId)
-        }
+    suspend fun deleteOperation(operationId: String) = withContext(Dispatchers.IO) {
+        generatedOperationDao.deleteOperation(operationId)
+        sourceImageDao.deleteImages(operationId)
     }
 
-    fun countGeneratedOperation(): Flow<Int> {
-        return generatedOperationDao.countGeneratedOperation()
-    }
+    fun countGeneratedOperation(): Flow<Int> = generatedOperationDao.countGeneratedOperation()
 
     // Source images
     suspend fun createImage(
         imageId: String,
         imageUrl: String,
         operationId: String,
-    ): SourceImageEntity {
-        return withContext(Dispatchers.IO) {
-            val newSourceImage =
-                SourceImageEntity(
-                    id = imageId,
-                    operationId = operationId,
-                    imageUrl = imageUrl,
-                )
-            val rowId = sourceImageDao.insertImage(sourceImage = newSourceImage)
+    ): SourceImageEntity = withContext(Dispatchers.IO) {
+        val newSourceImage =
+            SourceImageEntity(
+                id = imageId,
+                operationId = operationId,
+                imageUrl = imageUrl,
+            )
+        val rowId = sourceImageDao.insertImage(sourceImage = newSourceImage)
 
-            sourceImageDao.getImage(sourceImageRowId = rowId)
-        }
+        sourceImageDao.getImage(sourceImageRowId = rowId)
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): GeneratedOperationDatasource {
-            return GeneratedOperationDatasource(
-                generatedOperationDao =
-                    AppDatabase.getInstance(
-                        platformContext,
-                    ).generatedOperationDao(),
-                sourceImageDao = AppDatabase.getInstance(platformContext).sourceImageDao(),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): GeneratedOperationDatasource = GeneratedOperationDatasource(
+            generatedOperationDao =
+            AppDatabase.getInstance(
+                platformContext,
+            ).generatedOperationDao(),
+            sourceImageDao = AppDatabase.getInstance(platformContext).sourceImageDao(),
+        )
     }
 }

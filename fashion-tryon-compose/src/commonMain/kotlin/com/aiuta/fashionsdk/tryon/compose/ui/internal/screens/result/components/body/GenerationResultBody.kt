@@ -30,21 +30,14 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
-import coil3.request.crossfade
 import coil3.size.SizeResolver.Companion.ORIGINAL
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.SessionImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.ActionBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.body.blocks.FeedbackBlock
@@ -54,6 +47,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.op
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.MAIN_IMAGE_SIZE
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.calculateCurrentOffsetForPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 import kotlin.math.absoluteValue
@@ -102,14 +98,13 @@ internal fun GenerationResultBody(
         generations.getOrNull(index)?.let { sessionImage ->
             PagerItem(
                 modifier =
-                    Modifier
-                        .graphicsLayer {
-                            alpha = alphaItem.value
-                        }
-                        .fillMaxWidth()
-                        .fillMaxHeight(heightFraction.value),
+                Modifier
+                    .graphicsLayer {
+                        alpha = alphaItem.value
+                    }
+                    .fillMaxWidth()
+                    .fillMaxHeight(heightFraction.value),
                 sessionImage = sessionImage,
-                itemIndex = index,
                 generationResultController = generationResultController,
                 pageOffset = pageOffset,
             )
@@ -121,22 +116,14 @@ internal fun GenerationResultBody(
 private fun PagerItem(
     modifier: Modifier = Modifier,
     sessionImage: SessionImageUIModel,
-    itemIndex: Int,
     generationResultController: GenerationResultController,
     pageOffset: State<Float>,
 ) {
     val controller = LocalController.current
     val coilContext = LocalPlatformContext.current
-    val density = LocalDensity.current
     val theme = LocalTheme.current
 
-    val sharedCornerRadius =
-        with(density) {
-            theme.shapes.mainImage.topStart.toPx(
-                Size.Unspecified,
-                density,
-            ).toDp()
-        }
+    val sharedCornerRadius = theme.image.shapes.imageL
 
     val hazeState = remember { HazeState() }
     var parentImageOffset by remember { mutableStateOf(Offset.Unspecified) }
@@ -146,41 +133,34 @@ private fun PagerItem(
         modifier
             .clip(RoundedCornerShape(sharedCornerRadius))
             .background(
-                color = theme.colors.background,
+                color = theme.color.background,
                 shape = RoundedCornerShape(sharedCornerRadius),
             ),
     ) {
-        SubcomposeAsyncImage(
+        AiutaImage(
             modifier =
-                Modifier
-                    .clipToBounds()
-                    .fillMaxSize()
-                    .haze(hazeState)
-                    .onGloballyPositioned { coordinates ->
-                        parentImageOffset = coordinates.positionInRoot()
-                        imageSize = coordinates.size.toSize()
-                    }
-                    .clickableUnindicated {
-                        controller.zoomImageController.openZoomImageScreen(
-                            model =
-                                ZoomImageUiModel(
-                                    imageSize = imageSize,
-                                    initialCornerRadius = sharedCornerRadius,
-                                    imageUrl = sessionImage.imageUrl,
-                                    parentImageOffset = parentImageOffset,
-                                    additionalShareInfo = controller.activeSKUItem.value.additionalShareInfo,
-                                    originPageId = AiutaAnalyticPageId.RESULTS,
-                                ),
-                        )
-                    },
-            model =
-                ImageRequest.Builder(coilContext)
-                    .data(sessionImage.imageUrl)
-                    .size(ORIGINAL)
-                    .crossfade(true)
-                    .build(),
-            loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
-            error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+            Modifier
+                .clipToBounds()
+                .fillMaxSize()
+                .haze(hazeState)
+                .onGloballyPositioned { coordinates ->
+                    parentImageOffset = coordinates.positionInRoot()
+                    imageSize = coordinates.size.toSize()
+                }
+                .clickableUnindicated {
+                    controller.zoomImageController.openZoomImageScreen(
+                        model = ZoomImageUiModel(
+                            imageSize = imageSize,
+                            initialCornerRadius = sharedCornerRadius,
+                            imageUrl = sessionImage.imageUrl,
+                            parentImageOffset = parentImageOffset,
+                            originPageId = AiutaAnalyticPageId.RESULTS,
+                        ),
+                    )
+                },
+            imageUrl = sessionImage.imageUrl,
+            shapeDp = sharedCornerRadius,
+            imageBuilder = ImageRequest.Builder(coilContext).size(ORIGINAL),
             contentScale = ContentScale.Crop,
             contentDescription = null,
         )
@@ -188,7 +168,6 @@ private fun PagerItem(
         PagerItemInterface(
             modifier = Modifier.fillMaxSize(),
             sessionImage = sessionImage,
-            itemIndex = itemIndex,
             generationResultController = generationResultController,
             hazeState = hazeState,
             pageOffset = pageOffset,
@@ -200,7 +179,6 @@ private fun PagerItem(
 internal fun BoxScope.PagerItemInterface(
     modifier: Modifier = Modifier,
     sessionImage: SessionImageUIModel,
-    itemIndex: Int,
     generationResultController: GenerationResultController,
     hazeState: HazeState,
     pageOffset: State<Float>,
@@ -221,28 +199,27 @@ internal fun BoxScope.PagerItemInterface(
         Box(modifier = Modifier.fillMaxSize()) {
             ActionBlock(
                 modifier =
-                    Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(12.dp),
+                Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(12.dp),
                 imageUrl = sessionImage.imageUrl,
             )
 
             GenerateMoreBlock(
                 modifier =
-                    Modifier
-                        .align(Alignment.BottomStart)
-                        .padding(12.dp),
+                Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(12.dp),
             )
         }
     }
 
     FeedbackBlock(
         modifier =
-            Modifier
-                .align(Alignment.BottomEnd)
-                .padding(12.dp),
+        Modifier
+            .align(Alignment.BottomEnd)
+            .padding(12.dp),
         sessionImage = sessionImage,
-        itemIndex = itemIndex,
         hazeState = hazeState,
         generationResultController = generationResultController,
         isInterfaceVisible = isVisible,

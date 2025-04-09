@@ -8,14 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aiuta.fashionsdk.compose.tokens.rememberAiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.language.EnglishLanguage
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.listeners.AiutaTryOnListeners
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
+import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.rememberAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
-import com.aiuta.fashionsdk.tryon.icons.rememberDefaultAiutaIcons
-import com.aiuta.fashionsdk.tryon.images.rememberDefaultAiutaImages
 import sample.tryon.MainViewModel
 
 @Composable
@@ -23,10 +21,10 @@ fun MainScreen() {
     val viewModel: MainViewModel = viewModel()
     val context = LocalContext.current
 
-    val activeSKUItems = viewModel.activeSKUItems.collectAsStateWithLifecycle()
+    val activeProductItems = viewModel.activeProductItems.collectAsStateWithLifecycle()
     val firstActiveSKUItem =
-        remember(activeSKUItems.value) {
-            activeSKUItems.value?.firstOrNull()
+        remember(activeProductItems.value) {
+            activeProductItems.value?.firstOrNull()
         }
 
     LaunchedEffect(Unit) {
@@ -34,81 +32,35 @@ fun MainScreen() {
     }
 
     firstActiveSKUItem?.let {
-        val mockSKUItem =
+        val mockProductItem =
             remember {
-                SKUItem(
-                    skuId = firstActiveSKUItem.skuId,
+                ProductItem(
+                    id = firstActiveSKUItem.productId,
                     catalogName = firstActiveSKUItem.catalogName,
                     description = "MOCK 90s straight leg jeans in light blue",
                     imageUrls = firstActiveSKUItem.imageUrls,
                     localizedPrice = "$34.99",
                     localizedOldPrice = "$41.99",
                     store = "MOCK STORE",
-                    generateMoreSKU =
-                        activeSKUItems.value?.mapIndexed { index, skuItem ->
-                            SKUItem(
-                                skuId = skuItem.skuId,
-                                catalogName = skuItem.catalogName,
-                                description = "MOCK 90s straight leg jeans in light blue",
-                                imageUrls = skuItem.imageUrls,
-                                localizedPrice = "$34.99",
-                                localizedOldPrice = "$41.99",
-                                store = "MOCK STORE",
-                                inWishlist = index % 2 == 0,
-                            )
-                        } ?: emptyList(),
-                    inWishlist = false,
-                    additionalShareInfo =
-                        """
-                        You can find more information about this item here:
-                        https://some-cool-website.com/product
-                        """.trimIndent(),
                 )
             }
 
-        val mockAiutaTryOnListeners =
-            remember {
-                AiutaTryOnListeners(
-                    addToWishlistClick = {
-                        context.makeToast("Rise Add to wishlist")
-                    },
-                    addToCartClick = {
-                        context.makeToast("Rise Add to cart")
-                    },
-                    closeClick = {
+        val aiutaConfiguration = rememberAiutaConfiguration {
+            userInterface = defaultAiutaUserInterfaceConfiguration(
+                actions = object : AiutaUserInterfaceActions {
+                    override val closeClick: () -> Unit = {
                         context.makeToast("Rise Close")
-                    },
-                )
-            }
-
-        val mockAiutaConfiguration =
-            remember {
-                AiutaTryOnConfiguration.Builder()
-                    .setAiuta(viewModel.aiuta)
-                    .setLanguage(
-                        language =
-                            EnglishLanguage(
-                                brand = "YOUR brand",
-                                termsOfServiceUrl = "https://brand.com/tos",
-                                privacyPolicyUrl = "https://brand.com/pp",
-                                onboardingPageConsentSupplementaryPoints = emptyList(),
-                            ),
-                    )
-                    .build()
-            }
-
-        val mockAiutaTheme =
-            rememberAiutaTheme(
-                icons = rememberDefaultAiutaIcons(),
-                images = rememberDefaultAiutaImages(),
+                    }
+                },
             )
+
+            tryOnConfiguration = defaultAiutaTryOnConfiguration(viewModel.aiuta)
+        }
 
         AiutaTryOnFlow(
             modifier = Modifier.fillMaxSize(),
-            aiutaTryOnConfiguration = mockAiutaConfiguration,
-            aiutaTryOnListeners = mockAiutaTryOnListeners,
-            aiutaTheme = mockAiutaTheme,
-            skuForGeneration = mockSKUItem,
+            aiutaConfiguration = aiutaConfiguration,
+            productForGeneration = mockProductItem,
         )
     }
 }

@@ -15,17 +15,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 
 @Composable
 internal fun BestResultPageContent(
     modifier: Modifier = Modifier,
     state: BestResultPage,
 ) {
-    val stringResources = LocalAiutaTryOnStringResources.current
+    val bestResultsPageFeature = strictProvideFeature<AiutaOnboardingBestResultsPageFeature>()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.BEST_RESULTS)
 
@@ -35,20 +36,20 @@ internal fun BestResultPageContent(
     ) {
         BestImagesBlock(
             modifier =
-                Modifier
-                    .weight(0.65f)
-                    .fillMaxWidth()
-                    .padding(horizontal = 32.dp),
+            Modifier
+                .weight(0.65f)
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp),
             state = state,
         )
 
         CentredTextBlock(
             modifier =
-                Modifier
-                    .weight(0.35f)
-                    .fillMaxWidth(),
-            title = stringResources.onboardingPageBestResultTopic,
-            subtitle = stringResources.onboardingPageBestResultSubtopic,
+            Modifier
+                .weight(0.35f)
+                .fillMaxWidth(),
+            title = bestResultsPageFeature.strings.onboardingBestResultsTitle,
+            subtitle = bestResultsPageFeature.strings.onboardingBestResultsDescription,
         )
     }
 }

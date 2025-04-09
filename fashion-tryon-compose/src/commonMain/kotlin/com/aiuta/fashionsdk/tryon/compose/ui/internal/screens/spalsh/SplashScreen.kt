@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -11,6 +14,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadCon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -22,6 +27,8 @@ internal fun SplashScreen(
     val controller = LocalController.current
     val configuration = LocalAiutaConfiguration.current
     val dataController = LocalAiutaTryOnDataController.current
+
+    val consentStandaloneFeature = provideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
 
     LaunchedEffect(Unit) {
         // Try to preload config
@@ -41,19 +48,50 @@ internal fun SplashScreen(
         }
 
         // Solve should show onboarding or not
-        val isUserConsentObtainedFlowRaw =
-            configuration.dataProvider?.isUserConsentObtainedFlow?.value
-        val shouldShowOnboardingFromHost =
-            isUserConsentObtainedFlowRaw != null && isUserConsentObtainedFlowRaw == false
-        val shouldShowOnboarding =
-            controller.onboardingInteractor.shouldShowOnboarding() || shouldShowOnboardingFromHost
+        val isOnboardingPassed = controller.onboardingInteractor.isOnboardingPassed()
+
+        val shouldShowOnboarding = when {
+            // Onboarding not provided
+            !configuration.isFeatureInitialize<AiutaOnboardingFeature>() -> false
+            // SDK didn't show onboarding
+            !isOnboardingPassed -> true
+
+            consentStandaloneFeature != null -> {
+                // This is standalone consent
+                val localAllConsentIds = controller.onboardingInteractor.getConsentIds().sorted()
+                val localObtainedConsentIds = controller.onboardingInteractor.getObtainedConsentIds().sorted()
+
+                val hostAllConsentIds = consentStandaloneFeature.data.consents.map { it.id }
+                val hostObtainedConsentIds = consentStandaloneFeature.dataProvider?.obtainedConsentsIds?.value?.sorted()
+                val hostRequiredConsentsIds = consentStandaloneFeature.data.consents.mapNotNull { consent ->
+                    if (consent.isRequired) {
+                        consent.id
+                    } else {
+                        null
+                    }
+                }
+
+                when {
+                    // If host and SDK have not same obtained consents (with data provider)
+                    hostObtainedConsentIds != null && hostObtainedConsentIds != localObtainedConsentIds -> true
+                    // If host and SDK have not same required consents
+                    !localObtainedConsentIds.containsAll(hostRequiredConsentsIds) -> true
+                    // If host and SDK have not same list of all consents, but host give short list of already obtained consents -> let's don't show
+                    hostAllConsentIds.size < localAllConsentIds.size && localObtainedConsentIds.containsAll(hostAllConsentIds) -> false
+                    // If host and SDK have not same list of all consents
+                    hostAllConsentIds != localAllConsentIds -> true
+                    else -> false
+                }
+            }
+            else -> false
+        }
 
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =
-                if (configuration.toggles.isPreOnboardingAvailable) {
-                    NavigationScreen.Preonboarding
-                } else {
-                    NavigationScreen.Onboarding
+                when {
+                    configuration.isFeatureInitialize<AiutaWelcomeScreenFeature>() -> NavigationScreen.Preonboarding
+                    configuration.isFeatureInitialize<AiutaOnboardingFeature>() -> NavigationScreen.Onboarding
+                    else -> NavigationScreen.ImageSelector
                 }
 
             navigateTo(firstOnboardingScreen)

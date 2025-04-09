@@ -6,5 +6,5 @@
 // - Show declarations: true
 
 // Library unique name: <com.aiuta:fashion-tryon-paging>
-final fun (com.aiuta.fashionsdk.tryon.core/AiutaTryOn).com.aiuta.fashionsdk.tryon.paging/getSKUCatalogs(): kotlinx.coroutines.flow/Flow<androidx.paging/PagingData<com.aiuta.fashionsdk.tryon.core.domain.models/SKUCatalog>> // com.aiuta.fashionsdk.tryon.paging/getSKUCatalogs|getSKUCatalogs@com.aiuta.fashionsdk.tryon.core.AiutaTryOn(){}[0]
-final fun (com.aiuta.fashionsdk.tryon.core/AiutaTryOn).com.aiuta.fashionsdk.tryon.paging/getSKUItems(kotlin/String): kotlinx.coroutines.flow/Flow<androidx.paging/PagingData<com.aiuta.fashionsdk.tryon.core.domain.models/SKUGenerationItem>> // com.aiuta.fashionsdk.tryon.paging/getSKUItems|getSKUItems@com.aiuta.fashionsdk.tryon.core.AiutaTryOn(kotlin.String){}[0]
+final fun (com.aiuta.fashionsdk.tryon.core/AiutaTryOn).com.aiuta.fashionsdk.tryon.paging/getProductCatalogs(): kotlinx.coroutines.flow/Flow<androidx.paging/PagingData<com.aiuta.fashionsdk.tryon.core.domain.models/ProductCatalog>> // com.aiuta.fashionsdk.tryon.paging/getProductCatalogs|getProductCatalogs@com.aiuta.fashionsdk.tryon.core.AiutaTryOn(){}[0]
+final fun (com.aiuta.fashionsdk.tryon.core/AiutaTryOn).com.aiuta.fashionsdk.tryon.paging/getProductItems(kotlin/String): kotlinx.coroutines.flow/Flow<androidx.paging/PagingData<com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationItem>> // com.aiuta.fashionsdk.tryon.paging/getProductItems|getProductItems@com.aiuta.fashionsdk.tryon.core.AiutaTryOn(kotlin.String){}[0]

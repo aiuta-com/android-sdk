@@ -9,16 +9,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 internal fun LazyGridScope.itemDescriptionBlock(modifier: Modifier = Modifier) {
     item(
@@ -36,31 +37,35 @@ internal fun LazyGridScope.itemDescriptionBlock(modifier: Modifier = Modifier) {
 internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
+
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.Top,
     ) {
-        SKUInfo(
+        ProductInfo(
             modifier = Modifier.weight(1f),
-            skuItem = activeSKUItem,
+            productItem = activeSKUItem,
         )
 
-        Spacer(Modifier.width(16.dp))
+        tryOnFeature.dataProvider?.let { dataProvider ->
+            Spacer(Modifier.width(16.dp))
 
-        FashionButton(
-            text = stringResources.addToCart,
-            style = FashionButtonStyles.primaryStyle(theme),
-            size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
-            onClick = {
-                controller.clickAddToCart(
-                    pageId = AiutaAnalyticPageId.RESULTS,
-                    skuId = activeSKUItem.skuId,
-                )
-            },
-        )
+            FashionButton(
+                text = tryOnFeature.strings.tryOnButtonAddToCart,
+                style = FashionButtonStyles.primaryStyle(theme),
+                size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
+                onClick = {
+                    controller.clickAddToCart(
+                        pageId = AiutaAnalyticPageId.RESULTS,
+                        productId = activeSKUItem.id,
+                        dataProvider = dataProvider,
+                    )
+                },
+            )
+        }
     }
 }

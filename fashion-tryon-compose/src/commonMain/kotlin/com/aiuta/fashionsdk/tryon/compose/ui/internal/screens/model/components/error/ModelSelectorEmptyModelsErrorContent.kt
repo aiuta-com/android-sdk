@@ -13,15 +13,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration.rememberScreenSize
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 
 @Composable
 internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val predefinedModelFeature = strictProvideFeature<AiutaImageSelectorPredefinedModelFeature>()
 
     val screenSize = rememberScreenSize()
     val textHorizontalPadding = screenSize.widthDp * 0.26f
@@ -33,8 +35,8 @@ internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
     ) {
         AiutaIcon(
             modifier = Modifier.size(36.dp),
-            icon = theme.icons.error36,
-            tint = theme.colors.primary,
+            icon = theme.errorSnackbar.icons.error36,
+            tint = theme.color.primary,
             contentDescription = null,
         )
 
@@ -42,12 +44,12 @@ internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
 
         Text(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = textHorizontalPadding),
-            text = stringResources.modelSelectorErrorEmptyModelsList,
-            style = theme.typography.regular,
-            color = theme.colors.primary,
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = textHorizontalPadding),
+            text = predefinedModelFeature.strings.predefinedModelErrorEmptyModelsList,
+            style = theme.label.typography.regular,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
     }

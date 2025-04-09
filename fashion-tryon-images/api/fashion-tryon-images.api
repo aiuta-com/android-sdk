@@ -1,5 +1,0 @@
-public final class com/aiuta/fashionsdk/tryon/images/DefaultAiutaImagesKt {
-	public static final fun defaultAiutaImages ()Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImages;
-	public static final fun rememberDefaultAiutaImages (Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/tokens/images/AiutaImages;
-}
-

@@ -3,40 +3,43 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnRepickingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerateMoreListener
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 
 @Composable
 internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
-    val controller = LocalController.current
-    val theme = LocalTheme.current
+    val repickingFeature = provideFeature<AiutaTryOnRepickingFeature>()
 
-    val activeSKUItem = controller.activeSKUItem.value
-    val countGeneratedOperation =
-        controller.generatedOperationInteractor
-            .countGeneratedOperation()
-            .collectAsState(0)
+    repickingFeature?.let {
+        val controller = LocalController.current
 
-    GenerateMoreListener()
+        val activeSKUItem = controller.activeProductItem.value
+        val countGeneratedOperation =
+            controller.generatedOperationInteractor
+                .countGeneratedOperation()
+                .collectAsState(0)
 
-    IconButton(
-        modifier = modifier,
-        icon = theme.icons.camera24,
-        onClick = {
-            controller.sendResultEvent(
-                event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
-                pageId = AiutaAnalyticPageId.RESULTS,
-                productId = activeSKUItem.skuId,
-            )
+        GenerateMoreListener()
 
-            controller.bottomSheetNavigator.show(
-                newSheetScreen =
+        IconButton(
+            modifier = modifier,
+            icon = repickingFeature.icons.repicking24,
+            onClick = {
+                controller.sendResultEvent(
+                    event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
+                    pageId = AiutaAnalyticPageId.RESULTS,
+                    productId = activeSKUItem.id,
+                )
+
+                controller.bottomSheetNavigator.show(
+                    newSheetScreen =
                     if (countGeneratedOperation.value > 1) {
                         NavigationBottomSheetScreen.GeneratedOperations
                     } else {
@@ -44,7 +47,8 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
                             originPageId = AiutaAnalyticPageId.RESULTS,
                         )
                     },
-            )
-        },
-    )
+                )
+            },
+        )
+    }
 }

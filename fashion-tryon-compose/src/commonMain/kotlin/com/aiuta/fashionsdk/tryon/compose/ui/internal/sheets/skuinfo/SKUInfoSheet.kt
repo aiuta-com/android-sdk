@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,36 +17,36 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil3.compose.LocalPlatformContext
-import coil3.compose.SubcomposeAsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButton
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonSizes
-import com.aiuta.fashionsdk.compose.molecules.button.FashionButtonStyles
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.SKUInfo
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.ErrorProgress
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.progress.LoadingProgress
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.changeActiveSKU
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.SKUInfo.PrimaryButtonState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen.ProductInfo.PrimaryButtonState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.components.SheetDivider
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
+import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 
 @Composable
-internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUInfo) {
+internal fun ColumnScope.ProductInfoSheet(productInfo: NavigationBottomSheetScreen.ProductInfo) {
     val sharedHorizontalPadding = 16.dp
 
     SheetDivider()
@@ -60,15 +59,15 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         itemsIndexed(
-            items = skuInfo.skuItem.imageUrls,
+            items = productInfo.productItem.imageUrls,
             key = { index, _ -> index },
         ) { _, imageUrl ->
             ImageContainer(
                 modifier =
-                    Modifier.size(
-                        width = 154.dp,
-                        height = 202.dp,
-                    ),
+                Modifier.size(
+                    width = 154.dp,
+                    height = 202.dp,
+                ),
                 imageUrl = imageUrl,
             )
         }
@@ -76,22 +75,22 @@ internal fun ColumnScope.SKUInfoSheet(skuInfo: NavigationBottomSheetScreen.SKUIn
 
     Spacer(Modifier.height(16.dp))
 
-    SKUInfo(
+    ProductInfo(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = sharedHorizontalPadding),
-        skuItem = skuInfo.skuItem,
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = sharedHorizontalPadding),
+        productItem = productInfo.productItem,
     )
 
     Spacer(Modifier.height(24.dp))
 
     ButtonsContainer(
         modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = sharedHorizontalPadding),
-        skuInfo = skuInfo,
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = sharedHorizontalPadding),
+        productInfo = productInfo,
     )
 }
 
@@ -102,18 +101,14 @@ private fun ImageContainer(
 ) {
     val theme = LocalTheme.current
 
-    SubcomposeAsyncImage(
-        modifier =
-            modifier
-                .clip(RoundedCornerShape(8.dp))
-                .background(theme.colors.background),
-        model =
-            ImageRequest.Builder(LocalPlatformContext.current)
-                .data(imageUrl)
-                .crossfade(true)
-                .build(),
-        loading = { LoadingProgress(modifier = Modifier.fillMaxSize()) },
-        error = { ErrorProgress(modifier = Modifier.fillMaxSize()) },
+    val sharedShape = RoundedCornerShape(8.dp)
+
+    AiutaImage(
+        modifier = modifier
+            .clip(sharedShape)
+            .background(theme.color.background),
+        imageUrl = imageUrl,
+        shape = sharedShape,
         contentScale = ContentScale.Crop,
         contentDescription = null,
     )
@@ -122,38 +117,51 @@ private fun ImageContainer(
 @Composable
 private fun ButtonsContainer(
     modifier: Modifier = Modifier,
-    skuInfo: NavigationBottomSheetScreen.SKUInfo,
+    productInfo: NavigationBottomSheetScreen.ProductInfo,
 ) {
     val controller = LocalController.current
-    val configuration = LocalAiutaConfiguration.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
-    val activeSKUItem = controller.activeSKUItem.value
+    val activeSKUItem = controller.activeProductItem.value
+
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val wishlistFeature = provideFeature<AiutaWishlistFeature>()
+
+    val isPrimaryButtonVisible = remember {
+        derivedStateOf {
+            when (productInfo.primaryButtonState) {
+                PrimaryButtonState.ADD_TO_CART -> tryOnFeature.dataProvider != null
+                PrimaryButtonState.TRY_ON -> true
+            }
+        }
+    }
 
     Row(
         modifier = modifier.height(intrinsicSize = IntrinsicSize.Max),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (configuration.toggles.isWishlistAvailable) {
+        wishlistFeature?.let {
+            val inWishlist = wishlistFeature.inWishlistListener()
+
             FashionButton(
                 modifier =
-                    Modifier
-                        .weight(1f)
-                        .fillMaxHeight(),
-                icon =
-                    if (activeSKUItem.inWishlist) {
-                        theme.icons.wishlistFill24
-                    } else {
-                        theme.icons.wishlist24
-                    },
-                text = stringResources.addToWish,
+                Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                icon = if (inWishlist.value) {
+                    wishlistFeature.icons.wishlistFill24
+                } else {
+                    wishlistFeature.icons.wishlist24
+                },
+                text = wishlistFeature.strings.wishlistButtonAdd,
                 style = FashionButtonStyles.secondaryStyle(theme),
                 size = FashionButtonSizes.lSize(iconSize = 20.dp),
                 onClick = {
                     controller.clickAddToWishListActiveSKU(
-                        pageId = skuInfo.originPageId,
-                        skuId = activeSKUItem.skuId,
+                        pageId = productInfo.originPageId,
+                        updatedWishlistState = !inWishlist.value,
+                        dataProvider = wishlistFeature.dataProvider,
+                        productId = activeSKUItem.id,
                     )
                 },
             )
@@ -161,35 +169,37 @@ private fun ButtonsContainer(
             Spacer(Modifier.width(8.dp))
         }
 
-        FashionButton(
-            modifier =
-                Modifier
+        if (isPrimaryButtonVisible.value) {
+            FashionButton(
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight(),
-            text =
-                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    stringResources.addToCart
+                text = if (productInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                    tryOnFeature.strings.tryOnButtonAddToCart
                 } else {
-                    stringResources.tryOn
+                    tryOnFeature.strings.tryOnButtonTryOn
                 },
-            icon =
-                theme.icons.magic20.takeIf {
-                    skuInfo.primaryButtonState == PrimaryButtonState.TRY_ON
+                icon = tryOnFeature.icons.magic20.takeIf {
+                    productInfo.primaryButtonState == PrimaryButtonState.TRY_ON
                 },
-            style = FashionButtonStyles.primaryStyle(theme),
-            size = FashionButtonSizes.lSize(),
-            onClick = {
-                if (skuInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
-                    controller.clickAddToCart(
-                        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                        skuId = skuInfo.skuItem.skuId,
-                    )
-                } else {
-                    controller.changeActiveSKU(skuInfo.skuItem)
-                    controller.bottomSheetNavigator.hide()
-                    controller.navigateBack()
-                }
-            },
-        )
+                style = FashionButtonStyles.primaryStyle(theme),
+                size = FashionButtonSizes.lSize(),
+                onClick = {
+                    if (productInfo.primaryButtonState == PrimaryButtonState.ADD_TO_CART) {
+                        tryOnFeature.dataProvider?.let { dataProvider ->
+                            controller.clickAddToCart(
+                                pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                productId = productInfo.productItem.id,
+                                dataProvider = dataProvider,
+                            )
+                        }
+                    } else {
+                        controller.changeActiveSKU(productInfo.productItem)
+                        controller.bottomSheetNavigator.hide()
+                        controller.navigateBack()
+                    }
+                },
+            )
+        }
     }
 }

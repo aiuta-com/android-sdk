@@ -13,12 +13,11 @@ internal class ZoomImageUiModel(
     val initialCornerRadius: Dp,
     val imageUrl: String?,
     val parentImageOffset: Offset,
-    val additionalShareInfo: String? = null,
     // Analytic
     val originPageId: AiutaAnalyticPageId,
 ) {
     companion object {
-        val EMPTY =
+        val EMPTY by lazy {
             ZoomImageUiModel(
                 imageSize = Size.Unspecified,
                 initialCornerRadius = 0.dp,
@@ -26,5 +25,6 @@ internal class ZoomImageUiModel(
                 parentImageOffset = Offset.Unspecified,
                 originPageId = AiutaAnalyticPageId.RESULTS,
             )
+        }
     }
 }

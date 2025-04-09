@@ -10,13 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun PriceInfo(
     modifier: Modifier = Modifier,
-    skuItem: SKUItem,
+    productItem: ProductItem,
 ) {
     val theme = LocalTheme.current
 
@@ -24,11 +24,13 @@ internal fun PriceInfo(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (skuItem.localizedOldPrice?.isNotBlank() == true) {
+        val localizedOldPrice = productItem.localizedOldPrice
+
+        if (localizedOldPrice?.isNotBlank() == true) {
             Text(
-                text = skuItem.localizedOldPrice,
-                style = theme.typography.price,
-                color = theme.colors.accent,
+                text = localizedOldPrice,
+                style = theme.productBar.typography.price,
+                color = theme.productBar.colors.discountedPrice,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -37,14 +39,13 @@ internal fun PriceInfo(
             Spacer(Modifier.width(4.dp))
         }
 
-        if (skuItem.localizedPrice.isNotBlank()) {
+        if (productItem.localizedPrice.isNotBlank()) {
             Text(
-                text = skuItem.localizedPrice,
-                style =
-                    theme.typography.price.copy(
-                        textDecoration = solveGeneralPriceDecoration(skuItem),
-                    ),
-                color = solveGeneralPriceColor(skuItem),
+                text = productItem.localizedPrice,
+                style = theme.productBar.typography.price.copy(
+                    textDecoration = solveGeneralPriceDecoration(productItem),
+                ),
+                color = solveGeneralPriceColor(productItem),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )

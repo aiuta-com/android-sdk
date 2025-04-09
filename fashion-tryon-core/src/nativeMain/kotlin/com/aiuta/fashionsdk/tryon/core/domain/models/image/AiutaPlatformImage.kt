@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models.image
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import com.aiuta.fashionsdk.tryon.core.domain.models.compressor.CompressionConfig
@@ -19,7 +20,8 @@ import platform.UIKit.UIGraphicsGetImageFromCurrentImageContext
 import platform.UIKit.UIImage
 import platform.UIKit.UIImageJPEGRepresentation
 
-actual class AiutaPlatformImage(
+@Immutable
+public actual class AiutaPlatformImage(
     private val image: UIImage,
 ) {
     public actual val byteArray: ByteArray by lazy { toByteArray() }
@@ -82,7 +84,5 @@ actual class AiutaPlatformImage(
         return resizedImage
     }
 
-    private fun UIImage.jpegDataWithQuality(quality: Double): NSData? {
-        return UIImageJPEGRepresentation(this, quality)
-    }
+    private fun UIImage.jpegDataWithQuality(quality: Double): NSData? = UIImageJPEGRepresentation(this, quality)
 }

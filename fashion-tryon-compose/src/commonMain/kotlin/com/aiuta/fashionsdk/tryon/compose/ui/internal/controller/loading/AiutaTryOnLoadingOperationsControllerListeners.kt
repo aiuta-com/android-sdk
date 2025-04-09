@@ -4,16 +4,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toImageUiModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.dataprovider.toOperationUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteGeneratedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.DeleteUploadedImagesToastErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.showErrorState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationOrSetEmpty
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
@@ -21,24 +23,22 @@ import kotlinx.coroutines.flow.onEach
 
 // Generated images
 @Composable
-internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener(
-    controller: FashionTryOnController,
-) {
+internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener() {
     updateDeletingGeneratedImagesListener()
-    showErrorDeletingGeneratedImagesListener(controller)
 }
 
 @Composable
 private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesListener() {
     val controller = LocalController.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+
+    val generationsHistoryFeature = provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val dataProvider = generationsHistoryFeature?.dataProvider
 
     // Observe external changes of generated images and delete
     dataProvider?.let {
         LaunchedEffect(Unit) {
             dataProvider
-                .generatedImagesFlow
+                .generatedImages
                 .map { images ->
                     // Make as list to compensate forEach with inner contains
                     images.map { image -> image.toImageUiModel() }.toSet()
@@ -78,38 +78,23 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
     }
 }
 
-@Composable
-private fun AiutaTryOnLoadingActionsController.showErrorDeletingGeneratedImagesListener(
+internal fun Result<Unit>.listenErrorDeletingGeneratedImages(
     controller: FashionTryOnController,
-) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+    loadingActionsController: AiutaTryOnLoadingActionsController,
+): Result<Unit> = onFailure {
+    // Move from loading to retry
+    val retryGenerations = loadingActionsController.loadingGenerationsHolder.getList()
+    loadingActionsController.retryGenerationsHolder.putAll(retryGenerations)
 
-    dataProvider?.let {
-        LaunchedEffect(Unit) {
-            dataProvider
-                .isErrorDeletingGeneratedImagesFlow
-                .onEach { isHostErrorDeletingGenerated ->
-                    if (isHostErrorDeletingGenerated) {
-                        // Move from loading to retry
-                        val retryGenerations = loadingGenerationsHolder.getList()
-                        retryGenerationsHolder.putAll(retryGenerations)
+    // Clean loading
+    loadingActionsController.loadingGenerationsHolder.removeAll()
 
-                        // Clean loading
-                        loadingGenerationsHolder.removeAll()
-
-                        controller.showErrorState(
-                            errorState =
-                                DeleteGeneratedImagesToastErrorState(
-                                    controller = controller,
-                                    loadingActionsController = this@showErrorDeletingGeneratedImagesListener,
-                                ),
-                        )
-                    }
-                }
-                .launchIn(generalScope)
-        }
-    }
+    controller.showErrorState(
+        errorState = DeleteGeneratedImagesToastErrorState(
+            controller = controller,
+            loadingActionsController = loadingActionsController,
+        ),
+    )
 }
 
 // Uploaded images
@@ -118,15 +103,14 @@ internal fun AiutaTryOnLoadingActionsController.deletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
     updateDeletingUploadedImagesListener(controller)
-    showErrorDeletingUploadedImagesListener(controller)
 }
 
 @Composable
 private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val dataProvider = uploadsHistoryFeature?.dataProvider
 
     // Observe external changes of generated images and delete
     dataProvider?.let {
@@ -135,7 +119,7 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
 
         LaunchedEffect(Unit) {
             dataProvider
-                .uploadedImagesFlow
+                .uploadedImages
                 .map { operations ->
                     // Make as list to compensate forEach with inner contains
                     operations.map { operation -> operation.toOperationUiModel() }.toSet()
@@ -178,36 +162,21 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListe
     }
 }
 
-@Composable
-private fun AiutaTryOnLoadingActionsController.showErrorDeletingUploadedImagesListener(
+internal fun Result<Unit>.listenErrorDeletingUploadedImages(
     controller: FashionTryOnController,
-) {
-    val aiutaConfiguration = LocalAiutaConfiguration.current
-    val dataProvider = aiutaConfiguration.dataProvider
+    loadingActionsController: AiutaTryOnLoadingActionsController,
+): Result<Unit> = onFailure {
+    // Move from loading to retry
+    val retryOperations = loadingActionsController.loadingUploadsHolder.getList()
+    loadingActionsController.retryUploadsHolder.putAll(retryOperations)
 
-    dataProvider?.let {
-        LaunchedEffect(Unit) {
-            dataProvider
-                .isErrorDeletingUploadedImagesFlow
-                .onEach { isHostErrorDeletingUploaded ->
-                    if (isHostErrorDeletingUploaded) {
-                        // Move from loading to retry
-                        val retryOperations = loadingUploadsHolder.getList()
-                        retryUploadsHolder.putAll(retryOperations)
+    // Clean loading
+    loadingActionsController.loadingUploadsHolder.removeAll()
 
-                        // Clean loading
-                        loadingUploadsHolder.removeAll()
-
-                        controller.showErrorState(
-                            errorState =
-                                DeleteUploadedImagesToastErrorState(
-                                    controller = controller,
-                                    loadingActionsController = this@showErrorDeletingUploadedImagesListener,
-                                ),
-                        )
-                    }
-                }
-                .launchIn(generalScope)
-        }
-    }
+    controller.showErrorState(
+        errorState = DeleteUploadedImagesToastErrorState(
+            controller = controller,
+            loadingActionsController = loadingActionsController,
+        ),
+    )
 }

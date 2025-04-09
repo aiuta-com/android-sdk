@@ -9,39 +9,40 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun LikeButton(
     modifier: Modifier = Modifier,
     isLiked: Boolean,
     iconSize: Dp,
+    wishlistFeature: AiutaWishlistFeature,
     onClick: (currentState: Boolean) -> Unit,
 ) {
     val theme = LocalTheme.current
 
     Box(
         modifier =
-            modifier
-                .background(
-                    color = theme.colors.background,
-                    shape = CircleShape,
-                )
-                .clickableUnindicated {
-                    onClick(isLiked)
-                },
+        modifier
+            .background(
+                color = theme.color.background,
+                shape = CircleShape,
+            )
+            .clickableUnindicated {
+                onClick(isLiked)
+            },
         contentAlignment = Alignment.Center,
     ) {
         AiutaIcon(
             modifier = Modifier.size(iconSize),
-            icon =
-                if (isLiked) {
-                    theme.icons.wishlistFill24
-                } else {
-                    theme.icons.wishlist24
-                },
+            icon = if (isLiked) {
+                wishlistFeature.icons.wishlistFill24
+            } else {
+                wishlistFeature.icons.wishlist24
+            },
             contentDescription = null,
             tint = Color.Unspecified,
         )

@@ -17,11 +17,9 @@ import platform.Foundation.writeToFile
 
 internal actual fun buildInstallationStorage(
     platformContext: AiutaPlatformContext,
-): InstallationStorage {
-    return IosInstallationStorage()
-}
+): InstallationStorage = IosInstallationStorage()
 
-class IosInstallationStorage : InstallationStorage {
+public class IosInstallationStorage : InstallationStorage {
     private val fileName = "INSTALLATION.txt"
 
     private fun filePath(): String {

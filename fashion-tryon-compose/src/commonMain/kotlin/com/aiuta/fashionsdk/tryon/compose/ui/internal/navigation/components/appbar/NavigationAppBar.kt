@@ -11,9 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.tokens.icon.AiutaIcons
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
+import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun AppBar(
@@ -24,9 +24,9 @@ internal fun AppBar(
 ) {
     Box(
         modifier =
-            modifier
-                .padding(vertical = 14.dp)
-                .windowInsetsPadding(WindowInsets.statusBars),
+        modifier
+            .padding(vertical = 14.dp)
+            .windowInsetsPadding(WindowInsets.statusBars),
     ) {
         navigationIcon()
 
@@ -39,15 +39,14 @@ internal fun AppBar(
 @Composable
 internal fun AppBarIcon(
     modifier: Modifier = Modifier,
-    icon: AiutaIcons.AiutaIcon,
+    icon: AiutaIcon,
     color: Color,
     onClick: () -> Unit,
 ) {
     AiutaIcon(
-        modifier =
-            modifier
-                .size(24.dp)
-                .clickableUnindicated { onClick() },
+        modifier = modifier
+            .size(24.dp)
+            .clickableUnindicated { onClick() },
         icon = icon,
         tint = color,
         contentDescription = null,

@@ -1,30 +1,43 @@
 public final class com/aiuta/fashionsdk/Aiuta {
-	public synthetic fun <init> (Ljava/lang/String;Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;Lcom/aiuta/fashionsdk/logger/AiutaLogger;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAuthenticationStrategy ()Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;
+	public final fun getLogger ()Lcom/aiuta/fashionsdk/logger/AiutaLogger;
 	public final fun getPlatformContext ()Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;
-	public final fun getSubscriptionId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/Aiuta$Builder {
 	public fun <init> ()V
 	public final fun build ()Lcom/aiuta/fashionsdk/Aiuta;
-	public final fun setApiKey (Ljava/lang/String;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
-	public final fun setAuthenticationStrategy (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
-	public final fun setPlatformContext (Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
-	public final fun setSubscriptionId (Ljava/lang/String;)Lcom/aiuta/fashionsdk/Aiuta$Builder;
+	public final fun getAuthenticationStrategy ()Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;
+	public final fun getLogger ()Lcom/aiuta/fashionsdk/logger/AiutaLogger;
+	public final fun getPlatformContext ()Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;
+	public final fun setAuthenticationStrategy (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;)V
+	public final fun setLogger (Lcom/aiuta/fashionsdk/logger/AiutaLogger;)V
+	public final fun setPlatformContext (Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;)V
+}
+
+public final class com/aiuta/fashionsdk/AiutaKt {
+	public static final fun aiuta (Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/Aiuta;
+}
+
+public abstract interface annotation class com/aiuta/fashionsdk/annotations/AiutaDsl : java/lang/annotation/Annotation {
 }
 
 public final class com/aiuta/fashionsdk/authentication/ApiKeyAuthenticationStrategy : com/aiuta/fashionsdk/authentication/AuthenticationStrategy {
-	public fun <init> (Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getApiKey ()Ljava/lang/String;
+	public fun getSubscriptionId ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/authentication/AuthenticationStrategy {
+	public abstract fun getSubscriptionId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/authentication/JWTAuthenticationStrategy : com/aiuta/fashionsdk/authentication/AuthenticationStrategy {
-	public fun <init> (Lkotlin/jvm/functions/Function2;)V
+	public fun <init> (Lkotlin/jvm/functions/Function2;Ljava/lang/String;)V
 	public final fun getGetJWT ()Lkotlin/jvm/functions/Function2;
+	public fun getSubscriptionId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/context/AiutaPlatformContext {

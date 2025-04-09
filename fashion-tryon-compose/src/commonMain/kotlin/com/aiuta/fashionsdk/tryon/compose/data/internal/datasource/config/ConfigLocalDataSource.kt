@@ -14,29 +14,21 @@ import kotlinx.coroutines.withContext
 internal class ConfigLocalDataSource(
     private val configDao: ConfigDao,
 ) {
-    suspend fun getEtag(): String? {
-        return withContext(Dispatchers.IO) {
-            configDao.getAllEtags(limit = 1).firstOrNull()
-        }
+    suspend fun getEtag(): String? = withContext(Dispatchers.IO) {
+        configDao.getAllEtags(limit = 1).firstOrNull()
     }
 
-    suspend fun getBackendConfig(): ClientConfig? {
-        return withContext(Dispatchers.IO) {
-            configDao.getAll(limit = 1).firstOrNull()?.toDTO()
-        }
+    suspend fun getBackendConfig(): ClientConfig? = withContext(Dispatchers.IO) {
+        configDao.getAll(limit = 1).firstOrNull()?.toDTO()
     }
 
-    suspend fun replaceConfig(newConfig: ClientConfig) {
-        return withContext(Dispatchers.IO) {
-            configDao.replaceAll(newConfig.toEntity())
-        }
+    suspend fun replaceConfig(newConfig: ClientConfig) = withContext(Dispatchers.IO) {
+        configDao.replaceAll(newConfig.toEntity())
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): ConfigLocalDataSource {
-            return ConfigLocalDataSource(
-                configDao = AppDatabase.getInstance(platformContext).configDao(),
-            )
-        }
+        fun getInstance(platformContext: AiutaPlatformContext): ConfigLocalDataSource = ConfigLocalDataSource(
+            configDao = AppDatabase.getInstance(platformContext).configDao(),
+        )
     }
 }

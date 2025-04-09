@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun CentredTextBlock(
@@ -26,9 +26,9 @@ internal fun CentredTextBlock(
 
         TextBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
             title = title,
             subtitle = subtitle,
         )
@@ -48,8 +48,8 @@ internal fun ColumnScope.TextBlock(
     Text(
         modifier = modifier,
         text = title,
-        style = theme.typography.titleL,
-        color = theme.colors.primary,
+        style = theme.label.typography.titleL,
+        color = theme.color.primary,
         textAlign = TextAlign.Start,
     )
 
@@ -58,8 +58,8 @@ internal fun ColumnScope.TextBlock(
     Text(
         modifier = modifier,
         text = subtitle,
-        style = theme.typography.regular,
-        color = theme.colors.primary,
+        style = theme.label.typography.regular,
+        color = theme.color.primary,
         textAlign = TextAlign.Start,
     )
 }

@@ -33,18 +33,14 @@ internal class FitterContentScale(
         start: ScaleFactor,
         stop: ScaleFactor,
         fraction: Float,
-    ): ScaleFactor {
-        return ScaleFactor(
-            scaleX = lerp(start.scaleX, stop.scaleX, fraction),
-            scaleY = lerp(start.scaleY, stop.scaleY, fraction),
-        )
-    }
+    ): ScaleFactor = ScaleFactor(
+        scaleX = lerp(start.scaleX, stop.scaleX, fraction),
+        scaleY = lerp(start.scaleY, stop.scaleY, fraction),
+    )
 
     private fun lerp(
         start: Float,
         stop: Float,
         fraction: Float,
-    ): Float {
-        return start + (stop - start) * fraction
-    }
+    ): Float = start + (stop - start) * fraction
 }

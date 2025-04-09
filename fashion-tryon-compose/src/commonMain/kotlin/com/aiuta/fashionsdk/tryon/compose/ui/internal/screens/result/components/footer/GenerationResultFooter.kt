@@ -10,12 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.dividerBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.common.spacerBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.description.itemDescriptionBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.more.generateMoreListBlock
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.more.generateMoreTitleBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.blocks.photos.itemPhotosBlock
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller.GenerationResultController
 
@@ -26,12 +22,9 @@ internal fun GenerationResultFooterList(
     modifier: Modifier = Modifier,
     generationResultController: GenerationResultController,
 ) {
-    val controller = LocalController.current
     val density = LocalDensity.current
     val statusBarsPx = WindowInsets.statusBars.getTop(density)
     val statusBars = with(density) { statusBarsPx.toDp() }
-
-    val activeSKUItem = controller.activeSKUItem.value
 
     LazyVerticalGrid(
         modifier = modifier,
@@ -42,9 +35,9 @@ internal fun GenerationResultFooterList(
 
         itemDescriptionBlock(
             modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
         )
 
         spacerBlock(index = 1, height = 32.dp)
@@ -54,29 +47,6 @@ internal fun GenerationResultFooterList(
             generationResultController = generationResultController,
         )
 
-        if (activeSKUItem.generateMoreSKU?.isNotEmpty() == true) {
-            spacerBlock(index = 2, height = 32.dp)
-
-            dividerBlock()
-
-            spacerBlock(index = 3, height = 32.dp)
-
-            generateMoreTitleBlock(
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-            )
-
-            spacerBlock(index = 4, height = 32.dp)
-
-            generateMoreListBlock(skuItem = activeSKUItem)
-        }
-
-        if (activeSKUItem.generateMoreSKU.isNullOrEmpty()) {
-            spacerBlock(index = 5, height = 50.dp)
-        }
-
-        spacerBlock(index = 6, height = statusBars)
+        spacerBlock(index = 2, height = statusBars)
     }
 }

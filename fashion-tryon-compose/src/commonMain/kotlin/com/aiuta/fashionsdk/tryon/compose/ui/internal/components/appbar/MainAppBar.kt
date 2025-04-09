@@ -10,21 +10,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
-internal fun MainAppBar(modifier: Modifier = Modifier) {
+internal fun MainAppBar(
+    modifier: Modifier = Modifier,
+    title: String,
+) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
 
     val isAppbarHistoryAvailable = controller.isAppbarHistoryAvailable()
 
@@ -35,9 +38,11 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
+            val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
+
             AppBarIcon(
-                icon = theme.icons.history24,
-                color = theme.colors.primary,
+                icon = generationsHistoryFeature.icons.history24,
+                color = theme.color.primary,
                 onClick = {
                     controller.navigateTo(NavigationScreen.History)
                 },
@@ -48,8 +53,8 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
     val closeButton: @Composable BoxScope.(modifier: Modifier) -> Unit = { innerModifier ->
         AppBarIcon(
             modifier = innerModifier,
-            icon = theme.icons.close24,
-            color = theme.colors.primary,
+            icon = theme.pageBar.icons.close24,
+            color = theme.color.primary,
             onClick = controller::clickClose,
         )
     }
@@ -59,7 +64,7 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         navigationIcon = {
             val navigationIconModifier = Modifier.align(Alignment.CenterStart)
 
-            if (theme.toggles.isMainAppbarReversed) {
+            if (theme.pageBar.toggles.preferCloseButtonOnTheRight) {
                 historyButton(navigationIconModifier)
             } else {
                 closeButton(navigationIconModifier)
@@ -68,16 +73,16 @@ internal fun MainAppBar(modifier: Modifier = Modifier) {
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth().align(Alignment.Center),
-                text = stringResources.virtualTryOn,
-                style = theme.typography.navbar,
-                color = theme.colors.primary,
+                text = title,
+                style = theme.pageBar.typography.pageTitle,
+                color = theme.color.primary,
                 textAlign = TextAlign.Center,
             )
         },
         actions = {
             val actionModifier = Modifier.align(Alignment.CenterEnd)
 
-            if (theme.toggles.isMainAppbarReversed) {
+            if (theme.pageBar.toggles.preferCloseButtonOnTheRight) {
                 closeButton(actionModifier)
             } else {
                 historyButton(actionModifier)

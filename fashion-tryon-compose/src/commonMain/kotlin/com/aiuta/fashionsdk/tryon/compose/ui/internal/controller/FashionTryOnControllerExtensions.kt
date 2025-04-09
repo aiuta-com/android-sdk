@@ -5,16 +5,18 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.tryon.compose.domain.models.SKUItem
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toLastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationOperation
-import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.SKUGenerationUIStatus
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationOperation
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 
 // Configs
 internal val skippedBackStackScreens =
@@ -65,8 +67,8 @@ internal fun FashionTryOnController.navigateBack() {
 }
 
 // Active SKU State
-internal fun FashionTryOnController.changeActiveSKU(newSkuItem: SKUItem) {
-    activeSKUItem.value = newSkuItem
+internal fun FashionTryOnController.changeActiveSKU(newProductItem: ProductItem) {
+    activeProductItem.value = newProductItem
 }
 
 // Error State
@@ -82,7 +84,7 @@ internal fun FashionTryOnController.hideErrorState() {
     fashionTryOnErrorState.value = null
 }
 
-// Edit mode
+// Edit changePhotoButtonStyle
 internal fun FashionTryOnController.activateSelectMode() {
     selectorState.value = SelectorMode.ALL_IS_NOT_SELECTED
 }
@@ -94,7 +96,7 @@ internal fun FashionTryOnController.deactivateSelectMode() {
 
 // Generation helpers
 internal fun FashionTryOnController.activateGeneration() {
-    generationStatus.value = SKUGenerationUIStatus.LOADING
+    generationStatus.value = ProductGenerationUIStatus.LOADING
     isGenerationActive.value = true
 }
 
@@ -103,25 +105,19 @@ internal fun FashionTryOnController.deactivateGeneration() {
 }
 
 // Generations
-internal inline fun <reified T : SKUGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> {
-    return generationOperations.mapNotNull { it as? T }
+internal inline fun <reified T : ProductGenerationOperation> FashionTryOnController.tryToGetOperations(): List<T> = generationOperations.mapNotNull { it as? T }
+
+@Composable
+internal fun FashionTryOnController.subscribeToSuccessOperations(): State<List<ProductGenerationOperation.SuccessOperation>> = remember(generationOperations) {
+    derivedStateOf { tryToGetOperations() }
 }
 
 @Composable
-internal fun FashionTryOnController.subscribeToSuccessOperations(): State<List<SKUGenerationOperation.SuccessOperation>> {
-    return remember(generationOperations) {
-        derivedStateOf { tryToGetOperations() }
-    }
+internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<ProductGenerationOperation.LoadingOperation>> = remember(generationOperations) {
+    derivedStateOf { tryToGetOperations() }
 }
 
-@Composable
-internal fun FashionTryOnController.subscribeToLoadingOperations(): State<List<SKUGenerationOperation.LoadingOperation>> {
-    return remember(generationOperations) {
-        derivedStateOf { tryToGetOperations() }
-    }
-}
-
-// Auto try on mode
+// Auto try on changePhotoButtonStyle
 internal fun FashionTryOnController.activateAutoTryOn() {
     isAutoTryOnEnabled.value = true
 }
@@ -159,46 +155,42 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
+    val isGenerationsHistoryFeatureAvailable = isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
 
     return remember(generationStatus.value) {
         derivedStateOf {
-            generationStatus.value != SKUGenerationUIStatus.LOADING && historyImageCount.value != 0
+            val isGenerationNotLoading = generationStatus.value != ProductGenerationUIStatus.LOADING
+            val isGenerationsHistoryNotEmpty = historyImageCount.value != 0
+
+            isGenerationNotLoading && isGenerationsHistoryFeatureAvailable && isGenerationsHistoryNotEmpty
         }
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isAppbarSelectAvailable(): State<Boolean> {
-    return remember(selectorState.value) {
-        derivedStateOf {
-            selectorState.value == SelectorMode.DISABLED
-        }
+internal fun FashionTryOnController.isAppbarSelectAvailable(): State<Boolean> = remember(selectorState.value) {
+    derivedStateOf {
+        selectorState.value == SelectorMode.DISABLED
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> {
-    return remember(selectorState.value) {
-        derivedStateOf {
-            selectorState.value != SelectorMode.DISABLED
-        }
+internal fun FashionTryOnController.isSelectModeActive(): State<Boolean> = remember(selectorState.value) {
+    derivedStateOf {
+        selectorState.value != SelectorMode.DISABLED
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> {
-    return remember(lastSavedImages.value) {
-        derivedStateOf {
-            lastSavedImages.value.isNotEmpty()
-        }
+internal fun FashionTryOnController.isLastSavedPhotoAvailable(): State<Boolean> = remember(lastSavedImages.value) {
+    derivedStateOf {
+        lastSavedImages.value.isNotEmpty()
     }
 }
 
 @Composable
-internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> {
-    return remember(fashionTryOnErrorState.value) {
-        derivedStateOf {
-            fashionTryOnErrorState.value != null
-        }
+internal fun FashionTryOnController.isErrorStateVisible(): State<Boolean> = remember(fashionTryOnErrorState.value) {
+    derivedStateOf {
+        fashionTryOnErrorState.value != null
     }
 }

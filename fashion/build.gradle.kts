@@ -8,3 +8,13 @@ plugins {
 
 addAllMultiplatformTargets()
 androidLibraryV2(name = "com.aiuta.fashionsdk")
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                api(projects.fashionLogger)
+            }
+        }
+    }
+}

@@ -6,10 +6,10 @@ import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUCatalog
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationItem
-import com.aiuta.fashionsdk.tryon.core.domain.models.SKUGenerationStatus
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
+import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
 import kotlinx.coroutines.flow.Flow
 
@@ -26,31 +26,31 @@ public val Aiuta.tryon: AiutaTryOn
  */
 public interface AiutaTryOn {
     /**
-     * Get new page of [SKUCatalog]
+     * Get new page of [ProductCatalog]
      *
      * @param paginationOffset Offset for new page request
      * @param paginationLimit Limit for items in page
      */
-    public suspend fun getSKUCatalogs(
+    public suspend fun getProductCatalogs(
         paginationOffset: PaginationOffset? = null,
         paginationLimit: Int? = null,
-    ): PageContainer<SKUCatalog>
+    ): PageContainer<ProductCatalog>
 
     /**
-     * Get new page of [SKUGenerationItem]
+     * Get new page of [ProductGenerationItem]
      *
-     * @param catalogName Name of catalog for concrete SKU
+     * @param catalogName Name of catalog for concrete product
      * @param paginationOffset Offset for new page request
      * @param paginationLimit Limit for items in page
      */
-    public suspend fun getSKUItems(
+    public suspend fun getProductItems(
         catalogName: String,
         paginationOffset: PaginationOffset? = null,
         paginationLimit: Int? = null,
-    ): PageContainer<SKUGenerationItem>
+    ): PageContainer<ProductGenerationItem>
 
     /**
-     * Start sku generation by user image
+     * Start product generation by user image
      *
      * Pipeline is next:
      * - Try to compress image or use origin
@@ -64,5 +64,5 @@ public interface AiutaTryOn {
      *
      * @return flow with statuses of started generation
      */
-    public fun startSKUGeneration(container: SKUGenerationContainer): Flow<SKUGenerationStatus>
+    public fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus>
 }

@@ -24,7 +24,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.ExtraFeedb
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.feedback.FeedbackSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.operations.GeneratedOperationsSheet
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.ImagePickerSheet
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.SKUInfoSheet
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.skuinfo.ProductInfoSheet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -67,16 +67,14 @@ internal class BottomSheetNavigator(
                 ImagePickerSheet(pickerData = bottomScreen)
             }
 
-            is NavigationBottomSheetScreen.SKUInfo -> {
-                SKUInfoSheet(
-                    skuInfo = bottomScreen,
+            is NavigationBottomSheetScreen.ProductInfo -> {
+                ProductInfoSheet(
+                    productInfo = bottomScreen,
                 )
             }
 
             is NavigationBottomSheetScreen.Feedback -> {
-                FeedbackSheet(
-                    feedbackData = bottomScreen,
-                )
+                FeedbackSheet()
             }
 
             is NavigationBottomSheetScreen.ExtraFeedback -> {
@@ -86,9 +84,7 @@ internal class BottomSheetNavigator(
             }
 
             is NavigationBottomSheetScreen.FitDisclaimer -> {
-                FitDisclaimerSheet(
-                    text = bottomScreen.text,
-                )
+                FitDisclaimerSheet()
             }
 
             is NavigationBottomSheetScreen.GeneratedOperations -> {

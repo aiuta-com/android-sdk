@@ -7,12 +7,8 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.fea
 @ProvidedTypeConverter
 internal class TryOnModelsCategoriesConverter : BaseSerializedConverter() {
     @TypeConverter
-    fun restoreTryOnModelsCategories(rawString: String?): List<TryOnModelsCategory>? {
-        return restore(rawString)
-    }
+    fun restoreTryOnModelsCategories(rawString: String?): List<TryOnModelsCategory>? = restore(rawString)
 
     @TypeConverter
-    fun saveTryOnModelsCategories(config: List<TryOnModelsCategory>): String? {
-        return save(config)
-    }
+    fun saveTryOnModelsCategories(config: List<TryOnModelsCategory>): String? = save(config)
 }

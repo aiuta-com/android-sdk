@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
@@ -25,18 +24,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateMandatoryAgreementState
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateSupplementAgreementState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateConsentState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmentLine
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun ConsentPageContent(
@@ -44,21 +42,16 @@ internal fun ConsentPageContent(
     onboardingController: OnboardingController,
 ) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
 
-    val supplementaryPoints =
-        remember {
-            stringResources.onboardingPageConsentSupplementaryPoints.take(5)
-        }
+    val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.CONSENT)
 
     LazyColumn(
         modifier =
-            modifier
-                .padding(horizontal = 24.dp)
-                .padding(bottom = 8.dp),
+        modifier
+            .padding(horizontal = 24.dp)
+            .padding(bottom = 8.dp),
     ) {
         item(
             key = "CONSENT_HEADER",
@@ -66,9 +59,9 @@ internal fun ConsentPageContent(
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResources.onboardingPageConsentTopic,
-                style = theme.typography.titleL,
-                color = theme.colors.primary,
+                text = consentStandaloneFeature.strings.consentTitle,
+                style = theme.label.typography.titleL,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
 
@@ -76,56 +69,45 @@ internal fun ConsentPageContent(
 
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = buildAnnotatedStringFromHtml(stringResources.onboardingPageConsentBody),
-                style = theme.typography.regular,
-                color = theme.colors.primary,
+                text =
+                buildAnnotatedStringFromHtml(
+                    consentStandaloneFeature.strings.consentDescriptionHtml,
+                ),
+                style = theme.label.typography.regular,
+                color = theme.color.primary,
                 textAlign = TextAlign.Start,
             )
 
             Spacer(Modifier.height(28.dp))
         }
 
-        item(
-            key = "CONSENT_MANDATORY_POINT",
-            contentType = { "CONSENT_MANDATORY_POINT_TYPE" },
-        ) {
+        itemsIndexed(
+            items = onboardingController.consentsCheckList,
+            key = { _, consentModel -> consentModel.consent.id },
+            contentType = { _, _ -> "CONSENT_POINT_TYPE" },
+        ) { index, consentModel ->
+            if (index == 0) {
+                Spacer(Modifier.height(28.dp))
+            }
+
             AgreePoint(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResources.onboardingPageConsentAgreePoint,
-                isAgreementChecked = onboardingController.isMandatoryAgreementChecked.value,
-                onAgreementCheckedChange = onboardingController::updateMandatoryAgreementState,
+                text = consentModel.consent.consentHtml,
+                isAgreementChecked = consentModel.isObtained,
+                onAgreementCheckedChange = { newState ->
+                    onboardingController.updateConsentState(
+                        consent = consentModel,
+                        newState = newState,
+                    )
+                },
             )
-        }
 
-        if (aiutaConfiguration.dataProvider != null) {
-            itemsIndexed(
-                items = supplementaryPoints,
-                key = { _, point -> point },
-                contentType = { index, point -> "CONSENT_SUPPLEMENTARY_POINT_TYPE_$index-$point" },
-            ) { index, point ->
-                if (index == 0) {
-                    Spacer(Modifier.height(28.dp))
-                }
-
-                AgreePoint(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = point,
-                    isAgreementChecked = onboardingController.supplementPointsMap[point] ?: false,
-                    onAgreementCheckedChange = { newState ->
-                        onboardingController.updateSupplementAgreementState(
-                            point = point,
-                            newState = newState,
-                        )
-                    },
-                )
-
-                if (index != supplementaryPoints.lastIndex) {
-                    Spacer(Modifier.height(40.dp))
-                }
+            if (index != consentStandaloneFeature.data.consents.lastIndex) {
+                Spacer(Modifier.height(40.dp))
             }
         }
 
-        stringResources.onboardingPageConsentFooter?.let { footerText ->
+        consentStandaloneFeature.strings.consentFooterHtml?.let { footerText ->
             item(
                 key = "CONSENT_FOOTER",
                 contentType = { "CONSENT_FOOTER" },
@@ -135,8 +117,8 @@ internal fun ConsentPageContent(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = buildAnnotatedStringFromHtml(footerText),
-                    style = theme.typography.regular,
-                    color = theme.colors.primary,
+                    style = theme.label.typography.regular,
+                    color = theme.color.primary,
                     textAlign = TextAlign.Start,
                 )
             }
@@ -164,18 +146,18 @@ private fun AgreePoint(
         CompositionLocalProvider(LocalRippleConfiguration provides null) {
             Checkbox(
                 modifier =
-                    Modifier
-                        .size(20.dp)
-                        .alignBy(CenterAlignmentLine)
-                        .createCenterAlignmentLine(),
+                Modifier
+                    .size(20.dp)
+                    .alignBy(CenterAlignmentLine)
+                    .createCenterAlignmentLine(),
                 checked = isAgreementChecked,
                 onCheckedChange = onAgreementCheckedChange,
                 colors =
-                    CheckboxDefaults.colors(
-                        checkedColor = theme.colors.brand,
-                        uncheckedColor = theme.colors.neutral,
-                        checkmarkColor = theme.colors.onDark,
-                    ),
+                CheckboxDefaults.colors(
+                    checkedColor = theme.color.brand,
+                    uncheckedColor = theme.color.neutral,
+                    checkmarkColor = theme.color.onDark,
+                ),
             )
         }
 
@@ -183,16 +165,16 @@ private fun AgreePoint(
 
         Text(
             modifier =
-                Modifier
-                    .weight(1f)
-                    .clickableUnindicated {
-                        onAgreementCheckedChange(!isAgreementChecked)
-                    }
-                    .alignBy(CenterAlignmentLine)
-                    .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
-            text = text,
-            style = theme.typography.regular,
-            color = theme.colors.primary,
+            Modifier
+                .weight(1f)
+                .clickableUnindicated {
+                    onAgreementCheckedChange(!isAgreementChecked)
+                }
+                .alignBy(CenterAlignmentLine)
+                .createCenterAlignmentLine(topTextPosition, bottomTextPosition),
+            text = buildAnnotatedStringFromHtml(text),
+            style = theme.label.typography.regular,
+            color = theme.color.primary,
             textAlign = TextAlign.Start,
             onTextLayout = { textLayout: TextLayoutResult ->
                 topTextPosition = textLayout.getLineTop(lineIndexToCenter)

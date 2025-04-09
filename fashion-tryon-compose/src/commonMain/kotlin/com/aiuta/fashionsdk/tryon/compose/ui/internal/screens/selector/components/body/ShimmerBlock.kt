@@ -17,7 +17,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun ShimmerBlock(
@@ -28,58 +30,61 @@ internal fun ShimmerBlock(
     val theme = LocalTheme.current
     val density = LocalDensity.current
 
+    val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
+
     val transition = rememberInfiniteTransition()
     val translateAnimation =
         transition.animateFloat(
             initialValue = 1f,
             targetValue = -1f,
             animationSpec =
-                infiniteRepeatable(
-                    animation =
-                        tween(
-                            durationMillis = durationMillis,
-                            easing = LinearEasing,
-                        ),
-                    repeatMode = RepeatMode.Restart,
+            infiniteRepeatable(
+                animation =
+                tween(
+                    durationMillis = durationMillis,
+                    easing = LinearEasing,
                 ),
+                repeatMode = RepeatMode.Restart,
+            ),
             label = "Shimmer loading animation",
         )
 
-    val loadingAnimationGradient =
-        remember {
-            theme.gradients.loadingAnimation
-        }
+    val loadingAnimationGradient = remember {
+        loadingPageFeature.styles.loadingStatusBackgroundGradient.orEmpty()
+    }
 
     Canvas(modifier = modifier.alpha(0.5f)) {
         // Main line
-        drawRect(
-            color = loadingAnimationGradient.first(),
-            topLeft = Offset(0f, size.height * translateAnimation.value),
-            size =
+
+        loadingAnimationGradient.firstOrNull()?.let { color ->
+            drawRect(
+                color = color,
+                topLeft = Offset(0f, size.height * translateAnimation.value),
+                size =
                 Size(
                     width = size.width,
                     height = with(density) { lineHeight.toPx() },
                 ),
-        )
+            )
+        }
 
         // Down gradient
-        val rectHeight =
-            (size.height * (1 - translateAnimation.value)).coerceAtMost(
-                maximumValue = size.height * 0.4f,
-            )
+        val rectHeight = (size.height * (1 - translateAnimation.value)).coerceAtMost(
+            maximumValue = size.height * 0.4f,
+        )
         drawRect(
             brush =
-                Brush.verticalGradient(
-                    loadingAnimationGradient,
-                    startY = size.height * translateAnimation.value,
-                    endY = size.height * translateAnimation.value + rectHeight,
-                ),
+            Brush.verticalGradient(
+                loadingAnimationGradient,
+                startY = size.height * translateAnimation.value,
+                endY = size.height * translateAnimation.value + rectHeight,
+            ),
             topLeft = Offset(0f, size.height * translateAnimation.value),
             size =
-                Size(
-                    width = size.width,
-                    height = rectHeight,
-                ),
+            Size(
+                width = size.width,
+                height = rectHeight,
+            ),
         )
     }
 }

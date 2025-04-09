@@ -26,9 +26,7 @@ internal sealed interface LastSavedImages {
 }
 
 // Helpers
-internal fun LastSavedImages.isNotEmpty(): Boolean {
-    return imageSource.isNotEmpty()
-}
+internal fun LastSavedImages.isNotEmpty(): Boolean = imageSource.isNotEmpty()
 
 internal val LastSavedImages.imageSource: List<LastSavedImageWrapper>
     get() {
@@ -53,8 +51,6 @@ internal val LastSavedImages.size: Int
     get() = imageSource.size
 
 // Converters
-internal fun GeneratedOperationUIModel.toLastSavedImages(): LastSavedImages {
-    return LastSavedImages.UrlSource.Base(
-        urlImages = urlImages,
-    )
-}
+internal fun GeneratedOperationUIModel.toLastSavedImages(): LastSavedImages = LastSavedImages.UrlSource.Base(
+    urlImages = urlImages,
+)

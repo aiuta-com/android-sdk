@@ -19,52 +19,53 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaIcon
-import com.aiuta.fashionsdk.compose.molecules.images.AiutaImage
-import com.aiuta.fashionsdk.compose.tokens.composition.LocalTheme
-import com.aiuta.fashionsdk.compose.tokens.utils.clickableUnindicated
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnStringResources
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBarIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
+import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
+import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
 internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
+    val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
+
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
     Box(
-        modifier = modifier.background(theme.colors.background),
+        modifier = modifier.background(theme.color.background),
         contentAlignment = Alignment.Center,
     ) {
-        theme.images?.preonboardingImage?.let { preonboardingImage ->
-            AiutaImage(
-                modifier = Modifier.fillMaxSize(),
-                image = preonboardingImage,
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-        }
+        AiutaImage(
+            modifier = Modifier.fillMaxSize(),
+            image = welcomeScreenFeature.images.welcomeBackground,
+            contentScale = ContentScale.Crop,
+            contentDescription = null,
+        )
 
         AppBar(
             modifier =
-                Modifier
-                    .align(Alignment.TopCenter)
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp),
+            Modifier
+                .align(Alignment.TopCenter)
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
             actions = {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
-                    icon = theme.icons.close24,
+                    icon = theme.pageBar.icons.close24,
                     color = Color.White,
                     onClick = controller::clickClose,
                 )
@@ -78,8 +79,8 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+
+    val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
     Column(
         modifier = modifier.padding(horizontal = 24.dp),
@@ -87,7 +88,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
     ) {
         AiutaIcon(
             modifier = Modifier.size(82.dp),
-            icon = theme.icons.welcomeScreen82,
+            icon = welcomeScreenFeature.icons.welcome82,
             contentDescription = null,
             tint = Color.Unspecified,
         )
@@ -95,8 +96,8 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = stringResources.preOnboardingTitle,
-            style = theme.typography.titleXL,
+            text = welcomeScreenFeature.strings.welcomeTitle,
+            style = welcomeScreenFeature.typography.welcomeTitle,
             color = Color.White,
             textAlign = TextAlign.Center,
         )
@@ -104,8 +105,8 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = stringResources.preOnboardingSubtitle,
-            style = theme.typography.welcomeText,
+            text = welcomeScreenFeature.strings.welcomeDescription,
+            style = welcomeScreenFeature.typography.welcomeDescription,
             color = Color.White,
             textAlign = TextAlign.Center,
         )
@@ -118,7 +119,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
                 controller.sendOnboardingEvent(
                     eventType = AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED,
                     pageId = AiutaAnalyticPageId.WELCOME,
-                    productId = controller.activeSKUItem.value.skuId,
+                    productId = controller.activeProductItem.value.id,
                     supplementaryConsents = null,
                 )
                 controller.navigateTo(NavigationScreen.Onboarding)
@@ -133,21 +134,21 @@ private fun StartButton(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val stringResources = LocalAiutaTryOnStringResources.current
+    val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
     Box(
         modifier =
-            modifier
-                .clip(RoundedCornerShape(4.dp))
-                .background(theme.colors.background)
-                .clickableUnindicated { onClick() }
-                .padding(vertical = 16.dp),
+        modifier
+            .clip(RoundedCornerShape(4.dp))
+            .background(theme.color.background)
+            .clickableUnindicated { onClick() }
+            .padding(vertical = 16.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = stringResources.preOnboardingButton,
-            style = theme.typography.button,
-            color = theme.colors.primary,
+            text = welcomeScreenFeature.strings.welcomeButtonStart,
+            style = theme.button.typography.buttonM,
+            color = theme.color.primary,
             textAlign = TextAlign.Center,
         )
     }

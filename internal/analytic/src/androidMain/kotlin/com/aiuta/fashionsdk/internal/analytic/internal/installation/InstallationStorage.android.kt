@@ -9,9 +9,7 @@ import kotlinx.coroutines.withContext
 
 internal actual fun buildInstallationStorage(
     platformContext: AiutaPlatformContext,
-): InstallationStorage {
-    return AndroidInstallationStorage(platformContext)
-}
+): InstallationStorage = AndroidInstallationStorage(platformContext)
 
 internal class AndroidInstallationStorage(
     private val platformContext: AiutaPlatformContext,

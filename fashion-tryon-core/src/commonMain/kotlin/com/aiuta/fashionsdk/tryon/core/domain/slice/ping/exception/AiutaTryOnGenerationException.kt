@@ -15,6 +15,4 @@ public enum class AiutaTryOnExceptionType {
     DOWNLOAD_RESULT_FAILED,
 }
 
-public fun Exception.isTryOnGenerationAbortedException(): Boolean {
-    return this is AiutaTryOnGenerationException && this.type == AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED
-}
+public fun Exception.isTryOnGenerationAbortedException(): Boolean = this is AiutaTryOnGenerationException && this.type == AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED
