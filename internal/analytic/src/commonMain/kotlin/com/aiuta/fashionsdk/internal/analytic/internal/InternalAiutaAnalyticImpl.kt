@@ -8,6 +8,8 @@ import com.aiuta.fashionsdk.internal.analytic.internal.worker.createAnalyticComp
 import com.aiuta.fashionsdk.internal.analytic.model.ExternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
 import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.network.NetworkClient
 import com.aiuta.fashionsdk.network.createNetworkClient
 import io.ktor.client.request.post
@@ -19,12 +21,15 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
 
 internal class InternalAiutaAnalyticImpl(
     private val platformContext: AiutaPlatformContext,
     private val networkClient: NetworkClient,
+    private val logger: AiutaLogger?
 ) : BaseUpdater(),
     InternalAiutaAnalytic {
     private val _analyticFlow = MutableSharedFlow<ExternalAnalyticEvent?>(extraBufferCapacity = 10)
@@ -37,6 +42,8 @@ internal class InternalAiutaAnalyticImpl(
         // Concurrency should not affect, because we use
         // BufferOverflow.SUSPEND strategy
         scope.launch {
+            logger?.d("New analytic event(${event::class.simpleName}): ${Json.encodeToString<InternalAnalyticEvent>(event)}")
+
             // Notify external listeners
             _analyticFlow.emit(event as? ExternalAnalyticEvent)
 
@@ -62,12 +69,12 @@ internal class InternalAiutaAnalyticImpl(
     companion object {
         fun getInstance(aiuta: Aiuta): InternalAiutaAnalytic = InternalAiutaAnalyticImpl(
             platformContext = aiuta.platformContext,
-            networkClient =
-            createNetworkClient(
+            networkClient = createNetworkClient(
                 aiuta = aiuta,
                 host = AnalyticConfig.DEFAULT_ENDPOINT,
                 encodedPath = AnalyticConfig.DEFAULT_ENCODED_PATH,
             ),
+            logger = aiuta.logger,
         )
     }
 }
