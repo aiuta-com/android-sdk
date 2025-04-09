@@ -1,288 +1,54 @@
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem {
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Z)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Z
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/util/List;
-	public final fun component5 ()Ljava/lang/String;
-	public final fun component6 ()Ljava/lang/String;
-	public final fun component7 ()Ljava/lang/String;
-	public final fun component8 ()Ljava/util/List;
-	public final fun component9 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Z)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;
-	public static synthetic fun copy$default (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;ZILjava/lang/Object;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAdditionalShareInfo ()Ljava/lang/String;
-	public final fun getCatalogName ()Ljava/lang/String;
-	public final fun getDescription ()Ljava/lang/String;
-	public final fun getGenerateMoreSKU ()Ljava/util/List;
-	public final fun getImageUrls ()Ljava/util/List;
-	public final fun getInWishlist ()Z
-	public final fun getLocalizedOldPrice ()Ljava/lang/String;
-	public final fun getLocalizedPrice ()Ljava/lang/String;
-	public final fun getProductId ()Ljava/lang/String;
-	public final fun getStore ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/ui/AiutaUserInterfaceConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettings;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettings;
+	public final fun getTryOnConfiguration ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/AiutaTryOnConfiguration;
+	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/ui/AiutaUserInterfaceConfiguration;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration {
-	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
-	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider;
-	public final fun getDimensions ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;
-	public final fun getHostMetadata ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;
-	public final fun getLanguage ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder {
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration$Builder {
 	public static final field $stable I
 	public fun <init> ()V
-	public final fun build ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;
-	public final fun setAiuta (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
-	public final fun setDataProvider (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
-	public final fun setDimensions (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
-	public final fun setHostMetadata (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
-	public final fun setLanguage (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
-	public final fun setToggles (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration$Builder;
+	public final fun build ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration;
+	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettings;
+	public final fun getTryOnConfiguration ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/AiutaTryOnConfiguration;
+	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/ui/AiutaUserInterfaceConfiguration;
+	public final fun setDebugSettings (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettings;)V
+	public final fun setTryOnConfiguration (Lcom/aiuta/fashionsdk/tryon/compose/configuration/AiutaTryOnConfiguration;)V
+	public final fun setUserInterface (Lcom/aiuta/fashionsdk/tryon/compose/configuration/ui/AiutaUserInterfaceConfiguration;)V
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaDataProvider {
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfigurationKt {
+	public static final fun aiutaConfiguration (Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration;
+	public static final fun rememberAiutaConfiguration (Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration;
+}
+
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettings {
 	public static final field $stable I
-	public fun <init> (Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function2;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/StateFlow;Lkotlin/jvm/functions/Function1;Lkotlinx/coroutines/flow/SharedFlow;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
-	public final fun getAddGeneratedImagesAction ()Lkotlin/jvm/functions/Function2;
-	public final fun getAddUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
-	public final fun getDeleteGeneratedImagesAction ()Lkotlin/jvm/functions/Function1;
-	public final fun getDeleteUploadedImagesAction ()Lkotlin/jvm/functions/Function1;
-	public final fun getGeneratedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
-	public final fun getObtainUserConsentAction ()Lkotlin/jvm/functions/Function1;
-	public final fun getSelectUploadedImageAction ()Lkotlin/jvm/functions/Function1;
-	public final fun getUploadedImagesFlow ()Lkotlinx/coroutines/flow/StateFlow;
-	public final fun isErrorDeletingGeneratedImagesFlow ()Lkotlinx/coroutines/flow/SharedFlow;
-	public final fun isErrorDeletingUploadedImagesFlow ()Lkotlinx/coroutines/flow/SharedFlow;
-	public final fun isUserConsentObtainedFlow ()Lkotlinx/coroutines/flow/StateFlow;
+	public fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;)V
+	public final fun getEmptyStringsPolicy ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
+	public final fun getListSizePolicy ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/AiutaHistoryImage {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun getId ()Ljava/lang/String;
-	public final fun getUrl ()Ljava/lang/String;
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettingsKt {
+	public static final fun getDefaultAiutaDebugSettings ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaDebugSettings;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dataprovider/SupplementaryConsent {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Z)V
-	public final fun getConsentText ()Ljava/lang/String;
-	public final fun isObtained ()Z
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/dimensions/AiutaDimensions {
-	public static final field $stable I
-	public synthetic fun <init> (Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public synthetic fun <init> (Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getGrabberPaddingTop-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
-	public final fun getGrabberWidth-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
-}
-
-public abstract interface class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/CustomLanguage : com/aiuta/fashionsdk/tryon/compose/domain/internal/language/InternalAiutaTryOnLanguage, com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public fun getAddToCart ()Ljava/lang/String;
-	public fun getAddToWish ()Ljava/lang/String;
-	public fun getAppBarHistory ()Ljava/lang/String;
-	public fun getAppBarSelect ()Ljava/lang/String;
-	public fun getCancel ()Ljava/lang/String;
-	public fun getClose ()Ljava/lang/String;
-	public fun getDefaultErrorMessage ()Ljava/lang/String;
-	public fun getDialogCameraPermissionConfirmButton ()Ljava/lang/String;
-	public fun getDialogCameraPermissionDescription ()Ljava/lang/String;
-	public fun getDialogCameraPermissionTitle ()Ljava/lang/String;
-	public fun getDialogInvalidImageDescription ()Ljava/lang/String;
-	public final fun getFeedbackSheetExtraOption ()Ljava/lang/String;
-	public final fun getFeedbackSheetExtraOptionTitle ()Ljava/lang/String;
-	public final fun getFeedbackSheetGratitude ()Ljava/lang/String;
-	public final fun getFeedbackSheetOptions ()Ljava/util/List;
-	public fun getFeedbackSheetSend ()Ljava/lang/String;
-	public fun getFeedbackSheetSendFeedback ()Ljava/lang/String;
-	public fun getFeedbackSheetSkip ()Ljava/lang/String;
-	public final fun getFeedbackSheetTitle ()Ljava/lang/String;
-	public fun getFitDisclaimerBody ()Ljava/lang/String;
-	public fun getFitDisclaimerTitle ()Ljava/lang/String;
-	public fun getGeneratedOperationsSheetPreviously ()Ljava/lang/String;
-	public fun getGeneratedOperationsSheetUploadNewButton ()Ljava/lang/String;
-	public fun getGeneratedOperationsSheetUploadNewButtonWithModels ()Ljava/lang/String;
-	public fun getGenerationResultMoreSubtitle ()Ljava/lang/String;
-	public fun getGenerationResultMoreTitle ()Ljava/lang/String;
-	public fun getHistoryEmptyDescription ()Ljava/lang/String;
-	public fun getHistorySelectorEnableButtonSelectAll ()Ljava/lang/String;
-	public fun getHistorySelectorEnableButtonUnselectAll ()Ljava/lang/String;
-	public fun getImageSelectorChangeButton ()Ljava/lang/String;
-	public fun getImageSelectorGeneratingOutfit ()Ljava/lang/String;
-	public fun getImageSelectorOr ()Ljava/lang/String;
-	public fun getImageSelectorPoweredByAiuta ()Ljava/lang/String;
-	public fun getImageSelectorProtectionPoint ()Ljava/lang/String;
-	public fun getImageSelectorScanningBody ()Ljava/lang/String;
-	public fun getImageSelectorSelectModelButton ()Ljava/lang/String;
-	public fun getImageSelectorUploadButton ()Ljava/lang/String;
-	public fun getImageSelectorUploadSubtitle ()Ljava/lang/String;
-	public fun getImageSelectorUploadTitle ()Ljava/lang/String;
-	public fun getImageSelectorUploadingImage ()Ljava/lang/String;
-	public fun getModelSelect ()Ljava/lang/String;
-	public fun getModelSelectorCategories ()Ljava/util/List;
-	public fun getModelSelectorErrorEmptyModelsList ()Ljava/lang/String;
-	public fun getOnboardingAppbarBestResultPage ()Ljava/lang/String;
-	public fun getOnboardingAppbarConsentPage ()Ljava/lang/String;
-	public fun getOnboardingAppbarTryonPage ()Ljava/lang/String;
-	public fun getOnboardingButtonNext ()Ljava/lang/String;
-	public fun getOnboardingButtonStart ()Ljava/lang/String;
-	public fun getOnboardingPageBestResultSubtopic ()Ljava/lang/String;
-	public fun getOnboardingPageBestResultTopic ()Ljava/lang/String;
-	public fun getOnboardingPageConsentAgreePoint ()Ljava/lang/String;
-	public fun getOnboardingPageConsentBody ()Ljava/lang/String;
-	public fun getOnboardingPageConsentFooter ()Ljava/lang/String;
-	public fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
-	public fun getOnboardingPageConsentTopic ()Ljava/lang/String;
-	public fun getOnboardingPageTryonConsent ()Ljava/lang/String;
-	public fun getOnboardingPageTryonSubtopic ()Ljava/lang/String;
-	public fun getOnboardingPageTryonTopic ()Ljava/lang/String;
-	public fun getPickerSheetChooseLibrary ()Ljava/lang/String;
-	public fun getPickerSheetTakePhoto ()Ljava/lang/String;
-	public fun getPreOnboardingButton ()Ljava/lang/String;
-	public fun getPreOnboardingSubtitle ()Ljava/lang/String;
-	public fun getPreOnboardingTitle ()Ljava/lang/String;
-	public fun getShare ()Ljava/lang/String;
-	public fun getTryAgain ()Ljava/lang/String;
-	public fun getTryOn ()Ljava/lang/String;
-	public fun getVirtualTryOn ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/EnglishLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
-	public static final field $stable I
-	public static final field CODE Ljava/lang/String;
-	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/EnglishLanguage$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public final fun getBrand ()Ljava/lang/String;
-	public final fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
-	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
-	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/EnglishLanguage$Companion {
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/RussianLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
-	public static final field $stable I
-	public static final field CODE Ljava/lang/String;
-	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/RussianLanguage$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public final fun getBrand ()Ljava/lang/String;
-	public final fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
-	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
-	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/RussianLanguage$Companion {
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/TranslationWord {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
-	public final fun getId ()Ljava/lang/String;
-	public final fun getTranslation ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/TurkishLanguage : com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/AiutaTryOnLanguage {
-	public static final field $stable I
-	public static final field CODE Ljava/lang/String;
-	public static final field Companion Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/TurkishLanguage$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
-	public final fun getBrand ()Ljava/lang/String;
-	public final fun getOnboardingPageConsentSupplementaryPoints ()Ljava/util/List;
-	public final fun getPrivacyPolicyUrl ()Ljava/lang/String;
-	public final fun getTermsOfServiceUrl ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/language/TurkishLanguage$Companion {
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners {
-	public static final field $stable I
-	public fun <init> (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
-	public final fun getAddToCartClick ()Lkotlin/jvm/functions/Function1;
-	public final fun getAddToWishlistClick ()Lkotlin/jvm/functions/Function1;
-	public final fun getCloseClick ()Lkotlin/jvm/functions/Function1;
-	public final fun updateActiveSKUItem (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;)V
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListenersKt {
-	public static final fun getDefaultAiutaTryOnListeners ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode : java/lang/Enum {
-	public static final field BOTTOM_SHEET Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
-	public static final field FULL_SCREEN Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
+public final class com/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy : java/lang/Enum {
+	public static final field FATAL Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
+	public static final field IGNORE Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
+	public static final field WARNING Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
-	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata {
-	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;)V
-	public final fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/AiutaMode;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadataKt {
-	public static final fun getDefaultHostMetadata ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/meta/HostMetadata;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode : java/lang/Enum {
-	public static final field EXTENDED Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
-	public static final field STANDARD Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
-	public static final field STANDARD_WITH_CONSENT Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
-	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles {
-	public static final field $stable I
-	public fun <init> (ZZZZZLcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;Z)V
-	public final fun getOnboardingMode ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaOnboardingMode;
-	public final fun isBackgroundExecutionAllowed ()Z
-	public final fun isHistoryAvailable ()Z
-	public final fun isPreOnboardingAvailable ()Z
-	public final fun isShareAvailable ()Z
-	public final fun isTryonWithModelsAvailable ()Z
-	public final fun isWishlistAvailable ()Z
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaTogglesKt {
-	public static final fun getDefaultAiutaToggles ()Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/toggles/AiutaToggles;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
+	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/compose/domain/models/debug/AiutaValidationPolicy;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/AiutaTryOnFlowKt {
-	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/SKUItem;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AiutaTryOnFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/configuration/models/product/ProductItem;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
-	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaTryOnConfiguration;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/listeners/AiutaTryOnListeners;Lcom/aiuta/fashionsdk/compose/tokens/AiutaTheme;Landroidx/compose/runtime/Composer;II)V
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/components/images/ComposableSingletons$ImagesContainerKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/components/images/ComposableSingletons$ImagesContainerKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public static final fun HistoryFlow (Landroidx/compose/ui/Modifier;Lcom/aiuta/fashionsdk/tryon/compose/domain/models/configuration/AiutaConfiguration;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {
@@ -302,42 +68,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/com
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-3$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt;
 	public fun <init> ()V
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/body/ComposableSingletons$GenerationResultBodyKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/body/ComposableSingletons$GenerationResultBodyKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/footer/blocks/common/ComposableSingletons$DividerBlockKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/footer/blocks/common/ComposableSingletons$DividerBlockKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/footer/blocks/more/ComposableSingletons$GenerateMoreListBlockKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/footer/blocks/more/ComposableSingletons$GenerateMoreListBlockKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/footer/blocks/photos/ComposableSingletons$ItemPhotosBlockKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/result/components/footer/blocks/photos/ComposableSingletons$ItemPhotosBlockKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/body/ComposableSingletons$ImageSelectorPhotoKt {
@@ -352,12 +89,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/select
 	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$InactiveFooterKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$InactiveFooterKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-}
-
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/content/ComposableSingletons$ImageSelectorScreenContentKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/content/ComposableSingletons$ImageSelectorScreenContentKt;
 	public fun <init> ()V
@@ -367,15 +98,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/select
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-3$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/skuinfo/ComposableSingletons$SKUInfoSheetKt {
-	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/skuinfo/ComposableSingletons$SKUInfoSheetKt;
-	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 

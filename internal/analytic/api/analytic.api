@@ -329,7 +329,7 @@ public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent :
 	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;ZZZZZ)V
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;ZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAuthenticationType ()Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;
-	public final fun getChangePhotoButtonStyle ()Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+	public final fun getMode ()Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
 	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
 	public fun getProductId ()Ljava/lang/String;
 	public final fun isHistoryEnable ()Z
