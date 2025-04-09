@@ -1,5 +1,5 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
-import com.aiuta.fashionsdk.androidLibraryV2
+import com.aiuta.fashionsdk.androidLibrary
 
 plugins {
     id("com.android.library")
@@ -7,4 +7,4 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibraryV2(name = "com.aiuta.fashionsdk.logger")
+androidLibrary(name = "com.aiuta.fashionsdk.logger")

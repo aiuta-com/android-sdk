@@ -1,4 +1,4 @@
-import com.aiuta.fashionsdk.androidApplicationV2
+import com.aiuta.fashionsdk.androidApplication
 
 plugins {
     id("com.android.application")
@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.secrets)
 }
 
-androidApplicationV2(name = "sample.tryon.kmp") {
+androidApplication(name = "sample.tryon.kmp") {
     buildFeatures {
         buildConfig = true
     }
