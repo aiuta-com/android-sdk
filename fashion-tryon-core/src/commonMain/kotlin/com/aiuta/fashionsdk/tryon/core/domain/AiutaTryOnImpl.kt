@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.core.domain
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -40,6 +41,7 @@ import kotlinx.coroutines.flow.flow
 internal class AiutaTryOnImpl(
     internal val analytic: InternalAiutaAnalytic,
     internal val retryPolicies: AiutaTryOnRetryPolicies,
+    internal val logger: AiutaLogger?,
     private val pingOperationSlice: PingOperationSlice,
     private val uploadImageSlice: UploadImageSlice,
     private val productDataSource: FashionProductDataSource,
@@ -49,11 +51,10 @@ internal class AiutaTryOnImpl(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
     ): PageContainer<ProductCatalog> {
-        val skuCatalogs =
-            productDataSource.getProductCatalogs(
-                paginationOffset = paginationOffset,
-                paginationLimit,
-            )
+        val skuCatalogs = productDataSource.getProductCatalogs(
+            paginationOffset = paginationOffset,
+            paginationLimit,
+        )
 
         return PageContainer(
             result = skuCatalogs.result.map { it.toPublic() },
@@ -68,12 +69,11 @@ internal class AiutaTryOnImpl(
         paginationOffset: PaginationOffset?,
         paginationLimit: Int?,
     ): PageContainer<ProductGenerationItem> {
-        val skuDTOs =
-            productDataSource.getProductItems(
-                productCatalogName = catalogName,
-                paginationOffset = paginationOffset,
-                paginationLimit = paginationLimit,
-            )
+        val skuDTOs = productDataSource.getProductItems(
+            productCatalogName = catalogName,
+            paginationOffset = paginationOffset,
+            paginationLimit = paginationLimit,
+        )
 
         return PageContainer(
             result = skuDTOs.result.map { it.toPublic() },
@@ -83,107 +83,106 @@ internal class AiutaTryOnImpl(
         )
     }
 
-    override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> = flow {
-        analytic.sendStartTryOnEvent(container)
-        val statusId = generateStatusId()
+    override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> =
+        flow {
+            analytic.sendStartTryOnEvent(container)
+            val statusId = generateStatusId()
 
-        errorListener(statusId = statusId) {
-            val metadataBuilder = AiutaTryOnMetadata.Builder()
+            errorListener(statusId = statusId) {
+                val metadataBuilder = AiutaTryOnMetadata.Builder()
 
-            // Set loading state with previous image urls
-            emit(
-                ProductGenerationStatus.LoadingGenerationStatus.StartGeneration(
-                    statusId = statusId,
-                ),
-            )
+                // Set loading state with previous image urls
+                emit(
+                    ProductGenerationStatus.LoadingGenerationStatus.StartGeneration(
+                        statusId = statusId,
+                    ),
+                )
 
-            // Firstly, upload image on backend
-            val uploadedImage =
-                trackTryOnArea(
+                // Firstly, upload image on backend
+                val uploadedImage = trackTryOnArea(
                     typeArea = AiutaTryOnExceptionType.UPLOAD_PHOTO_FAILED,
                     container = container,
                 ) {
                     solveUploadingImage(container)
                 }
-            // Update time for meta info of generation
-            metadataBuilder.setUploadDuration()
-            emit(
-                ProductGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
-                    statusId = statusId,
-                    sourceImageId = uploadedImage.id,
-                    sourceImageUrl = uploadedImage.url,
-                ),
-            )
+                // Update time for meta info of generation
+                metadataBuilder.setUploadDuration()
+                emit(
+                    ProductGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                        statusId = statusId,
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
+                    ),
+                )
 
-            // Secondly, create sku generation operation
-            val newOperation =
-                trackTryOnArea(
+                // Secondly, create sku generation operation
+                val newOperation = trackTryOnArea(
                     typeArea = AiutaTryOnExceptionType.START_OPERATION_FAILED,
                     container = container,
                 ) {
                     productOperationsDataSource.createProductOperation(
                         request =
-                        CreateProductOperationRequest(
-                            skuCatalogName = container.productCatalogName,
-                            skuId = container.productId,
-                            uploadedImageId = uploadedImage.id,
-                        ),
+                            CreateProductOperationRequest(
+                                skuCatalogName = container.productCatalogName,
+                                skuId = container.productId,
+                                uploadedImageId = uploadedImage.id,
+                            ),
                     )
                 }
 
-            // Wait for the operation, until it is completed
-            emit(
-                ProductGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
-                    statusId = statusId,
-                    sourceImageId = uploadedImage.id,
-                    sourceImageUrl = uploadedImage.url,
-                ),
-            )
-            val generations =
-                trackSpecificTryOnArea(
+                // Wait for the operation, until it is completed
+                emit(
+                    ProductGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                        statusId = statusId,
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
+                    ),
+                )
+                val generations = trackSpecificTryOnArea(
                     typeArea = AiutaTryOnExceptionType.OPERATION_FAILED,
                     failingTypes =
-                    setOf(
-                        AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
-                        AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED,
-                    ),
+                        setOf(
+                            AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
+                            AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED,
+                        ),
                     container = container,
                 ) {
                     pingOperationSlice.operationPing(newOperation.operationId)
                 }
-            // Update time for meta info of generation
-            metadataBuilder.setTryOnDuration()
+                // Update time for meta info of generation
+                metadataBuilder.setTryOnDuration()
 
-            // Finally, emit result
-            emit(
-                ProductGenerationStatus.SuccessGenerationStatus(
-                    statusId = statusId,
-                    sourceImageId = uploadedImage.id,
-                    sourceImageUrl = uploadedImage.url,
-                    images = generations.map { it.toPublic() },
-                    metadata = metadataBuilder.build(),
-                ),
-            )
-        }
-    }
-
-    private suspend fun solveUploadingImage(container: ProductGenerationContainer): UploadedImage = when (container) {
-        is ProductGenerationPlatformImageContainer -> {
-            uploadImageSlice.uploadImage(
-                container = container,
-                fileName = generateFileName(),
-            ).also {
-                analytic.sendTryOnPhotoUploadedEvent(container)
+                // Finally, emit result
+                emit(
+                    ProductGenerationStatus.SuccessGenerationStatus(
+                        statusId = statusId,
+                        sourceImageId = uploadedImage.id,
+                        sourceImageUrl = uploadedImage.url,
+                        images = generations.map { it.toPublic() },
+                        metadata = metadataBuilder.build(),
+                    ),
+                )
             }
         }
 
-        is ProductGenerationUrlContainer -> {
-            UploadedImage(
-                id = container.fileId,
-                url = container.fileUrl,
-            )
+    private suspend fun solveUploadingImage(container: ProductGenerationContainer): UploadedImage =
+        when (container) {
+            is ProductGenerationPlatformImageContainer -> {
+                uploadImageSlice.uploadImage(
+                    container = container,
+                    fileName = generateFileName(),
+                ).also {
+                    analytic.sendTryOnPhotoUploadedEvent(container)
+                }
+            }
+
+            is ProductGenerationUrlContainer -> {
+                UploadedImage(
+                    id = container.fileId,
+                    url = container.fileUrl,
+                )
+            }
         }
-    }
 
     companion object {
         fun create(aiuta: Aiuta): AiutaTryOn = AiutaTryOnImpl(
@@ -193,6 +192,7 @@ internal class AiutaTryOnImpl(
             productDataSource = aiuta.productDataSourceFactory,
             productOperationsDataSource = aiuta.productOperationsDataSourceFactory,
             retryPolicies = DefaultAiutaTryOnRetryPolicies,
+            logger = aiuta.logger,
         )
     }
 }
