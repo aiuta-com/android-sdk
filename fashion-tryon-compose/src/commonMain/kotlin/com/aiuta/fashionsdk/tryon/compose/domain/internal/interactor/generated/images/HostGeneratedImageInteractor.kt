@@ -14,7 +14,7 @@ internal class HostGeneratedImageInteractor(
     override suspend fun insertAll(
         generatedProductId: String,
         images: List<GeneratedImageUIModel>,
-    ) {
+    ): Result<Unit> = runCatching {
         dataProvider.addGeneratedImagesAction(
             generatedProductId,
             images.map { image -> image.toPublic() },
@@ -27,14 +27,15 @@ internal class HostGeneratedImageInteractor(
         }
         .map { images -> PagingData.from(images) }
 
-    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
+    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>): Result<Unit> = runCatching {
         dataProvider.deleteGeneratedImagesAction(
             generatedImages.map { image -> image.toPublic() },
         )
     }
 
-    override suspend fun removeAll() {
+    override suspend fun removeAll(): Result<Unit> {
         // Ignore this, because host should solve current list of generations
+        return Result.success(Unit)
     }
 
     override fun countFlow(): Flow<Int> = dataProvider.generatedImages.map { images -> images.size }

@@ -51,7 +51,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareMan
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -206,8 +206,7 @@ private fun ImageContainer(
     val theme = LocalTheme.current
 
     Box(
-        modifier =
-        modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(178.dp)
             .clip(theme.image.shapes.imageSShape)
@@ -228,8 +227,7 @@ private fun ImageContainer(
         )
 
         AnimatedVisibility(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(8.dp),
             visible = isEdit,
@@ -259,17 +257,15 @@ private fun ImageContainer(
         }
 
         AnimatedVisibility(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .clipToBounds()
                 .fillMaxSize(),
             visible = isLoading,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            AiutaLoadingIcon(
-                modifier =
-                Modifier
+            AiutaBoxedLoadingIcon(
+                modifier = Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(alpha = 0.5f)),
                 circleColor = Color.White,
@@ -331,7 +327,8 @@ private fun BoxScope.HistoryScreenInterface(
                             .map { it.imageUrl }
 
                     val skuIds = listOf(controller.activeProductItem.value.id)
-                    val shareText = shareFeature?.dataProvider?.requestShareTextAction?.invoke(skuIds)
+                    val shareText =
+                        shareFeature?.dataProvider?.requestShareTextAction?.invoke(skuIds)
 
                     // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()

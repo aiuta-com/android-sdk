@@ -23,11 +23,8 @@ import kotlinx.coroutines.flow.onEach
 
 // Generated images
 @Composable
-internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener(
-    controller: FashionTryOnController,
-) {
+internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener() {
     updateDeletingGeneratedImagesListener()
-    showErrorDeletingGeneratedImagesListener(controller)
 }
 
 @Composable
@@ -81,38 +78,23 @@ private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesList
     }
 }
 
-@Composable
-private fun AiutaTryOnLoadingActionsController.showErrorDeletingGeneratedImagesListener(
+internal fun Result<Unit>.listenErrorDeletingGeneratedImages(
     controller: FashionTryOnController,
-) {
-    val generationsHistoryFeature = provideFeature<AiutaTryOnGenerationsHistoryFeature>()
-    val dataProvider = generationsHistoryFeature?.dataProvider
+    loadingActionsController: AiutaTryOnLoadingActionsController,
+): Result<Unit> = onFailure {
+    // Move from loading to retry
+    val retryGenerations = loadingActionsController.loadingGenerationsHolder.getList()
+    loadingActionsController.retryGenerationsHolder.putAll(retryGenerations)
 
-    dataProvider?.let {
-        LaunchedEffect(Unit) {
-            dataProvider
-                .isErrorDeletingGeneratedImages
-                .onEach { isHostErrorDeletingGenerated ->
-                    if (isHostErrorDeletingGenerated) {
-                        // Move from loading to retry
-                        val retryGenerations = loadingGenerationsHolder.getList()
-                        retryGenerationsHolder.putAll(retryGenerations)
+    // Clean loading
+    loadingActionsController.loadingGenerationsHolder.removeAll()
 
-                        // Clean loading
-                        loadingGenerationsHolder.removeAll()
-
-                        controller.showErrorState(
-                            errorState =
-                            DeleteGeneratedImagesToastErrorState(
-                                controller = controller,
-                                loadingActionsController = this@showErrorDeletingGeneratedImagesListener,
-                            ),
-                        )
-                    }
-                }
-                .launchIn(generalScope)
-        }
-    }
+    controller.showErrorState(
+        errorState = DeleteGeneratedImagesToastErrorState(
+            controller = controller,
+            loadingActionsController = loadingActionsController,
+        ),
+    )
 }
 
 // Uploaded images

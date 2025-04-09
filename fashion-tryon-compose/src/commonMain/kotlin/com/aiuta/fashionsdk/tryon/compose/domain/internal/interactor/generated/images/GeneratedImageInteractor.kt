@@ -10,13 +10,13 @@ internal interface GeneratedImageInteractor {
     suspend fun insertAll(
         generatedProductId: String,
         images: List<GeneratedImageUIModel>,
-    )
+    ): Result<Unit>
 
     fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>>
 
-    suspend fun remove(generatedImages: List<GeneratedImageUIModel>)
+    suspend fun remove(generatedImages: List<GeneratedImageUIModel>): Result<Unit>
 
-    suspend fun removeAll()
+    suspend fun removeAll(): Result<Unit>
 
     fun countFlow(): Flow<Int>
 
@@ -30,7 +30,7 @@ internal interface GeneratedImageInteractor {
                 platformContext = aiuta.platformContext,
             )
             // Data provider not initialized -> let's use local
-            generationsHistoryFeature.dataProvider == null -> LocalGeneratedImageInteractor.getInstance(
+            generationsHistoryFeature.dataProvider == null -> DatabaseGeneratedImageInteractor.getInstance(
                 platformContext = aiuta.platformContext,
             )
             // Data provider initialized -> let's use host
@@ -40,3 +40,6 @@ internal interface GeneratedImageInteractor {
         }
     }
 }
+
+// For all implementations, which not expose result to host and save data locally
+internal interface LocalGeneratedImageInteractor : GeneratedImageInteractor

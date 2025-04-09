@@ -5,8 +5,10 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
@@ -15,6 +17,19 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.A
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
+
+@Composable
+internal fun AiutaBoxedLoadingIcon(
+    modifier: Modifier = Modifier,
+    circleColor: Color = LocalTheme.current.color.brand,
+) {
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center,
+    ) {
+        AiutaLoadingIcon(circleColor = circleColor)
+    }
+}
 
 @Composable
 internal fun AiutaLoadingIcon(

@@ -37,7 +37,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHisto
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaBoxedLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -274,17 +274,15 @@ private fun OperationItem(
         }
 
         AnimatedVisibility(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .clipToBounds()
                 .fillMaxSize(),
             visible = isLoadingScrimVisible.value,
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            AiutaLoadingIcon(
-                modifier =
-                Modifier
+            AiutaBoxedLoadingIcon(
+                modifier = Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(alpha = 0.5f)),
                 circleColor = Color.White,

@@ -9,23 +9,19 @@ import kotlinx.coroutines.flow.flowOf
 
 internal class EmptyGeneratedImageInteractor(
     private val generatedImageDatasource: GeneratedImageDatasource,
-) : GeneratedImageInteractor {
+) : LocalGeneratedImageInteractor {
     override suspend fun insertAll(
         generatedProductId: String,
         images: List<GeneratedImageUIModel>,
-    ) {
-        // Do nothing
-    }
+    ): Result<Unit> = Result.success(Unit)
 
     override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = flowOf(PagingData.empty())
 
-    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
-        // Do nothing
-    }
+    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>): Result<Unit> = Result.success(Unit)
 
-    override suspend fun removeAll() {
+    override suspend fun removeAll(): Result<Unit> {
         // Only support remove local, because if it's empty - we should remove all local images
-        generatedImageDatasource.removeAll()
+        return runCatching { generatedImageDatasource.removeAll() }
     }
 
     override fun countFlow(): Flow<Int> = flowOf(0)

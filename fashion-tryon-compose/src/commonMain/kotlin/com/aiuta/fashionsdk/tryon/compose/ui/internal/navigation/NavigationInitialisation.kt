@@ -59,7 +59,7 @@ internal fun NavigationInitialisation(
         ) {
             // Init listeners
             val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-            loadingActionsController.deletingGeneratedImagesListener(controller)
+            loadingActionsController.deletingGeneratedImagesListener()
             loadingActionsController.deletingUploadedImagesListener(controller)
 
             // Actual content

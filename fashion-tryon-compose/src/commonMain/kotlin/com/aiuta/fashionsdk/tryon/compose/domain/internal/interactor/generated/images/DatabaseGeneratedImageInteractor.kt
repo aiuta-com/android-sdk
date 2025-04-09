@@ -12,15 +12,17 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.image
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-internal class LocalGeneratedImageInteractor(
+internal class DatabaseGeneratedImageInteractor(
     private val generatedImageDatasource: GeneratedImageDatasource,
-) : GeneratedImageInteractor {
+) : LocalGeneratedImageInteractor {
     override suspend fun insertAll(
         generatedProductId: String,
         images: List<GeneratedImageUIModel>,
-    ) = generatedImageDatasource.insertAll(
-        generatedImages = images.map { it.toEntity() },
-    )
+    ): Result<Unit> = runCatching {
+        generatedImageDatasource.insertAll(
+            generatedImages = images.map { it.toEntity() },
+        )
+    }
 
     override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = Pager(
         config =
@@ -36,20 +38,22 @@ internal class LocalGeneratedImageInteractor(
             pagingData.map { it.toUiModel() }
         }
 
-    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>) {
+    override suspend fun remove(generatedImages: List<GeneratedImageUIModel>): Result<Unit> = runCatching {
         generatedImageDatasource.remove(
             generatedImageIds = generatedImages.map { it.id },
         )
     }
 
-    override suspend fun removeAll() = generatedImageDatasource.removeAll()
+    override suspend fun removeAll(): Result<Unit> = runCatching {
+        generatedImageDatasource.removeAll()
+    }
 
     override fun countFlow(): Flow<Int> = generatedImageDatasource.countFlow()
 
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
-        fun getInstance(platformContext: AiutaPlatformContext): LocalGeneratedImageInteractor = LocalGeneratedImageInteractor(
+        fun getInstance(platformContext: AiutaPlatformContext): DatabaseGeneratedImageInteractor = DatabaseGeneratedImageInteractor(
             generatedImageDatasource = GeneratedImageDatasource.getInstance(
                 platformContext = platformContext,
             ),
