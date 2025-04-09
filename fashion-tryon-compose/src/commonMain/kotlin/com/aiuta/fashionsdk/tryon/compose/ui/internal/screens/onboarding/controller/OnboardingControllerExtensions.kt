@@ -18,6 +18,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.popUpAndNavigat
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 import kotlinx.coroutines.launch
 
 internal fun OnboardingController.nextPage(
@@ -65,7 +66,7 @@ internal fun OnboardingController.nextPage(
                     )
                 },
             )
-            consentStandaloneFeature?.dataProvider?.obtainConsentAction?.invoke(obtainedConsentId)
+            consentStandaloneFeature?.dataProvider?.obtainConsentAction?.safeInvoke(obtainedConsentId)
 
             // Finish
             controller.sendOnboardingEvent(

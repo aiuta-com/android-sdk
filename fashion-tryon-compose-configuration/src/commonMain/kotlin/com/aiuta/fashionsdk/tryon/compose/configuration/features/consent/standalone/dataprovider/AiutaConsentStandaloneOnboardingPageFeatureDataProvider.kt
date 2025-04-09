@@ -4,5 +4,5 @@ import kotlinx.coroutines.flow.StateFlow
 
 public interface AiutaConsentStandaloneOnboardingPageFeatureDataProvider {
     public val obtainedConsentsIds: StateFlow<List<String>>
-    public val obtainConsentAction: (List<String>) -> Unit
+    public val obtainConsentAction: (consentIds: List<String>) -> Unit
 }

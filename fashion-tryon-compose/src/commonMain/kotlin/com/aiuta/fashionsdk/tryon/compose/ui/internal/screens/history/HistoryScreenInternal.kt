@@ -63,6 +63,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.LazyPagingItems
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.paging.collectAsLazyPagingItems
@@ -327,8 +328,7 @@ private fun BoxScope.HistoryScreenInterface(
                             .map { it.imageUrl }
 
                     val skuIds = listOf(controller.activeProductItem.value.id)
-                    val shareText =
-                        shareFeature?.dataProvider?.requestShareTextAction?.invoke(skuIds)
+                    val shareText = shareFeature?.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
 
                     // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()
@@ -338,7 +338,7 @@ private fun BoxScope.HistoryScreenInterface(
                     )
 
                     shareManager.shareImages(
-                        content = shareText,
+                        content = shareText?.getOrNull(),
                         pageId = AiutaAnalyticPageId.HISTORY,
                         productId = controller.activeProductItem.value.id,
                         imageUrls = imageUrls,

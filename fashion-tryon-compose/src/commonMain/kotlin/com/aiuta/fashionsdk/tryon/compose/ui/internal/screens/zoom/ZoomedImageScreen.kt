@@ -46,6 +46,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.TRANSITION_ANIM_DURATION
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toDp
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.utils.toIntOffset
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
@@ -231,11 +232,10 @@ private fun ZoomedImageScreenContent(
                         scope.launch {
                             val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
                             val skuIds = listOf(controller.activeProductItem.value.id)
-                            val shareText =
-                                shareFeature.dataProvider?.requestShareTextAction?.invoke(skuIds)
+                            val shareText = shareFeature.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
 
                             shareManager.shareImages(
-                                content = shareText,
+                                content = shareText?.getOrNull(),
                                 pageId = screenState.sharedImage.value.originPageId,
                                 productId = controller.activeProductItem.value.id,
                                 imageUrls = imageUrls,
