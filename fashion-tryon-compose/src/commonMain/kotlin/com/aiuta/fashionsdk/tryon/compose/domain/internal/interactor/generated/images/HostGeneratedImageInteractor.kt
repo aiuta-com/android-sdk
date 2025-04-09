@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProvider
+import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaAddedGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublic
@@ -15,10 +16,12 @@ internal class HostGeneratedImageInteractor(
         generatedProductId: String,
         images: List<GeneratedImageUIModel>,
     ): Result<Unit> = runCatching {
-        dataProvider.addGeneratedImagesAction(
-            generatedProductId,
-            images.map { image -> image.toPublic() },
+        val publicModel = AiutaAddedGeneratedImages.SingleTryOn(
+            productId = generatedProductId,
+            generations = images.map { image -> image.toPublic() },
         )
+
+        dataProvider.addGeneratedImagesAction(publicModel)
     }
 
     override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = dataProvider.generatedImages
