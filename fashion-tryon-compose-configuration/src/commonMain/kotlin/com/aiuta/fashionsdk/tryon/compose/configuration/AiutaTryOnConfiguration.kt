@@ -7,9 +7,12 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.tryon.compose.configuration.debug.AiutaDebugSettings
+import com.aiuta.fashionsdk.tryon.compose.configuration.debug.DefaultAiutaDebugSettings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.analytic.sendConfigurationEvent
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.validateStringsWithSettings
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.DefaultHostMetadata
 import com.aiuta.fashionsdk.tryon.compose.configuration.meta.HostMetadata
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
@@ -25,6 +28,7 @@ public class AiutaTryOnConfiguration private constructor(
     public val features: AiutaTryOnConfigurationFeatures,
     @Deprecated("Will be split by features")
     public val hostMetadata: HostMetadata,
+    public val debugSettings: AiutaDebugSettings,
 ) {
     public val aiutaTryOn: AiutaTryOn by lazy { aiuta.tryon }
     public val aiutaAnalytic: InternalAiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
@@ -37,23 +41,31 @@ public class AiutaTryOnConfiguration private constructor(
         public var aiuta: Aiuta? = null
         public var features: AiutaTryOnConfigurationFeatures? = null
         public var hostMetadata: HostMetadata? = null
+        public var debugSettings: AiutaDebugSettings? = null
 
         public fun build(): AiutaTryOnConfiguration {
             val parentClass = "AiutaTryOnConfiguration"
 
             // Default
             val internalHostMetadata = hostMetadata ?: DefaultHostMetadata
+            val internalDebugSettings = debugSettings ?: DefaultAiutaDebugSettings
 
             return AiutaTryOnConfiguration(
                 aiuta = aiuta.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "aiuta",
                 ),
-                features = features.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "features",
-                ),
+                features = features
+                    .checkNotNullWithDescription(
+                        parentClass = parentClass,
+                        property = "features",
+                    )
+                    .validateStringsWithSettings(
+                        logger = null,
+                        debugSettings = internalDebugSettings,
+                    ),
                 hostMetadata = internalHostMetadata,
+                debugSettings = internalDebugSettings,
             ).also {
                 it.sendConfigurationEvent()
             }

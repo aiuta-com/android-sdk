@@ -21,7 +21,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.mapNotNull
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
@@ -29,7 +28,7 @@ import kotlinx.serialization.json.Json
 internal class InternalAiutaAnalyticImpl(
     private val platformContext: AiutaPlatformContext,
     private val networkClient: NetworkClient,
-    private val logger: AiutaLogger?
+    private val logger: AiutaLogger?,
 ) : BaseUpdater(),
     InternalAiutaAnalytic {
     private val _analyticFlow = MutableSharedFlow<ExternalAnalyticEvent?>(extraBufferCapacity = 10)

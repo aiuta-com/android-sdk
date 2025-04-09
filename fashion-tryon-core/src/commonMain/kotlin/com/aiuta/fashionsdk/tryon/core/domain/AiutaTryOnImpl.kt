@@ -83,106 +83,104 @@ internal class AiutaTryOnImpl(
         )
     }
 
-    override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> =
-        flow {
-            analytic.sendStartTryOnEvent(container)
-            val statusId = generateStatusId()
+    override fun startProductGeneration(container: ProductGenerationContainer): Flow<ProductGenerationStatus> = flow {
+        analytic.sendStartTryOnEvent(container)
+        val statusId = generateStatusId()
 
-            errorListener(statusId = statusId) {
-                val metadataBuilder = AiutaTryOnMetadata.Builder()
+        errorListener(statusId = statusId) {
+            val metadataBuilder = AiutaTryOnMetadata.Builder()
 
-                // Set loading state with previous image urls
-                emit(
-                    ProductGenerationStatus.LoadingGenerationStatus.StartGeneration(
-                        statusId = statusId,
+            // Set loading state with previous image urls
+            emit(
+                ProductGenerationStatus.LoadingGenerationStatus.StartGeneration(
+                    statusId = statusId,
+                ),
+            )
+
+            // Firstly, upload image on backend
+            val uploadedImage = trackTryOnArea(
+                typeArea = AiutaTryOnExceptionType.UPLOAD_PHOTO_FAILED,
+                container = container,
+            ) {
+                solveUploadingImage(container)
+            }
+            // Update time for meta info of generation
+            metadataBuilder.setUploadDuration()
+            emit(
+                ProductGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
+                    statusId = statusId,
+                    sourceImageId = uploadedImage.id,
+                    sourceImageUrl = uploadedImage.url,
+                ),
+            )
+
+            // Secondly, create sku generation operation
+            val newOperation = trackTryOnArea(
+                typeArea = AiutaTryOnExceptionType.START_OPERATION_FAILED,
+                container = container,
+            ) {
+                productOperationsDataSource.createProductOperation(
+                    request =
+                    CreateProductOperationRequest(
+                        skuCatalogName = container.productCatalogName,
+                        skuId = container.productId,
+                        uploadedImageId = uploadedImage.id,
                     ),
                 )
+            }
 
-                // Firstly, upload image on backend
-                val uploadedImage = trackTryOnArea(
-                    typeArea = AiutaTryOnExceptionType.UPLOAD_PHOTO_FAILED,
-                    container = container,
-                ) {
-                    solveUploadingImage(container)
-                }
-                // Update time for meta info of generation
-                metadataBuilder.setUploadDuration()
-                emit(
-                    ProductGenerationStatus.LoadingGenerationStatus.UploadedSourceImage(
-                        statusId = statusId,
-                        sourceImageId = uploadedImage.id,
-                        sourceImageUrl = uploadedImage.url,
-                    ),
-                )
+            // Wait for the operation, until it is completed
+            emit(
+                ProductGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
+                    statusId = statusId,
+                    sourceImageId = uploadedImage.id,
+                    sourceImageUrl = uploadedImage.url,
+                ),
+            )
+            val generations = trackSpecificTryOnArea(
+                typeArea = AiutaTryOnExceptionType.OPERATION_FAILED,
+                failingTypes =
+                setOf(
+                    AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
+                    AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED,
+                ),
+                container = container,
+            ) {
+                pingOperationSlice.operationPing(newOperation.operationId)
+            }
+            // Update time for meta info of generation
+            metadataBuilder.setTryOnDuration()
 
-                // Secondly, create sku generation operation
-                val newOperation = trackTryOnArea(
-                    typeArea = AiutaTryOnExceptionType.START_OPERATION_FAILED,
-                    container = container,
-                ) {
-                    productOperationsDataSource.createProductOperation(
-                        request =
-                            CreateProductOperationRequest(
-                                skuCatalogName = container.productCatalogName,
-                                skuId = container.productId,
-                                uploadedImageId = uploadedImage.id,
-                            ),
-                    )
-                }
+            // Finally, emit result
+            emit(
+                ProductGenerationStatus.SuccessGenerationStatus(
+                    statusId = statusId,
+                    sourceImageId = uploadedImage.id,
+                    sourceImageUrl = uploadedImage.url,
+                    images = generations.map { it.toPublic() },
+                    metadata = metadataBuilder.build(),
+                ),
+            )
+        }
+    }
 
-                // Wait for the operation, until it is completed
-                emit(
-                    ProductGenerationStatus.LoadingGenerationStatus.GenerationProcessing(
-                        statusId = statusId,
-                        sourceImageId = uploadedImage.id,
-                        sourceImageUrl = uploadedImage.url,
-                    ),
-                )
-                val generations = trackSpecificTryOnArea(
-                    typeArea = AiutaTryOnExceptionType.OPERATION_FAILED,
-                    failingTypes =
-                        setOf(
-                            AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
-                            AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED,
-                        ),
-                    container = container,
-                ) {
-                    pingOperationSlice.operationPing(newOperation.operationId)
-                }
-                // Update time for meta info of generation
-                metadataBuilder.setTryOnDuration()
-
-                // Finally, emit result
-                emit(
-                    ProductGenerationStatus.SuccessGenerationStatus(
-                        statusId = statusId,
-                        sourceImageId = uploadedImage.id,
-                        sourceImageUrl = uploadedImage.url,
-                        images = generations.map { it.toPublic() },
-                        metadata = metadataBuilder.build(),
-                    ),
-                )
+    private suspend fun solveUploadingImage(container: ProductGenerationContainer): UploadedImage = when (container) {
+        is ProductGenerationPlatformImageContainer -> {
+            uploadImageSlice.uploadImage(
+                container = container,
+                fileName = generateFileName(),
+            ).also {
+                analytic.sendTryOnPhotoUploadedEvent(container)
             }
         }
 
-    private suspend fun solveUploadingImage(container: ProductGenerationContainer): UploadedImage =
-        when (container) {
-            is ProductGenerationPlatformImageContainer -> {
-                uploadImageSlice.uploadImage(
-                    container = container,
-                    fileName = generateFileName(),
-                ).also {
-                    analytic.sendTryOnPhotoUploadedEvent(container)
-                }
-            }
-
-            is ProductGenerationUrlContainer -> {
-                UploadedImage(
-                    id = container.fileId,
-                    url = container.fileUrl,
-                )
-            }
+        is ProductGenerationUrlContainer -> {
+            UploadedImage(
+                id = container.fileId,
+                url = container.fileUrl,
+            )
         }
+    }
 
     companion object {
         fun create(aiuta: Aiuta): AiutaTryOn = AiutaTryOnImpl(

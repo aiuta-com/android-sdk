@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings
 
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.models.AiutaStringValidationContainer
+
 public interface AiutaTryOnFeatureStrings {
     public val tryOnPageTitle: String
     public val tryOnPoweredByAiuta: String
@@ -17,3 +19,31 @@ public interface AiutaTryOnFeatureStrings {
         override val tryOnButtonAddToCart: String = "Add to cart"
     }
 }
+
+internal val AiutaTryOnFeatureStrings.validationList
+    get() = listOf(
+        AiutaStringValidationContainer(
+            propertyName = "tryOnPageTitle",
+            string = tryOnPageTitle,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "tryOnPoweredByAiuta",
+            string = tryOnPoweredByAiuta,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "tryOnDialogButtonInvalidImage",
+            string = tryOnDialogButtonInvalidImage,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "tryOnDialogDescriptionInvalidImage",
+            string = tryOnDialogDescriptionInvalidImage,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "tryOnButtonTryOn",
+            string = tryOnButtonTryOn,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "tryOnButtonAddToCart",
+            string = tryOnButtonAddToCart,
+        ),
+    )

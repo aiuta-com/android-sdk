@@ -1,5 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.strings
 
+import com.aiuta.fashionsdk.tryon.compose.configuration.internal.validation.models.AiutaStringValidationContainer
+
 public interface AiutaConsentStandaloneOnboardingPageFeatureStrings {
     public val consentPageTitle: String?
     public val consentTitle: String
@@ -20,3 +22,23 @@ public interface AiutaConsentStandaloneOnboardingPageFeatureStrings {
         override val consentFooterHtml: String? = null
     }
 }
+
+internal val AiutaConsentStandaloneOnboardingPageFeatureStrings.validationList
+    get() = listOf(
+        AiutaStringValidationContainer(
+            propertyName = "consentPageTitle",
+            string = consentPageTitle,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "consentTitle",
+            string = consentTitle,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "consentDescriptionHtml",
+            string = consentDescriptionHtml,
+        ),
+        AiutaStringValidationContainer(
+            propertyName = "consentFooterHtml",
+            string = consentFooterHtml,
+        ),
+    )
