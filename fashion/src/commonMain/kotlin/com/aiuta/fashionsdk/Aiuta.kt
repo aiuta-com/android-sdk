@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
+import com.aiuta.fashionsdk.logger.AiutaLogger
 
 /**
  * [Aiuta] class is an entry point to Aiuta sdk.
@@ -10,6 +11,7 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
 public class Aiuta private constructor(
     public val authenticationStrategy: AuthenticationStrategy,
     public val platformContext: AiutaPlatformContext,
+    public val logger: AiutaLogger?,
 ) {
     /**
      * Public [Builder] for initialize [Aiuta] class
@@ -18,6 +20,7 @@ public class Aiuta private constructor(
     public class Builder {
         public var platformContext: AiutaPlatformContext? = null
         public var authenticationStrategy: AuthenticationStrategy? = null
+        public var logger: AiutaLogger? = null
 
         public fun build(): Aiuta = Aiuta(
             authenticationStrategy = authenticationStrategy.checkNotNullWithDescription(
@@ -28,6 +31,7 @@ public class Aiuta private constructor(
                 property = "platformContext",
                 methodToCall = "setPlatformContext()",
             ),
+            logger = logger,
         )
     }
 

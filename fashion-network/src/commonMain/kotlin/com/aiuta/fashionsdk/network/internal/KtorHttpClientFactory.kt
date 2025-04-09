@@ -3,6 +3,8 @@ package com.aiuta.fashionsdk.network.internal
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.AuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.JWTAuthenticationStrategy
+import com.aiuta.fashionsdk.logger.AiutaLogger
+import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.network.internal.plugins.apiKey
 import com.aiuta.fashionsdk.network.internal.plugins.installSubscriptionIdHeader
 import com.aiuta.fashionsdk.network.internal.plugins.jwt
@@ -15,7 +17,6 @@ import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.HttpSend
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
@@ -29,7 +30,7 @@ import io.ktor.serialization.kotlinx.json.json
 
 internal class KtorHttpClientFactory(
     private val authenticationStrategy: AuthenticationStrategy,
-    private val isLoggingEnabled: Boolean = true, // TODO Migrate from config?
+    private val aiutaLogger: AiutaLogger? = null,
     host: String? = null,
     encodedPath: String? = null,
 ) {
@@ -43,9 +44,13 @@ internal class KtorHttpClientFactory(
     }
 
     private fun <T : HttpClientEngineConfig> HttpClientConfig<T>.installLogging() = apply {
-        if (isLoggingEnabled) {
+        aiutaLogger?.let {
             install(Logging) {
-                logger = Logger.DEFAULT
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        aiutaLogger.d(message)
+                    }
+                }
                 level = LogLevel.ALL
             }
         }

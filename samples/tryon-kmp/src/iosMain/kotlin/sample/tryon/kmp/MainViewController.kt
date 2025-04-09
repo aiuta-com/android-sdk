@@ -9,6 +9,7 @@ import androidx.compose.ui.window.ComposeUIViewController
 import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
+import com.aiuta.fashionsdk.logger.DebugAiutaLogger
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.rememberDefaultAiutaTryOnConfiguration
@@ -23,6 +24,7 @@ fun MainViewController() = ComposeUIViewController {
         aiuta {
             authenticationStrategy = ApiKeyAuthenticationStrategy("TODO")
             platformContext = AiutaPlatformContext()
+            logger = DebugAiutaLogger()
         }
     }
     val aiutaTryOn = remember { aiuta.tryon }
@@ -31,7 +33,6 @@ fun MainViewController() = ComposeUIViewController {
     LaunchedEffect(Unit) {
         // Let's get catalogs
         val catalogs = aiutaTryOn.getProductCatalogs().result
-        println("MainViewController: catalogs - $catalogs")
 
         // Take first catalog and get first page of sku items
         activeSKUItems.value = catalogs.firstOrNull()?.let {
@@ -39,7 +40,6 @@ fun MainViewController() = ComposeUIViewController {
                 catalogName = it.catalogName,
             )
         }?.result
-        println("MainViewController: skuItems - $activeSKUItems")
     }
 
 

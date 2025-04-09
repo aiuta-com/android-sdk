@@ -25,6 +25,7 @@ include(
     ":fashion",
     ":fashion-analytic",
     ":fashion-bom",
+    ":fashion-logger",
     ":fashion-network",
     ":fashion-network-paging",
     ":fashion-tryon-compose",
