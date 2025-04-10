@@ -59,21 +59,14 @@ kotlin {
     }
 
     sourceSets {
-        // TODO Review deps
         androidMain.dependencies {
-            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
             implementation(projects.fashionTryonCompose)
             implementation(projects.fashionTryonComposeDefaults)
 
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
             implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
 
             implementation(libs.jetbrains.viewmodel)
         }
