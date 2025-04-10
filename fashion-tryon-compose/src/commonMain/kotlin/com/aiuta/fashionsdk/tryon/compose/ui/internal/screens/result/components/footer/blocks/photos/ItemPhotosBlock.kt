@@ -111,7 +111,7 @@ private fun ItemPhotosBlock(
             var imageSize by remember { mutableStateOf(Size.Zero) }
 
             val finalImageModifier =
-                if (theme.productBar.toggles.isProductFistImageExtendedPaddingApplied && index == 0) {
+                if (theme.productBar.toggles.applyProductFirstImageExtraPadding && index == 0) {
                     sharedImageModifier.padding(
                         top = 24.dp,
                         start = 32.dp,

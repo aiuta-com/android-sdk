@@ -374,13 +374,13 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/ui/theme/pro
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles {
-	public abstract fun isProductFistImageExtendedPaddingApplied ()Z
+	public abstract fun getApplyProductFirstImageExtraPadding ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles$Default : com/aiuta/fashionsdk/tryon/compose/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun isProductFistImageExtendedPaddingApplied ()Z
+	public fun getApplyProductFirstImageExtraPadding ()Z
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography {

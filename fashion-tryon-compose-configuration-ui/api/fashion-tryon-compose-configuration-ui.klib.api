@@ -208,14 +208,14 @@ abstract interface com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.pro
 }
 
 abstract interface com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles { // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles|null[0]
-    abstract val isProductFistImageExtendedPaddingApplied // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.isProductFistImageExtendedPaddingApplied|{}isProductFistImageExtendedPaddingApplied[0]
-        abstract fun <get-isProductFistImageExtendedPaddingApplied>(): kotlin/Boolean // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.isProductFistImageExtendedPaddingApplied.<get-isProductFistImageExtendedPaddingApplied>|<get-isProductFistImageExtendedPaddingApplied>(){}[0]
+    abstract val applyProductFirstImageExtraPadding // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.applyProductFirstImageExtraPadding|{}applyProductFirstImageExtraPadding[0]
+        abstract fun <get-applyProductFirstImageExtraPadding>(): kotlin/Boolean // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.applyProductFirstImageExtraPadding.<get-applyProductFirstImageExtraPadding>|<get-applyProductFirstImageExtraPadding>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles { // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.Default.<init>|<init>(){}[0]
 
-        final val isProductFistImageExtendedPaddingApplied // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.Default.isProductFistImageExtendedPaddingApplied|{}isProductFistImageExtendedPaddingApplied[0]
-            final fun <get-isProductFistImageExtendedPaddingApplied>(): kotlin/Boolean // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.Default.isProductFistImageExtendedPaddingApplied.<get-isProductFistImageExtendedPaddingApplied>|<get-isProductFistImageExtendedPaddingApplied>(){}[0]
+        final val applyProductFirstImageExtraPadding // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.Default.applyProductFirstImageExtraPadding|{}applyProductFirstImageExtraPadding[0]
+            final fun <get-applyProductFirstImageExtraPadding>(): kotlin/Boolean // com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.productbar.toggles/AiutaProductBarThemeToggles.Default.applyProductFirstImageExtraPadding.<get-applyProductFirstImageExtraPadding>|<get-applyProductFirstImageExtraPadding>(){}[0]
     }
 }
 

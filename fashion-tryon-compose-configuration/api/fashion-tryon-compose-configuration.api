@@ -166,11 +166,10 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/con
 
 public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/AiutaOnboardingFeature : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getBestResultsPage ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles;
 	public final fun getTryOnPage ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;
 }
 
@@ -182,12 +181,10 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/onb
 	public final fun getBestResultsPage ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles;
 	public final fun getTryOnPage ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;
 	public final fun setBestResultsPage (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;)V
 	public final fun setShapes (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;)V
-	public final fun setToggles (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles;)V
 	public final fun setTryOnPage (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;)V
 }
 
@@ -283,16 +280,6 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/onb
 	public fun <init> ()V
 	public fun getOnboardingButtonNext ()Ljava/lang/String;
 	public fun getOnboardingButtonStart ()Ljava/lang/String;
-}
-
-public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles {
-	public abstract fun isAppBarExtended ()Z
-}
-
-public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles$Default : com/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/toggles/AiutaOnboardingFeatureToggles {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun isAppBarExtended ()Z
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature {
@@ -649,14 +636,14 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/sty
 
 public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/AiutaTryOnFeature : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/AiutaTryOnGenerationsHistoryFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/icons/AiutaTryOnFeatureIcons;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/dataprovider/AiutaTryOnFeatureDataProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/AiutaTryOnGenerationsHistoryFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/icons/AiutaTryOnFeatureIcons;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/dataprovider/AiutaTryOnFeatureDataProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/dataprovider/AiutaTryOnFeatureDataProvider;
 	public final fun getFeedback ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature;
 	public final fun getFitDisclaimer ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;
 	public final fun getGenerationsHistory ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/AiutaTryOnGenerationsHistoryFeature;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/icons/AiutaTryOnFeatureIcons;
 	public final fun getLoadingPage ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature;
-	public final fun getRepicking ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature;
+	public final fun getRepicking ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;
 	public final fun getToggles ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
@@ -673,7 +660,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/try
 	public final fun getGenerationsHistory ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/AiutaTryOnGenerationsHistoryFeature;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/icons/AiutaTryOnFeatureIcons;
 	public final fun getLoadingPage ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature;
-	public final fun getRepicking ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature;
+	public final fun getRepicking ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;
 	public final fun getToggles ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
@@ -683,7 +670,7 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/try
 	public final fun setGenerationsHistory (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/AiutaTryOnGenerationsHistoryFeature;)V
 	public final fun setIcons (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/icons/AiutaTryOnFeatureIcons;)V
 	public final fun setLoadingPage (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/AiutaTryOnLoadingPageFeature;)V
-	public final fun setRepicking (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature;)V
+	public final fun setRepicking (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;)V
 	public final fun setStyles (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;)V
 	public final fun setToggles (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;)V
@@ -857,14 +844,12 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration
 }
 
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/strings/AiutaTryOnGenerationsHistoryFeatureStrings {
-	public abstract fun getGenerationsHistoryButtonSelect ()Ljava/lang/String;
 	public abstract fun getGenerationsHistoryPageTitle ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/strings/AiutaTryOnGenerationsHistoryFeatureStrings$Default : com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/history/strings/AiutaTryOnGenerationsHistoryFeatureStrings {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getGenerationsHistoryButtonSelect ()Ljava/lang/String;
 	public fun getGenerationsHistoryPageTitle ()Ljava/lang/String;
 }
 
@@ -928,28 +913,26 @@ public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/try
 	public fun getLoadingStatusStyle ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/styles/AiutaButtonsStyle;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature {
+public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnRepickingFeatureIcons;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getIcons ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnRepickingFeatureIcons;
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnWithOtherPhotoFeatureIcons;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnWithOtherPhotoFeatureIcons;
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature$Builder : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature$Builder {
+public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature$Builder : com/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature$Builder {
 	public static final field $stable I
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/AiutaTryOnConfigurationFeature;
-	public fun build ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeature;
-	public final fun getIcons ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnRepickingFeatureIcons;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;
-	public final fun setIcons (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnRepickingFeatureIcons;)V
-	public final fun setStrings (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/loading/strings/AiutaTryOnLoadingPageFeatureStrings;)V
+	public fun build ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeature;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnWithOtherPhotoFeatureIcons;
+	public final fun setIcons (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnWithOtherPhotoFeatureIcons;)V
 }
 
-public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnRepickingFeatureKt {
+public final class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/AiutaTryOnWithOtherPhotoFeatureKt {
 	public static final fun repicking (Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/AiutaTryOnFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/AiutaTryOnFeature$Builder;
 }
 
-public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnRepickingFeatureIcons {
+public abstract interface class com/aiuta/fashionsdk/tryon/compose/configuration/features/tryon/repicking/icons/AiutaTryOnWithOtherPhotoFeatureIcons {
 	public abstract fun getRepicking24 ()Lcom/aiuta/fashionsdk/tryon/compose/resources/drawable/AiutaIcon;
 }
 

@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.style.TextAlign
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.components.appbar.AppBar
@@ -21,7 +20,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.transitionAnimation
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
@@ -32,8 +30,6 @@ internal fun OnboardingAppBar(
 ) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-
-    val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
     val titleTransition = updateTransition(onboardingController.state.value)
 
@@ -50,38 +46,35 @@ internal fun OnboardingAppBar(
             )
         },
         title = {
-            if (onboardingFeature.toggles.isAppBarExtended) {
-                titleTransition.AnimatedContent(
-                    modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.Center),
-                    transitionSpec = { transitionAnimation },
-                ) { state ->
-                    state.pageTitle?.let { pageTitle ->
-                        Text(
-                            modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .align(Alignment.Center),
-                            text =
-                            buildAnnotatedStringFromHtml(
-                                input = pageTitle,
-                                isClickable = false,
-                            ),
-                            style =
-                            theme.pageBar.typography.pageTitle.copy(
-                                fontSynthesis = FontSynthesis.All,
-                            ),
-                            color = theme.color.primary,
-                            textAlign = TextAlign.Center,
-                        )
-                    }
+            titleTransition.AnimatedContent(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.Center),
+                transitionSpec = { transitionAnimation },
+            ) { state ->
+                state.pageTitle?.let { pageTitle ->
+                    Text(
+                        modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .align(Alignment.Center),
+                        text =
+                        buildAnnotatedStringFromHtml(
+                            input = pageTitle,
+                            isClickable = false,
+                        ),
+                        style =
+                        theme.pageBar.typography.pageTitle.copy(
+                            fontSynthesis = FontSynthesis.All,
+                        ),
+                        color = theme.color.primary,
+                        textAlign = TextAlign.Center,
+                    )
                 }
             }
         },
         actions = {
-            if (onboardingFeature.toggles.isAppBarExtended) {
+            if (theme.pageBar.toggles.preferCloseButtonOnTheRight) {
                 AppBarIcon(
                     modifier = Modifier.align(Alignment.CenterEnd),
                     icon = theme.pageBar.icons.close24,

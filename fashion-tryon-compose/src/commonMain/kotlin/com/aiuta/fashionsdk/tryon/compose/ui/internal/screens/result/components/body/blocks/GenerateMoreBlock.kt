@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnRepickingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -15,7 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeat
 
 @Composable
 internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
-    val repickingFeature = provideFeature<AiutaTryOnRepickingFeature>()
+    val repickingFeature = provideFeature<AiutaTryOnWithOtherPhotoFeature>()
 
     repickingFeature?.let {
         val controller = LocalController.current

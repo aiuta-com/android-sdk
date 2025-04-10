@@ -98,11 +98,6 @@ internal fun AiutaTryOnFeature.validateWithSettings(
         logger = logger,
         debugSettings = debugSettings,
     )
-    generationsHistory?.strings?.generationsHistoryButtonSelect.validateStringWithSettings(
-        propertyName = "generationsHistoryButtonSelect",
-        logger = logger,
-        debugSettings = debugSettings,
-    )
 
     // General
     strings.tryOnPageTitle.validateStringWithSettings(
