@@ -21,6 +21,7 @@ buildscript {
         classpath(libs.gradlePlugin.kotlin)
         classpath(libs.gradlePlugin.jetbrains.compose)
         classpath(libs.gradlePlugin.jreleaser)
+        classpath(libs.gradlePlugin.vanniktech.publish)
     }
 }
 

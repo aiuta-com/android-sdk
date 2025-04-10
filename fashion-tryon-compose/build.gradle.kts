@@ -60,7 +60,7 @@ kotlin {
                 implementation(projects.fashionTryonComposeUikit)
             }
         }
-        appleMain {
+        nativeMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)
             }

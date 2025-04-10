@@ -30,7 +30,7 @@ kotlin {
                 implementation(libs.compose.placeholder)
             }
         }
-        appleMain {
+        nativeMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)
             }

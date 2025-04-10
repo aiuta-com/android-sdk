@@ -27,6 +27,7 @@ gradle-plugin-android = "8.9.0"
 gradle-plugin-jetbrains-compose = "1.5.12"
 gradle-plugin-mavenPublish = "0.28.0"
 gradle-plugin-jreleaser = "1.15.0"
+gradle-plugin-vanniktech-publish = "0.31.0"
 
 haze = "1.0.1"
 
@@ -87,6 +88,7 @@ gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", ve
 gradlePlugin-kotlin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-jetbrains-compose = { module = "org.jetbrains.compose:compose-gradle-plugin", version.ref = "jetbrains-compose" }
 gradlePlugin-jreleaser = { module = "org.jreleaser:jreleaser-gradle-plugin", version.ref = "gradle-plugin-jreleaser" }
+gradlePlugin-vanniktech-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "gradle-plugin-vanniktech-publish" }
 
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
 
