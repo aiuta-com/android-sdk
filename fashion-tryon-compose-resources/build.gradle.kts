@@ -13,15 +13,10 @@ androidLibrary(name = "com.aiuta.fashionsdk.tryon.compose.resources")
 
 kotlin {
     sourceSets {
-        androidMain {
-            dependencies {
-                implementation(libs.androidx.annotation)
-            }
-        }
         commonMain {
             dependencies {
                 implementation(compose.components.resources)
-                implementation(compose.runtime)
+                implementation(compose.foundation)
             }
         }
     }

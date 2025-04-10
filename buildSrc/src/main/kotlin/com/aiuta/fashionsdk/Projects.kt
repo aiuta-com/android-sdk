@@ -13,6 +13,9 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.ExplicitApiMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.vanniktech.maven.publish.KotlinMultiplatform
+import com.vanniktech.maven.publish.JavadocJar.Dokka
 
 fun Project.androidLibrary(
     name: String,
@@ -30,8 +33,15 @@ fun Project.androidLibrary(
     }
     if (project.name in publicModules) {
         apply(plugin = "org.jetbrains.dokka")
-        // TODO Migrate publishing
-        // setupAndroidPublishing<LibraryExtension>()
+        apply(plugin = "com.vanniktech.maven.publish.base")
+        setupPublishing {
+            val platform = if (project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+                KotlinMultiplatform(Dokka("dokkaHtml"))
+            } else {
+                AndroidSingleVariantLibrary()
+            }
+            configure(platform)
+        }
     }
     if (config) {
         defaultConfig {
