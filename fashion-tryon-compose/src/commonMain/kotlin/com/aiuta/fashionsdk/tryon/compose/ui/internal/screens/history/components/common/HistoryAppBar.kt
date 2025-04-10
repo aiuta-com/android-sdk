@@ -66,7 +66,7 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .align(Alignment.CenterEnd)
                     .clickableUnindicated { if (isAppbarSelectAvailable.value) controller.activateSelectMode() },
-                text = generationsHistoryFeature.strings.generationsHistoryButtonSelect,
+                text = theme.selectionSnackbar.strings.select,
                 style = theme.pageBar.typography.pageTitle,
                 color = selectColorTransition.value,
             )
