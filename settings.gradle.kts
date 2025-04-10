@@ -23,6 +23,7 @@ include(
     ":fashion",
     ":fashion-analytic",
     ":fashion-bom",
+    ":fashion-compose-core",
     ":fashion-logger",
     ":fashion-network",
     ":fashion-network-paging",

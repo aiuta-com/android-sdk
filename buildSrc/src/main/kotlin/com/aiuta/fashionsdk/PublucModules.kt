@@ -5,6 +5,7 @@ val publicModules =
         "analytic", // TODO Migrate to normal analytic
         "fashion",
         "fashion-analytic",
+        "fashion-compose-core",
         "fashion-logger",
         "fashion-network",
         "fashion-network-paging",

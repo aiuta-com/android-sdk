@@ -1,11 +1,13 @@
 import com.aiuta.fashionsdk.androidApplication
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
     id("com.android.application")
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
-    alias(libs.plugins.secrets)
+    alias(libs.plugins.buildKonfig)
 }
 
 androidApplication(name = "sample.tryon.kmp") {
@@ -26,8 +28,20 @@ androidApplication(name = "sample.tryon.kmp") {
     }
 }
 
-secrets {
-    defaultPropertiesFileName = "secrets.properties"
+buildkonfig {
+    packageName = "sample.tryon.kmp"
+
+    // Let's load api key from secrets.properties in root of project
+    val props = Properties()
+    try {
+        props.load(file("${rootProject.projectDir.absolutePath}/secrets.properties").inputStream())
+    } catch (e: Exception) {
+        // keys are private and can not be committed to git
+    }
+
+    defaultConfigs {
+        buildConfigField(STRING, "AIUTA_API_KEY", props["AIUTA_API_KEY"].toString())
+    }
 }
 
 kotlin {
