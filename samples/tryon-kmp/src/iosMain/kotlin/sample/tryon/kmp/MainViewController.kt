@@ -24,7 +24,7 @@ fun MainViewController() = ComposeUIViewController {
     val aiuta = remember {
         aiuta {
             authenticationStrategy = ApiKeyAuthenticationStrategy("TODO")
-            platformContext = AiutaPlatformContext()
+            platformContext = AiutaPlatformContext.INSTANCE
             logger = DebugAiutaLogger()
         }
     }

@@ -51,7 +51,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.haze
+import dev.chrisbanes.haze.hazeSource
 import kotlin.math.absoluteValue
 
 @Composable
@@ -138,11 +138,10 @@ private fun PagerItem(
             ),
     ) {
         AiutaImage(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .clipToBounds()
                 .fillMaxSize()
-                .haze(hazeState)
+                .hazeSource(hazeState)
                 .onGloballyPositioned { coordinates ->
                     parentImageOffset = coordinates.positionInRoot()
                     imageSize = coordinates.size.toSize()

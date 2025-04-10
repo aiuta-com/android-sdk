@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import dev.chrisbanes.haze.HazeState
-import dev.chrisbanes.haze.haze
+import dev.chrisbanes.haze.hazeSource
 
 @Composable
 internal fun ImageSelectorBlock(
@@ -29,15 +29,13 @@ internal fun ImageSelectorBlock(
         ),
     ) {
         ImageSelectorPhoto(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxSize()
-                .haze(hazeState),
+                .hazeSource(hazeState),
         )
 
         ImageSelectorBottom(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp)
                 .padding(bottom = 24.dp)

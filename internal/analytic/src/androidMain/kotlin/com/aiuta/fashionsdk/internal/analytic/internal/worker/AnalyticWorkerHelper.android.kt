@@ -9,8 +9,8 @@ import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
 internal actual suspend fun createAnalyticEnvironment(
     platformContext: AiutaPlatformContext,
 ): AnalyticEnvironment = try {
-    val hostId = platformContext.application.packageName ?: AnalyticConfig.DEFAULT_HOST_ID
-    val packageInfo = platformContext.application.packageManager.getPackageInfo(hostId, 0)
+    val hostId = platformContext.packageName ?: AnalyticConfig.DEFAULT_HOST_ID
+    val packageInfo = platformContext.packageManager.getPackageInfo(hostId, 0)
 
     AnalyticEnvironment(
         platform = AnalyticConfig.PLATFORM_ANDROID,
