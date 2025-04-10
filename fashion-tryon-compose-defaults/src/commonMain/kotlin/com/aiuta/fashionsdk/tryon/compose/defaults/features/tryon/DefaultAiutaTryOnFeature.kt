@@ -22,7 +22,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.disclaim
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.feedback.DefaultAiutaTryOnFeedbackFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.history.DefaultAiutaTryOnGenerationsHistoryFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.loading.DefaultAiutaTryOnLoadingPageFeatureIcons
-import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.repicking.DefaultAiutaTryOnRepickingFeatureIcons
+import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.repicking.DefaultAiutaTryOnWithOtherPhotoFeatureIcons
 
 public fun AiutaTryOnConfigurationFeatures.Builder.defaultTryOn() {
     tryOn {
@@ -47,7 +47,7 @@ public fun AiutaTryOnConfigurationFeatures.Builder.defaultTryOn() {
             strings = AiutaTryOnGenerationsHistoryFeatureStrings.Default()
         }
         repicking {
-            icons = DefaultAiutaTryOnRepickingFeatureIcons()
+            icons = DefaultAiutaTryOnWithOtherPhotoFeatureIcons()
         }
         icons = DefaultAiutaTryOnFeatureIcons()
         toggles = AiutaTryOnFeatureToggles.Default()

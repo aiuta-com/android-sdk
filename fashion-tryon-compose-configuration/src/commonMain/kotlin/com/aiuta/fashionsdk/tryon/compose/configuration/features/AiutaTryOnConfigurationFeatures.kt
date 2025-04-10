@@ -23,7 +23,7 @@ import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnRepickingFeature
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
@@ -62,7 +62,7 @@ public class AiutaTryOnConfigurationFeatures private constructor(
         AiutaTryOnFeedbackFeature::class -> tryOn.feedback
         AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback
         AiutaTryOnGenerationsHistoryFeature::class -> tryOn.generationsHistory
-        AiutaTryOnRepickingFeature::class -> tryOn.repicking
+        AiutaTryOnWithOtherPhotoFeature::class -> tryOn.repicking
         // Share
         AiutaShareFeature::class -> share
         AiutaShareWatermarkFeature::class -> share?.watermark

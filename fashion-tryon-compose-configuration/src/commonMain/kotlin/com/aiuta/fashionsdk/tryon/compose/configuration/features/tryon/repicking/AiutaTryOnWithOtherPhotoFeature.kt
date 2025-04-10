@@ -3,21 +3,20 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repickin
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.icons.AiutaTryOnRepickingFeatureIcons
+import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.icons.AiutaTryOnWithOtherPhotoFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaTryOnRepickingFeature private constructor(
-    public val icons: AiutaTryOnRepickingFeatureIcons,
+public class AiutaTryOnWithOtherPhotoFeature private constructor(
+    public val icons: AiutaTryOnWithOtherPhotoFeatureIcons,
 ) : AiutaTryOnConfigurationFeature {
 
     public class Builder : AiutaTryOnConfigurationFeature.Builder {
-        public var icons: AiutaTryOnRepickingFeatureIcons? = null
-        public var strings: AiutaTryOnLoadingPageFeatureStrings? = null
+        public var icons: AiutaTryOnWithOtherPhotoFeatureIcons? = null
 
-        public override fun build(): AiutaTryOnRepickingFeature {
-            val parentClass = "AiutaTryOnRepickingFeature"
+        public override fun build(): AiutaTryOnWithOtherPhotoFeature {
+            val parentClass = "AiutaTryOnWithOtherPhotoFeature"
 
-            return AiutaTryOnRepickingFeature(
+            return AiutaTryOnWithOtherPhotoFeature(
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "icons",
@@ -28,7 +27,7 @@ public class AiutaTryOnRepickingFeature private constructor(
 }
 
 public inline fun AiutaTryOnFeature.Builder.repicking(
-    block: AiutaTryOnRepickingFeature.Builder.() -> Unit,
+    block: AiutaTryOnWithOtherPhotoFeature.Builder.() -> Unit,
 ): AiutaTryOnFeature.Builder = apply {
-    repicking = AiutaTryOnRepickingFeature.Builder().apply(block).build()
+    repicking = AiutaTryOnWithOtherPhotoFeature.Builder().apply(block).build()
 }

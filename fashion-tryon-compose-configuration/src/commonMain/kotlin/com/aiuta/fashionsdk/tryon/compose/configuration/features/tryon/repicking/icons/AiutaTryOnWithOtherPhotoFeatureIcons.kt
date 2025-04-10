@@ -2,6 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repickin
 
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 
-public interface AiutaTryOnRepickingFeatureIcons {
+public interface AiutaTryOnWithOtherPhotoFeatureIcons {
     public val repicking24: AiutaIcon
 }
