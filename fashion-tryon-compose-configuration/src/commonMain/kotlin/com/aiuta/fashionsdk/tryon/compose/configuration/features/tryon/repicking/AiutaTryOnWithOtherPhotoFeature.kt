@@ -2,7 +2,6 @@ package com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repickin
 
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.icons.AiutaTryOnWithOtherPhotoFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.configuration.internal.utils.checkNotNullWithDescription
 
