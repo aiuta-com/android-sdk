@@ -66,7 +66,7 @@ kotlin {
             implementation(projects.fashionTryonCompose)
             implementation(projects.fashionTryonComposeDefaults)
 
-            implementation(compose.ui)
+            implementation(compose.foundation)
 
             implementation(libs.jetbrains.viewmodel)
         }
