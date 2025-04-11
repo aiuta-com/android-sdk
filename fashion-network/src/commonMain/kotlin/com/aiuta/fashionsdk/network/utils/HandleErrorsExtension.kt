@@ -10,9 +10,20 @@ import io.ktor.http.HttpStatusCode
 private const val REQUEST_ID_HEADER = "x-cloud-trace-context"
 private const val DATE_HEADER = "date"
 
-internal expect suspend inline fun handleErrors(
+internal suspend inline fun handleErrors(
     getHttpClientCall: () -> HttpClientCall,
-): HttpClientCall
+): HttpClientCall {
+    val httpClientCall = getHttpClientCall()
+
+    // Check for auth
+    if (httpClientCall.response.status == HttpStatusCode.Unauthorized) return httpClientCall
+
+    val fashionIOException = getFashionIOException(httpClientCall.response)
+    if (fashionIOException != null) {
+        throw fashionIOException
+    }
+    return httpClientCall
+}
 
 internal suspend fun getFashionIOException(response: HttpResponse): FashionIOException? {
     if (response.status != HttpStatusCode.OK) {

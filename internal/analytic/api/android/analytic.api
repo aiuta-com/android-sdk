@@ -1,0 +1,616 @@
+public final class com/aiuta/fashionsdk/internal/analytic/DefaultInternalAiutaAnalyticKt {
+	public static final fun getInternalAiutaAnalytic (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
+}
+
+public abstract interface class com/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic {
+	public abstract fun getAnalyticFlow ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticFactory {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalyticFactory;
+	public final fun create (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
+	public final fun getInternalAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticExitEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun getSupplementaryConsents ()Ljava/util/List;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType : java/lang/Enum {
+	public static final field CONSENT_GIVEN Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType$Companion;
+	public static final field ONBOARDING_FINISHED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;
+	public static final field WELCOME_START_CLICKED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticOnboardingEventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId : java/lang/Enum {
+	public static final field BEST_RESULTS Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field CONSENT Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId$Companion;
+	public static final field HISTORY Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field HOW_IT_WORKS Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field IMAGE_PICKER Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field LOADING Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field MODEL_PICKER Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field RESULTS Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static final field WELCOME Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;Ljava/lang/Integer;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;Ljava/lang/Integer;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;
+	public final fun getNegativeFeedbackOptionIndex ()Ljava/lang/Integer;
+	public final fun getNegativeFeedbackText ()Ljava/lang/String;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType$Companion;
+	public static final field NEGATIVE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;
+	public static final field POSITIVE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsFeedbackEventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType$Companion;
+	public static final field GENERATED_IMAGE_DELETED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType;
+	public static final field GENERATED_IMAGE_SHARED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsHistoryEventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType : java/lang/Enum {
+	public static final field CAMERA_OPENED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType$Companion;
+	public static final field GALLERY_PHOTO_SELECTED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static final field NEW_PHOTO_TAKEN Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static final field PHOTO_GALLERY_OPENED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static final field UPLOADED_PHOTO_DELETED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static final field UPLOADED_PHOTO_SELECTED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static final field UPLOADS_HISTORY_OPENED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsPickerEventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType$Companion;
+	public static final field PICK_OTHER_PHOTO Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+	public static final field PRODUCT_ADD_TO_CART Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+	public static final field PRODUCT_ADD_TO_WISHLIST Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+	public static final field RESULT_SHARED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsResultsEventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent : com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getErrorMessage ()Ljava/lang/String;
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType$Companion;
+	public static final field PHOTO_UPLOADED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_ABORTED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_ERROR Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_FINISHED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_STARTED Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticsTryOnEventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent$Companion;
+	public fun <init> (Ljava/lang/String;Z)V
+	public final fun getConsentText ()Ljava/lang/String;
+	public final fun isObtained ()Z
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/AiutaSupplementaryConsent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;ZZZZZ)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;ZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAuthenticationType ()Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;
+	public final fun getMode ()Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun isHistoryEnable ()Z
+	public final fun isHostDataProviderEnabled ()Z
+	public final fun isPreOnboardingAvailable ()Z
+	public final fun isShareAvailable ()Z
+	public final fun isWishlistAvailable ()Z
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType : java/lang/Enum {
+	public static final field API_KEY Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType$Companion;
+	public static final field JWT Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$AuthenticationType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode : java/lang/Enum {
+	public static final field BOTTOM_SHEET Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode$Companion;
+	public static final field FULL_SCREEN Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+	public static final field PAGE_SHEET Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ConfigureEvent$SDKMode$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getError ()Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType$Companion;
+	public static final field DOWNLOAD_RESULT_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static final field OPERATION_ABORTED_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static final field OPERATION_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static final field OPERATION_TIMEOUT_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static final field PREPARE_PHOTO_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static final field START_OPERATION_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static final field UPLOAD_PHOTO_FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ErrorEvent$ErrorType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/ExternalAnalyticEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public fun serialize ()Ljava/lang/String;
+}
+
+public abstract interface class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$Companion;
+	public abstract fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public abstract fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$EventType {
+	public static final field CONFIGURE_EVENT Ljava/lang/String;
+	public static final field ERROR_EVENT Ljava/lang/String;
+	public static final field EXIT_EVENT Ljava/lang/String;
+	public static final field FEEDBACK_EVENT Ljava/lang/String;
+	public static final field HISTORY_EVENT Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent$EventType;
+	public static final field ONBOARDING_EVENT Ljava/lang/String;
+	public static final field PAGE_EVENT Ljava/lang/String;
+	public static final field PICKER_EVENT Ljava/lang/String;
+	public static final field RESULTS_EVENT Ljava/lang/String;
+	public static final field SESSION_EVENT Ljava/lang/String;
+	public static final field SHARE_EVENT Ljava/lang/String;
+	public static final field START_TRYON_EVENT Ljava/lang/String;
+	public static final field SUCCESS_EVENT Ljava/lang/String;
+	public static final field TERMINATE_EVENT Ljava/lang/String;
+	public static final field TRY_ON_EVENT Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getFlow ()Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType$Companion;
+	public static final field HISTORY Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;
+	public static final field TRY_ON Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SessionEvent$FlowType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun getResult ()Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;
+	public final fun getTarget ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult : java/lang/Enum {
+	public static final field CANCELED Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult$Companion;
+	public static final field FAILED Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;
+	public static final field SUCCEEDED Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/ShareEvent$ShareResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getOrigin ()Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin$Companion;
+	public static final field RETAKE_BUTTON Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+	public static final field RETRY_NOTIFICATION Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+	public static final field SELECTED_PHOTO Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+	public static final field TRY_ON_BUTTON Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+	public static fun values ()[Lcom/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/StartTryOnEvent$TryOnOrigin$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SuccessEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/SuccessEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;DDDD)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;DDDDILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getDownloadDuration ()D
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun getTotalDuration ()D
+	public final fun getTryOnDuration ()D
+	public final fun getUploadDuration ()D
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/SuccessEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/SuccessEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/SuccessEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/SuccessEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/SuccessEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/TerminateEvent : com/aiuta/fashionsdk/internal/analytic/model/InternalAnalyticEvent {
+	public static final field Companion Lcom/aiuta/fashionsdk/internal/analytic/model/TerminateEvent$Companion;
+	public fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getPageId ()Lcom/aiuta/fashionsdk/internal/analytic/model/AiutaAnalyticPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public synthetic class com/aiuta/fashionsdk/internal/analytic/model/TerminateEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytic/model/TerminateEvent$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lcom/aiuta/fashionsdk/internal/analytic/model/TerminateEvent;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lcom/aiuta/fashionsdk/internal/analytic/model/TerminateEvent;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytic/model/TerminateEvent$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+

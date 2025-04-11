@@ -3,6 +3,9 @@ package com.aiuta.fashionsdk.internal.analytic.utils
 internal object AnalyticConfig {
     const val PLATFORM_ANDROID = "android"
     const val PLATFORM_IOS = "ios"
+    const val PLATFORM_MACOS = "macos"
+    const val PLATFORM_WINDOWS = "windows"
+    const val PLATFORM_LINUX = "linux"
 
     const val DEFAULT_ENDPOINT = "api.aiuta.com"
     const val DEFAULT_ENCODED_PATH = "analytics/v1/android-sdk-analytics"

@@ -26,6 +26,7 @@ internal fun newImageLoader(
     }
     // Show a short crossfade when loading images asynchronously.
     .crossfade(true)
+    .components { add(AiutaPlatformImageFetcher.Factory()) }
     .apply {
         if (debug) {
             logger(DebugLogger())

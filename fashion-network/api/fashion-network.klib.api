@@ -28,13 +28,6 @@ final class com.aiuta.fashionsdk.network.exceptions/FashionIOException : kotlin/
         final fun <get-requestId>(): kotlin/String // com.aiuta.fashionsdk.network.exceptions/FashionIOException.requestId.<get-requestId>|<get-requestId>(){}[0]
 }
 
-final class com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected : kotlinx.io/IOException { // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected|null[0]
-    constructor <init>(kotlin/Throwable?) // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected.<init>|<init>(kotlin.Throwable?){}[0]
-
-    final val cause // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected.cause|{}cause[0]
-        final fun <get-cause>(): kotlin/Throwable? // com.aiuta.fashionsdk.network.exceptions/FashionNetworkIsDisconnected.cause.<get-cause>|<get-cause>(){}[0]
-}
-
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin.collections/List<kotlin/String>) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.collections.List<kotlin.String>){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/Int?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.Int?){}[0]
 final fun (io.ktor.http/URLBuilder).com.aiuta.fashionsdk.network.utils/saveAppend(kotlin/String, kotlin/String?) // com.aiuta.fashionsdk.network.utils/saveAppend|saveAppend@io.ktor.http.URLBuilder(kotlin.String;kotlin.String?){}[0]

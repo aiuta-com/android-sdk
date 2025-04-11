@@ -1,5 +1,7 @@
 import com.aiuta.fashionsdk.androidApplication
+import com.aiuta.fashionsdk.desktopMain
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
@@ -58,6 +60,8 @@ kotlin {
         }
     }
 
+    jvm("desktop")
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
@@ -69,6 +73,22 @@ kotlin {
             implementation(compose.foundation)
 
             implementation(libs.jetbrains.viewmodel)
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
+        }
+    }
+}
+
+compose.desktop {
+    application {
+        mainClass = "sample.tryon.kmp.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "sample.tryon.kmp"
+            packageVersion = "1.0.0"
         }
     }
 }

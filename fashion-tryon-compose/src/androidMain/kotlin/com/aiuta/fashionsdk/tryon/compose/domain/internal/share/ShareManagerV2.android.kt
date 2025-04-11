@@ -24,7 +24,6 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
-import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -43,12 +42,11 @@ internal actual class ShareManagerV2(
     ): Result<Unit> = runCatching {
         val imageUris = imageUrls
             .mapNotNull { url ->
-                val bitmap = urlToBitmap(url)
-                bitmap?.let { AiutaPlatformImage(it) }
+                urlToBitmap(url)
             }
-            .mapNotNull { image ->
+            .mapNotNull { bitmap ->
                 bitmapToUri(
-                    bitmap = image.bitmap,
+                    bitmap = bitmap,
                     watermarkPainter = watermark,
                 )
             }

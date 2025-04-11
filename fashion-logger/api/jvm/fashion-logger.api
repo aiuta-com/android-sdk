@@ -1,0 +1,34 @@
+public abstract interface class com/aiuta/fashionsdk/logger/AiutaLogger {
+	public abstract fun log (Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public static synthetic fun log$default (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILjava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/logger/AiutaLogger$Level : java/lang/Enum {
+	public static final field DEBUG Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+	public static final field ERROR Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+	public static final field INFO Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+	public static final field VERBOSE Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+	public static final field WARN Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+	public static fun values ()[Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;
+}
+
+public final class com/aiuta/fashionsdk/logger/AiutaLoggerKt {
+	public static final fun d (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public static synthetic fun d$default (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun e (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public static synthetic fun e$default (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun i (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public static synthetic fun i$default (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun v (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public static synthetic fun v$default (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILjava/lang/Object;)V
+	public static final fun w (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+	public static synthetic fun w$default (Lcom/aiuta/fashionsdk/logger/AiutaLogger;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;ILjava/lang/Object;)V
+}
+
+public final class com/aiuta/fashionsdk/logger/DebugAiutaLogger : com/aiuta/fashionsdk/logger/AiutaLogger {
+	public fun <init> ()V
+	public fun log (Lcom/aiuta/fashionsdk/logger/AiutaLogger$Level;Ljava/lang/String;Ljava/lang/Throwable;Ljava/lang/String;)V
+}
+

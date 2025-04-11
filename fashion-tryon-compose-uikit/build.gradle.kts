@@ -30,6 +30,11 @@ kotlin {
                 implementation(libs.compose.placeholder)
             }
         }
+        jvmMain {
+            dependencies {
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
         nativeMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)

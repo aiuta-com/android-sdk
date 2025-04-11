@@ -11,7 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResour
 @Composable
 public actual fun painterResource(drawableResource: AiutaDrawableResource): Painter = when (drawableResource) {
     // Multiplatform
-    is AiutaComposeDrawableResource -> org.jetbrains.compose.resources.painterResource(drawableResource.resource)
+    is AiutaComposeDrawableResource -> commonPainterResource(drawableResource)
     // Android
     is AiutaAndroidDrawable -> rememberAsyncImagePainter(model = drawableResource.resource)
     is AiutaAndroidDrawableRes -> androidx.compose.ui.res.painterResource(drawableResource.resource)

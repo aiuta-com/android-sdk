@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.slice.upload
 
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
-import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.UploadedImage
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
@@ -19,7 +18,6 @@ internal interface UploadImageSlice {
      *
      * @throws FashionReadBytesException if the provided ByteArray will be empty or null
      * @throws FashionIOException
-     * @throws FashionNetworkIsDisconnected
      */
     suspend fun uploadImage(
         container: ProductGenerationPlatformImageContainer,

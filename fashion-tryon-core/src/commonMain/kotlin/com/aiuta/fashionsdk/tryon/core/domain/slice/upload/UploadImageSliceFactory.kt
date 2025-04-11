@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.internal.UploadImageS
 internal val Aiuta.uploadImageSliceFactory: UploadImageSlice
     get() =
         UploadImageSliceImpl(
+            context = this.platformContext,
             analytic = this.internalAiutaAnalytic,
             imageDataSource = this.imageDataSourceFactory,
         )

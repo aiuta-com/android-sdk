@@ -1,0 +1,8 @@
+public abstract interface class com/aiuta/fashionsdk/analytic/AiutaAnalytic {
+	public abstract fun getAnalyticFlow ()Lkotlinx/coroutines/flow/Flow;
+}
+
+public final class com/aiuta/fashionsdk/analytic/AiutaAnalyticKt {
+	public static final fun getAnalytic (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/analytic/AiutaAnalytic;
+}
+
