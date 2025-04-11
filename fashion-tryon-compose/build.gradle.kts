@@ -1,6 +1,5 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
 import com.aiuta.fashionsdk.androidLibrary
-import com.aiuta.fashionsdk.desktopMain
 import com.aiuta.fashionsdk.mobileMain
 
 plugins {
@@ -60,9 +59,10 @@ kotlin {
                 implementation(projects.fashionTryonComposeUikit)
             }
         }
-        desktopMain {
+        jvmMain {
             dependencies {
                 implementation(libs.calf.picker)
+                implementation(libs.ktor.engine.okhttp)
             }
         }
         mobileMain {
@@ -83,6 +83,7 @@ kotlin {
 dependencies {
     implementation(libs.androidx.ui.unit.android)
     add("kspAndroid", libs.room.compiler)
+    add("kspJvm", libs.room.compiler)
     add("kspIosSimulatorArm64", libs.room.compiler)
     add("kspIosX64", libs.room.compiler)
     add("kspIosArm64", libs.room.compiler)

@@ -32,6 +32,11 @@ kotlin {
                 implementation(libs.ktor.serialization)
             }
         }
+        jvmMain {
+            dependencies {
+                implementation(libs.ktor.engine.okhttp)
+            }
+        }
         nativeMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)

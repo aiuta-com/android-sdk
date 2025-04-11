@@ -22,7 +22,7 @@ fun Project.addAllMultiplatformTargets() {
                 }
             }
 
-            jvm("desktop")
+            jvm()
 
             iosX64()
             iosArm64()

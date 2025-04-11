@@ -1,6 +1,5 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
 import com.aiuta.fashionsdk.androidLibrary
-import com.aiuta.fashionsdk.desktopMain
 import com.aiuta.fashionsdk.versionName
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
@@ -32,11 +31,6 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.ktor.core)
-            }
-        }
-        desktopMain {
-            dependencies {
-                implementation(libs.kotlinx.coroutines.swing)
             }
         }
     }
