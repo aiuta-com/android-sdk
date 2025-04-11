@@ -33,5 +33,10 @@ kotlin {
                 implementation(libs.ktor.core)
             }
         }
+        jvmMain {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.swing)
+            }
+        }
     }
 }
