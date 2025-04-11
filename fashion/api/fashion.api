@@ -1,8 +1,8 @@
 public final class com/aiuta/fashionsdk/Aiuta {
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;Lcom/aiuta/fashionsdk/logger/AiutaLogger;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;Landroid/content/Context;Lcom/aiuta/fashionsdk/logger/AiutaLogger;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getAuthenticationStrategy ()Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;
 	public final fun getLogger ()Lcom/aiuta/fashionsdk/logger/AiutaLogger;
-	public final fun getPlatformContext ()Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;
+	public final fun getPlatformContext ()Landroid/content/Context;
 }
 
 public final class com/aiuta/fashionsdk/Aiuta$Builder {
@@ -10,10 +10,10 @@ public final class com/aiuta/fashionsdk/Aiuta$Builder {
 	public final fun build ()Lcom/aiuta/fashionsdk/Aiuta;
 	public final fun getAuthenticationStrategy ()Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;
 	public final fun getLogger ()Lcom/aiuta/fashionsdk/logger/AiutaLogger;
-	public final fun getPlatformContext ()Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;
+	public final fun getPlatformContext ()Landroid/content/Context;
 	public final fun setAuthenticationStrategy (Lcom/aiuta/fashionsdk/authentication/AuthenticationStrategy;)V
 	public final fun setLogger (Lcom/aiuta/fashionsdk/logger/AiutaLogger;)V
-	public final fun setPlatformContext (Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;)V
+	public final fun setPlatformContext (Landroid/content/Context;)V
 }
 
 public final class com/aiuta/fashionsdk/AiutaKt {
@@ -38,10 +38,5 @@ public final class com/aiuta/fashionsdk/authentication/JWTAuthenticationStrategy
 	public fun <init> (Lkotlin/jvm/functions/Function2;Ljava/lang/String;)V
 	public final fun getGetJWT ()Lkotlin/jvm/functions/Function2;
 	public fun getSubscriptionId ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/context/AiutaPlatformContext {
-	public fun <init> (Landroid/app/Application;)V
-	public final fun getApplication ()Landroid/app/Application;
 }
 

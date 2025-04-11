@@ -15,6 +15,13 @@ sealed interface com.aiuta.fashionsdk.authentication/AuthenticationStrategy { //
         abstract fun <get-subscriptionId>(): kotlin/String // com.aiuta.fashionsdk.authentication/AuthenticationStrategy.subscriptionId.<get-subscriptionId>|<get-subscriptionId>(){}[0]
 }
 
+abstract class com.aiuta.fashionsdk.context/AiutaPlatformContext { // com.aiuta.fashionsdk.context/AiutaPlatformContext|null[0]
+    final object Companion { // com.aiuta.fashionsdk.context/AiutaPlatformContext.Companion|null[0]
+        final val INSTANCE // com.aiuta.fashionsdk.context/AiutaPlatformContext.Companion.INSTANCE|{}INSTANCE[0]
+            final fun <get-INSTANCE>(): com.aiuta.fashionsdk.context/AiutaPlatformContext // com.aiuta.fashionsdk.context/AiutaPlatformContext.Companion.INSTANCE.<get-INSTANCE>|<get-INSTANCE>(){}[0]
+    }
+}
+
 final class com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy : com.aiuta.fashionsdk.authentication/AuthenticationStrategy { // com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy|null[0]
     constructor <init>(kotlin/String, kotlin/String = ...) // com.aiuta.fashionsdk.authentication/ApiKeyAuthenticationStrategy.<init>|<init>(kotlin.String;kotlin.String){}[0]
 
@@ -31,10 +38,6 @@ final class com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy : com.
         final fun <get-getJWT>(): kotlin.coroutines/SuspendFunction1<kotlin/String?, kotlin/String> // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy.getJWT.<get-getJWT>|<get-getJWT>(){}[0]
     final val subscriptionId // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy.subscriptionId|{}subscriptionId[0]
         final fun <get-subscriptionId>(): kotlin/String // com.aiuta.fashionsdk.authentication/JWTAuthenticationStrategy.subscriptionId.<get-subscriptionId>|<get-subscriptionId>(){}[0]
-}
-
-final class com.aiuta.fashionsdk.context/AiutaPlatformContext { // com.aiuta.fashionsdk.context/AiutaPlatformContext|null[0]
-    constructor <init>() // com.aiuta.fashionsdk.context/AiutaPlatformContext.<init>|<init>(){}[0]
 }
 
 final class com.aiuta.fashionsdk/Aiuta { // com.aiuta.fashionsdk/Aiuta|null[0]
