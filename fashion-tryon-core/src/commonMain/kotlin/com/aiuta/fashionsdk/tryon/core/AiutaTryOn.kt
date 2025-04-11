@@ -1,8 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.network.exceptions.FashionIOException
-import com.aiuta.fashionsdk.network.exceptions.FashionNetworkIsDisconnected
 import com.aiuta.fashionsdk.network.paging.models.PageContainer
 import com.aiuta.fashionsdk.network.paging.models.PaginationOffset
 import com.aiuta.fashionsdk.tryon.core.domain.AiutaTryOnImpl
@@ -10,7 +8,6 @@ import com.aiuta.fashionsdk.tryon.core.domain.models.ProductCatalog
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationStatus
-import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -56,11 +53,6 @@ public interface AiutaTryOn {
      * - Try to compress image or use origin
      * - Upload image on backend for processing
      * - Create generation operation and wait for result
-     *
-     * @throws FashionReadBytesException if the provided ByteArray will be empty or null
-     * @throws IllegalStateException if such operation already exist or it's not valid
-     * @throws FashionIOException
-     * @throws FashionNetworkIsDisconnected
      *
      * @return flow with statuses of started generation
      */
