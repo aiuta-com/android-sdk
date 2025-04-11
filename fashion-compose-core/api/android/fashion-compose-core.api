@@ -1,0 +1,4 @@
+public final class com/aiuta/fashionsdk/compose/core/LocalAiutaPlatformContext_androidKt {
+	public static final fun getLocalAiutaPlatformContext ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+

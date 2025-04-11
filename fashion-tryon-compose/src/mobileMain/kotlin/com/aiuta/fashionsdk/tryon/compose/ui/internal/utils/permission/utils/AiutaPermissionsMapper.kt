@@ -10,7 +10,6 @@ import dev.icerock.moko.permissions.gallery.GALLERY
 internal fun AiutaPickerSource.toMoko(): Permission = when (this) {
     AiutaPickerSource.CAMERA -> Permission.CAMERA
     AiutaPickerSource.GALLERY -> Permission.GALLERY
-    else -> error("Not supported permission")
 }
 
 internal fun PermissionState.toAiuta(): AiutaPermissionState = when (this) {
