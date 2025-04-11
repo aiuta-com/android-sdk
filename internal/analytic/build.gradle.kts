@@ -1,5 +1,6 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
 import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.desktopMain
 import com.aiuta.fashionsdk.versionName
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
@@ -33,7 +34,7 @@ kotlin {
                 implementation(libs.ktor.core)
             }
         }
-        jvmMain {
+        desktopMain {
             dependencies {
                 implementation(libs.kotlinx.coroutines.swing)
             }
