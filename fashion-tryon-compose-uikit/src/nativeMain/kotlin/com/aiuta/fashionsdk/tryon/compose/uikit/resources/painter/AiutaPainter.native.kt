@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIOSSkia
 public actual fun painterResource(drawableResource: AiutaDrawableResource): Painter {
     return when (drawableResource) {
         // Multiplatform
-        is AiutaComposeDrawableResource -> org.jetbrains.compose.resources.painterResource(drawableResource.resource)
+        is AiutaComposeDrawableResource -> commonPainterResource(drawableResource)
         // IOS
         is AiutaIOSSkia -> {
             val imageBitmap = drawableResource.resource.toComposeImageBitmap()

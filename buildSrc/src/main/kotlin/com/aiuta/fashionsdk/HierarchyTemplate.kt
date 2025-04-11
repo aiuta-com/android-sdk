@@ -18,6 +18,7 @@ private val hierarchyTemplate = KotlinHierarchyTemplate {
         withCompilations { true }
 
         groupNonAndroid()
+        groupJvmCommon()
         groupNative()
     }
 }
@@ -26,6 +27,13 @@ private fun KotlinHierarchyBuilder.groupNonAndroid() {
     group("nonAndroid") {
         withJvm()
         groupNative()
+    }
+}
+
+private fun KotlinHierarchyBuilder.groupJvmCommon() {
+    group("jvmCommon") {
+        withAndroidTarget()
+        withJvm()
     }
 }
 
