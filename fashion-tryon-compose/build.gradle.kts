@@ -1,5 +1,7 @@
 import com.aiuta.fashionsdk.addAllMultiplatformTargets
 import com.aiuta.fashionsdk.androidLibrary
+import com.aiuta.fashionsdk.desktopMain
+import com.aiuta.fashionsdk.mobileMain
 
 plugins {
     id("com.android.library")
@@ -54,11 +56,20 @@ kotlin {
                 implementation(libs.room.paging)
                 implementation(libs.jetbrains.lifecycle)
                 implementation(libs.sqlite.bundled)
+
+                implementation(projects.fashionTryonComposeUikit)
+            }
+        }
+        desktopMain {
+            dependencies {
+                implementation(libs.calf.picker)
+            }
+        }
+        mobileMain {
+            dependencies {
                 implementation(libs.moko.permissions.camera)
                 implementation(libs.moko.permissions.gallery)
                 implementation(libs.moko.compose)
-
-                implementation(projects.fashionTryonComposeUikit)
             }
         }
         nativeMain {

@@ -14,6 +14,11 @@ androidLibrary(name = "com.aiuta.fashionsdk.tryon.core")
 
 kotlin {
     sourceSets {
+        androidMain {
+            dependencies {
+                implementation(libs.androidx.exifinterface)
+            }
+        }
         commonMain {
             dependencies {
                 api(projects.fashion)

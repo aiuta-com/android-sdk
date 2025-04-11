@@ -3,10 +3,12 @@ androidx-activity = "1.10.1"
 androidx-benchmark = "1.3.3"
 androidx-core = "1.16.0"
 androidx-paging = "3.3.6"
+androidx-exifinterface="1.4.0"
 
 binaryCompatibility = "0.17.0"
 buildKonfig = "0.17.0"
 
+calf-picker="0.7.1"
 coroutines = "1.10.1"
 coil3 = "3.1.0"
 compose-placeholder = "2.0.0"
@@ -46,7 +48,9 @@ uiUnitAndroid = "1.7.8"
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "androidx-paging" }
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "androidx-exifinterface" }
 
+calf-picker = { module = "com.mohamedrejeb.calf:calf-file-picker", version.ref = "calf-picker" }
 coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
 coil3-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil3" }
 compose-placeholder = { module = "io.github.fornewid:placeholder-foundation", version.ref = "compose-placeholder" }

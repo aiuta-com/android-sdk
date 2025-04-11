@@ -20,6 +20,7 @@ private val hierarchyTemplate = KotlinHierarchyTemplate {
         groupNonAndroid()
         groupJvmCommon()
         groupNative()
+        groupMobile()
     }
 }
 
@@ -52,6 +53,13 @@ private fun KotlinHierarchyBuilder.groupNative() {
                 withMacos()
             }
         }
+    }
+}
+
+private fun KotlinHierarchyBuilder.groupMobile() {
+    group("mobile") {
+        withAndroidTarget()
+        groupNative()
     }
 }
 

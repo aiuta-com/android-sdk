@@ -1,38 +1,35 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission
 
-import dev.icerock.moko.permissions.DeniedAlwaysException
-import dev.icerock.moko.permissions.Permission
-import dev.icerock.moko.permissions.PermissionState
-import dev.icerock.moko.permissions.PermissionsController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.exception.AiutaDeniedAlwaysException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 internal fun CoroutineScope.actionWithPermission(
-    permission: Permission,
-    permissionsController: PermissionsController,
+    pickerSource: AiutaPickerSource,
+    permissionHandler: AiutaPermissionHandler,
     onGranted: suspend () -> Unit,
     onAlwaysDenied: suspend () -> Unit,
 ) {
     launch {
         when {
-            !shouldAskPermission(permission) -> onGranted()
+            !shouldAskPermission(pickerSource) -> onGranted()
 
-            permissionsController.isPermissionGranted(permission) -> onGranted()
+            permissionHandler.isPermissionGranted(pickerSource) -> onGranted()
 
             else -> {
                 try {
-                    val permissionState = permissionsController.getPermissionState(permission)
+                    val permissionState = permissionHandler.getPermissionState(pickerSource)
 
                     println("actionWithPermission(): permissionState - $permissionState")
 
-                    if (permissionState == PermissionState.DeniedAlways) {
+                    if (permissionState == AiutaPermissionState.DENIED_ALWAYS) {
                         onAlwaysDenied()
                     } else {
-                        permissionsController.providePermission(permission)
+                        permissionHandler.providePermission(pickerSource)
                         // Permission granted, let's do main action
                         onGranted()
                     }
-                } catch (e: DeniedAlwaysException) {
+                } catch (e: AiutaDeniedAlwaysException) {
                     println("actionWithPermission(): DeniedAlwaysException exception")
                     onAlwaysDenied()
                 } catch (e: Exception) {
@@ -44,4 +41,4 @@ internal fun CoroutineScope.actionWithPermission(
     }
 }
 
-internal expect fun shouldAskPermission(permission: Permission): Boolean
+internal expect fun shouldAskPermission(permission: AiutaPickerSource): Boolean

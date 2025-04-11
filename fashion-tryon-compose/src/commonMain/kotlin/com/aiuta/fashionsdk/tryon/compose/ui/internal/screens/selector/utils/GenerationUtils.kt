@@ -116,11 +116,11 @@ private fun FashionTryOnController.solveStartGenerationFlows(
 private fun FashionTryOnController.startGenerationWithUriSource(
     platformImageSource: LastSavedImages.PlatformImageSource,
     generatedOperationFactory: GeneratedOperationFactory,
-): List<Flow<ProductGenerationStatus>> = platformImageSource.platformImages.map { image ->
+): List<Flow<ProductGenerationStatus>> = platformImageSource.platformFiles.map { file ->
     aiutaTryOn
         .startProductGeneration(
             container = ProductGenerationPlatformImageContainer(
-                platformImage = image,
+                platformFile = file,
                 productId = activeProductItem.value.id,
                 productCatalogName = activeProductItem.value.catalogName,
             ),

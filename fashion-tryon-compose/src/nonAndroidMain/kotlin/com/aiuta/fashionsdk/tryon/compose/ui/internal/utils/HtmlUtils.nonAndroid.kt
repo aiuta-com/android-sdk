@@ -9,6 +9,6 @@ internal actual fun buildAnnotatedStringFromHtml(
     input: String,
     isClickable: Boolean,
 ): AnnotatedString = buildAnnotatedString {
-    // TODO Support Native platform
+    // TODO Support non android platforms
     append(input)
 }

@@ -33,3 +33,6 @@ fun Project.addAllMultiplatformTargets() {
 
 val NamedDomainObjectContainer<KotlinSourceSet>.desktopMain: NamedDomainObjectProvider<KotlinSourceSet>
     get() = named("desktopMain")
+
+val NamedDomainObjectContainer<KotlinSourceSet>.mobileMain: NamedDomainObjectProvider<KotlinSourceSet>
+    get() = named("mobileMain")
