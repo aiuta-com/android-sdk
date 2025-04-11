@@ -17,7 +17,7 @@ internal class AndroidInstallationStorage(
     private val fileName = "INSTALLATION"
 
     override suspend fun readInstallationId(): String? {
-        val file = File(platformContext.application.filesDir, fileName)
+        val file = File(platformContext.filesDir, fileName)
         if (!file.exists()) return null
 
         return withContext(Dispatchers.IO) {
@@ -30,7 +30,7 @@ internal class AndroidInstallationStorage(
     }
 
     override suspend fun writeInstallationId(id: String) {
-        val file = File(platformContext.application.filesDir, fileName)
+        val file = File(platformContext.filesDir, fileName)
         withContext(Dispatchers.IO) {
             FileOutputStream(file).use {
                 it.write(id.toByteArray())

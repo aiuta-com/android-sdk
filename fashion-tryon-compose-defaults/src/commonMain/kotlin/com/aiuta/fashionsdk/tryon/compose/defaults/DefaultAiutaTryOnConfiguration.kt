@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.features.tryon.defaultTryOn
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.welcome.defaultWelcomeScreen
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.wishlist.defaultWishlist
 
-public inline fun defaultAiutaTryOnConfiguration(
+public fun defaultAiutaTryOnConfiguration(
     aiuta: Aiuta,
 ): AiutaTryOnConfiguration = aiutaTryOnConfiguration {
     this.aiuta = aiuta

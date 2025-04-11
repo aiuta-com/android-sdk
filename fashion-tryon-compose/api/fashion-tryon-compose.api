@@ -54,50 +54,50 @@ public final class com/aiuta/fashionsdk/tryon/compose/ui/HistoryFlowKt {
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/ComposableSingletons$NavigationContainerKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-556568772$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/appbar/ComposableSingletons$NavigationAppBarKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/navigation/components/appbar/ComposableSingletons$NavigationAppBarKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-2$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
-	public final fun getLambda-3$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-117611113$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1799496787$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1980137522$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/history/ComposableSingletons$HistoryScreenInternalKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$771927991$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/onboarding/ComposableSingletons$OnboardingScreenKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1702000635$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/body/ComposableSingletons$ImageSelectorPhotoKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/body/ComposableSingletons$ImageSelectorPhotoKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$-1680946254$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$ImageSelectorFooterKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/components/footer/ComposableSingletons$ImageSelectorFooterKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$-417258554$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/content/ComposableSingletons$ImageSelectorScreenContentKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/screens/selector/content/ComposableSingletons$ImageSelectorScreenContentKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$1334405020$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function4;
 }
 
 public final class com/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt {
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/ui/internal/sheets/operations/ComposableSingletons$GeneratedOperationsSheetKt;
 	public fun <init> ()V
-	public final fun getLambda-1$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1297420383$fashion_tryon_compose_release ()Lkotlin/jvm/functions/Function3;
 }
 

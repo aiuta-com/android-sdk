@@ -34,7 +34,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
-import dev.chrisbanes.haze.hazeChild
+import dev.chrisbanes.haze.hazeEffect
 
 @Composable
 internal fun FeedbackBlock(
@@ -138,7 +138,7 @@ private fun ReactionIcon(
                 shape = CircleShape,
             )
             .clip(CircleShape)
-            .hazeChild(hazeState) {
+            .hazeEffect(hazeState) {
                 val sharedColor = theme.color.background.copy(alpha = 0.4f)
 
                 blurRadius = 10.dp

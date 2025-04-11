@@ -38,7 +38,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.HazeTint
-import dev.chrisbanes.haze.hazeChild
+import dev.chrisbanes.haze.hazeEffect
 
 @Composable
 internal fun ImageSelectorBottom(
@@ -66,7 +66,7 @@ internal fun ImageSelectorBottom(
     val sharedBlurModifer =
         Modifier
             .clip(sharedButtonSize.shape)
-            .hazeChild(hazeState) {
+            .hazeEffect(hazeState) {
                 blurRadius = 10.dp
                 backgroundColor = sharedColor
                 tints = listOf(HazeTint(sharedColor))

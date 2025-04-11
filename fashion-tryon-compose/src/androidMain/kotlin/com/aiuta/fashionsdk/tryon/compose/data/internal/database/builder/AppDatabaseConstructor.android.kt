@@ -9,11 +9,10 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.database.DATABASE_NAME
 internal actual fun getDatabaseBuilder(
     platformContext: AiutaPlatformContext,
 ): RoomDatabase.Builder<AppDatabase> {
-    val application = platformContext.application
-    val dbFile = application.getDatabasePath(DATABASE_NAME)
+    val dbFile = platformContext.getDatabasePath(DATABASE_NAME)
 
     return Room.databaseBuilder<AppDatabase>(
-        context = application,
+        context = platformContext,
         name = dbFile.absolutePath,
     )
 }
