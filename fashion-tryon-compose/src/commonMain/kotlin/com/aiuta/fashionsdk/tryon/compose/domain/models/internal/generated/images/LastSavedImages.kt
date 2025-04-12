@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.imag
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
-import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
+import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
 
 @Immutable
 internal sealed interface LastSavedImages {
     data class PlatformImageSource(
-        val platformImages: List<AiutaPlatformImage>,
+        val platformFiles: List<AiutaPlatformFile>,
     ) : LastSavedImages
 
     sealed interface UrlSource : LastSavedImages {
@@ -32,7 +32,7 @@ internal val LastSavedImages.imageSource: List<LastSavedImageWrapper>
     get() {
         return when (this) {
             is LastSavedImages.PlatformImageSource ->
-                platformImages.map {
+                platformFiles.map {
                     LastSavedImageWrapper.SavedPlatformImage(it)
                 }
 

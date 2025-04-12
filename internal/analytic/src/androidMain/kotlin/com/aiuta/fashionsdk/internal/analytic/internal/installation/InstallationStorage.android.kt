@@ -14,10 +14,8 @@ internal actual fun buildInstallationStorage(
 internal class AndroidInstallationStorage(
     private val platformContext: AiutaPlatformContext,
 ) : InstallationStorage {
-    private val fileName = "INSTALLATION"
-
     override suspend fun readInstallationId(): String? {
-        val file = File(platformContext.filesDir, fileName)
+        val file = File(platformContext.filesDir, ANDROID_INSTALLATION_FILE_NAME)
         if (!file.exists()) return null
 
         return withContext(Dispatchers.IO) {
@@ -30,7 +28,7 @@ internal class AndroidInstallationStorage(
     }
 
     override suspend fun writeInstallationId(id: String) {
-        val file = File(platformContext.filesDir, fileName)
+        val file = File(platformContext.filesDir, ANDROID_INSTALLATION_FILE_NAME)
         withContext(Dispatchers.IO) {
             FileOutputStream(file).use {
                 it.write(id.toByteArray())

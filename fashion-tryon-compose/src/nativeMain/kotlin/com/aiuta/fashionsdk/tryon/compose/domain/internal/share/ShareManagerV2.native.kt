@@ -11,7 +11,6 @@ import coil3.request.ImageRequest
 import coil3.toBitmap
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.generateImageFileName
-import com.aiuta.fashionsdk.tryon.core.domain.models.image.AiutaPlatformImage
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.refTo
@@ -47,14 +46,12 @@ internal actual class ShareManagerV2(
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> = runCatching {
-        val images = imageUrls
-            .mapNotNull { url ->
-                val uiimage = urlToUIImage(url)
-                uiimage?.let { AiutaPlatformImage(it) }
-            }
+        val bitmaps = imageUrls.mapNotNull { url -> urlToBitmap(url) }
 
         val urls = withContext(Dispatchers.IO) {
-            images.mapNotNull { image -> saveFile(image.byteArray) }
+            bitmaps.mapNotNull { bitmap ->
+                bitmap.readPixels()?.let { saveFile(it) }
+            }
         }
         val activityViewController = UIActivityViewController(urls, null)
 
@@ -77,14 +74,14 @@ internal actual class ShareManagerV2(
         return if (saved) NSURL.fileURLWithPath(sharedFile) else null
     }
 
-    private suspend fun urlToUIImage(imageUrl: String): UIImage? = try {
+    private suspend fun urlToBitmap(imageUrl: String): Bitmap? = try {
         val request =
             ImageRequest.Builder(coilContext)
                 .data(imageUrl)
                 .build()
         val resultImage = SingletonImageLoader.get(coilContext).execute(request).image
 
-        resultImage?.let { convertImage(resultImage) }
+        resultImage?.toBitmap()
     } catch (e: Exception) {
         // Failed to resolve bitmap
         null

@@ -20,8 +20,6 @@ internal actual fun buildInstallationStorage(
 ): InstallationStorage = IosInstallationStorage()
 
 public class IosInstallationStorage : InstallationStorage {
-    private val fileName = "INSTALLATION.txt"
-
     private fun filePath(): String {
         val dir =
             NSSearchPathForDirectoriesInDomains(
@@ -29,7 +27,7 @@ public class IosInstallationStorage : InstallationStorage {
                 domainMask = NSUserDomainMask,
                 expandTilde = true,
             ).first() as String
-        return "$dir/$fileName"
+        return "$dir/$INSTALLATION_FILE_NAME"
     }
 
     @OptIn(ExperimentalForeignApi::class)

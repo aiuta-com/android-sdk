@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.components.images
 
-import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import coil3.compose.SubcomposeAsyncImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImageWrapper
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
@@ -19,9 +19,9 @@ internal fun ImagesContainer(
 
     when (val image = images.firstOrNull()) {
         is LastSavedImageWrapper.SavedPlatformImage -> {
-            Image(
+            SubcomposeAsyncImage(
                 modifier = modifier,
-                bitmap = image.image.imageBitmap,
+                model = image.file,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
             )
