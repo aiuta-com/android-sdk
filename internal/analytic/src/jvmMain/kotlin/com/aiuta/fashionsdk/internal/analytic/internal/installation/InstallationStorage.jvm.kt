@@ -14,12 +14,11 @@ internal actual fun buildInstallationStorage(
 
 internal class JvmInstallationStorage : InstallationStorage {
 
-    private val fileName = "INSTALLATION"
     private val desktopType by lazy { solveDesktopSystemType() }
     private val baseDir by lazy { File(desktopType.platformPath()) }
 
     override suspend fun readInstallationId(): String? {
-        val file = File(baseDir, fileName)
+        val file = File(baseDir, INSTALLATION_FILE_NAME)
         if (!file.exists()) return null
 
         return withContext(Dispatchers.IO) {
@@ -32,7 +31,7 @@ internal class JvmInstallationStorage : InstallationStorage {
     }
 
     override suspend fun writeInstallationId(id: String) {
-        val file = File(baseDir, fileName)
+        val file = File(baseDir, INSTALLATION_FILE_NAME)
         if (!baseDir.exists()) baseDir.mkdirs()
         withContext(Dispatchers.IO) {
             FileOutputStream(file).use {
