@@ -62,7 +62,7 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
         AiutaCodeEntity::class,
     ],
     version = DATABASE_VERSION,
-    exportSchema = false,
+    exportSchema = true,
 )
 @TypeConverters(
     value = [

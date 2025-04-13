@@ -45,7 +45,11 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
-    val imageBlockPadding = screenSize.widthDp * 0.15f
+    val imageBlockPadding = if (screenSize.heightDp > 900.dp) {
+        screenSize.widthDp * 0.15f
+    } else {
+        screenSize.widthDp * 0.05f
+    }
 
     val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
     val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModelFeature>()
