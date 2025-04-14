@@ -41,6 +41,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.sheets.picker.exceptions.N
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.AiutaPickerSource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.actionWithPermission
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.isPickerSourceAvailable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.permission.rememberAiutaPermissionHandler
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera.rememberCameraManager
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.file.rememberImagePickerLauncher
@@ -59,7 +60,7 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
 
     val pickerFeatures = remember {
         listOfNotNull(
-            cameraFeature,
+            cameraFeature.takeIf { isPickerSourceAvailable(AiutaPickerSource.CAMERA) },
             photoGalleryFeature,
             predefinedModelFeature,
         )

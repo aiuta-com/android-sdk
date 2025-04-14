@@ -42,3 +42,5 @@ internal fun CoroutineScope.actionWithPermission(
 }
 
 internal expect fun shouldAskPermission(permission: AiutaPickerSource): Boolean
+
+internal expect fun isPickerSourceAvailable(permission: AiutaPickerSource): Boolean
