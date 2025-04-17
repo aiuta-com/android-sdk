@@ -9,7 +9,7 @@ public abstract class AiutaBottomSheetThemeShapes {
     public abstract val bottomSheet: Dp
     public abstract val chipsButton: Dp
 
-    public val bottomSheetShape: CornerBasedShape by lazy { RoundedCornerShape(bottomSheet) }
+    public val bottomSheetShape: CornerBasedShape by lazy { RoundedCornerShape(topStart = bottomSheet, topEnd = bottomSheet) }
     public val chipsButtonShape: CornerBasedShape by lazy { RoundedCornerShape(chipsButton) }
 
     public class Default : AiutaBottomSheetThemeShapes() {
