@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera
 
 import androidx.compose.runtime.Composable
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 
 @Composable
 internal actual fun rememberCameraManager(onResult: (AiutaPlatformFile) -> Unit): CameraManager = CameraManager(

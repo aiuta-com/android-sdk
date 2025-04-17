@@ -4,7 +4,6 @@ import coil3.PlatformContext
 import coil3.SingletonImageLoader
 import coil3.request.ErrorResult
 import coil3.request.ImageRequest
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.coil.newImageLoader
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.AiutaTryOnRetryPolicies
 import com.aiuta.fashionsdk.tryon.core.domain.models.policies.DefaultAiutaTryOnRetryPolicies
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
@@ -15,11 +14,7 @@ internal class WarmUpInteractor(
     private val context: PlatformContext,
     private val retryPolicies: AiutaTryOnRetryPolicies = DefaultAiutaTryOnRetryPolicies,
 ) {
-    private val imageLoader by lazy { newImageLoader(context) }
-
-    init {
-        initLoader()
-    }
+    private val imageLoader by lazy { SingletonImageLoader.get(context) }
 
     suspend fun warmUp(url: String) {
         retryAction(
@@ -46,9 +41,5 @@ internal class WarmUpInteractor(
                 .build()
 
         imageLoader.execute(request)
-    }
-
-    private fun initLoader() {
-        SingletonImageLoader.setSafe { imageLoader }
     }
 }

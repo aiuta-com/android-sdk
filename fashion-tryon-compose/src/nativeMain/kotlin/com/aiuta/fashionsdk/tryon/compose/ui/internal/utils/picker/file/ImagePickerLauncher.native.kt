@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.interop.LocalUIViewController
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import kotlin.coroutines.resume
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

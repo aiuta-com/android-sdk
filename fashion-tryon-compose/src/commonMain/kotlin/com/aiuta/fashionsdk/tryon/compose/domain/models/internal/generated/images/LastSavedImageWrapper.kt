@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 
 @Immutable
 internal sealed interface LastSavedImageWrapper {
