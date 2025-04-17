@@ -50,9 +50,9 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerati
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationPlatformImageContainer : com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationContainer {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getPlatformFile ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile;
+	public fun <init> (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getPlatformFile ()Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;
 	public fun getProductCatalogName ()Ljava/lang/String;
 	public fun getProductId ()Ljava/lang/String;
 }
@@ -114,30 +114,6 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerati
 	public final fun getFileUrl ()Ljava/lang/String;
 	public fun getProductCatalogName ()Ljava/lang/String;
 	public fun getProductId ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/compressor/AiutaCompressionConfig {
-	public static final field $stable I
-	public static final field Companion Lcom/aiuta/fashionsdk/tryon/core/domain/models/compressor/AiutaCompressionConfig$Companion;
-	public fun <init> (II)V
-	public final fun getCompressedImageMaxSize ()I
-	public final fun getCompressedImageQuality ()I
-}
-
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/compressor/AiutaCompressionConfig$Companion {
-	public final fun getDEFAULT ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/compressor/AiutaCompressionConfig;
-}
-
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile {
-	public static final field $stable I
-	public fun <init> (Ljava/io/File;)V
-	public final fun getFile ()Ljava/io/File;
-}
-
-public final class com/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile_desktopKt {
-	public static final fun readByteArray (Lcom/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile;Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun readCompressedByteArray (Lcom/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile;Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;Lcom/aiuta/fashionsdk/tryon/core/domain/models/compressor/AiutaCompressionConfig;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun readCompressedByteArray$default (Lcom/aiuta/fashionsdk/tryon/core/domain/models/file/AiutaPlatformFile;Lcom/aiuta/fashionsdk/context/AiutaPlatformContext;Lcom/aiuta/fashionsdk/tryon/core/domain/models/compressor/AiutaCompressionConfig;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata {

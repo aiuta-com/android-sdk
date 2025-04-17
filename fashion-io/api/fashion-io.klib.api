@@ -1,0 +1,32 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion-io>
+final class com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig { // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int) // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.<init>|<init>(kotlin.Int;kotlin.Int){}[0]
+
+    final val compressedImageMaxSize // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.compressedImageMaxSize|{}compressedImageMaxSize[0]
+        final fun <get-compressedImageMaxSize>(): kotlin/Int // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.compressedImageMaxSize.<get-compressedImageMaxSize>|<get-compressedImageMaxSize>(){}[0]
+    final val compressedImageQuality // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.compressedImageQuality|{}compressedImageQuality[0]
+        final fun <get-compressedImageQuality>(): kotlin/Int // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.compressedImageQuality.<get-compressedImageQuality>|<get-compressedImageQuality>(){}[0]
+
+    final object Companion { // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.Companion|null[0]
+        final val DEFAULT // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.Companion.DEFAULT|{}DEFAULT[0]
+            final fun <get-DEFAULT>(): com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig // com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig.Companion.DEFAULT.<get-DEFAULT>|<get-DEFAULT>(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.io/AiutaPlatformFile { // com.aiuta.fashionsdk.io/AiutaPlatformFile|null[0]
+    constructor <init>(platform.Foundation/NSURL) // com.aiuta.fashionsdk.io/AiutaPlatformFile.<init>|<init>(platform.Foundation.NSURL){}[0]
+    constructor <init>(platform.Foundation/NSURL, platform.Foundation/NSURL) // com.aiuta.fashionsdk.io/AiutaPlatformFile.<init>|<init>(platform.Foundation.NSURL;platform.Foundation.NSURL){}[0]
+
+    final val url // com.aiuta.fashionsdk.io/AiutaPlatformFile.url|{}url[0]
+        final fun <get-url>(): platform.Foundation/NSURL // com.aiuta.fashionsdk.io/AiutaPlatformFile.url.<get-url>|<get-url>(){}[0]
+}
+
+final suspend fun (com.aiuta.fashionsdk.io/AiutaPlatformFile).com.aiuta.fashionsdk.io/readByteArray(com.aiuta.fashionsdk.context/AiutaPlatformContext): kotlin/ByteArray // com.aiuta.fashionsdk.io/readByteArray|readByteArray@com.aiuta.fashionsdk.io.AiutaPlatformFile(com.aiuta.fashionsdk.context.AiutaPlatformContext){}[0]
+final suspend fun (com.aiuta.fashionsdk.io/AiutaPlatformFile).com.aiuta.fashionsdk.io/readCompressedByteArray(com.aiuta.fashionsdk.context/AiutaPlatformContext, com.aiuta.fashionsdk.io.compression/AiutaCompressionConfig = ...): kotlin/ByteArray // com.aiuta.fashionsdk.io/readCompressedByteArray|readCompressedByteArray@com.aiuta.fashionsdk.io.AiutaPlatformFile(com.aiuta.fashionsdk.context.AiutaPlatformContext;com.aiuta.fashionsdk.io.compression.AiutaCompressionConfig){}[0]
