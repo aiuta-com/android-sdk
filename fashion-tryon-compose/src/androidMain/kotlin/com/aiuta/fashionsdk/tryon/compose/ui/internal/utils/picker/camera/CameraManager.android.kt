@@ -9,8 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.newImageUri
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
 
 @Composable
 internal actual fun rememberCameraManager(onResult: (AiutaPlatformFile) -> Unit): CameraManager {

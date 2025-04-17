@@ -20,6 +20,8 @@ kotlin {
         }
         commonMain {
             dependencies {
+                api(projects.fashionIo)
+                api(projects.fashionComposeCore)
                 api(projects.fashionTryonComposeConfigurationUi)
 
                 implementation(compose.components.resources)

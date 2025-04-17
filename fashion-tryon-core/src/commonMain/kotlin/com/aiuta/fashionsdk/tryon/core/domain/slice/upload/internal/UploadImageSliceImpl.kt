@@ -2,11 +2,11 @@ package com.aiuta.fashionsdk.tryon.core.domain.slice.upload.internal
 
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.io.readCompressedByteArray
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.FashionImageDataSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.UploadedImage
 import com.aiuta.fashionsdk.tryon.core.domain.analytic.sendInternalErrorEvent
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationPlatformImageContainer
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.readCompressedByteArray
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
 import com.aiuta.fashionsdk.tryon.core.domain.slice.upload.UploadImageSlice
 import com.aiuta.fashionsdk.tryon.core.exceptions.FashionReadBytesException

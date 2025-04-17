@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.camera
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import platform.Foundation.NSTemporaryDirectory
 import platform.Foundation.NSURL
 import platform.Foundation.NSUUID

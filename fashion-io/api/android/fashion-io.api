@@ -1,0 +1,22 @@
+public final class com/aiuta/fashionsdk/io/AiutaPlatformFile {
+	public fun <init> (Landroid/net/Uri;)V
+	public final fun getUri ()Landroid/net/Uri;
+}
+
+public final class com/aiuta/fashionsdk/io/AiutaPlatformFile_androidKt {
+	public static final fun readByteArray (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Landroid/content/Context;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun readCompressedByteArray (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Landroid/content/Context;Lcom/aiuta/fashionsdk/io/compression/AiutaCompressionConfig;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun readCompressedByteArray$default (Lcom/aiuta/fashionsdk/io/AiutaPlatformFile;Landroid/content/Context;Lcom/aiuta/fashionsdk/io/compression/AiutaCompressionConfig;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class com/aiuta/fashionsdk/io/compression/AiutaCompressionConfig {
+	public static final field Companion Lcom/aiuta/fashionsdk/io/compression/AiutaCompressionConfig$Companion;
+	public fun <init> (II)V
+	public final fun getCompressedImageMaxSize ()I
+	public final fun getCompressedImageQuality ()I
+}
+
+public final class com/aiuta/fashionsdk/io/compression/AiutaCompressionConfig$Companion {
+	public final fun getDEFAULT ()Lcom/aiuta/fashionsdk/io/compression/AiutaCompressionConfig;
+}
+

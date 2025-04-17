@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.picker.file
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher

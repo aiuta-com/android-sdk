@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import coil3.compose.LocalPlatformContext
-import coil3.compose.setSingletonImageLoaderFactory
 import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
@@ -20,7 +18,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingUploadedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.coil.newImageLoader
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
@@ -30,10 +27,6 @@ internal fun NavigationInitialisation(
     productItem: ProductItem,
     content: @Composable () -> Unit,
 ) {
-    // Init coil
-    val coilContext = LocalPlatformContext.current
-    setSingletonImageLoaderFactory { newImageLoader(coilContext) }
-
     BoxWithConstraints(
         modifier = modifier,
     ) {

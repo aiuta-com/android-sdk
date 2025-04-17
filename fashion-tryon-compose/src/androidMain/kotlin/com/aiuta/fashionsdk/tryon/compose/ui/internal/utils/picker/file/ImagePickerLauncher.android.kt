@@ -5,7 +5,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 
 @Composable
 internal actual fun rememberImagePickerLauncher(onResult: (List<AiutaPlatformFile>) -> Unit): ImagePickerLauncher {

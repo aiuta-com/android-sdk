@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models
 
+import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
-import com.aiuta.fashionsdk.tryon.core.domain.models.file.AiutaPlatformFile
 
 /**
  * Base container for starting product generation flow
