@@ -12,12 +12,11 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Extension for using [getProductItems] method with [androidx.paging] library
  */
-public fun AiutaTryOn.getProductItems(catalogName: String): Flow<PagingData<ProductGenerationItem>> = Pager(
-    config =
-    PagingConfig(
-        pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE,
-        enablePlaceholders = false,
-    ),
+public fun AiutaTryOn.getProductItems(
+    catalogName: String,
+    config: PagingConfig = PagingConfig(pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE),
+): Flow<PagingData<ProductGenerationItem>> = Pager(
+    config = config,
     pagingSourceFactory = {
         ContainerPagingSource {
             getProductItems(
@@ -31,12 +30,10 @@ public fun AiutaTryOn.getProductItems(catalogName: String): Flow<PagingData<Prod
 /**
  * Extension for using [getProductCatalogs] method with [androidx.paging] library
  */
-public fun AiutaTryOn.getProductCatalogs(): Flow<PagingData<ProductCatalog>> = Pager(
-    config =
-    PagingConfig(
-        pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE,
-        enablePlaceholders = false,
-    ),
+public fun AiutaTryOn.getProductCatalogs(
+    config: PagingConfig = PagingConfig(pageSize = ContainerPagingSource.DEFAULT_PAGE_SIZE),
+): Flow<PagingData<ProductCatalog>> = Pager(
+    config = config,
     pagingSourceFactory = {
         ContainerPagingSource {
             getProductCatalogs(

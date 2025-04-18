@@ -61,6 +61,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.components.common.HistoryAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.controller.HistoryScreenListeners
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.calculateMinGridItemWidth
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.utils.deleteGeneratedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.openZoomImageScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
@@ -73,8 +74,6 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaImage
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 import kotlinx.coroutines.launch
-
-private const val FULL_SIZE_SPAN = 3
 
 @Composable
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
@@ -104,6 +103,17 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
     val theme = LocalTheme.current
 
+    val minColumnsCount = 3
+    val contentPadding = 8.dp
+    val horizontalPadding = 8.dp
+
+    val columnMinWidth = calculateMinGridItemWidth(
+        preferredWidth = 120.dp,
+        minColumnsCount = minColumnsCount,
+        contentPadding = contentPadding,
+        horizontalPadding = horizontalPadding,
+    )
+
     val generatedImages =
         controller
             .generatedImageInteractor
@@ -122,10 +132,10 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
     ) {
         LazyVerticalGrid(
             modifier = Modifier.fillMaxSize(),
-            columns = GridCells.Fixed(FULL_SIZE_SPAN),
-            contentPadding = PaddingValues(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            columns = GridCells.Adaptive(minSize = columnMinWidth),
+            contentPadding = PaddingValues(contentPadding),
+            horizontalArrangement = Arrangement.spacedBy(horizontalPadding),
+            verticalArrangement = Arrangement.spacedBy(horizontalPadding),
         ) {
             items(
                 span = { GridItemSpan(1) },
@@ -149,8 +159,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                 val isSelectModeActive = controller.isSelectModeActive().value && !isLoading.value
 
                 ImageContainer(
-                    modifier =
-                    Modifier
+                    modifier = Modifier
                         .animateItem()
                         .onGloballyPositioned { coordinates ->
                             parentImageOffset = coordinates.positionInRoot()
@@ -328,7 +337,8 @@ private fun BoxScope.HistoryScreenInterface(
                             .map { it.imageUrl }
 
                     val skuIds = listOf(controller.activeProductItem.value.id)
-                    val shareText = shareFeature?.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+                    val shareText =
+                        shareFeature?.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
 
                     // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()
