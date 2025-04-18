@@ -7,7 +7,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.aiuta.fashionsdk.compose.core.LocalAiutaPlatformContext
+import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
 import sample.tryon.kmp.utils.buildMockProductItem
 

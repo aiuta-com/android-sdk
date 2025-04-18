@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.compose.core
+package com.aiuta.fashionsdk.compose.core.context
 
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf

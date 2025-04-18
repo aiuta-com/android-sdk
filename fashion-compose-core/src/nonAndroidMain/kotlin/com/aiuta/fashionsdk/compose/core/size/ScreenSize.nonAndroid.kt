@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.configuration
+package com.aiuta.fashionsdk.compose.core.size
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.LocalWindowInfo
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-internal actual fun rememberScreenSize(): ScreenSize {
+public actual fun rememberScreenSize(): ScreenSize {
     val density = LocalDensity.current
     val windowInfo = LocalWindowInfo.current
 

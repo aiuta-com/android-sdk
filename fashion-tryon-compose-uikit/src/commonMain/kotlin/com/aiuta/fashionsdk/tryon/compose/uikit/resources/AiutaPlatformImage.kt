@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.DefaultAlpha
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.SubcomposeAsyncImage
-import com.aiuta.fashionsdk.compose.core.LocalAiutaPlatformContext
+import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
 import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.aiuta.fashionsdk.io.readByteArray
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.progress.ErrorProgress

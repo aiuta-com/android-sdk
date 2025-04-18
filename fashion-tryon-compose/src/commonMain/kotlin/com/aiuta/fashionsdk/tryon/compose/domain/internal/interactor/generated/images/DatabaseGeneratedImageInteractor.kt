@@ -25,8 +25,7 @@ internal class DatabaseGeneratedImageInteractor(
     }
 
     override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = Pager(
-        config =
-        PagingConfig(
+        config = PagingConfig(
             pageSize = DEFAULT_PAGE_SIZE,
         ),
         pagingSourceFactory = {
