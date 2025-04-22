@@ -27,6 +27,7 @@ public abstract interface class com/aiuta/fashionsdk/tryon/compose/uikit/button/
 public abstract interface class com/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonSize {
 	public abstract fun getIconSize-D9Ej5fM ()F
 	public abstract fun getIconSpacing-D9Ej5fM ()F
+	public abstract fun getMinHeight-D9Ej5fM ()F
 	public abstract fun getPaddingValues ()Landroidx/compose/foundation/layout/PaddingValues;
 	public abstract fun getShape ()Landroidx/compose/ui/graphics/Shape;
 	public abstract fun getTextStyle ()Landroidx/compose/ui/text/TextStyle;

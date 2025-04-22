@@ -29,6 +29,8 @@ abstract interface com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/Fash
         abstract fun <get-iconSize>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.iconSize.<get-iconSize>|<get-iconSize>(){}[0]
     abstract val iconSpacing // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.iconSpacing|{}iconSpacing[0]
         abstract fun <get-iconSpacing>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.iconSpacing.<get-iconSpacing>|<get-iconSpacing>(){}[0]
+    abstract val minHeight // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.minHeight|{}minHeight[0]
+        abstract fun <get-minHeight>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.minHeight.<get-minHeight>|<get-minHeight>(){}[0]
     abstract val paddingValues // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.paddingValues|{}paddingValues[0]
         abstract fun <get-paddingValues>(): androidx.compose.foundation.layout/PaddingValues // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.paddingValues.<get-paddingValues>|<get-paddingValues>(){}[0]
     abstract val shape // com.aiuta.fashionsdk.tryon.compose.uikit.button.internal/FashionButtonSize.shape|{}shape[0]
