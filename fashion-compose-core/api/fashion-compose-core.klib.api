@@ -6,5 +6,18 @@
 // - Show declarations: true
 
 // Library unique name: <com.aiuta:fashion-compose-core>
-final val com.aiuta.fashionsdk.compose.core/LocalAiutaPlatformContext // com.aiuta.fashionsdk.compose.core/LocalAiutaPlatformContext|{}LocalAiutaPlatformContext[0]
-    final fun <get-LocalAiutaPlatformContext>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.context/AiutaPlatformContext> // com.aiuta.fashionsdk.compose.core/LocalAiutaPlatformContext.<get-LocalAiutaPlatformContext>|<get-LocalAiutaPlatformContext>(){}[0]
+final class com.aiuta.fashionsdk.compose.core.size/ScreenSize { // com.aiuta.fashionsdk.compose.core.size/ScreenSize|null[0]
+    constructor <init>(androidx.compose.ui.unit/Dp, androidx.compose.ui.unit/Dp) // com.aiuta.fashionsdk.compose.core.size/ScreenSize.<init>|<init>(androidx.compose.ui.unit.Dp;androidx.compose.ui.unit.Dp){}[0]
+
+    final val heightDp // com.aiuta.fashionsdk.compose.core.size/ScreenSize.heightDp|{}heightDp[0]
+        final fun <get-heightDp>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.compose.core.size/ScreenSize.heightDp.<get-heightDp>|<get-heightDp>(){}[0]
+    final val widthDp // com.aiuta.fashionsdk.compose.core.size/ScreenSize.widthDp|{}widthDp[0]
+        final fun <get-widthDp>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.compose.core.size/ScreenSize.widthDp.<get-widthDp>|<get-widthDp>(){}[0]
+}
+
+final val com.aiuta.fashionsdk.compose.core.context/LocalAiutaPlatformContext // com.aiuta.fashionsdk.compose.core.context/LocalAiutaPlatformContext|{}LocalAiutaPlatformContext[0]
+    final fun <get-LocalAiutaPlatformContext>(): androidx.compose.runtime/ProvidableCompositionLocal<com.aiuta.fashionsdk.context/AiutaPlatformContext> // com.aiuta.fashionsdk.compose.core.context/LocalAiutaPlatformContext.<get-LocalAiutaPlatformContext>|<get-LocalAiutaPlatformContext>(){}[0]
+final val com.aiuta.fashionsdk.compose.core.size/com_aiuta_fashionsdk_compose_core_size_ScreenSize$stableprop // com.aiuta.fashionsdk.compose.core.size/com_aiuta_fashionsdk_compose_core_size_ScreenSize$stableprop|#static{}com_aiuta_fashionsdk_compose_core_size_ScreenSize$stableprop[0]
+
+final fun com.aiuta.fashionsdk.compose.core.size/com_aiuta_fashionsdk_compose_core_size_ScreenSize$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.compose.core.size/com_aiuta_fashionsdk_compose_core_size_ScreenSize$stableprop_getter|com_aiuta_fashionsdk_compose_core_size_ScreenSize$stableprop_getter(){}[0]
+final fun com.aiuta.fashionsdk.compose.core.size/rememberScreenSize(androidx.compose.runtime/Composer?, kotlin/Int): com.aiuta.fashionsdk.compose.core.size/ScreenSize // com.aiuta.fashionsdk.compose.core.size/rememberScreenSize|rememberScreenSize(androidx.compose.runtime.Composer?;kotlin.Int){}[0]

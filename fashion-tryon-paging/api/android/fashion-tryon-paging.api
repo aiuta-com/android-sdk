@@ -1,5 +1,7 @@
 public final class com/aiuta/fashionsdk/tryon/paging/FashionTryOnPagingExtensionsKt {
-	public static final fun getProductCatalogs (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;)Lkotlinx/coroutines/flow/Flow;
-	public static final fun getProductItems (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public static final fun getProductCatalogs (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Landroidx/paging/PagingConfig;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun getProductCatalogs$default (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Landroidx/paging/PagingConfig;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
+	public static final fun getProductItems (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Ljava/lang/String;Landroidx/paging/PagingConfig;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun getProductItems$default (Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;Ljava/lang/String;Landroidx/paging/PagingConfig;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 }
 
