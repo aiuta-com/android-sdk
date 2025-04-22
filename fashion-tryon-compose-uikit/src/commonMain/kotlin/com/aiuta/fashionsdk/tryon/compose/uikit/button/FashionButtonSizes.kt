@@ -34,6 +34,7 @@ public object FashionButtonSizes {
         iconSpacing = iconSpacing,
         shape = shape,
         textStyle = textStyle,
+        minHeight = 50.dp,
     )
 
     @Composable
@@ -54,5 +55,6 @@ public object FashionButtonSizes {
         iconSpacing = iconSpacing,
         shape = shape,
         textStyle = textStyle,
+        minHeight = 42.dp,
     )
 }
