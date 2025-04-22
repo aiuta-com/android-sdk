@@ -1,4 +1,15 @@
-public final class com/aiuta/fashionsdk/compose/core/LocalAiutaPlatformContext_androidKt {
+public final class com/aiuta/fashionsdk/compose/core/context/LocalAiutaPlatformContext_androidKt {
 	public static final fun getLocalAiutaPlatformContext ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
+public final class com/aiuta/fashionsdk/compose/core/size/ScreenSize {
+	public static final field $stable I
+	public synthetic fun <init> (FFLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getHeightDp-D9Ej5fM ()F
+	public final fun getWidthDp-D9Ej5fM ()F
+}
+
+public final class com/aiuta/fashionsdk/compose/core/size/ScreenSize_androidKt {
+	public static final fun rememberScreenSize (Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/core/size/ScreenSize;
 }
 
