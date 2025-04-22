@@ -13,6 +13,7 @@ public interface FashionButtonSize {
     public val iconSpacing: Dp
     public val shape: Shape
     public val textStyle: TextStyle
+    public val minHeight: Dp
 }
 
 internal data class DefaultFashionButtonSize(
@@ -21,4 +22,5 @@ internal data class DefaultFashionButtonSize(
     override val iconSpacing: Dp,
     override val shape: Shape,
     override val textStyle: TextStyle,
+    override val minHeight: Dp,
 ) : FashionButtonSize

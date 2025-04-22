@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
@@ -47,14 +48,16 @@ public fun FashionButton(
     val transition = updateTransition(isLoading, label = "loading button state")
 
     Button(
-        modifier = modifier.conditional(style is GradientButtonStyle) {
-            (style as? GradientButtonStyle)?.gradientBackground?.let {
-                background(
-                    brush = it,
-                    shape = size.shape,
-                )
-            } ?: this
-        },
+        modifier = modifier
+            .heightIn(min = size.minHeight)
+            .conditional(style is GradientButtonStyle) {
+                (style as? GradientButtonStyle)?.gradientBackground?.let {
+                    background(
+                        brush = it,
+                        shape = size.shape,
+                    )
+                } ?: this
+            },
         shape = size.shape,
         border = style.border,
         colors = style.colors.buttonColors,

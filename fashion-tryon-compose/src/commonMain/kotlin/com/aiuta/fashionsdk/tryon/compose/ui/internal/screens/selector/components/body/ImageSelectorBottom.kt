@@ -10,8 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.LocalRippleConfiguration
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -93,44 +96,48 @@ internal fun ImageSelectorBottom(
         when (state) {
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 uploadsHistoryFeature?.let {
-                    FashionButton(
-                        modifier = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
-                            AiutaButtonsStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
-                            else -> sharedModifier
-                        },
-                        text = uploadsHistoryFeature.strings.uploadsHistoryButtonChangePhoto,
-                        style = when (imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle) {
-                            AiutaButtonsStyle.BLURRED -> FashionButtonStyles.primaryStyle(
-                                backgroundColor = Color.Transparent,
-                                contentColor = theme.color.primary,
-                            )
-
-                            else -> FashionButtonStyles.primaryStyle(theme)
-                        },
-                        size = sharedButtonSize,
-                        onClick = {
-                            if (countGeneratedOperation.value == 0) {
-                                uploadPhoto()
-                            } else {
-                                controller.bottomSheetNavigator.show(
-                                    NavigationBottomSheetScreen.GeneratedOperations,
+                    val buttonStyle = imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle
+                    styleChangePhotoButton(buttonStyle) {
+                        FashionButton(
+                            modifier = when (buttonStyle) {
+                                AiutaButtonsStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                                else -> sharedModifier
+                            },
+                            text = uploadsHistoryFeature.strings.uploadsHistoryButtonChangePhoto,
+                            style = when (buttonStyle) {
+                                AiutaButtonsStyle.BLURRED -> FashionButtonStyles.primaryStyle(
+                                    backgroundColor = Color.Transparent,
+                                    contentColor = theme.color.primary,
                                 )
-                            }
-                        },
-                    )
+
+                                else -> FashionButtonStyles.primaryStyle(theme)
+                            },
+                            size = sharedButtonSize,
+                            onClick = {
+                                if (countGeneratedOperation.value == 0) {
+                                    uploadPhoto()
+                                } else {
+                                    controller.bottomSheetNavigator.show(
+                                        NavigationBottomSheetScreen.GeneratedOperations,
+                                    )
+                                }
+                            },
+                        )
+                    }
                 }
             }
 
             ImageSelectorState.GENERATION_LOADING -> {
-                val finalModifier = if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsStyle.BLURRED) {
-                    sharedModifier.border(
-                        width = 1.dp,
-                        color = theme.color.border,
-                        shape = sharedButtonSize.shape,
-                    )
-                } else {
-                    sharedModifier
-                }
+                val finalModifier =
+                    if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsStyle.BLURRED) {
+                        sharedModifier.border(
+                            width = 1.dp,
+                            color = theme.color.border,
+                            shape = sharedButtonSize.shape,
+                        )
+                    } else {
+                        sharedModifier
+                    }
 
                 val solvedText = solveLoadingGenerationText()
                 val textTransition = updateTransition(solvedText.value)
@@ -165,6 +172,25 @@ internal fun ImageSelectorBottom(
                     }
                 }
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+private fun styleChangePhotoButton(
+    buttonStyle: AiutaButtonsStyle?,
+    content: @Composable () -> Unit,
+) {
+    when (buttonStyle) {
+        AiutaButtonsStyle.BLURRED -> {
+            CompositionLocalProvider(
+                LocalRippleConfiguration provides null,
+                content = content,
+            )
+        }
+        else -> {
+            content()
         }
     }
 }
