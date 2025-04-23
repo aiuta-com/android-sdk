@@ -3,42 +3,33 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.painter.Painter
-import coil3.Image
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import coil3.PlatformContext
-import coil3.SingletonImageLoader
 import coil3.compose.LocalPlatformContext
-import coil3.request.ImageRequest
-import coil3.toBitmap
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.generateImageFileName
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.firstKeyWindow
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.isIpad
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.nativeLoad
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.watermarking
 import kotlinx.cinterop.ExperimentalForeignApi
-import kotlinx.cinterop.addressOf
-import kotlinx.cinterop.refTo
-import kotlinx.cinterop.usePinned
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.withContext
-import org.jetbrains.skia.Bitmap
-import org.jetbrains.skia.Image.Companion.makeFromBitmap
-import platform.CoreFoundation.CFDataCreate
-import platform.CoreGraphics.CGColorRenderingIntent
-import platform.CoreGraphics.CGColorSpaceCreateDeviceRGB
-import platform.CoreGraphics.CGDataProviderCreateWithCFData
-import platform.CoreGraphics.CGImageAlphaInfo
-import platform.CoreGraphics.CGImageCreate
-import platform.CoreGraphics.kCGBitmapByteOrder32Little
-import platform.Foundation.NSData
-import platform.Foundation.NSTemporaryDirectory
-import platform.Foundation.NSURL
-import platform.Foundation.dataWithBytes
-import platform.Foundation.writeToFile
+import kotlinx.cinterop.useContents
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
+import platform.CoreGraphics.CGRectMake
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
-import platform.UIKit.UIImage
+import platform.UIKit.popoverPresentationController
 
 internal actual class ShareManagerV2(
     private val coilContext: PlatformContext,
+    private val density: Density,
+    private val layoutDirection: LayoutDirection,
 ) {
+    @OptIn(ExperimentalForeignApi::class)
     actual suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticPageId,
@@ -46,81 +37,62 @@ internal actual class ShareManagerV2(
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> = runCatching {
-        val bitmaps = imageUrls.mapNotNull { url -> urlToBitmap(url) }
+        coroutineScope {
+            val viewController = UIApplication.sharedApplication.firstKeyWindow?.rootViewController
+            checkNotNull(viewController)
 
-        val urls = withContext(Dispatchers.IO) {
-            bitmaps.mapNotNull { bitmap ->
-                bitmap.readPixels()?.let { saveFile(it) }
+            val shareableImages = imageUrls.map { url ->
+                async {
+                    // Firstly, load
+                    val image = nativeLoad(url)
+                    // Try to add watermark
+                    val imageWithWatermark = watermarking(
+                        image = image,
+                        watermark = watermark,
+                        density = density,
+                        layoutDirection = layoutDirection,
+                    )
+                    ShareableImage(image = imageWithWatermark)
+                }
+            }.awaitAll()
+
+            // Now present UIActivityViewController to share
+            val itemsToShare = buildList {
+                addAll(shareableImages)
+                content?.let { add(ShareableAddition(it)) }
             }
-        }
-        val activityViewController = UIActivityViewController(urls, null)
+            val shareViewController = UIActivityViewController(itemsToShare, null)
 
-        UIApplication.sharedApplication.keyWindow?.rootViewController?.presentViewController(
-            activityViewController,
-            animated = true,
-            completion = null,
-        )
-    }
-
-    @OptIn(ExperimentalForeignApi::class)
-    private fun saveFile(bytes: ByteArray): NSURL? {
-        val tempDir = NSTemporaryDirectory()
-        val sharedFile = tempDir + generateImageFileName()
-        val saved =
-            bytes.usePinned {
-                val nsData = NSData.dataWithBytes(it.addressOf(0), bytes.size.toULong())
-                nsData.writeToFile(sharedFile, true)
+            if (isIpad()) {
+                // ipad need sourceView for show
+                shareViewController.popoverPresentationController?.apply {
+                    sourceView = viewController.view
+                    sourceRect =
+                        viewController.view.center.useContents { CGRectMake(x, y, 0.0, 0.0) }
+                    permittedArrowDirections = 0uL
+                }
             }
-        return if (saved) NSURL.fileURLWithPath(sharedFile) else null
-    }
 
-    private suspend fun urlToBitmap(imageUrl: String): Bitmap? = try {
-        val request =
-            ImageRequest.Builder(coilContext)
-                .data(imageUrl)
-                .build()
-        val resultImage = SingletonImageLoader.get(coilContext).execute(request).image
-
-        resultImage?.toBitmap()
-    } catch (e: Exception) {
-        // Failed to resolve bitmap
-        null
-    }
-
-    @OptIn(ExperimentalForeignApi::class)
-    fun convertImage(image: Image): UIImage? {
-        val bitmap: Bitmap = image.toBitmap()
-        val skikoImage = makeFromBitmap(bitmap)
-        val skikoImagePixelMap = skikoImage.peekPixels()
-        if (skikoImagePixelMap != null) {
-            val cfDataRef =
-                CFDataCreate(
-                    allocator = null,
-                    bytes = skikoImagePixelMap.buffer.bytes.asUByteArray().refTo(0),
-                    length = skikoImagePixelMap.buffer.size.toLong(),
-                )
-            val cgImageRef =
-                CGImageCreate(
-                    width = skikoImage.width.toULong(),
-                    height = skikoImage.height.toULong(),
-                    bitsPerComponent = 8u,
-                    bitsPerPixel = 32u,
-                    bytesPerRow = (skikoImage.width * 4).toULong(),
-                    space = CGColorSpaceCreateDeviceRGB(),
-                    bitmapInfo = kCGBitmapByteOrder32Little or CGImageAlphaInfo.kCGImageAlphaPremultipliedFirst.value,
-                    provider = CGDataProviderCreateWithCFData(cfDataRef),
-                    decode = null,
-                    shouldInterpolate = true,
-                    intent = CGColorRenderingIntent.kCGRenderingIntentDefault,
-                )
-            return UIImage(cGImage = cgImageRef)
+            viewController.presentViewController(
+                shareViewController,
+                animated = true,
+                completion = null,
+            )
         }
-        return null
     }
 }
 
 @Composable
 internal actual fun rememberShareManagerV2(): ShareManagerV2 {
     val coilContext = LocalPlatformContext.current
-    return remember { ShareManagerV2(coilContext = coilContext) }
+    val density = LocalDensity.current
+    val layoutDirection = LocalLayoutDirection.current
+
+    return remember {
+        ShareManagerV2(
+            coilContext = coilContext,
+            density = density,
+            layoutDirection = layoutDirection,
+        )
+    }
 }
