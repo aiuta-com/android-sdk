@@ -31,41 +31,39 @@ import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.Aiut
 
 public fun AiutaFeatures.Builder.defaultTryOn(
     cartHandler: AiutaTryOnCartFeatureHandler,
-) {
-    tryOn {
-        loadingPage {
-            icons = DefaultAiutaTryOnLoadingPageFeatureIcons()
-            strings = AiutaTryOnLoadingPageFeatureStrings.Default()
-            styles = AiutaTryOnLoadingPageFeatureStyles.Default()
-        }
-        cart {
-            strings = AiutaTryOnCartFeatureStrings.Default()
-            handler = cartHandler
-        }
-        inputImageValidation {
-            strings = AiutaTryOnInputImageValidationFeatureStrings.Default()
-        }
-        fitDisclaimer {
-            icons = DefaultAiutaTryOnFitDisclaimerFeatureIcons()
-            strings = AiutaTryOnFitDisclaimerFeatureStrings.Default()
-        }
-        feedback {
-            otherFeedback {
-                strings = AiutaTryOnFeedbackOtherFeatureStrings.Default()
-            }
-            icons = DefaultAiutaTryOnFeedbackFeatureIcons()
-            strings = AiutaTryOnFeedbackFeatureStrings.Default()
-        }
-        generationsHistory {
-            icons = DefaultAiutaTryOnGenerationsHistoryFeatureIcons()
-            strings = AiutaTryOnGenerationsHistoryFeatureStrings.Default()
-        }
-        otherPhoto {
-            icons = DefaultAiutaTryOnWithOtherPhotoFeatureIcons()
-        }
-        icons = DefaultAiutaTryOnFeatureIcons()
-        toggles = AiutaTryOnFeatureToggles.Default()
-        strings = AiutaTryOnFeatureStrings.Default()
-        styles = AiutaTryOnFeatureStyles.Default()
+): AiutaFeatures.Builder = tryOn {
+    loadingPage {
+        icons = DefaultAiutaTryOnLoadingPageFeatureIcons()
+        strings = AiutaTryOnLoadingPageFeatureStrings.Default()
+        styles = AiutaTryOnLoadingPageFeatureStyles.Default()
     }
+    cart {
+        strings = AiutaTryOnCartFeatureStrings.Default()
+        handler = cartHandler
+    }
+    inputImageValidation {
+        strings = AiutaTryOnInputImageValidationFeatureStrings.Default()
+    }
+    fitDisclaimer {
+        icons = DefaultAiutaTryOnFitDisclaimerFeatureIcons()
+        strings = AiutaTryOnFitDisclaimerFeatureStrings.Default()
+    }
+    feedback {
+        otherFeedback {
+            strings = AiutaTryOnFeedbackOtherFeatureStrings.Default()
+        }
+        icons = DefaultAiutaTryOnFeedbackFeatureIcons()
+        strings = AiutaTryOnFeedbackFeatureStrings.Default()
+    }
+    generationsHistory {
+        icons = DefaultAiutaTryOnGenerationsHistoryFeatureIcons()
+        strings = AiutaTryOnGenerationsHistoryFeatureStrings.Default()
+    }
+    otherPhoto {
+        icons = DefaultAiutaTryOnWithOtherPhotoFeatureIcons()
+    }
+    icons = DefaultAiutaTryOnFeatureIcons()
+    toggles = AiutaTryOnFeatureToggles.Default()
+    strings = AiutaTryOnFeatureStrings.Default()
+    styles = AiutaTryOnFeatureStyles.Default()
 }

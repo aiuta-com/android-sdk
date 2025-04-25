@@ -13,19 +13,17 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.strings.AiutaOnboa
 import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.strings.AiutaOnboardingTryOnPageFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.tryOnPage
 
-public fun AiutaFeatures.Builder.defaultOnboarding() {
-    onboarding {
-        bestResultsPage {
-            images = DefaultsAiutaOnboardingBestResultsPageFeatureImages()
-            icons = DefaultAiutaOnboardingBestResultsPageFeatureIcons()
-            strings = AiutaOnboardingBestResultsPageFeatureStrings.Default()
-            toggles = AiutaOnboardingBestResultsPageFeatureToggles.Default()
-        }
-        tryOnPage {
-            images = DefaultAiutaOnboardingTryOnPageFeatureImages()
-            strings = AiutaOnboardingTryOnPageFeatureStrings.Default()
-        }
-        strings = AiutaOnboardingFeatureStrings.Default()
-        shapes = AiutaOnboardingFeatureShapes.Default()
+public fun AiutaFeatures.Builder.defaultOnboarding(): AiutaFeatures.Builder = onboarding {
+    bestResultsPage {
+        images = DefaultsAiutaOnboardingBestResultsPageFeatureImages()
+        icons = DefaultAiutaOnboardingBestResultsPageFeatureIcons()
+        strings = AiutaOnboardingBestResultsPageFeatureStrings.Default()
+        toggles = AiutaOnboardingBestResultsPageFeatureToggles.Default()
     }
+    tryOnPage {
+        images = DefaultAiutaOnboardingTryOnPageFeatureImages()
+        strings = AiutaOnboardingTryOnPageFeatureStrings.Default()
+    }
+    strings = AiutaOnboardingFeatureStrings.Default()
+    shapes = AiutaOnboardingFeatureShapes.Default()
 }

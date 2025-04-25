@@ -5,9 +5,7 @@ import com.aiuta.fashionsdk.configuration.features.consent.standalone.data.Aiuta
 import com.aiuta.fashionsdk.configuration.features.consent.standalone.strings.AiutaConsentStandaloneOnboardingPageFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.consent.standaloneConsent
 
-public fun AiutaFeatures.Builder.defaultConsent() {
-    standaloneConsent {
-        strings = AiutaConsentStandaloneOnboardingPageFeatureStrings.Default()
-        data = AiutaConsentStandaloneOnboardingPageFeatureData.Default()
-    }
+public fun AiutaFeatures.Builder.defaultConsent(): AiutaFeatures.Builder = standaloneConsent {
+    strings = AiutaConsentStandaloneOnboardingPageFeatureStrings.Default()
+    data = AiutaConsentStandaloneOnboardingPageFeatureData.Default()
 }

@@ -5,9 +5,7 @@ import com.aiuta.fashionsdk.configuration.features.powerby.colors.AiutaPoweredBy
 import com.aiuta.fashionsdk.configuration.features.powerby.poweredBy
 import com.aiuta.fashionsdk.configuration.features.powerby.strings.AiutaPoweredByFeatureStrings
 
-public fun AiutaFeatures.Builder.defaultPoweredBy() {
-    poweredBy {
-        strings = AiutaPoweredByFeatureStrings.Default()
-        colors = AiutaPoweredByFeatureColors.Default()
-    }
+public fun AiutaFeatures.Builder.defaultPoweredBy(): AiutaFeatures.Builder = poweredBy {
+    strings = AiutaPoweredByFeatureStrings.Default()
+    colors = AiutaPoweredByFeatureColors.Default()
 }

@@ -6,10 +6,8 @@ import com.aiuta.fashionsdk.configuration.ui.theme.error.colors.AiutaErrorSnackb
 import com.aiuta.fashionsdk.configuration.ui.theme.error.errorSnackbar
 import com.aiuta.fashionsdk.configuration.ui.theme.error.strings.AiutaErrorSnackbarThemeStrings
 
-public fun AiutaTheme.Builder.defaultErrorSnackbar() {
-    errorSnackbar {
-        strings = AiutaErrorSnackbarThemeStrings.Default()
-        icons = DefaultAiutaErrorSnackbarThemeIcons()
-        colors = AiutaErrorSnackbarThemeColors.Default()
-    }
+public fun AiutaTheme.Builder.defaultErrorSnackbar(): AiutaTheme.Builder = errorSnackbar {
+    strings = AiutaErrorSnackbarThemeStrings.Default()
+    icons = DefaultAiutaErrorSnackbarThemeIcons()
+    colors = AiutaErrorSnackbarThemeColors.Default()
 }

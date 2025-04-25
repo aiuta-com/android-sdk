@@ -7,11 +7,9 @@ import com.aiuta.fashionsdk.configuration.features.welcome.strings.AiutaWelcomeS
 import com.aiuta.fashionsdk.configuration.features.welcome.typography.AiutaWelcomeScreenFeatureTypography
 import com.aiuta.fashionsdk.configuration.features.welcome.welcomeScreen
 
-public fun AiutaFeatures.Builder.defaultWelcomeScreen() {
-    welcomeScreen {
-        images = DefaultAiutaWelcomeScreenFeatureImages()
-        icons = DefaultAiutaWelcomeScreenFeatureIcons()
-        strings = AiutaWelcomeScreenFeatureStrings.Default()
-        typography = AiutaWelcomeScreenFeatureTypography.Default()
-    }
+public fun AiutaFeatures.Builder.defaultWelcomeScreen(): AiutaFeatures.Builder = welcomeScreen {
+    images = DefaultAiutaWelcomeScreenFeatureImages()
+    icons = DefaultAiutaWelcomeScreenFeatureIcons()
+    strings = AiutaWelcomeScreenFeatureStrings.Default()
+    typography = AiutaWelcomeScreenFeatureTypography.Default()
 }

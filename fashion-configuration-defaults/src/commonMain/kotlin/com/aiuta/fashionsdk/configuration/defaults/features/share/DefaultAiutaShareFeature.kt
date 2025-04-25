@@ -5,9 +5,7 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.share.share
 import com.aiuta.fashionsdk.configuration.features.share.strings.AiutaShareFeatureStrings
 
-public fun AiutaFeatures.Builder.defaultShare() {
-    share {
-        icons = DefaultAiutaShareFeatureIcons()
-        strings = AiutaShareFeatureStrings.Default()
-    }
+public fun AiutaFeatures.Builder.defaultShare(): AiutaFeatures.Builder = share {
+    icons = DefaultAiutaShareFeatureIcons()
+    strings = AiutaShareFeatureStrings.Default()
 }

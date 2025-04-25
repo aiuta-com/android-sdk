@@ -6,10 +6,8 @@ import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.pageBar
 import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.toggles.AiutaPageBarThemeToggles
 import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography.AiutaPageBarThemeTypography
 
-public fun AiutaTheme.Builder.defaultPageBar() {
-    pageBar {
-        typography = AiutaPageBarThemeTypography.Default()
-        icons = DefaultAiutaPageBarThemeIcons()
-        toggles = AiutaPageBarThemeToggles.Default()
-    }
+public fun AiutaTheme.Builder.defaultPageBar(): AiutaTheme.Builder = pageBar {
+    typography = AiutaPageBarThemeTypography.Default()
+    icons = DefaultAiutaPageBarThemeIcons()
+    toggles = AiutaPageBarThemeToggles.Default()
 }

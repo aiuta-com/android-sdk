@@ -13,16 +13,12 @@ import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOn
 
 public fun AiutaConfiguration.Builder.defaultAiutaFeatures(
     cartHandler: AiutaTryOnCartFeatureHandler,
-): AiutaConfiguration.Builder = apply {
-    features {
-        defaultWelcomeScreen()
-        defaultOnboarding()
-        defaultConsent()
-        defaultImagePicker()
-        defaultTryOn(
-            cartHandler = cartHandler,
-        )
-        defaultPoweredBy()
-        defaultShare()
-    }
+): AiutaConfiguration.Builder = features {
+    defaultWelcomeScreen()
+    defaultOnboarding()
+    defaultConsent()
+    defaultImagePicker()
+    defaultTryOn(cartHandler = cartHandler)
+    defaultPoweredBy()
+    defaultShare()
 }

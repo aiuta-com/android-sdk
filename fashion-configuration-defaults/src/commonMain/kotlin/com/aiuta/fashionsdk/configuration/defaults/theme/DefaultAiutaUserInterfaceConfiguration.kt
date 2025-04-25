@@ -16,20 +16,18 @@ import com.aiuta.fashionsdk.configuration.ui.theme.theme
 
 public fun AiutaConfiguration.Builder.defaultAiutaUserInterfaceConfiguration(
     actions: AiutaUserInterfaceActions,
-): AiutaConfiguration.Builder = apply {
-    aiutaUserInterfaceConfiguration {
-        this.actions = actions
-        theme {
-            color = AiutaColorTheme.Default()
+): AiutaConfiguration.Builder = aiutaUserInterfaceConfiguration {
+    this.actions = actions
+    theme {
+        color = AiutaColorTheme.Default()
 
-            defaultButton()
-            defaultErrorSnackbar()
-            defaultImage()
-            defaultLabel()
-            defaultPageBar()
-            defaultProductBar()
-            defaultSelectionSnackbar()
-            defaultBottomSheet()
-        }
+        defaultButton()
+        defaultErrorSnackbar()
+        defaultImage()
+        defaultLabel()
+        defaultPageBar()
+        defaultProductBar()
+        defaultSelectionSnackbar()
+        defaultBottomSheet()
     }
 }

@@ -7,11 +7,9 @@ import com.aiuta.fashionsdk.configuration.ui.theme.sheet.shapes.AiutaBottomSheet
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomSheetThemeToggles
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomSheetThemeTypography
 
-public fun AiutaTheme.Builder.defaultBottomSheet() {
-    bottomSheet {
-        typography = AiutaBottomSheetThemeTypography.Default()
-        shapes = AiutaBottomSheetThemeShapes.Default()
-        grabber = AiutaBottomSheetThemeGrabber.Default()
-        toggles = AiutaBottomSheetThemeToggles.Default()
-    }
+public fun AiutaTheme.Builder.defaultBottomSheet(): AiutaTheme.Builder = bottomSheet {
+    typography = AiutaBottomSheetThemeTypography.Default()
+    shapes = AiutaBottomSheetThemeShapes.Default()
+    grabber = AiutaBottomSheetThemeGrabber.Default()
+    toggles = AiutaBottomSheetThemeToggles.Default()
 }

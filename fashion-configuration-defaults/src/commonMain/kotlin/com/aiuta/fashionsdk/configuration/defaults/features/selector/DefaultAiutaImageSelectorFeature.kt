@@ -17,25 +17,24 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.predefinedModels
 import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImageSelectorPredefinedModelFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.picker.strings.AiutaImagePickerFeatureStrings
 
-public fun AiutaFeatures.Builder.defaultImagePicker() {
-    imagePicker {
-        camera {
-            icons = DefaultAiutaImagePickerCameraFeatureIcons()
-            strings = AiutaImagePickerCameraFeatureStrings.Default()
-        }
-        photoGallery {
-            icons = DefaultAiutaImagePickerPhotoGalleryFeatureIcons()
-            strings = AiutaImagePickerPhotoGalleryFeatureStrings.Default()
-        }
-        predefinedModels {
-            icons = DefaultAiutaImageSelectorPredefinedModelFeatureIcons()
-            strings = AiutaImageSelectorPredefinedModelFeatureStrings.Default()
-        }
-        uploadsHistory {
-            strings = AiutaImagePickerUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
-            styles = AiutaImagePickerUploadsHistoryFeatureStyles.Default()
-        }
-        images = DefaultAiutaImagePickerFeatureImages()
-        strings = AiutaImagePickerFeatureStrings.Default()
+public fun AiutaFeatures.Builder.defaultImagePicker(): AiutaFeatures.Builder = imagePicker {
+    camera {
+        icons = DefaultAiutaImagePickerCameraFeatureIcons()
+        strings = AiutaImagePickerCameraFeatureStrings.Default()
     }
+    photoGallery {
+        icons = DefaultAiutaImagePickerPhotoGalleryFeatureIcons()
+        strings = AiutaImagePickerPhotoGalleryFeatureStrings.Default()
+    }
+    predefinedModels {
+        icons = DefaultAiutaImageSelectorPredefinedModelFeatureIcons()
+        strings = AiutaImageSelectorPredefinedModelFeatureStrings.Default()
+    }
+    uploadsHistory {
+        strings =
+            AiutaImagePickerUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
+        styles = AiutaImagePickerUploadsHistoryFeatureStyles.Default()
+    }
+    images = DefaultAiutaImagePickerFeatureImages()
+    strings = AiutaImagePickerFeatureStrings.Default()
 }

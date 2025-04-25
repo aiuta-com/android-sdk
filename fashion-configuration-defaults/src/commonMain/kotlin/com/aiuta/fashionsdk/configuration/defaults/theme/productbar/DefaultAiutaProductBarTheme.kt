@@ -7,11 +7,9 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.productBar
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.toggles.AiutaProductBarThemeToggles
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.typography.AiutaProductBarThemeTypography
 
-public fun AiutaTheme.Builder.defaultProductBar() {
-    productBar {
-        defaultPrices()
-        typography = AiutaProductBarThemeTypography.Default()
-        toggles = AiutaProductBarThemeToggles.Default()
-        icons = DefaultAiutaProductBarThemeIcons()
-    }
+public fun AiutaTheme.Builder.defaultProductBar(): AiutaTheme.Builder = productBar {
+    defaultPrices()
+    typography = AiutaProductBarThemeTypography.Default()
+    toggles = AiutaProductBarThemeToggles.Default()
+    icons = DefaultAiutaProductBarThemeIcons()
 }
