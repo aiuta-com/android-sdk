@@ -176,7 +176,7 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
             Modifier
                 .size(16.dp)
                 .align(Alignment.CenterVertically),
-            icon = tryOnFeature.icons.arrow16,
+            icon = theme.productBar.icons.arrow16,
             contentDescription = null,
             tint = theme.color.outline,
         )

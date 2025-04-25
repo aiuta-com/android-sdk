@@ -19,6 +19,9 @@ internal fun PriceInfo(
     productItem: ProductItem,
 ) {
     val theme = LocalTheme.current
+    val priceTheme = theme.productBar.prices
+
+    if (priceTheme == null) return
 
     Row(
         modifier = modifier,
@@ -29,8 +32,8 @@ internal fun PriceInfo(
         if (localizedOldPrice?.isNotBlank() == true) {
             Text(
                 text = localizedOldPrice,
-                style = theme.productBar.typography.price,
-                color = theme.productBar.colors.discountedPrice,
+                style = priceTheme.typography.price,
+                color = priceTheme.colors.discountedPrice,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -42,7 +45,7 @@ internal fun PriceInfo(
         if (productItem.localizedPrice.isNotBlank()) {
             Text(
                 text = productItem.localizedPrice,
-                style = theme.productBar.typography.price.copy(
+                style = priceTheme.typography.price.copy(
                     textDecoration = solveGeneralPriceDecoration(productItem),
                 ),
                 color = solveGeneralPriceColor(productItem),

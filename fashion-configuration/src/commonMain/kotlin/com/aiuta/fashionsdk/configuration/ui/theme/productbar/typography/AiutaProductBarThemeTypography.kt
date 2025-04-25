@@ -8,7 +8,6 @@ import androidx.compose.ui.unit.sp
 public interface AiutaProductBarThemeTypography {
     public val product: TextStyle
     public val brand: TextStyle
-    public val price: TextStyle
 
     public class Default : AiutaProductBarThemeTypography {
         override val product: TextStyle = TextStyle(
@@ -23,12 +22,6 @@ public interface AiutaProductBarThemeTypography {
             fontSize = 10.sp,
             lineHeight = 16.sp,
             letterSpacing = 0.04.sp,
-        )
-        override val price: TextStyle = TextStyle(
-            fontFamily = FontFamily.Default,
-            fontWeight = FontWeight.Bold,
-            fontSize = 16.sp,
-            lineHeight = 18.sp,
         )
     }
 }
