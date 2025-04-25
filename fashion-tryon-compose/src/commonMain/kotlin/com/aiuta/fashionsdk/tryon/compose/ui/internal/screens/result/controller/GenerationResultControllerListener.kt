@@ -3,8 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import coil3.compose.LocalPlatformContext
+import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController

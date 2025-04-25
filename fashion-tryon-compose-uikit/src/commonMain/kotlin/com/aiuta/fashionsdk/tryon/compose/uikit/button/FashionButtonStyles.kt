@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.DefaultFashionButtonStyle
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonColors
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonColors.transparentColors

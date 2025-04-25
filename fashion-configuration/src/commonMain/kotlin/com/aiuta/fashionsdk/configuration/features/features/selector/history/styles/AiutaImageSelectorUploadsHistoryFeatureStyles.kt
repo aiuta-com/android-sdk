@@ -1,0 +1,11 @@
+package com.aiuta.fashionsdk.configuration.features.features.selector.history.styles
+
+import com.aiuta.fashionsdk.configuration.features.features.styles.AiutaButtonsStyle
+
+public interface AiutaImageSelectorUploadsHistoryFeatureStyles {
+    public val changePhotoButtonStyle: AiutaButtonsStyle
+
+    public class Default : AiutaImageSelectorUploadsHistoryFeatureStyles {
+        override val changePhotoButtonStyle: AiutaButtonsStyle = AiutaButtonsStyle.BLURRED
+    }
+}

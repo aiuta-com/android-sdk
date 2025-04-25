@@ -2,8 +2,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeature
+import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.configuration.features.features.AiutaTryOnConfigurationFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 
 @Composable

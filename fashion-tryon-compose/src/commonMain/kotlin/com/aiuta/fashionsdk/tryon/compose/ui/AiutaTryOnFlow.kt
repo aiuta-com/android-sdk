@@ -3,11 +3,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -26,9 +24,9 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHand
 /**
  * Entry point for fashion try on flow
  *
- * @see AiutaTryOnConfiguration
+ * @see com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
  * @see AiutaTheme
- * @see ProductItem
+ * @see com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
  */
 @Composable
 public fun AiutaTryOnFlow(

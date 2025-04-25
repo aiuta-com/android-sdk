@@ -3,9 +3,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import com.aiuta.fashionsdk.configuration.features.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent

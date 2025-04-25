@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
+import com.aiuta.fashionsdk.configuration.aiutaConfiguration
+import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.logger.DebugAiutaLogger
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
 import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaUserInterfaceConfiguration
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.aiutaConfiguration
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import kotlinx.coroutines.flow.MutableStateFlow

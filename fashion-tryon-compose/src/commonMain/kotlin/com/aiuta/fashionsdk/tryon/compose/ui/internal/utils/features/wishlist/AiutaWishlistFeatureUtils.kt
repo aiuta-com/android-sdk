@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.AiutaWishlistFeature
+import com.aiuta.fashionsdk.configuration.features.features.wishlist.AiutaWishlistFeature
 
 @Composable
 internal fun AiutaWishlistFeature.inWishlistListener(): State<Boolean> {

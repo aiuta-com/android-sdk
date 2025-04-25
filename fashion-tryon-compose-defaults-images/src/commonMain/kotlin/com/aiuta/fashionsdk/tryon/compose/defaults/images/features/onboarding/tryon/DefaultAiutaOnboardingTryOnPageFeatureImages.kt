@@ -7,7 +7,7 @@ import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboa
 import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboarding_main_1
 import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboarding_main_2
 import com.aiuta.fashion_tryon_compose_defaults_images.generated.resources.onboarding_main_3
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.tryon.images.AiutaOnboardingTryOnPageFeatureImages
+import com.aiuta.fashionsdk.configuration.features.features.onboarding.tryon.images.AiutaOnboardingTryOnPageFeatureImages
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
 
 public class DefaultAiutaOnboardingTryOnPageFeatureImages : AiutaOnboardingTryOnPageFeatureImages {

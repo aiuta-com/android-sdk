@@ -22,7 +22,7 @@ kotlin {
             dependencies {
                 api(projects.fashionIo)
                 api(projects.fashionComposeCore)
-                api(projects.fashionTryonComposeConfigurationUi)
+                api(projects.fashionConfiguration)
 
                 implementation(compose.components.resources)
                 implementation(compose.material)

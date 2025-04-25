@@ -15,7 +15,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(projects.fashionTryonComposeConfiguration)
+                api(projects.fashionConfiguration)
 
                 implementation(compose.foundation)
                 implementation(compose.components.resources)

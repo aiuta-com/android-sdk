@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState

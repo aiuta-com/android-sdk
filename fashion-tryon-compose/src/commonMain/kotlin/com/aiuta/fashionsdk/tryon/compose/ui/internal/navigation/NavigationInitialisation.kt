@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController

@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import androidx.compose.runtime.Immutable
 import coil3.PlatformContext
+import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.configuration.features.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingGeneratedImages

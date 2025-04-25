@@ -1,10 +1,10 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.AiutaUserInterfaceConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.actions.AiutaUserInterfaceActions
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.aiutaUserInterfaceConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.color.AiutaColorTheme
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.theme
+import com.aiuta.fashionsdk.configuration.ui.AiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
+import com.aiuta.fashionsdk.configuration.ui.aiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.configuration.ui.theme.color.AiutaColorTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.theme
 import com.aiuta.fashionsdk.tryon.compose.defaults.theme.button.defaultButton
 import com.aiuta.fashionsdk.tryon.compose.defaults.theme.error.defaultErrorSnackbar
 import com.aiuta.fashionsdk.tryon.compose.defaults.theme.image.defaultImage

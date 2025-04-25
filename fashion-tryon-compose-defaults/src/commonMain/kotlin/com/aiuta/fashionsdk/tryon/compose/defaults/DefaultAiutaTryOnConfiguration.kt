@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.aiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.features
+import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
+import com.aiuta.fashionsdk.configuration.features.aiutaTryOnConfiguration
+import com.aiuta.fashionsdk.configuration.features.features.features
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.consent.defaultConsent
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.onboarding.defaultOnboarding
 import com.aiuta.fashionsdk.tryon.compose.defaults.features.selector.defaultImageSelector

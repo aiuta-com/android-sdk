@@ -1,10 +1,10 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults.features.wishlist
 
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.AiutaTryOnConfigurationFeatures
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.strings.AiutaWishlistFeatureStrings
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.wishlist.wishlist
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductWishlistState
+import com.aiuta.fashionsdk.configuration.features.features.AiutaTryOnConfigurationFeatures
+import com.aiuta.fashionsdk.configuration.features.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
+import com.aiuta.fashionsdk.configuration.features.features.wishlist.strings.AiutaWishlistFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.features.wishlist.wishlist
+import com.aiuta.fashionsdk.configuration.features.models.product.ProductWishlistState
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.wishlist.DefaultAiutaWishlistFeatureIcons
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

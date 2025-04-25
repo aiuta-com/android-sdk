@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
+import com.aiuta.fashionsdk.configuration.features.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
