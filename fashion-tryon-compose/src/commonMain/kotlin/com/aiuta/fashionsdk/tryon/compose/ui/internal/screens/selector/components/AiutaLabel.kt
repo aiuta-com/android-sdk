@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
@@ -17,7 +16,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 internal fun AiutaLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
 
     Box(
         modifier =

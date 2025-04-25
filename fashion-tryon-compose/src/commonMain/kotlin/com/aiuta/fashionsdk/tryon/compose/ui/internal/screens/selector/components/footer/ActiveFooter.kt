@@ -23,10 +23,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
-import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -45,11 +44,11 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val coilContext = LocalPlatformContext.current
     val controller = LocalController.current
-    val aiutaConfiguration = LocalAiutaConfiguration.current
+    val features = LocalAiutaFeatures.current
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
 
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
 
     Column(
         modifier = modifier,
@@ -95,9 +94,9 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                 icon = tryOnFeature.icons.magic20,
                 onClick = {
                     controller.startGeneration(
-                        aiutaConfiguration = aiutaConfiguration,
                         coilContext = coilContext,
                         dialogController = dialogController,
+                        features = features,
                         tryOnFeatureStrings = tryOnFeature.strings,
                         origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
@@ -114,7 +113,7 @@ private fun ProductBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
 
     val activeSKUItem = controller.activeProductItem.value
     val sharedCorner = RoundedCornerShape(size = 8.dp)

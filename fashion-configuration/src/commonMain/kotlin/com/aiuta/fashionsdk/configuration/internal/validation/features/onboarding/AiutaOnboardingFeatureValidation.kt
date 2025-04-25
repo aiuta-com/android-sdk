@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features.onboarding
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
-import com.aiuta.fashionsdk.configuration.features.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.internal.validation.validateListWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger

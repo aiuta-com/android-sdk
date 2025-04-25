@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
-import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
@@ -42,7 +41,7 @@ internal fun ModelSelectorShowContent(
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
 
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
     val bottomPadding = screenSize.heightDp * MODEL_IMAGE_BOTTOM_PADDING_COEF

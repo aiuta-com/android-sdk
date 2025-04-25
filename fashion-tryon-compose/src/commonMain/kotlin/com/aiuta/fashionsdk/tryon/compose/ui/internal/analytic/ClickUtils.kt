@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
-import com.aiuta.fashionsdk.configuration.features.features.tryon.dataprovider.AiutaTryOnFeatureDataProvider
-import com.aiuta.fashionsdk.configuration.features.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.configuration.features.tryon.dataprovider.AiutaTryOnFeatureDataProvider
+import com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider.AiutaWishlistFeatureDataProvider
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticExitEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId

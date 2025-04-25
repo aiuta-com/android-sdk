@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features.welcome
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
-import com.aiuta.fashionsdk.configuration.features.features.welcome.AiutaWelcomeScreenFeature
+import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
 

@@ -1,22 +1,22 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults.features.tryon
 
-import com.aiuta.fashionsdk.configuration.features.features.AiutaTryOnConfigurationFeatures
-import com.aiuta.fashionsdk.configuration.features.features.tryon.disclaimer.fitDisclaimer
-import com.aiuta.fashionsdk.configuration.features.features.tryon.disclaimer.strings.AiutaTryOnFitDisclaimerFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.features.tryon.feedback.feedback
-import com.aiuta.fashionsdk.configuration.features.features.tryon.feedback.other.otherFeedback
-import com.aiuta.fashionsdk.configuration.features.features.tryon.feedback.other.strings.AiutaTryOnFeedbackOtherFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.features.tryon.feedback.strings.AiutaTryOnFeedbackFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.features.tryon.history.generationsHistory
-import com.aiuta.fashionsdk.configuration.features.features.tryon.history.strings.AiutaTryOnGenerationsHistoryFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.features.tryon.loading.loadingPage
-import com.aiuta.fashionsdk.configuration.features.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.features.tryon.loading.styles.AiutaTryOnLoadingPageFeatureStyles
-import com.aiuta.fashionsdk.configuration.features.features.tryon.repicking.repicking
-import com.aiuta.fashionsdk.configuration.features.features.tryon.strings.AiutaTryOnFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.features.tryon.styles.AiutaTryOnFeatureStyles
-import com.aiuta.fashionsdk.configuration.features.features.tryon.toggles.AiutaTryOnFeatureToggles
-import com.aiuta.fashionsdk.configuration.features.features.tryon.tryOn
+import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
+import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.fitDisclaimer
+import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.strings.AiutaTryOnFitDisclaimerFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.feedback.feedback
+import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.otherFeedback
+import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.strings.AiutaTryOnFeedbackOtherFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.feedback.strings.AiutaTryOnFeedbackFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.history.generationsHistory
+import com.aiuta.fashionsdk.configuration.features.tryon.history.strings.AiutaTryOnGenerationsHistoryFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.loading.loadingPage
+import com.aiuta.fashionsdk.configuration.features.tryon.loading.strings.AiutaTryOnLoadingPageFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.loading.styles.AiutaTryOnLoadingPageFeatureStyles
+import com.aiuta.fashionsdk.configuration.features.tryon.repicking.repicking
+import com.aiuta.fashionsdk.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.styles.AiutaTryOnFeatureStyles
+import com.aiuta.fashionsdk.configuration.features.tryon.toggles.AiutaTryOnFeatureToggles
+import com.aiuta.fashionsdk.configuration.features.tryon.tryOn
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.DefaultAiutaTryOnFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.disclaimer.DefaultAiutaTryOnFitDisclaimerFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.feedback.DefaultAiutaTryOnFeedbackFeatureIcons
@@ -24,7 +24,7 @@ import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.history.
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.loading.DefaultAiutaTryOnLoadingPageFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.repicking.DefaultAiutaTryOnWithOtherPhotoFeatureIcons
 
-public fun AiutaTryOnConfigurationFeatures.Builder.defaultTryOn() {
+public fun AiutaFeatures.Builder.defaultTryOn() {
     tryOn {
         loadingPage {
             icons = DefaultAiutaTryOnLoadingPageFeatureIcons()

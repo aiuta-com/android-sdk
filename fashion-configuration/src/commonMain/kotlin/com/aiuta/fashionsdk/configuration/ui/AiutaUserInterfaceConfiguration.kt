@@ -1,10 +1,12 @@
 package com.aiuta.fashionsdk.configuration.ui
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.configuration.ui.meta.AiutaStyleMetaData
 import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.theme
 
 @Immutable
 public class AiutaUserInterfaceConfiguration private constructor(
@@ -35,6 +37,8 @@ public class AiutaUserInterfaceConfiguration private constructor(
     }
 }
 
-public inline fun aiutaUserInterfaceConfiguration(
+public fun AiutaConfiguration.Builder.aiutaUserInterfaceConfiguration(
     block: AiutaUserInterfaceConfiguration.Builder.() -> Unit,
-): AiutaUserInterfaceConfiguration = AiutaUserInterfaceConfiguration.Builder().apply(block).build()
+): AiutaConfiguration.Builder = apply {
+    userInterface = AiutaUserInterfaceConfiguration.Builder().apply(block).build()
+}

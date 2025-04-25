@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
@@ -40,7 +39,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
 
     val activeSKUItem = controller.activeProductItem.value
 
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
 
     Row(
         modifier = modifier,

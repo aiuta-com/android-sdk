@@ -22,10 +22,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.configuration.features.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
-import com.aiuta.fashionsdk.configuration.features.features.styles.AiutaButtonsStyle
-import com.aiuta.fashionsdk.configuration.features.features.tryon.loading.AiutaTryOnLoadingPageFeature
+import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsStyle
+import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -52,9 +50,9 @@ internal fun ImageSelectorBottom(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.selector.AiutaImageSelectorFeature>()
     val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
-    val uploadsHistoryFeature = provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val uploadsHistoryFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature>()
 
     val generationStatus = controller.generationStatus
     val countGeneratedOperation =

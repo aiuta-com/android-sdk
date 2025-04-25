@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features.consent
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
-import com.aiuta.fashionsdk.configuration.features.features.consent.AiutaConsentFeature
-import com.aiuta.fashionsdk.configuration.features.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPageFeature
-import com.aiuta.fashionsdk.configuration.features.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
+import com.aiuta.fashionsdk.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.internal.validation.validateListWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger

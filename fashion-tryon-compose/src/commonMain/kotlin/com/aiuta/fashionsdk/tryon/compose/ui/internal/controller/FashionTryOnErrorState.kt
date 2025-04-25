@@ -2,8 +2,8 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import androidx.compose.runtime.Immutable
 import coil3.PlatformContext
-import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.configuration.features.features.tryon.strings.AiutaTryOnFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
+import com.aiuta.fashionsdk.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
@@ -21,18 +21,18 @@ internal interface ToastErrorState {
 
 @Immutable
 internal class TryOnToastErrorState(
-    aiutaConfiguration: AiutaTryOnConfiguration,
     coilContext: PlatformContext,
     controller: FashionTryOnController,
     dialogController: AiutaTryOnDialogController,
+    features: AiutaFeatures,
     tryOnFeatureStrings: AiutaTryOnFeatureStrings,
 ) : ToastErrorState {
     override val message: String? = null
     override val onRetry: () -> Unit = {
         controller.startGeneration(
-            aiutaConfiguration = aiutaConfiguration,
             dialogController = dialogController,
             coilContext = coilContext,
+            features = features,
             tryOnFeatureStrings = tryOnFeatureStrings,
             origin = StartTryOnEvent.TryOnOrigin.RETRY_NOTIFICATION,
         )

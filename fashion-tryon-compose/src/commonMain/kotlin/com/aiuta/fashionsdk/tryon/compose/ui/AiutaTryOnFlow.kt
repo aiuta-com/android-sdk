@@ -24,9 +24,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHand
 /**
  * Entry point for fashion try on flow
  *
- * @see com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
- * @see AiutaTheme
- * @see com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+ * @see AiutaConfiguration
+ * @see ProductItem
  */
 @Composable
 public fun AiutaTryOnFlow(

@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.onboarding.be
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.ic_onboarding_best_results_bad_24
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.ic_onboarding_best_results_good_24
-import com.aiuta.fashionsdk.configuration.features.features.onboarding.bestresult.icons.AiutaOnboardingBestResultsPageFeatureIcons
+import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.icons.AiutaOnboardingBestResultsPageFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 

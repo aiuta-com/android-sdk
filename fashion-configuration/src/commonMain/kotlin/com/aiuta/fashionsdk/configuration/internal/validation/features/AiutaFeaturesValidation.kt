@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
-import com.aiuta.fashionsdk.configuration.features.features.AiutaTryOnConfigurationFeatures
+import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.internal.validation.features.consent.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.features.onboarding.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.features.selector.validateWithSettings
@@ -11,7 +11,7 @@ import com.aiuta.fashionsdk.configuration.internal.validation.features.welcome.v
 import com.aiuta.fashionsdk.configuration.internal.validation.features.wishlist.validateWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
 
-internal fun AiutaTryOnConfigurationFeatures.validateWithSettings(
+internal fun AiutaFeatures.validateWithSettings(
     logger: AiutaLogger?,
     debugSettings: AiutaDebugSettings,
 ) {

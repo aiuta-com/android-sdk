@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 
 import coil3.PlatformContext
-import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.configuration.features.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
-import com.aiuta.fashionsdk.configuration.features.features.tryon.strings.AiutaTryOnFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
+import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.isEmptyInteractor
@@ -46,9 +46,9 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 internal fun FashionTryOnController.startGeneration(
-    aiutaConfiguration: AiutaTryOnConfiguration,
     coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
+    features: AiutaFeatures,
     tryOnFeatureStrings: AiutaTryOnFeatureStrings,
     // Analytic
     origin: StartTryOnEvent.TryOnOrigin,
@@ -82,9 +82,9 @@ internal fun FashionTryOnController.startGeneration(
             .cancellable()
             .collect { operation ->
                 solveOperationCollecting(
-                    aiutaConfiguration = aiutaConfiguration,
                     coilContext = coilContext,
                     dialogController = dialogController,
+                    features = features,
                     operation = operation,
                     tryOnFeatureStrings = tryOnFeatureStrings,
                     generatedOperationFactory = generatedOperationFactory,
@@ -177,9 +177,9 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
 
 // Collecting
 private suspend fun FashionTryOnController.solveOperationCollecting(
-    aiutaConfiguration: AiutaTryOnConfiguration,
     coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
+    features: AiutaFeatures,
     operation: ProductGenerationOperation,
     tryOnFeatureStrings: AiutaTryOnFeatureStrings,
     generatedOperationFactory: GeneratedOperationFactory,
@@ -218,7 +218,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                 if (isSuccessfullyUpload) {
                     // Success case
                     // Let's save to history
-                    saveGenerations(aiutaConfiguration = aiutaConfiguration, operation = operation)
+                    saveGenerations(features = features, operation = operation)
 
                     // Set state as success
                     generationStatus.value = ProductGenerationUIStatus.SUCCESS
@@ -243,10 +243,10 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     showErrorState(
                         errorState =
                         TryOnToastErrorState(
-                            aiutaConfiguration = aiutaConfiguration,
                             controller = this@solveOperationCollecting,
                             dialogController = dialogController,
                             coilContext = coilContext,
+                            features = features,
                             tryOnFeatureStrings = tryOnFeatureStrings,
                         ),
                     )
@@ -279,10 +279,10 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     showErrorState(
                         errorState =
                         TryOnToastErrorState(
-                            aiutaConfiguration = aiutaConfiguration,
                             controller = this@solveOperationCollecting,
-                            dialogController = dialogController,
                             coilContext = coilContext,
+                            dialogController = dialogController,
+                            features = features,
                             tryOnFeatureStrings = tryOnFeatureStrings,
                         ),
                     )
@@ -368,11 +368,11 @@ private suspend fun FashionTryOnController.addSuccessGenerations(
 }
 
 private suspend fun FashionTryOnController.saveGenerations(
-    aiutaConfiguration: AiutaTryOnConfiguration,
+    features: AiutaFeatures,
     operation: ProductGenerationOperation.SuccessOperation,
 ) {
     // Save generations for history, if operation is success and history available
-    if (aiutaConfiguration.features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()) {
+    if (features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()) {
         generatedImageInteractor.insertAll(
             generatedProductId = activeProductItem.value.id,
             images = operation.generatedImages,

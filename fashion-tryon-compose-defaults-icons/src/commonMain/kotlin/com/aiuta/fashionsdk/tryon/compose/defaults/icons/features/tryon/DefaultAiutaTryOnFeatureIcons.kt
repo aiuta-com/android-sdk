@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.ic_arrow_16
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.ic_magic_20
-import com.aiuta.fashionsdk.configuration.features.features.tryon.icons.AiutaTryOnFeatureIcons
+import com.aiuta.fashionsdk.configuration.features.tryon.icons.AiutaTryOnFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 

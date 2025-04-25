@@ -10,12 +10,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.configuration.features.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
-import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.configuration.features.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
-import com.aiuta.fashionsdk.configuration.ui.AiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
@@ -36,8 +35,8 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.defaultStartScr
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.models.SelectorMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.ZoomImageController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.rememberZoomImageController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
+import com.aiuta.fashionsdk.tryon.core.tryon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -45,17 +44,14 @@ import kotlinx.coroutines.cancel
 
 @Composable
 internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
-    aiutaTryOnConfiguration: AiutaTryOnConfiguration,
-    aiutaUserInterfaceConfiguration: AiutaUserInterfaceConfiguration,
+    aiutaConfiguration: AiutaConfiguration,
     productItem: ProductItem,
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
 
-    val uploadsHistoryFeature =
-        aiutaTryOnConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
-    val generationsHistoryFeature =
-        aiutaTryOnConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
-    val tryOnFeature = aiutaTryOnConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
+    val uploadsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val generationsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val tryOnFeature = aiutaConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
 
     val activeProductItem = remember { mutableStateOf(productItem) }
 
@@ -68,23 +64,23 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             bottomSheetNavigator = defaultBottomSheetNavigator,
             zoomImageController = zoomImageController,
             activeProductItem = activeProductItem,
-            aiuta = aiutaTryOnConfiguration.aiuta,
-            aiutaTryOn = aiutaTryOnConfiguration.aiutaTryOn,
-            aiutaUserInterfaceActions = aiutaUserInterfaceConfiguration.actions,
+            aiuta = aiutaConfiguration.aiuta,
+            aiutaTryOn = aiutaConfiguration.aiuta.tryon,
+            aiutaUserInterfaceActions = aiutaConfiguration.userInterface.actions,
             generatedImageInteractor = GeneratedImageInteractor.getInstance(
-                aiuta = aiutaTryOnConfiguration.aiuta,
+                aiuta = aiutaConfiguration.aiuta,
                 generationsHistoryFeature = generationsHistoryFeature,
             ),
             generatedOperationInteractor = GeneratedOperationInteractor.getInstance(
-                aiuta = aiutaTryOnConfiguration.aiuta,
+                aiuta = aiutaConfiguration.aiuta,
                 uploadsHistoryFeature = uploadsHistoryFeature,
             ),
-            onboardingInteractor = aiutaTryOnConfiguration.aiuta.onboardingInteractor,
+            onboardingInteractor = aiutaConfiguration.aiuta.onboardingInteractor,
             sessionGenerationInteractor = SessionGenerationInteractor.getInstance(
                 coilContext = coilContext,
                 generationsHistoryFeature = generationsHistoryFeature,
             ),
-            analytic = aiutaTryOnConfiguration.aiutaAnalytic,
+            analytic = aiutaConfiguration.aiutaAnalytic,
         )
     }.also {
         it.generationNavigationListener()
@@ -92,7 +88,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
             tryOnFeature = tryOnFeature,
         )
         it.historyAvailabilityListener(
-            isGenerationsHistoryFeatureAvailable = aiutaTryOnConfiguration.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>(),
+            isGenerationsHistoryFeatureAvailable = aiutaConfiguration.features.isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>(),
         )
     }
 }

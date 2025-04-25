@@ -20,9 +20,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.features.selector.camera.AiutaImageSelectorCameraFeature
-import com.aiuta.fashionsdk.configuration.features.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
-import com.aiuta.fashionsdk.configuration.features.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
+import com.aiuta.fashionsdk.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
+import com.aiuta.fashionsdk.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon

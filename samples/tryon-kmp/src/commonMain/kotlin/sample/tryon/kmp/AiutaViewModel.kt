@@ -9,8 +9,8 @@ import com.aiuta.fashionsdk.configuration.aiutaConfiguration
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.logger.DebugAiutaLogger
-import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.defaults.defaultAiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.tryon.compose.defaults.features.defaultAiutaFeatures
+import com.aiuta.fashionsdk.tryon.compose.defaults.theme.defaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,16 +20,15 @@ class AiutaViewModel : ViewModel() {
     val activeProductItem: MutableStateFlow<ProductGenerationItem?> = MutableStateFlow(null)
 
     fun buildAiutaConfiguration(context: AiutaPlatformContext) = aiutaConfiguration {
-        userInterface = defaultAiutaUserInterfaceConfiguration(
+        aiuta = buildAiuta(context)
+        defaultAiutaUserInterfaceConfiguration(
             actions = object : AiutaUserInterfaceActions {
                 override val closeClick: () -> Unit = {
                     println("CLICK CLOSE")
                 }
             },
         )
-        tryOnConfiguration = defaultAiutaTryOnConfiguration(
-            aiuta = buildAiuta(context),
-        )
+        defaultAiutaFeatures()
     }
 
     fun loadActiveProduct(aiutaTryOn: AiutaTryOn) {

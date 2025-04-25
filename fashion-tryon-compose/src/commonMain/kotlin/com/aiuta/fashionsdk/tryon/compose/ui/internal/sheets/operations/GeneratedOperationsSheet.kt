@@ -30,7 +30,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
@@ -65,7 +64,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     val scope = rememberCoroutineScope()
 
-    val uploadsHistoryFeature = strictProvideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val uploadsHistoryFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature>()
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =

@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.tryon.disclaimer
 
-import com.aiuta.fashionsdk.configuration.features.features.tryon.disclaimer.icons.AiutaTryOnFitDisclaimerFeatureIcons
+import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.icons.AiutaTryOnFitDisclaimerFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 
 public class DefaultAiutaTryOnFitDisclaimerFeatureIcons : AiutaTryOnFitDisclaimerFeatureIcons {

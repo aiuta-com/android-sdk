@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.configuration.features.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.configuration.features.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
+import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 internal fun OnboardingController.nextPage(
     controller: FashionTryOnController,
-    configuration: AiutaTryOnConfiguration,
+    features: AiutaFeatures,
 ) {
     scope.launch {
         val nextPageIndex = pagerState.settledPage + 1
@@ -43,8 +43,7 @@ internal fun OnboardingController.nextPage(
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
             val skuItem = controller.activeProductItem.value
-            val consentStandaloneFeature =
-                configuration.features.consent as? AiutaConsentStandaloneOnboardingPageFeature
+            val consentStandaloneFeature = features.consent as? AiutaConsentStandaloneOnboardingPageFeature
 
             // Close onboarding and move on
             val obtainedConsentId = consentsCheckList.mapNotNull { consentModel ->

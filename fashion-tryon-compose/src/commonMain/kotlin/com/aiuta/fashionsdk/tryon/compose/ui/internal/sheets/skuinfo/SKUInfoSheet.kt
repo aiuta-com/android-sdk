@@ -24,8 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.configuration.features.features.wishlist.AiutaWishlistFeature
+import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
@@ -124,7 +123,7 @@ private fun ButtonsContainer(
 
     val activeSKUItem = controller.activeProductItem.value
 
-    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
     val wishlistFeature = provideFeature<AiutaWishlistFeature>()
 
     val isPrimaryButtonVisible = remember {

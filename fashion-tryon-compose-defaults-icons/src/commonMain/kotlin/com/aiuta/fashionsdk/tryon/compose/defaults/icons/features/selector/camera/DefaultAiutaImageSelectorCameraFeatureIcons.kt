@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.defaults.icons.features.selector.came
 
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_tryon_compose_defaults_icons.generated.resources.ic_camera_24
-import com.aiuta.fashionsdk.configuration.features.features.selector.camera.icons.AiutaImageSelectorCameraFeatureIcons
+import com.aiuta.fashionsdk.configuration.features.selector.camera.icons.AiutaImageSelectorCameraFeatureIcons
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 

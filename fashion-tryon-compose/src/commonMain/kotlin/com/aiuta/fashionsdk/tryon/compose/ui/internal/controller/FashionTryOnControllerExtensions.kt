@@ -5,7 +5,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.configuration.features.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
@@ -155,7 +154,7 @@ internal suspend fun FashionTryOnController.updateActiveOperationWithFirstOrSetE
 @Composable
 internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     val historyImageCount = generatedImageInteractor.countFlow().collectAsState(0)
-    val isGenerationsHistoryFeatureAvailable = isFeatureInitialize<AiutaTryOnGenerationsHistoryFeature>()
+    val isGenerationsHistoryFeatureAvailable = isFeatureInitialize<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
 
     return remember(generationStatus.value) {
         derivedStateOf {

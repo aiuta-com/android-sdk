@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features.share
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
-import com.aiuta.fashionsdk.configuration.features.features.share.AiutaShareFeature
+import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
 
