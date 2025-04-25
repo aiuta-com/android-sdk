@@ -6,8 +6,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.powerby.AiutaPoweredByFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
@@ -18,10 +24,16 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     val poweredByFeature = strictProvideFeature<AiutaPoweredByFeature>()
+    val highlightedText = remember {
+        buildHighlightedString(
+            originalString = poweredByFeature.strings.poweredByAiuta,
+            keyword = "Aiuta",
+            color = poweredByFeature.colors.aiuta,
+        )
+    }
 
     Box(
-        modifier =
-        modifier
+        modifier = modifier
             .background(
                 shape = RoundedCornerShape(100.dp),
                 color = theme.color.neutral,
@@ -33,9 +45,40 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = poweredByFeature.strings.poweredByAiuta,
+            text = highlightedText,
             style = theme.button.typography.buttonS,
             color = theme.color.primary,
         )
+    }
+}
+
+private fun buildHighlightedString(
+    originalString: String,
+    keyword: String,
+    color: Color,
+): AnnotatedString {
+    val keywordLength = keyword.length
+
+    return buildAnnotatedString {
+        var startIndex = 0
+        while (startIndex < originalString.length) {
+            val index = originalString.indexOf(keyword, startIndex)
+            if (index == -1) {
+                append(originalString.substring(startIndex))
+                break
+            }
+
+            // Add text before keyword
+            append(originalString.substring(startIndex, index))
+
+            // Add keyword with color
+            withStyle(
+                style = SpanStyle(color = color),
+            ) {
+                append(keyword)
+            }
+
+            startIndex = index + keywordLength
+        }
     }
 }

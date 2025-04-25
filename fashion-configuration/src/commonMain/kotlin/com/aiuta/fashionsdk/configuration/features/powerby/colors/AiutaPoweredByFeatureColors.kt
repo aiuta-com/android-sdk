@@ -6,7 +6,6 @@ public interface AiutaPoweredByFeatureColors {
     public val aiuta: Color
 
     public class Default : AiutaPoweredByFeatureColors {
-        // TODO Support on UI
         override val aiuta: Color = Color(0xFF4000FF)
     }
 }

@@ -65,6 +65,8 @@ public class AiutaFeatures private constructor(
         AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback
         AiutaTryOnGenerationsHistoryFeature::class -> tryOn.generationsHistory
         AiutaTryOnWithOtherPhotoFeature::class -> tryOn.repicking
+        // Powered by Aiuta
+        AiutaPoweredByFeature::class -> poweredBy
         // Share
         AiutaShareFeature::class -> share
         AiutaShareWatermarkFeature::class -> share?.watermark
