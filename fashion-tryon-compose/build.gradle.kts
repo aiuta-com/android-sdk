@@ -38,7 +38,7 @@ kotlin {
             dependencies {
                 api(projects.fashionComposeCore)
                 api(projects.fashionConfiguration)
-                api(projects.internal.analytic)
+                api(projects.fashionTryonCore)
 
                 implementation(compose.material)
 

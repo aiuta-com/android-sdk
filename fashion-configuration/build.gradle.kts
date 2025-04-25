@@ -16,7 +16,6 @@ kotlin {
         commonMain {
             dependencies {
                 api(projects.fashion)
-                api(projects.fashionTryonCore) // TODO?
                 api(projects.fashionTryonComposeResources) // TODO They are not only try on
                 api(projects.internal.analytic)
 
