@@ -6,13 +6,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
 @Composable
 internal fun AiutaWishlistFeature.inWishlistListener(): State<Boolean> {
+    val controller = LocalController.current
     val productWishlistState = dataProvider.productWishlistState.collectAsState()
-    return remember(productWishlistState.value) {
+    val activeItem = controller.activeProductItem.value
+
+    return remember(
+        productWishlistState.value,
+        activeItem,
+    ) {
         derivedStateOf {
-            productWishlistState.value.inWishlist
+            activeItem.id in productWishlistState.value
         }
     }
 }

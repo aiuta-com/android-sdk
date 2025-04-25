@@ -23,7 +23,7 @@ internal fun FashionTryOnController.clickAddToWishListActiveSKU(
         pageId = pageId,
         productId = productId,
     )
-    dataProvider.changeInWishlistStateAction(productId, updatedWishlistState)
+    dataProvider::setWishlistStateAction.safeInvoke(productId, updatedWishlistState)
 }
 
 internal fun FashionTryOnController.clickAddToCart(
@@ -44,7 +44,7 @@ internal fun FashionTryOnController.clickClose(pageId: AiutaAnalyticPageId? = nu
         pageId = pageId ?: currentScreen.value.exitPageId,
         productItem = activeProductItem.value,
     )
-    aiutaUserInterfaceActions.closeClick()
+    aiutaUserInterfaceActions::closeClick.safeInvoke()
 }
 
 // Senders

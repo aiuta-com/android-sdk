@@ -1,5 +1,5 @@
 package com.aiuta.fashionsdk.configuration.features.share.dataprovider
 
 public interface AiutaShareFeatureDataProvider {
-    public val requestShareTextAction: (productIds: List<String>) -> String
+    public fun getShareText(productIds: List<String>): String
 }

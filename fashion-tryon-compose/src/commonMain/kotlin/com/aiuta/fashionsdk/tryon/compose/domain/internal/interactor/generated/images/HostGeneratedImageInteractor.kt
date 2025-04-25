@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.configuration.features.models.images.AiutaAddedGeneratedImages
 import com.aiuta.fashionsdk.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
@@ -16,12 +15,10 @@ internal class HostGeneratedImageInteractor(
         generatedProductId: String,
         images: List<GeneratedImageUIModel>,
     ): Result<Unit> = runCatching {
-        val publicModel = AiutaAddedGeneratedImages.SingleTryOn(
-            productId = generatedProductId,
-            generations = images.map { image -> image.toPublic() },
+        dataProvider.addGeneratedImages(
+            productIds = listOf(generatedProductId),
+            images = images.map { image -> image.toPublic() },
         )
-
-        dataProvider.addGeneratedImagesAction(publicModel)
     }
 
     override fun generatedImagesFlow(): Flow<PagingData<GeneratedImageUIModel>> = dataProvider.generatedImages
@@ -31,8 +28,8 @@ internal class HostGeneratedImageInteractor(
         .map { images -> PagingData.from(images) }
 
     override suspend fun remove(generatedImages: List<GeneratedImageUIModel>): Result<Unit> = runCatching {
-        dataProvider.deleteGeneratedImagesAction(
-            generatedImages.map { image -> image.toPublic() },
+        dataProvider.deleteGeneratedImages(
+            images = generatedImages.map { image -> image.toPublic() },
         )
     }
 

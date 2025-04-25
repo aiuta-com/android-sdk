@@ -54,7 +54,9 @@ internal fun ActionBlock(
                     scope.launch {
                         val imageUrls = listOfNotNull(imageUrl)
                         val skuIds = listOf(controller.activeProductItem.value.id)
-                        val shareText = shareFeature.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+                        val shareText = shareFeature.dataProvider?.let { provider ->
+                            provider::getShareText.safeInvoke(skuIds)
+                        }
 
                         // Analytic
                         controller.sendResultEvent(

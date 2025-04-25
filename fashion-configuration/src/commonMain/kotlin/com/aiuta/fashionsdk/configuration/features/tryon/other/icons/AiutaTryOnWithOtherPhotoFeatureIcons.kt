@@ -3,5 +3,5 @@ package com.aiuta.fashionsdk.configuration.features.tryon.other.icons
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 
 public interface AiutaTryOnWithOtherPhotoFeatureIcons {
-    public val repicking24: AiutaIcon
+    public val changePhoto24: AiutaIcon
 }

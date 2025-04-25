@@ -232,7 +232,9 @@ private fun ZoomedImageScreenContent(
                         scope.launch {
                             val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
                             val skuIds = listOf(controller.activeProductItem.value.id)
-                            val shareText = shareFeature.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+                            val shareText = shareFeature.dataProvider?.let { provider ->
+                                provider::getShareText.safeInvoke(skuIds)
+                            }
 
                             shareManager.shareImages(
                                 content = shareText?.getOrNull(),

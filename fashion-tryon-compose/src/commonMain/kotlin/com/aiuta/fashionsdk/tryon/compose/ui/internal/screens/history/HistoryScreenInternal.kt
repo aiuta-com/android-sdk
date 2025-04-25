@@ -337,8 +337,9 @@ private fun BoxScope.HistoryScreenInterface(
                             .map { it.imageUrl }
 
                     val skuIds = listOf(controller.activeProductItem.value.id)
-                    val shareText =
-                        shareFeature?.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+                    val shareText = shareFeature?.dataProvider?.let { provider ->
+                        provider::getShareText.safeInvoke(skuIds)
+                    }
 
                     // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()

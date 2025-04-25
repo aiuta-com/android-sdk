@@ -29,7 +29,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
 
         IconButton(
             modifier = modifier,
-            icon = repickingFeature.icons.repicking24,
+            icon = repickingFeature.icons.changePhoto24,
             onClick = {
                 controller.sendResultEvent(
                     event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
