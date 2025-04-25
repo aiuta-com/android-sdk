@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.utils
 import coil3.PlatformContext
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
-import com.aiuta.fashionsdk.configuration.features.tryon.strings.AiutaTryOnFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.isEmptyInteractor
@@ -49,7 +49,7 @@ internal fun FashionTryOnController.startGeneration(
     coilContext: PlatformContext,
     dialogController: AiutaTryOnDialogController,
     features: AiutaFeatures,
-    tryOnFeatureStrings: AiutaTryOnFeatureStrings,
+    inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
     // Analytic
     origin: StartTryOnEvent.TryOnOrigin,
 ) {
@@ -86,7 +86,7 @@ internal fun FashionTryOnController.startGeneration(
                     dialogController = dialogController,
                     features = features,
                     operation = operation,
-                    tryOnFeatureStrings = tryOnFeatureStrings,
+                    inputImageValidationStrings = inputImageValidationStrings,
                     generatedOperationFactory = generatedOperationFactory,
                 )
             }
@@ -181,7 +181,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
     dialogController: AiutaTryOnDialogController,
     features: AiutaFeatures,
     operation: ProductGenerationOperation,
-    tryOnFeatureStrings: AiutaTryOnFeatureStrings,
+    inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
     generatedOperationFactory: GeneratedOperationFactory,
 ) {
     when (operation) {
@@ -241,13 +241,12 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     generationStatus.value = ProductGenerationUIStatus.IDLE
 
                     showErrorState(
-                        errorState =
-                        TryOnToastErrorState(
+                        errorState = TryOnToastErrorState(
                             controller = this@solveOperationCollecting,
                             dialogController = dialogController,
                             coilContext = coilContext,
                             features = features,
-                            tryOnFeatureStrings = tryOnFeatureStrings,
+                            inputImageValidationStrings = inputImageValidationStrings,
                         ),
                     )
                 }
@@ -268,8 +267,8 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                     dialogController.showDialog(
                         dialogState =
                         AiutaTryOnDialogState(
-                            description = tryOnFeatureStrings.tryOnDialogDescriptionInvalidImage,
-                            confirmButton = tryOnFeatureStrings.tryOnDialogButtonInvalidImage,
+                            description = inputImageValidationStrings.invalidInputImageDescription,
+                            confirmButton = inputImageValidationStrings.invalidInputImageChangePhotoButton,
                             onConfirm = dialogController::hideDialog,
                         ),
                     )
@@ -283,7 +282,7 @@ private suspend fun FashionTryOnController.solveOperationCollecting(
                             coilContext = coilContext,
                             dialogController = dialogController,
                             features = features,
-                            tryOnFeatureStrings = tryOnFeatureStrings,
+                            inputImageValidationStrings = inputImageValidationStrings,
                         ),
                     )
                 }

@@ -137,9 +137,9 @@ internal fun ColumnScope.ImagePickerSheet(pickerData: NavigationBottomSheetScree
                                     dialogController.showDialog(
                                         dialogState =
                                         AiutaTryOnDialogState(
-                                            title = feature.strings.cameraTitlePermission,
-                                            description = feature.strings.cameraDescriptionPermission,
-                                            confirmButton = feature.strings.cameraButtonPermissionOpenSettings,
+                                            title = feature.strings.cameraPermissionTitle,
+                                            description = feature.strings.cameraPermissionDescription,
+                                            confirmButton = feature.strings.cameraPermissionButtonOpenSettings,
                                             onConfirm = permissionHandler::openAppSettings,
                                             onDismiss = dialogController::hideDialog,
                                         ),

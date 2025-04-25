@@ -1,8 +1,8 @@
-package com.aiuta.fashionsdk.configuration.features.tryon.repicking
+package com.aiuta.fashionsdk.configuration.features.tryon.other
 
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.configuration.features.tryon.repicking.icons.AiutaTryOnWithOtherPhotoFeatureIcons
+import com.aiuta.fashionsdk.configuration.features.tryon.other.icons.AiutaTryOnWithOtherPhotoFeatureIcons
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaTryOnWithOtherPhotoFeature private constructor(
@@ -25,8 +25,8 @@ public class AiutaTryOnWithOtherPhotoFeature private constructor(
     }
 }
 
-public inline fun AiutaTryOnFeature.Builder.repicking(
+public inline fun AiutaTryOnFeature.Builder.otherPhoto(
     block: AiutaTryOnWithOtherPhotoFeature.Builder.() -> Unit,
 ): AiutaTryOnFeature.Builder = apply {
-    repicking = AiutaTryOnWithOtherPhotoFeature.Builder().apply(block).build()
+    otherPhoto = AiutaTryOnWithOtherPhotoFeature.Builder().apply(block).build()
 }

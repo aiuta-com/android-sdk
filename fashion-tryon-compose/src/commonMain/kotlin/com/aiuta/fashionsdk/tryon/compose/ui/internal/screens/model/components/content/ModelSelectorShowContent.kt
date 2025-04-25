@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
+import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
@@ -41,7 +42,7 @@ internal fun ModelSelectorShowContent(
     val theme = LocalTheme.current
 
     val screenSize = rememberScreenSize()
-    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
     val bottomPadding = screenSize.heightDp * MODEL_IMAGE_BOTTOM_PADDING_COEF
@@ -94,7 +95,7 @@ internal fun ModelSelectorShowContent(
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
-                text = tryOnFeature.strings.tryOnButtonTryOn,
+                text = tryOnFeature.strings.tryOn,
                 style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
                         contentColor = theme.color.onDark,
@@ -102,7 +103,7 @@ internal fun ModelSelectorShowContent(
                     )
                 } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                icon = tryOnFeature.icons.magic20,
+                icon = tryOnFeature.icons.tryOn20,
                 onClick = {
                     activeImageModel.value?.let { model ->
                         // Save model

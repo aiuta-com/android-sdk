@@ -18,18 +18,18 @@ internal fun AiutaImagePickerFeature.validateWithSettings(
         logger = logger,
         debugSettings = debugSettings,
     )
-    camera?.strings?.cameraTitlePermission.validateStringWithSettings(
-        propertyName = "cameraTitlePermission",
+    camera?.strings?.cameraPermissionTitle.validateStringWithSettings(
+        propertyName = "cameraPermissionTitle",
         logger = logger,
         debugSettings = debugSettings,
     )
-    camera?.strings?.cameraDescriptionPermission.validateStringWithSettings(
-        propertyName = "cameraDescriptionPermission",
+    camera?.strings?.cameraPermissionDescription.validateStringWithSettings(
+        propertyName = "cameraPermissionDescription",
         logger = logger,
         debugSettings = debugSettings,
     )
-    camera?.strings?.cameraButtonPermissionOpenSettings.validateStringWithSettings(
-        propertyName = "cameraButtonPermissionOpenSettings",
+    camera?.strings?.cameraPermissionButtonOpenSettings.validateStringWithSettings(
+        propertyName = "cameraPermissionButtonOpenSettings",
         logger = logger,
         debugSettings = debugSettings,
     )
@@ -78,18 +78,18 @@ internal fun AiutaImagePickerFeature.validateWithSettings(
     )
 
     // General
-    strings.imageSelectorTitleEmpty.validateStringWithSettings(
-        propertyName = "imageSelectorTitleEmpty",
+    strings.imagePickerTitleEmpty.validateStringWithSettings(
+        propertyName = "imagePickerTitleEmpty",
         logger = logger,
         debugSettings = debugSettings,
     )
-    strings.imageSelectorDescriptionEmpty.validateStringWithSettings(
-        propertyName = "imageSelectorDescriptionEmpty",
+    strings.imagePickerDescriptionEmpty.validateStringWithSettings(
+        propertyName = "imagePickerDescriptionEmpty",
         logger = logger,
         debugSettings = debugSettings,
     )
-    strings.imageSelectorButtonUploadImage.validateStringWithSettings(
-        propertyName = "imageSelectorButtonUploadImage",
+    strings.imagePickerButtonUploadImage.validateStringWithSettings(
+        propertyName = "imagePickerButtonUploadImage",
         logger = logger,
         debugSettings = debugSettings,
     )

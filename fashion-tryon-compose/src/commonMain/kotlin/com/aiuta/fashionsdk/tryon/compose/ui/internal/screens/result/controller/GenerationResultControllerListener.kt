@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.controller
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import coil3.compose.LocalPlatformContext
+import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
@@ -19,7 +20,7 @@ internal fun GenerateMoreListener() {
     val features = LocalAiutaFeatures.current
     val dialogController = LocalAiutaTryOnDialogController.current
 
-    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
+    val inputImageValidationFeature = strictProvideFeature<AiutaTryOnInputImageValidationFeature>()
 
     // Wait for bottom sheet changes and start generation
     LaunchedEffect(controller.isAutoTryOnEnabled.value) {
@@ -29,7 +30,7 @@ internal fun GenerateMoreListener() {
                 coilContext = coilContext,
                 dialogController = dialogController,
                 features = features,
-                tryOnFeatureStrings = tryOnFeature.strings,
+                inputImageValidationStrings = inputImageValidationFeature.strings,
                 origin = StartTryOnEvent.TryOnOrigin.RETAKE_BUTTON,
             )
             controller.navigateBack()

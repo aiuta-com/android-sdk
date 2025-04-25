@@ -24,7 +24,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeed
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
-import com.aiuta.fashionsdk.configuration.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
@@ -64,7 +64,7 @@ public class AiutaFeatures private constructor(
         AiutaTryOnFeedbackFeature::class -> tryOn.feedback
         AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback
         AiutaTryOnGenerationsHistoryFeature::class -> tryOn.generationsHistory
-        AiutaTryOnWithOtherPhotoFeature::class -> tryOn.repicking
+        AiutaTryOnWithOtherPhotoFeature::class -> tryOn.otherPhoto
         // Powered by Aiuta
         AiutaPoweredByFeature::class -> poweredBy
         // Share

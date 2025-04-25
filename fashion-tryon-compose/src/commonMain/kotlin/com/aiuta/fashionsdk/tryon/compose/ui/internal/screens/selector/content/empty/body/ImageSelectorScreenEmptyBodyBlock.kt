@@ -78,7 +78,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = imageSelectorFeature.strings.imageSelectorTitleEmpty,
+            text = imageSelectorFeature.strings.imagePickerTitleEmpty,
             style = theme.label.typography.titleM,
             color = theme.color.primary,
             textAlign = TextAlign.Center,
@@ -88,7 +88,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = imageSelectorFeature.strings.imageSelectorDescriptionEmpty,
+            text = imageSelectorFeature.strings.imagePickerDescriptionEmpty,
             style = theme.label.typography.subtle,
             color = theme.color.primary,
             textAlign = TextAlign.Center,
@@ -98,7 +98,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
         FashionButton(
             modifier = Modifier.fillMaxWidth(),
-            text = imageSelectorFeature.strings.imageSelectorButtonUploadImage,
+            text = imageSelectorFeature.strings.imagePickerButtonUploadImage,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             onClick = {

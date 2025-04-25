@@ -14,7 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeat
 
 @Composable
 internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
-    val repickingFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature>()
+    val repickingFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature>()
 
     repickingFeature?.let {
         val controller = LocalController.current

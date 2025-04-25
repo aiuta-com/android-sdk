@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.configuration.features.tryon.repicking.icons
+package com.aiuta.fashionsdk.configuration.features.tryon.other.icons
 
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 

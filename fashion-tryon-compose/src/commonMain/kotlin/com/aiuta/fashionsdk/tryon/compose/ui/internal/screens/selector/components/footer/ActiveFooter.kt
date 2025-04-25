@@ -23,6 +23,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
+import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
@@ -48,7 +50,8 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
     val dialogController = LocalAiutaTryOnDialogController.current
     val theme = LocalTheme.current
 
-    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
+    val inputImageValidationFeature = strictProvideFeature<AiutaTryOnInputImageValidationFeature>()
 
     Column(
         modifier = modifier,
@@ -83,7 +86,7 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
-                text = tryOnFeature.strings.tryOnButtonTryOn,
+                text = tryOnFeature.strings.tryOn,
                 style = tryOnFeature.styles.tryOnButtonGradient?.let { tryOnButtonGradient ->
                     FashionButtonStyles.gradientColors(
                         contentColor = theme.color.onDark,
@@ -91,13 +94,13 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                     )
                 } ?: FashionButtonStyles.primaryStyle(theme),
                 size = FashionButtonSizes.lSize(),
-                icon = tryOnFeature.icons.magic20,
+                icon = tryOnFeature.icons.tryOn20,
                 onClick = {
                     controller.startGeneration(
                         coilContext = coilContext,
                         dialogController = dialogController,
                         features = features,
-                        tryOnFeatureStrings = tryOnFeature.strings,
+                        inputImageValidationStrings = inputImageValidationFeature.strings,
                         origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
                 },
@@ -112,8 +115,6 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
 private fun ProductBlock(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
-
-    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
 
     val activeSKUItem = controller.activeProductItem.value
     val sharedCorner = RoundedCornerShape(size = 8.dp)

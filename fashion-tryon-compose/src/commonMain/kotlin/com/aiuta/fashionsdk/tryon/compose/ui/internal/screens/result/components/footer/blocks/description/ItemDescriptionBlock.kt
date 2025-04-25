@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo
@@ -39,7 +40,7 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
 
     val activeSKUItem = controller.activeProductItem.value
 
-    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
+    val cartFeature = strictProvideFeature<AiutaTryOnCartFeature>()
 
     Row(
         modifier = modifier,
@@ -50,21 +51,19 @@ internal fun ItemDescriptionBlock(modifier: Modifier = Modifier) {
             productItem = activeSKUItem,
         )
 
-        tryOnFeature.dataProvider?.let { dataProvider ->
-            Spacer(Modifier.width(16.dp))
+        Spacer(Modifier.width(16.dp))
 
-            FashionButton(
-                text = tryOnFeature.strings.tryOnButtonAddToCart,
-                style = FashionButtonStyles.primaryStyle(theme),
-                size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
-                onClick = {
-                    controller.clickAddToCart(
-                        pageId = AiutaAnalyticPageId.RESULTS,
-                        productId = activeSKUItem.id,
-                        dataProvider = dataProvider,
-                    )
-                },
-            )
-        }
+        FashionButton(
+            text = cartFeature.strings.addToCart,
+            style = FashionButtonStyles.primaryStyle(theme),
+            size = FashionButtonSizes.lSize(horizontalPadding = 30.dp),
+            onClick = {
+                controller.clickAddToCart(
+                    pageId = AiutaAnalyticPageId.RESULTS,
+                    productId = activeSKUItem.id,
+                    handler = cartFeature.handler,
+                )
+            },
+        )
     }
 }

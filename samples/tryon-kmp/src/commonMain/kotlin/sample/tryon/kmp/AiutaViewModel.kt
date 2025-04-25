@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.configuration.aiutaConfiguration
 import com.aiuta.fashionsdk.configuration.defaults.features.defaultAiutaFeatures
 import com.aiuta.fashionsdk.configuration.defaults.theme.defaultAiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOnCartFeatureHandler
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.logger.DebugAiutaLogger
@@ -28,7 +29,13 @@ class AiutaViewModel : ViewModel() {
                 }
             },
         )
-        defaultAiutaFeatures()
+        defaultAiutaFeatures(
+            cartHandler = object : AiutaTryOnCartFeatureHandler {
+                override fun addToCart(productId: String) {
+                    println("CLICK ADD TO CART")
+                }
+            },
+        )
     }
 
     fun loadActiveProduct(aiutaTryOn: AiutaTryOn) {

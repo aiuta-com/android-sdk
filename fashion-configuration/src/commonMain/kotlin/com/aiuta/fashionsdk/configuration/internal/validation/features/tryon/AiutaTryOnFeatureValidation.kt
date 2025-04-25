@@ -99,34 +99,33 @@ internal fun AiutaTryOnFeature.validateWithSettings(
         debugSettings = debugSettings,
     )
 
+    // Cart
+    cart.strings.addToCart.validateStringWithSettings(
+        propertyName = "addToCart",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+
+    // Input validation
+    inputImageValidation.strings.invalidInputImageDescription.validateStringWithSettings(
+        propertyName = "invalidInputImageDescription",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+    inputImageValidation.strings.invalidInputImageChangePhotoButton.validateStringWithSettings(
+        propertyName = "invalidInputImageChangePhotoButton",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
+
     // General
     strings.tryOnPageTitle.validateStringWithSettings(
         propertyName = "tryOnPageTitle",
         logger = logger,
         debugSettings = debugSettings,
     )
-    strings.tryOnPoweredByAiuta.validateStringWithSettings(
-        propertyName = "tryOnPoweredByAiuta",
-        logger = logger,
-        debugSettings = debugSettings,
-    )
-    strings.tryOnDialogButtonInvalidImage.validateStringWithSettings(
-        propertyName = "tryOnDialogButtonInvalidImage",
-        logger = logger,
-        debugSettings = debugSettings,
-    )
-    strings.tryOnDialogDescriptionInvalidImage.validateStringWithSettings(
-        propertyName = "tryOnDialogDescriptionInvalidImage",
-        logger = logger,
-        debugSettings = debugSettings,
-    )
-    strings.tryOnButtonTryOn.validateStringWithSettings(
-        propertyName = "tryOnButtonTryOn",
-        logger = logger,
-        debugSettings = debugSettings,
-    )
-    strings.tryOnButtonAddToCart.validateStringWithSettings(
-        propertyName = "tryOnButtonAddToCart",
+    strings.tryOn.validateStringWithSettings(
+        propertyName = "tryOn",
         logger = logger,
         debugSettings = debugSettings,
     )

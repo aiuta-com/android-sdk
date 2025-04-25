@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.isNotEmpty
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.selector.ImageSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.appbar.MainAppBar
@@ -32,7 +33,7 @@ internal fun ImageSelectorScreenContent(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val tryOnFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature>()
+    val tryOnFeature = strictProvideFeature<AiutaTryOnFeature>()
 
     val screenState =
         remember {
