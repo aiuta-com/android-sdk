@@ -7,7 +7,6 @@ import com.aiuta.fashionsdk.configuration.defaults.features.selector.defaultImag
 import com.aiuta.fashionsdk.configuration.defaults.features.share.defaultShare
 import com.aiuta.fashionsdk.configuration.defaults.features.tryon.defaultTryOn
 import com.aiuta.fashionsdk.configuration.defaults.features.welcome.defaultWelcomeScreen
-import com.aiuta.fashionsdk.configuration.defaults.features.wishlist.defaultWishlist
 import com.aiuta.fashionsdk.configuration.features.features
 
 public fun AiutaConfiguration.Builder.defaultAiutaFeatures(): AiutaConfiguration.Builder = apply {
@@ -18,6 +17,5 @@ public fun AiutaConfiguration.Builder.defaultAiutaFeatures(): AiutaConfiguration
         defaultImageSelector()
         defaultTryOn()
         defaultShare()
-        defaultWishlist()
     }
 }

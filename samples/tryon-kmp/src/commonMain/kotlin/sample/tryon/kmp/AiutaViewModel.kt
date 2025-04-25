@@ -6,10 +6,10 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.configuration.aiutaConfiguration
+import com.aiuta.fashionsdk.configuration.defaults.features.defaultAiutaFeatures
+import com.aiuta.fashionsdk.configuration.defaults.theme.defaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
-import com.aiuta.fashionsdk.defaults.features.defaultAiutaFeatures
-import com.aiuta.fashionsdk.defaults.theme.defaultAiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.logger.DebugAiutaLogger
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
