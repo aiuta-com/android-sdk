@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.configuration.defaults.icons.features.tryon.history
 
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.ic_history_24
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.tryon.history.icons.AiutaTryOnGenerationsHistoryFeatureIcons
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 
 public class DefaultAiutaTryOnGenerationsHistoryFeatureIcons : AiutaTryOnGenerationsHistoryFeatureIcons {
     override val history24: AiutaIcon = AiutaIcon(

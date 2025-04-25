@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonLoadingAnimation
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonSize
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonStyle

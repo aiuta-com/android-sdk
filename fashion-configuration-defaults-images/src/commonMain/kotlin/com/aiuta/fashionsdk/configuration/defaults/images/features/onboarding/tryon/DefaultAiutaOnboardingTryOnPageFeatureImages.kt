@@ -7,8 +7,8 @@ import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboa
 import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_main_1
 import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_main_2
 import com.aiuta.fashion_configuration_defaults_images.generated.resources.onboarding_main_3
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
 import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.images.AiutaOnboardingTryOnPageFeatureImages
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
 
 public class DefaultAiutaOnboardingTryOnPageFeatureImages : AiutaOnboardingTryOnPageFeatureImages {
     override val onboardingTryOnItems: List<AiutaOnboardingTryOnPageFeatureImages.OnboardingTryOnItem> =

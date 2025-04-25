@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.came
 
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.ic_camera_24
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.selector.camera.icons.AiutaImageSelectorCameraFeatureIcons
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 
 public class DefaultAiutaImageSelectorCameraFeatureIcons : AiutaImageSelectorCameraFeatureIcons {
     override val camera24: AiutaIcon = AiutaIcon(

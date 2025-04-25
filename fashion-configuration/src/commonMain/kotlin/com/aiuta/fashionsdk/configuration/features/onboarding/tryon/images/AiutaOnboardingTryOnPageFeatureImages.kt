@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.configuration.features.onboarding.tryon.images
 
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 
 public interface AiutaOnboardingTryOnPageFeatureImages {
     public class OnboardingTryOnItem(

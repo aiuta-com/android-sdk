@@ -3,9 +3,9 @@ package com.aiuta.fashionsdk.configuration.defaults.icons.features.wishlist
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.ic_wishlist_24
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.ic_wishlist_fill_24
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.wishlist.icons.AiutaWishlistFeatureIcons
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 
 public class DefaultAiutaWishlistFeatureIcons : AiutaWishlistFeatureIcons {
     override val wishlist24: AiutaIcon = AiutaIcon(

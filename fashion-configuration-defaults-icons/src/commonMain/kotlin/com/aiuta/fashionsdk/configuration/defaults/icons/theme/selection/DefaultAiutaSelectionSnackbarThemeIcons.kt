@@ -3,9 +3,9 @@ package com.aiuta.fashionsdk.configuration.defaults.icons.theme.selection
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.Res
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.ic_check_20
 import com.aiuta.fashion_configuration_defaults_icons.generated.resources.ic_trash_24
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.ui.theme.selection.icons.AiutaSelectionSnackbarThemeIcons
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
 
 public class DefaultAiutaSelectionSnackbarThemeIcons : AiutaSelectionSnackbarThemeIcons {
     override val trash24: AiutaIcon = AiutaIcon(

@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
