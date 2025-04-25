@@ -19,12 +19,14 @@ import com.aiuta.fashionsdk.configuration.features.powerby.AiutaPoweredByFeature
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.AiutaTryOnFitDisclaimerFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.AiutaTryOnFeedbackFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.AiutaTryOnFeedbackOtherFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
@@ -60,6 +62,8 @@ public class AiutaFeatures private constructor(
         // Try on
         AiutaTryOnFeature::class -> tryOn
         AiutaTryOnLoadingPageFeature::class -> tryOn.loadingPage
+        AiutaTryOnInputImageValidationFeature::class -> tryOn.inputImageValidation
+        AiutaTryOnCartFeature::class -> tryOn.cart
         AiutaTryOnFitDisclaimerFeature::class -> tryOn.fitDisclaimer
         AiutaTryOnFeedbackFeature::class -> tryOn.feedback
         AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback

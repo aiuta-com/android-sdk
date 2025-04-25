@@ -26,14 +26,12 @@ internal class HostGeneratedOperationInteractor(
     override suspend fun createOperation(imageId: String): String = imageId
 
     override suspend fun deleteOperation(operation: GeneratedOperationUIModel): Result<Unit> = runCatching {
-        dataProvider.deleteUploadedImagesAction(operation.toPublic())
+        dataProvider.deleteUploadedImages(images = operation.toPublic())
     }
 
     override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>): Result<Unit> = runCatching {
-        dataProvider.deleteUploadedImagesAction(
-            operations
-                .map { it.toPublic() }
-                .flatten(),
+        dataProvider.deleteUploadedImages(
+            images = operations.map { it.toPublic() }.flatten(),
         )
     }
 
@@ -44,8 +42,8 @@ internal class HostGeneratedOperationInteractor(
         sourceImageUrl: String,
         operationId: String,
     ): Result<Unit> = runCatching {
-        dataProvider.addUploadedImagesAction(
-            listOf(
+        dataProvider.addUploadedImages(
+            images = listOf(
                 AiutaHistoryImage(
                     id = sourceImageId,
                     url = sourceImageUrl,

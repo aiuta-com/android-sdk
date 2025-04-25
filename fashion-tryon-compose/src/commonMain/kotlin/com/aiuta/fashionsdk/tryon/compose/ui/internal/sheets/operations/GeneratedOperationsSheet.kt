@@ -131,9 +131,8 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                                     runCatching {
                                         uploadsHistoryFeature
                                             .dataProvider
-                                            ?.selectUploadedImageAction
-                                            ?.invoke(
-                                                AiutaHistoryImage(
+                                            ?.selectUploadedImage(
+                                                image = AiutaHistoryImage(
                                                     id = image.imageId,
                                                     url = image.imageUrl,
                                                 ),

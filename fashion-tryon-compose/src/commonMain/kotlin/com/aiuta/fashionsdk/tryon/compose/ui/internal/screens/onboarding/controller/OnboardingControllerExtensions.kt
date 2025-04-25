@@ -65,7 +65,9 @@ internal fun OnboardingController.nextPage(
                     )
                 },
             )
-            consentStandaloneFeature?.dataProvider?.obtainConsentAction?.safeInvoke(obtainedConsentId)
+            consentStandaloneFeature?.dataProvider?.let { provider ->
+                provider::obtainConsent.safeInvoke(obtainedConsentId)
+            }
 
             // Finish
             controller.sendOnboardingEvent(

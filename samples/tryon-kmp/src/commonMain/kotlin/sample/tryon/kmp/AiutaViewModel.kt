@@ -24,7 +24,7 @@ class AiutaViewModel : ViewModel() {
         aiuta = buildAiuta(context)
         defaultAiutaUserInterfaceConfiguration(
             actions = object : AiutaUserInterfaceActions {
-                override val closeClick: () -> Unit = {
+                override fun closeClick() {
                     println("CLICK CLOSE")
                 }
             },
