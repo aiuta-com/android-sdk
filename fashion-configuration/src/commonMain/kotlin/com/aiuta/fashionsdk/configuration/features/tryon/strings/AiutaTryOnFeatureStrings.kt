@@ -2,6 +2,8 @@ package com.aiuta.fashionsdk.configuration.features.tryon.strings
 
 public interface AiutaTryOnFeatureStrings {
     public val tryOnPageTitle: String
+
+    @Deprecated("Migrate to AiutaPoweredByFeatureStrings")
     public val tryOnPoweredByAiuta: String
     public val tryOnDialogButtonInvalidImage: String
     public val tryOnDialogDescriptionInvalidImage: String

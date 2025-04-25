@@ -18,7 +18,7 @@ internal fun AiutaFeatures.validateWithSettings(
     welcomeScreen?.validateWithSettings(logger, debugSettings)
     onboarding?.validateWithSettings(logger, debugSettings)
     consent?.validateWithSettings(logger, debugSettings)
-    imageSelector.validateWithSettings(logger, debugSettings)
+    imagePicker.validateWithSettings(logger, debugSettings)
     tryOn.validateWithSettings(logger, debugSettings)
     share?.validateWithSettings(logger, debugSettings)
     wishlist?.validateWithSettings(logger, debugSettings)

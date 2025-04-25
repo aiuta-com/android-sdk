@@ -64,7 +64,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     val scope = rememberCoroutineScope()
 
-    val uploadsHistoryFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature>()
+    val uploadsHistoryFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature>()
 
     val sharedHorizontalPadding = 16.dp
     val sharedOperationsModifier =

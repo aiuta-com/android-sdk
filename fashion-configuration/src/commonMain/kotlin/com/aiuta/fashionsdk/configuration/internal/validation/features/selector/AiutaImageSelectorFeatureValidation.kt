@@ -1,13 +1,13 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features.selector
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
-import com.aiuta.fashionsdk.configuration.features.selector.AiutaImageSelectorFeature
+import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.internal.validation.validateListWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.validateMapWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
 
-internal fun AiutaImageSelectorFeature.validateWithSettings(
+internal fun AiutaImagePickerFeature.validateWithSettings(
     logger: AiutaLogger?,
     debugSettings: AiutaDebugSettings,
 ) {

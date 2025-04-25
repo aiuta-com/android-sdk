@@ -12,7 +12,7 @@ import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
-import com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
@@ -49,7 +49,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 ): FashionTryOnController {
     val coilContext = LocalPlatformContext.current
 
-    val uploadsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaImageSelectorUploadsHistoryFeature>()
+    val uploadsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaImagePickerUploadsHistoryFeature>()
     val generationsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
     val tryOnFeature = aiutaConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
 

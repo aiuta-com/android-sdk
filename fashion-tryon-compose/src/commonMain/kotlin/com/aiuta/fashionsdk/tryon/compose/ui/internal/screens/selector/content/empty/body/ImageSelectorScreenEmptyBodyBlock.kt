@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
-import com.aiuta.fashionsdk.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
@@ -50,8 +50,8 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         screenSize.widthDp * 0.05f
     }
 
-    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.selector.AiutaImageSelectorFeature>()
-    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModelFeature>()
+    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
+    val predefinedModelFeature = provideFeature<AiutaImagePickerPredefinedModelFeature>()
 
     Column(
         modifier =
@@ -148,7 +148,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 private fun ImagesBlock(modifier: Modifier = Modifier) {
     val density = LocalDensity.current
 
-    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.selector.AiutaImageSelectorFeature>()
+    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
     val paddingPx = with(density) { (32.dp).toPx() }
 
     Box(

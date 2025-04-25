@@ -1,7 +1,0 @@
-package com.aiuta.fashionsdk.configuration.features.selector.images
-
-import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
-
-public interface AiutaImageSelectorFeatureImages {
-    public val examples: List<AiutaDrawableResource>
-}

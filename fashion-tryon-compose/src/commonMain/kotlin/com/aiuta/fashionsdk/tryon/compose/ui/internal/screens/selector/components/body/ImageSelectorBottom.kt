@@ -50,9 +50,9 @@ internal fun ImageSelectorBottom(
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.selector.AiutaImageSelectorFeature>()
+    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
     val loadingPageFeature = strictProvideFeature<AiutaTryOnLoadingPageFeature>()
-    val uploadsHistoryFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature>()
+    val uploadsHistoryFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature>()
 
     val generationStatus = controller.generationStatus
     val countGeneratedOperation =

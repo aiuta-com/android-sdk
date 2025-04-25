@@ -1,41 +1,41 @@
 package com.aiuta.fashionsdk.configuration.defaults.features.selector
 
-import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.camera.DefaultAiutaImageSelectorCameraFeatureIcons
-import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.gallery.DefaultAiutaImageSelectorPhotoGalleryFeatureIcons
+import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.camera.DefaultAiutaImagePickerCameraFeatureIcons
+import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.gallery.DefaultAiutaImagePickerPhotoGalleryFeatureIcons
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.model.DefaultAiutaImageSelectorPredefinedModelFeatureIcons
-import com.aiuta.fashionsdk.configuration.defaults.images.features.selector.DefaultAiutaImageSelectorFeatureImages
+import com.aiuta.fashionsdk.configuration.defaults.images.features.selector.DefaultAiutaImagePickerFeatureImages
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
-import com.aiuta.fashionsdk.configuration.features.selector.camera.camera
-import com.aiuta.fashionsdk.configuration.features.selector.camera.strings.AiutaImageSelectorCameraFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.selector.gallery.photoGallery
-import com.aiuta.fashionsdk.configuration.features.selector.gallery.strings.AiutaImageSelectorPhotoGalleryFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.selector.history.strings.AiutaImageSelectorUploadsHistoryFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.selector.history.styles.AiutaImageSelectorUploadsHistoryFeatureStyles
-import com.aiuta.fashionsdk.configuration.features.selector.history.uploadsHistory
-import com.aiuta.fashionsdk.configuration.features.selector.imageSelector
-import com.aiuta.fashionsdk.configuration.features.selector.model.predefinedModels
-import com.aiuta.fashionsdk.configuration.features.selector.model.strings.AiutaImageSelectorPredefinedModelFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.selector.strings.AiutaImageSelectorFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.camera.camera
+import com.aiuta.fashionsdk.configuration.features.picker.camera.strings.AiutaImagePickerCameraFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.gallery.photoGallery
+import com.aiuta.fashionsdk.configuration.features.picker.gallery.strings.AiutaImagePickerPhotoGalleryFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaImagePickerUploadsHistoryFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles
+import com.aiuta.fashionsdk.configuration.features.picker.history.uploadsHistory
+import com.aiuta.fashionsdk.configuration.features.picker.imagePicker
+import com.aiuta.fashionsdk.configuration.features.picker.model.predefinedModels
+import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImageSelectorPredefinedModelFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.strings.AiutaImagePickerFeatureStrings
 
-public fun AiutaFeatures.Builder.defaultImageSelector() {
-    imageSelector {
+public fun AiutaFeatures.Builder.defaultImagePicker() {
+    imagePicker {
         camera {
-            icons = DefaultAiutaImageSelectorCameraFeatureIcons()
-            strings = AiutaImageSelectorCameraFeatureStrings.Default()
+            icons = DefaultAiutaImagePickerCameraFeatureIcons()
+            strings = AiutaImagePickerCameraFeatureStrings.Default()
         }
         photoGallery {
-            icons = DefaultAiutaImageSelectorPhotoGalleryFeatureIcons()
-            strings = AiutaImageSelectorPhotoGalleryFeatureStrings.Default()
+            icons = DefaultAiutaImagePickerPhotoGalleryFeatureIcons()
+            strings = AiutaImagePickerPhotoGalleryFeatureStrings.Default()
         }
         predefinedModels {
             icons = DefaultAiutaImageSelectorPredefinedModelFeatureIcons()
             strings = AiutaImageSelectorPredefinedModelFeatureStrings.Default()
         }
         uploadsHistory {
-            strings = AiutaImageSelectorUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
-            styles = AiutaImageSelectorUploadsHistoryFeatureStyles.Default()
+            strings = AiutaImagePickerUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
+            styles = AiutaImagePickerUploadsHistoryFeatureStyles.Default()
         }
-        images = DefaultAiutaImageSelectorFeatureImages()
-        strings = AiutaImageSelectorFeatureStrings.Default()
+        images = DefaultAiutaImagePickerFeatureImages()
+        strings = AiutaImagePickerFeatureStrings.Default()
     }
 }

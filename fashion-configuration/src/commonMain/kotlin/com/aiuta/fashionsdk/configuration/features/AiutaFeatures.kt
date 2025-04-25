@@ -10,11 +10,12 @@ import com.aiuta.fashionsdk.configuration.features.exceptions.NoSuchFeatureExcep
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
-import com.aiuta.fashionsdk.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.configuration.features.selector.camera.AiutaImageSelectorCameraFeature
-import com.aiuta.fashionsdk.configuration.features.selector.gallery.AiutaImageSelectorPhotoGalleryFeature
-import com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature
-import com.aiuta.fashionsdk.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
+import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePickerCameraFeature
+import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePickerPhotoGalleryFeature
+import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.powerby.AiutaPoweredByFeature
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
@@ -33,8 +34,9 @@ public class AiutaFeatures private constructor(
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
     public val onboarding: AiutaOnboardingFeature?,
     public val consent: AiutaConsentFeature?,
-    public val imageSelector: AiutaImageSelectorFeature,
+    public val imagePicker: AiutaImagePickerFeature,
     public val tryOn: AiutaTryOnFeature,
+    public val poweredBy: AiutaPoweredByFeature,
     public val share: AiutaShareFeature?,
     public val wishlist: AiutaWishlistFeature?,
 ) {
@@ -50,11 +52,11 @@ public class AiutaFeatures private constructor(
         AiutaConsentStandaloneOnboardingPageFeature::class -> consent
         AiutaConsentBuiltInWithOnboardingPageFeature::class -> consent
         // Image selector
-        AiutaImageSelectorFeature::class -> imageSelector
-        AiutaImageSelectorCameraFeature::class -> imageSelector.camera
-        AiutaImageSelectorPhotoGalleryFeature::class -> imageSelector.photoGallery
-        AiutaImageSelectorPredefinedModelFeature::class -> imageSelector.predefinedModels
-        AiutaImageSelectorUploadsHistoryFeature::class -> imageSelector.uploadsHistory
+        AiutaImagePickerFeature::class -> imagePicker
+        AiutaImagePickerCameraFeature::class -> imagePicker.camera
+        AiutaImagePickerPhotoGalleryFeature::class -> imagePicker.photoGallery
+        AiutaImagePickerPredefinedModelFeature::class -> imagePicker.predefinedModels
+        AiutaImagePickerUploadsHistoryFeature::class -> imagePicker.uploadsHistory
         // Try on
         AiutaTryOnFeature::class -> tryOn
         AiutaTryOnLoadingPageFeature::class -> tryOn.loadingPage
@@ -85,8 +87,9 @@ public class AiutaFeatures private constructor(
         public var welcomeScreen: AiutaWelcomeScreenFeature? = null
         public var onboarding: AiutaOnboardingFeature? = null
         public var consent: AiutaConsentFeature? = null
-        public var imageSelector: AiutaImageSelectorFeature? = null
+        public var imagePicker: AiutaImagePickerFeature? = null
         public var tryOn: AiutaTryOnFeature? = null
+        public var poweredBy: AiutaPoweredByFeature? = null
         public var share: AiutaShareFeature? = null
         public var wishlist: AiutaWishlistFeature? = null
 
@@ -96,13 +99,17 @@ public class AiutaFeatures private constructor(
                 welcomeScreen = welcomeScreen,
                 onboarding = onboarding,
                 consent = consent,
-                imageSelector = imageSelector.checkNotNullWithDescription(
+                imagePicker = imagePicker.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "imageSelector",
+                    property = "imagePicker",
                 ),
                 tryOn = tryOn.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "tryOn",
+                ),
+                poweredBy = poweredBy.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "poweredBy",
                 ),
                 share = share,
                 wishlist = wishlist,

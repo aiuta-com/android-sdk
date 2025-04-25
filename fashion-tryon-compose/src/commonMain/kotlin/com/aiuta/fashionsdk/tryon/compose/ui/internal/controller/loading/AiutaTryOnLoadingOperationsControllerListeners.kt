@@ -107,7 +107,7 @@ internal fun AiutaTryOnLoadingActionsController.deletingUploadedImagesListener(
 private fun AiutaTryOnLoadingActionsController.updateDeletingUploadedImagesListener(
     controller: FashionTryOnController,
 ) {
-    val uploadsHistoryFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.selector.history.AiutaImageSelectorUploadsHistoryFeature>()
+    val uploadsHistoryFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature>()
     val dataProvider = uploadsHistoryFeature?.dataProvider
 
     // Observe external changes of generated images and delete
