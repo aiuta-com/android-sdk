@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.uikit.button.internal
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 
 internal object FashionButtonColors {
     @Composable

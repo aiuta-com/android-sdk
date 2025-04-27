@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.history.dataprovider.AiutaImageSelectorUploadsHistoryFeatureDataProvider
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.images.AiutaHistoryImage
+import com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage
+import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProvider
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toPublic
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class HostGeneratedOperationInteractor(
-    private val dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider,
+    private val dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider,
 ) : GeneratedOperationInteractor {
     override fun getGeneratedOperationFlow(): Flow<PagingData<GeneratedOperationUIModel>> = dataProvider.uploadedImages
         .map { images ->
@@ -26,14 +26,12 @@ internal class HostGeneratedOperationInteractor(
     override suspend fun createOperation(imageId: String): String = imageId
 
     override suspend fun deleteOperation(operation: GeneratedOperationUIModel): Result<Unit> = runCatching {
-        dataProvider.deleteUploadedImagesAction(operation.toPublic())
+        dataProvider.deleteUploadedImages(images = operation.toPublic())
     }
 
     override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>): Result<Unit> = runCatching {
-        dataProvider.deleteUploadedImagesAction(
-            operations
-                .map { it.toPublic() }
-                .flatten(),
+        dataProvider.deleteUploadedImages(
+            images = operations.map { it.toPublic() }.flatten(),
         )
     }
 
@@ -44,8 +42,8 @@ internal class HostGeneratedOperationInteractor(
         sourceImageUrl: String,
         operationId: String,
     ): Result<Unit> = runCatching {
-        dataProvider.addUploadedImagesAction(
-            listOf(
+        dataProvider.addUploadedImages(
+            images = listOf(
                 AiutaHistoryImage(
                     id = sourceImageId,
                     url = sourceImageUrl,
@@ -55,6 +53,6 @@ internal class HostGeneratedOperationInteractor(
     }
 
     companion object {
-        fun getInstance(dataProvider: AiutaImageSelectorUploadsHistoryFeatureDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
+        fun getInstance(dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider): HostGeneratedOperationInteractor = HostGeneratedOperationInteractor(dataProvider = dataProvider)
     }
 }

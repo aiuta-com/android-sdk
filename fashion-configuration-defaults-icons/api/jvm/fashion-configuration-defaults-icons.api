@@ -1,0 +1,114 @@
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/onboarding/bestresult/DefaultAiutaOnboardingBestResultsPageFeatureIcons : com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getOnboardingBestResultsBad24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getOnboardingBestResultsGood24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/selector/camera/DefaultAiutaImagePickerCameraFeatureIcons : com/aiuta/fashionsdk/configuration/features/picker/camera/icons/AiutaImagePickerCameraFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getCamera24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/selector/gallery/DefaultAiutaImagePickerPhotoGalleryFeatureIcons : com/aiuta/fashionsdk/configuration/features/picker/gallery/icons/AiutaImagePickerPhotoGalleryFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getGallery24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/selector/model/DefaultAiutaImageSelectorPredefinedModelFeatureIcons : com/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImageSelectorPredefinedModelFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getSelectModels24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/share/DefaultAiutaShareFeatureIcons : com/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getShare24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/DefaultAiutaTryOnFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/icons/AiutaTryOnFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getTryOn20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/disclaimer/DefaultAiutaTryOnFitDisclaimerFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/disclaimer/icons/AiutaTryOnFitDisclaimerFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getInfo20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/feedback/DefaultAiutaTryOnFeedbackFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/feedback/icons/AiutaTryOnFeedbackFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getDislike36 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getGratitude40 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getLike36 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/history/DefaultAiutaTryOnGenerationsHistoryFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/history/icons/AiutaTryOnGenerationsHistoryFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getHistory24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/loading/DefaultAiutaTryOnLoadingPageFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/loading/icons/AiutaTryOnLoadingPageFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getLoading14 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tryon/repicking/DefaultAiutaTryOnWithOtherPhotoFeatureIcons : com/aiuta/fashionsdk/configuration/features/tryon/other/icons/AiutaTryOnWithOtherPhotoFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getChangePhoto24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/welcome/DefaultAiutaWelcomeScreenFeatureIcons : com/aiuta/fashionsdk/configuration/features/welcome/icons/AiutaWelcomeScreenFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getWelcome82 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/wishlist/DefaultAiutaWishlistFeatureIcons : com/aiuta/fashionsdk/configuration/features/wishlist/icons/AiutaWishlistFeatureIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getWishlist24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getWishlistFill24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/error/DefaultAiutaErrorSnackbarThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/error/icons/AiutaErrorSnackbarThemeIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getError36 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/image/DefaultAiutaImageThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/image/icons/AiutaImageThemeIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getError36 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/pagebar/DefaultAiutaPageBarThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getBack24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getClose24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/productbar/DefaultAiutaProductBarThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getArrow16 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/theme/selection/DefaultAiutaSelectionSnackbarThemeIcons : com/aiuta/fashionsdk/configuration/ui/theme/selection/icons/AiutaSelectionSnackbarThemeIcons {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getCheck20 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+	public fun getTrash24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+

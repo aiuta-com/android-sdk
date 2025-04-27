@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
 import androidx.compose.runtime.Immutable
+import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
 
 @Immutable
 internal sealed interface NavigationBottomSheetScreen {

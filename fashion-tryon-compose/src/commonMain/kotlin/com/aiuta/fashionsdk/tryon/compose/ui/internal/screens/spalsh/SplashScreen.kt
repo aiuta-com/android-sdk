@@ -4,17 +4,16 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.welcome.AiutaWelcomeScreenFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadConfig
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.isFeatureInitialize
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -25,7 +24,7 @@ internal fun SplashScreen(
     navigateTo: (NavigationScreen) -> Unit,
 ) {
     val controller = LocalController.current
-    val configuration = LocalAiutaConfiguration.current
+    val features = LocalAiutaFeatures.current
     val dataController = LocalAiutaTryOnDataController.current
 
     val consentStandaloneFeature = provideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
@@ -52,7 +51,7 @@ internal fun SplashScreen(
 
         val shouldShowOnboarding = when {
             // Onboarding not provided
-            !configuration.isFeatureInitialize<AiutaOnboardingFeature>() -> false
+            !features.isFeatureInitialize<AiutaOnboardingFeature>() -> false
             // SDK didn't show onboarding
             !isOnboardingPassed -> true
 
@@ -89,8 +88,8 @@ internal fun SplashScreen(
         if (shouldShowOnboarding) {
             val firstOnboardingScreen =
                 when {
-                    configuration.isFeatureInitialize<AiutaWelcomeScreenFeature>() -> NavigationScreen.Preonboarding
-                    configuration.isFeatureInitialize<AiutaOnboardingFeature>() -> NavigationScreen.Onboarding
+                    features.isFeatureInitialize<AiutaWelcomeScreenFeature>() -> NavigationScreen.Preonboarding
+                    features.isFeatureInitialize<AiutaOnboardingFeature>() -> NavigationScreen.Onboarding
                     else -> NavigationScreen.ImageSelector
                 }
 

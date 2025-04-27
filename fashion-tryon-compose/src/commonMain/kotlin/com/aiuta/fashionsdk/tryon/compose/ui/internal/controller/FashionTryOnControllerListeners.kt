@@ -6,7 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.AiutaTryOnFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendTerminateEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen

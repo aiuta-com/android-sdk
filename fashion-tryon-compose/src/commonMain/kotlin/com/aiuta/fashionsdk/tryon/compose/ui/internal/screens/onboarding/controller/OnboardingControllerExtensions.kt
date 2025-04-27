@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
+import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
+import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent
-import com.aiuta.fashionsdk.tryon.compose.configuration.AiutaTryOnConfiguration
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.toEntity
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 internal fun OnboardingController.nextPage(
     controller: FashionTryOnController,
-    configuration: AiutaTryOnConfiguration,
+    features: AiutaFeatures,
 ) {
     scope.launch {
         val nextPageIndex = pagerState.settledPage + 1
@@ -43,8 +43,7 @@ internal fun OnboardingController.nextPage(
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
             val skuItem = controller.activeProductItem.value
-            val consentStandaloneFeature =
-                configuration.features.consent as? AiutaConsentStandaloneOnboardingPageFeature
+            val consentStandaloneFeature = features.consent as? AiutaConsentStandaloneOnboardingPageFeature
 
             // Close onboarding and move on
             val obtainedConsentId = consentsCheckList.mapNotNull { consentModel ->
@@ -66,7 +65,9 @@ internal fun OnboardingController.nextPage(
                     )
                 },
             )
-            consentStandaloneFeature?.dataProvider?.obtainConsentAction?.safeInvoke(obtainedConsentId)
+            consentStandaloneFeature?.dataProvider?.let { provider ->
+                provider::obtainConsent.safeInvoke(obtainedConsentId)
+            }
 
             // Finish
             controller.sendOnboardingEvent(

@@ -22,10 +22,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.AiutaImageSelectorFeature
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateTo
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -51,8 +50,8 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         screenSize.widthDp * 0.05f
     }
 
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
-    val predefinedModelFeature = provideFeature<AiutaImageSelectorPredefinedModelFeature>()
+    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
+    val predefinedModelFeature = provideFeature<AiutaImagePickerPredefinedModelFeature>()
 
     Column(
         modifier =
@@ -79,7 +78,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = imageSelectorFeature.strings.imageSelectorTitleEmpty,
+            text = imageSelectorFeature.strings.imagePickerTitleEmpty,
             style = theme.label.typography.titleM,
             color = theme.color.primary,
             textAlign = TextAlign.Center,
@@ -89,7 +88,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = imageSelectorFeature.strings.imageSelectorDescriptionEmpty,
+            text = imageSelectorFeature.strings.imagePickerDescriptionEmpty,
             style = theme.label.typography.subtle,
             color = theme.color.primary,
             textAlign = TextAlign.Center,
@@ -99,7 +98,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 
         FashionButton(
             modifier = Modifier.fillMaxWidth(),
-            text = imageSelectorFeature.strings.imageSelectorButtonUploadImage,
+            text = imageSelectorFeature.strings.imagePickerButtonUploadImage,
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             onClick = {
@@ -149,7 +148,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 private fun ImagesBlock(modifier: Modifier = Modifier) {
     val density = LocalDensity.current
 
-    val imageSelectorFeature = strictProvideFeature<AiutaImageSelectorFeature>()
+    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
     val paddingPx = with(density) { (32.dp).toPx() }
 
     Box(

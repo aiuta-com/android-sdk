@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
+import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -232,7 +232,9 @@ private fun ZoomedImageScreenContent(
                         scope.launch {
                             val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
                             val skuIds = listOf(controller.activeProductItem.value.id)
-                            val shareText = shareFeature.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+                            val shareText = shareFeature.dataProvider?.let { provider ->
+                                provider::getShareText.safeInvoke(skuIds)
+                            }
 
                             shareManager.shareImages(
                                 content = shareText?.getOrNull(),

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.selector.model.AiutaImageSelectorPredefinedModelFeature
+import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
@@ -23,7 +23,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 internal fun ModelSelectorEmptyModelsErrorContent(modifier: Modifier) {
     val theme = LocalTheme.current
 
-    val predefinedModelFeature = strictProvideFeature<AiutaImageSelectorPredefinedModelFeature>()
+    val predefinedModelFeature = strictProvideFeature<AiutaImagePickerPredefinedModelFeature>()
 
     val screenSize = rememberScreenSize()
     val textHorizontalPadding = screenSize.widthDp * 0.26f

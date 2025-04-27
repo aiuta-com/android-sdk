@@ -10,7 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIcon
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated

@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.uikit.composition
 
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.aiuta.fashionsdk.tryon.compose.configuration.ui.theme.AiutaTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 
 // Theme
 public val LocalTheme: ProvidableCompositionLocal<AiutaTheme> =

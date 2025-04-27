@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.toComposeImageBitmap
 import coil3.compose.rememberAsyncImagePainter
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaComposeDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaIOSSkia
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIOSSkia
 
 @Composable
 public actual fun painterResource(drawableResource: AiutaDrawableResource): Painter {

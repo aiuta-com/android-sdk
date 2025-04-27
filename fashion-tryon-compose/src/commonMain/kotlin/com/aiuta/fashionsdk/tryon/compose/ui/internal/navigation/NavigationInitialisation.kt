@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
-import com.aiuta.fashionsdk.tryon.compose.domain.models.configuration.AiutaConfiguration
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnLoadingActionsController
@@ -31,8 +31,7 @@ internal fun NavigationInitialisation(
         modifier = modifier,
     ) {
         val controller = rememberFashionTryOnController(
-            aiutaTryOnConfiguration = aiutaConfiguration.tryOnConfiguration,
-            aiutaUserInterfaceConfiguration = aiutaConfiguration.userInterface,
+            aiutaConfiguration = aiutaConfiguration,
             productItem = productItem,
         )
 
@@ -40,9 +39,9 @@ internal fun NavigationInitialisation(
             LocalAnalytic provides controller.analytic,
             LocalController provides controller,
             LocalTheme provides aiutaConfiguration.userInterface.theme,
-            LocalAiutaConfiguration provides aiutaConfiguration.tryOnConfiguration,
+            LocalAiutaFeatures provides aiutaConfiguration.features,
             LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
-                aiuta = { aiutaConfiguration.tryOnConfiguration.aiuta },
+                aiuta = { aiutaConfiguration.aiuta },
             ),
             LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
             LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),

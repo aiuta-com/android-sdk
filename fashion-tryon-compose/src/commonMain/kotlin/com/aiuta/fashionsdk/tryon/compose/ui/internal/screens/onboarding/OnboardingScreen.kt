@@ -19,8 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.onboarding.AiutaOnboardingFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
@@ -47,7 +47,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 @Composable
 internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
-    val configuration = LocalAiutaConfiguration.current
+    val features = LocalAiutaFeatures.current
     val theme = LocalTheme.current
 
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
@@ -109,7 +109,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             onClick = {
                 onboardingController.nextPage(
                     controller = controller,
-                    configuration = configuration,
+                    features = features,
                 )
             },
         )

@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aiuta.fashionsdk.compose.core.context.LocalAiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.ui.AiutaTryOnFlow
+import com.aiuta.fashionsdk.tryon.core.tryon
 import sample.tryon.kmp.utils.buildMockProductItem
 
 @Composable
@@ -22,7 +23,7 @@ fun AiutaApp() {
     }
 
     LaunchedEffect(Unit) {
-        viewModel.loadActiveProduct(aiutaConfiguration.tryOnConfiguration.aiutaTryOn)
+        viewModel.loadActiveProduct(aiutaConfiguration.aiuta.tryon)
     }
 
     activeProductItem.value?.let { generationItem ->

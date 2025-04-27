@@ -44,9 +44,9 @@ import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
+import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsHistoryEventType
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
@@ -337,8 +337,9 @@ private fun BoxScope.HistoryScreenInterface(
                             .map { it.imageUrl }
 
                     val skuIds = listOf(controller.activeProductItem.value.id)
-                    val shareText =
-                        shareFeature?.dataProvider?.requestShareTextAction?.safeInvoke(skuIds)
+                    val shareText = shareFeature?.dataProvider?.let { provider ->
+                        provider::getShareText.safeInvoke(skuIds)
+                    }
 
                     // After get list, let's deactivate select changePhotoButtonStyle
                     controller.deactivateSelectMode()

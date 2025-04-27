@@ -1,7 +1,7 @@
 package sample.tryon.kmp.utils
 
 import androidx.compose.runtime.Composable
-import com.aiuta.fashionsdk.tryon.compose.configuration.models.product.ProductItem
+import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationItem
 
 @Composable

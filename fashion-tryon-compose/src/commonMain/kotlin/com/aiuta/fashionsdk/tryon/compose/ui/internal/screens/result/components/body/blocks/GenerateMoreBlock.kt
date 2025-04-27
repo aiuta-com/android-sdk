@@ -5,7 +5,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.repicking.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
@@ -15,7 +14,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeat
 
 @Composable
 internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
-    val repickingFeature = provideFeature<AiutaTryOnWithOtherPhotoFeature>()
+    val repickingFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature>()
 
     repickingFeature?.let {
         val controller = LocalController.current
@@ -30,7 +29,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
 
         IconButton(
             modifier = modifier,
-            icon = repickingFeature.icons.repicking24,
+            icon = repickingFeature.icons.changePhoto24,
             onClick = {
                 controller.sendResultEvent(
                     event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,

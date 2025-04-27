@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import com.aiuta.fashionsdk.tryon.compose.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateSelectMode
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarSelectAvailable
@@ -24,7 +23,7 @@ internal fun HistoryAppBar(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val generationsHistoryFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
 
     val isAppbarSelectAvailable = controller.isAppbarSelectAvailable()
 

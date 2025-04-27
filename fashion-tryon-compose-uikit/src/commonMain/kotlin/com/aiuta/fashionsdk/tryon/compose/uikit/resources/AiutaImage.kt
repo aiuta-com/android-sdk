@@ -20,7 +20,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.aiuta.fashionsdk.tryon.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.utils.placeholderFadeConnecting
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
