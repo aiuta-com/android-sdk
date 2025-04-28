@@ -13,6 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,6 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneImagePickerPageFeature
+import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -50,8 +55,18 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
         screenSize.widthDp * 0.05f
     }
 
-    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
+    val imageSelectorFeature = strictProvideFeature<AiutaImagePickerFeature>()
     val predefinedModelFeature = provideFeature<AiutaImagePickerPredefinedModelFeature>()
+    val standaloneImagePickerPageFeature =
+        provideFeature<AiutaConsentStandaloneImagePickerPageFeature>()
+
+    val shouldShowConsent = remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        shouldShowConsent.value = standaloneImagePickerPageFeature?.let {
+            controller.consentInteractor.shouldShowConsent(standaloneImagePickerPageFeature)
+        } ?: false
+    }
 
     Column(
         modifier =
@@ -102,12 +117,19 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             style = FashionButtonStyles.primaryStyle(theme),
             size = FashionButtonSizes.lSize(),
             onClick = {
-                controller.bottomSheetNavigator.show(
-                    newSheetScreen =
-                    NavigationBottomSheetScreen.ImagePicker(
-                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
-                    ),
-                )
+                val showPickerSheet = {
+                    controller.bottomSheetNavigator.show(
+                        newSheetScreen =
+                        NavigationBottomSheetScreen.ImagePicker(
+                            originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                        ),
+                    )
+                }
+                if (shouldShowConsent.value) {
+                    controller.navigateTo(NavigationScreen.Consent(onObtainedConsents = showPickerSheet))
+                } else {
+                    showPickerSheet()
+                }
             },
         )
 
@@ -148,7 +170,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
 private fun ImagesBlock(modifier: Modifier = Modifier) {
     val density = LocalDensity.current
 
-    val imageSelectorFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature>()
+    val imageSelectorFeature = strictProvideFeature<AiutaImagePickerFeature>()
     val paddingPx = with(density) { (32.dp).toPx() }
 
     Box(

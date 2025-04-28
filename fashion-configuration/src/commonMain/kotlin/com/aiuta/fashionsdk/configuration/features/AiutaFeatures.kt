@@ -3,9 +3,11 @@ package com.aiuta.fashionsdk.configuration.features
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.annotations.AiutaDsl
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentEmbeddedIntoOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
-import com.aiuta.fashionsdk.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPageFeature
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneImagePickerPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.exceptions.NoSuchFeatureException
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
@@ -49,8 +51,10 @@ public class AiutaFeatures private constructor(
         AiutaOnboardingBestResultsPageFeature::class -> onboarding?.bestResultsPage
         // Consent
         AiutaConsentFeature::class -> consent
+        AiutaConsentEmbeddedIntoOnboardingFeature::class -> consent
+        AiutaConsentStandaloneImagePickerPageFeature::class -> consent
         AiutaConsentStandaloneOnboardingPageFeature::class -> consent
-        AiutaConsentBuiltInWithOnboardingPageFeature::class -> consent
+        AiutaConsentStandaloneFeature::class -> consent
         // Image selector
         AiutaImagePickerFeature::class -> imagePicker
         AiutaImagePickerCameraFeature::class -> imagePicker.camera

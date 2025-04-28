@@ -11,6 +11,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScree
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.screenPosition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.ConsentScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.history.HistoryScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.ModelSelectorScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.OnboardingScreen
@@ -41,44 +42,51 @@ internal fun NavigationContent(modifier: Modifier = Modifier) {
         },
     ) { targetScreen ->
         when (targetScreen) {
-            NavigationScreen.Splash -> {
+            is NavigationScreen.Splash -> {
                 SplashScreen(
                     modifier = sharedModifier,
                     navigateTo = controller::navigateTo,
                 )
             }
 
-            NavigationScreen.Preonboarding -> {
+            is NavigationScreen.Preonboarding -> {
                 PreOnboardingScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.Onboarding -> {
+            is NavigationScreen.Onboarding -> {
                 OnboardingScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.History -> {
+            is NavigationScreen.History -> {
                 HistoryScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.ImageSelector -> {
+            is NavigationScreen.ImageSelector -> {
                 ImageSelectorScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.ModelSelector -> {
+            is NavigationScreen.Consent -> {
+                ConsentScreen(
+                    modifier = sharedModifier,
+                    onObtainedConsents = targetScreen.onObtainedConsents,
+                )
+            }
+
+            is NavigationScreen.ModelSelector -> {
                 ModelSelectorScreen(
                     modifier = sharedModifier,
                 )
             }
 
-            NavigationScreen.GenerationResult -> {
+            is NavigationScreen.GenerationResult -> {
                 GenerationResultScreen(
                     modifier = sharedModifier,
                 )

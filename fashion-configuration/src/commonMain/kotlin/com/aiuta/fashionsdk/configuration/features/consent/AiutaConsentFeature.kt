@@ -3,20 +3,24 @@ package com.aiuta.fashionsdk.configuration.features.consent
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
-import com.aiuta.fashionsdk.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPageFeature
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
 
 @Immutable
-public interface AiutaConsentFeature : AiutaFeature
+public sealed interface AiutaConsentFeature : AiutaFeature
 
-public inline fun AiutaFeatures.Builder.builtInConsent(
-    block: AiutaConsentBuiltInWithOnboardingPageFeature.Builder.() -> Unit,
+public inline fun AiutaFeatures.Builder.embeddedConsent(
+    block: AiutaConsentEmbeddedIntoOnboardingFeature.Builder.() -> Unit,
 ): AiutaFeatures.Builder = apply {
-    consent = AiutaConsentBuiltInWithOnboardingPageFeature.Builder().apply(block).build()
+    consent = AiutaConsentEmbeddedIntoOnboardingFeature.Builder().apply(block).build()
 }
 
-public inline fun AiutaFeatures.Builder.standaloneConsent(
+public inline fun AiutaFeatures.Builder.standaloneOnboardingConsent(
     block: AiutaConsentStandaloneOnboardingPageFeature.Builder.() -> Unit,
 ): AiutaFeatures.Builder = apply {
     consent = AiutaConsentStandaloneOnboardingPageFeature.Builder().apply(block).build()
+}
+
+public inline fun AiutaFeatures.Builder.standaloneImagePickerConsent(
+    block: AiutaConsentStandaloneImagePickerPageFeature.Builder.() -> Unit,
+): AiutaFeatures.Builder = apply {
+    consent = AiutaConsentStandaloneImagePickerPageFeature.Builder().apply(block).build()
 }

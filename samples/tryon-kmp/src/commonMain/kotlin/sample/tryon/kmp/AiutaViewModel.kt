@@ -30,6 +30,7 @@ class AiutaViewModel : ViewModel() {
             },
         )
         defaultAiutaFeatures(
+            termsOfServiceUrl = "https://you-domain.com/you-tos",
             cartHandler = object : AiutaTryOnCartFeatureHandler {
                 override fun addToCart(productId: String) {
                     println("CLICK ADD TO CART")

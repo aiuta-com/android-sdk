@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.configuration.defaults.features.consent
 
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.data.AiutaConsentStandaloneOnboardingPageFeatureData
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.strings.AiutaConsentStandaloneOnboardingPageFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.consent.standaloneConsent
+import com.aiuta.fashionsdk.configuration.features.consent.builtin.strings.AiutaConsentEmbeddedIntoOnboardingFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.consent.embeddedConsent
 
-public fun AiutaFeatures.Builder.defaultConsent(): AiutaFeatures.Builder = standaloneConsent {
-    strings = AiutaConsentStandaloneOnboardingPageFeatureStrings.Default()
-    data = AiutaConsentStandaloneOnboardingPageFeatureData.Default()
+public fun AiutaFeatures.Builder.defaultConsent(
+    termsOfServiceUrl: String,
+): AiutaFeatures.Builder = embeddedConsent {
+    strings = AiutaConsentEmbeddedIntoOnboardingFeatureStrings.Default(termsOfServiceUrl)
 }

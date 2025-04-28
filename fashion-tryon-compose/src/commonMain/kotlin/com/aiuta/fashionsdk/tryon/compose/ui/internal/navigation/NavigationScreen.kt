@@ -24,6 +24,12 @@ internal interface NavigationScreen {
         override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.IMAGE_PICKER
     }
 
+    class Consent(
+        val onObtainedConsents: () -> Unit,
+    ) : NavigationScreen {
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.CONSENT
+    }
+
     object ModelSelector : NavigationScreen {
         override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.MODEL_PICKER
     }

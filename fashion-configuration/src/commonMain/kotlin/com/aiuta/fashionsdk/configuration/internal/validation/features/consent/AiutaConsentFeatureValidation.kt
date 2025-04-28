@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.configuration.internal.validation.features.consent
 
 import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentEmbeddedIntoOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
-import com.aiuta.fashionsdk.configuration.features.consent.builtin.AiutaConsentBuiltInWithOnboardingPageFeature
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.configuration.internal.validation.validateListWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.validateStringWithSettings
 import com.aiuta.fashionsdk.logger.AiutaLogger
@@ -13,12 +13,12 @@ internal fun AiutaConsentFeature.validateWithSettings(
     debugSettings: AiutaDebugSettings,
 ) {
     when (this) {
-        is AiutaConsentBuiltInWithOnboardingPageFeature -> {
+        is AiutaConsentEmbeddedIntoOnboardingFeature -> {
             // Strings
             strings.consentHtml.validateStringWithSettings("consentHtml", logger, debugSettings)
         }
 
-        is AiutaConsentStandaloneOnboardingPageFeature -> {
+        is AiutaConsentStandaloneFeature -> {
             // Strings
             strings.consentPageTitle.validateStringWithSettings(
                 propertyName = "consentPageTitle",

@@ -15,7 +15,6 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.Co
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
@@ -23,7 +22,6 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.Clie
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.ConsentEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 import kotlin.concurrent.Volatile
@@ -56,7 +54,6 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
 
         // Onboarding saver
         OnboardingEntity::class,
-        ConsentEntity::class,
 
         // Aiuta code checker
         AiutaCodeEntity::class,
@@ -88,8 +85,6 @@ internal abstract class AppDatabase : RoomDatabase() {
 
     // Onboarding saver
     abstract fun onboardingDao(): OnboardingDao
-
-    abstract fun consentDao(): ConsentDao
 
     // Aiuta code checker
     abstract fun aiutaCodeDao(): AiutaCodeDao
