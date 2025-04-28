@@ -3,7 +3,6 @@ package com.aiuta.fashionsdk.configuration.defaults.features
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.defaults.features.consent.defaultConsent
 import com.aiuta.fashionsdk.configuration.defaults.features.onboarding.defaultOnboarding
-import com.aiuta.fashionsdk.configuration.defaults.features.poweredby.defaultPoweredBy
 import com.aiuta.fashionsdk.configuration.defaults.features.selector.defaultImagePicker
 import com.aiuta.fashionsdk.configuration.defaults.features.share.defaultShare
 import com.aiuta.fashionsdk.configuration.defaults.features.tryon.defaultTryOn
@@ -19,6 +18,5 @@ public fun AiutaConfiguration.Builder.defaultAiutaFeatures(
     defaultConsent()
     defaultImagePicker()
     defaultTryOn(cartHandler = cartHandler)
-    defaultPoweredBy()
     defaultShare()
 }

@@ -15,7 +15,6 @@ import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePicke
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePickerPhotoGalleryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
-import com.aiuta.fashionsdk.configuration.features.powerby.AiutaPoweredByFeature
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
@@ -38,7 +37,6 @@ public class AiutaFeatures private constructor(
     public val consent: AiutaConsentFeature?,
     public val imagePicker: AiutaImagePickerFeature,
     public val tryOn: AiutaTryOnFeature,
-    public val poweredBy: AiutaPoweredByFeature,
     public val share: AiutaShareFeature?,
     public val wishlist: AiutaWishlistFeature?,
 ) {
@@ -69,8 +67,6 @@ public class AiutaFeatures private constructor(
         AiutaTryOnFeedbackOtherFeature::class -> tryOn.feedback?.otherFeedback
         AiutaTryOnGenerationsHistoryFeature::class -> tryOn.generationsHistory
         AiutaTryOnWithOtherPhotoFeature::class -> tryOn.otherPhoto
-        // Powered by Aiuta
-        AiutaPoweredByFeature::class -> poweredBy
         // Share
         AiutaShareFeature::class -> share
         AiutaShareWatermarkFeature::class -> share?.watermark
@@ -95,7 +91,6 @@ public class AiutaFeatures private constructor(
         public var consent: AiutaConsentFeature? = null
         public var imagePicker: AiutaImagePickerFeature? = null
         public var tryOn: AiutaTryOnFeature? = null
-        public var poweredBy: AiutaPoweredByFeature? = null
         public var share: AiutaShareFeature? = null
         public var wishlist: AiutaWishlistFeature? = null
 
@@ -112,10 +107,6 @@ public class AiutaFeatures private constructor(
                 tryOn = tryOn.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "tryOn",
-                ),
-                poweredBy = poweredBy.checkNotNullWithDescription(
-                    parentClass = parentClass,
-                    property = "poweredBy",
                 ),
                 share = share,
                 wishlist = wishlist,

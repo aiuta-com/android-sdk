@@ -15,20 +15,18 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.powerby.AiutaPoweredByFeature
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
 internal fun AiutaLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
-    val poweredByFeature = strictProvideFeature<AiutaPoweredByFeature>()
+    val powerBarTheme = theme.powerBar
     val highlightedText = remember {
         buildHighlightedString(
-            originalString = poweredByFeature.strings.poweredByAiuta,
+            originalString = powerBarTheme.strings.poweredByAiuta,
             keyword = "Aiuta",
-            color = poweredByFeature.colors.aiuta,
+            color = powerBarTheme.colors.aiuta,
         )
     }
 

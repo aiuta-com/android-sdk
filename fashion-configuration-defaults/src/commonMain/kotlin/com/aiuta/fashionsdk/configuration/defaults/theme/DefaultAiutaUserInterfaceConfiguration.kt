@@ -6,6 +6,7 @@ import com.aiuta.fashionsdk.configuration.defaults.theme.error.defaultErrorSnack
 import com.aiuta.fashionsdk.configuration.defaults.theme.image.defaultImage
 import com.aiuta.fashionsdk.configuration.defaults.theme.label.defaultLabel
 import com.aiuta.fashionsdk.configuration.defaults.theme.pagebar.defaultPageBar
+import com.aiuta.fashionsdk.configuration.defaults.theme.powerby.defaultPoweredBar
 import com.aiuta.fashionsdk.configuration.defaults.theme.productbar.defaultProductBar
 import com.aiuta.fashionsdk.configuration.defaults.theme.selection.defaultSelectionSnackbar
 import com.aiuta.fashionsdk.configuration.defaults.theme.sheet.defaultBottomSheet
@@ -27,6 +28,7 @@ public fun AiutaConfiguration.Builder.defaultAiutaUserInterfaceConfiguration(
         defaultLabel()
         defaultPageBar()
         defaultProductBar()
+        defaultPoweredBar()
         defaultSelectionSnackbar()
         defaultBottomSheet()
     }

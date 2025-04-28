@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.error.AiutaErrorSnackbarTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.image.AiutaImageTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.label.AiutaLabelTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.AiutaPageBarTheme
+import com.aiuta.fashionsdk.configuration.ui.theme.powerby.AiutaPowerBarTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.AiutaProductBarTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.selection.AiutaSelectionSnackbarTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.AiutaBottomSheetTheme
@@ -20,6 +21,7 @@ public class AiutaTheme private constructor(
     public val image: AiutaImageTheme,
     public val button: AiutaButtonTheme,
     public val pageBar: AiutaPageBarTheme,
+    public val powerBar: AiutaPowerBarTheme,
     public val bottomSheet: AiutaBottomSheetTheme,
     public val selectionSnackbar: AiutaSelectionSnackbarTheme,
     public val errorSnackbar: AiutaErrorSnackbarTheme,
@@ -31,6 +33,7 @@ public class AiutaTheme private constructor(
         public var image: AiutaImageTheme? = null
         public var button: AiutaButtonTheme? = null
         public var pageBar: AiutaPageBarTheme? = null
+        public var powerBar: AiutaPowerBarTheme? = null
         public var bottomSheet: AiutaBottomSheetTheme? = null
         public var selectionSnackbar: AiutaSelectionSnackbarTheme? = null
         public var errorSnackbar: AiutaErrorSnackbarTheme? = null
@@ -59,6 +62,10 @@ public class AiutaTheme private constructor(
                 pageBar = pageBar.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "pageBar",
+                ),
+                powerBar = powerBar.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "powerBar",
                 ),
                 bottomSheet = bottomSheet.checkNotNullWithDescription(
                     parentClass = parentClass,
