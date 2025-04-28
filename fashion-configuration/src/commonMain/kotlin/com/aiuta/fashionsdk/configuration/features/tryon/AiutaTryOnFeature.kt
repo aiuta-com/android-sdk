@@ -71,7 +71,7 @@ public class AiutaTryOnFeature private constructor(
                 ),
                 toggles = toggles.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "toggles",
+                    property = "styles",
                 ),
                 strings = strings.checkNotNullWithDescription(
                     parentClass = parentClass,

@@ -259,7 +259,7 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -270,11 +270,11 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;)V
 	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;)V
-	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeatureKt {
@@ -750,7 +750,7 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 	public final fun getOtherPhoto ()Lcom/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -768,7 +768,7 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 	public final fun getOtherPhoto ()Lcom/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
 	public final fun setCart (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaTryOnCartFeature;)V
 	public final fun setFeedback (Lcom/aiuta/fashionsdk/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature;)V
 	public final fun setFitDisclaimer (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;)V
@@ -779,7 +779,7 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 	public final fun setOtherPhoto (Lcom/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;)V
 	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;)V
-	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeatureKt {
@@ -1540,7 +1540,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPage
 	public static final field $stable I
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;
 }
 
@@ -1549,10 +1549,10 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPage
 	public fun <init> ()V
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;)V
-	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;)V
 	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;)V
 }
 
@@ -1590,7 +1590,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaP
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;
 	public final fun getPrices ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;
 }
 
@@ -1600,11 +1600,11 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaP
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;
 	public final fun getPrices ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;)V
 	public final fun setPrices (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;)V
-	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;)V
 	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;)V
 }
 
@@ -1739,7 +1739,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottom
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getGrabber ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;
 }
 
@@ -1749,11 +1749,11 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottom
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;
 	public final fun getGrabber ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;
-	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;
 	public final fun setGrabber (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;)V
 	public final fun setShapes (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;)V
-	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
 	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;)V
 }
 

@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.configuration.defaults.images.features.onboarding.tr
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.bestResultsPage
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.strings.AiutaOnboardingBestResultsPageFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.toggles.AiutaOnboardingBestResultsPageFeatureToggles
+import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.styles.AiutaOnboardingBestResultsPageFeatureStyles
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.howItWorksPage
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.strings.AiutaOnboardingHowItWorksPageFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.onboarding.onboarding
@@ -18,7 +18,7 @@ public fun AiutaFeatures.Builder.defaultOnboarding(): AiutaFeatures.Builder = on
         images = DefaultsAiutaOnboardingBestResultsPageFeatureImages()
         icons = DefaultAiutaOnboardingBestResultsPageFeatureIcons()
         strings = AiutaOnboardingBestResultsPageFeatureStrings.Default()
-        toggles = AiutaOnboardingBestResultsPageFeatureToggles.Default()
+        styles = AiutaOnboardingBestResultsPageFeatureStyles.Default()
     }
     howItWorksPage {
         images = DefaultAiutaOnboardingHowItWorksPageFeatureImages()
