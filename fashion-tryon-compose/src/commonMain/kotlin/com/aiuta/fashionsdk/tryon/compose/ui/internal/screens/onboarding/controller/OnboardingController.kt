@@ -30,7 +30,7 @@ internal fun rememberOnboardingController(): OnboardingController {
         val rawOnboardingQueue = mutableListOf<OnboardingState>()
 
         // Try on page
-        rawOnboardingQueue.add(TryOnPage(onboardingFeature.tryOnPage))
+        rawOnboardingQueue.add(TryOnPage(onboardingFeature.howItWorksPage))
 
         // Best result
         onboardingFeature.bestResultsPage?.let { bestResultsPageFeature ->

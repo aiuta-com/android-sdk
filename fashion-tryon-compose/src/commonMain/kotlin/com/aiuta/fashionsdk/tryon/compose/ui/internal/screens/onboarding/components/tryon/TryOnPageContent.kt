@@ -39,7 +39,7 @@ internal fun TryOnPageContent(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val tryOnPageFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature>()
+    val tryOnPageFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature>()
 
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
@@ -78,8 +78,8 @@ internal fun TryOnPageContent(
             Modifier
                 .fillMaxWidth()
                 .weight(0.35f),
-            title = tryOnPageFeature.strings.onboardingTryOnTitle,
-            subtitle = tryOnPageFeature.strings.onboardingTryOnDescription,
+            title = tryOnPageFeature.strings.onboardingHowItWorksTitle,
+            subtitle = tryOnPageFeature.strings.onboardingHowItWorksDescription,
         )
     }
 }

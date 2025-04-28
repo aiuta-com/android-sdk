@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConse
 import com.aiuta.fashionsdk.configuration.features.exceptions.NoSuchFeatureException
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
-import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
+import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePickerCameraFeature
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePickerPhotoGalleryFeature
@@ -45,7 +45,7 @@ public class AiutaFeatures private constructor(
         AiutaWelcomeScreenFeature::class -> welcomeScreen
         // Onboarding
         AiutaOnboardingFeature::class -> onboarding
-        AiutaOnboardingTryOnPageFeature::class -> onboarding?.tryOnPage
+        AiutaOnboardingHowItWorksPageFeature::class -> onboarding?.howItWorksPage
         AiutaOnboardingBestResultsPageFeature::class -> onboarding?.bestResultsPage
         // Consent
         AiutaConsentFeature::class -> consent
