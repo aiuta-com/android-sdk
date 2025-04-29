@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.defaults.features.selector
 
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.camera.DefaultAiutaImagePickerCameraFeatureIcons
 import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.gallery.DefaultAiutaImagePickerPhotoGalleryFeatureIcons
-import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.model.DefaultAiutaImageSelectorPredefinedModelFeatureIcons
+import com.aiuta.fashionsdk.configuration.defaults.icons.features.selector.model.DefaultAiutaImagePickerPredefinedModelFeatureIcons
 import com.aiuta.fashionsdk.configuration.defaults.images.features.selector.DefaultAiutaImagePickerFeatureImages
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.picker.camera.camera
@@ -14,7 +14,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaIm
 import com.aiuta.fashionsdk.configuration.features.picker.history.uploadsHistory
 import com.aiuta.fashionsdk.configuration.features.picker.imagePicker
 import com.aiuta.fashionsdk.configuration.features.picker.model.predefinedModels
-import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImageSelectorPredefinedModelFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImagePickerPredefinedModelFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.picker.strings.AiutaImagePickerFeatureStrings
 
 public fun AiutaFeatures.Builder.defaultImagePicker(): AiutaFeatures.Builder = imagePicker {
@@ -27,8 +27,8 @@ public fun AiutaFeatures.Builder.defaultImagePicker(): AiutaFeatures.Builder = i
         strings = AiutaImagePickerPhotoGalleryFeatureStrings.Default()
     }
     predefinedModels {
-        icons = DefaultAiutaImageSelectorPredefinedModelFeatureIcons()
-        strings = AiutaImageSelectorPredefinedModelFeatureStrings.Default()
+        icons = DefaultAiutaImagePickerPredefinedModelFeatureIcons()
+        strings = AiutaImagePickerPredefinedModelFeatureStrings.Default()
     }
     uploadsHistory {
         strings =
