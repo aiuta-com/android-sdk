@@ -12,7 +12,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.strings.AiutaImagePick
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaImagePickerFeature private constructor(
+public class AiutaImagePickerFeature(
     // Features
     public val camera: AiutaImagePickerCameraFeature?,
     public val photoGallery: AiutaImagePickerPhotoGalleryFeature,

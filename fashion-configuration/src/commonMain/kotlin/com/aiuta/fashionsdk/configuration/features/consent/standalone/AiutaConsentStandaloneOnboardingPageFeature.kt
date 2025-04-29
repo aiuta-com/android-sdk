@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovid
 import com.aiuta.fashionsdk.configuration.features.consent.standalone.strings.AiutaConsentStandaloneOnboardingPageFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaConsentStandaloneOnboardingPageFeature private constructor(
+public class AiutaConsentStandaloneOnboardingPageFeature(
     public override val strings: AiutaConsentStandaloneOnboardingPageFeatureStrings,
     public override val data: AiutaConsentStandaloneOnboardingPageFeatureData,
     public override val dataProvider: AiutaConsentStandaloneOnboardingPageFeatureDataProvider?,

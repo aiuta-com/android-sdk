@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.sheet.toggles.AiutaBottomShee
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomSheetThemeTypography
 
 @Immutable
-public class AiutaBottomSheetTheme private constructor(
+public class AiutaBottomSheetTheme(
     public val typography: AiutaBottomSheetThemeTypography,
     public val shapes: AiutaBottomSheetThemeShapes,
     public val grabber: AiutaBottomSheetThemeGrabber,

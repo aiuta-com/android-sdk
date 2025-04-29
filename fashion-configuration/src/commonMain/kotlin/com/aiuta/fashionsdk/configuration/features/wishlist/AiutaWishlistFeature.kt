@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.features.wishlist.icons.AiutaWishlistF
 import com.aiuta.fashionsdk.configuration.features.wishlist.strings.AiutaWishlistFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaWishlistFeature private constructor(
+public class AiutaWishlistFeature(
     public val icons: AiutaWishlistFeatureIcons,
     public val strings: AiutaWishlistFeatureStrings,
     public val dataProvider: AiutaWishlistFeatureDataProvider,

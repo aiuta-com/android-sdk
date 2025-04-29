@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors.AiutaPowerBarThemeColors
 import com.aiuta.fashionsdk.configuration.ui.theme.powerby.strings.AiutaPowerBarThemeStrings
 
-public class AiutaPowerBarTheme private constructor(
+public class AiutaPowerBarTheme(
     public val strings: AiutaPowerBarThemeStrings,
     public val colors: AiutaPowerBarThemeColors,
 ) : AiutaFeature {

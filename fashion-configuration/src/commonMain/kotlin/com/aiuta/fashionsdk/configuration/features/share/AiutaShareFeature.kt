@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.configuration.features.share.strings.AiutaShareFeatu
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaShareFeature private constructor(
+public class AiutaShareFeature(
     // Features
     public val watermark: AiutaShareWatermarkFeature?,
     // General

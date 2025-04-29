@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.label.typography.AiutaLabelThemeTypography
 
 @Immutable
-public class AiutaLabelTheme private constructor(
+public class AiutaLabelTheme(
     public val typography: AiutaLabelThemeTypography,
 ) {
     public class Builder {

@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
 import com.aiuta.fashionsdk.configuration.features.consent.builtin.strings.AiutaConsentEmbeddedIntoOnboardingFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaConsentEmbeddedIntoOnboardingFeature private constructor(
+public class AiutaConsentEmbeddedIntoOnboardingFeature(
     public val strings: AiutaConsentEmbeddedIntoOnboardingFeatureStrings,
 ) : AiutaConsentFeature {
 

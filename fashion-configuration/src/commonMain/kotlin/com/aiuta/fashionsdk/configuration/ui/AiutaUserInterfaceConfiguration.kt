@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.theme
 
 @Immutable
-public class AiutaUserInterfaceConfiguration private constructor(
+public class AiutaUserInterfaceConfiguration(
     public val styleMetaData: AiutaStyleMetaData?,
     public val actions: AiutaUserInterfaceActions,
     public val theme: AiutaTheme,

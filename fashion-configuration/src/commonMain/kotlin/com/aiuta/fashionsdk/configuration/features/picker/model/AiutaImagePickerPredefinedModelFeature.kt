@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.icons.AiutaImage
 import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImageSelectorPredefinedModelFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaImagePickerPredefinedModelFeature private constructor(
+public class AiutaImagePickerPredefinedModelFeature(
     public val icons: AiutaImageSelectorPredefinedModelFeatureIcons,
     public val strings: AiutaImageSelectorPredefinedModelFeatureStrings,
 ) : AiutaFeature {

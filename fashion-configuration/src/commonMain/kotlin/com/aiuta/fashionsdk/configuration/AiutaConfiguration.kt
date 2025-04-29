@@ -17,7 +17,7 @@ import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 
 @Immutable
-public class AiutaConfiguration private constructor(
+public class AiutaConfiguration(
     public val aiuta: Aiuta,
     public val debugSettings: AiutaDebugSettings,
     public val features: AiutaFeatures,

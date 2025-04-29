@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaI
 import com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaImagePickerUploadsHistoryFeature private constructor(
+public class AiutaImagePickerUploadsHistoryFeature(
     public val strings: AiutaImagePickerUploadsHistoryFeatureStrings,
     public val styles: AiutaImagePickerUploadsHistoryFeatureStyles,
     public val dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider?,

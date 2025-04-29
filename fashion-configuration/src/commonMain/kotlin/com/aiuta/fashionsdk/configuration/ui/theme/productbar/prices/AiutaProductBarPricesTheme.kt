@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.prices.colors.Aiut
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.prices.typography.AiutaProductBarPricesThemeTypography
 
 @Immutable
-public class AiutaProductBarPricesTheme private constructor(
+public class AiutaProductBarPricesTheme(
     public val typography: AiutaProductBarPricesThemeTypography,
     public val colors: AiutaProductBarPricesThemeColors,
 ) {

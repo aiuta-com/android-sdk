@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.strings.A
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaOnboardingHowItWorksPageFeature private constructor(
+public class AiutaOnboardingHowItWorksPageFeature(
     public val images: AiutaOnboardingHowItWorksPageFeatureImages,
     public val strings: AiutaOnboardingHowItWorksPageFeatureStrings,
 ) : AiutaFeature {

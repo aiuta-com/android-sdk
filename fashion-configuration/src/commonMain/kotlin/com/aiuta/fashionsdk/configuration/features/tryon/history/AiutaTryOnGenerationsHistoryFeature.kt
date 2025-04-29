@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.history.icons.AiutaTryO
 import com.aiuta.fashionsdk.configuration.features.tryon.history.strings.AiutaTryOnGenerationsHistoryFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaTryOnGenerationsHistoryFeature private constructor(
+public class AiutaTryOnGenerationsHistoryFeature(
     public val icons: AiutaTryOnGenerationsHistoryFeatureIcons,
     public val strings: AiutaTryOnGenerationsHistoryFeatureStrings,
     public val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider?,

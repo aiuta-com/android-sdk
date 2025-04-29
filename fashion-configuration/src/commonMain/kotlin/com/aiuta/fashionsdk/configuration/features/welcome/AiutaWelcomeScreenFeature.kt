@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.configuration.features.welcome.typography.AiutaWelco
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaWelcomeScreenFeature private constructor(
+public class AiutaWelcomeScreenFeature(
     public val images: AiutaWelcomeScreenFeatureImages,
     public val icons: AiutaWelcomeScreenFeatureIcons,
     public val strings: AiutaWelcomeScreenFeatureStrings,

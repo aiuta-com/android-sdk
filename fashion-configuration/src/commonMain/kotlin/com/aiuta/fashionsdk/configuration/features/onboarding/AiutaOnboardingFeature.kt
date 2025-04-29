@@ -10,10 +10,10 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.strings.AiutaOnboa
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaOnboardingFeature private constructor(
+public class AiutaOnboardingFeature(
     // Features
     public val howItWorksPage: AiutaOnboardingHowItWorksPageFeature,
-    public val bestResultsPage: AiutaOnboardingBestResultsPageFeature? = null,
+    public val bestResultsPage: AiutaOnboardingBestResultsPageFeature?,
     // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,

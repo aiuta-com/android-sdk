@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOn
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.strings.AiutaTryOnCartFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaTryOnCartFeature private constructor(
+public class AiutaTryOnCartFeature(
     public val strings: AiutaTryOnCartFeatureStrings,
     public val handler: AiutaTryOnCartFeatureHandler,
 ) : AiutaFeature {
