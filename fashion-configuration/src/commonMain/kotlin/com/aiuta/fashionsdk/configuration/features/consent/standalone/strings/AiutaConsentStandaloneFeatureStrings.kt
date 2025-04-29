@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.configuration.features.consent.standalone.strings
 
-public interface AiutaConsentStandaloneOnboardingPageFeatureStrings {
+public interface AiutaConsentStandaloneFeatureStrings {
     public val consentPageTitle: String?
     public val consentTitle: String
     public val consentDescriptionHtml: String
@@ -11,7 +11,7 @@ public interface AiutaConsentStandaloneOnboardingPageFeatureStrings {
         brand: String = "Aiuta",
         termsOfServiceUrl: String = "https://aiuta.com/legal/terms-of-service.html",
         privacyPolicyUrl: String = "https://aiuta.com/legal/privacy-policy.html",
-    ) : AiutaConsentStandaloneOnboardingPageFeatureStrings {
+    ) : AiutaConsentStandaloneFeatureStrings {
         override val consentPageTitle: String = "<b>Step 3/3</b> - Consent"
         override val consentTitle: String = "Consent"
         override val consentDescriptionHtml: String =
