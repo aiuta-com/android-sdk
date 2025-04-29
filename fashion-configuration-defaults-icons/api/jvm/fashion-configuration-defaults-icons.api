@@ -17,7 +17,7 @@ public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/se
 	public fun getGallery24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
-public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/selector/model/DefaultAiutaImageSelectorPredefinedModelFeatureIcons : com/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImageSelectorPredefinedModelFeatureIcons {
+public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/selector/model/DefaultAiutaImagePickerPredefinedModelFeatureIcons : com/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getSelectModels24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
