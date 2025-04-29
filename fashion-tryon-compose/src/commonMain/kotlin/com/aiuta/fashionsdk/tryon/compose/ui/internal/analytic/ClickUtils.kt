@@ -23,7 +23,7 @@ internal fun FashionTryOnController.clickAddToWishListActiveSKU(
         pageId = pageId,
         productId = productId,
     )
-    dataProvider::setWishlistStateAction.safeInvoke(productId, updatedWishlistState)
+    dataProvider::setProductInWishlist.safeInvoke(productId, updatedWishlistState)
 }
 
 internal fun FashionTryOnController.clickAddToCart(
