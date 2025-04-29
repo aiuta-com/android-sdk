@@ -117,15 +117,19 @@ public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaCons
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature {
 	public abstract fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
 	public abstract fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public abstract fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;
 	public abstract fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public abstract fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneImagePickerPageFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;)V
 	public fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
 	public fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;
 	public fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneImagePickerPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -135,18 +139,24 @@ public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaCons
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneImagePickerPageFeature;
 	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;
 	public final fun setData (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;)V
 	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;)V
+	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneOnboardingPageFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;)V
 	public fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
 	public fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;
 	public fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneOnboardingPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -156,10 +166,14 @@ public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaCons
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneOnboardingPageFeature;
 	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;
 	public final fun setData (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;)V
 	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;)V
+	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles;)V
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings {
@@ -199,6 +213,10 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/cons
 	public abstract fun obtainConsent (Ljava/util/List;)V
 }
 
+public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons {
+	public abstract fun getConsentTitle24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
+}
+
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings {
 	public abstract fun getConsentButtonAccept ()Ljava/lang/String;
 	public abstract fun getConsentDescriptionHtml ()Ljava/lang/String;
@@ -217,6 +235,16 @@ public final class com/aiuta/fashionsdk/configuration/features/consent/standalon
 	public fun getConsentFooterHtml ()Ljava/lang/String;
 	public fun getConsentPageTitle ()Ljava/lang/String;
 	public fun getConsentTitle ()Ljava/lang/String;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles {
+	public abstract fun getDrawBordersAroundConsents ()Z
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/consent/standalone/styles/AiutaConsentStandaloneFeatureStyles {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getDrawBordersAroundConsents ()Z
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/exceptions/NoSuchFeatureException : java/lang/IllegalStateException {
