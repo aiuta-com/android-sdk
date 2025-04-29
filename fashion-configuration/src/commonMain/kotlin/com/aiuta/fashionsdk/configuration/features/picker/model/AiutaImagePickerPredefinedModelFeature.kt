@@ -2,17 +2,17 @@ package com.aiuta.fashionsdk.configuration.features.picker.model
 
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
-import com.aiuta.fashionsdk.configuration.features.picker.model.icons.AiutaImageSelectorPredefinedModelFeatureIcons
-import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImageSelectorPredefinedModelFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.model.icons.AiutaImagePickerPredefinedModelFeatureIcons
+import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImagePickerPredefinedModelFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaImagePickerPredefinedModelFeature(
-    public val icons: AiutaImageSelectorPredefinedModelFeatureIcons,
-    public val strings: AiutaImageSelectorPredefinedModelFeatureStrings,
+    public val icons: AiutaImagePickerPredefinedModelFeatureIcons,
+    public val strings: AiutaImagePickerPredefinedModelFeatureStrings,
 ) : AiutaFeature {
     public class Builder : AiutaFeature.Builder {
-        public var icons: AiutaImageSelectorPredefinedModelFeatureIcons? = null
-        public var strings: AiutaImageSelectorPredefinedModelFeatureStrings? = null
+        public var icons: AiutaImagePickerPredefinedModelFeatureIcons? = null
+        public var strings: AiutaImagePickerPredefinedModelFeatureStrings? = null
 
         public override fun build(): AiutaImagePickerPredefinedModelFeature {
             val parentClass = "AiutaImagePickerPredefinedModelFeature"

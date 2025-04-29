@@ -1,12 +1,12 @@
 package com.aiuta.fashionsdk.configuration.features.picker.model.strings
 
-public interface AiutaImageSelectorPredefinedModelFeatureStrings {
+public interface AiutaImagePickerPredefinedModelFeatureStrings {
     public val predefinedModelPageTitle: String
     public val predefinedModelOr: String
     public val predefinedModelErrorEmptyModelsList: String
     public val predefinedModelCategories: Map<String, String>
 
-    public class Default : AiutaImageSelectorPredefinedModelFeatureStrings {
+    public class Default : AiutaImagePickerPredefinedModelFeatureStrings {
         override val predefinedModelPageTitle: String = "Select your model"
         override val predefinedModelOr: String = "Or"
         override val predefinedModelErrorEmptyModelsList: String = "The models list is empty"
