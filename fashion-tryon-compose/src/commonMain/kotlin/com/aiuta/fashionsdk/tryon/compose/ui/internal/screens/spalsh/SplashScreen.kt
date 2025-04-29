@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
@@ -54,34 +54,11 @@ internal fun SplashScreen(
             !features.isFeatureInitialize<AiutaOnboardingFeature>() -> false
             // SDK didn't show onboarding
             !isOnboardingPassed -> true
-
-            consentStandaloneFeature != null -> {
-                // This is standalone consent
-                val localAllConsentIds = controller.onboardingInteractor.getConsentIds().sorted()
-                val localObtainedConsentIds = controller.onboardingInteractor.getObtainedConsentIds().sorted()
-
-                val hostAllConsentIds = consentStandaloneFeature.data.consents.map { it.id }
-                val hostObtainedConsentIds = consentStandaloneFeature.dataProvider?.obtainedConsentsIds?.value?.sorted()
-                val hostRequiredConsentsIds = consentStandaloneFeature.data.consents.mapNotNull { consent ->
-                    if (consent.isRequired) {
-                        consent.id
-                    } else {
-                        null
-                    }
-                }
-
-                when {
-                    // If host and SDK have not same obtained consents (with data provider)
-                    hostObtainedConsentIds != null && hostObtainedConsentIds != localObtainedConsentIds -> true
-                    // If host and SDK have not same required consents
-                    !localObtainedConsentIds.containsAll(hostRequiredConsentsIds) -> true
-                    // If host and SDK have not same list of all consents, but host give short list of already obtained consents -> let's don't show
-                    hostAllConsentIds.size < localAllConsentIds.size && localObtainedConsentIds.containsAll(hostAllConsentIds) -> false
-                    // If host and SDK have not same list of all consents
-                    hostAllConsentIds != localAllConsentIds -> true
-                    else -> false
-                }
-            }
+            // If consent is part of onboarding and some mandatory consents not seen
+            consentStandaloneFeature != null &&
+                controller.consentInteractor.shouldShowConsent(
+                    consentStandaloneFeature,
+                ) -> true
             else -> false
         }
 

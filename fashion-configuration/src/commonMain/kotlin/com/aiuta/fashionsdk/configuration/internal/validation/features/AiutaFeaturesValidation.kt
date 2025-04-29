@@ -4,7 +4,6 @@ import com.aiuta.fashionsdk.configuration.debug.AiutaDebugSettings
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.internal.validation.features.consent.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.features.onboarding.validateWithSettings
-import com.aiuta.fashionsdk.configuration.internal.validation.features.poweredby.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.features.selector.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.features.share.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.features.tryon.validateWithSettings
@@ -21,7 +20,6 @@ internal fun AiutaFeatures.validateWithSettings(
     consent?.validateWithSettings(logger, debugSettings)
     imagePicker.validateWithSettings(logger, debugSettings)
     tryOn.validateWithSettings(logger, debugSettings)
-    poweredBy.validateWithSettings(logger, debugSettings)
     share?.validateWithSettings(logger, debugSettings)
     wishlist?.validateWithSettings(logger, debugSettings)
 }

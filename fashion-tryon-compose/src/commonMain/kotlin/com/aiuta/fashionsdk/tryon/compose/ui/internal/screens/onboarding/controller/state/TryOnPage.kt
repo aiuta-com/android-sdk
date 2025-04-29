@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.contro
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
-import com.aiuta.fashionsdk.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature
+import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 internal class TryOnPage(
-    tryOnPageFeature: AiutaOnboardingTryOnPageFeature,
+    tryOnPageFeature: AiutaOnboardingHowItWorksPageFeature,
 ) : OnboardingState,
     Iterable<TryOnPage.InternalPage> {
     @Immutable
@@ -20,7 +20,7 @@ internal class TryOnPage(
     }
 
     val internalPages by lazy {
-        tryOnPageFeature.images.onboardingTryOnItems.map { item ->
+        tryOnPageFeature.images.onboardingHowItWorksItems.map { item ->
             InternalPage(
                 mainImage = item.itemPhoto,
                 itemImage = item.itemPreview,
@@ -30,7 +30,7 @@ internal class TryOnPage(
 
     override fun iterator(): Iterator<InternalPage> = internalPages.iterator()
 
-    override val pageTitle: String? = tryOnPageFeature.strings.onboardingTryOnPageTitle
+    override val pageTitle: String? = tryOnPageFeature.strings.onboardingHowItWorksPageTitle
 
     override fun pageSize(): Int = internalPages.size
 

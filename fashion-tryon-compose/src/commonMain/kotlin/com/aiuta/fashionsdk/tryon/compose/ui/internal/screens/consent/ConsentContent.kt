@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent
+package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,15 +20,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.updateConsentState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.CenterAlignmentLine
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.buildAnnotatedStringFromHtml
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.createCenterAlignmentLine
@@ -37,19 +37,19 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.clickableUnindicated
 
 @Composable
-internal fun ConsentPageContent(
+internal fun ConsentContent(
     modifier: Modifier = Modifier,
-    onboardingController: OnboardingController,
+    consentsList: SnapshotStateList<AiutaConsentUiModel>,
+    onUpdateConsentState: (consent: AiutaConsentUiModel, newState: Boolean) -> Unit,
 ) {
     val theme = LocalTheme.current
 
-    val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
+    val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneFeature>()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.CONSENT)
 
     LazyColumn(
-        modifier =
-        modifier
+        modifier = modifier
             .padding(horizontal = 24.dp)
             .padding(bottom = 8.dp),
     ) {
@@ -69,8 +69,7 @@ internal fun ConsentPageContent(
 
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text =
-                buildAnnotatedStringFromHtml(
+                text = buildAnnotatedStringFromHtml(
                     consentStandaloneFeature.strings.consentDescriptionHtml,
                 ),
                 style = theme.label.typography.regular,
@@ -82,7 +81,7 @@ internal fun ConsentPageContent(
         }
 
         itemsIndexed(
-            items = onboardingController.consentsCheckList,
+            items = consentsList,
             key = { _, consentModel -> consentModel.consent.id },
             contentType = { _, _ -> "CONSENT_POINT_TYPE" },
         ) { index, consentModel ->
@@ -95,10 +94,7 @@ internal fun ConsentPageContent(
                 text = consentModel.consent.consentHtml,
                 isAgreementChecked = consentModel.isObtained,
                 onAgreementCheckedChange = { newState ->
-                    onboardingController.updateConsentState(
-                        consent = consentModel,
-                        newState = newState,
-                    )
+                    onUpdateConsentState(consentModel, newState)
                 },
             )
 

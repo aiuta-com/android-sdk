@@ -5,6 +5,7 @@ public interface AiutaConsentStandaloneOnboardingPageFeatureStrings {
     public val consentTitle: String
     public val consentDescriptionHtml: String
     public val consentFooterHtml: String?
+    public val consentButtonAccept: String
 
     public class Default(
         brand: String = "Aiuta",
@@ -18,5 +19,6 @@ public interface AiutaConsentStandaloneOnboardingPageFeatureStrings {
                 " Your data will be processed according to the $brand <b><a href=\"$privacyPolicyUrl\">Privacy Notice</a></b> " +
                 "and <b><a href=\"$termsOfServiceUrl\">Terms of Use.</a></b>"
         override val consentFooterHtml: String? = null
+        override val consentButtonAccept: String = "Start"
     }
 }

@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.configuration.features.consent.standalone
+package com.aiuta.fashionsdk.configuration.features.consent
 
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
@@ -8,10 +8,10 @@ import com.aiuta.fashionsdk.configuration.features.consent.standalone.strings.Ai
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaConsentStandaloneOnboardingPageFeature private constructor(
-    public val strings: AiutaConsentStandaloneOnboardingPageFeatureStrings,
-    public val data: AiutaConsentStandaloneOnboardingPageFeatureData,
-    public val dataProvider: AiutaConsentStandaloneOnboardingPageFeatureDataProvider?,
-) : AiutaConsentFeature {
+    public override val strings: AiutaConsentStandaloneOnboardingPageFeatureStrings,
+    public override val data: AiutaConsentStandaloneOnboardingPageFeatureData,
+    public override val dataProvider: AiutaConsentStandaloneOnboardingPageFeatureDataProvider?,
+) : AiutaConsentStandaloneFeature {
 
     public class Builder : AiutaFeature.Builder {
         public var strings: AiutaConsentStandaloneOnboardingPageFeatureStrings? = null

@@ -39,7 +39,7 @@ public class AiutaBottomSheetTheme private constructor(
                 ),
                 toggles = toggles.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "toggles",
+                    property = "styles",
                 ),
             )
         }

@@ -34,7 +34,7 @@ public class AiutaProductBarTheme private constructor(
                 ),
                 toggles = toggles.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "toggles",
+                    property = "styles",
                 ),
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,

@@ -17,6 +17,8 @@ import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.consent.ConsentInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.consent.consentInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
@@ -76,6 +78,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
                 uploadsHistoryFeature = uploadsHistoryFeature,
             ),
             onboardingInteractor = aiutaConfiguration.aiuta.onboardingInteractor,
+            consentInteractor = aiutaConfiguration.aiuta.consentInteractor,
             sessionGenerationInteractor = SessionGenerationInteractor.getInstance(
                 coilContext = coilContext,
                 generationsHistoryFeature = generationsHistoryFeature,
@@ -108,6 +111,7 @@ internal class FashionTryOnController(
     internal val generatedImageInteractor: GeneratedImageInteractor,
     internal val generatedOperationInteractor: GeneratedOperationInteractor,
     internal val onboardingInteractor: OnboardingInteractor,
+    internal val consentInteractor: ConsentInteractor,
     internal val sessionGenerationInteractor: SessionGenerationInteractor,
     // Analytic
     internal val analytic: InternalAiutaAnalytic,

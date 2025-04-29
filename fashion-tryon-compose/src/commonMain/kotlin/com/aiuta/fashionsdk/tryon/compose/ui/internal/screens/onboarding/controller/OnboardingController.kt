@@ -10,9 +10,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.AiutaConsentStandaloneOnboardingPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.ConsentController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.rememberConsentController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.BestResultPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.OnboardingState
@@ -26,11 +28,15 @@ internal fun rememberOnboardingController(): OnboardingController {
     val consentFeature = provideFeature<AiutaConsentFeature>()
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
 
+    val consentController = provideFeature<AiutaConsentStandaloneOnboardingPageFeature>()?.let {
+        rememberConsentController(it)
+    }
+
     val onboardingStatesQueue = remember {
         val rawOnboardingQueue = mutableListOf<OnboardingState>()
 
         // Try on page
-        rawOnboardingQueue.add(TryOnPage(onboardingFeature.tryOnPage))
+        rawOnboardingQueue.add(TryOnPage(onboardingFeature.howItWorksPage))
 
         // Best result
         onboardingFeature.bestResultsPage?.let { bestResultsPageFeature ->
@@ -58,6 +64,7 @@ internal fun rememberOnboardingController(): OnboardingController {
                 .orEmpty(),
             onboardingStatesQueue = onboardingStatesQueue,
             pagerState = pagerState,
+            consentController = consentController,
             scope = scope,
         )
     }
@@ -68,15 +75,18 @@ internal class OnboardingController(
     consents: List<AiutaConsentUiModel>,
     val onboardingStatesQueue: List<OnboardingState>,
     val pagerState: PagerState,
+    val consentController: ConsentController?,
     internal val scope: CoroutineScope,
 ) {
     // Agreement
+    @Deprecated("Migrate to consent controller")
     val consentsCheckList = mutableStateListOf(*consents.toTypedArray())
 
     // General state
     val state: MutableState<OnboardingState> = mutableStateOf(onboardingStatesQueue.first())
 }
 
+@Deprecated("Migrate to consent controller")
 internal fun AiutaConsentStandaloneOnboardingPageFeature.toUiModels(): List<AiutaConsentUiModel> {
     val obtainedConsentIds = dataProvider?.obtainedConsentsIds?.value.orEmpty().toSet()
     val allConsents = data.consents

@@ -12,18 +12,18 @@ internal fun AiutaOnboardingFeature.validateWithSettings(
 ) {
     // Strings
     // Features
-    tryOnPage.strings.onboardingTryOnPageTitle.validateStringWithSettings(
-        propertyName = "onboardingTryOnPageTitle",
+    howItWorksPage.strings.onboardingHowItWorksPageTitle.validateStringWithSettings(
+        propertyName = "onboardingHowItWorksPageTitle",
         logger = logger,
         debugSettings = debugSettings,
     )
-    tryOnPage.strings.onboardingTryOnTitle.validateStringWithSettings(
-        propertyName = "onboardingTryOnTitle",
+    howItWorksPage.strings.onboardingHowItWorksTitle.validateStringWithSettings(
+        propertyName = "onboardingHowItWorksTitle",
         logger = logger,
         debugSettings = debugSettings,
     )
-    tryOnPage.strings.onboardingTryOnDescription.validateStringWithSettings(
-        propertyName = "onboardingTryOnDescription",
+    howItWorksPage.strings.onboardingHowItWorksDescription.validateStringWithSettings(
+        propertyName = "onboardingHowItWorksDescription",
         logger = logger,
         debugSettings = debugSettings,
     )
@@ -57,8 +57,8 @@ internal fun AiutaOnboardingFeature.validateWithSettings(
     )
 
     // Lists
-    tryOnPage.images.onboardingTryOnItems.validateListWithSettings(
-        "onboardingTryOnItems",
+    howItWorksPage.images.onboardingHowItWorksItems.validateListWithSettings(
+        "onboardingHowItWorksItems",
         logger,
         debugSettings,
     )

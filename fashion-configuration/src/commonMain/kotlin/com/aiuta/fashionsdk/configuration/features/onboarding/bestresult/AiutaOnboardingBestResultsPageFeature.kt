@@ -5,21 +5,21 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFea
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.icons.AiutaOnboardingBestResultsPageFeatureIcons
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.images.AiutaOnboardingBestResultsPageFeatureImages
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.strings.AiutaOnboardingBestResultsPageFeatureStrings
-import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.toggles.AiutaOnboardingBestResultsPageFeatureToggles
+import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.styles.AiutaOnboardingBestResultsPageFeatureStyles
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 public class AiutaOnboardingBestResultsPageFeature private constructor(
     public val images: AiutaOnboardingBestResultsPageFeatureImages,
     public val icons: AiutaOnboardingBestResultsPageFeatureIcons,
     public val strings: AiutaOnboardingBestResultsPageFeatureStrings,
-    public val toggles: AiutaOnboardingBestResultsPageFeatureToggles,
+    public val styles: AiutaOnboardingBestResultsPageFeatureStyles,
 ) : AiutaFeature {
 
     public class Builder : AiutaFeature.Builder {
         public var images: AiutaOnboardingBestResultsPageFeatureImages? = null
         public var icons: AiutaOnboardingBestResultsPageFeatureIcons? = null
         public var strings: AiutaOnboardingBestResultsPageFeatureStrings? = null
-        public var toggles: AiutaOnboardingBestResultsPageFeatureToggles? = null
+        public var styles: AiutaOnboardingBestResultsPageFeatureStyles? = null
 
         public override fun build(): AiutaOnboardingBestResultsPageFeature {
             val parentClass = "AiutaOnboardingBestResultsPage"
@@ -37,9 +37,9 @@ public class AiutaOnboardingBestResultsPageFeature private constructor(
                     parentClass = parentClass,
                     property = "strings",
                 ),
-                toggles = toggles.checkNotNullWithDescription(
+                styles = styles.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "toggles",
+                    property = "styles",
                 ),
             )
         }

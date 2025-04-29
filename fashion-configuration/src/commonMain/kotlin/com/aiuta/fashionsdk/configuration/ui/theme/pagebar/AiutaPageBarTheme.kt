@@ -32,7 +32,7 @@ public class AiutaPageBarTheme private constructor(
                 ),
                 toggles = toggles.checkNotNullWithDescription(
                     parentClass = parentClass,
-                    property = "toggles",
+                    property = "styles",
                 ),
             )
         }

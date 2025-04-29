@@ -19,14 +19,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.leftToRightTransition
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.transition.rightToLeftTransition
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.ConsentContent
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.consent.controller.updateConsentState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.best.BestResultPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.OnboardingAppBar
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.ConsentPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.consent.SmallConsentContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.tryon.TryOnPageContent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.OnboardingController
@@ -38,6 +40,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.control
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.ConsentPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.controller.state.TryOnPage
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.strictProvideFeature
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
@@ -51,6 +54,7 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     val onboardingFeature = strictProvideFeature<AiutaOnboardingFeature>()
+    val consentStandaloneOnboardingFeature = provideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
     val onboardingController = rememberOnboardingController()
 
     val generalHorizontalPadding = 16.dp
@@ -60,15 +64,13 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
     }
 
     Column(
-        modifier =
-        modifier
+        modifier = modifier
             .background(theme.color.background)
             .windowInsetsPadding(WindowInsets.navigationBars),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         OnboardingAppBar(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .padding(horizontal = generalHorizontalPadding)
                 .fillMaxWidth(),
             onboardingController = onboardingController,
@@ -77,20 +79,17 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(32.dp))
 
         OnboardingScreenContent(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
             onboardingController = onboardingController,
         )
 
         FashionButton(
-            modifier =
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = generalHorizontalPadding),
-            text =
-            with(onboardingController) {
+            text = with(onboardingController) {
                 val currentState = state.value
                 when {
                     currentState != onboardingStatesQueue.last() -> onboardingFeature.strings.onboardingButtonNext
@@ -99,6 +98,10 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
                         currentState.internalPages.getOrNull(
                             onboardingController.pagerState.settledPage,
                         ) != currentState.internalPages.last() -> onboardingFeature.strings.onboardingButtonNext
+
+                    currentState is ConsentPage && consentStandaloneOnboardingFeature != null -> {
+                        consentStandaloneOnboardingFeature.strings.consentButtonAccept
+                    }
 
                     else -> onboardingFeature.strings.onboardingButtonStart
                 }
@@ -173,9 +176,14 @@ private fun OnboardingScreenContent(
                 }
 
                 is ConsentPage -> {
-                    ConsentPageContent(
+                    val consentController = checkNotNull(onboardingController.consentController) {
+                        "Feature of standalone consent is not initialized, while trying to move into it"
+                    }
+
+                    ConsentContent(
                         modifier = Modifier.fillMaxSize(),
-                        onboardingController = onboardingController,
+                        consentsList = consentController.consentsList,
+                        onUpdateConsentState = consentController::updateConsentState,
                     )
                 }
             }

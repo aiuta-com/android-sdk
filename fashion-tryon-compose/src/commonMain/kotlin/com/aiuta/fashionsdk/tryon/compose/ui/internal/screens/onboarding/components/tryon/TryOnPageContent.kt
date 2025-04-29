@@ -24,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.AiutaOnboardingHowItWorksPageFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.onboarding.components.common.CentredTextBlock
@@ -39,7 +40,7 @@ internal fun TryOnPageContent(
     onboardingController: OnboardingController,
     state: TryOnPage,
 ) {
-    val tryOnPageFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.onboarding.tryon.AiutaOnboardingTryOnPageFeature>()
+    val tryOnPageFeature = strictProvideFeature<AiutaOnboardingHowItWorksPageFeature>()
 
     val currentPage =
         remember(onboardingController.pagerState.settledPage) {
@@ -78,8 +79,8 @@ internal fun TryOnPageContent(
             Modifier
                 .fillMaxWidth()
                 .weight(0.35f),
-            title = tryOnPageFeature.strings.onboardingTryOnTitle,
-            subtitle = tryOnPageFeature.strings.onboardingTryOnDescription,
+            title = tryOnPageFeature.strings.onboardingHowItWorksTitle,
+            subtitle = tryOnPageFeature.strings.onboardingHowItWorksDescription,
         )
     }
 }

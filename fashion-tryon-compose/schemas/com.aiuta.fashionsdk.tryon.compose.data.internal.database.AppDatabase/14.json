@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 14,
-    "identityHash": "2871963d0dd0c5fb2e69a8ce1035af4b",
+    "identityHash": "facc449a343fcda1722e4558f67f8009",
     "entities": [
       {
         "tableName": "client_config",
@@ -147,30 +147,6 @@
         }
       },
       {
-        "tableName": "onboarding_consents",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `isObtained` INTEGER NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "isObtained",
-            "columnName": "isObtained",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": false,
-          "columnNames": [
-            "id"
-          ]
-        }
-      },
-      {
         "tableName": "aiuta_codes",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`subscriptionId` TEXT NOT NULL, PRIMARY KEY(`subscriptionId`))",
         "fields": [
@@ -191,7 +167,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2871963d0dd0c5fb2e69a8ce1035af4b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'facc449a343fcda1722e4558f67f8009')"
     ]
   }
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
@@ -40,7 +41,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
     val controller = LocalController.current
     val theme = LocalTheme.current
 
-    val welcomeScreenFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature>()
+    val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
     sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
 
@@ -79,7 +80,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
     val controller = LocalController.current
 
-    val welcomeScreenFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature>()
+    val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
     Column(
         modifier = modifier.padding(horizontal = 24.dp),
@@ -133,7 +134,7 @@ private fun StartButton(
     onClick: () -> Unit,
 ) {
     val theme = LocalTheme.current
-    val welcomeScreenFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature>()
+    val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
     Box(
         modifier =

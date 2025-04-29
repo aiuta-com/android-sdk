@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isAppbarHistoryAvailable
@@ -37,7 +38,7 @@ internal fun MainAppBar(
             enter = fadeIn(),
             exit = fadeOut(),
         ) {
-            val generationsHistoryFeature = strictProvideFeature<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
+            val generationsHistoryFeature = strictProvideFeature<AiutaTryOnGenerationsHistoryFeature>()
 
             AppBarIcon(
                 icon = generationsHistoryFeature.icons.history24,

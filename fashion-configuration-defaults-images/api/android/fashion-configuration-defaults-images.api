@@ -5,10 +5,10 @@ public final class com/aiuta/fashionsdk/configuration/defaults/images/features/o
 	public fun getOnboardingBestResultsGood ()Ljava/util/List;
 }
 
-public final class com/aiuta/fashionsdk/configuration/defaults/images/features/onboarding/tryon/DefaultAiutaOnboardingTryOnPageFeatureImages : com/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages {
+public final class com/aiuta/fashionsdk/configuration/defaults/images/features/onboarding/tryon/DefaultAiutaOnboardingHowItWorksPageFeatureImages : com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getOnboardingTryOnItems ()Ljava/util/List;
+	public fun getOnboardingHowItWorksItems ()Ljava/util/List;
 }
 
 public final class com/aiuta/fashionsdk/configuration/defaults/images/features/selector/DefaultAiutaImagePickerFeatureImages : com/aiuta/fashionsdk/configuration/features/picker/images/AiutaImagePickerFeatureImages {
