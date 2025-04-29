@@ -56,11 +56,10 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/Aiut
 
 public final class com/aiuta/fashionsdk/configuration/features/AiutaFeatures {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;Lcom/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature;Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;Lcom/aiuta/fashionsdk/configuration/features/wishlist/AiutaWishlistFeature;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getConsent ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;
 	public final fun getImagePicker ()Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;
 	public final fun getOnboarding ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;
-	public final fun getPoweredBy ()Lcom/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature;
 	public final fun getShare ()Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;
 	public final fun getTryOn ()Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;
 	public final fun getWelcomeScreen ()Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;
@@ -74,7 +73,6 @@ public final class com/aiuta/fashionsdk/configuration/features/AiutaFeatures$Bui
 	public final fun getConsent ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;
 	public final fun getImagePicker ()Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;
 	public final fun getOnboarding ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;
-	public final fun getPoweredBy ()Lcom/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature;
 	public final fun getShare ()Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;
 	public final fun getTryOn ()Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;
 	public final fun getWelcomeScreen ()Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;
@@ -82,7 +80,6 @@ public final class com/aiuta/fashionsdk/configuration/features/AiutaFeatures$Bui
 	public final fun setConsent (Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature;)V
 	public final fun setImagePicker (Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature;)V
 	public final fun setOnboarding (Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;)V
-	public final fun setPoweredBy (Lcom/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature;)V
 	public final fun setShare (Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;)V
 	public final fun setTryOn (Lcom/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature;)V
 	public final fun setWelcomeScreen (Lcom/aiuta/fashionsdk/configuration/features/welcome/AiutaWelcomeScreenFeature;)V
@@ -93,60 +90,49 @@ public final class com/aiuta/fashionsdk/configuration/features/AiutaFeaturesKt {
 	public static final fun features (Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;
 }
 
+public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentEmbeddedIntoOnboardingFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature {
+	public static final field $stable I
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentEmbeddedIntoOnboardingFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentEmbeddedIntoOnboardingFeature;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings;
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings;)V
+}
+
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeatureKt {
-	public static final fun builtInConsent (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
-	public static final fun standaloneConsent (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
+	public static final fun embeddedConsent (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
+	public static final fun standaloneImagePickerConsent (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
+	public static final fun standaloneOnboardingConsent (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/consent/builtin/AiutaConsentBuiltInWithOnboardingPageFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature {
-	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings;
+public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature {
+	public abstract fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
+	public abstract fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public abstract fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/consent/builtin/AiutaConsentBuiltInWithOnboardingPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
-	public static final field $stable I
-	public fun <init> ()V
-	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
-	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/AiutaConsentBuiltInWithOnboardingPageFeature;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings;
-	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings;)V
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings {
-	public abstract fun getConsentHtml ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentBuiltInWithOnboardingPageFeatureStrings {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;)V
-	public fun getConsentHtml ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsent {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Z)V
-	public final fun getConsentHtml ()Ljava/lang/String;
-	public final fun getId ()Ljava/lang/String;
-	public final fun isRequired ()Z
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/consent/standalone/AiutaConsentStandaloneOnboardingPageFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentFeature {
+public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneImagePickerPageFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneFeature {
 	public static final field $stable I
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
-	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
+	public fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/consent/standalone/AiutaConsentStandaloneOnboardingPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneImagePickerPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
 	public static final field $stable I
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
-	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/AiutaConsentStandaloneOnboardingPageFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneImagePickerPageFeature;
 	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
 	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
@@ -155,14 +141,57 @@ public final class com/aiuta/fashionsdk/configuration/features/consent/standalon
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;)V
 }
 
-public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData {
-	public abstract fun getConsents ()Ljava/util/List;
+public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneOnboardingPageFeature : com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneFeature {
+	public static final field $stable I
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
+	public fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData$Default : com/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData {
+public final class com/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneOnboardingPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getConsents ()Ljava/util/List;
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/consent/AiutaConsentStandaloneOnboardingPageFeature;
+	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;
+	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;
+	public final fun setData (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData;)V
+	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings;)V
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings {
+	public abstract fun getConsentHtml ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/consent/builtin/strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public fun getConsentHtml ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsent {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;)V
+	public final fun getConsentHtml ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getType ()Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType : java/lang/Enum {
+	public static final field EXPLICIT_OPTIONAL Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+	public static final field EXPLICIT_REQUIRED Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+	public static final field IMPLICIT_WITHOUT_CHECKBOX Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+	public static final field IMPLICIT_WITH_CHECKBOX Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/consent/models/AiutaConsentType;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/data/AiutaConsentStandaloneOnboardingPageFeatureData {
+	public abstract fun getConsents ()Ljava/util/List;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneOnboardingPageFeatureDataProvider {
@@ -171,6 +200,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/cons
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/strings/AiutaConsentStandaloneOnboardingPageFeatureStrings {
+	public abstract fun getConsentButtonAccept ()Ljava/lang/String;
 	public abstract fun getConsentDescriptionHtml ()Ljava/lang/String;
 	public abstract fun getConsentFooterHtml ()Ljava/lang/String;
 	public abstract fun getConsentPageTitle ()Ljava/lang/String;
@@ -182,6 +212,7 @@ public final class com/aiuta/fashionsdk/configuration/features/consent/standalon
 	public fun <init> ()V
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getConsentButtonAccept ()Ljava/lang/String;
 	public fun getConsentDescriptionHtml ()Ljava/lang/String;
 	public fun getConsentFooterHtml ()Ljava/lang/String;
 	public fun getConsentPageTitle ()Ljava/lang/String;
@@ -227,11 +258,11 @@ public final class com/aiuta/fashionsdk/configuration/features/models/product/Pr
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getBestResultsPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
+	public final fun getHowItWorksPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;
-	public final fun getHowItWorksPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -240,13 +271,13 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaO
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature;
 	public final fun getBestResultsPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;
+	public final fun getHowItWorksPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;
-	public final fun getHowItWorksPage ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;
 	public final fun setBestResultsPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature;)V
+	public final fun setHowItWorksPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;)V
 	public final fun setShapes (Lcom/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/strings/AiutaOnboardingFeatureStrings;)V
-	public final fun setHowItWorksPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeatureKt {
@@ -255,11 +286,11 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/AiutaO
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -270,11 +301,11 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;
 	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;
+	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/icons/AiutaOnboardingBestResultsPageFeatureIcons;)V
 	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/images/AiutaOnboardingBestResultsPageFeatureImages;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/strings/AiutaOnboardingBestResultsPageFeatureStrings;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles;)V
+	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/AiutaOnboardingBestResultsPageFeatureKt {
@@ -305,14 +336,61 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 	public fun getOnboardingBestResultsTitle ()Ljava/lang/String;
 }
 
-public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles {
+public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles {
 	public abstract fun getReduceOnboardingBestResultsShadows ()Z
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles$Default : com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/toggles/AiutaOnboardingBestResultsPageFeatureToggles {
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles$Default : com/aiuta/fashionsdk/configuration/features/onboarding/bestresult/styles/AiutaOnboardingBestResultsPageFeatureStyles {
 	public static final field $stable I
 	public fun <init> ()V
 	public fun getReduceOnboardingBestResultsShadows ()Z
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
+	public static final field $stable I
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeature;
+	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings;
+	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/AiutaOnboardingHowItWorksPageFeatureKt {
+	public static final fun howItWorksPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages {
+	public abstract fun getOnboardingHowItWorksItems ()Ljava/util/List;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/images/AiutaOnboardingHowItWorksPageFeatureImages$OnboardingHowItWorksItem {
+	public static final field $stable I
+	public fun <init> (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;)V
+	public final fun getItemPhoto ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+	public final fun getItemPreview ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings {
+	public abstract fun getOnboardingHowItWorksDescription ()Ljava/lang/String;
+	public abstract fun getOnboardingHowItWorksPageTitle ()Ljava/lang/String;
+	public abstract fun getOnboardingHowItWorksTitle ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/onboarding/howworks/strings/AiutaOnboardingHowItWorksPageFeatureStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getOnboardingHowItWorksDescription ()Ljava/lang/String;
+	public fun getOnboardingHowItWorksPageTitle ()Ljava/lang/String;
+	public fun getOnboardingHowItWorksTitle ()Ljava/lang/String;
 }
 
 public abstract class com/aiuta/fashionsdk/configuration/features/onboarding/shapes/AiutaOnboardingFeatureShapes {
@@ -341,53 +419,6 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/string
 	public fun <init> ()V
 	public fun getOnboardingButtonNext ()Ljava/lang/String;
 	public fun getOnboardingButtonStart ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
-	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages;Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
-	public static final field $stable I
-	public fun <init> ()V
-	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
-	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeature;
-	public final fun getImages ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings;
-	public final fun setImages (Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages;)V
-	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings;)V
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/AiutaOnboardingTryOnPageFeatureKt {
-	public static final fun tryOnPage (Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/onboarding/AiutaOnboardingFeature$Builder;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages {
-	public abstract fun getOnboardingHowItWorksItems ()Ljava/util/List;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/images/AiutaOnboardingTryOnPageFeatureImages$OnboardingTryOnItem {
-	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;)V
-	public final fun getItemPhoto ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
-	public final fun getItemPreview ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings {
-	public abstract fun getOnboardingHowItWorksDescription ()Ljava/lang/String;
-	public abstract fun getOnboardingHowItWorksPageTitle ()Ljava/lang/String;
-	public abstract fun getOnboardingHowItWorksTitle ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/onboarding/tryon/strings/AiutaOnboardingTryOnPageFeatureStrings {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getOnboardingHowItWorksDescription ()Ljava/lang/String;
-	public fun getOnboardingHowItWorksPageTitle ()Ljava/lang/String;
-	public fun getOnboardingHowItWorksTitle ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
@@ -618,48 +649,6 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/strings/Ai
 	public fun getImagePickerTitleEmpty ()Ljava/lang/String;
 }
 
-public final class com/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
-	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
-	public static final field $stable I
-	public fun <init> ()V
-	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
-	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeature;
-	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors;
-	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings;
-	public final fun setColors (Lcom/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors;)V
-	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings;)V
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/powerby/AiutaPoweredByFeatureKt {
-	public static final fun poweredBy (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors {
-	public abstract fun getAiuta-0d7_KjU ()J
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors$Default : com/aiuta/fashionsdk/configuration/features/powerby/colors/AiutaPoweredByFeatureColors {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getAiuta-0d7_KjU ()J
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings {
-	public abstract fun getPoweredByAiuta ()Ljava/lang/String;
-}
-
-public final class com/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings$Default : com/aiuta/fashionsdk/configuration/features/powerby/strings/AiutaPoweredByFeatureStrings {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getPoweredByAiuta ()Ljava/lang/String;
-}
-
 public final class com/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/features/share/watermark/AiutaShareWatermarkFeature;Lcom/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/share/strings/AiutaShareFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -750,7 +739,7 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 	public final fun getOtherPhoto ()Lcom/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeature$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
@@ -768,7 +757,7 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 	public final fun getOtherPhoto ()Lcom/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;
 	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;
 	public final fun setCart (Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/AiutaTryOnCartFeature;)V
 	public final fun setFeedback (Lcom/aiuta/fashionsdk/configuration/features/tryon/feedback/AiutaTryOnFeedbackFeature;)V
 	public final fun setFitDisclaimer (Lcom/aiuta/fashionsdk/configuration/features/tryon/disclaimer/AiutaTryOnFitDisclaimerFeature;)V
@@ -779,7 +768,7 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnF
 	public final fun setOtherPhoto (Lcom/aiuta/fashionsdk/configuration/features/tryon/other/AiutaTryOnWithOtherPhotoFeature;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/tryon/strings/AiutaTryOnFeatureStrings;)V
 	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/tryon/styles/AiutaTryOnFeatureStyles;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;)V
+	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/features/tryon/toggles/AiutaTryOnFeatureToggles;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/tryon/AiutaTryOnFeatureKt {
@@ -1226,7 +1215,7 @@ public final class com/aiuta/fashionsdk/configuration/features/wishlist/AiutaWis
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/wishlist/dataprovider/AiutaWishlistFeatureDataProvider {
 	public abstract fun getWishlistProductsIds ()Lkotlinx/coroutines/flow/StateFlow;
-	public abstract fun setWishlistStateAction (Ljava/lang/String;Z)V
+	public abstract fun setProductInWishlist (Ljava/lang/String;Z)V
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/wishlist/icons/AiutaWishlistFeatureIcons {
@@ -1292,7 +1281,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme {
 	public static final field $stable I
-	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/error/AiutaErrorSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/error/AiutaErrorSnackbarTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getBottomSheet ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;
 	public final fun getButton ()Lcom/aiuta/fashionsdk/configuration/ui/theme/button/AiutaButtonTheme;
 	public final fun getColor ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorTheme;
@@ -1300,6 +1289,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme {
 	public final fun getImage ()Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;
 	public final fun getLabel ()Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;
 	public final fun getPageBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;
+	public final fun getPowerBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;
 	public final fun getProductBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;
 	public final fun getSelectionSnackbar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;
 }
@@ -1315,6 +1305,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builde
 	public final fun getImage ()Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;
 	public final fun getLabel ()Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;
 	public final fun getPageBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;
+	public final fun getPowerBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;
 	public final fun getProductBar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;
 	public final fun getSelectionSnackbar ()Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;
 	public final fun setBottomSheet (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;)V
@@ -1324,6 +1315,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builde
 	public final fun setImage (Lcom/aiuta/fashionsdk/configuration/ui/theme/image/AiutaImageTheme;)V
 	public final fun setLabel (Lcom/aiuta/fashionsdk/configuration/ui/theme/label/AiutaLabelTheme;)V
 	public final fun setPageBar (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;)V
+	public final fun setPowerBar (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;)V
 	public final fun setProductBar (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;)V
 	public final fun setSelectionSnackbar (Lcom/aiuta/fashionsdk/configuration/ui/theme/selection/AiutaSelectionSnackbarTheme;)V
 }
@@ -1540,7 +1532,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPage
 	public static final field $stable I
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;
 }
 
@@ -1549,10 +1541,10 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPage
 	public fun <init> ()V
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/AiutaPageBarTheme;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/icons/AiutaPageBarThemeIcons;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;)V
+	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/toggles/AiutaPageBarThemeToggles;)V
 	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/pagebar/typography/AiutaPageBarThemeTypography;)V
 }
 
@@ -1585,12 +1577,54 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/pagebar/typograph
 	public fun getPageTitle ()Landroidx/compose/ui/text/TextStyle;
 }
 
+public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
+	public static final field $stable I
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme$Builder : com/aiuta/fashionsdk/configuration/features/AiutaFeature$Builder {
+	public static final field $stable I
+	public fun <init> ()V
+	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
+	public fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarTheme;
+	public final fun getColors ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;
+	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;
+	public final fun setColors (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors;)V
+	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings;)V
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowerBarThemeKt {
+	public static final fun poweredBar (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors {
+	public abstract fun getAiuta-0d7_KjU ()J
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors$Default : com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getAiuta-0d7_KjU ()J
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings {
+	public abstract fun getPoweredByAiuta ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings$Default : com/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun getPoweredByAiuta ()Ljava/lang/String;
+}
+
 public final class com/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme {
 	public static final field $stable I
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;
 	public final fun getPrices ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;
 }
 
@@ -1600,11 +1634,11 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaP
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/AiutaProductBarTheme;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;
 	public final fun getPrices ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/icons/AiutaProductBarThemeIcons;)V
 	public final fun setPrices (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/prices/AiutaProductBarPricesTheme;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;)V
+	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/toggles/AiutaProductBarThemeToggles;)V
 	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/productbar/typography/AiutaProductBarThemeTypography;)V
 }
 
@@ -1739,7 +1773,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottom
 	public synthetic fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getGrabber ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;
 }
 
@@ -1749,11 +1783,11 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottom
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottomSheetTheme;
 	public final fun getGrabber ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;
 	public final fun getShapes ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;
-	public final fun getStyles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
+	public final fun getToggles ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;
 	public final fun getTypography ()Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;
 	public final fun setGrabber (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber;)V
 	public final fun setShapes (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/shapes/AiutaBottomSheetThemeShapes;)V
-	public final fun setStyles (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
+	public final fun setToggles (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/toggles/AiutaBottomSheetThemeToggles;)V
 	public final fun setTypography (Lcom/aiuta/fashionsdk/configuration/ui/theme/sheet/typography/AiutaBottomSheetThemeTypography;)V
 }
 
