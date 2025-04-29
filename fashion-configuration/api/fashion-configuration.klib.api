@@ -79,7 +79,7 @@ abstract interface com.aiuta.fashionsdk.configuration.features.consent.standalon
 
 abstract interface com.aiuta.fashionsdk.configuration.features.consent.standalone.icons/AiutaConsentStandaloneFeatureIcons { // com.aiuta.fashionsdk.configuration.features.consent.standalone.icons/AiutaConsentStandaloneFeatureIcons|null[0]
     abstract val consentTitle24 // com.aiuta.fashionsdk.configuration.features.consent.standalone.icons/AiutaConsentStandaloneFeatureIcons.consentTitle24|{}consentTitle24[0]
-        abstract fun <get-consentTitle24>(): com.aiuta.fashionsdk.compose.resources.drawable/AiutaIcon // com.aiuta.fashionsdk.configuration.features.consent.standalone.icons/AiutaConsentStandaloneFeatureIcons.consentTitle24.<get-consentTitle24>|<get-consentTitle24>(){}[0]
+        abstract fun <get-consentTitle24>(): com.aiuta.fashionsdk.compose.resources.drawable/AiutaIcon? // com.aiuta.fashionsdk.configuration.features.consent.standalone.icons/AiutaConsentStandaloneFeatureIcons.consentTitle24.<get-consentTitle24>|<get-consentTitle24>(){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.consent.standalone.strings/AiutaConsentStandaloneFeatureStrings { // com.aiuta.fashionsdk.configuration.features.consent.standalone.strings/AiutaConsentStandaloneFeatureStrings|null[0]
