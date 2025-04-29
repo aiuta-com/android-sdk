@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.image.icons.AiutaImageThemeIc
 import com.aiuta.fashionsdk.configuration.ui.theme.image.shapes.AiutaImageThemeShapes
 
 @Immutable
-public class AiutaImageTheme private constructor(
+public class AiutaImageTheme(
     public val shapes: AiutaImageThemeShapes,
     public val icons: AiutaImageThemeIcons,
 ) {

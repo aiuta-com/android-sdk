@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.other.icons.AiutaTryOnWithOtherPhotoFeatureIcons
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaTryOnWithOtherPhotoFeature private constructor(
+public class AiutaTryOnWithOtherPhotoFeature(
     public val icons: AiutaTryOnWithOtherPhotoFeatureIcons,
 ) : AiutaFeature {
 

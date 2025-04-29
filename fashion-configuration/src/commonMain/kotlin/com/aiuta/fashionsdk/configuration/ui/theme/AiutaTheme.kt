@@ -15,7 +15,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.selection.AiutaSelectionSnack
 import com.aiuta.fashionsdk.configuration.ui.theme.sheet.AiutaBottomSheetTheme
 
 @Immutable
-public class AiutaTheme private constructor(
+public class AiutaTheme(
     public val color: AiutaColorTheme,
     public val label: AiutaLabelTheme,
     public val image: AiutaImageTheme,

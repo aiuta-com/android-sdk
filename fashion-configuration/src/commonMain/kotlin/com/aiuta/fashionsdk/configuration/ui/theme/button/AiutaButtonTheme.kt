@@ -7,7 +7,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.button.shapes.AiutaButtonThem
 import com.aiuta.fashionsdk.configuration.ui.theme.button.typography.AiutaButtonThemeTypography
 
 @Immutable
-public class AiutaButtonTheme private constructor(
+public class AiutaButtonTheme(
     public val typography: AiutaButtonThemeTypography,
     public val shapes: AiutaButtonThemeShapes,
 ) {

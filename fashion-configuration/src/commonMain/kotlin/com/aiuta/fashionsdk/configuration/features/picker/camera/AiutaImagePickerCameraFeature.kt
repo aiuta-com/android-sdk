@@ -6,7 +6,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.camera.icons.AiutaImag
 import com.aiuta.fashionsdk.configuration.features.picker.camera.strings.AiutaImagePickerCameraFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaImagePickerCameraFeature private constructor(
+public class AiutaImagePickerCameraFeature(
     public val icons: AiutaImagePickerCameraFeatureIcons,
     public val strings: AiutaImagePickerCameraFeatureStrings,
 ) : AiutaFeature {

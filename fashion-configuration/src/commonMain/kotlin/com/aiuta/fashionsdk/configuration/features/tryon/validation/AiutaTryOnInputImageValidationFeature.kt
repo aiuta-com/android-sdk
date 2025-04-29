@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaTryOnInputImageValidationFeature private constructor(
+public class AiutaTryOnInputImageValidationFeature(
     public val strings: AiutaTryOnInputImageValidationFeatureStrings,
 ) : AiutaFeature {
 

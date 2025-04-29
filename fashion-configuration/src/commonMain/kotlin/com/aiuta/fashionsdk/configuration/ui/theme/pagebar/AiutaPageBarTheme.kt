@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.toggles.AiutaPageBarT
 import com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typography.AiutaPageBarThemeTypography
 
 @Immutable
-public class AiutaPageBarTheme private constructor(
+public class AiutaPageBarTheme(
     public val typography: AiutaPageBarThemeTypography,
     public val icons: AiutaPageBarThemeIcons,
     public val toggles: AiutaPageBarThemeToggles,

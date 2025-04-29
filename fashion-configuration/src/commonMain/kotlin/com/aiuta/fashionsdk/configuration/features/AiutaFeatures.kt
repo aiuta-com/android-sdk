@@ -33,7 +33,7 @@ import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
 @Immutable
-public class AiutaFeatures private constructor(
+public class AiutaFeatures(
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
     public val onboarding: AiutaOnboardingFeature?,
     public val consent: AiutaConsentFeature?,

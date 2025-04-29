@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.error.icons.AiutaErrorSnackba
 import com.aiuta.fashionsdk.configuration.ui.theme.error.strings.AiutaErrorSnackbarThemeStrings
 
 @Immutable
-public class AiutaErrorSnackbarTheme private constructor(
+public class AiutaErrorSnackbarTheme(
     public val strings: AiutaErrorSnackbarThemeStrings,
     public val icons: AiutaErrorSnackbarThemeIcons,
     public val colors: AiutaErrorSnackbarThemeColors,

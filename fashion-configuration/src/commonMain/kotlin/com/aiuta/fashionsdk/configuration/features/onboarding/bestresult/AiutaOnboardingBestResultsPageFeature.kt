@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.strings
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.styles.AiutaOnboardingBestResultsPageFeatureStyles
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
-public class AiutaOnboardingBestResultsPageFeature private constructor(
+public class AiutaOnboardingBestResultsPageFeature(
     public val images: AiutaOnboardingBestResultsPageFeatureImages,
     public val icons: AiutaOnboardingBestResultsPageFeatureIcons,
     public val strings: AiutaOnboardingBestResultsPageFeatureStrings,

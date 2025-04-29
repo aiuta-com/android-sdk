@@ -8,7 +8,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.selection.icons.AiutaSelectio
 import com.aiuta.fashionsdk.configuration.ui.theme.selection.strings.AiutaSelectionSnackbarThemeStrings
 
 @Immutable
-public class AiutaSelectionSnackbarTheme private constructor(
+public class AiutaSelectionSnackbarTheme(
     public val strings: AiutaSelectionSnackbarThemeStrings,
     public val icons: AiutaSelectionSnackbarThemeIcons,
     public val colors: AiutaSelectionSnackbarThemeColors,

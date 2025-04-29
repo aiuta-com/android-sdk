@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.toggles.AiutaProdu
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.typography.AiutaProductBarThemeTypography
 
 @Immutable
-public class AiutaProductBarTheme private constructor(
+public class AiutaProductBarTheme(
     // Themes
     public val prices: AiutaProductBarPricesTheme?,
     // General
