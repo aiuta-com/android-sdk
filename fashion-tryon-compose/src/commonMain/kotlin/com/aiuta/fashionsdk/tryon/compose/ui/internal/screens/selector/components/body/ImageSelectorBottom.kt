@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.componen
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsStyle
+import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsWithOutlineStyle
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
@@ -96,7 +98,8 @@ internal fun ImageSelectorBottom(
         when (state) {
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 uploadsHistoryFeature?.let {
-                    val buttonStyle = imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle
+                    val buttonStyle =
+                        imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle
                     styleChangePhotoButton(buttonStyle) {
                         FashionButton(
                             modifier = when (buttonStyle) {
@@ -128,34 +131,37 @@ internal fun ImageSelectorBottom(
             }
 
             ImageSelectorState.GENERATION_LOADING -> {
-                val finalModifier =
-                    if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsStyle.BLURRED) {
-                        sharedModifier.border(
-                            width = 1.dp,
-                            color = theme.color.border,
-                            shape = sharedButtonSize.shape,
-                        )
-                    } else {
+                val finalModifier = when (loadingPageFeature.styles.loadingStatusStyle) {
+                    AiutaButtonsWithOutlineStyle.PRIMARY -> sharedModifier.background(theme.color.brand, sharedButtonSize.shape)
+                    AiutaButtonsWithOutlineStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                    AiutaButtonsWithOutlineStyle.BLURRED_WITH_OUTLINE ->
                         sharedModifier
-                    }
+                            .border(
+                                width = 1.dp,
+                                color = theme.color.border,
+                                shape = sharedButtonSize.shape,
+                            )
+                            .then(sharedBlurModifer)
+                }
+                val contentColor = when (loadingPageFeature.styles.loadingStatusStyle) {
+                    AiutaButtonsWithOutlineStyle.PRIMARY -> theme.color.onDark
+                    else -> theme.color.primary
+                }
 
                 val solvedText = solveLoadingGenerationText()
                 val textTransition = updateTransition(solvedText.value)
 
                 Row(
-                    modifier =
-                    finalModifier
-                        .then(sharedBlurModifer)
-                        .padding(
-                            horizontal = 24.dp,
-                            vertical = 12.dp,
-                        ),
+                    modifier = finalModifier.padding(
+                        horizontal = 24.dp,
+                        vertical = 12.dp,
+                    ),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     AiutaLoadingIcon(
                         modifier = Modifier.size(14.dp),
-                        circleColor = theme.color.primary,
+                        circleColor = contentColor,
                     )
 
                     Spacer(Modifier.width(8.dp))
@@ -166,7 +172,7 @@ internal fun ImageSelectorBottom(
                         Text(
                             text = text,
                             style = sharedButtonSize.textStyle,
-                            color = theme.color.primary,
+                            color = contentColor,
                             textAlign = TextAlign.Center,
                         )
                     }
@@ -189,6 +195,7 @@ private fun styleChangePhotoButton(
                 content = content,
             )
         }
+
         else -> {
             content()
         }

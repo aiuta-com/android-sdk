@@ -41,6 +41,7 @@ internal fun OnboardingController.nextPage(
             pagerState.animateScrollToPage(nextPageIndex)
         } else {
             val skuItem = controller.activeProductItem.value
+            val onboardingFeatureDataProvider = features.onboarding?.dataProvider
             val consentStandaloneFeature =
                 features.consent as? AiutaConsentStandaloneOnboardingPageFeature
 
@@ -66,6 +67,9 @@ internal fun OnboardingController.nextPage(
             consentStandaloneFeature?.dataProvider?.let { provider ->
                 provider::obtainConsent.safeInvoke(obtainedConsentId)
             }
+
+            // Notify host
+            onboardingFeatureDataProvider?.completeOnboarding()
 
             // Finish
             controller.sendOnboardingEvent(

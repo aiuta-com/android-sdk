@@ -22,10 +22,6 @@ public final class com/aiuta/fashionsdk/configuration/defaults/features/tryon/De
 	public static final fun defaultTryOn (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lcom/aiuta/fashionsdk/configuration/features/tryon/cart/handler/AiutaTryOnCartFeatureHandler;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
 }
 
-public final class com/aiuta/fashionsdk/configuration/defaults/features/welcome/DefaultAiutaWelcomeScreenFeatureKt {
-	public static final fun defaultWelcomeScreen (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
-}
-
 public final class com/aiuta/fashionsdk/configuration/defaults/theme/DefaultAiutaUserInterfaceConfigurationKt {
 	public static final fun defaultAiutaUserInterfaceConfiguration (Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;Lcom/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions;)Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;
 }
