@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 public interface AiutaImagePickerUploadsHistoryFeatureDataProvider {
     public val uploadedImages: StateFlow<List<AiutaHistoryImage>>
-    public fun addUploadedImages(images: List<AiutaHistoryImage>)
-    public fun deleteUploadedImages(images: List<AiutaHistoryImage>)
-    public fun selectUploadedImage(image: AiutaHistoryImage)
+    public suspend fun addUploadedImages(images: List<AiutaHistoryImage>)
+    public suspend fun deleteUploadedImages(images: List<AiutaHistoryImage>)
+    public suspend fun selectUploadedImage(image: AiutaHistoryImage)
 }

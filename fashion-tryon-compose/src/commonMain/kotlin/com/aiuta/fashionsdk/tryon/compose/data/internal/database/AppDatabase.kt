@@ -33,7 +33,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 14
+internal const val DATABASE_VERSION = 15
 internal const val ANDROID_DATABASE_NAME = "fashionsdk-database"
 internal const val DATABASE_NAME = "fashionsdk-database.db"
 

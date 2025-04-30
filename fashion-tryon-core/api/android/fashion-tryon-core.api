@@ -10,6 +10,21 @@ public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOnKt {
 	public static final fun getTryon (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/tryon/core/AiutaTryOn;
 }
 
+public final class com/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType : java/lang/Enum {
+	public static final field Companion Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType$Companion;
+	public static final field GENERATED Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+	public static final field INPUT_MODEL Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+	public static final field OUTPUT_MODEL Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+	public static final field UPLOADED Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+}
+
+public final class com/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductCatalog {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
@@ -19,8 +34,9 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductCatalog 
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGeneratedImage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;)V
 	public final fun getId ()Ljava/lang/String;
+	public final fun getType ()Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public final fun getUrl ()Ljava/lang/String;
 }
 
@@ -97,20 +113,22 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerati
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationStatus$SuccessGenerationStatus : com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationStatus {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/util/List;Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getImages ()Ljava/util/List;
 	public final fun getMetadata ()Lcom/aiuta/fashionsdk/tryon/core/domain/models/meta/AiutaTryOnMetadata;
 	public final fun getSourceImageId ()Ljava/lang/String;
+	public final fun getSourceImageType ()Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public final fun getSourceImageUrl ()Ljava/lang/String;
 	public fun getStatusId ()Ljava/lang/String;
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationUrlContainer : com/aiuta/fashionsdk/tryon/core/domain/models/ProductGenerationContainer {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getFileId ()Ljava/lang/String;
+	public final fun getFileType ()Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public final fun getFileUrl ()Ljava/lang/String;
 	public fun getProductCatalogName ()Ljava/lang/String;
 	public fun getProductId ()Ljava/lang/String;

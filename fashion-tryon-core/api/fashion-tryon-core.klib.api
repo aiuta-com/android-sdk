@@ -6,6 +6,24 @@
 // - Show declarations: true
 
 // Library unique name: <com.aiuta:fashion-tryon-core>
+final enum class com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType : kotlin/Enum<com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType> { // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType|null[0]
+    enum entry GENERATED // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.GENERATED|null[0]
+    enum entry INPUT_MODEL // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.INPUT_MODEL|null[0]
+    enum entry OUTPUT_MODEL // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.OUTPUT_MODEL|null[0]
+    enum entry UPLOADED // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.UPLOADED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType> // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType> // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.values|values#static(){}[0]
+
+    final object Companion : kotlinx.serialization.internal/SerializerFactory { // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.Companion|null[0]
+        final fun serializer(): kotlinx.serialization/KSerializer<com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType> // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.Companion.serializer|serializer(){}[0]
+        final fun serializer(kotlin/Array<out kotlinx.serialization/KSerializer<*>>...): kotlinx.serialization/KSerializer<*> // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.Companion.serializer|serializer(kotlin.Array<out|kotlinx.serialization.KSerializer<*>>...){}[0]
+    }
+}
+
 final enum class com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType : kotlin/Enum<com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType> { // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType|null[0]
     enum entry DOWNLOAD_RESULT_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.DOWNLOAD_RESULT_FAILED|null[0]
     enum entry OPERATION_ABORTED_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED|null[0]
@@ -82,7 +100,7 @@ sealed interface com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneration
     }
 
     final class SuccessGenerationStatus : com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus { // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus|null[0]
-        constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin.collections/List<com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage> = ..., com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.collections.List<com.aiuta.fashionsdk.tryon.core.domain.models.ProductGeneratedImage>;com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata){}[0]
+        constructor <init>(kotlin/String, kotlin/String, kotlin/String, com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType, kotlin.collections/List<com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage> = ..., com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType;kotlin.collections.List<com.aiuta.fashionsdk.tryon.core.domain.models.ProductGeneratedImage>;com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata){}[0]
 
         final val images // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.images|{}images[0]
             final fun <get-images>(): kotlin.collections/List<com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage> // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.images.<get-images>|<get-images>(){}[0]
@@ -90,6 +108,8 @@ sealed interface com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneration
             final fun <get-metadata>(): com.aiuta.fashionsdk.tryon.core.domain.models.meta/AiutaTryOnMetadata // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.metadata.<get-metadata>|<get-metadata>(){}[0]
         final val sourceImageId // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.sourceImageId|{}sourceImageId[0]
             final fun <get-sourceImageId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.sourceImageId.<get-sourceImageId>|<get-sourceImageId>(){}[0]
+        final val sourceImageType // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.sourceImageType|{}sourceImageType[0]
+            final fun <get-sourceImageType>(): com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.sourceImageType.<get-sourceImageType>|<get-sourceImageType>(){}[0]
         final val sourceImageUrl // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.sourceImageUrl|{}sourceImageUrl[0]
             final fun <get-sourceImageUrl>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.sourceImageUrl.<get-sourceImageUrl>|<get-sourceImageUrl>(){}[0]
         final val statusId // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationStatus.SuccessGenerationStatus.statusId|{}statusId[0]
@@ -143,10 +163,12 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductCatalog { // co
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage { // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage|null[0]
-    constructor <init>(kotlin/String, kotlin/String) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.<init>|<init>(kotlin.String;kotlin.String){}[0]
+    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType){}[0]
 
     final val id // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.id.<get-id>|<get-id>(){}[0]
+    final val type // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.type|{}type[0]
+        final fun <get-type>(): com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.type.<get-type>|<get-type>(){}[0]
     final val url // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.url|{}url[0]
         final fun <get-url>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.url.<get-url>|<get-url>(){}[0]
 }
@@ -185,10 +207,12 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationPlatf
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer : com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationContainer { // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer|null[0]
-    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.String?){}[0]
+    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType, kotlin/String, kotlin/String? = ...) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType;kotlin.String;kotlin.String?){}[0]
 
     final val fileId // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.fileId|{}fileId[0]
         final fun <get-fileId>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.fileId.<get-fileId>|<get-fileId>(){}[0]
+    final val fileType // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.fileType|{}fileType[0]
+        final fun <get-fileType>(): com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.fileType.<get-fileType>|<get-fileType>(){}[0]
     final val fileUrl // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.fileUrl|{}fileUrl[0]
         final fun <get-fileUrl>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.fileUrl.<get-fileUrl>|<get-fileUrl>(){}[0]
     final val productCatalogName // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGenerationUrlContainer.productCatalogName|{}productCatalogName[0]

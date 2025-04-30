@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -11,4 +12,5 @@ internal class GeneratedImageEntity(
     @PrimaryKey
     val id: String = Uuid.random().toString(),
     val imageUrl: String,
+    val type: AiutaFileType,
 )

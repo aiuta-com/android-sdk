@@ -31,6 +31,19 @@ final enum class com.aiuta.fashionsdk.configuration.features.consent.models/Aiut
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.consent.models/AiutaConsentType> // com.aiuta.fashionsdk.configuration.features.consent.models/AiutaConsentType.values|values#static(){}[0]
 }
 
+final enum class com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType> { // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType|null[0]
+    enum entry GENERATED // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.GENERATED|null[0]
+    enum entry INPUT_MODEL // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.INPUT_MODEL|null[0]
+    enum entry OUTPUT_MODEL // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.OUTPUT_MODEL|null[0]
+    enum entry UPLOADED // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.UPLOADED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType> // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType> // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.values|values#static(){}[0]
+}
+
 final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle> { // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle|null[0]
     enum entry BLURRED // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.BLURRED|null[0]
     enum entry PRIMARY // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsStyle.PRIMARY|null[0]
@@ -281,9 +294,9 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.da
     abstract val uploadedImages // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.uploadedImages|{}uploadedImages[0]
         abstract fun <get-uploadedImages>(): kotlinx.coroutines.flow/StateFlow<kotlin.collections/List<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage>> // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.uploadedImages.<get-uploadedImages>|<get-uploadedImages>(){}[0]
 
-    abstract fun addUploadedImages(kotlin.collections/List<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage>) // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.addUploadedImages|addUploadedImages(kotlin.collections.List<com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage>){}[0]
-    abstract fun deleteUploadedImages(kotlin.collections/List<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage>) // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.deleteUploadedImages|deleteUploadedImages(kotlin.collections.List<com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage>){}[0]
-    abstract fun selectUploadedImage(com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage) // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.selectUploadedImage|selectUploadedImage(com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage){}[0]
+    abstract suspend fun addUploadedImages(kotlin.collections/List<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage>) // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.addUploadedImages|addUploadedImages(kotlin.collections.List<com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage>){}[0]
+    abstract suspend fun deleteUploadedImages(kotlin.collections/List<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage>) // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.deleteUploadedImages|deleteUploadedImages(kotlin.collections.List<com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage>){}[0]
+    abstract suspend fun selectUploadedImage(com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage) // com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider.selectUploadedImage|selectUploadedImage(com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings { // com.aiuta.fashionsdk.configuration.features.picker.history.strings/AiutaImagePickerUploadsHistoryFeatureStrings|null[0]
@@ -1266,10 +1279,12 @@ final class com.aiuta.fashionsdk.configuration.features.exceptions/NoSuchFeature
 }
 
 final class com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage { // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage|null[0]
-    constructor <init>(kotlin/String, kotlin/String) // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.<init>|<init>(kotlin.String;kotlin.String){}[0]
+    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType) // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImageType){}[0]
 
     final val id // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.id.<get-id>|<get-id>(){}[0]
+    final val type // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.type|{}type[0]
+        final fun <get-type>(): com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.type.<get-type>|<get-type>(){}[0]
     final val url // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.url|{}url[0]
         final fun <get-url>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.url.<get-url>|<get-url>(){}[0]
 }

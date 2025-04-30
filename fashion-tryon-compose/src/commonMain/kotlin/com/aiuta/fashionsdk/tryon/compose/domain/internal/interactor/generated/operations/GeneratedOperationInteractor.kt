@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import kotlinx.coroutines.flow.Flow
 
 internal interface GeneratedOperationInteractor {
@@ -23,6 +24,7 @@ internal interface GeneratedOperationInteractor {
     suspend fun createImage(
         sourceImageId: String,
         sourceImageUrl: String,
+        sourceImageType: AiutaFileType,
         operationId: String,
     ): Result<Unit>
 
