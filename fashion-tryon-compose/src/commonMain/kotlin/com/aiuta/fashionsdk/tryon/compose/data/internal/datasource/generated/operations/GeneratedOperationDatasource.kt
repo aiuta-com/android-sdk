@@ -8,6 +8,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.ope
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImages
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
@@ -43,14 +44,15 @@ internal class GeneratedOperationDatasource(
     suspend fun createImage(
         imageId: String,
         imageUrl: String,
+        imageType: AiutaFileType,
         operationId: String,
     ): SourceImageEntity = withContext(Dispatchers.IO) {
-        val newSourceImage =
-            SourceImageEntity(
-                id = imageId,
-                operationId = operationId,
-                imageUrl = imageUrl,
-            )
+        val newSourceImage = SourceImageEntity(
+            id = imageId,
+            operationId = operationId,
+            imageUrl = imageUrl,
+            imageType = imageType,
+        )
         val rowId = sourceImageDao.insertImage(sourceImage = newSourceImage)
 
         sourceImageDao.getImage(sourceImageRowId = rowId)

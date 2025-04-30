@@ -3,9 +3,11 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProvider
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toOperationUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toPublic
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -40,6 +42,7 @@ internal class HostGeneratedOperationInteractor(
     override suspend fun createImage(
         sourceImageId: String,
         sourceImageUrl: String,
+        sourceImageType: AiutaFileType,
         operationId: String,
     ): Result<Unit> = runCatching {
         dataProvider.addUploadedImages(
@@ -47,6 +50,7 @@ internal class HostGeneratedOperationInteractor(
                 AiutaHistoryImage(
                     id = sourceImageId,
                     url = sourceImageUrl,
+                    type = sourceImageType.toPublicHistory(),
                 ),
             ),
         )

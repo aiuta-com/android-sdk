@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.core.domain.models
 
 import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 
 /**
  * Base container for starting product generation flow
@@ -36,6 +37,7 @@ public class ProductGenerationPlatformImageContainer(
 public class ProductGenerationUrlContainer(
     public val fileId: String,
     public val fileUrl: String,
+    public val fileType: AiutaFileType,
     override val productId: String,
     override val productCatalogName: String? = null,
 ) : ProductGenerationContainer

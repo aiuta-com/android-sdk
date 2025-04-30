@@ -4,6 +4,8 @@ import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicCore
+import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
 
 @Immutable
 internal data class GeneratedOperationUIModel(
@@ -17,11 +19,11 @@ internal data class GeneratedOperationUIModel(
 
 internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
     operationId = operation.id,
-    urlImages =
-    sourceImages.map {
+    urlImages = sourceImages.map {
         UrlImage(
             imageId = it.id,
             imageUrl = it.imageUrl,
+            imageType = it.imageType,
         )
     },
 )
@@ -29,12 +31,13 @@ internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel
 // History image
 internal fun AiutaHistoryImage.toOperationUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
     operationId = id,
-    urlImages = listOf(UrlImage(imageId = id, imageUrl = url)),
+    urlImages = listOf(UrlImage(imageId = id, imageUrl = url, imageType = type.toPublicCore())),
 )
 
 internal fun GeneratedOperationUIModel.toPublic(): List<AiutaHistoryImage> = urlImages.map { image ->
     AiutaHistoryImage(
         id = image.imageId,
         url = image.imageUrl,
+        type = image.imageType.toPublicHistory(),
     )
 }

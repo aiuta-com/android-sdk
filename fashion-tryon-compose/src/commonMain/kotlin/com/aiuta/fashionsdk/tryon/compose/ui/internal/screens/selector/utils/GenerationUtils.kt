@@ -136,6 +136,7 @@ private fun FashionTryOnController.startGenerationWithUriSource(
                 generatedOperationInteractor.createImage(
                     sourceImageId = status.sourceImageId,
                     sourceImageUrl = status.sourceImageUrl,
+                    sourceImageType = status.sourceImageType,
                     operationId = currentOperationId,
                 )
             }
@@ -151,6 +152,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
             container = ProductGenerationUrlContainer(
                 fileId = sourceImage.imageId,
                 fileUrl = sourceImage.imageUrl,
+                fileType = sourceImage.imageType,
                 productId = activeProductItem.value.id,
                 productCatalogName = activeProductItem.value.catalogName,
             ),
@@ -169,6 +171,7 @@ private fun FashionTryOnController.startGenerationWithUrlSource(
                 generatedOperationInteractor.createImage(
                     sourceImageId = status.sourceImageId,
                     sourceImageUrl = status.sourceImageUrl,
+                    sourceImageType = status.sourceImageType,
                     operationId = currentOperationId,
                 )
             }
@@ -317,6 +320,7 @@ private suspend fun FashionTryOnController.refreshActiveImage(
                         UrlImage(
                             imageId = image.id,
                             imageUrl = image.imageUrl,
+                            imageType = image.type,
                         )
                     }
 

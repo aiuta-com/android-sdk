@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models
 
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.GeneratedImage
 
 /**
@@ -8,9 +9,11 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models.Generate
 public class ProductGeneratedImage(
     public val id: String,
     public val url: String,
+    public val type: AiutaFileType,
 )
 
 internal fun GeneratedImage.toPublic(): ProductGeneratedImage = ProductGeneratedImage(
     id = id,
     url = url,
+    type = type,
 )

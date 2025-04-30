@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.domain.models
 
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -17,6 +18,7 @@ public sealed interface ProductGenerationStatus {
         override val statusId: String,
         public val sourceImageId: String,
         public val sourceImageUrl: String,
+        public val sourceImageType: AiutaFileType,
         public val images: List<ProductGeneratedImage> = emptyList(),
         public val metadata: AiutaTryOnMetadata,
     ) : ProductGenerationStatus

@@ -1,5 +1,6 @@
 package com.aiuta.fashionsdk.tryon.core.data.datasource.operation.models
 
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,4 +10,6 @@ internal data class GeneratedImage(
     val id: String,
     @SerialName("url")
     val url: String,
+    @SerialName("type")
+    val type: AiutaFileType,
 )
