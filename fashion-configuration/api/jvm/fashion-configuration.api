@@ -254,9 +254,20 @@ public final class com/aiuta/fashionsdk/configuration/features/exceptions/NoSuch
 
 public final class com/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;)V
 	public final fun getId ()Ljava/lang/String;
+	public final fun getType ()Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
 	public final fun getUrl ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType : java/lang/Enum {
+	public static final field GENERATED Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static final field INPUT_MODEL Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static final field OUTPUT_MODEL Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static final field UPLOADED Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/models/product/ProductItem {
@@ -587,10 +598,10 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/history/Ai
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider {
-	public abstract fun addUploadedImages (Ljava/util/List;)V
-	public abstract fun deleteUploadedImages (Ljava/util/List;)V
+	public abstract fun addUploadedImages (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun deleteUploadedImages (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getUploadedImages ()Lkotlinx/coroutines/flow/StateFlow;
-	public abstract fun selectUploadedImage (Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImage;)V
+	public abstract fun selectUploadedImage (Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImage;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/history/strings/AiutaImagePickerUploadsHistoryFeatureStrings {
