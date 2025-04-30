@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.picker.AiutaImagePickerFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsStyle
+import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsWithOutlineStyle
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.AiutaTryOnLoadingPageFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingIcon
@@ -96,7 +97,8 @@ internal fun ImageSelectorBottom(
         when (state) {
             ImageSelectorState.LAST_IMAGE_SAVED -> {
                 uploadsHistoryFeature?.let {
-                    val buttonStyle = imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle
+                    val buttonStyle =
+                        imageSelectorFeature.uploadsHistory?.styles?.changePhotoButtonStyle
                     styleChangePhotoButton(buttonStyle) {
                         FashionButton(
                             modifier = when (buttonStyle) {
@@ -129,7 +131,7 @@ internal fun ImageSelectorBottom(
 
             ImageSelectorState.GENERATION_LOADING -> {
                 val finalModifier =
-                    if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsStyle.BLURRED) {
+                    if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsWithOutlineStyle.BLURRED_WITH_OUTLINE) {
                         sharedModifier.border(
                             width = 1.dp,
                             color = theme.color.border,
@@ -143,8 +145,7 @@ internal fun ImageSelectorBottom(
                 val textTransition = updateTransition(solvedText.value)
 
                 Row(
-                    modifier =
-                    finalModifier
+                    modifier = finalModifier
                         .then(sharedBlurModifer)
                         .padding(
                             horizontal = 24.dp,
@@ -189,6 +190,7 @@ private fun styleChangePhotoButton(
                 content = content,
             )
         }
+
         else -> {
             content()
         }
