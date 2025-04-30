@@ -27,6 +27,7 @@ internal fun SplashScreen(
     val features = LocalAiutaFeatures.current
     val dataController = LocalAiutaTryOnDataController.current
 
+    val onboardingFeature = provideFeature<AiutaOnboardingFeature>()
     val consentStandaloneFeature = provideFeature<AiutaConsentStandaloneOnboardingPageFeature>()
 
     LaunchedEffect(Unit) {
@@ -47,7 +48,8 @@ internal fun SplashScreen(
         }
 
         // Solve should show onboarding or not
-        val isOnboardingPassed = controller.onboardingInteractor.isOnboardingPassed()
+        val isHostOnboardingPassed = onboardingFeature?.dataProvider?.isOnboardingCompleted?.value
+        val isOnboardingPassed = isHostOnboardingPassed ?: controller.onboardingInteractor.isOnboardingPassed()
 
         val shouldShowOnboarding = when {
             // Onboarding not provided
