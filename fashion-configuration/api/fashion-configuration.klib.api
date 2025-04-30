@@ -386,7 +386,7 @@ abstract interface com.aiuta.fashionsdk.configuration.features.picker.strings/Ai
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.share.dataprovider/AiutaShareFeatureDataProvider { // com.aiuta.fashionsdk.configuration.features.share.dataprovider/AiutaShareFeatureDataProvider|null[0]
-    abstract fun getShareText(kotlin.collections/List<kotlin/String>): kotlin/String // com.aiuta.fashionsdk.configuration.features.share.dataprovider/AiutaShareFeatureDataProvider.getShareText|getShareText(kotlin.collections.List<kotlin.String>){}[0]
+    abstract suspend fun getShareText(kotlin.collections/List<kotlin/String>): kotlin/String // com.aiuta.fashionsdk.configuration.features.share.dataprovider/AiutaShareFeatureDataProvider.getShareText|getShareText(kotlin.collections.List<kotlin.String>){}[0]
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.share.icons/AiutaShareFeatureIcons { // com.aiuta.fashionsdk.configuration.features.share.icons/AiutaShareFeatureIcons|null[0]

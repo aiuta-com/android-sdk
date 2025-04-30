@@ -717,7 +717,7 @@ public final class com/aiuta/fashionsdk/configuration/features/share/AiutaShareF
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider {
-	public abstract fun getShareText (Ljava/util/List;)Ljava/lang/String;
+	public abstract fun getShareText (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons {

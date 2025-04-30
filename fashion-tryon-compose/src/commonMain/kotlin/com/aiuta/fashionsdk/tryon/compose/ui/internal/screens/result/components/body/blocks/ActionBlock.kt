@@ -19,7 +19,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeSuspendInvoke
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.wishlist.inWishlistListener
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
@@ -55,7 +55,7 @@ internal fun ActionBlock(
                         val imageUrls = listOfNotNull(imageUrl)
                         val skuIds = listOf(controller.activeProductItem.value.id)
                         val shareText = shareFeature.dataProvider?.let { provider ->
-                            provider::getShareText.safeInvoke(skuIds)
+                            provider::getShareText.safeSuspendInvoke(skuIds)
                         }
 
                         // Analytic
