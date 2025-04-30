@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.selector.componen
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -130,33 +131,37 @@ internal fun ImageSelectorBottom(
             }
 
             ImageSelectorState.GENERATION_LOADING -> {
-                val finalModifier =
-                    if (loadingPageFeature.styles.loadingStatusStyle == AiutaButtonsWithOutlineStyle.BLURRED_WITH_OUTLINE) {
-                        sharedModifier.border(
-                            width = 1.dp,
-                            color = theme.color.border,
-                            shape = sharedButtonSize.shape,
-                        )
-                    } else {
+                val finalModifier = when (loadingPageFeature.styles.loadingStatusStyle) {
+                    AiutaButtonsWithOutlineStyle.PRIMARY -> sharedModifier.background(theme.color.brand, sharedButtonSize.shape)
+                    AiutaButtonsWithOutlineStyle.BLURRED -> sharedModifier.then(sharedBlurModifer)
+                    AiutaButtonsWithOutlineStyle.BLURRED_WITH_OUTLINE ->
                         sharedModifier
-                    }
+                            .border(
+                                width = 1.dp,
+                                color = theme.color.border,
+                                shape = sharedButtonSize.shape,
+                            )
+                            .then(sharedBlurModifer)
+                }
+                val contentColor = when (loadingPageFeature.styles.loadingStatusStyle) {
+                    AiutaButtonsWithOutlineStyle.PRIMARY -> theme.color.onDark
+                    else -> theme.color.primary
+                }
 
                 val solvedText = solveLoadingGenerationText()
                 val textTransition = updateTransition(solvedText.value)
 
                 Row(
-                    modifier = finalModifier
-                        .then(sharedBlurModifer)
-                        .padding(
-                            horizontal = 24.dp,
-                            vertical = 12.dp,
-                        ),
+                    modifier = finalModifier.padding(
+                        horizontal = 24.dp,
+                        vertical = 12.dp,
+                    ),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     AiutaLoadingIcon(
                         modifier = Modifier.size(14.dp),
-                        circleColor = theme.color.primary,
+                        circleColor = contentColor,
                     )
 
                     Spacer(Modifier.width(8.dp))
@@ -167,7 +172,7 @@ internal fun ImageSelectorBottom(
                         Text(
                             text = text,
                             style = sharedButtonSize.textStyle,
-                            color = theme.color.primary,
+                            color = contentColor,
                             textAlign = TextAlign.Center,
                         )
                     }
