@@ -6,7 +6,6 @@ import com.aiuta.fashionsdk.configuration.defaults.features.onboarding.defaultOn
 import com.aiuta.fashionsdk.configuration.defaults.features.selector.defaultImagePicker
 import com.aiuta.fashionsdk.configuration.defaults.features.share.defaultShare
 import com.aiuta.fashionsdk.configuration.defaults.features.tryon.defaultTryOn
-import com.aiuta.fashionsdk.configuration.defaults.features.welcome.defaultWelcomeScreen
 import com.aiuta.fashionsdk.configuration.features.features
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOnCartFeatureHandler
 
@@ -14,7 +13,6 @@ public fun AiutaConfiguration.Builder.defaultAiutaFeatures(
     termsOfServiceUrl: String,
     cartHandler: AiutaTryOnCartFeatureHandler,
 ): AiutaConfiguration.Builder = features {
-    defaultWelcomeScreen()
     defaultOnboarding()
     defaultConsent(termsOfServiceUrl = termsOfServiceUrl)
     defaultImagePicker()
