@@ -17,9 +17,3 @@ public final class com/aiuta/fashionsdk/configuration/defaults/images/features/s
 	public fun getExamples ()Ljava/util/List;
 }
 
-public final class com/aiuta/fashionsdk/configuration/defaults/images/features/welcome/DefaultAiutaWelcomeScreenFeatureImages : com/aiuta/fashionsdk/configuration/features/welcome/images/AiutaWelcomeScreenFeatureImages {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getWelcomeBackground ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaDrawableResource;
-}
-

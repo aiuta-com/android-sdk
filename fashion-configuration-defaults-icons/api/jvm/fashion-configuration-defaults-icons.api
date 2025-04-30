@@ -67,12 +67,6 @@ public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/tr
 	public fun getChangePhoto24 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
 }
 
-public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/welcome/DefaultAiutaWelcomeScreenFeatureIcons : com/aiuta/fashionsdk/configuration/features/welcome/icons/AiutaWelcomeScreenFeatureIcons {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getWelcome82 ()Lcom/aiuta/fashionsdk/compose/resources/drawable/AiutaIcon;
-}
-
 public final class com/aiuta/fashionsdk/configuration/defaults/icons/features/wishlist/DefaultAiutaWishlistFeatureIcons : com/aiuta/fashionsdk/configuration/features/wishlist/icons/AiutaWishlistFeatureIcons {
 	public static final field $stable I
 	public fun <init> ()V
