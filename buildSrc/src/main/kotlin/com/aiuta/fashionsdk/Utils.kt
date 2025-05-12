@@ -73,10 +73,6 @@ val Project.versionCode: Int
                 (unit * 10.0.pow(2 * index + 1)).toInt()
             }
 
-// For checking compose metrics use this add -PenableComposeMetrics=true
-val Project.enableComposeMetrics: Boolean
-    get() = booleanProperty("enableComposeMetrics") { false }
-
 private fun Project.intProperty(
     name: String,
     default: () -> Int = { error("unknown property: $name") },
@@ -86,11 +82,6 @@ private fun Project.stringProperty(
     name: String,
     default: () -> String = { error("unknown property: $name") },
 ): String = (properties[name] as String?) ?: default()
-
-private fun Project.booleanProperty(
-    name: String,
-    default: () -> Boolean = { error("unknown property: $name") },
-): Boolean = (properties[name] as String?)?.toBooleanStrict() ?: default()
 
 private inline fun <T> List<T>.sumByIndexed(selector: (Int, T) -> Int): Int {
     var index = 0

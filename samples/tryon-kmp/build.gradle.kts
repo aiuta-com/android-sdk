@@ -13,6 +13,10 @@ plugins {
 }
 
 androidApplication(name = "sample.tryon.kmp") {
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
     buildFeatures {
         buildConfig = true
     }

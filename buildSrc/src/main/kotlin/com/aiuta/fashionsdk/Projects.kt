@@ -86,28 +86,26 @@ private fun <T : BaseExtension> Project.androidBase(
             }
         }
         packagingOptions {
-            resources.pickFirsts +=
-                listOf(
-                    "META-INF/AL2.0",
-                    "META-INF/LGPL2.1",
-                    "META-INF/*kotlin_module",
-                )
+            resources.pickFirsts += listOf(
+                "META-INF/AL2.0",
+                "META-INF/LGPL2.1",
+                "META-INF/*kotlin_module",
+            )
         }
         testOptions {
             unitTests.isIncludeAndroidResources = true
         }
         lint {
             warningsAsErrors = true
-            disable +=
-                listOf(
-                    "ComposableNaming",
-                    "UnknownIssueId",
-                    "VectorPath",
-                    "VectorRaster",
-                    "ObsoleteLintCustomCheck",
-                    "MonochromeLauncherIcon",
-                    "IconLocation",
-                )
+            disable += listOf(
+                "ComposableNaming",
+                "UnknownIssueId",
+                "VectorPath",
+                "VectorRaster",
+                "ObsoleteLintCustomCheck",
+                "MonochromeLauncherIcon",
+                "IconLocation",
+            )
         }
         action()
     }
