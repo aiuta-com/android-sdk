@@ -7,11 +7,14 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.bestResultsPage
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.strings.AiutaOnboardingBestResultsPageFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.styles.AiutaOnboardingBestResultsPageFeatureStyles
+import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProvider
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.howItWorksPage
 import com.aiuta.fashionsdk.configuration.features.onboarding.howworks.strings.AiutaOnboardingHowItWorksPageFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.onboarding.onboarding
 import com.aiuta.fashionsdk.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 public fun AiutaFeatures.Builder.defaultOnboarding(): AiutaFeatures.Builder = onboarding {
     bestResultsPage {
@@ -26,4 +29,12 @@ public fun AiutaFeatures.Builder.defaultOnboarding(): AiutaFeatures.Builder = on
     }
     strings = AiutaOnboardingFeatureStrings.Default()
     shapes = AiutaOnboardingFeatureShapes.Default()
+    dataProvider = object : AiutaOnboardingFeatureDataProvider {
+        private val _isOnboardingCompleted: MutableStateFlow<Boolean> = MutableStateFlow(false)
+        override val isOnboardingCompleted: StateFlow<Boolean> = _isOnboardingCompleted
+
+        override fun completeOnboarding() {
+            _isOnboardingCompleted.value = true
+        }
+    }
 }
