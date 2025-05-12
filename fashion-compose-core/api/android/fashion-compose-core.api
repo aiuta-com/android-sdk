@@ -9,7 +9,7 @@ public final class com/aiuta/fashionsdk/compose/core/size/ScreenSize {
 	public final fun getWidthDp-D9Ej5fM ()F
 }
 
-public final class com/aiuta/fashionsdk/compose/core/size/ScreenSize_androidKt {
+public final class com/aiuta/fashionsdk/compose/core/size/ScreenSizeKt {
 	public static final fun rememberScreenSize (Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/compose/core/size/ScreenSize;
 }
 
