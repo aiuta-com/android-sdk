@@ -2,7 +2,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.internal.analytic.model.SessionEvent
@@ -19,7 +21,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.cl
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.disableZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
 
 /**
  * Entry point for fashion try on flow
@@ -27,6 +28,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHand
  * @see AiutaConfiguration
  * @see ProductItem
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun AiutaTryOnFlow(
     modifier: Modifier = Modifier,

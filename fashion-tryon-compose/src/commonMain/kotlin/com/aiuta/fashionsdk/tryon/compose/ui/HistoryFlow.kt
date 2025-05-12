@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
@@ -23,7 +25,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.cl
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.disableZoomState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isTransitionActive
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.backhandler.BackHandler
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 /**
@@ -32,6 +33,7 @@ import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
  * @see Aiuta
  * @see AiutaTryOn
  */
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 public fun HistoryFlow(
     modifier: Modifier = Modifier,
