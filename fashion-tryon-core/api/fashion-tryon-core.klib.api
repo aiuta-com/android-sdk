@@ -27,6 +27,7 @@ final enum class com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/Ai
 final enum class com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType : kotlin/Enum<com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType> { // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType|null[0]
     enum entry DOWNLOAD_RESULT_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.DOWNLOAD_RESULT_FAILED|null[0]
     enum entry OPERATION_ABORTED_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED|null[0]
+    enum entry OPERATION_EMPTY_RESULTS_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.OPERATION_EMPTY_RESULTS_FAILED|null[0]
     enum entry OPERATION_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.OPERATION_FAILED|null[0]
     enum entry OPERATION_TIMEOUT_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED|null[0]
     enum entry PREPARE_PHOTO_FAILED // com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception/AiutaTryOnExceptionType.PREPARE_PHOTO_FAILED|null[0]
