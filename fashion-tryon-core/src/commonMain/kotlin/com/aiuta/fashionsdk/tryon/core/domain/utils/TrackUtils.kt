@@ -30,7 +30,7 @@ internal suspend fun <T> AiutaTryOnImpl.trackException(
     logger?.e("trackException(): failed with general exception - $e")
     analytic.sendPublicTryOnErrorEvent(
         container = container,
-        errorMessage = e.message,
+        exception = e,
     )
     throw e
 }

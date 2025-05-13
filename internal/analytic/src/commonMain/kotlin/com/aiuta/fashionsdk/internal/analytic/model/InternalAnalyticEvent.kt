@@ -109,6 +109,9 @@ public class ErrorEvent(
         @SerialName("operationTimeout")
         OPERATION_TIMEOUT_FAILED,
 
+        @SerialName("operationEmptyResults")
+        OPERATION_EMPTY_RESULTS_FAILED,
+
         @SerialName("downloadResultFailed")
         DOWNLOAD_RESULT_FAILED,
     }

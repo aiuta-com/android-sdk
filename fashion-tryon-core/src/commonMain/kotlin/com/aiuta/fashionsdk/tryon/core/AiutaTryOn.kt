@@ -27,6 +27,8 @@ public interface AiutaTryOn {
      *
      * @param paginationOffset Offset for new page request
      * @param paginationLimit Limit for items in page
+     * @throws FashionIOException If the backend returns an error response
+     * @throws FashionNetworkDisconnectedException If the network is unavailable
      */
     public suspend fun getProductCatalogs(
         paginationOffset: PaginationOffset? = null,
@@ -39,6 +41,8 @@ public interface AiutaTryOn {
      * @param catalogName Name of catalog for concrete product
      * @param paginationOffset Offset for new page request
      * @param paginationLimit Limit for items in page
+     * @throws FashionIOException If the backend returns an error response
+     * @throws FashionNetworkDisconnectedException If the network is unavailable
      */
     public suspend fun getProductItems(
         catalogName: String,
