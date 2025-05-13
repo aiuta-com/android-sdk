@@ -21,7 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.appbar.ModelSelectorAppBar
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.components.content.ModelSelectorShowContent
@@ -45,6 +48,11 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
 
     val sharedModifier = Modifier.fillMaxSize()
     val scope = rememberCoroutineScope()
+
+    sendPickerAnalytic(
+        event = AiutaAnalyticsPickerEventType.PREDEFINED_MODELS_OPENED,
+        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+    )
 
     LaunchedEffect(Unit) {
         initModelSelectorScreen(
