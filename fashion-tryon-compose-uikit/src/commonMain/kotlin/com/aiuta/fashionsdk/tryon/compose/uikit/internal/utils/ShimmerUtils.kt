@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
-import io.github.fornewid.placeholder.foundation.PlaceholderHighlight
-import io.github.fornewid.placeholder.foundation.fade
-import io.github.fornewid.placeholder.foundation.placeholder
+import com.eygraber.compose.placeholder.PlaceholderHighlight
+import com.eygraber.compose.placeholder.fade
+import com.eygraber.compose.placeholder.placeholder
 
 @Composable
 internal fun Modifier.placeholderFadeConnecting(
