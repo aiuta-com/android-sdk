@@ -1,0 +1,3 @@
+package com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovider
+
+public object AiutaConsentStandaloneFeatureDataProviderBuiltIn : AiutaConsentStandaloneFeatureDataProvider

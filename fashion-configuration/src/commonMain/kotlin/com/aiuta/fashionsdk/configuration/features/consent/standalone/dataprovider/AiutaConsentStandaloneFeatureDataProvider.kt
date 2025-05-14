@@ -2,7 +2,9 @@ package com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovi
 
 import kotlinx.coroutines.flow.StateFlow
 
-public interface AiutaConsentStandaloneFeatureDataProvider {
+public sealed interface AiutaConsentStandaloneFeatureDataProvider
+
+public interface AiutaConsentStandaloneFeatureDataProviderLogic {
     public val obtainedConsentsIds: StateFlow<List<String>>
-    public fun obtainConsent(consentIds: List<String>)
+    public suspend fun obtainConsent(consentIds: List<String>)
 }

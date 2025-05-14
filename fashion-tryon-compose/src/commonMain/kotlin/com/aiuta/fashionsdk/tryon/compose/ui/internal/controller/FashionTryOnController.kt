@@ -12,6 +12,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
@@ -19,8 +20,8 @@ import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.consent.ConsentInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.consent.consentInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.ConsentInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.consentInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
@@ -54,6 +55,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     val coilContext = LocalPlatformContext.current
 
     val onboardingFeature = aiutaConfiguration.features.provideFeature<AiutaOnboardingFeature>()
+    val consentStandaloneFeature = aiutaConfiguration.features.provideFeature<AiutaConsentStandaloneFeature>()
     val uploadsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaImagePickerUploadsHistoryFeature>()
     val generationsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
     val tryOnFeature = aiutaConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
@@ -85,7 +87,11 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
                 scope = uiScope,
                 onboardingFeature = onboardingFeature,
             ),
-            consentInteractor = aiutaConfiguration.aiuta.consentInteractor,
+            consentInteractor = ConsentInteractor.getInstance(
+                aiuta = aiutaConfiguration.aiuta,
+                scope = uiScope,
+                consentStandaloneFeature = consentStandaloneFeature,
+            ),
             sessionGenerationInteractor = SessionGenerationInteractor.getInstance(
                 coilContext = coilContext,
                 generationsHistoryFeature = generationsHistoryFeature,

@@ -15,6 +15,7 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.Co
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
@@ -85,6 +86,9 @@ internal abstract class AppDatabase : RoomDatabase() {
 
     // Onboarding saver
     abstract fun onboardingDao(): OnboardingDao
+
+    // Consent saver
+    abstract fun consentDao(): ConsentDao
 
     // Aiuta code checker
     abstract fun aiutaCodeDao(): AiutaCodeDao
