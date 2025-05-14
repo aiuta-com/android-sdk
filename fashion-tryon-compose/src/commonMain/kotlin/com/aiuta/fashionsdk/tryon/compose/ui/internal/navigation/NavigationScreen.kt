@@ -31,7 +31,7 @@ internal interface NavigationScreen {
     }
 
     object ModelSelector : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.MODEL_PICKER
+        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.IMAGE_PICKER
     }
 
     object GenerationResult : NavigationScreen {

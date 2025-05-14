@@ -36,4 +36,10 @@ public enum class AiutaAnalyticsPickerEventType {
 
     @SerialName("uploadedPhotoDeleted")
     UPLOADED_PHOTO_DELETED,
+
+    @SerialName("predefinedModelsOpened")
+    PREDEFINED_MODELS_OPENED,
+
+    @SerialName("predefinedModelSelected")
+    PREDEFINED_MODEL_SELECTED,
 }

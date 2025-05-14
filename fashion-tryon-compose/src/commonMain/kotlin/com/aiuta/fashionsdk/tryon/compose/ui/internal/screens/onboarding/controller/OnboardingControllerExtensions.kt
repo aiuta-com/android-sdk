@@ -8,7 +8,6 @@ import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaSupplementaryConsent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -57,12 +56,7 @@ internal fun OnboardingController.nextPage(
                 eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
                 pageId = AiutaAnalyticPageId.CONSENT,
                 productId = skuItem.id,
-                supplementaryConsents = consentsList?.map { consentModel ->
-                    AiutaSupplementaryConsent(
-                        consentText = consentModel.consent.consentHtml,
-                        isObtained = consentModel.isObtained,
-                    )
-                },
+                consentsIds = consentsList?.map { consent -> consent.consent.id },
             )
             consentStandaloneFeature?.dataProvider?.let { provider ->
                 provider::obtainConsent.safeInvoke(obtainedConsentId)
@@ -76,7 +70,7 @@ internal fun OnboardingController.nextPage(
                 eventType = AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED,
                 pageId = AiutaAnalyticPageId.CONSENT,
                 productId = skuItem.id,
-                supplementaryConsents = null,
+                consentsIds = null,
             )
             controller.popUpAndNavigateTo(NavigationScreen.ImageSelector)
         }

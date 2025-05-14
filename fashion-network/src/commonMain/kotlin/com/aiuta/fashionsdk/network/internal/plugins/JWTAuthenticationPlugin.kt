@@ -55,10 +55,9 @@ internal class JWTProvider(
     ) {
         if (request.url.encodedPath !in authorizedPaths) return
 
-        val token =
-            cachedToken
-                ?: tokensHolder.loadToken(request.solveJsonBody()).also { cachedToken = it }
-                ?: return
+        val token = cachedToken
+            ?: tokensHolder.loadToken(request.solveJsonBody()).also { cachedToken = it }
+            ?: return
 
         request.headers {
             val tokenValue = "Bearer $token"

@@ -1,11 +1,13 @@
 package com.aiuta.fashionsdk.network.utils
 
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
+import com.aiuta.fashionsdk.network.exceptions.FashionNetworkDisconnectedException
 import com.aiuta.fashionsdk.network.internal.models.FashionErrorBody
 import io.ktor.client.call.HttpClientCall
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
+import kotlinx.io.IOException
 
 private const val REQUEST_ID_HEADER = "x-cloud-trace-context"
 private const val DATE_HEADER = "date"
@@ -13,9 +15,14 @@ private const val DATE_HEADER = "date"
 internal suspend inline fun handleErrors(
     getHttpClientCall: () -> HttpClientCall,
 ): HttpClientCall {
-    val httpClientCall = getHttpClientCall()
+    val httpClientCall = try {
+        getHttpClientCall()
+    } catch (e: IOException) {
+        throw FashionNetworkDisconnectedException()
+    }
 
     // Check for auth
+    // Need to return, because JWT plugin handle only returned call
     if (httpClientCall.response.status == HttpStatusCode.Unauthorized) return httpClientCall
 
     val fashionIOException = getFashionIOException(httpClientCall.response)
@@ -41,7 +48,7 @@ internal suspend fun getFashionIOException(response: HttpResponse): FashionIOExc
 }
 
 private suspend fun HttpResponse.getErrorMessages(): List<String> = try {
-    body<FashionErrorBody>().detail.map { it.msg }
+    body<FashionErrorBody>().detail?.map { it.msg } ?: emptyList()
 } catch (e: Exception) {
     emptyList()
 }

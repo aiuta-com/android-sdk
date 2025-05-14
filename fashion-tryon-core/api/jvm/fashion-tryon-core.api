@@ -172,6 +172,7 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/policies/AiutaT
 public final class com/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType : java/lang/Enum {
 	public static final field DOWNLOAD_RESULT_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
 	public static final field OPERATION_ABORTED_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
+	public static final field OPERATION_EMPTY_RESULTS_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
 	public static final field OPERATION_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
 	public static final field OPERATION_TIMEOUT_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;
 	public static final field PREPARE_PHOTO_FAILED Lcom/aiuta/fashionsdk/tryon/core/domain/slice/ping/exception/AiutaTryOnExceptionType;

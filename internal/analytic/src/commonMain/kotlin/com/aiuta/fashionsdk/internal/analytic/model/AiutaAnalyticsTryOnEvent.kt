@@ -8,6 +8,8 @@ import kotlinx.serialization.Serializable
 public class AiutaAnalyticsTryOnEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsTryOnEventType,
+    @SerialName("errorType")
+    public val errorType: AiutaAnalyticsTryOnErrorType? = null,
     @SerialName("errorMessage")
     public val errorMessage: String? = null,
     @SerialName("pageId")
@@ -32,4 +34,40 @@ public enum class AiutaAnalyticsTryOnEventType {
 
     @SerialName("tryOnError")
     TRY_ON_ERROR,
+}
+
+@Serializable
+public enum class AiutaAnalyticsTryOnErrorType {
+    @SerialName("preparePhotoFailed")
+    PREPARE_PHOTO_FAILED,
+
+    @SerialName("uploadPhotoFailed")
+    UPLOAD_PHOTO_FAILED,
+
+    @SerialName("authorizationFailed")
+    AUTHORIZATION_FAILED,
+
+    @SerialName("requestOperationFailed")
+    REQUEST_OPERATION_FAILED,
+
+    @SerialName("startOperationFailed")
+    START_OPERATION_FAILED,
+
+    @SerialName("operationFailed")
+    OPERATION_FAILED,
+
+    @SerialName("operationAborted")
+    OPERATION_ABORTED,
+
+    @SerialName("operationTimeout")
+    OPERATION_TIMEOUT,
+
+    @SerialName("operationEmptyResults")
+    OPERATION_EMPTY_RESULTS,
+
+    @SerialName("downloadResultFailed")
+    DOWNLOAD_RESULT_FAILED,
+
+    @SerialName("internalSdkError")
+    INTERNAL_SDK_ERROR,
 }

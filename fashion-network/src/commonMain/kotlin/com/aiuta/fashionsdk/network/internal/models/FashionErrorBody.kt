@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class FashionErrorBody(
     @SerialName("detail")
-    val detail: List<Detail>,
+    val detail: List<Detail>? = null,
 ) {
     @Serializable
     data class Detail(

@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.internal.analytic.model.ErrorEvent
@@ -53,9 +54,9 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
 
     // Notify public
     analytic.sendEvent(
-        event =
-        AiutaAnalyticsTryOnEvent(
+        event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
+            errorType = AiutaAnalyticsTryOnErrorType.DOWNLOAD_RESULT_FAILED,
             errorMessage = "Failed to download result",
             pageId = AiutaAnalyticPageId.LOADING,
             productId = activeProductItem.value.id,

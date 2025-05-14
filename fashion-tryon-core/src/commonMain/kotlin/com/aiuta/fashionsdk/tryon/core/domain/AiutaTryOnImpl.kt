@@ -120,8 +120,7 @@ internal class AiutaTryOnImpl(
                 container = container,
             ) {
                 productOperationsDataSource.createProductOperation(
-                    request =
-                    CreateProductOperationRequest(
+                    request = CreateProductOperationRequest(
                         skuCatalogName = container.productCatalogName,
                         skuId = container.productId,
                         uploadedImageId = uploadedImage.id,
@@ -139,8 +138,7 @@ internal class AiutaTryOnImpl(
             )
             val generations = trackSpecificTryOnArea(
                 typeArea = AiutaTryOnExceptionType.OPERATION_FAILED,
-                failingTypes =
-                setOf(
+                failingTypes = setOf(
                     AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED,
                     AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED,
                 ),
@@ -150,6 +148,12 @@ internal class AiutaTryOnImpl(
             }
             // Update time for meta info of generation
             metadataBuilder.setTryOnDuration()
+
+            // Check, that we finish successfully and have results
+            trackTryOnArea(
+                typeArea = AiutaTryOnExceptionType.OPERATION_EMPTY_RESULTS_FAILED,
+                container = container,
+            ) { check(generations.isNotEmpty()) }
 
             // Finally, emit result
             emit(
