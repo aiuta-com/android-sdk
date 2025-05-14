@@ -1,0 +1,3 @@
+package com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider
+
+public object AiutaOnboardingFeatureDataProviderBuiltIn : AiutaOnboardingFeatureDataProvider

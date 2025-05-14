@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 internal interface OnboardingDao {
@@ -12,5 +13,5 @@ internal interface OnboardingDao {
     suspend fun insert(entity: OnboardingEntity)
 
     @Query("SELECT * FROM onboarding_state LIMIT 1")
-    suspend fun getOnboardingEntity(): OnboardingEntity?
+    fun getOnboardingEntityFlow(): Flow<OnboardingEntity?>
 }
