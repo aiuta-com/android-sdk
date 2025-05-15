@@ -4,11 +4,10 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovider.AiutaConsentStandaloneFeatureDataProviderBuiltIn
 import com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovider.AiutaConsentStandaloneFeatureDataProviderCustom
-import com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovider.AiutaConsentStandaloneFeatureDataProviderLogic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.isRequired
 import kotlinx.coroutines.CoroutineScope
 
-internal abstract class ConsentInteractor : AiutaConsentStandaloneFeatureDataProviderLogic {
+internal abstract class ConsentInteractor : AiutaConsentStandaloneFeatureDataProviderCustom {
 
     fun shouldShowConsent(
         consentStandaloneFeature: AiutaConsentStandaloneFeature,

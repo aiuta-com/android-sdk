@@ -4,10 +4,9 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProviderBuiltIn
 import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProviderCustom
-import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProviderLogic
 import kotlinx.coroutines.CoroutineScope
 
-internal interface OnboardingInteractor : AiutaOnboardingFeatureDataProviderLogic {
+internal interface OnboardingInteractor : AiutaOnboardingFeatureDataProviderCustom {
     companion object {
         fun getInstance(
             aiuta: Aiuta,
