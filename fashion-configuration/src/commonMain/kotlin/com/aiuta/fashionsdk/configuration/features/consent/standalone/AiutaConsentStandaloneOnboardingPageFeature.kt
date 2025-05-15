@@ -11,7 +11,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 public class AiutaConsentStandaloneOnboardingPageFeature(
     public override val strings: AiutaConsentStandaloneFeatureStrings,
     public override val data: AiutaConsentStandaloneFeatureData,
-    public override val dataProvider: AiutaConsentStandaloneFeatureDataProvider?,
+    public override val dataProvider: AiutaConsentStandaloneFeatureDataProvider,
     public override val icons: AiutaConsentStandaloneFeatureIcons,
     public override val styles: AiutaConsentStandaloneFeatureStyles,
 ) : AiutaConsentStandaloneFeature {
@@ -35,7 +35,10 @@ public class AiutaConsentStandaloneOnboardingPageFeature(
                     parentClass = parentClass,
                     property = "data",
                 ),
-                dataProvider = this.dataProvider,
+                dataProvider = dataProvider.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "dataProvider",
+                ),
                 icons = icons.checkNotNullWithDescription(
                     parentClass = parentClass,
                     property = "icons",

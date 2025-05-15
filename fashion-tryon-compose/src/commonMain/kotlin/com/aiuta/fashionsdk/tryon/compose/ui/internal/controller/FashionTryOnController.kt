@@ -7,22 +7,23 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
+import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.consent.ConsentInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.consent.consentInteractor
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.ConsentInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.onboardingInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.session.SessionGenerationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.selector.SelectedHolder
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
@@ -49,8 +50,11 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
     aiutaConfiguration: AiutaConfiguration,
     productItem: ProductItem,
 ): FashionTryOnController {
+    val uiScope = rememberCoroutineScope()
     val coilContext = LocalPlatformContext.current
 
+    val onboardingFeature = aiutaConfiguration.features.provideFeature<AiutaOnboardingFeature>()
+    val consentStandaloneFeature = aiutaConfiguration.features.provideFeature<AiutaConsentStandaloneFeature>()
     val uploadsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaImagePickerUploadsHistoryFeature>()
     val generationsHistoryFeature = aiutaConfiguration.features.provideFeature<AiutaTryOnGenerationsHistoryFeature>()
     val tryOnFeature = aiutaConfiguration.features.strictProvideFeature<AiutaTryOnFeature>()
@@ -77,8 +81,16 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
                 aiuta = aiutaConfiguration.aiuta,
                 uploadsHistoryFeature = uploadsHistoryFeature,
             ),
-            onboardingInteractor = aiutaConfiguration.aiuta.onboardingInteractor,
-            consentInteractor = aiutaConfiguration.aiuta.consentInteractor,
+            onboardingInteractor = OnboardingInteractor.getInstance(
+                aiuta = aiutaConfiguration.aiuta,
+                scope = uiScope,
+                onboardingFeature = onboardingFeature,
+            ),
+            consentInteractor = ConsentInteractor.getInstance(
+                aiuta = aiutaConfiguration.aiuta,
+                scope = uiScope,
+                consentStandaloneFeature = consentStandaloneFeature,
+            ),
             sessionGenerationInteractor = SessionGenerationInteractor.getInstance(
                 coilContext = coilContext,
                 generationsHistoryFeature = generationsHistoryFeature,

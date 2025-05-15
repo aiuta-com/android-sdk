@@ -4,21 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
-import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.ConsentInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.isRequired
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.onboarding.AiutaConsentUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 
-internal fun ConsentController.completeConsentViewing(
-    consentStandaloneFeature: AiutaConsentStandaloneFeature,
+internal suspend fun ConsentController.completeConsentViewing(
+    consentInteractor: ConsentInteractor,
 ) {
     val obtainedConsentId = consentsList.mapNotNull { consentModel ->
         consentModel.consent.id.takeIf { consentModel.isObtained }
     }
 
-    consentStandaloneFeature.dataProvider?.let { provider ->
-        provider::obtainConsent.safeInvoke(obtainedConsentId)
-    }
+    consentInteractor::obtainConsent.safeInvoke(obtainedConsentId)
 }
 
 internal fun ConsentController.updateConsentState(

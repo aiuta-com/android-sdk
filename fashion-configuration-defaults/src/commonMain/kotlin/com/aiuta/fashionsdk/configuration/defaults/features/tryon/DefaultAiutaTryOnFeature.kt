@@ -16,6 +16,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.feedback.feedback
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.otherFeedback
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.other.strings.AiutaTryOnFeedbackOtherFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.tryon.feedback.strings.AiutaTryOnFeedbackFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn
 import com.aiuta.fashionsdk.configuration.features.tryon.history.generationsHistory
 import com.aiuta.fashionsdk.configuration.features.tryon.history.strings.AiutaTryOnGenerationsHistoryFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.tryon.loading.loadingPage
@@ -58,6 +59,7 @@ public fun AiutaFeatures.Builder.defaultTryOn(
     generationsHistory {
         icons = DefaultAiutaTryOnGenerationsHistoryFeatureIcons()
         strings = AiutaTryOnGenerationsHistoryFeatureStrings.Default()
+        dataProvider = AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn
     }
     otherPhoto {
         icons = DefaultAiutaTryOnWithOtherPhotoFeatureIcons()

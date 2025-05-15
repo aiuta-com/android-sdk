@@ -1,25 +1,28 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.OnboardingDataSource
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
+import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
+import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProviderBuiltIn
+import com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider.AiutaOnboardingFeatureDataProviderCustom
+import kotlinx.coroutines.CoroutineScope
 
-internal val Aiuta.onboardingInteractor: OnboardingInteractor
-    get() = OnboardingInteractor.getInstance(platformContext)
-
-internal class OnboardingInteractor(
-    private val onboardingDataSource: OnboardingDataSource,
-) {
-    suspend fun isOnboardingPassed(): Boolean = onboardingDataSource.getOnboardingEntity() != null
-
-    suspend fun setOnboardingAsFinished() {
-        onboardingDataSource.insertOnboardingEntity(OnboardingEntity())
-    }
-
+internal interface OnboardingInteractor : AiutaOnboardingFeatureDataProviderCustom {
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): OnboardingInteractor = OnboardingInteractor(
-            onboardingDataSource = OnboardingDataSource.getInstance(platformContext),
-        )
+        fun getInstance(
+            aiuta: Aiuta,
+            scope: CoroutineScope,
+            onboardingFeature: AiutaOnboardingFeature?,
+        ): OnboardingInteractor = when (val dataProvider = onboardingFeature?.dataProvider) {
+            null -> EmptyOnboardingInteractor()
+
+            is AiutaOnboardingFeatureDataProviderBuiltIn -> DatabaseOnboardingInteractor.getInstance(
+                scope = scope,
+                platformContext = aiuta.platformContext,
+            )
+
+            is AiutaOnboardingFeatureDataProviderCustom -> HostOnboardingInteractor(
+                customDataProvider = dataProvider,
+            )
+        }
     }
 }

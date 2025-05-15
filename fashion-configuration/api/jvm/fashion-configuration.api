@@ -209,8 +209,16 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/cons
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneFeatureDataProvider {
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneFeatureDataProviderBuiltIn : com/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneFeatureDataProvider {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneFeatureDataProviderBuiltIn;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneFeatureDataProviderCustom : com/aiuta/fashionsdk/configuration/features/consent/standalone/dataprovider/AiutaConsentStandaloneFeatureDataProvider {
 	public abstract fun getObtainedConsentsIds ()Lkotlinx/coroutines/flow/StateFlow;
-	public abstract fun obtainConsent (Ljava/util/List;)V
+	public abstract fun obtainConsent (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/consent/standalone/icons/AiutaConsentStandaloneFeatureIcons {
@@ -389,7 +397,15 @@ public final class com/aiuta/fashionsdk/configuration/features/onboarding/bestre
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider {
-	public abstract fun completeOnboarding ()V
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProviderBuiltIn : com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProviderBuiltIn;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProviderCustom : com/aiuta/fashionsdk/configuration/features/onboarding/dataprovider/AiutaOnboardingFeatureDataProvider {
+	public abstract fun completeOnboarding (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun isOnboardingCompleted ()Lkotlinx/coroutines/flow/StateFlow;
 }
 
@@ -606,6 +622,14 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/history/Ai
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider {
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn : com/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProviderCustom : com/aiuta/fashionsdk/configuration/features/picker/history/dataprovider/AiutaImagePickerUploadsHistoryFeatureDataProvider {
 	public abstract fun addUploadedImages (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun deleteUploadedImages (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getUploadedImages ()Lkotlinx/coroutines/flow/StateFlow;
@@ -698,8 +722,8 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/strings/Ai
 
 public final class com/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/share/watermark/AiutaShareWatermarkFeature;Lcom/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/share/strings/AiutaShareFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider;)V
-	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider;
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/share/watermark/AiutaShareWatermarkFeature;Lcom/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/share/strings/AiutaShareFeatureStrings;Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProviderCustom;)V
+	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProviderCustom;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/share/strings/AiutaShareFeatureStrings;
 	public final fun getWatermark ()Lcom/aiuta/fashionsdk/configuration/features/share/watermark/AiutaShareWatermarkFeature;
@@ -710,11 +734,11 @@ public final class com/aiuta/fashionsdk/configuration/features/share/AiutaShareF
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/share/AiutaShareFeature;
-	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider;
+	public final fun getDataProvider ()Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProviderCustom;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/share/strings/AiutaShareFeatureStrings;
 	public final fun getWatermark ()Lcom/aiuta/fashionsdk/configuration/features/share/watermark/AiutaShareWatermarkFeature;
-	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider;)V
+	public final fun setDataProvider (Lcom/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProviderCustom;)V
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/share/icons/AiutaShareFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/share/strings/AiutaShareFeatureStrings;)V
 	public final fun setWatermark (Lcom/aiuta/fashionsdk/configuration/features/share/watermark/AiutaShareWatermarkFeature;)V
@@ -724,7 +748,7 @@ public final class com/aiuta/fashionsdk/configuration/features/share/AiutaShareF
 	public static final fun share (Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures$Builder;
 }
 
-public abstract interface class com/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProvider {
+public abstract interface class com/aiuta/fashionsdk/configuration/features/share/dataprovider/AiutaShareFeatureDataProviderCustom {
 	public abstract fun getShareText (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -1017,6 +1041,14 @@ public final class com/aiuta/fashionsdk/configuration/features/tryon/history/Aiu
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/history/dataprovider/AiutaTryOnGenerationsHistoryFeatureDataProvider {
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/tryon/history/dataprovider/AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn : com/aiuta/fashionsdk/configuration/features/tryon/history/dataprovider/AiutaTryOnGenerationsHistoryFeatureDataProvider {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/configuration/features/tryon/history/dataprovider/AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn;
+}
+
+public abstract interface class com/aiuta/fashionsdk/configuration/features/tryon/history/dataprovider/AiutaTryOnGenerationsHistoryFeatureDataProviderCustom : com/aiuta/fashionsdk/configuration/features/tryon/history/dataprovider/AiutaTryOnGenerationsHistoryFeatureDataProvider {
 	public abstract fun addGeneratedImages (Ljava/util/List;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun deleteGeneratedImages (Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun getGeneratedImages ()Lkotlinx/coroutines/flow/StateFlow;

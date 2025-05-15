@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 public class AiutaTryOnGenerationsHistoryFeature(
     public val icons: AiutaTryOnGenerationsHistoryFeatureIcons,
     public val strings: AiutaTryOnGenerationsHistoryFeatureStrings,
-    public val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider?,
+    public val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider,
 ) : AiutaFeature {
 
     public class Builder : AiutaFeature.Builder {
@@ -30,7 +30,10 @@ public class AiutaTryOnGenerationsHistoryFeature(
                     parentClass = parentClass,
                     property = "strings",
                 ),
-                dataProvider = dataProvider,
+                dataProvider = dataProvider.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "dataProvider",
+                ),
             )
         }
     }

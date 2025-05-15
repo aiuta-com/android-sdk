@@ -3,6 +3,8 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.
 import androidx.paging.PagingData
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn
+import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProviderCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import kotlinx.coroutines.flow.Flow
@@ -32,16 +34,15 @@ internal interface GeneratedOperationInteractor {
         fun getInstance(
             aiuta: Aiuta,
             uploadsHistoryFeature: AiutaImagePickerUploadsHistoryFeature?,
-        ): GeneratedOperationInteractor = when {
-            // Feature not initialized
-            uploadsHistoryFeature == null -> EmptyGeneratedOperationInteractor()
-            // Data provider not initialized -> let's use local
-            uploadsHistoryFeature.dataProvider == null -> DatabaseGeneratedOperationInteractor.getInstance(
+        ): GeneratedOperationInteractor = when (val dataProvider = uploadsHistoryFeature?.dataProvider) {
+            null -> EmptyGeneratedOperationInteractor()
+
+            is AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn -> DatabaseGeneratedOperationInteractor.getInstance(
                 platformContext = aiuta.platformContext,
             )
-            // Data provider initialized -> let's use host
-            else -> HostGeneratedOperationInteractor.getInstance(
-                dataProvider = uploadsHistoryFeature.dataProvider!!,
+
+            is AiutaImagePickerUploadsHistoryFeatureDataProviderCustom -> HostGeneratedOperationInteractor.getInstance(
+                dataProvider = dataProvider,
             )
         }
     }

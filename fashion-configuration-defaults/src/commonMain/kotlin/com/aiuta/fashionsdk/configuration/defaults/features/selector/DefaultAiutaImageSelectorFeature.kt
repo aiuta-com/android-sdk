@@ -9,6 +9,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.camera.camera
 import com.aiuta.fashionsdk.configuration.features.picker.camera.strings.AiutaImagePickerCameraFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.photoGallery
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.strings.AiutaImagePickerPhotoGalleryFeatureStrings
+import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn
 import com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaImagePickerUploadsHistoryFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.configuration.features.picker.history.uploadsHistory
@@ -31,9 +32,11 @@ public fun AiutaFeatures.Builder.defaultImagePicker(): AiutaFeatures.Builder = i
         strings = AiutaImagePickerPredefinedModelFeatureStrings.Default()
     }
     uploadsHistory {
-        strings =
-            AiutaImagePickerUploadsHistoryFeatureStrings.Default(isPredefinedModelAvailable = true)
+        strings = AiutaImagePickerUploadsHistoryFeatureStrings.Default(
+            isPredefinedModelAvailable = true,
+        )
         styles = AiutaImagePickerUploadsHistoryFeatureStyles.Default()
+        dataProvider = AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn
     }
     images = DefaultAiutaImagePickerFeatureImages()
     strings = AiutaImagePickerFeatureStrings.Default()

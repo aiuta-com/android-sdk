@@ -1,8 +1,6 @@
 package com.aiuta.fashionsdk.configuration.features.onboarding.dataprovider
 
-import kotlinx.coroutines.flow.StateFlow
-
-public interface AiutaOnboardingFeatureDataProvider {
-    public val isOnboardingCompleted: StateFlow<Boolean>
-    public fun completeOnboarding()
-}
+/**
+ * A sealed interface representing the base type for all onboarding feature data providers.
+ */
+public sealed interface AiutaOnboardingFeatureDataProvider

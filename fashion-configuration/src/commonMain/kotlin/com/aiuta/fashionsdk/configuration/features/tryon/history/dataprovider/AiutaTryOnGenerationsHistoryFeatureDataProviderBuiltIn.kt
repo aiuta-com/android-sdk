@@ -1,0 +1,3 @@
+package com.aiuta.fashionsdk.configuration.features.tryon.history.dataprovider
+
+public object AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn : AiutaTryOnGenerationsHistoryFeatureDataProvider

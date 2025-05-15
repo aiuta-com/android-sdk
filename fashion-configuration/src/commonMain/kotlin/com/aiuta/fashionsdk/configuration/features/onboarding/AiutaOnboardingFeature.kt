@@ -18,7 +18,7 @@ public class AiutaOnboardingFeature(
     // General
     public val strings: AiutaOnboardingFeatureStrings,
     public val shapes: AiutaOnboardingFeatureShapes,
-    public val dataProvider: AiutaOnboardingFeatureDataProvider?,
+    public val dataProvider: AiutaOnboardingFeatureDataProvider,
 ) : AiutaFeature {
 
     public class Builder : AiutaFeature.Builder {

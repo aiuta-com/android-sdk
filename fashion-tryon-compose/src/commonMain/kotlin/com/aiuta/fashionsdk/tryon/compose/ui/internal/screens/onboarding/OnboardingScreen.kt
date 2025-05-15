@@ -114,7 +114,6 @@ internal fun OnboardingScreen(modifier: Modifier = Modifier) {
             onClick = {
                 onboardingController.nextPage(
                     controller = controller,
-                    features = features,
                 )
             },
         )

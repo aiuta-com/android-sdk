@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.share
 
 import com.aiuta.fashionsdk.configuration.features.AiutaFeature
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
-import com.aiuta.fashionsdk.configuration.features.share.dataprovider.AiutaShareFeatureDataProvider
+import com.aiuta.fashionsdk.configuration.features.share.dataprovider.AiutaShareFeatureDataProviderCustom
 import com.aiuta.fashionsdk.configuration.features.share.icons.AiutaShareFeatureIcons
 import com.aiuta.fashionsdk.configuration.features.share.strings.AiutaShareFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.share.watermark.AiutaShareWatermarkFeature
@@ -14,14 +14,14 @@ public class AiutaShareFeature(
     // General
     public val icons: AiutaShareFeatureIcons,
     public val strings: AiutaShareFeatureStrings,
-    public val dataProvider: AiutaShareFeatureDataProvider?,
+    public val dataProvider: AiutaShareFeatureDataProviderCustom?,
 ) : AiutaFeature {
 
     public class Builder : AiutaFeature.Builder {
         public var watermark: AiutaShareWatermarkFeature? = null
         public var icons: AiutaShareFeatureIcons? = null
         public var strings: AiutaShareFeatureStrings? = null
-        public var dataProvider: AiutaShareFeatureDataProvider? = null
+        public var dataProvider: AiutaShareFeatureDataProviderCustom? = null
 
         public override fun build(): AiutaShareFeature {
             val parentClass = "AiutaShareFeature"

@@ -10,7 +10,7 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 public class AiutaImagePickerUploadsHistoryFeature(
     public val strings: AiutaImagePickerUploadsHistoryFeatureStrings,
     public val styles: AiutaImagePickerUploadsHistoryFeatureStyles,
-    public val dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider?,
+    public val dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider,
 ) : AiutaFeature {
     public class Builder : AiutaFeature.Builder {
         public var strings: AiutaImagePickerUploadsHistoryFeatureStrings? = null
@@ -29,7 +29,10 @@ public class AiutaImagePickerUploadsHistoryFeature(
                     parentClass = parentClass,
                     property = "styles",
                 ),
-                dataProvider = dataProvider,
+                dataProvider = dataProvider.checkNotNullWithDescription(
+                    parentClass = parentClass,
+                    property = "dataProvider",
+                ),
             )
         }
     }
