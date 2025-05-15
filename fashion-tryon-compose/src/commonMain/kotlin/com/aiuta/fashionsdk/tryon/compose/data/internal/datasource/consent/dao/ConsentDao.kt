@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao
+package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.consent.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

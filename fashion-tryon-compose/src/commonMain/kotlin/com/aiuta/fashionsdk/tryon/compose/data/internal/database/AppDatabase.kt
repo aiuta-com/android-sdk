@@ -12,14 +12,15 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryO
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.config.dao.ConfigDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.consent.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.code.AiutaCodeEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.config.ClientConfigEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.consent.ObtainedConsentEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
@@ -34,7 +35,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 16
+internal const val DATABASE_VERSION = 17
 internal const val ANDROID_DATABASE_NAME = "fashionsdk-database"
 internal const val DATABASE_NAME = "fashionsdk-database.db"
 
@@ -42,6 +43,9 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
     entities = [
         // Config
         ClientConfigEntity::class,
+
+        // Consent
+        ObtainedConsentEntity::class,
 
         // Time
         TimestampEntity::class,

@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.consent
 
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.ConsentDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.consent.dao.ConsentDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.consent.ObtainedConsentEntity
 import kotlinx.coroutines.flow.Flow
 

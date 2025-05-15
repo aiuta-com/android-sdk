@@ -21,7 +21,6 @@ import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGener
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.ConsentInteractor
-import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.consentInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding.OnboardingInteractor
