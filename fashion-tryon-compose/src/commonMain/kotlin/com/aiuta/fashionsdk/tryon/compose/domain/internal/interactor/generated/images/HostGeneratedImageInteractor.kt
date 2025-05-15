@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProvider
+import com.aiuta.fashionsdk.configuration.features.tryon.history.dataprovider.AiutaTryOnGenerationsHistoryFeatureDataProviderCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublic
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class HostGeneratedImageInteractor(
-    private val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider,
+    private val dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProviderCustom,
 ) : GeneratedImageInteractor {
     override suspend fun insertAll(
         generatedProductId: String,
@@ -41,6 +41,8 @@ internal class HostGeneratedImageInteractor(
     override fun countFlow(): Flow<Int> = dataProvider.generatedImages.map { images -> images.size }
 
     companion object {
-        fun getInstance(dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProvider): HostGeneratedImageInteractor = HostGeneratedImageInteractor(dataProvider = dataProvider)
+        fun getInstance(
+            dataProvider: AiutaTryOnGenerationsHistoryFeatureDataProviderCustom,
+        ): HostGeneratedImageInteractor = HostGeneratedImageInteractor(dataProvider = dataProvider)
     }
 }

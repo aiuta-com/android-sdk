@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
+import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toImageUiModel
@@ -31,8 +32,8 @@ internal fun AiutaTryOnLoadingActionsController.deletingGeneratedImagesListener(
 private fun AiutaTryOnLoadingActionsController.updateDeletingGeneratedImagesListener() {
     val controller = LocalController.current
 
-    val generationsHistoryFeature = provideFeature<com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature>()
-    val dataProvider = generationsHistoryFeature?.dataProvider
+    val generationsHistoryFeature = provideFeature<AiutaTryOnGenerationsHistoryFeature>()
+    val dataProvider = generationsHistoryFeature?.dataProvider?.asCustom()
 
     // Observe external changes of generated images and delete
     dataProvider?.let {
