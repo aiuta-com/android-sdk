@@ -46,16 +46,38 @@ public class ConfigureEvent(
     @SerialName("authentication")
     public val authenticationType: AuthenticationType,
     // General toggles
-    @SerialName("isHistoryAvailable")
-    public val isHistoryEnable: Boolean,
-    @SerialName("isWishlistAvailable")
-    public val isWishlistAvailable: Boolean,
-    @SerialName("isPreOnboardingAvailable")
-    public val isPreOnboardingAvailable: Boolean,
-    @SerialName("isShareAvailable")
-    public val isShareAvailable: Boolean,
-    @SerialName("isHostDataProviderEnabled")
-    public val isHostDataProviderEnabled: Boolean,
+    @SerialName("welcomeScreenFeatureEnabled")
+    public val welcomeScreenFeatureEnabled: Boolean,
+    @SerialName("onboardingFeatureEnabled")
+    public val onboardingFeatureEnabled: Boolean,
+    @SerialName("onboardingBestResultsPageFeatureEnabled")
+    public val onboardingBestResultsPageFeatureEnabled: Boolean,
+    @SerialName("consentFeature")
+    public val consentFeatureEnabled: Boolean,
+    @SerialName("imagePickerCameraFeatureEnabled")
+    public val imagePickerCameraFeatureEnabled: Boolean,
+    @SerialName("imagePickerPredefinedModelFeatureEnabled")
+    public val imagePickerPredefinedModelFeatureEnabled: Boolean,
+    @SerialName("imagePickerUploadsHistoryFeatureEnabled")
+    public val imagePickerUploadsHistoryFeatureEnabled: Boolean,
+    @SerialName("tryOnFitDisclaimerFeatureEnabled")
+    public val tryOnFitDisclaimerFeatureEnabled: Boolean,
+    @SerialName("tryOnFeedbackFeatureEnabled")
+    public val tryOnFeedbackFeatureEnabled: Boolean,
+    @SerialName("tryOnFeedbackOtherFeatureEnabled")
+    public val tryOnFeedbackOtherFeatureEnabled: Boolean,
+    @SerialName("tryOnGenerationsHistoryFeatureEnabled")
+    public val tryOnGenerationsHistoryFeatureEnabled: Boolean,
+    @SerialName("tryOnMultiItemFeatureEnabled")
+    public val tryOnMultiItemFeatureEnabled: Boolean,
+    @SerialName("tryOnWithOtherPhotoFeatureEnabled")
+    public val tryOnWithOtherPhotoFeatureEnabled: Boolean,
+    @SerialName("shareFeatureEnabled")
+    public val shareFeatureEnabled: Boolean,
+    @SerialName("shareWatermarkFeatureEnabled")
+    public val shareWatermarkFeatureEnabled: Boolean,
+    @SerialName("wishlistFeatureEnabled")
+    public val wishlistFeatureEnabled: Boolean,
 ) : InternalAnalyticEvent {
     @Serializable
     public enum class SDKMode {
