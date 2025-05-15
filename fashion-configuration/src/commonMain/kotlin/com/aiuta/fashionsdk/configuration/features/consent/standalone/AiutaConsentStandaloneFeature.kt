@@ -9,7 +9,7 @@ import com.aiuta.fashionsdk.configuration.features.consent.standalone.styles.Aiu
 public interface AiutaConsentStandaloneFeature : AiutaConsentFeature {
     public val strings: AiutaConsentStandaloneFeatureStrings
     public val data: AiutaConsentStandaloneFeatureData
-    public val dataProvider: AiutaConsentStandaloneFeatureDataProvider?
+    public val dataProvider: AiutaConsentStandaloneFeatureDataProvider
     public val icons: AiutaConsentStandaloneFeatureIcons
     public val styles: AiutaConsentStandaloneFeatureStyles
 }

@@ -134,7 +134,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                                     runCatching {
                                         uploadsHistoryFeature
                                             .dataProvider
-                                            ?.asCustom()
+                                            .asCustom()
                                             ?.selectUploadedImage(
                                                 image = AiutaHistoryImage(
                                                     id = image.imageId,
