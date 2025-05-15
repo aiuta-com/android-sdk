@@ -1,0 +1,3 @@
+package com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider
+
+public object AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn : AiutaImagePickerUploadsHistoryFeatureDataProvider

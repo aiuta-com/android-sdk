@@ -35,6 +35,7 @@ import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePick
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
+import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
@@ -133,6 +134,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                                     runCatching {
                                         uploadsHistoryFeature
                                             .dataProvider
+                                            ?.asCustom()
                                             ?.selectUploadedImage(
                                                 image = AiutaHistoryImage(
                                                     id = image.imageId,

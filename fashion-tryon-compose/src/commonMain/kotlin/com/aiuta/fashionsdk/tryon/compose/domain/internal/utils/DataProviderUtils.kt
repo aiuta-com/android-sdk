@@ -1,0 +1,6 @@
+package com.aiuta.fashionsdk.tryon.compose.domain.internal.utils
+
+import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProvider
+import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProviderCustom
+
+internal fun AiutaImagePickerUploadsHistoryFeatureDataProvider.asCustom(): AiutaImagePickerUploadsHistoryFeatureDataProviderCustom? = this as? AiutaImagePickerUploadsHistoryFeatureDataProviderCustom

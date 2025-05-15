@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -26,6 +27,7 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButton
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonSizes
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.FashionButtonStyles
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
+import kotlinx.coroutines.launch
 
 @Composable
 internal fun ConsentScreen(
@@ -34,6 +36,7 @@ internal fun ConsentScreen(
 ) {
     val theme = LocalTheme.current
     val controller = LocalController.current
+    val scope = rememberCoroutineScope()
 
     val consentStandaloneFeature = strictProvideFeature<AiutaConsentStandaloneFeature>()
     val consentController = rememberConsentController(consentStandaloneFeature)
@@ -71,8 +74,10 @@ internal fun ConsentScreen(
             size = FashionButtonSizes.lSize(),
             isEnable = consentController.listenIsAllMandatoryConsentChecked().value,
             onClick = {
-                consentController.completeConsentViewing(consentStandaloneFeature)
-                controller.navigateBack().apply { onObtainedConsents() }
+                scope.launch {
+                    consentController.completeConsentViewing(controller.consentInteractor)
+                    controller.navigateBack().apply { onObtainedConsents() }
+                }
             },
         )
 
