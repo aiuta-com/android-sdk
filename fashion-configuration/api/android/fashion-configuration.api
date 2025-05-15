@@ -1323,9 +1323,8 @@ public final class com/aiuta/fashionsdk/configuration/features/wishlist/strings/
 
 public final class com/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData;Lcom/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions;Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions;Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;)V
 	public final fun getActions ()Lcom/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions;
-	public final fun getStyleMetaData ()Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData;
 	public final fun getTheme ()Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;
 }
 
@@ -1334,10 +1333,8 @@ public final class com/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfi
 	public fun <init> ()V
 	public final fun build ()Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;
 	public final fun getActions ()Lcom/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions;
-	public final fun getStyleMetaData ()Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData;
 	public final fun getTheme ()Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;
 	public final fun setActions (Lcom/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions;)V
-	public final fun setStyleMetaData (Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData;)V
 	public final fun setTheme (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;)V
 }
 
@@ -1347,24 +1344,6 @@ public final class com/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfi
 
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions {
 	public abstract fun closeClick ()V
-}
-
-public final class com/aiuta/fashionsdk/configuration/ui/meta/AiutaMode : java/lang/Enum {
-	public static final field BOTTOM_SHEET Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaMode;
-	public static final field FULL_SCREEN Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaMode;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaMode;
-	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaMode;
-}
-
-public abstract interface class com/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData {
-	public abstract fun getMode ()Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaMode;
-}
-
-public final class com/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData$Default : com/aiuta/fashionsdk/configuration/ui/meta/AiutaStyleMetaData {
-	public static final field $stable I
-	public fun <init> ()V
-	public fun getMode ()Lcom/aiuta/fashionsdk/configuration/ui/meta/AiutaMode;
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme {
