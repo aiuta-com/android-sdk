@@ -4,7 +4,10 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.authentication.ApiKeyAuthenticationStrategy
 import com.aiuta.fashionsdk.authentication.JWTAuthenticationStrategy
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentEmbeddedIntoOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneImagePickerPageFeature
+import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneOnboardingPageFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.AiutaOnboardingFeature
 import com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.AiutaOnboardingBestResultsPageFeature
 import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePickerCameraFeature
@@ -19,19 +22,16 @@ import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGener
 import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.configuration.ui.meta.AiutaMode
 import com.aiuta.fashionsdk.internal.analytic.model.ConfigureEvent
 
 internal fun AiutaConfiguration.sendConfigurationEvent() {
     aiutaAnalytic.sendEvent(
         event = ConfigureEvent(
-            mode = userInterface.styleMetaData?.mode?.toSDKMode()
-                ?: ConfigureEvent.SDKMode.FULL_SCREEN,
             authenticationType = aiuta.toAuthenticationType(),
             welcomeScreenFeatureEnabled = features.isFeatureInitialize<AiutaWelcomeScreenFeature>(),
             onboardingFeatureEnabled = features.isFeatureInitialize<AiutaOnboardingFeature>(),
             onboardingBestResultsPageFeatureEnabled = features.isFeatureInitialize<AiutaOnboardingBestResultsPageFeature>(),
-            consentFeatureEnabled = features.isFeatureInitialize<AiutaConsentFeature>(),
+            сonsentType = features.provideFeature<AiutaConsentFeature>()?.toConsentType(),
             imagePickerCameraFeatureEnabled = features.isFeatureInitialize<AiutaImagePickerCameraFeature>(),
             imagePickerPredefinedModelFeatureEnabled = features.isFeatureInitialize<AiutaImagePickerPredefinedModelFeature>(),
             imagePickerUploadsHistoryFeatureEnabled = features.isFeatureInitialize<AiutaImagePickerUploadsHistoryFeature>(),
@@ -48,12 +48,14 @@ internal fun AiutaConfiguration.sendConfigurationEvent() {
     )
 }
 
-private fun AiutaMode.toSDKMode(): ConfigureEvent.SDKMode = when (this) {
-    AiutaMode.FULL_SCREEN -> ConfigureEvent.SDKMode.FULL_SCREEN
-    AiutaMode.BOTTOM_SHEET -> ConfigureEvent.SDKMode.BOTTOM_SHEET
-}
-
 private fun Aiuta.toAuthenticationType(): ConfigureEvent.AuthenticationType = when (authenticationStrategy) {
     is ApiKeyAuthenticationStrategy -> ConfigureEvent.AuthenticationType.API_KEY
     is JWTAuthenticationStrategy -> ConfigureEvent.AuthenticationType.JWT
+}
+
+private fun AiutaConsentFeature.toConsentType(): ConfigureEvent.ConsentType = when (this) {
+    is AiutaConsentEmbeddedIntoOnboardingFeature -> ConfigureEvent.ConsentType.EMBEDDED_INTO_ONBOARDING
+    is AiutaConsentStandaloneOnboardingPageFeature -> ConfigureEvent.ConsentType.STANDALONE_ONBOARDING_PAGE
+    is AiutaConsentStandaloneImagePickerPageFeature -> ConfigureEvent.ConsentType.STANDALONE_IMAGE_PICKER_PAGE
+    else -> error("Not supported consent type")
 }

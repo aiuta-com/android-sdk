@@ -41,10 +41,10 @@ public class ConfigureEvent(
     override val pageId: AiutaAnalyticPageId? = null,
     @SerialName("productId")
     override val productId: String? = null,
-    @SerialName("mode")
-    public val mode: SDKMode,
     @SerialName("authentication")
     public val authenticationType: AuthenticationType,
+    @SerialName("сonsentType")
+    public val сonsentType: ConsentType? = null,
     // General toggles
     @SerialName("welcomeScreenFeatureEnabled")
     public val welcomeScreenFeatureEnabled: Boolean,
@@ -52,8 +52,6 @@ public class ConfigureEvent(
     public val onboardingFeatureEnabled: Boolean,
     @SerialName("onboardingBestResultsPageFeatureEnabled")
     public val onboardingBestResultsPageFeatureEnabled: Boolean,
-    @SerialName("consentFeature")
-    public val consentFeatureEnabled: Boolean,
     @SerialName("imagePickerCameraFeatureEnabled")
     public val imagePickerCameraFeatureEnabled: Boolean,
     @SerialName("imagePickerPredefinedModelFeatureEnabled")
@@ -79,17 +77,6 @@ public class ConfigureEvent(
     @SerialName("wishlistFeatureEnabled")
     public val wishlistFeatureEnabled: Boolean,
 ) : InternalAnalyticEvent {
-    @Serializable
-    public enum class SDKMode {
-        @SerialName("fullScreen")
-        FULL_SCREEN,
-
-        @SerialName("bottomSheet")
-        BOTTOM_SHEET,
-
-        @SerialName("pageSheet")
-        PAGE_SHEET,
-    }
 
     @Serializable
     public enum class AuthenticationType {
@@ -98,6 +85,18 @@ public class ConfigureEvent(
 
         @SerialName("jwt")
         JWT,
+    }
+
+    @Serializable
+    public enum class ConsentType {
+        @SerialName("embeddedIntoOnboarding")
+        EMBEDDED_INTO_ONBOARDING,
+
+        @SerialName("standaloneOnboardingPage")
+        STANDALONE_ONBOARDING_PAGE,
+
+        @SerialName("standaloneImagePickerPage")
+        STANDALONE_IMAGE_PICKER_PAGE,
     }
 }
 
