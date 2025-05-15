@@ -67,17 +67,6 @@ final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtons
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.values|values#static(){}[0]
 }
 
-final enum class com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode> { // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode|null[0]
-    enum entry BOTTOM_SHEET // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode.BOTTOM_SHEET|null[0]
-    enum entry FULL_SCREEN // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode.FULL_SCREEN|null[0]
-
-    final val entries // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode> // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode> // com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode.values|values#static(){}[0]
-}
-
 abstract interface com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings { // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings|null[0]
     abstract val consentHtml // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings.consentHtml|{}consentHtml[0]
         abstract fun <get-consentHtml>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings.consentHtml.<get-consentHtml>|<get-consentHtml>(){}[0]
@@ -745,18 +734,6 @@ abstract interface com.aiuta.fashionsdk.configuration.features/AiutaFeature { //
 
 abstract interface com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions { // com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions|null[0]
     abstract fun closeClick() // com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions.closeClick|closeClick(){}[0]
-}
-
-abstract interface com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData { // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData|null[0]
-    abstract val mode // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData.mode|{}mode[0]
-        abstract fun <get-mode>(): com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData.mode.<get-mode>|<get-mode>(){}[0]
-
-    final class Default : com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData { // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData.Default|null[0]
-        constructor <init>() // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData.Default.<init>|<init>(){}[0]
-
-        final val mode // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData.Default.mode|{}mode[0]
-            final fun <get-mode>(): com.aiuta.fashionsdk.configuration.ui.meta/AiutaMode // com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData.Default.mode.<get-mode>|<get-mode>(){}[0]
-    }
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.ui.theme.button.typography/AiutaButtonThemeTypography { // com.aiuta.fashionsdk.configuration.ui.theme.button.typography/AiutaButtonThemeTypography|null[0]
@@ -2288,12 +2265,10 @@ final class com.aiuta.fashionsdk.configuration.ui.theme/AiutaTheme { // com.aiut
 }
 
 final class com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration { // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration|null[0]
-    constructor <init>(com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData?, com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions, com.aiuta.fashionsdk.configuration.ui.theme/AiutaTheme) // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.<init>|<init>(com.aiuta.fashionsdk.configuration.ui.meta.AiutaStyleMetaData?;com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions;com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme){}[0]
+    constructor <init>(com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions, com.aiuta.fashionsdk.configuration.ui.theme/AiutaTheme) // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.<init>|<init>(com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions;com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme){}[0]
 
     final val actions // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.actions|{}actions[0]
         final fun <get-actions>(): com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.actions.<get-actions>|<get-actions>(){}[0]
-    final val styleMetaData // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.styleMetaData|{}styleMetaData[0]
-        final fun <get-styleMetaData>(): com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData? // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.styleMetaData.<get-styleMetaData>|<get-styleMetaData>(){}[0]
     final val theme // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.theme|{}theme[0]
         final fun <get-theme>(): com.aiuta.fashionsdk.configuration.ui.theme/AiutaTheme // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.theme.<get-theme>|<get-theme>(){}[0]
 
@@ -2303,9 +2278,6 @@ final class com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguratio
         final var actions // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.actions|{}actions[0]
             final fun <get-actions>(): com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions? // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.actions.<get-actions>|<get-actions>(){}[0]
             final fun <set-actions>(com.aiuta.fashionsdk.configuration.ui.actions/AiutaUserInterfaceActions?) // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.actions.<set-actions>|<set-actions>(com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions?){}[0]
-        final var styleMetaData // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.styleMetaData|{}styleMetaData[0]
-            final fun <get-styleMetaData>(): com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData? // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.styleMetaData.<get-styleMetaData>|<get-styleMetaData>(){}[0]
-            final fun <set-styleMetaData>(com.aiuta.fashionsdk.configuration.ui.meta/AiutaStyleMetaData?) // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.styleMetaData.<set-styleMetaData>|<set-styleMetaData>(com.aiuta.fashionsdk.configuration.ui.meta.AiutaStyleMetaData?){}[0]
         final var theme // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.theme|{}theme[0]
             final fun <get-theme>(): com.aiuta.fashionsdk.configuration.ui.theme/AiutaTheme? // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.theme.<get-theme>|<get-theme>(){}[0]
             final fun <set-theme>(com.aiuta.fashionsdk.configuration.ui.theme/AiutaTheme?) // com.aiuta.fashionsdk.configuration.ui/AiutaUserInterfaceConfiguration.Builder.theme.<set-theme>|<set-theme>(com.aiuta.fashionsdk.configuration.ui.theme.AiutaTheme?){}[0]
@@ -2448,7 +2420,6 @@ final val com.aiuta.fashionsdk.configuration.features.wishlist/com_aiuta_fashion
 final val com.aiuta.fashionsdk.configuration.features.wishlist/com_aiuta_fashionsdk_configuration_features_wishlist_AiutaWishlistFeature_Builder$stableprop // com.aiuta.fashionsdk.configuration.features.wishlist/com_aiuta_fashionsdk_configuration_features_wishlist_AiutaWishlistFeature_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_wishlist_AiutaWishlistFeature_Builder$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures$stableprop // com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_AiutaFeatures$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures_Builder$stableprop // com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures_Builder$stableprop|#static{}com_aiuta_fashionsdk_configuration_features_AiutaFeatures_Builder$stableprop[0]
-final val com.aiuta.fashionsdk.configuration.ui.meta/com_aiuta_fashionsdk_configuration_ui_meta_AiutaStyleMetaData_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.meta/com_aiuta_fashionsdk_configuration_ui_meta_AiutaStyleMetaData_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_meta_AiutaStyleMetaData_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes_Default$stableprop[0]
 final val com.aiuta.fashionsdk.configuration.ui.theme.button.typography/com_aiuta_fashionsdk_configuration_ui_theme_button_typography_AiutaButtonThemeTypography_Default$stableprop // com.aiuta.fashionsdk.configuration.ui.theme.button.typography/com_aiuta_fashionsdk_configuration_ui_theme_button_typography_AiutaButtonThemeTypography_Default$stableprop|#static{}com_aiuta_fashionsdk_configuration_ui_theme_button_typography_AiutaButtonThemeTypography_Default$stableprop[0]
@@ -2591,7 +2562,6 @@ final fun com.aiuta.fashionsdk.configuration.features.wishlist/com_aiuta_fashion
 final fun com.aiuta.fashionsdk.configuration.features.wishlist/com_aiuta_fashionsdk_configuration_features_wishlist_AiutaWishlistFeature_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features.wishlist/com_aiuta_fashionsdk_configuration_features_wishlist_AiutaWishlistFeature_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_features_wishlist_AiutaWishlistFeature_Builder$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures$stableprop_getter|com_aiuta_fashionsdk_configuration_features_AiutaFeatures$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures_Builder$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.features/com_aiuta_fashionsdk_configuration_features_AiutaFeatures_Builder$stableprop_getter|com_aiuta_fashionsdk_configuration_features_AiutaFeatures_Builder$stableprop_getter(){}[0]
-final fun com.aiuta.fashionsdk.configuration.ui.meta/com_aiuta_fashionsdk_configuration_ui_meta_AiutaStyleMetaData_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.meta/com_aiuta_fashionsdk_configuration_ui_meta_AiutaStyleMetaData_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_meta_AiutaStyleMetaData_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.button.shapes/com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_button_shapes_AiutaButtonThemeShapes_Default$stableprop_getter(){}[0]
 final fun com.aiuta.fashionsdk.configuration.ui.theme.button.typography/com_aiuta_fashionsdk_configuration_ui_theme_button_typography_AiutaButtonThemeTypography_Default$stableprop_getter(): kotlin/Int // com.aiuta.fashionsdk.configuration.ui.theme.button.typography/com_aiuta_fashionsdk_configuration_ui_theme_button_typography_AiutaButtonThemeTypography_Default$stableprop_getter|com_aiuta_fashionsdk_configuration_ui_theme_button_typography_AiutaButtonThemeTypography_Default$stableprop_getter(){}[0]
