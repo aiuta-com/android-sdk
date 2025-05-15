@@ -6,7 +6,7 @@ androidx-paging = "3.3.6"
 androidx-exifinterface="1.4.1"
 
 binaryCompatibility = "0.17.0"
-buildKonfig = "0.17.0"
+buildKonfig = "0.17.1"
 
 calf-picker="0.7.1"
 coroutines = "1.10.1"
@@ -15,8 +15,8 @@ compose-placeholder = "1.0.11"
 
 dokka = "2.0.0"
 
-gradle-plugin-android = "8.9.1"
-gradle-plugin-vanniktech-publish = "0.31.0"
+gradle-plugin-android = "8.10.0"
+gradle-plugin-vanniktech-publish = "0.32.0"
 
 haze = "1.6.0"
 
@@ -29,9 +29,9 @@ ksoup = "0.5.0"
 jetbrains-compose = "1.8.0"
 jetbrains-lifecycle = "2.8.4"
 
-kotlin = "2.1.20"
+kotlin = "2.1.21"
 ktlint = "1.5.0"
-ksp = "2.1.20-2.0.0"
+ksp = "2.1.21-2.0.1"
 
 room = "2.7.1"
 
