@@ -30,7 +30,7 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
             originalString = powerBarTheme.strings.poweredByAiuta,
             keyword = "Aiuta",
             color = when (powerBarTheme.colors.aiuta) {
-                AiutaPowerBarColorScheme.DEFAULT -> aiutaColor
+                AiutaPowerBarColorScheme.STANDARD -> aiutaColor
                 AiutaPowerBarColorScheme.PRIMARY -> theme.color.primary
             },
         )
