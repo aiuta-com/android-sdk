@@ -23,7 +23,7 @@ internal fun AiutaLabel(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
     val powerBarTheme = theme.powerBar
-    val aiutaColor = remember { Color(0xFF4000FF) }
+    val aiutaColor = Color(0xFF4000FF)
 
     val highlightedText = remember {
         buildHighlightedString(

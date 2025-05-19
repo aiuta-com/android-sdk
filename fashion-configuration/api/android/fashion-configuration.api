@@ -1666,14 +1666,22 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowe
 	public static final fun poweredBar (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme$Builder;
 }
 
+public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme : java/lang/Enum {
+	public static final field DEFAULT Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
+	public static final field PRIMARY Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
+	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
+}
+
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors {
-	public abstract fun getAiuta-0d7_KjU ()J
+	public abstract fun getAiuta ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors$Default : com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarThemeColors {
 	public static final field $stable I
 	public fun <init> ()V
-	public fun getAiuta-0d7_KjU ()J
+	public fun getAiuta ()Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/powerby/strings/AiutaPowerBarThemeStrings {
