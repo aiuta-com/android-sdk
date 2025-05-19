@@ -1667,8 +1667,8 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/AiutaPowe
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme : java/lang/Enum {
-	public static final field DEFAULT Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
 	public static final field PRIMARY Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
+	public static final field STANDARD Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
 	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/ui/theme/powerby/colors/AiutaPowerBarColorScheme;
