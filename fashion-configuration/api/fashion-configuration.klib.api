@@ -68,8 +68,8 @@ final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtons
 }
 
 final enum class com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme|null[0]
-    enum entry DEFAULT // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.DEFAULT|null[0]
     enum entry PRIMARY // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.PRIMARY|null[0]
+    enum entry STANDARD // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.STANDARD|null[0]
 
     final val entries // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.entries|#static{}entries[0]
         final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.entries.<get-entries>|<get-entries>#static(){}[0]
