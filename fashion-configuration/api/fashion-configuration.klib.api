@@ -67,6 +67,17 @@ final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtons
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.values|values#static(){}[0]
 }
 
+final enum class com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme|null[0]
+    enum entry DEFAULT // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.DEFAULT|null[0]
+    enum entry PRIMARY // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.PRIMARY|null[0]
+
+    final val entries // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.values|values#static(){}[0]
+}
+
 abstract interface com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings { // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings|null[0]
     abstract val consentHtml // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings.consentHtml|{}consentHtml[0]
         abstract fun <get-consentHtml>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.consent.builtin.strings/AiutaConsentEmbeddedIntoOnboardingFeatureStrings.consentHtml.<get-consentHtml>|<get-consentHtml>(){}[0]
@@ -899,13 +910,13 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.pagebar.typograph
 
 abstract interface com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors|null[0]
     abstract val aiuta // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.aiuta|{}aiuta[0]
-        abstract fun <get-aiuta>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
+        abstract fun <get-aiuta>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
 
     final class Default : com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.<init>|<init>(){}[0]
 
         final val aiuta // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.aiuta|{}aiuta[0]
-            final fun <get-aiuta>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
+            final fun <get-aiuta>(): com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarThemeColors.Default.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
     }
 }
 
