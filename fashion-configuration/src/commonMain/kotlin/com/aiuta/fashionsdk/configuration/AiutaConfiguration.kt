@@ -39,7 +39,7 @@ public class AiutaConfiguration(
 
             val internalAiuta = aiuta.checkNotNullWithDescription(
                 parentClass = parentClass,
-                property = "aiuta",
+                property = "aiutaold",
             )
             val internalFeatures = features.checkNotNullWithDescription(
                 parentClass = parentClass,

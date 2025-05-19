@@ -29,7 +29,7 @@ internal fun newImageUri(
             directory,
         )
     // Authority of provider
-    val authority = "${context.packageName}.aiuta.tryon.compose.fileprovider"
+    val authority = "${context.packageName}.aiutaold.tryon.compose.fileprovider"
 
     // Return uri of the file
     FileProvider.getUriForFile(
