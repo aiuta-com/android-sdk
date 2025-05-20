@@ -18,16 +18,15 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 internal fun ColumnScope.SheetDivider() {
     val theme = LocalTheme.current
 
-    val dividerWidth = theme.bottomSheet.grabber.width
-    val dividerTopPadding = theme.bottomSheet.grabber.topPadding
+    val grabber = theme.bottomSheet.grabber
 
-    Spacer(Modifier.height(dividerTopPadding))
+    Spacer(Modifier.height(grabber.topPadding))
 
     Divider(
         modifier =
         Modifier
-            .width(dividerWidth)
-            .height(3.dp)
+            .width(grabber.width)
+            .height(grabber.height)
             .clip(RoundedCornerShape(6.dp))
             .align(Alignment.CenterHorizontally),
         color = Color(0xFFC5C5C5),
