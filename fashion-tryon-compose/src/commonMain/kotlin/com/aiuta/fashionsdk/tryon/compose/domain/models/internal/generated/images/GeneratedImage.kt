@@ -52,15 +52,11 @@ internal fun AiutaHistoryImage.toImageUiModel(): GeneratedImageUIModel = Generat
 
 // Type
 internal fun AiutaHistoryImageType.toPublicCore(): AiutaFileType = when (this) {
-    AiutaHistoryImageType.UPLOADED -> AiutaFileType.UPLOADED
-    AiutaHistoryImageType.GENERATED -> AiutaFileType.GENERATED
-    AiutaHistoryImageType.INPUT_MODEL -> AiutaFileType.INPUT_MODEL
-    AiutaHistoryImageType.OUTPUT_MODEL -> AiutaFileType.OUTPUT_MODEL
+    AiutaHistoryImageType.USER -> AiutaFileType.USER
+    AiutaHistoryImageType.AIUTA -> AiutaFileType.AIUTA
 }
 
 internal fun AiutaFileType.toPublicHistory(): AiutaHistoryImageType = when (this) {
-    AiutaFileType.UPLOADED -> AiutaHistoryImageType.UPLOADED
-    AiutaFileType.GENERATED -> AiutaHistoryImageType.GENERATED
-    AiutaFileType.INPUT_MODEL -> AiutaHistoryImageType.INPUT_MODEL
-    AiutaFileType.OUTPUT_MODEL -> AiutaHistoryImageType.OUTPUT_MODEL
+    AiutaFileType.USER -> AiutaHistoryImageType.USER
+    AiutaFileType.AIUTA -> AiutaHistoryImageType.AIUTA
 }
