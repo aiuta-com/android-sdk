@@ -29,7 +29,7 @@ internal class ConfigRepository(
         },
     )
 
-    suspend fun getTryOnModelsCategories(forceUpdate: Boolean = false): List<TryOnModelsCategory>? = loadConfig(forceUpdate).clientConfiguration.predefinedTryOnModels
+    suspend fun getTryOnModelsCategories(forceUpdate: Boolean = false): List<TryOnModelsCategory>? = loadConfig(forceUpdate).predefinedTryOnModels
 
     companion object {
         private const val REPOSITORY_KEY = "ConfigRepository"

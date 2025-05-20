@@ -10,6 +10,6 @@ internal data class GeneratedImage(
     val id: String,
     @SerialName("url")
     val url: String,
-    @SerialName("type")
+    @SerialName("owner_type")
     val type: AiutaFileType,
 )

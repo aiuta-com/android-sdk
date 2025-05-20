@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfig
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.ClientConfiguration
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.remote.config.features.TryOnModelsCategory
 
 @Entity(tableName = "client_config")
@@ -19,12 +18,10 @@ internal class ClientConfigEntity(
 
 internal fun ClientConfigEntity.toDTO() = ClientConfig(
     etag = etag,
-    clientConfiguration = ClientConfiguration(
-        predefinedTryOnModels = predefinedTryOnModels,
-    ),
+    predefinedTryOnModels = predefinedTryOnModels,
 )
 
 internal fun ClientConfig.toEntity() = ClientConfigEntity(
     etag = etag,
-    predefinedTryOnModels = clientConfiguration.predefinedTryOnModels,
+    predefinedTryOnModels = predefinedTryOnModels,
 )

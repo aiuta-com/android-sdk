@@ -5,15 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 public enum class AiutaFileType {
-    @SerialName("uploaded")
-    UPLOADED,
+    @SerialName("user")
+    USER,
 
-    @SerialName("generated")
-    GENERATED,
-
-    @SerialName("input_model")
-    INPUT_MODEL,
-
-    @SerialName("output_model")
-    OUTPUT_MODEL,
+    @SerialName("aiuta")
+    AIUTA,
 }

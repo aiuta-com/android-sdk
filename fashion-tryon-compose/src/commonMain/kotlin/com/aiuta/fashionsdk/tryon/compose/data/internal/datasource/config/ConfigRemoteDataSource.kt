@@ -15,26 +15,24 @@ internal class ConfigRemoteDataSource(
     private val networkClient: NetworkClient,
 ) {
     suspend fun getBackendConfig(etag: String?): ClientConfig = withContext(Dispatchers.IO) {
-        val request =
-            networkClient.httpClient.value.get(BACKEND_CONFIG_PATH) {
-                header(IF_NOT_MATCH_HEADER_PARAM, etag)
-            }
+        val request = networkClient.httpClient.value.get(BACKEND_CONFIG_PATH) {
+            header(IF_NOT_MATCH_HEADER_PARAM, etag)
+        }
 
         ClientConfig(
             etag = request.headers[ETAG_HEADER_PARAM],
-            clientConfiguration = request.body(),
+            predefinedTryOnModels = request.body(),
         )
     }
 
     companion object {
-        private const val BACKEND_CONFIG_PATH = "/subscription_details"
+        private const val BACKEND_CONFIG_PATH = "/predefined_try_on_models"
 
         private const val IF_NOT_MATCH_HEADER_PARAM = "if-none-match"
         private const val ETAG_HEADER_PARAM = "etag"
 
         fun getInstance(aiuta: Aiuta): ConfigRemoteDataSource = ConfigRemoteDataSource(
-            networkClient =
-            defaultNetworkClient(
+            networkClient = defaultNetworkClient(
                 aiuta = aiuta,
             ),
         )

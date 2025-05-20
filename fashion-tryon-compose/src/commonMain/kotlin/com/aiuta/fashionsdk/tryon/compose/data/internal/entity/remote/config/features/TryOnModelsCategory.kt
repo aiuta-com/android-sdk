@@ -17,7 +17,7 @@ internal class TryOnModelsCategory(
         val id: String,
         @SerialName("url")
         val url: String,
-        @SerialName("type")
+        @SerialName("owner_type")
         val type: AiutaFileType,
     )
 }
