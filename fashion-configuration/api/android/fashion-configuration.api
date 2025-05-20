@@ -1302,7 +1302,7 @@ public final class com/aiuta/fashionsdk/configuration/features/wishlist/AiutaWis
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/wishlist/dataprovider/AiutaWishlistFeatureDataProvider {
-	public abstract fun getWishlistProductsIds ()Lkotlinx/coroutines/flow/StateFlow;
+	public abstract fun getWishlistProductIds ()Lkotlinx/coroutines/flow/StateFlow;
 	public abstract fun setProductInWishlist (Ljava/lang/String;Z)V
 }
 

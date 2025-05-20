@@ -712,8 +712,8 @@ abstract interface com.aiuta.fashionsdk.configuration.features.welcome.typograph
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider { // com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider|null[0]
-    abstract val wishlistProductsIds // com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider.wishlistProductsIds|{}wishlistProductsIds[0]
-        abstract fun <get-wishlistProductsIds>(): kotlinx.coroutines.flow/StateFlow<kotlin.collections/List<kotlin/String>> // com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider.wishlistProductsIds.<get-wishlistProductsIds>|<get-wishlistProductsIds>(){}[0]
+    abstract val wishlistProductIds // com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider.wishlistProductIds|{}wishlistProductIds[0]
+        abstract fun <get-wishlistProductIds>(): kotlinx.coroutines.flow/StateFlow<kotlin.collections/List<kotlin/String>> // com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider.wishlistProductIds.<get-wishlistProductIds>|<get-wishlistProductIds>(){}[0]
 
     abstract fun setProductInWishlist(kotlin/String, kotlin/Boolean) // com.aiuta.fashionsdk.configuration.features.wishlist.dataprovider/AiutaWishlistFeatureDataProvider.setProductInWishlist|setProductInWishlist(kotlin.String;kotlin.Boolean){}[0]
 }
