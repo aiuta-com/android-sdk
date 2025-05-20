@@ -664,7 +664,8 @@ public abstract interface class com/aiuta/fashionsdk/configuration/features/pick
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature : com/aiuta/fashionsdk/configuration/features/AiutaFeature {
 	public static final field $stable I
-	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings;)V
+	public fun <init> (Lcom/aiuta/fashionsdk/configuration/features/picker/model/data/AiutaImagePickerPredefinedModelFeatureData;Lcom/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons;Lcom/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings;)V
+	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/data/AiutaImagePickerPredefinedModelFeatureData;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings;
 }
@@ -674,14 +675,22 @@ public final class com/aiuta/fashionsdk/configuration/features/picker/model/Aiut
 	public fun <init> ()V
 	public synthetic fun build ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeature;
 	public fun build ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeature;
+	public final fun getData ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/data/AiutaImagePickerPredefinedModelFeatureData;
 	public final fun getIcons ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons;
 	public final fun getStrings ()Lcom/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings;
+	public final fun setData (Lcom/aiuta/fashionsdk/configuration/features/picker/model/data/AiutaImagePickerPredefinedModelFeatureData;)V
 	public final fun setIcons (Lcom/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons;)V
 	public final fun setStrings (Lcom/aiuta/fashionsdk/configuration/features/picker/model/strings/AiutaImagePickerPredefinedModelFeatureStrings;)V
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/picker/model/AiutaImagePickerPredefinedModelFeatureKt {
 	public static final fun predefinedModels (Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/features/picker/AiutaImagePickerFeature$Builder;
+}
+
+public final class com/aiuta/fashionsdk/configuration/features/picker/model/data/AiutaImagePickerPredefinedModelFeatureData {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getPreferredCategoryId ()Ljava/lang/String;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/features/picker/model/icons/AiutaImagePickerPredefinedModelFeatureIcons {
