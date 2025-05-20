@@ -1,6 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.model.controller
 
 import androidx.compose.runtime.MutableState
+import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.AiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.provideTryOnModelsCategories
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 internal fun CoroutineScope.initModelSelectorScreen(
     dataController: AiutaTryOnDataController,
     screenState: MutableState<ModelSelectorScreenState>,
-    predefinedModelCategories: Map<String, String>,
+    predefinedModelFeature: AiutaImagePickerPredefinedModelFeature,
     forceUpdate: Boolean = false,
 ) {
     launch {
@@ -18,7 +19,7 @@ internal fun CoroutineScope.initModelSelectorScreen(
 
         dataController
             .provideTryOnModelsCategories(
-                predefinedModelCategories = predefinedModelCategories,
+                predefinedModelCategories = predefinedModelFeature.strings.predefinedModelCategories,
                 forceUpdate = forceUpdate,
             )
             .onFailure {
@@ -29,7 +30,10 @@ internal fun CoroutineScope.initModelSelectorScreen(
                     when {
                         result == null -> ModelSelectorScreenState.GeneralError
                         result.isEmpty() -> ModelSelectorScreenState.EmptyModelsListError
-                        else -> ModelSelectorScreenState.Content(categories = result)
+                        else -> ModelSelectorScreenState.Content(
+                            preferredCategoryId = predefinedModelFeature.data?.preferredCategoryId,
+                            categories = result,
+                        )
                     }
             }
     }

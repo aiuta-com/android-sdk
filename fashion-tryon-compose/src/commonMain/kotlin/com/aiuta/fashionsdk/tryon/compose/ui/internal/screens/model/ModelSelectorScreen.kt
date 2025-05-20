@@ -58,7 +58,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
         initModelSelectorScreen(
             dataController = dataController,
             screenState = screenState,
-            predefinedModelCategories = predefinedModelFeature.strings.predefinedModelCategories,
+            predefinedModelFeature = predefinedModelFeature,
         )
     }
 
@@ -100,7 +100,7 @@ internal fun ModelSelectorScreen(modifier: Modifier = Modifier) {
                             scope.initModelSelectorScreen(
                                 dataController = dataController,
                                 screenState = screenState,
-                                predefinedModelCategories = predefinedModelFeature.strings.predefinedModelCategories,
+                                predefinedModelFeature = predefinedModelFeature,
                                 forceUpdate = true,
                             )
                         },

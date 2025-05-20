@@ -7,6 +7,7 @@ import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileTyp
 
 @Immutable
 internal data class TryOnModelsCategoryUiModel(
+    val id: String,
     val category: String,
     val models: List<TryOnModelUiModel>,
 ) {
@@ -22,6 +23,7 @@ internal fun TryOnModelsCategory.toUiModel(
     predefinedModelCategories: Map<String, String>,
 ): TryOnModelsCategoryUiModel? = predefinedModelCategories[category]?.let { translation ->
     TryOnModelsCategoryUiModel(
+        id = category,
         category = translation,
         models = models.map { model -> model.toUiModel() },
     )
