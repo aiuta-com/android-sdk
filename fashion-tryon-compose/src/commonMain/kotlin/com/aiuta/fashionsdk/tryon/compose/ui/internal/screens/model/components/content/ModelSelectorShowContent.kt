@@ -50,7 +50,19 @@ internal fun ModelSelectorShowContent(
     val imageHorizontalPadding = screenSize.widthDp * MODEL_IMAGE_HORIZONTAL_PADDING_COEF
     val bottomPadding = screenSize.heightDp * MODEL_IMAGE_BOTTOM_PADDING_COEF
 
-    val activeCategory = remember { mutableStateOf(state.categories.firstOrNull()) }
+    val activeCategory = remember {
+        mutableStateOf(
+            with(state) {
+                val defaultCategory = state.categories.firstOrNull()
+
+                preferredCategoryId?.let {
+                    categories.find { model ->
+                        model.id == preferredCategoryId
+                    } ?: defaultCategory
+                } ?: defaultCategory
+            },
+        )
+    }
     val activeImageModel = remember { mutableStateOf(activeCategory.value?.models?.firstOrNull()) }
 
     val sharedShape = RoundedCornerShape(24.dp)

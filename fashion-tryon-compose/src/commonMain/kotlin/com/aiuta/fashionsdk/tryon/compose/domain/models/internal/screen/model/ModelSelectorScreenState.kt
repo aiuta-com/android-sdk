@@ -11,5 +11,8 @@ internal sealed interface ModelSelectorScreenState {
 
     object EmptyModelsListError : ModelSelectorScreenState
 
-    class Content(val categories: List<TryOnModelsCategoryUiModel>) : ModelSelectorScreenState
+    class Content(
+        val preferredCategoryId: String?,
+        val categories: List<TryOnModelsCategoryUiModel>,
+    ) : ModelSelectorScreenState
 }

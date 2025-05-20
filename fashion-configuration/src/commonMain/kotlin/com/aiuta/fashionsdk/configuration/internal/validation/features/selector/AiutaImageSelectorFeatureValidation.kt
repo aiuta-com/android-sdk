@@ -40,6 +40,11 @@ internal fun AiutaImagePickerFeature.validateWithSettings(
         debugSettings,
     )
 
+    predefinedModels?.data?.preferredCategoryId.validateStringWithSettings(
+        propertyName = "preferredCategoryId",
+        logger = logger,
+        debugSettings = debugSettings,
+    )
     predefinedModels?.strings?.predefinedModelPageTitle.validateStringWithSettings(
         propertyName = "predefinedModelPageTitle",
         logger = logger,
