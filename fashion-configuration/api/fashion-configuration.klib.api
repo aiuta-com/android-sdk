@@ -1033,6 +1033,8 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.selection.strings
 }
 
 abstract interface com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber { // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber|null[0]
+    abstract val height // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.height|{}height[0]
+        abstract fun <get-height>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.height.<get-height>|<get-height>(){}[0]
     abstract val topPadding // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.topPadding|{}topPadding[0]
         abstract fun <get-topPadding>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.topPadding.<get-topPadding>|<get-topPadding>(){}[0]
     abstract val width // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.width|{}width[0]
@@ -1041,6 +1043,8 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/Aiu
     final class Default : com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber { // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default|null[0]
         constructor <init>() // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default.<init>|<init>(){}[0]
 
+        final val height // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default.height|{}height[0]
+            final fun <get-height>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default.height.<get-height>|<get-height>(){}[0]
         final val topPadding // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default.topPadding|{}topPadding[0]
             final fun <get-topPadding>(): androidx.compose.ui.unit/Dp // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default.topPadding.<get-topPadding>|<get-topPadding>(){}[0]
         final val width // com.aiuta.fashionsdk.configuration.ui.theme.sheet.grabber/AiutaBottomSheetThemeGrabber.Default.width|{}width[0]

@@ -1871,6 +1871,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/AiutaBottom
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber {
+	public abstract fun getHeight-D9Ej5fM ()F
 	public abstract fun getTopPadding-D9Ej5fM ()F
 	public abstract fun getWidth-D9Ej5fM ()F
 }
@@ -1878,6 +1879,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/shee
 public final class com/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber$Default : com/aiuta/fashionsdk/configuration/ui/theme/sheet/grabber/AiutaBottomSheetThemeGrabber {
 	public static final field $stable I
 	public fun <init> ()V
+	public fun getHeight-D9Ej5fM ()F
 	public fun getTopPadding-D9Ej5fM ()F
 	public fun getWidth-D9Ej5fM ()F
 }
