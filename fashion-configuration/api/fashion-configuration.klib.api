@@ -32,10 +32,8 @@ final enum class com.aiuta.fashionsdk.configuration.features.consent.models/Aiut
 }
 
 final enum class com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType : kotlin/Enum<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType> { // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType|null[0]
-    enum entry GENERATED // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.GENERATED|null[0]
-    enum entry INPUT_MODEL // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.INPUT_MODEL|null[0]
-    enum entry OUTPUT_MODEL // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.OUTPUT_MODEL|null[0]
-    enum entry UPLOADED // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.UPLOADED|null[0]
+    enum entry AIUTA // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.AIUTA|null[0]
+    enum entry USER // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.USER|null[0]
 
     final val entries // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.entries|#static{}entries[0]
         final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType> // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType.entries.<get-entries>|<get-entries>#static(){}[0]

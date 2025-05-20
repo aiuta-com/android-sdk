@@ -269,10 +269,8 @@ public final class com/aiuta/fashionsdk/configuration/features/models/images/Aiu
 }
 
 public final class com/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType : java/lang/Enum {
-	public static final field GENERATED Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
-	public static final field INPUT_MODEL Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
-	public static final field OUTPUT_MODEL Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
-	public static final field UPLOADED Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static final field AIUTA Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
+	public static final field USER Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;
 	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/features/models/images/AiutaHistoryImageType;

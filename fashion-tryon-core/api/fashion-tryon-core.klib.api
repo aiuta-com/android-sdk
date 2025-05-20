@@ -7,10 +7,8 @@
 
 // Library unique name: <com.aiuta:fashion-tryon-core>
 final enum class com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType : kotlin/Enum<com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType> { // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType|null[0]
-    enum entry GENERATED // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.GENERATED|null[0]
-    enum entry INPUT_MODEL // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.INPUT_MODEL|null[0]
-    enum entry OUTPUT_MODEL // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.OUTPUT_MODEL|null[0]
-    enum entry UPLOADED // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.UPLOADED|null[0]
+    enum entry AIUTA // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.AIUTA|null[0]
+    enum entry USER // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.USER|null[0]
 
     final val entries // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.entries|#static{}entries[0]
         final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType> // com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType.entries.<get-entries>|<get-entries>#static(){}[0]

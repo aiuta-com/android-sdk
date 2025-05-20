@@ -11,11 +11,9 @@ public final class com/aiuta/fashionsdk/tryon/core/AiutaTryOnKt {
 }
 
 public final class com/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType : java/lang/Enum {
+	public static final field AIUTA Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public static final field Companion Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType$Companion;
-	public static final field GENERATED Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
-	public static final field INPUT_MODEL Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
-	public static final field OUTPUT_MODEL Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
-	public static final field UPLOADED Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
+	public static final field USER Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public static fun values ()[Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
