@@ -24,7 +24,9 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
+import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 
 internal actual class ShareManagerV2(
@@ -84,6 +86,7 @@ internal actual class ShareManagerV2(
             }
         } catch (e: Exception) {
             // Failed get bitmap
+            coroutineContext.ensureActive()
             null
         }
     }
@@ -97,6 +100,7 @@ internal actual class ShareManagerV2(
         SingletonImageLoader.get(coilContext).execute(request).image?.toBitmap()
     } catch (e: Exception) {
         // Failed to resolve bitmap
+        coroutineContext.ensureActive()
         null
     }
 

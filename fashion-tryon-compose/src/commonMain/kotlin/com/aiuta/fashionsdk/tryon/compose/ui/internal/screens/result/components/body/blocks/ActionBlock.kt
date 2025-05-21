@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,7 +19,7 @@ import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareMan
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconButton
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconLoadingButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
@@ -38,6 +40,7 @@ internal fun ActionBlock(
     val activeSKUItem = controller.activeProductItem.value
     val shareManager = rememberShareManagerV2()
     val scope = rememberCoroutineScope()
+    val isShareActive = remember { mutableStateOf(false) }
 
     val watermarkPainter = shareFeature?.watermark?.images?.logo?.let { logo ->
         painterResource(logo)
@@ -48,10 +51,13 @@ internal fun ActionBlock(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         shareFeature?.let {
-            IconButton(
+            IconLoadingButton(
                 icon = shareFeature.icons.share24,
+                isLoading = isShareActive.value,
                 onClick = {
                     scope.launch {
+                        isShareActive.value = true
+
                         val imageUrls = listOfNotNull(imageUrl)
                         val skuIds = listOf(controller.activeProductItem.value.id)
                         val shareText = shareFeature.dataProvider?.let { provider ->
@@ -72,6 +78,8 @@ internal fun ActionBlock(
                             imageUrls = imageUrls,
                             watermark = watermarkPainter,
                         )
+
+                        isShareActive.value = false
                     }
                 },
             )

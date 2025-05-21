@@ -296,6 +296,7 @@ private fun BoxScope.HistoryScreenInterface(
     val scope = rememberCoroutineScope()
     val generatedImages = getGeneratedImages()
     val shareManager = rememberShareManagerV2()
+    val isShareActive = remember { mutableStateOf(false) }
 
     val watermarkPainter = shareFeature?.watermark?.images?.logo?.let { logo ->
         painterResource(logo)
@@ -328,21 +329,20 @@ private fun BoxScope.HistoryScreenInterface(
             onCancel = {
                 controller.deactivateSelectMode()
             },
+            isShareLoading = isShareActive.value,
             onShare = {
                 scope.launch {
-                    val imageUrls =
-                        controller
-                            .selectorHolder
-                            .getList()
-                            .map { it.imageUrl }
+                    isShareActive.value = true
+
+                    val imageUrls = controller
+                        .selectorHolder
+                        .getList()
+                        .map { it.imageUrl }
 
                     val skuIds = listOf(controller.activeProductItem.value.id)
                     val shareText = shareFeature?.dataProvider?.let { provider ->
                         provider::getShareText.safeInvoke(skuIds)
                     }
-
-                    // After get list, let's deactivate select changePhotoButtonStyle
-                    controller.deactivateSelectMode()
 
                     controller.sendHistoryEvent(
                         AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED,
@@ -355,6 +355,10 @@ private fun BoxScope.HistoryScreenInterface(
                         imageUrls = imageUrls,
                         watermark = watermarkPainter,
                     )
+
+                    // Deactivate
+                    isShareActive.value = false
+                    controller.deactivateSelectMode()
                 }
             },
             onDelete = {

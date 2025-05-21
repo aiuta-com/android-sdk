@@ -31,6 +31,7 @@ internal fun SelectorCard(
     onSelectAll: () -> Unit,
     onDeselectAll: () -> Unit,
     onCancel: () -> Unit,
+    isShareLoading: Boolean = false,
     onShare: () -> Unit,
     onDelete: () -> Unit,
 ) {
@@ -104,6 +105,7 @@ internal fun SelectorCard(
 
                 SmallIconButton(
                     icon = shareFeature.icons.share24,
+                    isLoading = isShareLoading,
                     isActive = isActionActive,
                 ) {
                     onShare()
