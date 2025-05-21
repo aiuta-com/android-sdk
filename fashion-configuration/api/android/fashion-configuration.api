@@ -1456,6 +1456,7 @@ public abstract interface class com/aiuta/fashionsdk/configuration/ui/theme/colo
 	public abstract fun getOnLight-0d7_KjU ()J
 	public abstract fun getOutline-0d7_KjU ()J
 	public abstract fun getPrimary-0d7_KjU ()J
+	public abstract fun getScheme ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
 	public abstract fun getScreen-0d7_KjU ()J
 	public abstract fun getSecondary-0d7_KjU ()J
 }
@@ -1471,8 +1472,17 @@ public final class com/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorT
 	public fun getOnLight-0d7_KjU ()J
 	public fun getOutline-0d7_KjU ()J
 	public fun getPrimary-0d7_KjU ()J
+	public fun getScheme ()Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
 	public fun getScreen-0d7_KjU ()J
 	public fun getSecondary-0d7_KjU ()J
+}
+
+public final class com/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme : java/lang/Enum {
+	public static final field DARK Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
+	public static final field LIGHT Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
+	public static fun values ()[Lcom/aiuta/fashionsdk/configuration/ui/theme/color/AiutaColorThemeScheme;
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/theme/error/AiutaErrorSnackbarTheme {

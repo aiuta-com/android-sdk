@@ -65,6 +65,17 @@ final enum class com.aiuta.fashionsdk.configuration.features.styles/AiutaButtons
     final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle> // com.aiuta.fashionsdk.configuration.features.styles/AiutaButtonsWithOutlineStyle.values|values#static(){}[0]
 }
 
+final enum class com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme> { // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme|null[0]
+    enum entry DARK // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.DARK|null[0]
+    enum entry LIGHT // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.LIGHT|null[0]
+
+    final val entries // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme> // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme> // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme.values|values#static(){}[0]
+}
+
 final enum class com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme : kotlin/Enum<com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme> { // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme|null[0]
     enum entry PRIMARY // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.PRIMARY|null[0]
     enum entry STANDARD // com.aiuta.fashionsdk.configuration.ui.theme.powerby.colors/AiutaPowerBarColorScheme.STANDARD|null[0]
@@ -778,6 +789,8 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorT
         abstract fun <get-outline>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.outline.<get-outline>|<get-outline>(){}[0]
     abstract val primary // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.primary|{}primary[0]
         abstract fun <get-primary>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.primary.<get-primary>|<get-primary>(){}[0]
+    abstract val scheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.scheme|{}scheme[0]
+        abstract fun <get-scheme>(): com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.scheme.<get-scheme>|<get-scheme>(){}[0]
     abstract val screen // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.screen|{}screen[0]
         abstract fun <get-screen>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.screen.<get-screen>|<get-screen>(){}[0]
     abstract val secondary // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.secondary|{}secondary[0]
@@ -802,6 +815,8 @@ abstract interface com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorT
             final fun <get-outline>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.outline.<get-outline>|<get-outline>(){}[0]
         final val primary // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.primary|{}primary[0]
             final fun <get-primary>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.primary.<get-primary>|<get-primary>(){}[0]
+        final val scheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.scheme|{}scheme[0]
+            final fun <get-scheme>(): com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorThemeScheme // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.scheme.<get-scheme>|<get-scheme>(){}[0]
         final val screen // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.screen|{}screen[0]
             final fun <get-screen>(): androidx.compose.ui.graphics/Color // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.screen.<get-screen>|<get-screen>(){}[0]
         final val secondary // com.aiuta.fashionsdk.configuration.ui.theme.color/AiutaColorTheme.Default.secondary|{}secondary[0]
