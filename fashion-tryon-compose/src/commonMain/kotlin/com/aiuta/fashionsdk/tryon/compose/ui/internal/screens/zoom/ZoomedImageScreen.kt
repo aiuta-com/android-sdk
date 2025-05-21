@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.icons.AiutaLoadingComponent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.zoomable.zoomable
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.FitterContentScale
@@ -173,6 +175,7 @@ private fun ZoomedImageScreenContent(
 
     val scope = rememberCoroutineScope()
     val shareManager = rememberShareManagerV2()
+    val isShareActive = remember { mutableStateOf(false) }
 
     Box(
         modifier = modifier.background(color = backgroundColor.value),
@@ -227,28 +230,40 @@ private fun ZoomedImageScreenContent(
                     ?.logo
                     ?.let { logo -> painterResource(logo) }
 
-                Text(
-                    modifier = Modifier.clickableUnindicated {
-                        scope.launch {
-                            val imageUrls = listOfNotNull(screenState.sharedImage.value.imageUrl)
-                            val skuIds = listOf(controller.activeProductItem.value.id)
-                            val shareText = shareFeature.dataProvider?.let { provider ->
-                                provider::getShareText.safeInvoke(skuIds)
-                            }
+                AiutaLoadingComponent(
+                    isLoading = isShareActive.value,
+                    circleSize = 24.dp,
+                    circleColor = interfaceColor.value,
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .clickableUnindicated(enabled = !isShareActive.value) {
+                                scope.launch {
+                                    isShareActive.value = true
 
-                            shareManager.shareImages(
-                                content = shareText?.getOrNull(),
-                                pageId = screenState.sharedImage.value.originPageId,
-                                productId = controller.activeProductItem.value.id,
-                                imageUrls = imageUrls,
-                                watermark = watermarkPainter,
-                            )
-                        }
-                    },
-                    text = shareFeature.strings.shareButton,
-                    style = theme.button.typography.buttonM,
-                    color = interfaceColor.value,
-                )
+                                    val imageUrls =
+                                        listOfNotNull(screenState.sharedImage.value.imageUrl)
+                                    val skuIds = listOf(controller.activeProductItem.value.id)
+                                    val shareText = shareFeature.dataProvider?.let { provider ->
+                                        provider::getShareText.safeInvoke(skuIds)
+                                    }
+
+                                    shareManager.shareImages(
+                                        content = shareText?.getOrNull(),
+                                        pageId = screenState.sharedImage.value.originPageId,
+                                        productId = controller.activeProductItem.value.id,
+                                        imageUrls = imageUrls,
+                                        watermark = watermarkPainter,
+                                    )
+
+                                    isShareActive.value = false
+                                }
+                            },
+                        text = shareFeature.strings.shareButton,
+                        style = theme.button.typography.buttonM,
+                        color = interfaceColor.value,
+                    )
+                }
             }
         }
     }
