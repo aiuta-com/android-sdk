@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.ListStringsConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.AiutaCodeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.code.dao.replaceAll
@@ -35,7 +36,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
-internal const val DATABASE_VERSION = 17
+internal const val DATABASE_VERSION = 18
 internal const val ANDROID_DATABASE_NAME = "fashionsdk-database"
 internal const val DATABASE_NAME = "fashionsdk-database.db"
 
@@ -70,6 +71,7 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
     value = [
         // Config
         TryOnModelsCategoriesConverter::class,
+        ListStringsConverter::class,
     ],
 )
 @ConstructedBy(AppDatabaseConstructor::class)

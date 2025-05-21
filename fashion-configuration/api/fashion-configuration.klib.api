@@ -1311,7 +1311,7 @@ final class com.aiuta.fashionsdk.configuration.features.exceptions/NoSuchFeature
 }
 
 final class com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage { // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage|null[0]
-    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType) // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImageType){}[0]
+    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImageType) // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.configuration.features.models.images.AiutaOwnerType){}[0]
 
     final val id // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.configuration.features.models.images/AiutaHistoryImage.id.<get-id>|<get-id>(){}[0]

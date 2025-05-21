@@ -1,7 +1,8 @@
 package com.aiuta.fashionsdk.configuration.features.models.images
 
-public class AiutaHistoryImage(
+public class AiutaGeneratedImage(
     public val id: String,
     public val url: String,
-    public val type: AiutaHistoryImageType,
+    public val type: AiutaOwnerType,
+    public val productIds: List<String>,
 )

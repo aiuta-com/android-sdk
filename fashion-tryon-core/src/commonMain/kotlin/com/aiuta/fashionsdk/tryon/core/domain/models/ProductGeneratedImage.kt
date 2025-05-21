@@ -10,10 +10,14 @@ public class ProductGeneratedImage(
     public val id: String,
     public val url: String,
     public val type: AiutaFileType,
+    public val productIds: List<String>,
 )
 
-internal fun GeneratedImage.toPublic(): ProductGeneratedImage = ProductGeneratedImage(
+internal fun GeneratedImage.toPublic(
+    container: ProductGenerationContainer,
+): ProductGeneratedImage = ProductGeneratedImage(
     id = id,
     url = url,
     type = type,
+    productIds = listOf(container.productId),
 )

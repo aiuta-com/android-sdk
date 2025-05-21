@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations
 
 import androidx.paging.PagingData
-import com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage
+import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.dataprovider.AiutaImagePickerUploadsHistoryFeatureDataProviderCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
@@ -47,7 +47,7 @@ internal class HostGeneratedOperationInteractor(
     ): Result<Unit> = runCatching {
         dataProvider.addUploadedImages(
             images = listOf(
-                AiutaHistoryImage(
+                AiutaInputImage(
                     id = sourceImageId,
                     url = sourceImageUrl,
                     type = sourceImageType.toPublicHistory(),
