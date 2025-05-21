@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 public interface AiutaColorTheme {
 
+    public val scheme: AiutaColorThemeScheme
     public val brand: Color
     public val primary: Color
     public val secondary: Color
@@ -16,6 +17,7 @@ public interface AiutaColorTheme {
     public val outline: Color
 
     public class Default : AiutaColorTheme {
+        override val scheme: AiutaColorThemeScheme = AiutaColorThemeScheme.LIGHT
         override val brand: Color = Color(0xFF4000FF)
         override val primary: Color = Color(0xFF000000)
         override val secondary: Color = Color(0xFF9F9F9F)

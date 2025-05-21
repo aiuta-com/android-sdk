@@ -19,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
@@ -149,12 +148,7 @@ internal fun ImageSelectorScreenEmptyBodyBlock(modifier: Modifier) {
             FashionButton(
                 modifier = Modifier.fillMaxWidth(),
                 text = predefinedModelFeature.strings.predefinedModelPageTitle,
-                style =
-                FashionButtonStyles.secondaryStyle(
-                    backgroundColor = theme.color.background,
-                    contentColor = theme.color.primary,
-                    borderColor = Color.Transparent,
-                ),
+                style = FashionButtonStyles.adaptiveContrastStyle(theme),
                 size = FashionButtonSizes.lSize(),
                 onClick = {
                     controller.navigateTo(NavigationScreen.ModelSelector)
