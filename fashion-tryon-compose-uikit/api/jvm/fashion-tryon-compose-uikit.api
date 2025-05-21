@@ -12,6 +12,9 @@ public final class com/aiuta/fashionsdk/tryon/compose/uikit/button/FashionButton
 public final class com/aiuta/fashionsdk/tryon/compose/uikit/button/FashionButtonStyles {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/FashionButtonStyles;
+	public final fun adaptiveContrastStyle (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonStyle;
+	public final fun contrastInvertedStyle (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonStyle;
+	public final fun contrastStyle (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonStyle;
 	public final fun gradientColors-Iv8Zu3U (JLandroidx/compose/ui/graphics/Brush;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonStyle;
 	public final fun primaryStyle (Lcom/aiuta/fashionsdk/configuration/ui/theme/AiutaTheme;Landroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonStyle;
 	public final fun primaryStyle-RFnl5yQ (JJLandroidx/compose/runtime/Composer;I)Lcom/aiuta/fashionsdk/tryon/compose/uikit/button/internal/FashionButtonStyle;
