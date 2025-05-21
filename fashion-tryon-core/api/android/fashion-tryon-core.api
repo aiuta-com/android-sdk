@@ -32,8 +32,9 @@ public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductCatalog 
 
 public final class com/aiuta/fashionsdk/tryon/core/domain/models/ProductGeneratedImage {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;Ljava/util/List;)V
 	public final fun getId ()Ljava/lang/String;
+	public final fun getProductIds ()Ljava/util/List;
 	public final fun getType ()Lcom/aiuta/fashionsdk/tryon/core/data/datasource/image/models/AiutaFileType;
 	public final fun getUrl ()Ljava/lang/String;
 }
