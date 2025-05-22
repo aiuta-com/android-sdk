@@ -162,10 +162,12 @@ final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductCatalog { // co
 }
 
 final class com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage { // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage|null[0]
-    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType){}[0]
+    constructor <init>(kotlin/String, kotlin/String, com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType, kotlin.collections/List<kotlin/String>) // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.<init>|<init>(kotlin.String;kotlin.String;com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType;kotlin.collections.List<kotlin.String>){}[0]
 
     final val id // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.id|{}id[0]
         final fun <get-id>(): kotlin/String // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.id.<get-id>|<get-id>(){}[0]
+    final val productIds // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.productIds|{}productIds[0]
+        final fun <get-productIds>(): kotlin.collections/List<kotlin/String> // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.productIds.<get-productIds>|<get-productIds>(){}[0]
     final val type // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.type|{}type[0]
         final fun <get-type>(): com.aiuta.fashionsdk.tryon.core.data.datasource.image.models/AiutaFileType // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.type.<get-type>|<get-type>(){}[0]
     final val url // com.aiuta.fashionsdk.tryon.core.domain.models/ProductGeneratedImage.url|{}url[0]

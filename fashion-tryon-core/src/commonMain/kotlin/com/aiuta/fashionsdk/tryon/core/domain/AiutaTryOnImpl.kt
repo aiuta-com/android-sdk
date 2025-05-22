@@ -162,7 +162,7 @@ internal class AiutaTryOnImpl(
                     sourceImageId = uploadedImage.id,
                     sourceImageUrl = uploadedImage.url,
                     sourceImageType = uploadedImage.type,
-                    images = generations.map { it.toPublic() },
+                    images = generations.map { it.toPublic(container) },
                     metadata = metadataBuilder.build(),
                 ),
             )

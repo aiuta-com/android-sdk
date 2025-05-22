@@ -1,7 +1,7 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations
 
 import androidx.compose.runtime.Immutable
-import com.aiuta.fashionsdk.configuration.features.models.images.AiutaHistoryImage
+import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicCore
@@ -29,13 +29,13 @@ internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel
 )
 
 // History image
-internal fun AiutaHistoryImage.toOperationUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
+internal fun AiutaInputImage.toOperationUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
     operationId = id,
     urlImages = listOf(UrlImage(imageId = id, imageUrl = url, imageType = type.toPublicCore())),
 )
 
-internal fun GeneratedOperationUIModel.toPublic(): List<AiutaHistoryImage> = urlImages.map { image ->
-    AiutaHistoryImage(
+internal fun GeneratedOperationUIModel.toPublic(): List<AiutaInputImage> = urlImages.map { image ->
+    AiutaInputImage(
         id = image.imageId,
         url = image.imageUrl,
         type = image.imageType.toPublicHistory(),
