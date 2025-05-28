@@ -3,15 +3,19 @@ package com.aiuta.fashionsdk.configuration.features.models.product
 import androidx.compose.runtime.Immutable
 
 /**
- * Provided product for generation with meta info
- *
- * @param id - Id of product to generate
- * @param catalogName - Name of catalog with current [id]
- * @param description - Small description about provided product
- * @param imageUrls - List of urls with images of provided product
- * @param localizedPrice - The price of the product. Should be formatted with a currency symbol.
- * @param localizedOldPrice - The old price of the product, if available. Should be formatted with a currency symbol.
- * @param store - Name of store
+ * Represents a product item in the SDK's product catalog.
+ * 
+ * This immutable data class encapsulates all essential information about a product,
+ * including its identification, description, images, pricing, and store information.
+ * It is used throughout the SDK for product display and try-on generation.
+ * 
+ * @property id Unique identifier for the product
+ * @property catalogName Optional name of the catalog containing this product
+ * @property description Brief description of the product
+ * @property imageUrls List of URLs to product images
+ * @property localizedPrice Current price of the product, formatted with currency symbol
+ * @property localizedOldPrice Optional previous price of the product, formatted with currency symbol
+ * @property store Name of the store offering the product
  */
 @Immutable
 public data class ProductItem(

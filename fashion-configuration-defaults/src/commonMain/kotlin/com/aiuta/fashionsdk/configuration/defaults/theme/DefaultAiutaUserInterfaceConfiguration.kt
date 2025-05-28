@@ -11,13 +11,13 @@ import com.aiuta.fashionsdk.configuration.defaults.theme.productbar.defaultProdu
 import com.aiuta.fashionsdk.configuration.defaults.theme.selection.defaultSelectionSnackbar
 import com.aiuta.fashionsdk.configuration.defaults.theme.sheet.defaultBottomSheet
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
-import com.aiuta.fashionsdk.configuration.ui.aiutaUserInterfaceConfiguration
+import com.aiuta.fashionsdk.configuration.ui.userInterface
 import com.aiuta.fashionsdk.configuration.ui.theme.color.AiutaColorTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.theme
 
 public fun AiutaConfiguration.Builder.defaultAiutaUserInterfaceConfiguration(
     actions: AiutaUserInterfaceActions,
-): AiutaConfiguration.Builder = aiutaUserInterfaceConfiguration {
+): AiutaConfiguration.Builder = userInterface {
     this.actions = actions
     theme {
         color = AiutaColorTheme.Default()

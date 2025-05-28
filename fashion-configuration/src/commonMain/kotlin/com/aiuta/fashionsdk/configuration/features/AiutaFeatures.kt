@@ -32,6 +32,34 @@ import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFea
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
+/**
+ * Central feature configuration class for the Aiuta SDK.
+ *
+ * This immutable class manages all feature configurations for the SDK, providing
+ * a type-safe way to enable, disable, and configure various SDK features.
+ * Features are organized into categories such as onboarding, image picking,
+ * try-on functionality, sharing, and more.
+ *
+ * Required features:
+ * - [imagePicker]: Image selection and management
+ * - [tryOn]: Core try-on functionality
+ *
+ * Optional features:
+ * - [welcomeScreen]: Welcome screen display
+ * - [onboarding]: User onboarding flow
+ * - [consent]: User consent management
+ * - [share]: Image sharing capabilities
+ * - [wishlist]: Wishlist functionality
+ *
+ * @property welcomeScreen Optional welcome screen feature configuration
+ * @property onboarding Optional onboarding flow feature configuration
+ * @property consent Optional consent management feature configuration
+ * @property imagePicker Required image picker feature configuration
+ * @property tryOn Required try-on feature configuration
+ * @property share Optional sharing feature configuration
+ * @property wishlist Optional wishlist feature configuration
+ * @see AiutaFeature
+ */
 @Immutable
 public class AiutaFeatures(
     public val welcomeScreen: AiutaWelcomeScreenFeature?,
@@ -42,6 +70,18 @@ public class AiutaFeatures(
     public val share: AiutaShareFeature?,
     public val wishlist: AiutaWishlistFeature?,
 ) {
+    /**
+     * Provides a feature instance by its type, returning null if not configured.
+     *
+     * This method allows type-safe access to feature configurations using reified
+     * generics. It supports both top-level features and nested sub-features.
+     *
+     * @param T The type of feature to retrieve
+     * @return The feature instance if configured, null otherwise
+     * @throws NoSuchFeatureException if the feature type is not recognized
+     * @see strictProvideFeature
+     * @see isFeatureInitialize
+     */
     public inline fun <reified T : AiutaFeature> provideFeature(): T? = when (T::class) {
         // Welcome
         AiutaWelcomeScreenFeature::class -> welcomeScreen
@@ -79,6 +119,19 @@ public class AiutaFeatures(
         else -> throw NoSuchFeatureException(T::class.qualifiedName)
     } as? T
 
+    /**
+     * Provides a feature instance by its type, throwing an exception if not configured.
+     *
+     * This method is similar to [provideFeature] but guarantees a non-null result.
+     * Use this when you know a feature should be configured and want to fail fast
+     * if it's missing.
+     *
+     * @param T The type of feature to retrieve
+     * @return The feature instance (guaranteed non-null)
+     * @throws IllegalStateException if the feature is not configured
+     * @throws NoSuchFeatureException if the feature type is not recognized
+     * @see provideFeature
+     */
     public inline fun <reified T : AiutaFeature> strictProvideFeature(): T = checkNotNull(provideFeature()) {
         """
                 Feature ${T::class.qualifiedName} is not initialized, therefore we can't provide it.
@@ -86,20 +139,72 @@ public class AiutaFeatures(
         """.trimIndent()
     }
 
+    /**
+     * Checks if a feature is configured and available.
+     *
+     * This method provides a safe way to check feature availability before
+     * attempting to use it, avoiding exceptions.
+     *
+     * @param T The type of feature to check
+     * @return true if the feature is configured, false otherwise
+     * @see provideFeature
+     */
     public inline fun <reified T : AiutaFeature> isFeatureInitialize(): Boolean = provideFeature<T>() != null
 
+    /**
+     * Builder class for creating [AiutaFeatures] instances with DSL-style configuration.
+     *
+     * This builder ensures required features are set and validates the configuration
+     * before creating the final [AiutaFeatures] instance.
+     */
     @AiutaDsl
     public class Builder {
+        /**
+         * Optional welcome screen feature configuration.
+         */
         public var welcomeScreen: AiutaWelcomeScreenFeature? = null
+
+        /**
+         * Optional onboarding flow feature configuration.
+         */
         public var onboarding: AiutaOnboardingFeature? = null
+
+        /**
+         * Optional consent management feature configuration.
+         */
         public var consent: AiutaConsentFeature? = null
+
+        /**
+         * Required image picker feature configuration.
+         * Must be set before calling [build].
+         */
         public var imagePicker: AiutaImagePickerFeature? = null
+
+        /**
+         * Required try-on feature configuration.
+         * Must be set before calling [build].
+         */
         public var tryOn: AiutaTryOnFeature? = null
+
+        /**
+         * Optional sharing feature configuration.
+         */
         public var share: AiutaShareFeature? = null
+
+        /**
+         * Optional wishlist feature configuration.
+         */
         public var wishlist: AiutaWishlistFeature? = null
 
+        /**
+         * Creates an [AiutaFeatures] instance with the configured properties.
+         *
+         * @return Configured [AiutaFeatures] instance
+         * @throws IllegalArgumentException if required properties are not set
+         */
         public fun build(): AiutaFeatures {
             val parentClass = "AiutaFeatures"
+
             return AiutaFeatures(
                 welcomeScreen = welcomeScreen,
                 onboarding = onboarding,
@@ -119,6 +224,17 @@ public class AiutaFeatures(
     }
 }
 
+/**
+ * Extension function for configuring features within an [AiutaConfiguration.Builder].
+ *
+ * This extension provides a convenient DSL for configuring features as part of
+ * the main configuration setup.
+ *
+ * @param block Configuration block for setting up features
+ * @return The configuration builder for method chaining
+ * @see AiutaConfiguration.Builder
+ * @see AiutaFeatures.Builder
+ */
 public inline fun AiutaConfiguration.Builder.features(
     block: AiutaFeatures.Builder.() -> Unit,
 ): AiutaConfiguration.Builder = apply {
