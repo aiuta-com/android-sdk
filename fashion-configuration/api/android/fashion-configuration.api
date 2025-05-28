@@ -1355,7 +1355,7 @@ public final class com/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfi
 }
 
 public final class com/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfigurationKt {
-	public static final fun aiutaUserInterfaceConfiguration (Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;
+	public static final fun userInterface (Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;Lkotlin/jvm/functions/Function1;)Lcom/aiuta/fashionsdk/configuration/AiutaConfiguration$Builder;
 }
 
 public abstract interface class com/aiuta/fashionsdk/configuration/ui/actions/AiutaUserInterfaceActions {
