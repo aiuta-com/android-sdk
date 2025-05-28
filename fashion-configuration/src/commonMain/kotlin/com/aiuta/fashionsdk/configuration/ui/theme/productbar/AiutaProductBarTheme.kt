@@ -10,12 +10,12 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.typography.AiutaPr
 
 /**
  * Product bar theme configuration for the Aiuta SDK.
- * 
+ *
  * This class defines the visual styling for product information bars in the SDK,
  * including price displays, typography, toggle controls, and icons. It provides
  * a consistent appearance for product-related UI elements that can be customized
  * to match your app's design.
- * 
+ *
  * ```kotlin
  * theme {
  *     productBar {
@@ -26,7 +26,7 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.typography.AiutaPr
  *     }
  * }
  * ```
- * 
+ *
  * @property prices Theme configuration for price displays
  * @property typography Typography configuration for text elements
  * @property toggles Theme configuration for toggle controls
@@ -47,7 +47,7 @@ public class AiutaProductBarTheme(
 ) {
     /**
      * Builder class for creating [AiutaProductBarTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final product bar theme configuration.
      */
@@ -74,7 +74,7 @@ public class AiutaProductBarTheme(
 
         /**
          * Creates an [AiutaProductBarTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaProductBarTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -102,10 +102,10 @@ public class AiutaProductBarTheme(
 
 /**
  * Extension function for configuring product bar theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the product bar theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     productBar {
@@ -117,7 +117,7 @@ public class AiutaProductBarTheme(
  *     // Configure other theme components...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the product bar theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

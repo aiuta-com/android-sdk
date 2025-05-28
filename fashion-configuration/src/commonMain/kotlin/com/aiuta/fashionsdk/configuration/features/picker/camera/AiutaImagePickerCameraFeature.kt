@@ -8,10 +8,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the camera feature in the image picker.
- * 
+ *
  * This feature provides functionality for capturing photos using the device's camera,
  * including icons for the UI and text strings for localization.
- * 
+ *
  * Required components:
  * - [icons]: Icons used in the camera interface
  * - [strings]: Text strings for the camera interface
@@ -23,7 +23,7 @@ public class AiutaImagePickerCameraFeature(
 
     /**
      * Builder class for creating [AiutaImagePickerCameraFeature] instances.
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -50,7 +50,7 @@ public class AiutaImagePickerCameraFeature(
 
 /**
  * DSL function for configuring the camera feature.
- * 
+ *
  * Example usage:
  * ```
  * imagePicker {

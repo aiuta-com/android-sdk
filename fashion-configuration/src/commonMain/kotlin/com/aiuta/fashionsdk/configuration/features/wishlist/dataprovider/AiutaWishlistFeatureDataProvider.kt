@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Interface defining the data provider for the wishlist feature.
- * 
+ *
  * This interface provides functionality to manage wishlist items,
  * including observing the current wishlist state and modifying it.
  */
@@ -17,7 +17,7 @@ public interface AiutaWishlistFeatureDataProvider {
 
     /**
      * Updates the wishlist status of a product.
-     * 
+     *
      * @param productId The ID of the product to update
      * @param inWishlist Whether the product should be in the wishlist (true) or not (false)
      */

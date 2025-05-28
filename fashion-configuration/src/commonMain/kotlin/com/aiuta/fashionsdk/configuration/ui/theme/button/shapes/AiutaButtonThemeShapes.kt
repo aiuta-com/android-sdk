@@ -7,12 +7,12 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Shape configuration for button components.
- * 
+ *
  * This abstract class defines the corner radius values used for shaping different
  * sizes of buttons in the SDK. It provides a consistent visual appearance for
  * rounded corners across various button types.
- * 
- * 
+ *
+ *
  * @property buttonM Corner radius for medium-sized buttons
  * @property buttonS Corner radius for small-sized buttons
  * @property buttonMShape Pre-computed shape for medium-sized buttons
@@ -27,11 +27,11 @@ public abstract class AiutaButtonThemeShapes {
 
     /**
      * Default implementation of [AiutaButtonThemeShapes].
-     * 
+     *
      * This class provides standard corner radius values for buttons:
      * - Medium buttons: 8dp
      * - Small buttons: 8dp
-     * 
+     *
      * ```kotlin
      * theme {
      *     button {

@@ -2,10 +2,10 @@ package com.aiuta.fashionsdk.configuration.features.tryon.disclaimer.strings
 
 /**
  * Interface for disclaimer-related text strings.
- * 
+ *
  * This interface defines the text strings used in the fit disclaimer UI,
  * allowing for localization and customization of user-facing text.
- * 
+ *
  * @property tryOnFitTitle Title text for the fit disclaimer
  * @property tryOnFitDescription Detailed description of fit disclaimer
  * @property tryOnFitButtonClose Text for the close button

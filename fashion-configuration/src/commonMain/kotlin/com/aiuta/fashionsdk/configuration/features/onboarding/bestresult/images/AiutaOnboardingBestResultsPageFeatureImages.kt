@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 
 /**
  * Interface defining images used in the best results page of the onboarding flow.
- * 
+ *
  * This interface provides collections of images for showcasing good and bad
  * examples of app usage in the best results showcase.
  */

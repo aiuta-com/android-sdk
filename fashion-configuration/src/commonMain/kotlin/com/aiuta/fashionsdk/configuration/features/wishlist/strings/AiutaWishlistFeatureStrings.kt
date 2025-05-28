@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.wishlist.strings
 
 /**
  * Interface defining text strings used in the wishlist feature.
- * 
+ *
  * This interface provides strings for buttons and other UI elements
  * in the wishlist interface.
  */
@@ -14,7 +14,7 @@ public interface AiutaWishlistFeatureStrings {
 
     /**
      * Default implementation of [AiutaWishlistFeatureStrings].
-     * 
+     *
      * Provides standard English text for the wishlist interface.
      */
     public class Default : AiutaWishlistFeatureStrings {

@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsStyle
 
 /**
  * Interface defining visual styles for the uploads history feature.
- * 
+ *
  * This interface provides style configurations for UI elements
  * in the uploads history interface.
  */
@@ -17,7 +17,7 @@ public interface AiutaImagePickerUploadsHistoryFeatureStyles {
 
     /**
      * Default implementation of [AiutaImagePickerUploadsHistoryFeatureStyles].
-     * 
+     *
      * Provides standard visual styles for the uploads history interface,
      * using a blurred button style for the change photo button.
      */

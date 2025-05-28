@@ -10,13 +10,13 @@ import com.aiuta.fashionsdk.configuration.ui.theme.sheet.typography.AiutaBottomS
 
 /**
  * Bottom sheet theme configuration for the Aiuta SDK.
- * 
+ *
  * This immutable class defines the visual styling for bottom sheets throughout
  * the SDK, including typography, shapes, grabber, and toggle configurations.
  * It provides a consistent bottom sheet appearance that can be customized to
  * match your app's design system.
- * 
- * 
+ *
+ *
  * @property typography Typography configuration for bottom sheet text
  * @property shapes Shape configuration for bottom sheet containers
  * @property grabber Configuration for the bottom sheet drag handle
@@ -35,7 +35,7 @@ public class AiutaBottomSheetTheme(
 ) {
     /**
      * Builder class for creating [AiutaBottomSheetTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final bottom sheet theme configuration.
      */
@@ -62,7 +62,7 @@ public class AiutaBottomSheetTheme(
 
         /**
          * Creates an [AiutaBottomSheetTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaBottomSheetTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -93,10 +93,10 @@ public class AiutaBottomSheetTheme(
 
 /**
  * Extension function for configuring bottom sheet theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the bottom sheet theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     bottomSheet {
@@ -108,7 +108,7 @@ public class AiutaBottomSheetTheme(
  *     // Configure other theme components...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the bottom sheet theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

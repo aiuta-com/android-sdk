@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.onboarding.bestresult.string
 
 /**
  * Interface defining text strings used in the best results page of the onboarding flow.
- * 
+ *
  * This interface provides strings for titles, descriptions, and other text elements
  * used to guide users on how to achieve optimal results.
  */
@@ -24,7 +24,7 @@ public interface AiutaOnboardingBestResultsPageFeatureStrings {
 
     /**
      * Default implementation of [AiutaOnboardingBestResultsPageFeatureStrings].
-     * 
+     *
      * Provides standard English text for the best results page.
      */
     public class Default : AiutaOnboardingBestResultsPageFeatureStrings {

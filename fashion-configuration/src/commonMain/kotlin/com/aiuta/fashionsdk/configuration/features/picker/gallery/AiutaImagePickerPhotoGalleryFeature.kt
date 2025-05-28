@@ -8,10 +8,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the photo gallery feature in the image picker.
- * 
+ *
  * This feature provides functionality for selecting photos from the device's gallery,
  * including icons for the UI and text strings for localization.
- * 
+ *
  * Required components:
  * - [icons]: Icons used in the gallery interface
  * - [strings]: Text strings for the gallery interface
@@ -23,7 +23,7 @@ public class AiutaImagePickerPhotoGalleryFeature(
 
     /**
      * Builder class for creating [AiutaImagePickerPhotoGalleryFeature] instances.
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -50,7 +50,7 @@ public class AiutaImagePickerPhotoGalleryFeature(
 
 /**
  * DSL function for configuring the photo gallery feature.
- * 
+ *
  * Example usage:
  * ```
  * imagePicker {

@@ -7,12 +7,12 @@ import com.aiuta.fashionsdk.configuration.ui.theme.label.typography.AiutaLabelTh
 
 /**
  * Label theme configuration for the Aiuta SDK.
- * 
+ *
  * This immutable class defines the visual styling for text labels throughout
  * the SDK, including typography configurations. It provides a consistent label
  * appearance that can be customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property typography Typography configuration for label text
  * @see AiutaLabelThemeTypography
  */
@@ -22,7 +22,7 @@ public class AiutaLabelTheme(
 ) {
     /**
      * Builder class for creating [AiutaLabelTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final label theme configuration.
      */
@@ -34,7 +34,7 @@ public class AiutaLabelTheme(
 
         /**
          * Creates an [AiutaLabelTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaLabelTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -53,10 +53,10 @@ public class AiutaLabelTheme(
 
 /**
  * Extension function for configuring label theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the label theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     label {
@@ -64,7 +64,7 @@ public class AiutaLabelTheme(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the label theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

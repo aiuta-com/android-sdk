@@ -12,16 +12,16 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the onboarding feature in the fashion SDK.
- * 
+ *
  * This feature provides a guided introduction to the app's functionality through
  * a series of pages explaining how the app works and showcasing best results.
- * 
+ *
  * Required components:
  * - [howItWorksPage]: Configuration for the "How It Works" page
  * - [strings]: Text strings used throughout the onboarding flow
  * - [shapes]: Visual shapes and layouts for the onboarding UI
  * - [dataProvider]: Provider for onboarding data and content
- * 
+ *
  * Optional components:
  * - [bestResultsPage]: Configuration for the "Best Results" showcase page
  */
@@ -38,7 +38,7 @@ public class AiutaOnboardingFeature(
 
     /**
      * Builder class for creating instances of [AiutaOnboardingFeature].
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -77,7 +77,7 @@ public class AiutaOnboardingFeature(
 
 /**
  * DSL function for configuring the onboarding feature.
- * 
+ *
  * Example usage:
  * ```
  * features {

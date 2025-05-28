@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 
 /**
  * Interface defining icons used in the best results page of the onboarding flow.
- * 
+ *
  * This interface provides icons for indicating good and bad examples in the
  * best results showcase.
  */

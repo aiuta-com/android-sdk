@@ -7,13 +7,13 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the try-on input image validation feature.
- * 
+ *
  * This feature manages the validation of user-provided images for try-on generation,
  * ensuring that images meet the required criteria for successful try-on results.
- * 
+ *
  * Required components:
  * - [strings]: Text content for validation messages and instructions
- * 
+ *
  * @property strings Text content for validation messages and instructions
  */
 public class AiutaTryOnInputImageValidationFeature(
@@ -22,7 +22,7 @@ public class AiutaTryOnInputImageValidationFeature(
 
     /**
      * Builder for creating [AiutaTryOnInputImageValidationFeature] instances.
-     * 
+     *
      * This builder ensures all required properties are set before creating the feature instance.
      */
     public class Builder : AiutaFeature.Builder {
@@ -43,10 +43,10 @@ public class AiutaTryOnInputImageValidationFeature(
 
 /**
  * DSL function for configuring the input image validation feature.
- * 
+ *
  * This function allows for DSL-style configuration of the input image validation feature
  * within the try-on feature configuration.
- * 
+ *
  * ```kotlin
  * tryOn {
  *     inputImageValidation {
@@ -54,7 +54,7 @@ public class AiutaTryOnInputImageValidationFeature(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the input image validation feature
  * @return The updated try-on feature builder
  */

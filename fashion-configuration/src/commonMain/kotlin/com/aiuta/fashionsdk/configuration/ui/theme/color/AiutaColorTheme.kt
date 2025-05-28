@@ -4,12 +4,12 @@ import androidx.compose.ui.graphics.Color
 
 /**
  * Color theme interface for the Aiuta SDK.
- * 
+ *
  * This interface defines the color scheme and individual color values used throughout
  * the SDK's user interface. It provides a consistent color palette that can be
  * customized to match your app's branding.
- * 
- * 
+ *
+ *
  * @property scheme The color scheme mode (light or dark) for the theme
  * @property brand The brand color used for primary branding elements
  * @property primary The primary color used for main UI elements and text
@@ -92,11 +92,11 @@ public interface AiutaColorTheme {
 
     /**
      * Default implementation of [AiutaColorTheme].
-     * 
+     *
      * This class provides a standard light theme color palette that can be used
      * as a starting point for customization. The default colors are designed to
      * provide good contrast and readability while maintaining a clean, modern look.
-     * 
+     *
      * ```kotlin
      * theme {
      *     color = AiutaColorTheme.Default()

@@ -7,12 +7,12 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Typography configuration for bottom sheet text elements.
- * 
+ *
  * This interface defines text styles used for various text elements within
  * bottom sheets, including icon buttons and chip buttons. It provides
  * consistent text styling that can be customized to match your app's design.
- * 
- * 
+ *
+ *
  * @property iconButton Text style for icon buttons in the bottom sheet
  * @property chipsButton Text style for chip-style buttons in the bottom sheet
  */
@@ -22,9 +22,9 @@ public interface AiutaBottomSheetThemeTypography {
 
     /**
      * Default implementation of [AiutaBottomSheetThemeTypography].
-     * 
+     *
      * This class provides standard text styles for bottom sheet elements.
-     * 
+     *
      * ```kotlin
      * theme {
      *     bottomSheet {

@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.consent.models
 
 /**
  * Enum class defining the types of consent in the fashion SDK.
- * 
+ *
  * This enum represents different ways in which user consent can be collected,
  * ranging from implicit to explicit consent, with various UI and behavioral requirements.
  */

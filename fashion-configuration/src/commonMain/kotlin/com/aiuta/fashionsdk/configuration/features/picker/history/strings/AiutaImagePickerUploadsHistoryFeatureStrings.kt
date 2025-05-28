@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.picker.history.strings
 
 /**
  * Interface defining text strings used in the uploads history feature.
- * 
+ *
  * This interface provides strings for titles and buttons displayed
  * in the uploads history interface.
  */
@@ -25,10 +25,10 @@ public interface AiutaImagePickerUploadsHistoryFeatureStrings {
 
     /**
      * Default implementation of [AiutaImagePickerUploadsHistoryFeatureStrings].
-     * 
+     *
      * Provides standard English text for the uploads history interface,
      * with dynamic text for the new photo button based on model availability.
-     * 
+     *
      * @param isPredefinedModelAvailable Whether predefined models are available
      */
     public class Default(

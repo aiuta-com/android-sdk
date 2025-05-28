@@ -7,12 +7,12 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Shape configuration for image components.
- * 
+ *
  * This abstract class defines the corner radius values used for shaping different
  * sizes of images in the SDK. It provides a consistent visual appearance for
  * rounded corners across various image types.
- * 
- * 
+ *
+ *
  * @property imageL Corner radius for large-sized images
  * @property imageS Corner radius for small-sized images
  * @property imageLShape Pre-computed shape for large-sized images
@@ -27,9 +27,9 @@ public abstract class AiutaImageThemeShapes {
 
     /**
      * Default implementation of [AiutaImageThemeShapes].
-     * 
+     *
      * This class provides standard corner radius values for images.
-     * 
+     *
      * ```kotlin
      * theme {
      *     image {

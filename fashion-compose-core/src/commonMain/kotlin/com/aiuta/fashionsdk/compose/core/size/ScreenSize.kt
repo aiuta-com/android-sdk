@@ -9,15 +9,15 @@ import androidx.compose.ui.unit.Dp
 
 /**
  * Immutable class representing screen dimensions in density-independent pixels.
- * 
+ *
  * This class provides a convenient way to access screen size information within
  * Compose UI components, allowing for responsive design implementations.
- * 
+ *
  * ```kotlin
  * @Composable
  * fun ResponsiveLayout() {
  *     val screenSize = rememberScreenSize()
- *     
+ *
  *     if (screenSize.widthDp > 600.dp) {
  *         // Tablet layout
  *         TabletLayout()
@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.Dp
  *     }
  * }
  * ```
- * 
+ *
  * @property heightDp Screen height in density-independent pixels
  * @property widthDp Screen width in density-independent pixels
  */
@@ -39,19 +39,19 @@ public class ScreenSize(
 
 /**
  * Remembers and provides the current screen size in density-independent pixels.
- * 
+ *
  * This composable function calculates the screen dimensions based on the current
  * window container size and density. The result is remembered and will be
  * recalculated when the density or window information changes.
- * 
+ *
  * ```kotlin
  * @Composable
  * fun AdaptiveContent() {
  *     val screenSize = rememberScreenSize()
- *     
+ *
  *     Column {
  *         Text("Screen: ${screenSize.widthDp} x ${screenSize.heightDp}")
- *         
+ *
  *         when {
  *             screenSize.widthDp < 480.dp -> CompactLayout()
  *             screenSize.widthDp < 840.dp -> MediumLayout()
@@ -60,7 +60,7 @@ public class ScreenSize(
  *     }
  * }
  * ```
- * 
+ *
  * @return [ScreenSize] containing current screen dimensions
  */
 @Composable

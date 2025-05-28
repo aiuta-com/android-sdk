@@ -2,10 +2,10 @@ package com.aiuta.fashionsdk.configuration.features.tryon.feedback.strings
 
 /**
  * Interface for feedback-related text strings.
- * 
+ *
  * This interface defines the text strings used in the feedback interface,
  * allowing for customization of user-facing text in the feedback UI.
- * 
+ *
  * @property tryOnFeedbackOptions List of predefined feedback options for users to choose from
  * @property tryOnFeedbackTitle Title text displayed at the top of the feedback screen
  * @property tryOnFeedbackButtonSkip Text for the skip button
@@ -21,7 +21,7 @@ public interface AiutaTryOnFeedbackFeatureStrings {
 
     /**
      * Default implementation of [AiutaTryOnFeedbackFeatureStrings].
-     * 
+     *
      * Provides standard English text strings for the feedback interface.
      */
     public class Default : AiutaTryOnFeedbackFeatureStrings {

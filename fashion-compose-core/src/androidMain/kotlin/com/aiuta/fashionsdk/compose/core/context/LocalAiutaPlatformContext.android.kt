@@ -6,12 +6,12 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
 
 /**
  * Android implementation of [LocalAiutaPlatformContext].
- * 
+ *
  * On Android, this property delegates to Compose's [LocalContext], providing
  * access to the Android Context within Compose UI components. This allows
  * the Aiuta SDK to access Android-specific functionality and resources.
- * 
- * 
+ *
+ *
  * @see LocalContext
  * @see AiutaPlatformContext
  */

@@ -2,10 +2,10 @@ package com.aiuta.fashionsdk.configuration.features.tryon.strings
 
 /**
  * Interface for try-on feature text strings.
- * 
+ *
  * This interface defines the text strings used in the try-on feature,
  * allowing for customization of user-facing text in the try-on UI.
- * 
+ *
  * @property tryOnPageTitle Title text displayed at the top of the try-on page
  * @property tryOn Text for the try-on action button
  */
@@ -15,7 +15,7 @@ public interface AiutaTryOnFeatureStrings {
 
     /**
      * Default implementation of [AiutaTryOnFeatureStrings].
-     * 
+     *
      * Provides standard English text strings for the try-on feature.
      */
     public class Default : AiutaTryOnFeatureStrings {

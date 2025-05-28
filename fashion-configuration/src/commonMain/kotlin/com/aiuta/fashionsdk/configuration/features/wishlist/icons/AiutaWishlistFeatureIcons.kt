@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 
 /**
  * Interface defining icons used in the wishlist feature.
- * 
+ *
  * This interface provides icons for the wishlist UI elements,
  * including both outlined and filled versions of the wishlist icon.
  */

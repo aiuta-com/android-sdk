@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.picker.model.strings
 
 /**
  * Interface defining text strings used in the predefined models feature.
- * 
+ *
  * This interface provides strings for titles, messages, and category names
  * displayed in the predefined models selection interface.
  */
@@ -30,7 +30,7 @@ public interface AiutaImagePickerPredefinedModelFeatureStrings {
 
     /**
      * Default implementation of [AiutaImagePickerPredefinedModelFeatureStrings].
-     * 
+     *
      * Provides standard English text for the predefined models interface.
      */
     public class Default : AiutaImagePickerPredefinedModelFeatureStrings {

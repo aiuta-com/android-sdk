@@ -13,22 +13,22 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Image picker feature configuration for the Aiuta SDK.
- * 
+ *
  * This feature manages all aspects of image selection and management within
  * the SDK. It provides configuration for different image sources including
  * camera capture, photo gallery selection, predefined models, and upload history.
- * 
+ *
  * Required components:
  * - [photoGallery]: Photo gallery selection functionality
  * - [images]: Image resources and placeholders
  * - [strings]: Text content and localization
- * 
+ *
  * Optional components:
  * - [camera]: Camera capture functionality
  * - [predefinedModels]: Predefined model images
  * - [uploadsHistory]: Previously uploaded images history
- * 
- * 
+ *
+ *
  * @property camera Optional camera capture feature configuration
  * @property photoGallery Required photo gallery selection feature configuration
  * @property predefinedModels Optional predefined model images feature configuration
@@ -53,7 +53,7 @@ public class AiutaImagePickerFeature(
 
     /**
      * Builder class for creating [AiutaImagePickerFeature] instances.
-     * 
+     *
      * This builder ensures all required sub-features are configured before
      * creating the final image picker feature configuration.
      */
@@ -62,27 +62,27 @@ public class AiutaImagePickerFeature(
          * Optional camera capture feature configuration.
          */
         public var camera: AiutaImagePickerCameraFeature? = null
-        
+
         /**
          * Required photo gallery selection feature configuration.
          */
         public var photoGallery: AiutaImagePickerPhotoGalleryFeature? = null
-        
+
         /**
          * Optional predefined model images feature configuration.
          */
         public var predefinedModels: AiutaImagePickerPredefinedModelFeature? = null
-        
+
         /**
          * Optional upload history feature configuration.
          */
         public var uploadsHistory: AiutaImagePickerUploadsHistoryFeature? = null
-        
+
         /**
          * Required image resources and placeholders configuration.
          */
         public var images: AiutaImagePickerFeatureImages? = null
-        
+
         /**
          * Required text content and localization configuration.
          */
@@ -90,7 +90,7 @@ public class AiutaImagePickerFeature(
 
         /**
          * Creates an [AiutaImagePickerFeature] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaImagePickerFeature] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -120,10 +120,10 @@ public class AiutaImagePickerFeature(
 
 /**
  * Extension function for configuring image picker within an [AiutaFeatures.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the image picker
  * feature as part of the main features setup.
- * 
+ *
  * ```kotlin
  * imagePicker {
  *      photoGallery {
@@ -131,7 +131,7 @@ public class AiutaImagePickerFeature(
  *      }
  *      images = ...
  *      strings = ...
- *         
+ *
  *      // Optional features
  *      camera {
  *          // Configure camera settings
@@ -141,7 +141,7 @@ public class AiutaImagePickerFeature(
  *      }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the image picker feature
  * @return The features builder for method chaining
  * @see AiutaFeatures.Builder

@@ -8,12 +8,12 @@ import com.aiuta.fashionsdk.configuration.ui.theme.image.shapes.AiutaImageThemeS
 
 /**
  * Image theme configuration for the Aiuta SDK.
- * 
+ *
  * This immutable class defines the visual styling for images and icons throughout
  * the SDK, including shape and icon configurations. It provides a consistent image
  * appearance that can be customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property shapes Shape configuration for image containers and overlays
  * @property icons Icon configuration for image-related UI elements
  * @see AiutaImageThemeShapes
@@ -26,7 +26,7 @@ public class AiutaImageTheme(
 ) {
     /**
      * Builder class for creating [AiutaImageTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final image theme configuration.
      */
@@ -43,7 +43,7 @@ public class AiutaImageTheme(
 
         /**
          * Creates an [AiutaImageTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaImageTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -66,10 +66,10 @@ public class AiutaImageTheme(
 
 /**
  * Extension function for configuring image theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the image theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     image {
@@ -79,7 +79,7 @@ public class AiutaImageTheme(
  *     // Configure other theme components...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the image theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

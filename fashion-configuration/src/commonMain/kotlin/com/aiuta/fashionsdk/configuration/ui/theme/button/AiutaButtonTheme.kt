@@ -8,12 +8,12 @@ import com.aiuta.fashionsdk.configuration.ui.theme.button.typography.AiutaButton
 
 /**
  * Button theme configuration for the Aiuta SDK.
- * 
+ *
  * This immutable class defines the visual styling for buttons throughout the SDK,
  * including typography and shape configurations. It provides a consistent button
  * appearance that can be customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property typography Typography configuration for button text
  * @property shapes Shape configuration for button containers
  * @see AiutaButtonThemeTypography
@@ -26,7 +26,7 @@ public class AiutaButtonTheme(
 ) {
     /**
      * Builder class for creating [AiutaButtonTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final button theme configuration.
      */
@@ -43,7 +43,7 @@ public class AiutaButtonTheme(
 
         /**
          * Creates an [AiutaButtonTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaButtonTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -66,10 +66,10 @@ public class AiutaButtonTheme(
 
 /**
  * Extension function for configuring button theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the button theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     button {
@@ -79,7 +79,7 @@ public class AiutaButtonTheme(
  *     // Configure other theme components...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the button theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

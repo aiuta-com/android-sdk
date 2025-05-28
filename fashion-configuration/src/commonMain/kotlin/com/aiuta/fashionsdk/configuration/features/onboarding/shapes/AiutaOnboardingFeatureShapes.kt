@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Abstract class defining shape configurations for the onboarding feature.
- * 
+ *
  * This class provides corner radius values and corresponding shapes for
  * different sizes of images used in the onboarding flow.
  */
@@ -34,7 +34,7 @@ public abstract class AiutaOnboardingFeatureShapes {
 
     /**
      * Default implementation of [AiutaOnboardingFeatureShapes].
-     * 
+     *
      * Provides standard corner radius values for both large and small images.
      */
     public class Default : AiutaOnboardingFeatureShapes() {

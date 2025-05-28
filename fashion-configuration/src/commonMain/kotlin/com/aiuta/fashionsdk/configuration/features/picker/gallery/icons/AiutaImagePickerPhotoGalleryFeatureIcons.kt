@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 
 /**
  * Interface defining icons used in the photo gallery feature.
- * 
+ *
  * This interface provides icons for the gallery UI elements,
  * allowing for customization of the visual elements in the gallery interface.
  */

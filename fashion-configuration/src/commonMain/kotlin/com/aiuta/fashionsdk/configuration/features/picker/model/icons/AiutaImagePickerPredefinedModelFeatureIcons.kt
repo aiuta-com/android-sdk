@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 
 /**
  * Interface defining icons used in the predefined models feature.
- * 
+ *
  * This interface provides icons for the predefined models UI elements,
  * allowing for customization of the visual elements in the model selection interface.
  */

@@ -7,13 +7,13 @@ import androidx.compose.ui.unit.dp
 
 /**
  * Shape configuration for bottom sheet components.
- * 
+ *
  * This abstract class defines the corner radius values used for shaping various
  * bottom sheet elements, including the main sheet container and chip buttons.
  * It provides a consistent visual appearance for rounded corners throughout
  * the bottom sheet interface.
- * 
- * 
+ *
+ *
  * @property bottomSheet Corner radius for the main bottom sheet container
  * @property chipsButton Corner radius for chip-style buttons within the sheet
  * @property bottomSheetShape Pre-computed shape for the bottom sheet container
@@ -28,9 +28,9 @@ public abstract class AiutaBottomSheetThemeShapes {
 
     /**
      * Default implementation of [AiutaBottomSheetThemeShapes].
-     * 
+     *
      * This class provides standard corner radius values for bottom sheet elements.
-     * 
+     *
      * ```kotlin
      * theme {
      *     bottomSheet {

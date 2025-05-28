@@ -9,15 +9,15 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the try-on generations history feature.
- * 
+ *
  * This feature manages the display and interaction with previously generated try-on results,
  * allowing users to view and manage their try-on history.
- * 
+ *
  * Required components:
  * - [icons]: Icon resources for the history interface
  * - [strings]: Text content for the history interface
  * - [dataProvider]: Provider for accessing and managing history data
- * 
+ *
  * @property icons Icon resources for the history interface
  * @property strings Text content for the history interface
  * @property dataProvider Provider for accessing and managing history data
@@ -30,7 +30,7 @@ public class AiutaTryOnGenerationsHistoryFeature(
 
     /**
      * Builder for creating [AiutaTryOnGenerationsHistoryFeature] instances.
-     * 
+     *
      * This builder ensures all required properties are set before creating the feature instance.
      */
     public class Builder : AiutaFeature.Builder {
@@ -61,10 +61,10 @@ public class AiutaTryOnGenerationsHistoryFeature(
 
 /**
  * DSL function for configuring the generations history feature.
- * 
+ *
  * This function allows for DSL-style configuration of the generations history feature
  * within the try-on feature configuration.
- * 
+ *
  * ```kotlin
  * tryOn {
  *     generationsHistory {
@@ -74,7 +74,7 @@ public class AiutaTryOnGenerationsHistoryFeature(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the generations history feature
  * @return The updated try-on feature builder
  */

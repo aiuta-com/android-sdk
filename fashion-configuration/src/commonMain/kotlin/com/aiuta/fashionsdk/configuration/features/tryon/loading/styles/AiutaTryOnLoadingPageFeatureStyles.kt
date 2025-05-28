@@ -5,10 +5,10 @@ import com.aiuta.fashionsdk.configuration.features.styles.AiutaButtonsWithOutlin
 
 /**
  * Interface for loading page visual styles.
- * 
+ *
  * This interface defines the visual styles used in the loading interface,
  * allowing for customization of the appearance of loading UI elements.
- * 
+ *
  * @property loadingStatusBackgroundGradient Optional gradient colors for the loading status background
  * @property loadingStatusStyle Style for the loading status text and container
  */
@@ -18,7 +18,7 @@ public interface AiutaTryOnLoadingPageFeatureStyles {
 
     /**
      * Default implementation of [AiutaTryOnLoadingPageFeatureStyles].
-     * 
+     *
      * Provides standard visual styles for the loading interface,
      * using a blue gradient background and blurred button style.
      */

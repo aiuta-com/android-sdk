@@ -9,15 +9,15 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the try-on loading page feature.
- * 
+ *
  * This feature manages the appearance and behavior of the loading screen
  * shown during try-on generation.
- * 
+ *
  * Required components:
  * - [icons]: Icon resources for the loading interface
  * - [strings]: Text content for the loading interface
  * - [styles]: Visual styles for the loading interface
- * 
+ *
  * @property icons Icon resources for the loading interface
  * @property strings Text content for the loading interface
  * @property styles Visual styles for the loading interface
@@ -30,7 +30,7 @@ public class AiutaTryOnLoadingPageFeature(
 
     /**
      * Builder for creating [AiutaTryOnLoadingPageFeature] instances.
-     * 
+     *
      * This builder ensures all required properties are set before creating the feature instance.
      */
     public class Builder : AiutaFeature.Builder {
@@ -61,10 +61,10 @@ public class AiutaTryOnLoadingPageFeature(
 
 /**
  * DSL function for configuring the loading page feature.
- * 
+ *
  * This function allows for DSL-style configuration of the loading page feature
  * within the try-on feature configuration.
- * 
+ *
  * ```kotlin
  * tryOn {
  *     loadingPage {
@@ -74,7 +74,7 @@ public class AiutaTryOnLoadingPageFeature(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the loading page feature
  * @return The updated try-on feature builder
  */

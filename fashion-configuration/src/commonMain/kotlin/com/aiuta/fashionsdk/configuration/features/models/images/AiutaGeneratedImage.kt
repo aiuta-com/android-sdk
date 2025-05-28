@@ -2,11 +2,11 @@ package com.aiuta.fashionsdk.configuration.features.models.images
 
 /**
  * Represents an generated image in the SDK.
- * 
+ *
  * This class encapsulates information about an image that has been generated
  * by the AI system, including its identifier, URL, ownership type, and associated
  * product identifiers.
- * 
+ *
  * @property id Unique identifier for the generated image
  * @property url URL where the generated image can be accessed
  * @property type Ownership type of the image (user or Aiuta)

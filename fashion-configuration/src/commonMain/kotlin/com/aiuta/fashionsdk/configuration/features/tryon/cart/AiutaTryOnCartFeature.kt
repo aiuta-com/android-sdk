@@ -8,14 +8,14 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the shopping cart integration in the try-on feature.
- * 
+ *
  * This feature manages the integration between the try-on experience and
  * the shopping cart functionality, handling product selection and purchase flow.
- * 
+ *
  * Required components:
  * - [strings]: Text content configuration
  * - [handler]: Cart event handling
- * 
+ *
  * @property strings Text content for cart-related UI elements
  * @property handler Event handler for cart-related actions
  */
@@ -50,10 +50,10 @@ public class AiutaTryOnCartFeature(
 
 /**
  * DSL function for configuring the cart feature.
- * 
+ *
  * This function allows for DSL-style configuration of the cart feature
  * within the try-on feature configuration.
- * 
+ *
  * ```kotlin
  * tryOn {
  *     cart {
@@ -62,7 +62,7 @@ public class AiutaTryOnCartFeature(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the cart feature
  * @return The updated [AiutaTryOnFeature.Builder]
  */

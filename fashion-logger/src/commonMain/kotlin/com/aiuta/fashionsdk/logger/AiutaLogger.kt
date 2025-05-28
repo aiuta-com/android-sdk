@@ -37,6 +37,7 @@ public interface AiutaLogger {
         ERROR,
     }
 }
+
 /**
  * Logs a message at VERBOSE level.
  *

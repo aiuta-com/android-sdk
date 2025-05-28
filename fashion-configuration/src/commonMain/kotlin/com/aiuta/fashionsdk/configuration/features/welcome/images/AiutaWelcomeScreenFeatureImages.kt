@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaDrawableResource
 
 /**
  * Interface defining images used in the welcome screen.
- * 
+ *
  * This interface provides background and decorative images for the welcome screen.
  */
 public interface AiutaWelcomeScreenFeatureImages {

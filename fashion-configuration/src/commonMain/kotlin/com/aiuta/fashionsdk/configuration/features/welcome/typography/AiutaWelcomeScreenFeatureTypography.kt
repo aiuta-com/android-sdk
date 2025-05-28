@@ -7,7 +7,7 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Interface defining typography styles for the welcome screen.
- * 
+ *
  * This interface provides text styles for different text elements
  * displayed on the welcome screen.
  */
@@ -26,7 +26,7 @@ public interface AiutaWelcomeScreenFeatureTypography {
 
     /**
      * Default implementation of [AiutaWelcomeScreenFeatureTypography].
-     * 
+     *
      * Provides standard typography settings.
      */
     public class Default(

@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.welcome.strings
 
 /**
  * Interface defining text strings used in the welcome screen.
- * 
+ *
  * This interface provides strings for titles, descriptions, and button text
  * displayed on the welcome screen.
  */
@@ -24,7 +24,7 @@ public interface AiutaWelcomeScreenFeatureStrings {
 
     /**
      * Default implementation of [AiutaWelcomeScreenFeatureStrings].
-     * 
+     *
      * Provides standard English text for the welcome screen.
      */
     public class Default : AiutaWelcomeScreenFeatureStrings {

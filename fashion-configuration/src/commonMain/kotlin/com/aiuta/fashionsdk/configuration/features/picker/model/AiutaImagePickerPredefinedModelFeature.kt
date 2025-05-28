@@ -9,15 +9,15 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for predefined model images in the image picker feature.
- * 
+ *
  * This feature allows users to select from a set of predefined model images
  * instead of using their own photos. It includes data for available models,
  * icons for the UI, and text strings for localization.
- * 
+ *
  * Required components:
  * - [icons]: Icons used in the predefined models UI
  * - [strings]: Text strings for the predefined models interface
- * 
+ *
  * Optional components:
  * - [data]: Data provider for predefined model images
  */
@@ -28,7 +28,7 @@ public class AiutaImagePickerPredefinedModelFeature(
 ) : AiutaFeature {
     /**
      * Builder class for creating [AiutaImagePickerPredefinedModelFeature] instances.
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -57,7 +57,7 @@ public class AiutaImagePickerPredefinedModelFeature(
 
 /**
  * DSL function for configuring the predefined models feature.
- * 
+ *
  * Example usage:
  * ```
  * imagePicker {

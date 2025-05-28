@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.onboarding.howworks.strings
 
 /**
  * Interface defining text strings used in the "How It Works" page of the onboarding flow.
- * 
+ *
  * This interface provides strings for titles, descriptions, and other text elements
  * used to explain the app's functionality to new users.
  */
@@ -24,7 +24,7 @@ public interface AiutaOnboardingHowItWorksPageFeatureStrings {
 
     /**
      * Default implementation of [AiutaOnboardingHowItWorksPageFeatureStrings].
-     * 
+     *
      * Provides standard English text for the "How It Works" page.
      */
     public class Default : AiutaOnboardingHowItWorksPageFeatureStrings {

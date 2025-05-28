@@ -7,13 +7,13 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the try-on with other photo feature.
- * 
+ *
  * This feature manages the ability to use a different photo for try-on generation,
  * allowing users to try on clothes using photos other than their current one.
- * 
+ *
  * Required components:
  * - [icons]: Icon resources for the other photo interface
- * 
+ *
  * @property icons Icon resources for the other photo interface
  */
 public class AiutaTryOnWithOtherPhotoFeature(
@@ -22,7 +22,7 @@ public class AiutaTryOnWithOtherPhotoFeature(
 
     /**
      * Builder for creating [AiutaTryOnWithOtherPhotoFeature] instances.
-     * 
+     *
      * This builder ensures all required properties are set before creating the feature instance.
      */
     public class Builder : AiutaFeature.Builder {
@@ -43,10 +43,10 @@ public class AiutaTryOnWithOtherPhotoFeature(
 
 /**
  * DSL function for configuring the other photo feature.
- * 
+ *
  * This function allows for DSL-style configuration of the other photo feature
  * within the try-on feature configuration.
- * 
+ *
  * ```kotlin
  * tryOn {
  *     otherPhoto {
@@ -54,7 +54,7 @@ public class AiutaTryOnWithOtherPhotoFeature(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the other photo feature
  * @return The updated try-on feature builder
  */

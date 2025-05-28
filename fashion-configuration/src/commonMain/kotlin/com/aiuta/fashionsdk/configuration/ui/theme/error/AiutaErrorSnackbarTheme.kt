@@ -9,13 +9,13 @@ import com.aiuta.fashionsdk.configuration.ui.theme.error.strings.AiutaErrorSnack
 
 /**
  * Error snackbar theme configuration for the Aiuta SDK.
- * 
+ *
  * This class defines the visual styling for error-related snackbar notifications
  * in the SDK, including text content, icons, and colors. It provides a consistent
  * appearance for error feedback messages that can be customized to match your
  * app's design.
- * 
- * 
+ *
+ *
  * @property strings Text content configuration for the error snackbar
  * @property icons Theme configuration for icons used in the error snackbar
  * @property colors Color configuration for the error snackbar elements
@@ -31,7 +31,7 @@ public class AiutaErrorSnackbarTheme(
 ) {
     /**
      * Builder class for creating [AiutaErrorSnackbarTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final error snackbar theme configuration.
      */
@@ -53,7 +53,7 @@ public class AiutaErrorSnackbarTheme(
 
         /**
          * Creates an [AiutaErrorSnackbarTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaErrorSnackbarTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -80,10 +80,10 @@ public class AiutaErrorSnackbarTheme(
 
 /**
  * Extension function for configuring error snackbar theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the error snackbar theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     errorSnackbar {
@@ -94,7 +94,7 @@ public class AiutaErrorSnackbarTheme(
  *     // Configure other theme components...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the error snackbar theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

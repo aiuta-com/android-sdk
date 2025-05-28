@@ -4,11 +4,11 @@ import androidx.compose.runtime.Immutable
 
 /**
  * Represents a product item in the SDK's product catalog.
- * 
+ *
  * This immutable data class encapsulates all essential information about a product,
  * including its identification, description, images, pricing, and store information.
  * It is used throughout the SDK for product display and try-on generation.
- * 
+ *
  * @property id Unique identifier for the product
  * @property catalogName Optional name of the catalog containing this product
  * @property description Brief description of the product

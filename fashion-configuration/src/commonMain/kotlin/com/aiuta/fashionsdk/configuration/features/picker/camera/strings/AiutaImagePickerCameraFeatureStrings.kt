@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.picker.camera.strings
 
 /**
  * Interface defining text strings used in the camera feature.
- * 
+ *
  * This interface provides strings for buttons and permission-related messages
  * displayed in the camera interface.
  */
@@ -29,7 +29,7 @@ public interface AiutaImagePickerCameraFeatureStrings {
 
     /**
      * Default implementation of [AiutaImagePickerCameraFeatureStrings].
-     * 
+     *
      * Provides standard English text for the camera interface.
      */
     public class Default : AiutaImagePickerCameraFeatureStrings {

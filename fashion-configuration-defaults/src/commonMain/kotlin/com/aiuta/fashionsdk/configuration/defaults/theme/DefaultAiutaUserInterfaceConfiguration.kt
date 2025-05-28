@@ -11,9 +11,9 @@ import com.aiuta.fashionsdk.configuration.defaults.theme.productbar.defaultProdu
 import com.aiuta.fashionsdk.configuration.defaults.theme.selection.defaultSelectionSnackbar
 import com.aiuta.fashionsdk.configuration.defaults.theme.sheet.defaultBottomSheet
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
-import com.aiuta.fashionsdk.configuration.ui.userInterface
 import com.aiuta.fashionsdk.configuration.ui.theme.color.AiutaColorTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.theme
+import com.aiuta.fashionsdk.configuration.ui.userInterface
 
 /**
  * Configures the default user interface settings for the Aiuta SDK.

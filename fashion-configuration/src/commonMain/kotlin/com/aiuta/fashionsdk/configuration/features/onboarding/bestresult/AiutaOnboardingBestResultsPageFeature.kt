@@ -10,11 +10,11 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the "Best Results" page in the onboarding flow.
- * 
+ *
  * This feature showcases example results to demonstrate the app's capabilities
  * and set user expectations. It includes sample images, icons, text strings,
  * and styling options.
- * 
+ *
  * Required components:
  * - [images]: Sample images to showcase in the best results page
  * - [icons]: Icons used in the best results page UI
@@ -30,7 +30,7 @@ public class AiutaOnboardingBestResultsPageFeature(
 
     /**
      * Builder class for creating instances of [AiutaOnboardingBestResultsPageFeature].
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -67,7 +67,7 @@ public class AiutaOnboardingBestResultsPageFeature(
 
 /**
  * DSL function for configuring the best results page in the onboarding flow.
- * 
+ *
  * Example usage:
  * ```
  * onboarding {

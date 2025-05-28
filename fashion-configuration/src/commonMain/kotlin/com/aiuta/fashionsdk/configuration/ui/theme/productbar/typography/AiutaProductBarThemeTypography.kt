@@ -7,11 +7,11 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Typography configuration for product bar text elements.
- * 
+ *
  * This interface defines text styles used for product information in the product
  * bar throughout the SDK. It provides consistent text styling that can be
  * customized to match your app's design system.
- * 
+ *
  * ```kotlin
  * theme {
  *     productBar {
@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
  *     }
  * }
  * ```
- * 
+ *
  * @property product Text style for product names
  * @property brand Text style for brand names
  */
@@ -43,11 +43,11 @@ public interface AiutaProductBarThemeTypography {
 
     /**
      * Default implementation of [AiutaProductBarThemeTypography].
-     * 
+     *
      * This class provides standard text styles for product bar elements:
      * - Product name: Medium weight, 12sp font size, 18sp line height
      * - Brand name: Medium weight, 10sp font size, 16sp line height, 0.04sp letter spacing
-     * 
+     *
      * ```kotlin
      * theme {
      *     productBar {

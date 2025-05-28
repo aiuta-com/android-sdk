@@ -8,14 +8,14 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the fit disclaimer in the try-on feature.
- * 
+ *
  * This feature manages the display of fit-related disclaimers and warnings
  * to users during the try-on experience.
- * 
+ *
  * Required components:
  * - [icons]: Icon resources for disclaimer UI
  * - [strings]: Text content for disclaimer messages
- * 
+ *
  * @property icons Icon resources for disclaimer UI elements
  * @property strings Text content for disclaimer messages
  */
@@ -50,7 +50,7 @@ public class AiutaTryOnFitDisclaimerFeature(
 
 /**
  * DSL function for configuring the fit disclaimer feature.
- * 
+ *
  * ```kotlin
  * tryOn {
  *      fitDisclaimer {
@@ -59,7 +59,7 @@ public class AiutaTryOnFitDisclaimerFeature(
  *      }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the fit disclaimer feature
  * @return The updated [AiutaTryOnFeature.Builder]
  */

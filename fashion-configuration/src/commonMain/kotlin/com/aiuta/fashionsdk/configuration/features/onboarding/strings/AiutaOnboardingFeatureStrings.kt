@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.onboarding.strings
 
 /**
  * Interface defining text strings used in the onboarding feature.
- * 
+ *
  * This interface provides strings for navigation buttons in the onboarding flow.
  */
 public interface AiutaOnboardingFeatureStrings {
@@ -18,7 +18,7 @@ public interface AiutaOnboardingFeatureStrings {
 
     /**
      * Default implementation of [AiutaOnboardingFeatureStrings].
-     * 
+     *
      * Provides standard English text for the onboarding buttons.
      */
     public class Default : AiutaOnboardingFeatureStrings {

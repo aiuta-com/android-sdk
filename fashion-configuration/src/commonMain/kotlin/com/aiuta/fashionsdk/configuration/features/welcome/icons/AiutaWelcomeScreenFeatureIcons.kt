@@ -4,7 +4,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 
 /**
  * Interface defining icons used in the welcome screen.
- * 
+ *
  * This interface provides icons for the welcome screen UI elements.
  */
 public interface AiutaWelcomeScreenFeatureIcons {

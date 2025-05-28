@@ -4,12 +4,12 @@ import androidx.compose.ui.graphics.Color
 
 /**
  * Color configuration for error snackbar notifications.
- * 
+ *
  * This interface defines the colors used in error snackbar notifications
  * throughout the SDK. It provides consistent error styling that can be
  * customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property errorBackground Background color for the error snackbar
  * @property errorPrimary Primary text color for error messages
  */
@@ -19,9 +19,9 @@ public interface AiutaErrorSnackbarThemeColors {
 
     /**
      * Default implementation of [AiutaErrorSnackbarThemeColors].
-     * 
+     *
      * This class provides standard colors for error snackbars
-     * 
+     *
      * ```kotlin
      * theme {
      *     errorSnackbar {

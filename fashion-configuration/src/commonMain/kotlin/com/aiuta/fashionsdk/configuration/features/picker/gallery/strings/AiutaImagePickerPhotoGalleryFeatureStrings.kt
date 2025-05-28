@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.picker.gallery.strings
 
 /**
  * Interface defining text strings used in the photo gallery feature.
- * 
+ *
  * This interface provides strings for buttons and messages
  * displayed in the photo gallery interface.
  */
@@ -14,7 +14,7 @@ public interface AiutaImagePickerPhotoGalleryFeatureStrings {
 
     /**
      * Default implementation of [AiutaImagePickerPhotoGalleryFeatureStrings].
-     * 
+     *
      * Provides standard English text for the photo gallery interface.
      */
     public class Default : AiutaImagePickerPhotoGalleryFeatureStrings {

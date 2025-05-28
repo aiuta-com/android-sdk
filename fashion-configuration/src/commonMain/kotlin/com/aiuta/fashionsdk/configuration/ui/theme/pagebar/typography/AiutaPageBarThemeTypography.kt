@@ -7,12 +7,12 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Typography configuration for page bar text elements.
- * 
+ *
  * This interface defines text styles used for page titles and other text elements
  * in the page navigation bar. It provides consistent text styling that can be
  * customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property pageTitle Text style for the page title in the navigation bar
  */
 public interface AiutaPageBarThemeTypography {
@@ -20,9 +20,9 @@ public interface AiutaPageBarThemeTypography {
 
     /**
      * Default implementation of [AiutaPageBarThemeTypography].
-     * 
+     *
      * This class provides standard text styles for page bar elements.
-     * 
+     *
      * ```kotlin
      * theme {
      *     pageBar {

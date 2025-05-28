@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.configuration.ui.theme.selection.strings
 
 /**
  * String configuration for selection snackbar.
- * 
+ *
  * This interface defines the text strings used in selection-related snackbar
  * throughout the SDK. It provides consistent selection text
  * that can be customized to match your app's localization requirements.
- * 
- * 
+ *
+ *
  * @property select Text for the select action button
  * @property cancel Text for the cancel action button
  * @property selectAll Text for selecting all items
@@ -21,9 +21,9 @@ public interface AiutaSelectionSnackbarThemeStrings {
 
     /**
      * Default implementation of [AiutaSelectionSnackbarThemeStrings].
-     * 
+     *
      * This class provides standard English text strings for selection snackbars.
-     * 
+     *
      * ```kotlin
      * theme {
      *     selectionSnackbar {

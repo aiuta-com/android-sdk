@@ -7,10 +7,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for additional feedback options in the try-on feature.
- * 
+ *
  * This class provides configuration for custom feedback options beyond the standard ones,
  * allowing for more specific feedback collection.
- * 
+ *
  * @property strings Text strings for the additional feedback options
  */
 public class AiutaTryOnFeedbackOtherFeature(
@@ -19,7 +19,7 @@ public class AiutaTryOnFeedbackOtherFeature(
 
     /**
      * Builder for creating [AiutaTryOnFeedbackOtherFeature] instances.
-     * 
+     *
      * This builder ensures all required properties are set before creating the feature instance.
      */
     public class Builder : AiutaFeature.Builder {
@@ -40,10 +40,10 @@ public class AiutaTryOnFeedbackOtherFeature(
 
 /**
  * DSL function for configuring additional feedback options.
- * 
+ *
  * This function allows for DSL-style configuration of additional feedback options
  * within the try-on feature's feedback configuration.
- * 
+ *
  * ```kotlin
  * feedback {
  *     otherFeedback {
@@ -51,7 +51,7 @@ public class AiutaTryOnFeedbackOtherFeature(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the additional feedback options
  * @return The updated feedback feature builder
  */

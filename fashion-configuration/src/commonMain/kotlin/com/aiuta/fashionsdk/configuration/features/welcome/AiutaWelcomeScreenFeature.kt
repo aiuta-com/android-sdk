@@ -11,10 +11,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the welcome screen feature in the fashion SDK.
- * 
+ *
  * This feature provides the initial screen shown to users when they first open the app,
  * including welcome images, icons, text, and typography settings.
- * 
+ *
  * Required components:
  * - [images]: Images displayed on the welcome screen
  * - [icons]: Icons used in the welcome screen UI
@@ -31,7 +31,7 @@ public class AiutaWelcomeScreenFeature(
 
     /**
      * Builder class for creating instances of [AiutaWelcomeScreenFeature].
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -68,7 +68,7 @@ public class AiutaWelcomeScreenFeature(
 
 /**
  * DSL function for configuring the welcome screen feature.
- * 
+ *
  * Example usage:
  * ```
  * features {

@@ -8,13 +8,13 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.prices.typography.
 
 /**
  * Price display theme configuration for product bars.
- * 
+ *
  * This immutable class defines the visual styling for price displays in product
  * bars throughout the SDK, including typography and color configurations. It
  * provides a consistent appearance for price-related UI elements that can be
  * customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property typography Typography configuration for price text
  * @property colors Color configuration for price elements
  * @see AiutaProductBarPricesThemeTypography
@@ -27,7 +27,7 @@ public class AiutaProductBarPricesTheme(
 ) {
     /**
      * Builder class for creating [AiutaProductBarPricesTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final price theme configuration.
      */
@@ -44,7 +44,7 @@ public class AiutaProductBarPricesTheme(
 
         /**
          * Creates an [AiutaProductBarPricesTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaProductBarPricesTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -67,10 +67,10 @@ public class AiutaProductBarPricesTheme(
 
 /**
  * Extension function for configuring price theme within a [AiutaProductBarTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the price theme
  * as part of the product bar theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     productBar {
@@ -81,7 +81,7 @@ public class AiutaProductBarPricesTheme(
  *     }
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the price theme
  * @return The product bar theme builder for method chaining
  * @see AiutaProductBarTheme.Builder

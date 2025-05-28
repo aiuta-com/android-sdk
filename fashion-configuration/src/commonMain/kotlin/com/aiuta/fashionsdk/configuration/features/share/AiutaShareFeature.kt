@@ -10,10 +10,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the share feature in the SDK.
- * 
+ *
  * This feature enables sharing functionality for generated images and try-on results,
  * allowing customization of watermarks, icons, strings, and data providers.
- * 
+ *
  * @property watermark Optional configuration for image watermarks
  * @property icons Icons used in the share interface
  * @property strings Text strings used in the share interface
@@ -30,7 +30,7 @@ public class AiutaShareFeature(
 
     /**
      * Builder for creating [AiutaShareFeature] instances.
-     * 
+     *
      * @property watermark Optional configuration for image watermarks
      * @property icons Icons used in the share interface
      * @property strings Text strings used in the share interface
@@ -63,10 +63,10 @@ public class AiutaShareFeature(
 
 /**
  * DSL function for configuring the share feature.
- * 
+ *
  * This extension provides a convenient DSL for configuring the share
  * feature as part of the main features setup.
- * 
+ *
  * ```kotlin
  * share {
  *     watermark {
@@ -77,7 +77,7 @@ public class AiutaShareFeature(
  *     dataProvider = ...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for the share feature
  * @return The updated [AiutaFeatures.Builder]
  */

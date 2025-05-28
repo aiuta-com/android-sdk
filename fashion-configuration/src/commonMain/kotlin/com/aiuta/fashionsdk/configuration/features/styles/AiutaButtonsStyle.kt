@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.configuration.features.styles
 
 /**
  * Enum class defining the available button styles in the fashion SDK.
- * 
+ *
  * These styles determine the visual appearance of buttons throughout the app.
  */
 public enum class AiutaButtonsStyle {
@@ -14,12 +14,12 @@ public enum class AiutaButtonsStyle {
     /**
      * Blurred button style with translucent background.
      */
-    BLURRED
+    BLURRED,
 }
 
 /**
  * Enum class defining button styles that support outline variations.
- * 
+ *
  * These styles extend the basic button styles with additional outline options.
  */
 public enum class AiutaButtonsWithOutlineStyle {
@@ -36,5 +36,5 @@ public enum class AiutaButtonsWithOutlineStyle {
     /**
      * Blurred button style with an additional outline border.
      */
-    BLURRED_WITH_OUTLINE
+    BLURRED_WITH_OUTLINE,
 }

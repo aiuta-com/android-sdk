@@ -9,10 +9,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the wishlist feature in the fashion SDK.
- * 
+ *
  * This feature provides functionality for users to save and manage their favorite items,
  * including icons, text strings, and data provider for wishlist operations.
- * 
+ *
  * Required components:
  * - [icons]: Icons used in the wishlist UI
  * - [strings]: Text strings for the wishlist interface
@@ -26,7 +26,7 @@ public class AiutaWishlistFeature(
 
     /**
      * Builder class for creating instances of [AiutaWishlistFeature].
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -58,7 +58,7 @@ public class AiutaWishlistFeature(
 
 /**
  * DSL function for configuring the wishlist feature.
- * 
+ *
  * Example usage:
  * ```
  * features {

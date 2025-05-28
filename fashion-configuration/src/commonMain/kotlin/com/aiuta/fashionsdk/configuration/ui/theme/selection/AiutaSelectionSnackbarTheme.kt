@@ -9,13 +9,13 @@ import com.aiuta.fashionsdk.configuration.ui.theme.selection.strings.AiutaSelect
 
 /**
  * Selection snackbar theme configuration for the Aiuta SDK.
- * 
+ *
  * This class defines the visual styling for selection-related snackbar
  * in the SDK, including text content, icons, and colors. It provides a consistent
  * appearance for selection feedback messages that can be customized to match your
  * app's design.
- * 
- * 
+ *
+ *
  * @property strings Text content configuration for the selection snackbar
  * @property icons Theme configuration for icons used in the selection snackbar
  * @property colors Color configuration for the selection snackbar elements
@@ -31,7 +31,7 @@ public class AiutaSelectionSnackbarTheme(
 ) {
     /**
      * Builder class for creating [AiutaSelectionSnackbarTheme] instances.
-     * 
+     *
      * This builder ensures all required theme components are set before creating
      * the final selection snackbar theme configuration.
      */
@@ -53,7 +53,7 @@ public class AiutaSelectionSnackbarTheme(
 
         /**
          * Creates an [AiutaSelectionSnackbarTheme] instance with the configured properties.
-         * 
+         *
          * @return Configured [AiutaSelectionSnackbarTheme] instance
          * @throws IllegalArgumentException if required properties are not set
          */
@@ -80,10 +80,10 @@ public class AiutaSelectionSnackbarTheme(
 
 /**
  * Extension function for configuring selection snackbar theme within an [AiutaTheme.Builder].
- * 
+ *
  * This extension provides a convenient DSL for configuring the selection snackbar theme
  * as part of the main theme setup.
- * 
+ *
  * ```kotlin
  * theme {
  *     selectionSnackbar {
@@ -94,7 +94,7 @@ public class AiutaSelectionSnackbarTheme(
  *     // Configure other theme components...
  * }
  * ```
- * 
+ *
  * @param block Configuration block for setting up the selection snackbar theme
  * @return The theme builder for method chaining
  * @see AiutaTheme.Builder

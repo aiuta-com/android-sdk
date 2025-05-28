@@ -73,7 +73,7 @@ public class AiutaUserInterfaceConfiguration(
  * ```kotlin
  * val configuration = aiutaConfiguration {
  *     aiuta = ... // Aiuta instance
- 
+
  *     features { /* ... */ }
  *
  *     userInterface {

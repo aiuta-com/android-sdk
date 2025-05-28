@@ -9,10 +9,10 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for the uploads history feature in the image picker.
- * 
+ *
  * This feature provides functionality to view and manage previously uploaded images,
  * including text strings, visual styles, and data management.
- * 
+ *
  * Required components:
  * - [strings]: Text strings for the history interface
  * - [styles]: Visual styles for the history UI
@@ -25,7 +25,7 @@ public class AiutaImagePickerUploadsHistoryFeature(
 ) : AiutaFeature {
     /**
      * Builder class for creating [AiutaImagePickerUploadsHistoryFeature] instances.
-     * 
+     *
      * This builder ensures that all required components are provided before
      * creating the feature instance.
      */
@@ -57,7 +57,7 @@ public class AiutaImagePickerUploadsHistoryFeature(
 
 /**
  * DSL function for configuring the uploads history feature.
- * 
+ *
  * Example usage:
  * ```
  * imagePicker {

@@ -7,12 +7,12 @@ import androidx.compose.ui.unit.sp
 
 /**
  * Typography configuration for label text elements.
- * 
+ *
  * This interface defines text styles used for different types of labels in the SDK,
  * including titles and regular text. It provides consistent text styling that can
  * be customized to match your app's design system.
- * 
- * 
+ *
+ *
  * @property titleL Text style for large titles
  * @property titleM Text style for medium titles
  * @property regular Text style for regular label text
@@ -26,9 +26,9 @@ public interface AiutaLabelThemeTypography {
 
     /**
      * Default implementation of [AiutaLabelThemeTypography].
-     * 
+     *
      * This class provides standard text styles for labels.
-     * 
+     *
      * ```kotlin
      * theme {
      *     label {

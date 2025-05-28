@@ -10,17 +10,17 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 
 /**
  * Configuration for standalone consent collection in the onboarding page.
- * 
+ *
  * This feature provides a dedicated page for collecting user consent during the onboarding process,
  * with full customization options for text, data, icons, and styles.
- * 
+ *
  * Required components:
  * - [strings]: Text content for the consent interface
  * - [data]: Data model for consent information
  * - [dataProvider]: Provider for managing consent data
  * - [icons]: Icon resources for the consent interface
  * - [styles]: Visual styles for the consent interface
- * 
+ *
  * @property strings Text content for the consent interface
  * @property data Data model for consent information
  * @property dataProvider Provider for managing consent data
@@ -37,7 +37,7 @@ public class AiutaConsentStandaloneOnboardingPageFeature(
 
     /**
      * Builder for creating [AiutaConsentStandaloneOnboardingPageFeature] instances.
-     * 
+     *
      * This builder ensures all required properties are set before creating the feature instance.
      */
     public class Builder : AiutaFeature.Builder {
