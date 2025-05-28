@@ -1,6 +1,19 @@
 package com.aiuta.fashionsdk.logger
 
 import com.aiuta.fashionsdk.logger.AiutaLogger.Level
+/**
+ * [AiutaLogger] is an interface that defines the contract for logging functionality across the application.
+ * It provides methods for logging messages at different priority levels and includes convenience extension
+ * functions for each log level.
+ *
+ * The logger supports:
+ * - Different priority levels (VERBOSE, DEBUG, INFO, WARN, ERROR)
+ * - Optional tags to identify the source of the log
+ * - Optional throwable objects for error logging
+ * - Custom messages
+ *
+ * @see Level for available logging priority levels
+ */
 
 public interface AiutaLogger {
     /**
@@ -25,6 +38,13 @@ public interface AiutaLogger {
     }
 }
 
+/**
+ * Logs a message at VERBOSE level.
+ *
+ * @param message The message to log
+ * @param throwable Optional throwable to log
+ * @param tag Optional tag to identify the source of the log
+ */
 public fun AiutaLogger.v(
     message: String,
     throwable: Throwable? = null,
@@ -33,6 +53,13 @@ public fun AiutaLogger.v(
     log(Level.VERBOSE, tag, throwable, message)
 }
 
+/**
+ * Logs a message at DEBUG level.
+ *
+ * @param message The message to log
+ * @param throwable Optional throwable to log
+ * @param tag Optional tag to identify the source of the log
+ */
 public fun AiutaLogger.d(
     message: String,
     throwable: Throwable? = null,
@@ -41,6 +68,13 @@ public fun AiutaLogger.d(
     log(Level.DEBUG, tag, throwable, message)
 }
 
+/**
+ * Logs a message at INFO level.
+ *
+ * @param message The message to log
+ * @param throwable Optional throwable to log
+ * @param tag Optional tag to identify the source of the log
+ */
 public fun AiutaLogger.i(
     message: String,
     throwable: Throwable? = null,
@@ -49,6 +83,13 @@ public fun AiutaLogger.i(
     log(Level.INFO, tag, throwable, message)
 }
 
+/**
+ * Logs a message at WARN level.
+ *
+ * @param message The message to log
+ * @param throwable Optional throwable to log
+ * @param tag Optional tag to identify the source of the log
+ */
 public fun AiutaLogger.w(
     message: String,
     throwable: Throwable? = null,
@@ -57,6 +98,13 @@ public fun AiutaLogger.w(
     log(Level.WARN, tag, throwable, message)
 }
 
+/**
+ * Logs a message at ERROR level.
+ *
+ * @param message The message to log
+ * @param throwable Optional throwable to log
+ * @param tag Optional tag to identify the source of the log
+ */
 public fun AiutaLogger.e(
     message: String,
     throwable: Throwable? = null,

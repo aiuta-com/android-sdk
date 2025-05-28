@@ -6,6 +6,13 @@ import com.aiuta.fashionsdk.configuration.ui.theme.error.colors.AiutaErrorSnackb
 import com.aiuta.fashionsdk.configuration.ui.theme.error.errorSnackbar
 import com.aiuta.fashionsdk.configuration.ui.theme.error.strings.AiutaErrorSnackbarThemeStrings
 
+/**
+ * Configures the default error snackbar theme for the Aiuta SDK.
+ *
+ * This function sets up the error snackbar with default strings, icons, and colors.
+ *
+ * @return The updated [AiutaTheme.Builder] instance.
+ */
 public fun AiutaTheme.Builder.defaultErrorSnackbar(): AiutaTheme.Builder = errorSnackbar {
     strings = AiutaErrorSnackbarThemeStrings.Default()
     icons = DefaultAiutaErrorSnackbarThemeIcons()

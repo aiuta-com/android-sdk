@@ -7,11 +7,28 @@ import com.aiuta.fashionsdk.configuration.features.picker.history.strings.AiutaI
 import com.aiuta.fashionsdk.configuration.features.picker.history.styles.AiutaImagePickerUploadsHistoryFeatureStyles
 import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescription
 
+/**
+ * Configuration for the uploads history feature in the image picker.
+ *
+ * This feature provides functionality to view and manage previously uploaded images,
+ * including text strings, visual styles, and data management.
+ *
+ * Required components:
+ * - [strings]: Text strings for the history interface
+ * - [styles]: Visual styles for the history UI
+ * - [dataProvider]: Provider for history data operations
+ */
 public class AiutaImagePickerUploadsHistoryFeature(
     public val strings: AiutaImagePickerUploadsHistoryFeatureStrings,
     public val styles: AiutaImagePickerUploadsHistoryFeatureStyles,
     public val dataProvider: AiutaImagePickerUploadsHistoryFeatureDataProvider,
 ) : AiutaFeature {
+    /**
+     * Builder class for creating [AiutaImagePickerUploadsHistoryFeature] instances.
+     *
+     * This builder ensures that all required components are provided before
+     * creating the feature instance.
+     */
     public class Builder : AiutaFeature.Builder {
         public var strings: AiutaImagePickerUploadsHistoryFeatureStrings? = null
         public var styles: AiutaImagePickerUploadsHistoryFeatureStyles? = null
@@ -38,6 +55,20 @@ public class AiutaImagePickerUploadsHistoryFeature(
     }
 }
 
+/**
+ * DSL function for configuring the uploads history feature.
+ *
+ * Example usage:
+ * ```
+ * imagePicker {
+ *     uploadsHistory {
+ *         strings = ...
+ *         styles = ...
+ *         dataProvider = ...
+ *     }
+ * }
+ * ```
+ */
 public inline fun AiutaImagePickerFeature.Builder.uploadsHistory(
     block: AiutaImagePickerUploadsHistoryFeature.Builder.() -> Unit,
 ): AiutaImagePickerFeature.Builder = apply {

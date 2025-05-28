@@ -25,6 +25,17 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.internal.progress.ErrorProgress
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.utils.placeholderFadeConnecting
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.painter.painterResource
 
+/**
+ * Displays an image from a drawable resource.
+ *
+ * @param image The drawable resource to be displayed
+ * @param contentDescription The content description for accessibility
+ * @param modifier The modifier to be applied to the image
+ * @param alignment The alignment of the image within its bounds
+ * @param contentScale The scale type of the image
+ * @param alpha The alpha value for the image
+ * @param colorFilter Optional color filter to be applied to the image
+ */
 @Composable
 public fun AiutaImage(
     image: AiutaDrawableResource,
@@ -47,6 +58,19 @@ public fun AiutaImage(
     )
 }
 
+/**
+ * Displays an image from a URL with rounded corners.
+ *
+ * @param imageUrl The URL of the image to be displayed
+ * @param contentDescription The content description for accessibility
+ * @param shapeDp The corner radius for the rounded corners
+ * @param modifier The modifier to be applied to the image
+ * @param imageBuilder The builder for configuring the image request
+ * @param alignment The alignment of the image within its bounds
+ * @param contentScale The scale type of the image
+ * @param alpha The alpha value for the image
+ * @param colorFilter Optional color filter to be applied to the image
+ */
 @Composable
 public fun AiutaImage(
     imageUrl: String?,
@@ -72,6 +96,19 @@ public fun AiutaImage(
     )
 }
 
+/**
+ * Displays an image from a URL with a custom shape.
+ *
+ * @param imageUrl The URL of the image to be displayed
+ * @param contentDescription The content description for accessibility
+ * @param shape The shape to be applied to the image
+ * @param modifier The modifier to be applied to the image
+ * @param imageBuilder The builder for configuring the image request
+ * @param alignment The alignment of the image within its bounds
+ * @param contentScale The scale type of the image
+ * @param alpha The alpha value for the image
+ * @param colorFilter Optional color filter to be applied to the image
+ */
 @Composable
 public fun AiutaImage(
     imageUrl: String?,

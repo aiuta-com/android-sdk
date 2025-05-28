@@ -23,7 +23,13 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.isZoomEnable
 
 /**
- * Entry point for fashion try on flow
+ * Entry point for the fashion try-on flow.
+ *
+ * This composable function initializes and manages the try-on experience.
+ *
+ * @param modifier The modifier to be applied to the layout
+ * @param aiutaConfiguration The configuration for the Aiuta SDK
+ * @param productForGeneration The product item to be used for try-on generation
  *
  * @see AiutaConfiguration
  * @see ProductItem

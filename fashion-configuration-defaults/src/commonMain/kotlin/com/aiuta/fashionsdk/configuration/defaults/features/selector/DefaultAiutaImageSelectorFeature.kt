@@ -18,6 +18,13 @@ import com.aiuta.fashionsdk.configuration.features.picker.model.predefinedModels
 import com.aiuta.fashionsdk.configuration.features.picker.model.strings.AiutaImagePickerPredefinedModelFeatureStrings
 import com.aiuta.fashionsdk.configuration.features.picker.strings.AiutaImagePickerFeatureStrings
 
+/**
+ * Configures the default image selector feature for the Aiuta SDK.
+ *
+ * This function sets up the image selector with default camera, photo gallery, predefined models, uploads history, images, and strings.
+ *
+ * @return The updated [AiutaFeatures.Builder] instance.
+ */
 public fun AiutaFeatures.Builder.defaultImagePicker(): AiutaFeatures.Builder = imagePicker {
     camera {
         icons = DefaultAiutaImagePickerCameraFeatureIcons()

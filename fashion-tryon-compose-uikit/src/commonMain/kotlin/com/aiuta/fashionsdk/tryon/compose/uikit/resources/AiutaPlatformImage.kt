@@ -18,13 +18,41 @@ import com.aiuta.fashionsdk.io.AiutaPlatformFile
 import com.aiuta.fashionsdk.io.readByteArray
 import com.aiuta.fashionsdk.tryon.compose.uikit.internal.progress.ErrorProgress
 
+/**
+ * Represents the loading state of a platform-specific image.
+ */
 @Immutable
 internal sealed interface AiutaPlatformImageLoadingState {
+    /**
+     * The image is currently loading.
+     */
     object Loading : AiutaPlatformImageLoadingState
+
+    /**
+     * An error occurred while loading the image.
+     */
     object Error : AiutaPlatformImageLoadingState
+
+    /**
+     * The image has been successfully loaded.
+     *
+     * @property byteArray The raw byte array of the loaded image
+     */
     class Success(val byteArray: ByteArray) : AiutaPlatformImageLoadingState
 }
 
+/**
+ * A composable that displays an image from a platform-specific file.
+ * This component handles loading states and errors automatically.
+ *
+ * @param platformFile The platform-specific file containing the image data
+ * @param contentDescription The content description for accessibility
+ * @param modifier The modifier to be applied to the image
+ * @param alignment The alignment of the image within its bounds
+ * @param contentScale The scale type of the image
+ * @param alpha The alpha value for the image
+ * @param colorFilter Optional color filter to be applied to the image
+ */
 @Composable
 public fun AiutaPlatformImage(
     platformFile: AiutaPlatformFile,

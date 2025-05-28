@@ -6,6 +6,14 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResou
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.share.icons.AiutaShareFeatureIcons
 
+/**
+ * Default implementation of [AiutaShareFeatureIcons].
+ *
+ * This class provides the default icon resources for the share feature,
+ * including the share icon.
+ *
+ * @property share24 24x24 pixel icon for sharing content
+ */
 public class DefaultAiutaShareFeatureIcons : AiutaShareFeatureIcons {
     override val share24: AiutaIcon = AiutaIcon(
         iconResource = AiutaComposeDrawableResource(Res.drawable.ic_share_24),

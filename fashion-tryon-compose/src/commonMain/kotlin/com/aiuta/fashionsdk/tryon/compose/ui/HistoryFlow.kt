@@ -28,7 +28,12 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.zoom.controller.is
 import com.aiuta.fashionsdk.tryon.core.AiutaTryOn
 
 /**
- * Entry point for history flow
+ * Entry point for the history flow.
+ *
+ * This composable function initializes and manages the try-on history experience.
+ *
+ * @param modifier The modifier to be applied to the layout
+ * @param aiutaConfiguration The configuration for the Aiuta SDK
  *
  * @see Aiuta
  * @see AiutaTryOn
@@ -87,6 +92,12 @@ public fun HistoryFlow(
     }
 }
 
+/**
+ * Default product item used for initialization.
+ *
+ * This is an empty product item with default values, used as a placeholder
+ * when initializing the history flow.
+ */
 internal val DefaultProductItem by lazy {
     ProductItem(
         id = "",

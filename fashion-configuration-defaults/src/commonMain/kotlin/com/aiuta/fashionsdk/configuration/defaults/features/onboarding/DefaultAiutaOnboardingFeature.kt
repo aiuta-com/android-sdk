@@ -14,6 +14,13 @@ import com.aiuta.fashionsdk.configuration.features.onboarding.onboarding
 import com.aiuta.fashionsdk.configuration.features.onboarding.shapes.AiutaOnboardingFeatureShapes
 import com.aiuta.fashionsdk.configuration.features.onboarding.strings.AiutaOnboardingFeatureStrings
 
+/**
+ * Configures the default onboarding feature for the Aiuta SDK.
+ *
+ * This function sets up the onboarding feature with default best results page, how it works page, strings, shapes, and data provider.
+ *
+ * @return The updated [AiutaFeatures.Builder] instance.
+ */
 public fun AiutaFeatures.Builder.defaultOnboarding(): AiutaFeatures.Builder = onboarding {
     bestResultsPage {
         images = DefaultsAiutaOnboardingBestResultsPageFeatureImages()

@@ -7,6 +7,15 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResou
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.ui.theme.selection.icons.AiutaSelectionSnackbarThemeIcons
 
+/**
+ * Default implementation of [AiutaSelectionSnackbarThemeIcons].
+ *
+ * This class provides the default icon resources for the selection snackbar theme,
+ * including icons for deletion and confirmation actions.
+ *
+ * @property trash24 24x24 pixel trash icon for deletion actions
+ * @property check20 20x20 pixel check icon for confirmation actions
+ */
 public class DefaultAiutaSelectionSnackbarThemeIcons : AiutaSelectionSnackbarThemeIcons {
     override val trash24: AiutaIcon = AiutaIcon(
         iconResource = AiutaComposeDrawableResource(Res.drawable.ic_trash_24),

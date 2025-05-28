@@ -4,12 +4,13 @@ import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.network.internal.KtorNetworkClient
 
 /**
- * Default extension for creating [NetworkClient]. Same as [defaultNetworkClient],
- * but use api key from instance of [Aiuta] and take default endpoint
+ * Creates a default network client with caching enabled.
+ * This is the recommended way to create a network client for most use cases.
  *
- * @param aiuta Instance of [Aiuta]
- *
- * @return instance of [NetworkClient]
+ * @param aiuta Instance of [Aiuta] containing the API key
+ * @param host Optional backend host. If not provided, uses the default endpoint
+ * @param encodedPath Optional encoded path. If not provided, uses the default path
+ * @return A configured instance of [NetworkClient]
  */
 public fun defaultNetworkClient(
     aiuta: Aiuta,
@@ -22,18 +23,14 @@ public fun defaultNetworkClient(
 )
 
 /**
- * Creating new instance of [NetworkClient]
- * without caching.
+ * Creates a new instance of [NetworkClient] without caching.
+ * This method should be used with caution as creating new network client instances
+ * can be resource-intensive.
  *
- * Be careful, when use this method, because new instance of [NetworkClient] can
- * be too expensive.
- *
- *
- * @param aiuta Instance of [Aiuta]
- * @param host Optional backend host. Otherwise, will use default.
- * @param encodedPath Optional encoded path. Otherwise, will use default.
- *
- * @return instance of [NetworkClient]
+ * @param aiuta Instance of [Aiuta] containing the API key
+ * @param host Optional backend host. If not provided, uses the default endpoint
+ * @param encodedPath Optional encoded path. If not provided, uses the default path
+ * @return A new instance of [NetworkClient]
  */
 public fun createNetworkClient(
     aiuta: Aiuta,

@@ -6,6 +6,14 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaComposeDrawableResou
 import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.tryon.icons.AiutaTryOnFeatureIcons
 
+/**
+ * Default implementation of [AiutaTryOnFeatureIcons].
+ *
+ * This class provides the default icon resources for the try-on feature,
+ * including the main try-on icon.
+ *
+ * @property tryOn20 20x20 pixel icon for the try-on feature
+ */
 public class DefaultAiutaTryOnFeatureIcons : AiutaTryOnFeatureIcons {
     override val tryOn20: AiutaIcon = AiutaIcon(
         iconResource = AiutaComposeDrawableResource(Res.drawable.ic_tryon_20),

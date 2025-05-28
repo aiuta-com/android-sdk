@@ -30,6 +30,14 @@ import com.aiuta.fashionsdk.configuration.features.tryon.tryOn
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.inputImageValidation
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
 
+/**
+ * Configures the default try-on feature for the Aiuta SDK.
+ *
+ * This function sets up the try-on feature with default loading page, cart, input image validation, fit disclaimer, feedback, generations history, other photo, icons, toggles, strings, and styles.
+ *
+ * @param cartHandler The handler for the try-on cart feature.
+ * @return The updated [AiutaFeatures.Builder] instance.
+ */
 public fun AiutaFeatures.Builder.defaultTryOn(
     cartHandler: AiutaTryOnCartFeatureHandler,
 ): AiutaFeatures.Builder = tryOn {

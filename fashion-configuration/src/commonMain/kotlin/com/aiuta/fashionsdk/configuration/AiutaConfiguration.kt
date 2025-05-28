@@ -16,6 +16,41 @@ import com.aiuta.fashionsdk.configuration.ui.AiutaUserInterfaceConfiguration
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
 
+/**
+ * Main configuration class for the Aiuta SDK.
+ *
+ * This immutable configuration class contains all the settings needed to customize
+ * the behavior and appearance of the Aiuta SDK. It includes feature toggles,
+ * UI theming, debug settings, and the core Aiuta instance.
+ *
+ * ```kotlin
+ * val configuration = aiutaConfiguration {
+ *     aiuta = aiuta {
+ *         authenticationStrategy = ...
+ *         platformContext = context
+ *     }
+ *
+ *     features {
+ *         ...
+ *     }
+ *
+ *     userInterface {
+ *         theme = ...
+ *         actions = ...
+ *     }
+ * }
+ * ```
+ *
+ * @property aiuta The core Aiuta SDK instance
+ * @property debugSettings Debug and validation settings for development
+ * @property features Feature configuration defining which SDK features are enabled
+ * @property userInterface UI configuration including theme and actions
+ *
+ * @see Aiuta
+ * @see AiutaFeatures
+ * @see AiutaUserInterfaceConfiguration
+ * @see AiutaDebugSettings
+ */
 @Immutable
 public class AiutaConfiguration(
     public val aiuta: Aiuta,
@@ -25,13 +60,45 @@ public class AiutaConfiguration(
 ) {
     public val aiutaAnalytic: InternalAiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
 
+    /**
+     * Builder class for creating [AiutaConfiguration] instances with DSL-style configuration.
+     *
+     * This builder ensures all required properties are set and validates the configuration
+     * before creating the final [AiutaConfiguration] instance.
+     *
+     */
     @AiutaDsl
     public class Builder {
+        /**
+         * The core Aiuta SDK instance.
+         */
         public var aiuta: Aiuta? = null
+
+        /**
+         * Debug and validation settings.
+         * If not set, [DefaultAiutaDebugSettings] will be used.
+         */
         public var debugSettings: AiutaDebugSettings? = null
+
+        /**
+         * Feature configuration defining enabled SDK features.
+         */
         public var features: AiutaFeatures? = null
+
+        /**
+         * User interface configuration including theme and actions.
+         */
         public var userInterface: AiutaUserInterfaceConfiguration? = null
 
+        /**
+         * Creates an [AiutaConfiguration] instance with the configured properties.
+         *
+         * This method validates all required properties and performs configuration
+         * validation using the debug settings.
+         *
+         * @return Configured [AiutaConfiguration] instance
+         * @throws IllegalArgumentException if required properties are not set
+         */
         public fun build(): AiutaConfiguration {
             val parentClass = "AiutaTryOnConfiguration"
 
@@ -72,10 +139,73 @@ public class AiutaConfiguration(
     }
 }
 
+/**
+ * Creates an [AiutaConfiguration] instance using DSL-style configuration.
+ *
+ * This is the recommended way to create [AiutaConfiguration] instances as it provides
+ * a clean and readable configuration syntax with validation.
+ *
+ * ```kotlin
+ * val configuration = aiutaConfiguration {
+ *     aiuta = aiuta {
+ *         authenticationStrategy = ...
+ *         platformContext = context
+ *     }
+ *
+ *     features {
+ *         ...
+ *     }
+ *
+ *     userInterface {
+ *         theme = ...
+ *         actions = ...
+ *     }
+ *
+ *      debugSettings = AiutaDebugSettings(
+ *         emptyStringsPolicy = AiutaValidationPolicy.WARNING,
+ *         listSizePolicy = AiutaValidationPolicy.WARNING
+ *     )
+ * }
+ * ```
+ *
+ * @param block Configuration block for setting up the [AiutaConfiguration] instance
+ * @return Configured [AiutaConfiguration] instance
+ * @throws IllegalArgumentException if required properties are not set in the block
+ * @see AiutaConfiguration.Builder
+ */
 public inline fun aiutaConfiguration(
     block: AiutaConfiguration.Builder.() -> Unit,
 ): AiutaConfiguration = AiutaConfiguration.Builder().apply(block).build()
 
+/**
+ * Remembers an [AiutaConfiguration] instance within a Compose function.
+ *
+ * This composable function creates and remembers an [AiutaConfiguration] instance,
+ * ensuring it's only created once and reused across recompositions.
+ *
+ * ```kotlin
+ * @Composable
+ * fun MyScreen() {
+ *     val configuration = rememberAiutaConfiguration {
+ *         aiuta = // Your Aiuta instance
+ *         features {
+ *             ...
+ *         }
+ *         userInterface {
+ *             theme = ...
+ *             actions = ...
+ *         }
+ *     }
+ *
+ *     // Use configuration below
+ * }
+ * ```
+ *
+ * @param block Configuration block for setting up the [AiutaConfiguration] instance
+ * @return Remembered [AiutaConfiguration] instance
+ * @see remember
+ * @see aiutaConfiguration
+ */
 @Composable
 public fun rememberAiutaConfiguration(
     block: AiutaConfiguration.Builder.() -> Unit,
