@@ -27,17 +27,20 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.shareIn
 
 /**
- * VERTICAL or HORIZONTAL indicator for Pager
+ * A customizable page indicator that can be displayed in either horizontal or vertical orientation.
+ * The indicator shows the current page position and supports smooth transitions between pages.
  *
- * @param pagerState state of listened Pager
- * @param color color of current selected page
- * @param indicatorCount count of visible indicators
- * @param indicatorSmallSize size of inactive page
- * @param indicatorBigSize size of active page
- * @param space distance between indicators
- * @param inactiveColorAlpha alpha of inactive indicator. Color of inactive indicator is [color]
- * @param orientation orientation of this view
- **/
+ * @param modifier The modifier to be applied to the indicator
+ * @param pagerState The state of the pager being monitored
+ * @param color The color of the active page indicator
+ * @param initialPage The initial page to display
+ * @param indicatorCount The number of visible indicators
+ * @param indicatorSmallSize The size of inactive page indicators
+ * @param indicatorBigSize The size of the active page indicator
+ * @param space The spacing between indicators
+ * @param inactiveColorAlpha The alpha value for inactive indicators
+ * @param orientation The orientation of the indicator (horizontal or vertical)
+ */
 @Composable
 public fun PagerIndicator(
     modifier: Modifier = Modifier,
@@ -116,6 +119,21 @@ public fun PagerIndicator(
     )
 }
 
+/**
+ * Internal composable that renders the list of page indicators.
+ *
+ * @param modifier The modifier to be applied to the list
+ * @param orientation The orientation of the indicators
+ * @param listState The state of the lazy list
+ * @param pageCount The total number of pages
+ * @param progressState The current progress state of the pager
+ * @param totalWidth The total width of the indicator list
+ * @param space The spacing between indicators
+ * @param indicatorSmallSize The size of inactive page indicators
+ * @param indicatorBigSize The size of the active page indicator
+ * @param color The color of the active page indicator
+ * @param inactiveColorAlpha The alpha value for inactive indicators
+ */
 @Composable
 private fun PagerList(
     modifier: Modifier,

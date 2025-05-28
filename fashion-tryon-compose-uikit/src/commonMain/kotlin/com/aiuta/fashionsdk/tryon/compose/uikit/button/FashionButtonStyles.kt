@@ -13,13 +13,30 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonSty
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.GradientButtonStyle
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.SecondaryFashionButtonStyle
 
+/**
+ * A collection of predefined button styles for the Fashion SDK.
+ * These styles provide consistent visual appearance across the application.
+ */
 @Immutable
 public object FashionButtonStyles {
+    /**
+     * Creates a primary button style using the provided theme.
+     *
+     * @param theme The theme to use for the button colors
+     * @return A primary button style with theme-based colors
+     */
     @Composable
     public fun primaryStyle(theme: AiutaTheme): FashionButtonStyle = DefaultFashionButtonStyle(
         colors = FashionButtonColors.primaryColors(theme = theme),
     )
 
+    /**
+     * Creates a primary button style with custom colors.
+     *
+     * @param backgroundColor The background color of the button
+     * @param contentColor The color of the button's content (text and icon)
+     * @return A primary button style with custom colors
+     */
     @Composable
     public fun primaryStyle(
         backgroundColor: Color,
@@ -31,6 +48,13 @@ public object FashionButtonStyles {
         ),
     )
 
+    /**
+     * Creates a gradient button style with custom colors and gradient background.
+     *
+     * @param contentColor The color of the button's content (text and icon)
+     * @param gradientBackground The gradient brush for the button background
+     * @return A gradient button style with custom colors and background
+     */
     @Composable
     public fun gradientColors(
         contentColor: Color,
@@ -40,11 +64,25 @@ public object FashionButtonStyles {
         gradientBackground = gradientBackground,
     )
 
+    /**
+     * Creates a secondary button style using the provided theme.
+     *
+     * @param theme The theme to use for the button colors
+     * @return A secondary button style with theme-based colors
+     */
     @Composable
     public fun secondaryStyle(theme: AiutaTheme): FashionButtonStyle = SecondaryFashionButtonStyle(
         colors = FashionButtonColors.secondaryColors(theme = theme),
     )
 
+    /**
+     * Creates a secondary button style with custom colors.
+     *
+     * @param backgroundColor The background color of the button
+     * @param contentColor The color of the button's content (text and icon)
+     * @param borderColor The color of the button's border
+     * @return A secondary button style with custom colors
+     */
     @Composable
     public fun secondaryStyle(
         backgroundColor: Color,
@@ -58,6 +96,13 @@ public object FashionButtonStyles {
         ),
     )
 
+    /**
+     * Creates a contrast button style using the provided theme.
+     * This style uses dark background with light content for high contrast.
+     *
+     * @param theme The theme to use for the button colors
+     * @return A contrast button style with theme-based colors
+     */
     @Composable
     public fun contrastStyle(
         theme: AiutaTheme,
@@ -69,6 +114,13 @@ public object FashionButtonStyles {
         ),
     )
 
+    /**
+     * Creates an inverted contrast button style using the provided theme.
+     * This style uses light background with dark content for high contrast.
+     *
+     * @param theme The theme to use for the button colors
+     * @return An inverted contrast button style with theme-based colors
+     */
     @Composable
     public fun contrastInvertedStyle(
         theme: AiutaTheme,
@@ -80,6 +132,13 @@ public object FashionButtonStyles {
         ),
     )
 
+    /**
+     * Creates an adaptive contrast button style that automatically adjusts based on the theme's color scheme.
+     * Uses contrast style for light theme and inverted contrast style for dark theme.
+     *
+     * @param theme The theme to use for the button colors
+     * @return An adaptive contrast button style that changes based on the theme
+     */
     @Composable
     public fun adaptiveContrastStyle(
         theme: AiutaTheme,

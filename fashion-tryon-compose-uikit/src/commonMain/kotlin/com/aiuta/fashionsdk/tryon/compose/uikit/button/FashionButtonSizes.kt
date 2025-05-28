@@ -11,11 +11,26 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.DefaultFashionBu
 import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.FashionButtonSize
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
+/**
+ * A collection of predefined button sizes for the Fashion SDK.
+ * These sizes provide consistent dimensions across the application.
+ */
 @Immutable
 public object FashionButtonSizes {
     private val IconSize = 20.dp
     private val IconSpacing = 4.dp
 
+    /**
+     * Creates a large button size with customizable dimensions and styling.
+     *
+     * @param verticalPadding The vertical padding of the button
+     * @param horizontalPadding The horizontal padding of the button
+     * @param iconSize The size of the icon within the button
+     * @param iconSpacing The spacing between the icon and text
+     * @param shape The shape of the button
+     * @param textStyle The text style for the button's text
+     * @return A large button size configuration
+     */
     @Composable
     public fun lSize(
         verticalPadding: Dp = 16.dp,
@@ -37,6 +52,17 @@ public object FashionButtonSizes {
         minHeight = 50.dp,
     )
 
+    /**
+     * Creates a medium button size with customizable dimensions and styling.
+     *
+     * @param verticalPadding The vertical padding of the button
+     * @param horizontalPadding The horizontal padding of the button
+     * @param iconSize The size of the icon within the button
+     * @param iconSpacing The spacing between the icon and text
+     * @param shape The shape of the button
+     * @param textStyle The text style for the button's text
+     * @return A medium button size configuration
+     */
     @Composable
     public fun mSize(
         verticalPadding: Dp = 12.dp,

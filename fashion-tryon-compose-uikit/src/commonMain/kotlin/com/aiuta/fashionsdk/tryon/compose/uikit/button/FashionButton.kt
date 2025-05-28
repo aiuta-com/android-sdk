@@ -29,6 +29,21 @@ import com.aiuta.fashionsdk.tryon.compose.uikit.button.internal.GradientButtonSt
 import com.aiuta.fashionsdk.tryon.compose.uikit.resources.AiutaIcon
 import com.aiuta.fashionsdk.tryon.compose.uikit.utils.conditional
 
+/**
+ * A customizable button component that supports various styles, sizes, and states.
+ * The button can display text, an icon, and a loading animation.
+ *
+ * @param modifier The modifier to be applied to the button
+ * @param contentDescription The content description for accessibility
+ * @param elevation The elevation of the button
+ * @param icon Optional icon to be displayed in the button
+ * @param isEnable Whether the button is enabled
+ * @param isLoading Whether the button is in a loading state
+ * @param text Optional text to be displayed in the button
+ * @param style The style of the button (e.g., gradient, solid)
+ * @param size The size of the button
+ * @param onClick The callback to be invoked when the button is clicked
+ */
 @Composable
 public fun FashionButton(
     modifier: Modifier = Modifier,
