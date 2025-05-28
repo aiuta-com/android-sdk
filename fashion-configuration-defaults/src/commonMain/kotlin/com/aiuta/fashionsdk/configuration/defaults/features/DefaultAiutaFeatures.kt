@@ -9,6 +9,15 @@ import com.aiuta.fashionsdk.configuration.defaults.features.tryon.defaultTryOn
 import com.aiuta.fashionsdk.configuration.features.features
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.handler.AiutaTryOnCartFeatureHandler
 
+/**
+ * Configures the default features for the Aiuta SDK.
+ *
+ * This function sets up the default features including onboarding, consent, image picker, try-on, and share.
+ *
+ * @param termsOfServiceUrl The URL for the terms of service.
+ * @param cartHandler The handler for the try-on cart feature.
+ * @return The updated [AiutaConfiguration.Builder] instance.
+ */
 public fun AiutaConfiguration.Builder.defaultAiutaFeatures(
     termsOfServiceUrl: String,
     cartHandler: AiutaTryOnCartFeatureHandler,

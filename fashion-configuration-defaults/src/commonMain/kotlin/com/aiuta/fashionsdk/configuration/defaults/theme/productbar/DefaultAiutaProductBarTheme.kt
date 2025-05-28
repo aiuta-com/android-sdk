@@ -7,6 +7,13 @@ import com.aiuta.fashionsdk.configuration.ui.theme.productbar.productBar
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.toggles.AiutaProductBarThemeToggles
 import com.aiuta.fashionsdk.configuration.ui.theme.productbar.typography.AiutaProductBarThemeTypography
 
+/**
+ * Configures the default product bar theme for the Aiuta SDK.
+ *
+ * This function sets up the product bar with default prices, typography, toggles, and icons.
+ *
+ * @return The updated [AiutaTheme.Builder] instance.
+ */
 public fun AiutaTheme.Builder.defaultProductBar(): AiutaTheme.Builder = productBar {
     defaultPrices()
     typography = AiutaProductBarThemeTypography.Default()

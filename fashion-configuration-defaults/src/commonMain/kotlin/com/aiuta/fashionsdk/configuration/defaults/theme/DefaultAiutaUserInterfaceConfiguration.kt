@@ -15,6 +15,16 @@ import com.aiuta.fashionsdk.configuration.ui.userInterface
 import com.aiuta.fashionsdk.configuration.ui.theme.color.AiutaColorTheme
 import com.aiuta.fashionsdk.configuration.ui.theme.theme
 
+/**
+ * Configures the default user interface settings for the Aiuta SDK.
+ *
+ * This function sets up the user interface with default actions and theme configurations,
+ * including buttons, error snackbars, images, labels, page bars, product bars, powered bars,
+ * selection snackbars, and bottom sheets.
+ *
+ * @param actions The user interface actions to be configured.
+ * @return The updated [AiutaConfiguration.Builder] instance.
+ */
 public fun AiutaConfiguration.Builder.defaultAiutaUserInterfaceConfiguration(
     actions: AiutaUserInterfaceActions,
 ): AiutaConfiguration.Builder = userInterface {
