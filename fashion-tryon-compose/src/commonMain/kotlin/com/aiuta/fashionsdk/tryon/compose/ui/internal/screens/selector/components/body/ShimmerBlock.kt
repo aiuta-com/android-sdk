@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -50,7 +51,10 @@ internal fun ShimmerBlock(
         )
 
     val loadingAnimationGradient = remember {
-        loadingPageFeature.styles.loadingStatusBackgroundGradient.orEmpty()
+        loadingPageFeature.styles.loadingStatusBackgroundGradient ?: listOf(
+            theme.color.brand,
+            Color.Transparent,
+        )
     }
 
     Canvas(modifier = modifier.alpha(0.5f)) {
@@ -60,8 +64,7 @@ internal fun ShimmerBlock(
             drawRect(
                 color = color,
                 topLeft = Offset(0f, size.height * translateAnimation.value),
-                size =
-                Size(
+                size = Size(
                     width = size.width,
                     height = with(density) { lineHeight.toPx() },
                 ),
