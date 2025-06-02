@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsShareEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 
 internal class DecoratedShareManagerV2(

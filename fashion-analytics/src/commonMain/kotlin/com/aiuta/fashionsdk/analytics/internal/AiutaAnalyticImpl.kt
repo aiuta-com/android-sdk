@@ -3,8 +3,8 @@ package com.aiuta.fashionsdk.analytics.internal
 import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.analytics.AiutaAnalytic
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 import kotlinx.coroutines.flow.Flow
 
 internal class AiutaAnalyticImpl(

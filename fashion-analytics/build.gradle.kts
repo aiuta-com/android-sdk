@@ -16,7 +16,7 @@ kotlin {
                 api(libs.kotlinx.coroutines.core)
                 api(projects.fashionAnalyticsEvents)
 
-                implementation(projects.internal.analytic)
+                implementation(projects.internal.internalFashionAnalytics)
             }
         }
     }

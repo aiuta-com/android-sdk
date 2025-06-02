@@ -13,8 +13,8 @@ import com.aiuta.fashionsdk.configuration.internal.utils.checkNotNullWithDescrip
 import com.aiuta.fashionsdk.configuration.internal.validation.features.validateWithSettings
 import com.aiuta.fashionsdk.configuration.internal.validation.theme.validateWithSettings
 import com.aiuta.fashionsdk.configuration.ui.AiutaUserInterfaceConfiguration
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 
 /**
  * Main configuration class for the Aiuta SDK.

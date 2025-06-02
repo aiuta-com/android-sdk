@@ -19,7 +19,7 @@ include(
 
 // Public modules
 include(
-    ":internal:analytic",
+    ":internal:internal-fashion-analytics",
     ":fashion",
     ":fashion-analytics",
     ":fashion-analytics-events",

@@ -9,7 +9,7 @@ import android.net.Uri
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsShareEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
+import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalyticFactory
 import kotlinx.serialization.json.Json
 
 /**

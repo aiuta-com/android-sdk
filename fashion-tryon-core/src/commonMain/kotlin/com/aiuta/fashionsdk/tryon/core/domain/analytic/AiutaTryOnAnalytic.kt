@@ -5,7 +5,7 @@ import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnAbortedReasonTyp
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
