@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 
 /**
  * Be careful, order is matter for animation transitions,

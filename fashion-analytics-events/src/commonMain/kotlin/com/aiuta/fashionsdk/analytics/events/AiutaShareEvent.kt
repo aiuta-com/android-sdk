@@ -1,10 +1,10 @@
-package com.aiuta.fashionsdk.internal.analytic.model
+package com.aiuta.fashionsdk.analytics.events
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.SHARE_EVENT)
+@SerialName(AiutaAnalyticEvent.EventType.SHARE_EVENT)
 public class AiutaShareEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticPageId?,
@@ -14,7 +14,7 @@ public class AiutaShareEvent(
     public val event: AiutaShareEventType,
     @SerialName("targetId")
     public val targetId: String?,
-) : ExternalAnalyticEvent
+) : AiutaAnalyticEvent
 
 @Serializable
 public enum class AiutaShareEventType {

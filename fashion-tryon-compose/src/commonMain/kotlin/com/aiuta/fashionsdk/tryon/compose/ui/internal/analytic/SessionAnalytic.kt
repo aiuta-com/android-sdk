@@ -2,11 +2,11 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnAbortedReasonType
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaSessionEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnAbortedReasonType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 

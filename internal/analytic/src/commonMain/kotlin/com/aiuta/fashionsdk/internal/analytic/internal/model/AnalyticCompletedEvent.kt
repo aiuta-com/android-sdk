@@ -1,6 +1,6 @@
-package com.aiuta.fashionsdk.internal.analytic.model.internal
+package com.aiuta.fashionsdk.internal.analytic.internal.model
 
-import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticEvent
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class AnalyticCompletedEvent(
     @SerialName("data")
-    val data: InternalAnalyticEvent,
+    val data: AiutaAnalyticEvent,
     @SerialName("env")
     val environment: AnalyticEnvironment,
     @SerialName("localDateTime")

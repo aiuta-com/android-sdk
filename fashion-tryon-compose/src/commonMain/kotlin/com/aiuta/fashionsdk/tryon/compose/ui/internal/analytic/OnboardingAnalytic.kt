@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticOnboardingEventType
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 internal fun FashionTryOnController.sendOnboardingEvent(

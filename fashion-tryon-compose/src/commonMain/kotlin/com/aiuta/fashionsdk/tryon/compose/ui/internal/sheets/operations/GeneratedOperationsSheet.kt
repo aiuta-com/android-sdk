@@ -32,8 +32,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory

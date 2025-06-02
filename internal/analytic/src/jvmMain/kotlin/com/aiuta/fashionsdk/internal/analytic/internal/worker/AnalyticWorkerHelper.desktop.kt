@@ -5,8 +5,8 @@ import com.aiuta.fashionsdk.internal.analytic.BuildKonfig
 import com.aiuta.fashionsdk.internal.analytic.internal.installation.Installation
 import com.aiuta.fashionsdk.internal.analytic.internal.installation.utils.DesktopSystemType
 import com.aiuta.fashionsdk.internal.analytic.internal.installation.utils.solveDesktopSystemType
-import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticEnvironment
-import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
+import com.aiuta.fashionsdk.internal.analytic.internal.model.AnalyticEnvironment
+import com.aiuta.fashionsdk.internal.analytic.internal.utils.AnalyticConfig
 
 internal actual suspend fun createAnalyticEnvironment(
     platformContext: AiutaPlatformContext,

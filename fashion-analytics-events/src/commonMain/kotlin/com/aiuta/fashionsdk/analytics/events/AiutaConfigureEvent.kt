@@ -1,10 +1,10 @@
-package com.aiuta.fashionsdk.internal.analytic.model
+package com.aiuta.fashionsdk.analytics.events
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.CONFIGURE_EVENT)
+@SerialName(AiutaAnalyticEvent.EventType.CONFIGURE_EVENT)
 public class AiutaConfigureEvent(
     @SerialName("pageId")
     override val pageId: AiutaAnalyticPageId? = null,
@@ -45,7 +45,7 @@ public class AiutaConfigureEvent(
     public val shareWatermarkFeatureEnabled: Boolean,
     @SerialName("wishlistFeatureEnabled")
     public val wishlistFeatureEnabled: Boolean,
-) : ExternalAnalyticEvent {
+) : AiutaAnalyticEvent {
 
     @Serializable
     public enum class AuthenticationType {

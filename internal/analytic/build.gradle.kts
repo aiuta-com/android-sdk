@@ -26,6 +26,7 @@ kotlin {
             dependencies {
                 api(projects.fashion)
                 api(projects.fashionNetwork)
+                api(projects.fashionAnalyticsEvents)
 
                 implementation(libs.kotlinx.atomicfu)
                 implementation(libs.kotlinx.datetime)

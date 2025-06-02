@@ -20,7 +20,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.toBitmap
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent

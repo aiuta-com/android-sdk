@@ -24,7 +24,7 @@ import com.aiuta.fashionsdk.compose.resources.drawable.AiutaIcon
 import com.aiuta.fashionsdk.configuration.features.picker.camera.AiutaImagePickerCameraFeature
 import com.aiuta.fashionsdk.configuration.features.picker.gallery.AiutaImagePickerPhotoGalleryFeature
 import com.aiuta.fashionsdk.configuration.features.picker.model.AiutaImagePickerPredefinedModelFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPickerAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.activateAutoTryOn

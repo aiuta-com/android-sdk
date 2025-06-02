@@ -8,7 +8,7 @@
 // Library unique name: <com.aiuta:fashion-analytic>
 abstract interface com.aiuta.fashionsdk.analytic/AiutaAnalytic { // com.aiuta.fashionsdk.analytic/AiutaAnalytic|null[0]
     abstract val analyticFlow // com.aiuta.fashionsdk.analytic/AiutaAnalytic.analyticFlow|{}analyticFlow[0]
-        abstract fun <get-analyticFlow>(): kotlinx.coroutines.flow/Flow<com.aiuta.fashionsdk.internal.analytic.model/ExternalAnalyticEvent> // com.aiuta.fashionsdk.analytic/AiutaAnalytic.analyticFlow.<get-analyticFlow>|<get-analyticFlow>(){}[0]
+        abstract fun <get-analyticFlow>(): kotlinx.coroutines.flow/Flow<com.aiuta.fashionsdk.analytics.events/ExternalAnalyticEvent> // com.aiuta.fashionsdk.analytic/AiutaAnalytic.analyticFlow.<get-analyticFlow>|<get-analyticFlow>(){}[0]
 }
 
 final val com.aiuta.fashionsdk.analytic/analytic // com.aiuta.fashionsdk.analytic/analytic|@com.aiuta.fashionsdk.Aiuta{}analytic[0]

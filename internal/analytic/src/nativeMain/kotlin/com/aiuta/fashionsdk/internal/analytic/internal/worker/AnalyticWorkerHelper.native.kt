@@ -3,8 +3,8 @@ package com.aiuta.fashionsdk.internal.analytic.internal.worker
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.internal.analytic.BuildKonfig
 import com.aiuta.fashionsdk.internal.analytic.internal.installation.Installation
-import com.aiuta.fashionsdk.internal.analytic.model.internal.AnalyticEnvironment
-import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
+import com.aiuta.fashionsdk.internal.analytic.internal.model.AnalyticEnvironment
+import com.aiuta.fashionsdk.internal.analytic.internal.utils.AnalyticConfig
 import platform.Foundation.NSBundle
 
 internal actual suspend fun createAnalyticEnvironment(

@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.painter.Painter
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaShareEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaShareEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaShareEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 
 internal class DecoratedShareManagerV2(

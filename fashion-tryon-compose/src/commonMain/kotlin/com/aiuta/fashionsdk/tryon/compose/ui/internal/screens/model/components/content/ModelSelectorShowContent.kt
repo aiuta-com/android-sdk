@@ -17,8 +17,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsPickerEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState

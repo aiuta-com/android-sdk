@@ -19,9 +19,10 @@ include(
 
 // Public modules
 include(
-    ":internal:analytic", // TODO Migrate to public
+    ":internal:analytic",
     ":fashion",
     ":fashion-analytic",
+    ":fashion-analytics-events",
     ":fashion-bom",
     ":fashion-compose-core",
     ":fashion-compose-resources",

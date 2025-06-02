@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.cart.AiutaTryOnCartFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToCart
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.components.block.ProductInfo

@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnAbortedReasonType
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnErrorType
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnAbortedReasonType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType

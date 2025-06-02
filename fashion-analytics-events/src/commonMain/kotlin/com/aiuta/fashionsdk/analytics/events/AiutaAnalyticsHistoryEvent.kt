@@ -1,10 +1,10 @@
-package com.aiuta.fashionsdk.internal.analytic.model
+package com.aiuta.fashionsdk.analytics.events
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.HISTORY_EVENT)
+@SerialName(AiutaAnalyticEvent.EventType.HISTORY_EVENT)
 public class AiutaAnalyticsHistoryEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsHistoryEventType,
@@ -12,7 +12,7 @@ public class AiutaAnalyticsHistoryEvent(
     public override val pageId: AiutaAnalyticPageId?,
     @SerialName("productId")
     public override val productId: String?,
-) : ExternalAnalyticEvent
+) : AiutaAnalyticEvent
 
 @Serializable
 public enum class AiutaAnalyticsHistoryEventType {

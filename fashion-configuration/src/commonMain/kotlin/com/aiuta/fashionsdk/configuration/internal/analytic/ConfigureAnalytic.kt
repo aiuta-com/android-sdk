@@ -22,7 +22,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGener
 import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaConfigureEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaConfigureEvent
 
 internal fun AiutaConfiguration.sendConfigurationEvent() {
     aiutaAnalytic.sendEvent(

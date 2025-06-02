@@ -7,16 +7,13 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibrary(name = "com.aiuta.fashionsdk.analytic")
+androidLibrary(name = "com.aiuta.fashionsdk.analytics.events")
 
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(libs.kotlinx.coroutines.core)
-                api(projects.fashionAnalyticsEvents)
-
-                implementation(projects.internal.analytic)
+                implementation(libs.kotlinx.serialization)
             }
         }
     }

@@ -1,9 +1,9 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnErrorType
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.core.domain.models.meta.AiutaTryOnMetadata
 import kotlin.time.Duration

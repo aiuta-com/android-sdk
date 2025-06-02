@@ -1,16 +1,19 @@
-package com.aiuta.fashionsdk.internal.analytic.model
+package com.aiuta.fashionsdk.analytics.events
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonClassDiscriminator
 
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 @JsonClassDiscriminator("type")
-public sealed interface InternalAnalyticEvent {
+public sealed interface AiutaAnalyticEvent {
     public val pageId: AiutaAnalyticPageId?
 
     public val productId: String?
+
+    public fun serialize(): String = Json.encodeToString<AiutaAnalyticEvent>(this)
 
     public object EventType {
         public const val CONFIGURE_EVENT: String = "configure"

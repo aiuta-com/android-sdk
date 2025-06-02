@@ -1,4 +1,4 @@
-package com.aiuta.fashionsdk.internal.analytic.utils
+package com.aiuta.fashionsdk.internal.analytic.internal.utils
 
 internal object AnalyticConfig {
     const val PLATFORM_ANDROID = "android"

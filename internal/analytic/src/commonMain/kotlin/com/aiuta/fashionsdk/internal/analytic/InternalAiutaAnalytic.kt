@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.internal.analytic
 
-import com.aiuta.fashionsdk.internal.analytic.model.ExternalAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticEvent
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -12,10 +11,10 @@ public interface InternalAiutaAnalytic {
      * Flow for listening all events from internals
      * of SDK for public usage
      */
-    public val analyticFlow: Flow<ExternalAnalyticEvent>
+    public val analyticFlow: Flow<AiutaAnalyticEvent>
 
     /**
      * Send new event without additional info
      **/
-    public fun sendEvent(event: InternalAnalyticEvent)
+    public fun sendEvent(event: AiutaAnalyticEvent)
 }

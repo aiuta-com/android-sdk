@@ -7,9 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaShareEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaShareEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaShareEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
 import kotlinx.serialization.json.Json
 
 /**

@@ -1,10 +1,10 @@
-package com.aiuta.fashionsdk.internal.analytic.model
+package com.aiuta.fashionsdk.analytics.events
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.TRY_ON_EVENT)
+@SerialName(AiutaAnalyticEvent.EventType.TRY_ON_EVENT)
 public class AiutaAnalyticsTryOnEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsTryOnEventType,
@@ -27,7 +27,7 @@ public class AiutaAnalyticsTryOnEvent(
     public val downloadDuration: Double? = null,
     @SerialName("totalDuration")
     public val totalDuration: Double? = null,
-) : ExternalAnalyticEvent
+) : AiutaAnalyticEvent
 
 @Serializable
 public enum class AiutaAnalyticsTryOnEventType {

@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import coil3.PlatformContext
 import coil3.compose.LocalPlatformContext
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.firstKeyWindow
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.isIpad
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.nativeLoad

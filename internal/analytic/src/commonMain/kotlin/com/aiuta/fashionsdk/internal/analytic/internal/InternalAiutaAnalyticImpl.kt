@@ -1,13 +1,12 @@
 package com.aiuta.fashionsdk.internal.analytic.internal
 
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticEvent
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internal.updater.BaseUpdater
 import com.aiuta.fashionsdk.internal.analytic.internal.worker.createAnalyticCompletedEvent
-import com.aiuta.fashionsdk.internal.analytic.model.ExternalAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.model.InternalAnalyticEvent
-import com.aiuta.fashionsdk.internal.analytic.utils.AnalyticConfig
+import com.aiuta.fashionsdk.internal.analytic.internal.utils.AnalyticConfig
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.network.NetworkClient
@@ -23,7 +22,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
 
 internal class InternalAiutaAnalyticImpl(
     private val platformContext: AiutaPlatformContext,
@@ -31,30 +29,29 @@ internal class InternalAiutaAnalyticImpl(
     private val logger: AiutaLogger?,
 ) : BaseUpdater(),
     InternalAiutaAnalytic {
-    private val _analyticFlow = MutableSharedFlow<ExternalAnalyticEvent?>(extraBufferCapacity = 10)
-    override val analyticFlow: Flow<ExternalAnalyticEvent> = _analyticFlow.mapNotNull { it }
+    private val _analyticFlow = MutableSharedFlow<AiutaAnalyticEvent?>(extraBufferCapacity = 10)
+    override val analyticFlow: Flow<AiutaAnalyticEvent> = _analyticFlow.mapNotNull { it }
 
     private val scope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 
-    override fun sendEvent(event: InternalAnalyticEvent) {
+    override fun sendEvent(event: AiutaAnalyticEvent) {
         // Add call of coroutine, because we need to emit new value with guarantees
         // Concurrency should not affect, because we use
         // BufferOverflow.SUSPEND strategy
         scope.launch {
-            logger?.d("New analytic event(${event::class.simpleName}): ${Json.encodeToString<InternalAnalyticEvent>(event)}")
+            logger?.d("New analytic event(${event::class.simpleName}): ${event.serialize()}")
 
             // Notify external listeners
-            _analyticFlow.emit(event as? ExternalAnalyticEvent)
+            _analyticFlow.emit(event)
 
             resolveLog(event = event)
         }
     }
 
-    private suspend fun resolveLog(event: InternalAnalyticEvent) {
+    private suspend fun resolveLog(event: AiutaAnalyticEvent) {
         withContext(Dispatchers.IO) {
             retryAction {
-                val completedEvent =
-                    createAnalyticCompletedEvent(
+                val completedEvent = createAnalyticCompletedEvent(
                         platformContext = platformContext,
                         event = event,
                     )
