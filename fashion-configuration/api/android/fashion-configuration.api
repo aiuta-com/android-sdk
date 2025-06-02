@@ -2,7 +2,7 @@ public final class com/aiuta/fashionsdk/configuration/AiutaConfiguration {
 	public static final field $stable I
 	public fun <init> (Lcom/aiuta/fashionsdk/Aiuta;Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;)V
 	public final fun getAiuta ()Lcom/aiuta/fashionsdk/Aiuta;
-	public final fun getAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytic/InternalAiutaAnalytic;
+	public final fun getAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalytic;
 	public final fun getDebugSettings ()Lcom/aiuta/fashionsdk/configuration/debug/AiutaDebugSettings;
 	public final fun getFeatures ()Lcom/aiuta/fashionsdk/configuration/features/AiutaFeatures;
 	public final fun getUserInterface ()Lcom/aiuta/fashionsdk/configuration/ui/AiutaUserInterfaceConfiguration;

@@ -27,7 +27,7 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization)
 
-                implementation(projects.internal.analytic)
+                implementation(projects.internal.internalFashionAnalytics)
             }
         }
     }

@@ -20,7 +20,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.toBitmap
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
@@ -29,15 +29,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 
-internal actual class ShareManagerV2(
+internal class AndroidShareManagerV2(
     private val coilContext: PlatformContext,
     private val context: Context,
     private val density: Density,
     private val layoutDirection: LayoutDirection,
-) {
-    actual suspend fun shareImages(
+) : ShareManagerV2 {
+    override suspend fun shareImages(
         content: String?,
-        pageId: AiutaAnalyticPageId,
+        pageId: AiutaAnalyticsPageId,
         productId: String?,
         imageUrls: List<String>,
         watermark: Painter?,
@@ -116,14 +116,14 @@ internal actual class ShareManagerV2(
 }
 
 @Composable
-internal actual fun rememberShareManagerV2(): ShareManagerV2 {
+internal actual fun rememberActualShareManagerV2(): ShareManagerV2 {
     val coilContext = LocalPlatformContext.current
     val context = LocalContext.current
     val density = LocalDensity.current
     val layoutDirection = LocalLayoutDirection.current
 
     return remember {
-        ShareManagerV2(
+        AndroidShareManagerV2(
             coilContext = coilContext,
             context = context,
             density = density,

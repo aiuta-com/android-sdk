@@ -9,7 +9,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.isLastSavedPhotoAvailable
@@ -41,7 +41,7 @@ internal fun ImageSelectorScreenNonEmptyContent(modifier: Modifier = Modifier) {
                 controller.bottomSheetNavigator.show(
                     newSheetScreen =
                     NavigationBottomSheetScreen.ImagePicker(
-                        originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                        originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                     ),
                 )
             },

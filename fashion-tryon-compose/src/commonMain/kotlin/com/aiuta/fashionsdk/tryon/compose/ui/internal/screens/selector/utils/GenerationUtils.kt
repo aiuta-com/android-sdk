@@ -4,7 +4,6 @@ import coil3.PlatformContext
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
-import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationFactory
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.isEmptyInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.warmup.WarmUpInteractor
@@ -16,7 +15,6 @@ import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.P
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.ProductGenerationUIStatus
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.sku.toOperation
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendErrorDownloadResultEvent
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendStartEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSuccessTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.TryOnToastErrorState
@@ -50,13 +48,9 @@ internal fun FashionTryOnController.startGeneration(
     dialogController: AiutaTryOnDialogController,
     features: AiutaFeatures,
     inputImageValidationStrings: AiutaTryOnInputImageValidationFeatureStrings,
-    // Analytic
-    origin: StartTryOnEvent.TryOnOrigin,
 ) {
     generationScope.launch {
         activateGeneration()
-
-        sendStartEvent(origin)
 
         val errorCount = atomic(0)
         val generatedOperationFactory = GeneratedOperationFactory(generatedOperationInteractor)

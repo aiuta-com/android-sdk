@@ -7,8 +7,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontSynthesis
 import androidx.compose.ui.text.style.TextAlign
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -62,7 +62,7 @@ internal fun ConsentAppBar(
                     icon = theme.pageBar.icons.close24,
                     color = theme.color.primary,
                     onClick = {
-                        controller.clickClose(pageId = AiutaAnalyticPageId.CONSENT)
+                        controller.clickClose(pageId = AiutaAnalyticsPageId.CONSENT)
                     },
                 )
             }

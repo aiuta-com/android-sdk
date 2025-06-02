@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.AiutaTryOnDataController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController

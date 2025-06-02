@@ -31,7 +31,7 @@ import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.util.lerp
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.footer.FOOTER_FULL_SIZE_SPAN
@@ -139,7 +139,7 @@ private fun ItemPhotosBlock(
                                     initialCornerRadius = theme.image.shapes.imageS,
                                     imageUrl = url,
                                     parentImageOffset = parentImageOffset,
-                                    originPageId = AiutaAnalyticPageId.RESULTS,
+                                    originPageId = AiutaAnalyticsPageId.RESULTS,
                                 ),
                             )
                         },

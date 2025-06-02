@@ -1,0 +1,382 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.aiuta:fashion-analytics-events>
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType|null[0]
+    enum entry CONSENT_GIVEN // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.CONSENT_GIVEN|null[0]
+    enum entry ONBOARDING_FINISHED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED|null[0]
+    enum entry WELCOME_START_CLICKED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType|null[0]
+    enum entry NEGATIVE // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType.NEGATIVE|null[0]
+    enum entry POSITIVE // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType.POSITIVE|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType|null[0]
+    enum entry GENERATED_IMAGE_DELETED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_DELETED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId|null[0]
+    enum entry BEST_RESULTS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.BEST_RESULTS|null[0]
+    enum entry CONSENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.CONSENT|null[0]
+    enum entry HISTORY // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.HISTORY|null[0]
+    enum entry HOW_IT_WORKS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.HOW_IT_WORKS|null[0]
+    enum entry IMAGE_PICKER // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.IMAGE_PICKER|null[0]
+    enum entry LOADING // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.LOADING|null[0]
+    enum entry RESULTS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.RESULTS|null[0]
+    enum entry WELCOME // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.WELCOME|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType|null[0]
+    enum entry CAMERA_OPENED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.CAMERA_OPENED|null[0]
+    enum entry GALLERY_PHOTO_SELECTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.GALLERY_PHOTO_SELECTED|null[0]
+    enum entry NEW_PHOTO_TAKEN // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.NEW_PHOTO_TAKEN|null[0]
+    enum entry PHOTO_GALLERY_OPENED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.PHOTO_GALLERY_OPENED|null[0]
+    enum entry PREDEFINED_MODELS_OPENED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.PREDEFINED_MODELS_OPENED|null[0]
+    enum entry PREDEFINED_MODEL_SELECTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.PREDEFINED_MODEL_SELECTED|null[0]
+    enum entry UPLOADED_PHOTO_DELETED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED|null[0]
+    enum entry UPLOADED_PHOTO_SELECTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED|null[0]
+    enum entry UPLOADS_HISTORY_OPENED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.UPLOADS_HISTORY_OPENED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType|null[0]
+    enum entry PICK_OTHER_PHOTO // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO|null[0]
+    enum entry PRODUCT_ADD_TO_CART // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_CART|null[0]
+    enum entry PRODUCT_ADD_TO_WISHLIST // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.PRODUCT_ADD_TO_WISHLIST|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType|null[0]
+    enum entry OPERATION_ABORTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.OPERATION_ABORTED|null[0]
+    enum entry USER_CANCELED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.USER_CANCELED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType|null[0]
+    enum entry AUTHORIZATION_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.AUTHORIZATION_FAILED|null[0]
+    enum entry DOWNLOAD_RESULT_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.DOWNLOAD_RESULT_FAILED|null[0]
+    enum entry INTERNAL_SDK_ERROR // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.INTERNAL_SDK_ERROR|null[0]
+    enum entry OPERATION_ABORTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.OPERATION_ABORTED|null[0]
+    enum entry OPERATION_EMPTY_RESULTS // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.OPERATION_EMPTY_RESULTS|null[0]
+    enum entry OPERATION_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.OPERATION_FAILED|null[0]
+    enum entry OPERATION_TIMEOUT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.OPERATION_TIMEOUT|null[0]
+    enum entry PREPARE_PHOTO_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.PREPARE_PHOTO_FAILED|null[0]
+    enum entry REQUEST_OPERATION_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.REQUEST_OPERATION_FAILED|null[0]
+    enum entry START_OPERATION_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.START_OPERATION_FAILED|null[0]
+    enum entry UPLOAD_PHOTO_FAILED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.UPLOAD_PHOTO_FAILED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType|null[0]
+    enum entry PHOTO_UPLOADED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED|null[0]
+    enum entry TRY_ON_ABORTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED|null[0]
+    enum entry TRY_ON_ERROR // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.TRY_ON_ERROR|null[0]
+    enum entry TRY_ON_FINISHED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED|null[0]
+    enum entry TRY_ON_STARTED // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.TRY_ON_STARTED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType.values|values#static(){}[0]
+}
+
+final enum class com.aiuta.fashionsdk.analytics.events/AiutaShareEventType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaShareEventType> { // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType|null[0]
+    enum entry INITIATED // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType.INITIATED|null[0]
+    enum entry SUCCEEDED // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType.SUCCEEDED|null[0]
+
+    final val entries // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaShareEventType> // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaShareEventType // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaShareEventType> // com.aiuta.fashionsdk.analytics.events/AiutaShareEventType.values|values#static(){}[0]
+}
+
+sealed interface com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent|null[0]
+    abstract val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.pageId|{}pageId[0]
+        abstract fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    abstract val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.productId|{}productId[0]
+        abstract fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    open fun serialize(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.serialize|serialize(){}[0]
+
+    final object EventType { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType|null[0]
+        final const val CONFIGURE_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.CONFIGURE_EVENT|{}CONFIGURE_EVENT[0]
+            final fun <get-CONFIGURE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.CONFIGURE_EVENT.<get-CONFIGURE_EVENT>|<get-CONFIGURE_EVENT>(){}[0]
+        final const val EXIT_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.EXIT_EVENT|{}EXIT_EVENT[0]
+            final fun <get-EXIT_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.EXIT_EVENT.<get-EXIT_EVENT>|<get-EXIT_EVENT>(){}[0]
+        final const val FEEDBACK_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.FEEDBACK_EVENT|{}FEEDBACK_EVENT[0]
+            final fun <get-FEEDBACK_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.FEEDBACK_EVENT.<get-FEEDBACK_EVENT>|<get-FEEDBACK_EVENT>(){}[0]
+        final const val HISTORY_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.HISTORY_EVENT|{}HISTORY_EVENT[0]
+            final fun <get-HISTORY_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.HISTORY_EVENT.<get-HISTORY_EVENT>|<get-HISTORY_EVENT>(){}[0]
+        final const val ONBOARDING_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.ONBOARDING_EVENT|{}ONBOARDING_EVENT[0]
+            final fun <get-ONBOARDING_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.ONBOARDING_EVENT.<get-ONBOARDING_EVENT>|<get-ONBOARDING_EVENT>(){}[0]
+        final const val PAGE_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.PAGE_EVENT|{}PAGE_EVENT[0]
+            final fun <get-PAGE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.PAGE_EVENT.<get-PAGE_EVENT>|<get-PAGE_EVENT>(){}[0]
+        final const val PICKER_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.PICKER_EVENT|{}PICKER_EVENT[0]
+            final fun <get-PICKER_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.PICKER_EVENT.<get-PICKER_EVENT>|<get-PICKER_EVENT>(){}[0]
+        final const val RESULTS_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.RESULTS_EVENT|{}RESULTS_EVENT[0]
+            final fun <get-RESULTS_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.RESULTS_EVENT.<get-RESULTS_EVENT>|<get-RESULTS_EVENT>(){}[0]
+        final const val SESSION_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.SESSION_EVENT|{}SESSION_EVENT[0]
+            final fun <get-SESSION_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.SESSION_EVENT.<get-SESSION_EVENT>|<get-SESSION_EVENT>(){}[0]
+        final const val SHARE_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.SHARE_EVENT|{}SHARE_EVENT[0]
+            final fun <get-SHARE_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.SHARE_EVENT.<get-SHARE_EVENT>|<get-SHARE_EVENT>(){}[0]
+        final const val TRY_ON_EVENT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.TRY_ON_EVENT|{}TRY_ON_EVENT[0]
+            final fun <get-TRY_ON_EVENT>(): kotlin/String // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent.EventType.TRY_ON_EVENT.<get-TRY_ON_EVENT>|<get-TRY_ON_EVENT>(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? = ..., kotlin/String? = ..., com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType? = ..., kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean, kotlin/Boolean) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsConfigureEvent.AuthenticationType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsConfigureEvent.ConsentType?;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val authenticationType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.authenticationType|{}authenticationType[0]
+        final fun <get-authenticationType>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.authenticationType.<get-authenticationType>|<get-authenticationType>(){}[0]
+    final val imagePickerCameraFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.imagePickerCameraFeatureEnabled|{}imagePickerCameraFeatureEnabled[0]
+        final fun <get-imagePickerCameraFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.imagePickerCameraFeatureEnabled.<get-imagePickerCameraFeatureEnabled>|<get-imagePickerCameraFeatureEnabled>(){}[0]
+    final val imagePickerPredefinedModelFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.imagePickerPredefinedModelFeatureEnabled|{}imagePickerPredefinedModelFeatureEnabled[0]
+        final fun <get-imagePickerPredefinedModelFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.imagePickerPredefinedModelFeatureEnabled.<get-imagePickerPredefinedModelFeatureEnabled>|<get-imagePickerPredefinedModelFeatureEnabled>(){}[0]
+    final val imagePickerUploadsHistoryFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.imagePickerUploadsHistoryFeatureEnabled|{}imagePickerUploadsHistoryFeatureEnabled[0]
+        final fun <get-imagePickerUploadsHistoryFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.imagePickerUploadsHistoryFeatureEnabled.<get-imagePickerUploadsHistoryFeatureEnabled>|<get-imagePickerUploadsHistoryFeatureEnabled>(){}[0]
+    final val onboardingBestResultsPageFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.onboardingBestResultsPageFeatureEnabled|{}onboardingBestResultsPageFeatureEnabled[0]
+        final fun <get-onboardingBestResultsPageFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.onboardingBestResultsPageFeatureEnabled.<get-onboardingBestResultsPageFeatureEnabled>|<get-onboardingBestResultsPageFeatureEnabled>(){}[0]
+    final val onboardingFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.onboardingFeatureEnabled|{}onboardingFeatureEnabled[0]
+        final fun <get-onboardingFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.onboardingFeatureEnabled.<get-onboardingFeatureEnabled>|<get-onboardingFeatureEnabled>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.productId.<get-productId>|<get-productId>(){}[0]
+    final val shareFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.shareFeatureEnabled|{}shareFeatureEnabled[0]
+        final fun <get-shareFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.shareFeatureEnabled.<get-shareFeatureEnabled>|<get-shareFeatureEnabled>(){}[0]
+    final val shareWatermarkFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.shareWatermarkFeatureEnabled|{}shareWatermarkFeatureEnabled[0]
+        final fun <get-shareWatermarkFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.shareWatermarkFeatureEnabled.<get-shareWatermarkFeatureEnabled>|<get-shareWatermarkFeatureEnabled>(){}[0]
+    final val tryOnFeedbackFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnFeedbackFeatureEnabled|{}tryOnFeedbackFeatureEnabled[0]
+        final fun <get-tryOnFeedbackFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnFeedbackFeatureEnabled.<get-tryOnFeedbackFeatureEnabled>|<get-tryOnFeedbackFeatureEnabled>(){}[0]
+    final val tryOnFeedbackOtherFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnFeedbackOtherFeatureEnabled|{}tryOnFeedbackOtherFeatureEnabled[0]
+        final fun <get-tryOnFeedbackOtherFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnFeedbackOtherFeatureEnabled.<get-tryOnFeedbackOtherFeatureEnabled>|<get-tryOnFeedbackOtherFeatureEnabled>(){}[0]
+    final val tryOnFitDisclaimerFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnFitDisclaimerFeatureEnabled|{}tryOnFitDisclaimerFeatureEnabled[0]
+        final fun <get-tryOnFitDisclaimerFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnFitDisclaimerFeatureEnabled.<get-tryOnFitDisclaimerFeatureEnabled>|<get-tryOnFitDisclaimerFeatureEnabled>(){}[0]
+    final val tryOnGenerationsHistoryFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnGenerationsHistoryFeatureEnabled|{}tryOnGenerationsHistoryFeatureEnabled[0]
+        final fun <get-tryOnGenerationsHistoryFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnGenerationsHistoryFeatureEnabled.<get-tryOnGenerationsHistoryFeatureEnabled>|<get-tryOnGenerationsHistoryFeatureEnabled>(){}[0]
+    final val tryOnMultiItemFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnMultiItemFeatureEnabled|{}tryOnMultiItemFeatureEnabled[0]
+        final fun <get-tryOnMultiItemFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnMultiItemFeatureEnabled.<get-tryOnMultiItemFeatureEnabled>|<get-tryOnMultiItemFeatureEnabled>(){}[0]
+    final val tryOnWithOtherPhotoFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnWithOtherPhotoFeatureEnabled|{}tryOnWithOtherPhotoFeatureEnabled[0]
+        final fun <get-tryOnWithOtherPhotoFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.tryOnWithOtherPhotoFeatureEnabled.<get-tryOnWithOtherPhotoFeatureEnabled>|<get-tryOnWithOtherPhotoFeatureEnabled>(){}[0]
+    final val welcomeScreenFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.welcomeScreenFeatureEnabled|{}welcomeScreenFeatureEnabled[0]
+        final fun <get-welcomeScreenFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.welcomeScreenFeatureEnabled.<get-welcomeScreenFeatureEnabled>|<get-welcomeScreenFeatureEnabled>(){}[0]
+    final val wishlistFeatureEnabled // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.wishlistFeatureEnabled|{}wishlistFeatureEnabled[0]
+        final fun <get-wishlistFeatureEnabled>(): kotlin/Boolean // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.wishlistFeatureEnabled.<get-wishlistFeatureEnabled>|<get-wishlistFeatureEnabled>(){}[0]
+    final val сonsentType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.сonsentType|{}сonsentType[0]
+        final fun <get-сonsentType>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.сonsentType.<get-сonsentType>|<get-сonsentType>(){}[0]
+
+    final enum class AuthenticationType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType|null[0]
+        enum entry API_KEY // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType.API_KEY|null[0]
+        enum entry JWT // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType.JWT|null[0]
+
+        final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.AuthenticationType.values|values#static(){}[0]
+    }
+
+    final enum class ConsentType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType|null[0]
+        enum entry EMBEDDED_INTO_ONBOARDING // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.EMBEDDED_INTO_ONBOARDING|null[0]
+        enum entry STANDALONE_IMAGE_PICKER_PAGE // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.STANDALONE_IMAGE_PICKER_PAGE|null[0]
+        enum entry STANDALONE_ONBOARDING_PAGE // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.STANDALONE_ONBOARDING_PAGE|null[0]
+
+        final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsConfigureEvent.ConsentType.values|values#static(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?){}[0]
+
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsExitEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType, kotlin/Int? = ..., kotlin/String? = ..., com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsFeedbackEventType;kotlin.Int?;kotlin.String?;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.event.<get-event>|<get-event>(){}[0]
+    final val negativeFeedbackOptionIndex // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.negativeFeedbackOptionIndex|{}negativeFeedbackOptionIndex[0]
+        final fun <get-negativeFeedbackOptionIndex>(): kotlin/Int? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.negativeFeedbackOptionIndex.<get-negativeFeedbackOptionIndex>|<get-negativeFeedbackOptionIndex>(){}[0]
+    final val negativeFeedbackText // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.negativeFeedbackText|{}negativeFeedbackText[0]
+        final fun <get-negativeFeedbackText>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.negativeFeedbackText.<get-negativeFeedbackText>|<get-negativeFeedbackText>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsFeedbackEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsHistoryEventType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsHistoryEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?, kotlin.collections/List<kotlin/String>? = ...) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?;kotlin.collections.List<kotlin.String>?){}[0]
+
+    final val consentsIds // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.consentsIds|{}consentsIds[0]
+        final fun <get-consentsIds>(): kotlin.collections/List<kotlin/String>? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.consentsIds.<get-consentsIds>|<get-consentsIds>(){}[0]
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticOnboardingEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsOnboardingEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?){}[0]
+
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPickerEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsResultsEvent.productId.<get-productId>|<get-productId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? = ..., kotlin/String?, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent.FlowType){}[0]
+
+    final val flow // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.flow|{}flow[0]
+        final fun <get-flow>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.flow.<get-flow>|<get-flow>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.productId.<get-productId>|<get-productId>(){}[0]
+
+    final enum class FlowType : kotlin/Enum<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType> { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType|null[0]
+        enum entry HISTORY // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType.HISTORY|null[0]
+        enum entry TRY_ON // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType.TRY_ON|null[0]
+
+        final val entries // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType.entries|#static{}entries[0]
+            final fun <get-entries>(): kotlin.enums/EnumEntries<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+        final fun valueOf(kotlin/String): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType.valueOf|valueOf#static(kotlin.String){}[0]
+        final fun values(): kotlin/Array<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType> // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsSessionEvent.FlowType.values|values#static(){}[0]
+    }
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?, com.aiuta.fashionsdk.analytics.events/AiutaShareEventType, kotlin/String?) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?;com.aiuta.fashionsdk.analytics.events.AiutaShareEventType;kotlin.String?){}[0]
+
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaShareEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.productId.<get-productId>|<get-productId>(){}[0]
+    final val targetId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.targetId|{}targetId[0]
+        final fun <get-targetId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsShareEvent.targetId.<get-targetId>|<get-targetId>(){}[0]
+}
+
+final class com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent : com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent { // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent|null[0]
+    constructor <init>(com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType, com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType? = ..., com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType? = ..., kotlin/String? = ..., com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId?, kotlin/String?, kotlin/Double? = ..., kotlin/Double? = ..., kotlin/Double? = ..., kotlin/Double? = ...) // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.<init>|<init>(com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType?;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnAbortedReasonType?;kotlin.String?;com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId?;kotlin.String?;kotlin.Double?;kotlin.Double?;kotlin.Double?;kotlin.Double?){}[0]
+
+    final val abortReason // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.abortReason|{}abortReason[0]
+        final fun <get-abortReason>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnAbortedReasonType? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.abortReason.<get-abortReason>|<get-abortReason>(){}[0]
+    final val downloadDuration // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.downloadDuration|{}downloadDuration[0]
+        final fun <get-downloadDuration>(): kotlin/Double? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.downloadDuration.<get-downloadDuration>|<get-downloadDuration>(){}[0]
+    final val errorMessage // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.errorMessage|{}errorMessage[0]
+        final fun <get-errorMessage>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.errorMessage.<get-errorMessage>|<get-errorMessage>(){}[0]
+    final val errorType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.errorType|{}errorType[0]
+        final fun <get-errorType>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnErrorType? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.errorType.<get-errorType>|<get-errorType>(){}[0]
+    final val event // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.event|{}event[0]
+        final fun <get-event>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEventType // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.event.<get-event>|<get-event>(){}[0]
+    final val pageId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.pageId|{}pageId[0]
+        final fun <get-pageId>(): com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsPageId? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.pageId.<get-pageId>|<get-pageId>(){}[0]
+    final val productId // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.productId|{}productId[0]
+        final fun <get-productId>(): kotlin/String? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.productId.<get-productId>|<get-productId>(){}[0]
+    final val totalDuration // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.totalDuration|{}totalDuration[0]
+        final fun <get-totalDuration>(): kotlin/Double? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.totalDuration.<get-totalDuration>|<get-totalDuration>(){}[0]
+    final val tryOnDuration // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.tryOnDuration|{}tryOnDuration[0]
+        final fun <get-tryOnDuration>(): kotlin/Double? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.tryOnDuration.<get-tryOnDuration>|<get-tryOnDuration>(){}[0]
+    final val uploadDuration // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.uploadDuration|{}uploadDuration[0]
+        final fun <get-uploadDuration>(): kotlin/Double? // com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsTryOnEvent.uploadDuration.<get-uploadDuration>|<get-uploadDuration>(){}[0]
+}

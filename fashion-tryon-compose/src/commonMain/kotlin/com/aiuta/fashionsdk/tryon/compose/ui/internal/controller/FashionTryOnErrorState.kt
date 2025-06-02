@@ -4,7 +4,6 @@ import androidx.compose.runtime.Immutable
 import coil3.PlatformContext
 import com.aiuta.fashionsdk.configuration.features.AiutaFeatures
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.strings.AiutaTryOnInputImageValidationFeatureStrings
-import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.dialog.AiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.AiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.listenErrorDeletingGeneratedImages
@@ -34,7 +33,6 @@ internal class TryOnToastErrorState(
             coilContext = coilContext,
             features = features,
             inputImageValidationStrings = inputImageValidationStrings,
-            origin = StartTryOnEvent.TryOnOrigin.RETRY_NOTIFICATION,
         )
     }
     override val onClose: (() -> Unit)? = null

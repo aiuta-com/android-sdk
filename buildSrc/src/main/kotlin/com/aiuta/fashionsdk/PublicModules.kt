@@ -2,9 +2,9 @@ package com.aiuta.fashionsdk
 
 val publicModules =
     setOf(
-        "analytic", // TODO Migrate to normal analytic
         "fashion",
-        "fashion-analytic",
+        "fashion-analytics",
+        "fashion-analytics-events",
         "fashion-compose-core",
         "fashion-compose-resources",
         "fashion-configuration",
@@ -19,4 +19,5 @@ val publicModules =
         "fashion-tryon-compose-uikit",
         "fashion-tryon-core",
         "fashion-tryon-paging",
+        "internal-fashion-analytic",
     )

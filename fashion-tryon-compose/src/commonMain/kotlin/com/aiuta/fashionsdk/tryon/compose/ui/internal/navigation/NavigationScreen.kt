@@ -1,46 +1,46 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 
 /**
  * Be careful, order is matter for animation transitions,
  */
 internal interface NavigationScreen {
-    val exitPageId: AiutaAnalyticPageId
+    val exitPageId: AiutaAnalyticsPageId
 
     object Splash : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.WELCOME
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.WELCOME
     }
 
     object Preonboarding : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.WELCOME
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.WELCOME
     }
 
     object Onboarding : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.HOW_IT_WORKS
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.HOW_IT_WORKS
     }
 
     object ImageSelector : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.IMAGE_PICKER
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.IMAGE_PICKER
     }
 
     class Consent(
         val onObtainedConsents: () -> Unit,
     ) : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.CONSENT
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.CONSENT
     }
 
     object ModelSelector : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.IMAGE_PICKER
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.IMAGE_PICKER
     }
 
     object GenerationResult : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.RESULTS
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.RESULTS
     }
 
     // Utility screens
     object History : NavigationScreen {
-        override val exitPageId: AiutaAnalyticPageId = AiutaAnalyticPageId.HISTORY
+        override val exitPageId: AiutaAnalyticsPageId = AiutaAnalyticsPageId.HISTORY
     }
 }
 

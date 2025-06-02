@@ -1,18 +1,17 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEvent
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 internal fun FashionTryOnController.sendResultEvent(
     event: AiutaAnalyticsResultsEventType,
-    pageId: AiutaAnalyticPageId,
+    pageId: AiutaAnalyticsPageId,
     productId: String,
 ) {
     analytic.sendEvent(
-        event =
-        AiutaAnalyticsResultsEvent(
+        event = AiutaAnalyticsResultsEvent(
             event = event,
             productId = productId,
             pageId = pageId,

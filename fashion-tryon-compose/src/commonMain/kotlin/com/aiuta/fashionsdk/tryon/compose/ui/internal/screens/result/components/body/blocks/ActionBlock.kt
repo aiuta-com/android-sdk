@@ -11,14 +11,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickAddToWishListActiveSKU
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic.sendResultEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.IconLoadingButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components.common.LikeButton
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.dataprovider.safeInvoke
@@ -64,16 +62,9 @@ internal fun ActionBlock(
                             provider::getShareText.safeInvoke(skuIds)
                         }
 
-                        // Analytic
-                        controller.sendResultEvent(
-                            event = AiutaAnalyticsResultsEventType.RESULT_SHARED,
-                            pageId = AiutaAnalyticPageId.RESULTS,
-                            productId = activeSKUItem.id,
-                        )
-
                         shareManager.shareImages(
                             content = shareText?.getOrNull(),
-                            pageId = AiutaAnalyticPageId.RESULTS,
+                            pageId = AiutaAnalyticsPageId.RESULTS,
                             productId = activeSKUItem.id,
                             imageUrls = imageUrls,
                             watermark = watermarkPainter,
@@ -97,7 +88,7 @@ internal fun ActionBlock(
                 wishlistFeature = wishlistFeature,
                 onClick = { currentState ->
                     controller.clickAddToWishListActiveSKU(
-                        pageId = AiutaAnalyticPageId.RESULTS,
+                        pageId = AiutaAnalyticsPageId.RESULTS,
                         updatedWishlistState = !currentState,
                         dataProvider = wishlistFeature.dataProvider,
                         productId = activeSKUItem.id,
