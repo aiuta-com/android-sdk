@@ -10,6 +10,8 @@ public class AiutaAnalyticsTryOnEvent(
     public val event: AiutaAnalyticsTryOnEventType,
     @SerialName("errorType")
     public val errorType: AiutaAnalyticsTryOnErrorType? = null,
+    @SerialName("abortReason")
+    public val abortReason: AiutaAnalyticsTryOnAbortedReasonType? = null,
     @SerialName("errorMessage")
     public val errorMessage: String? = null,
     @SerialName("pageId")
@@ -65,6 +67,7 @@ public enum class AiutaAnalyticsTryOnErrorType {
     @SerialName("operationFailed")
     OPERATION_FAILED,
 
+    @Deprecated("Use AiutaAnalyticsTryOnAbortedReasonType")
     @SerialName("operationAborted")
     OPERATION_ABORTED,
 
@@ -79,4 +82,14 @@ public enum class AiutaAnalyticsTryOnErrorType {
 
     @SerialName("internalSdkError")
     INTERNAL_SDK_ERROR,
+}
+
+@Serializable
+public enum class AiutaAnalyticsTryOnAbortedReasonType {
+
+    @SerialName("operationAborted")
+    OPERATION_ABORTED,
+
+    @SerialName("userCancelled")
+    USER_CANCELED,
 }

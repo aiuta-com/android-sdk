@@ -2,6 +2,7 @@ package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnAbortedReasonType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
@@ -56,13 +57,11 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnErrorEvent(
 
 internal fun InternalAiutaAnalytic.sendPublicTryOnAbortedErrorEvent(
     container: ProductGenerationContainer,
-    errorMessage: String? = null,
 ) {
     sendEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED,
-            errorType = AiutaAnalyticsTryOnErrorType.OPERATION_ABORTED,
-            errorMessage = errorMessage,
+            abortReason = AiutaAnalyticsTryOnAbortedReasonType.OPERATION_ABORTED,
             pageId = AiutaAnalyticPageId.LOADING,
             productId = container.productId,
         ),
@@ -77,7 +76,6 @@ internal fun InternalAiutaAnalytic.sendErrorEvent(
         AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED -> {
             sendPublicTryOnAbortedErrorEvent(
                 container = container,
-                errorMessage = exception.message,
             )
         }
 

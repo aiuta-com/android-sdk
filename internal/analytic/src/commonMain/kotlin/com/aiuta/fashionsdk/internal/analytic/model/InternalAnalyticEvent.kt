@@ -1,7 +1,6 @@
 package com.aiuta.fashionsdk.internal.analytic.model
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonClassDiscriminator
 
@@ -25,17 +24,5 @@ public sealed interface InternalAnalyticEvent {
         public const val HISTORY_EVENT: String = "history"
         public const val SHARE_EVENT: String = "share"
         public const val EXIT_EVENT: String = "exit"
-
-        // Internal
-        public const val TERMINATE_EVENT: String = "terminateEvent"
     }
 }
-
-@Serializable
-@SerialName(InternalAnalyticEvent.EventType.TERMINATE_EVENT)
-public class TerminateEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
-    @SerialName("productId")
-    override val productId: String?,
-) : InternalAnalyticEvent
