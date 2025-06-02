@@ -7,7 +7,7 @@ plugins {
 }
 
 addAllMultiplatformTargets()
-androidLibrary(name = "com.aiuta.fashionsdk.analytic")
+androidLibrary(name = "com.aiuta.fashionsdk.analytics")
 
 kotlin {
     sourceSets {

@@ -1,7 +1,7 @@
-package com.aiuta.fashionsdk.analytic.internal
+package com.aiuta.fashionsdk.analytics.internal
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytic.AiutaAnalytic
+import com.aiuta.fashionsdk.analytics.AiutaAnalytic
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internalAiutaAnalytic

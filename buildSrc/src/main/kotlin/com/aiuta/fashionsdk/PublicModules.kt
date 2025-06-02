@@ -4,7 +4,8 @@ val publicModules =
     setOf(
         "analytic",
         "fashion",
-        "fashion-analytic",
+        "fashion-analytics",
+        "fashion-analytics-events",
         "fashion-compose-core",
         "fashion-compose-resources",
         "fashion-configuration",

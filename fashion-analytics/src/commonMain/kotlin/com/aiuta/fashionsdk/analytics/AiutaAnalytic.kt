@@ -1,8 +1,8 @@
-package com.aiuta.fashionsdk.analytic
+package com.aiuta.fashionsdk.analytics
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytic.internal.AiutaAnalyticImpl
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
+import com.aiuta.fashionsdk.analytics.internal.AiutaAnalyticImpl
 import kotlinx.coroutines.flow.Flow
 
 /**

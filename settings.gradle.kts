@@ -21,7 +21,7 @@ include(
 include(
     ":internal:analytic",
     ":fashion",
-    ":fashion-analytic",
+    ":fashion-analytics",
     ":fashion-analytics-events",
     ":fashion-bom",
     ":fashion-compose-core",
