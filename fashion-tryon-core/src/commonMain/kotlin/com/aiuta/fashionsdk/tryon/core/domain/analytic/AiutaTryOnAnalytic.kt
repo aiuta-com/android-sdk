@@ -5,7 +5,6 @@ import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticsTryOnEventType
-import com.aiuta.fashionsdk.internal.analytic.model.ErrorEvent
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
@@ -70,36 +69,10 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnAbortedErrorEvent(
     )
 }
 
-internal fun InternalAiutaAnalytic.sendInternalErrorEvent(
-    container: ProductGenerationContainer,
-    type: AiutaTryOnExceptionType,
-) {
-    sendEvent(
-        event =
-        ErrorEvent(
-            productId = container.productId,
-            error = when (type) {
-                AiutaTryOnExceptionType.PREPARE_PHOTO_FAILED -> ErrorEvent.ErrorType.PREPARE_PHOTO_FAILED
-                AiutaTryOnExceptionType.UPLOAD_PHOTO_FAILED -> ErrorEvent.ErrorType.UPLOAD_PHOTO_FAILED
-                AiutaTryOnExceptionType.START_OPERATION_FAILED -> ErrorEvent.ErrorType.START_OPERATION_FAILED
-                AiutaTryOnExceptionType.OPERATION_FAILED -> ErrorEvent.ErrorType.OPERATION_FAILED
-                AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED -> ErrorEvent.ErrorType.OPERATION_ABORTED_FAILED
-                AiutaTryOnExceptionType.OPERATION_TIMEOUT_FAILED -> ErrorEvent.ErrorType.OPERATION_TIMEOUT_FAILED
-                AiutaTryOnExceptionType.DOWNLOAD_RESULT_FAILED -> ErrorEvent.ErrorType.DOWNLOAD_RESULT_FAILED
-                AiutaTryOnExceptionType.OPERATION_EMPTY_RESULTS_FAILED -> ErrorEvent.ErrorType.OPERATION_EMPTY_RESULTS_FAILED
-            },
-        ),
-    )
-}
-
 internal fun InternalAiutaAnalytic.sendErrorEvent(
     container: ProductGenerationContainer,
     exception: AiutaTryOnGenerationException,
 ) {
-    // Send internal
-    sendInternalErrorEvent(container = container, type = exception.type)
-
-    // Send public
     when (exception.type) {
         AiutaTryOnExceptionType.OPERATION_ABORTED_FAILED -> {
             sendPublicTryOnAbortedErrorEvent(

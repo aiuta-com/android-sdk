@@ -16,6 +16,15 @@ public class AiutaAnalyticsTryOnEvent(
     public override val pageId: AiutaAnalyticPageId?,
     @SerialName("productId")
     public override val productId: String?,
+    // Try on meta info
+    @SerialName("uploadDuration")
+    public val uploadDuration: Double? = null,
+    @SerialName("tryOnDuration")
+    public val tryOnDuration: Double? = null,
+    @SerialName("downloadDuration")
+    public val downloadDuration: Double? = null,
+    @SerialName("totalDuration")
+    public val totalDuration: Double? = null,
 ) : ExternalAnalyticEvent
 
 @Serializable

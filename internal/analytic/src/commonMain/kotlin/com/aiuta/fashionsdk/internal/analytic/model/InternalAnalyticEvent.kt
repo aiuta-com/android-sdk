@@ -27,48 +27,8 @@ public sealed interface InternalAnalyticEvent {
         public const val EXIT_EVENT: String = "exit"
 
         // Internal
-        public const val ERROR_EVENT: String = "errorEvent"
         public const val TERMINATE_EVENT: String = "terminateEvent"
         public const val START_TRYON_EVENT: String = "startTryOnProcessEvent"
-        public const val SUCCESS_EVENT: String = "successEvent"
-    }
-}
-
-@Serializable
-@SerialName(InternalAnalyticEvent.EventType.ERROR_EVENT)
-public class ErrorEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
-    @SerialName("productId")
-    override val productId: String?,
-    @SerialName("error")
-    public val error: ErrorType,
-) : InternalAnalyticEvent {
-    @Serializable
-    public enum class ErrorType {
-        @SerialName("preparePhotoFailed")
-        PREPARE_PHOTO_FAILED,
-
-        @SerialName("uploadPhotoFailed")
-        UPLOAD_PHOTO_FAILED,
-
-        @SerialName("startOperationFailed")
-        START_OPERATION_FAILED,
-
-        @SerialName("operationFailed")
-        OPERATION_FAILED,
-
-        @SerialName("operationAborted")
-        OPERATION_ABORTED_FAILED,
-
-        @SerialName("operationTimeout")
-        OPERATION_TIMEOUT_FAILED,
-
-        @SerialName("operationEmptyResults")
-        OPERATION_EMPTY_RESULTS_FAILED,
-
-        @SerialName("downloadResultFailed")
-        DOWNLOAD_RESULT_FAILED,
     }
 }
 
@@ -106,20 +66,3 @@ public class StartTryOnEvent(
         RETRY_NOTIFICATION,
     }
 }
-
-@Serializable
-@SerialName(InternalAnalyticEvent.EventType.SUCCESS_EVENT)
-public class SuccessEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
-    @SerialName("productId")
-    override val productId: String?,
-    @SerialName("uploadDuration")
-    public val uploadDuration: Double,
-    @SerialName("tryOnDuration")
-    public val tryOnDuration: Double,
-    @SerialName("downloadDuration")
-    public val downloadDuration: Double,
-    @SerialName("totalDuration")
-    public val totalDuration: Double,
-) : InternalAnalyticEvent
