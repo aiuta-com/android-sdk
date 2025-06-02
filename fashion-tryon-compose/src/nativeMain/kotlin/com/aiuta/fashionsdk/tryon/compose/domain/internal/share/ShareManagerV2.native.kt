@@ -24,13 +24,13 @@ import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.popoverPresentationController
 
-internal actual class ShareManagerV2(
+internal class NativeShareManagerV2(
     private val coilContext: PlatformContext,
     private val density: Density,
     private val layoutDirection: LayoutDirection,
-) {
+) : ShareManagerV2 {
     @OptIn(ExperimentalForeignApi::class)
-    actual suspend fun shareImages(
+    override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
@@ -83,13 +83,13 @@ internal actual class ShareManagerV2(
 }
 
 @Composable
-internal actual fun rememberShareManagerV2(): ShareManagerV2 {
+internal actual fun rememberActualShareManagerV2(): ShareManagerV2 {
     val coilContext = LocalPlatformContext.current
     val density = LocalDensity.current
     val layoutDirection = LocalLayoutDirection.current
 
     return remember {
-        ShareManagerV2(
+        NativeShareManagerV2(
             coilContext = coilContext,
             density = density,
             layoutDirection = layoutDirection,

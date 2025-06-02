@@ -12,7 +12,7 @@ public class AiutaSessionEvent(
     override val productId: String?,
     @SerialName("flow")
     public val flow: FlowType,
-) : InternalAnalyticEvent {
+) : ExternalAnalyticEvent {
     @Serializable
     public enum class FlowType {
         @SerialName("tryOn")

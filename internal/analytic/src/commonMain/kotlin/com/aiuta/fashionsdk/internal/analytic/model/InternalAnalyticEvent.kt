@@ -123,28 +123,3 @@ public class SuccessEvent(
     @SerialName("totalDuration")
     public val totalDuration: Double,
 ) : InternalAnalyticEvent
-
-@Serializable
-@SerialName(InternalAnalyticEvent.EventType.SHARE_EVENT)
-public class ShareEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId?,
-    @SerialName("productId")
-    override val productId: String?,
-    @SerialName("result")
-    public val result: ShareResult = ShareResult.SUCCEEDED,
-    @SerialName("target")
-    public val target: String?,
-) : InternalAnalyticEvent {
-    @Serializable
-    public enum class ShareResult {
-        @SerialName("succeeded")
-        SUCCEEDED,
-
-        @SerialName("canceled")
-        CANCELED,
-
-        @SerialName("failed")
-        FAILED,
-    }
-}

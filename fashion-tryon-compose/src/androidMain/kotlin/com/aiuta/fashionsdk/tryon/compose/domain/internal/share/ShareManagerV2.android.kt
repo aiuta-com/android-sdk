@@ -29,13 +29,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 
-internal actual class ShareManagerV2(
+internal class AndroidShareManagerV2(
     private val coilContext: PlatformContext,
     private val context: Context,
     private val density: Density,
     private val layoutDirection: LayoutDirection,
-) {
-    actual suspend fun shareImages(
+) : ShareManagerV2 {
+    override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
@@ -116,14 +116,14 @@ internal actual class ShareManagerV2(
 }
 
 @Composable
-internal actual fun rememberShareManagerV2(): ShareManagerV2 {
+internal actual fun rememberActualShareManagerV2(): ShareManagerV2 {
     val coilContext = LocalPlatformContext.current
     val context = LocalContext.current
     val density = LocalDensity.current
     val layoutDirection = LocalLayoutDirection.current
 
     return remember {
-        ShareManagerV2(
+        AndroidShareManagerV2(
             coilContext = coilContext,
             context = context,
             density = density,

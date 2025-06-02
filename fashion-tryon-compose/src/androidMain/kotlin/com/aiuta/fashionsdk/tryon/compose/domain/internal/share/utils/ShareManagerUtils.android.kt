@@ -8,7 +8,8 @@ import android.content.Intent
 import android.net.Uri
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalyticFactory
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.ShareEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaShareEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaShareEventType
 import kotlinx.serialization.json.Json
 
 /**
@@ -78,11 +79,11 @@ internal class ShareBroadcastReceiver : BroadcastReceiver() {
         val productId = intent?.getStringExtra(PRODUCT_ID_KEY)
 
         InternalAiutaAnalyticFactory.getInternalAiutaAnalytic()?.sendEvent(
-            event =
-            ShareEvent(
+            event = AiutaShareEvent(
                 pageId = pageId?.let { Json.decodeFromString(it) },
                 productId = productId,
-                target = clickedComponent?.packageName,
+                targetId = clickedComponent?.packageName,
+                event = AiutaShareEventType.SUCCEEDED,
             ),
         )
     }

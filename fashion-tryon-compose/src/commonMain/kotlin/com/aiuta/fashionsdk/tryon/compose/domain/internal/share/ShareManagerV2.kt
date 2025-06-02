@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 
-internal expect class ShareManagerV2 {
+internal interface ShareManagerV2 {
     suspend fun shareImages(
         content: String? = null,
         pageId: AiutaAnalyticPageId,
@@ -15,4 +15,4 @@ internal expect class ShareManagerV2 {
 }
 
 @Composable
-internal expect fun rememberShareManagerV2(): ShareManagerV2
+internal expect fun rememberActualShareManagerV2(): ShareManagerV2

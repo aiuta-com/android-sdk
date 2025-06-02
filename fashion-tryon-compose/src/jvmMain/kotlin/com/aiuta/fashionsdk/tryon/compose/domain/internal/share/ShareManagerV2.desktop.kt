@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
 
-internal actual class ShareManagerV2 {
-    actual suspend fun shareImages(
+internal class JVMShareManagerV2 : ShareManagerV2 {
+    override suspend fun shareImages(
         content: String?,
         pageId: AiutaAnalyticPageId,
         productId: String?,
@@ -19,4 +19,4 @@ internal actual class ShareManagerV2 {
 }
 
 @Composable
-internal actual fun rememberShareManagerV2(): ShareManagerV2 = ShareManagerV2()
+internal actual fun rememberActualShareManagerV2(): ShareManagerV2 = JVMShareManagerV2()
