@@ -10,7 +10,7 @@ public class AiutaConfigureEvent(
     override val pageId: AiutaAnalyticPageId? = null,
     @SerialName("productId")
     override val productId: String? = null,
-    @SerialName("authenticationType")
+    @SerialName("authType")
     public val authenticationType: AuthenticationType,
     @SerialName("consentFeatureType")
     public val сonsentType: ConsentType? = null,
