@@ -5,7 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.navigateBack
@@ -50,7 +50,7 @@ internal fun OnboardingController.nextPage(
             // Consent
             controller.sendOnboardingEvent(
                 eventType = AiutaAnalyticOnboardingEventType.CONSENT_GIVEN,
-                pageId = AiutaAnalyticPageId.CONSENT,
+                pageId = AiutaAnalyticsPageId.CONSENT,
                 productId = skuItem.id,
                 consentsIds = consentsList?.map { consent -> consent.consent.id },
             )
@@ -59,7 +59,7 @@ internal fun OnboardingController.nextPage(
             // Finish
             controller.sendOnboardingEvent(
                 eventType = AiutaAnalyticOnboardingEventType.ONBOARDING_FINISHED,
-                pageId = AiutaAnalyticPageId.CONSENT,
+                pageId = AiutaAnalyticsPageId.CONSENT,
                 productId = skuItem.id,
                 consentsIds = null,
             )

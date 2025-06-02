@@ -2,14 +2,14 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageEvent
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 
-internal fun FashionTryOnController.sendPageEvent(pageId: AiutaAnalyticPageId) {
+internal fun FashionTryOnController.sendPageEvent(pageId: AiutaAnalyticsPageId) {
     analytic.sendEvent(
-        event = AiutaAnalyticPageEvent(
+        event = AiutaAnalyticsPageEvent(
             pageId = pageId,
             productId = activeProductItem.value.id,
         ),
@@ -17,7 +17,7 @@ internal fun FashionTryOnController.sendPageEvent(pageId: AiutaAnalyticPageId) {
 }
 
 @Composable
-internal fun sendPageEvent(pageId: AiutaAnalyticPageId) {
+internal fun sendPageEvent(pageId: AiutaAnalyticsPageId) {
     val controller = LocalController.current
 
     LaunchedEffect(Unit) {

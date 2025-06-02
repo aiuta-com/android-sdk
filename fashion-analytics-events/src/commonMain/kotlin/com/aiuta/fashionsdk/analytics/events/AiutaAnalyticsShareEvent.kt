@@ -4,17 +4,17 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.SHARE_EVENT)
-public class AiutaShareEvent(
+@SerialName(AiutaAnalyticsEvent.EventType.SHARE_EVENT)
+public class AiutaAnalyticsShareEvent(
     @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId?,
+    override val pageId: AiutaAnalyticsPageId?,
     @SerialName("productId")
     override val productId: String?,
     @SerialName("event")
     public val event: AiutaShareEventType,
     @SerialName("targetId")
     public val targetId: String?,
-) : AiutaAnalyticEvent
+) : AiutaAnalyticsEvent
 
 @Serializable
 public enum class AiutaShareEventType {

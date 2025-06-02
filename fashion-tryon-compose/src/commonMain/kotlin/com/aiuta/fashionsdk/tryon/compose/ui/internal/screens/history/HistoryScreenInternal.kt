@@ -44,9 +44,9 @@ import androidx.compose.ui.unit.toSize
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.size.SizeResolver.Companion.ORIGINAL
-import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsHistoryEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.configuration.features.share.AiutaShareFeature
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.rememberShareManagerV2
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.zoom.ZoomImageUiModel
@@ -79,7 +79,7 @@ import kotlinx.coroutines.launch
 internal fun HistoryScreen(modifier: Modifier = Modifier) {
     val theme = LocalTheme.current
 
-    sendPageEvent(pageId = AiutaAnalyticPageId.HISTORY)
+    sendPageEvent(pageId = AiutaAnalyticsPageId.HISTORY)
 
     Column(
         modifier = modifier.background(theme.color.background),
@@ -187,7 +187,7 @@ private fun HistoryScreenInternal(modifier: Modifier = Modifier) {
                                         initialCornerRadius = sharedRadius,
                                         imageUrl = generatedImage?.imageUrl,
                                         parentImageOffset = parentImageOffset,
-                                        originPageId = AiutaAnalyticPageId.HISTORY,
+                                        originPageId = AiutaAnalyticsPageId.HISTORY,
                                     ),
                                 )
                             }
@@ -350,7 +350,7 @@ private fun BoxScope.HistoryScreenInterface(
 
                     shareManager.shareImages(
                         content = shareText?.getOrNull(),
-                        pageId = AiutaAnalyticPageId.HISTORY,
+                        pageId = AiutaAnalyticsPageId.HISTORY,
                         productId = controller.activeProductItem.value.id,
                         imageUrls = imageUrls,
                         watermark = watermarkPainter,

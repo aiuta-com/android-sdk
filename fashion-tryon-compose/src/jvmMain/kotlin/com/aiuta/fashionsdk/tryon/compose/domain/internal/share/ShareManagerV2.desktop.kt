@@ -2,12 +2,12 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 
 internal class JVMShareManagerV2 : ShareManagerV2 {
     override suspend fun shareImages(
         content: String?,
-        pageId: AiutaAnalyticPageId,
+        pageId: AiutaAnalyticsPageId,
         productId: String?,
         imageUrls: List<String>,
         watermark: Painter?,

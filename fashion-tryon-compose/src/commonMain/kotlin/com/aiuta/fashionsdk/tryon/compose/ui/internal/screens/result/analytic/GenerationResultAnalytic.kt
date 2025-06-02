@@ -1,8 +1,8 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.analytic
 
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsFeedbackEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsFeedbackEventType
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.FashionTryOnController
 
 internal fun FashionTryOnController.sendGenerationFeedback(
@@ -17,7 +17,7 @@ internal fun FashionTryOnController.sendGenerationFeedback(
             event = AiutaAnalyticsFeedbackEventType.NEGATIVE,
             negativeFeedbackOptionIndex = optionIndex,
             negativeFeedbackText = feedback,
-            pageId = AiutaAnalyticPageId.RESULTS,
+            pageId = AiutaAnalyticsPageId.RESULTS,
             productId = activeSKUItem.id,
         ),
     )
@@ -30,7 +30,7 @@ internal fun FashionTryOnController.sendLikeGenerationFeedback() {
         event =
         AiutaAnalyticsFeedbackEvent(
             event = AiutaAnalyticsFeedbackEventType.POSITIVE,
-            pageId = AiutaAnalyticPageId.RESULTS,
+            pageId = AiutaAnalyticsPageId.RESULTS,
             productId = activeSKUItem.id,
         ),
     )

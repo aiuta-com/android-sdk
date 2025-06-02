@@ -30,10 +30,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
 import com.aiuta.fashionsdk.configuration.features.picker.history.AiutaImagePickerUploadsHistoryFeature
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.cleanLoadingUploads
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.utils.asCustom
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
@@ -82,7 +82,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
 
     sendPickerAnalytic(
         event = AiutaAnalyticsPickerEventType.UPLOADS_HISTORY_OPENED,
-        pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+        pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
     )
 
     GeneratedOperationsSheetListener()
@@ -125,7 +125,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
                                 // Analytic
                                 sendPickerAnalytic(
                                     event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_SELECTED,
-                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                    pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                                 )
 
                                 // Host notification
@@ -173,7 +173,7 @@ internal fun ColumnScope.GeneratedOperationsSheet() {
             controller.bottomSheetNavigator.change(
                 newSheetScreen =
                 NavigationBottomSheetScreen.ImagePicker(
-                    originPageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                    originPageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                 ),
             )
         },
@@ -232,7 +232,7 @@ private fun OperationItem(
                             with(controller) {
                                 sendPickerAnalytic(
                                     event = AiutaAnalyticsPickerEventType.UPLOADED_PHOTO_DELETED,
-                                    pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                                    pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                                 )
 
                                 // Add operation to loading list

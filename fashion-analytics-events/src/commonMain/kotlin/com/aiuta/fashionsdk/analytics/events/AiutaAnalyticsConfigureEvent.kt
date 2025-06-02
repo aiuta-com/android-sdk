@@ -4,10 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.CONFIGURE_EVENT)
-public class AiutaConfigureEvent(
+@SerialName(AiutaAnalyticsEvent.EventType.CONFIGURE_EVENT)
+public class AiutaAnalyticsConfigureEvent(
     @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
+    override val pageId: AiutaAnalyticsPageId? = null,
     @SerialName("productId")
     override val productId: String? = null,
     @SerialName("authType")
@@ -45,7 +45,7 @@ public class AiutaConfigureEvent(
     public val shareWatermarkFeatureEnabled: Boolean,
     @SerialName("wishlistFeatureEnabled")
     public val wishlistFeatureEnabled: Boolean,
-) : AiutaAnalyticEvent {
+) : AiutaAnalyticsEvent {
 
     @Serializable
     public enum class AuthenticationType {

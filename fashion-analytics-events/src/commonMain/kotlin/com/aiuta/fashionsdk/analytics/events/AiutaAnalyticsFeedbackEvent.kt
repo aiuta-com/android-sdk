@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.FEEDBACK_EVENT)
+@SerialName(AiutaAnalyticsEvent.EventType.FEEDBACK_EVENT)
 public class AiutaAnalyticsFeedbackEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsFeedbackEventType,
@@ -13,10 +13,10 @@ public class AiutaAnalyticsFeedbackEvent(
     @SerialName("negativeFeedbackText")
     public val negativeFeedbackText: String? = null,
     @SerialName("pageId")
-    public override val pageId: AiutaAnalyticPageId?,
+    public override val pageId: AiutaAnalyticsPageId?,
     @SerialName("productId")
     public override val productId: String?,
-) : AiutaAnalyticEvent
+) : AiutaAnalyticsEvent
 
 @Serializable
 public enum class AiutaAnalyticsFeedbackEventType {

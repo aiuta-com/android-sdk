@@ -8,12 +8,12 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 @JsonClassDiscriminator("type")
-public sealed interface AiutaAnalyticEvent {
-    public val pageId: AiutaAnalyticPageId?
+public sealed interface AiutaAnalyticsEvent {
+    public val pageId: AiutaAnalyticsPageId?
 
     public val productId: String?
 
-    public fun serialize(): String = Json.encodeToString<AiutaAnalyticEvent>(this)
+    public fun serialize(): String = Json.encodeToString<AiutaAnalyticsEvent>(this)
 
     public object EventType {
         public const val CONFIGURE_EVENT: String = "configure"

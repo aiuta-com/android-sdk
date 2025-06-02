@@ -1,12 +1,12 @@
 package com.aiuta.fashionsdk.internal.analytic.internal
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytic.internal.updater.BaseUpdater
-import com.aiuta.fashionsdk.internal.analytic.internal.worker.createAnalyticCompletedEvent
 import com.aiuta.fashionsdk.internal.analytic.internal.utils.AnalyticConfig
+import com.aiuta.fashionsdk.internal.analytic.internal.worker.createAnalyticCompletedEvent
 import com.aiuta.fashionsdk.logger.AiutaLogger
 import com.aiuta.fashionsdk.logger.d
 import com.aiuta.fashionsdk.network.NetworkClient
@@ -29,12 +29,12 @@ internal class InternalAiutaAnalyticImpl(
     private val logger: AiutaLogger?,
 ) : BaseUpdater(),
     InternalAiutaAnalytic {
-    private val _analyticFlow = MutableSharedFlow<AiutaAnalyticEvent?>(extraBufferCapacity = 10)
-    override val analyticFlow: Flow<AiutaAnalyticEvent> = _analyticFlow.mapNotNull { it }
+    private val _analyticFlow = MutableSharedFlow<AiutaAnalyticsEvent?>(extraBufferCapacity = 10)
+    override val analyticFlow: Flow<AiutaAnalyticsEvent> = _analyticFlow.mapNotNull { it }
 
     private val scope = CoroutineScope(Dispatchers.Main.immediate + SupervisorJob())
 
-    override fun sendEvent(event: AiutaAnalyticEvent) {
+    override fun sendEvent(event: AiutaAnalyticsEvent) {
         // Add call of coroutine, because we need to emit new value with guarantees
         // Concurrency should not affect, because we use
         // BufferOverflow.SUSPEND strategy
@@ -48,13 +48,13 @@ internal class InternalAiutaAnalyticImpl(
         }
     }
 
-    private suspend fun resolveLog(event: AiutaAnalyticEvent) {
+    private suspend fun resolveLog(event: AiutaAnalyticsEvent) {
         withContext(Dispatchers.IO) {
             retryAction {
                 val completedEvent = createAnalyticCompletedEvent(
-                        platformContext = platformContext,
-                        event = event,
-                    )
+                    platformContext = platformContext,
+                    event = event,
+                )
 
                 // Try to send analytic event
                 networkClient.httpClient.value.post { setBody(completedEvent) }

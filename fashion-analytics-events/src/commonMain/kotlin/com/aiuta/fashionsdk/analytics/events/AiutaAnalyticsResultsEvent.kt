@@ -4,15 +4,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.RESULTS_EVENT)
+@SerialName(AiutaAnalyticsEvent.EventType.RESULTS_EVENT)
 public class AiutaAnalyticsResultsEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsResultsEventType,
     @SerialName("pageId")
-    public override val pageId: AiutaAnalyticPageId?,
+    public override val pageId: AiutaAnalyticsPageId?,
     @SerialName("productId")
     public override val productId: String?,
-) : AiutaAnalyticEvent
+) : AiutaAnalyticsEvent
 
 @Serializable
 public enum class AiutaAnalyticsResultsEventType {

@@ -8,9 +8,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
 import com.aiuta.fashionsdk.Aiuta
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsSessionEvent
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
-import com.aiuta.fashionsdk.analytics.events.AiutaSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendSessionEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.deactivateSelectMode
@@ -49,7 +49,7 @@ public fun HistoryFlow(
         aiutaConfiguration = aiutaConfiguration,
         productItem = DefaultProductItem,
     ) {
-        sendSessionEvent(AiutaSessionEvent.FlowType.HISTORY)
+        sendSessionEvent(AiutaAnalyticsSessionEvent.FlowType.HISTORY)
 
         val scope = rememberCoroutineScope()
         val controller = LocalController.current

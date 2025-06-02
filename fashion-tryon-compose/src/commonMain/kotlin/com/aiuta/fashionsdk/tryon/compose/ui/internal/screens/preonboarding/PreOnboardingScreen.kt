@@ -19,9 +19,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticOnboardingEventType
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.clickClose
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendOnboardingEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic.sendPageEvent
@@ -43,7 +43,7 @@ internal fun PreOnboardingScreen(modifier: Modifier = Modifier) {
 
     val welcomeScreenFeature = strictProvideFeature<AiutaWelcomeScreenFeature>()
 
-    sendPageEvent(pageId = AiutaAnalyticPageId.WELCOME)
+    sendPageEvent(pageId = AiutaAnalyticsPageId.WELCOME)
 
     Box(
         modifier = modifier.background(theme.color.background),
@@ -118,7 +118,7 @@ private fun PreOnboardingForeground(modifier: Modifier = Modifier) {
             onClick = {
                 controller.sendOnboardingEvent(
                     eventType = AiutaAnalyticOnboardingEventType.WELCOME_START_CLICKED,
-                    pageId = AiutaAnalyticPageId.WELCOME,
+                    pageId = AiutaAnalyticsPageId.WELCOME,
                     productId = controller.activeProductItem.value.id,
                     consentsIds = null,
                 )

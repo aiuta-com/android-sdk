@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import coil3.PlatformContext
 import coil3.compose.LocalPlatformContext
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.firstKeyWindow
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.isIpad
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utls.nativeLoad
@@ -32,7 +32,7 @@ internal class NativeShareManagerV2(
     @OptIn(ExperimentalForeignApi::class)
     override suspend fun shareImages(
         content: String?,
-        pageId: AiutaAnalyticPageId,
+        pageId: AiutaAnalyticsPageId,
         productId: String?,
         imageUrls: List<String>,
         watermark: Painter?,

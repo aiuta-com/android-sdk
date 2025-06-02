@@ -3,7 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.screens.result.components
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsResultsEventType
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationBottomSheetScreen
@@ -33,7 +33,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
             onClick = {
                 controller.sendResultEvent(
                     event = AiutaAnalyticsResultsEventType.PICK_OTHER_PHOTO,
-                    pageId = AiutaAnalyticPageId.RESULTS,
+                    pageId = AiutaAnalyticsPageId.RESULTS,
                     productId = activeSKUItem.id,
                 )
 
@@ -43,7 +43,7 @@ internal fun GenerateMoreBlock(modifier: Modifier = Modifier) {
                         NavigationBottomSheetScreen.GeneratedOperations
                     } else {
                         NavigationBottomSheetScreen.ImagePicker(
-                            originPageId = AiutaAnalyticPageId.RESULTS,
+                            originPageId = AiutaAnalyticsPageId.RESULTS,
                         )
                     },
                 )

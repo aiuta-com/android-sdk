@@ -4,17 +4,17 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.ONBOARDING_EVENT)
-public class AiutaAnalyticOnboardingEvent(
+@SerialName(AiutaAnalyticsEvent.EventType.ONBOARDING_EVENT)
+public class AiutaAnalyticsOnboardingEvent(
     @SerialName("event")
     public val event: AiutaAnalyticOnboardingEventType,
     @SerialName("pageId")
-    public override val pageId: AiutaAnalyticPageId?,
+    public override val pageId: AiutaAnalyticsPageId?,
     @SerialName("productId")
     public override val productId: String?,
     @SerialName("consentsIds")
     public val consentsIds: List<String>? = null,
-) : AiutaAnalyticEvent
+) : AiutaAnalyticsEvent
 
 @Serializable
 public enum class AiutaAnalyticOnboardingEventType {

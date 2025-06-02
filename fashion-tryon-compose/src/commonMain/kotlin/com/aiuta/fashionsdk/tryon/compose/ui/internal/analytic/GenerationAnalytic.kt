@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.analytic
 
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
@@ -19,7 +19,7 @@ internal fun FashionTryOnController.sendSuccessTryOnEvent(
     analytic.sendEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_FINISHED,
-            pageId = AiutaAnalyticPageId.LOADING,
+            pageId = AiutaAnalyticsPageId.LOADING,
             productId = activeProductItem.value.id,
             uploadDuration = metadata.uploadDurationSeconds.toDouble(DurationUnit.SECONDS),
             tryOnDuration = metadata.tryOnDurationSeconds.toDouble(DurationUnit.SECONDS),
@@ -35,7 +35,7 @@ internal fun FashionTryOnController.sendErrorDownloadResultEvent() {
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
             errorType = AiutaAnalyticsTryOnErrorType.DOWNLOAD_RESULT_FAILED,
             errorMessage = "Failed to download result",
-            pageId = AiutaAnalyticPageId.LOADING,
+            pageId = AiutaAnalyticsPageId.LOADING,
             productId = activeProductItem.value.id,
         ),
     )

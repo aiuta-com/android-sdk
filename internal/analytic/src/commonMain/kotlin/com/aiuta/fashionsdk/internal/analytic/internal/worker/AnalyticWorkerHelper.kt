@@ -1,6 +1,6 @@
 package com.aiuta.fashionsdk.internal.analytic.internal.worker
 
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
 import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.internal.analytic.internal.model.AnalyticCompletedEvent
 import com.aiuta.fashionsdk.internal.analytic.internal.model.AnalyticEnvironment
@@ -12,7 +12,7 @@ internal expect suspend fun createAnalyticEnvironment(
 
 internal suspend fun createAnalyticCompletedEvent(
     platformContext: AiutaPlatformContext,
-    event: AiutaAnalyticEvent,
+    event: AiutaAnalyticsEvent,
 ): AnalyticCompletedEvent = AnalyticCompletedEvent(
     data = event,
     environment = createAnalyticEnvironment(platformContext),

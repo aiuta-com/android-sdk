@@ -15,10 +15,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.compose.core.size.rememberScreenSize
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPickerEventType
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.config.features.toUrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.LastSavedImages
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.screen.model.ModelSelectorScreenState
@@ -122,7 +122,7 @@ internal fun ModelSelectorShowContent(
                     activeImageModel.value?.let { model ->
                         controller.sendPickerAnalytic(
                             event = AiutaAnalyticsPickerEventType.PREDEFINED_MODEL_SELECTED,
-                            pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+                            pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
                         )
 
                         // Save model

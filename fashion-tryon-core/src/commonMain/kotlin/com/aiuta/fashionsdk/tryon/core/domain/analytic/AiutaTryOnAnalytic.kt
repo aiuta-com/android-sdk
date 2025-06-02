@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.core.domain.analytic
 
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnAbortedReasonType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnErrorType
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsTryOnEventType
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.network.exceptions.FashionIOException
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGenerationContainer
 import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnExceptionType
@@ -15,7 +15,7 @@ internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: ProductGenerat
     sendEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
-            pageId = AiutaAnalyticPageId.IMAGE_PICKER,
+            pageId = AiutaAnalyticsPageId.IMAGE_PICKER,
             productId = container.productId,
         ),
     )
@@ -49,7 +49,7 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnErrorEvent(
                 else -> AiutaAnalyticsTryOnErrorType.INTERNAL_SDK_ERROR
             },
             errorMessage = exception.message,
-            pageId = AiutaAnalyticPageId.LOADING,
+            pageId = AiutaAnalyticsPageId.LOADING,
             productId = container.productId,
         ),
     )
@@ -62,7 +62,7 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnAbortedErrorEvent(
         event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ABORTED,
             abortReason = AiutaAnalyticsTryOnAbortedReasonType.OPERATION_ABORTED,
-            pageId = AiutaAnalyticPageId.LOADING,
+            pageId = AiutaAnalyticsPageId.LOADING,
             productId = container.productId,
         ),
     )
@@ -90,7 +90,7 @@ internal fun InternalAiutaAnalytic.sendTryOnPhotoUploadedEvent(container: Produc
         event =
         AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.PHOTO_UPLOADED,
-            pageId = AiutaAnalyticPageId.LOADING,
+            pageId = AiutaAnalyticsPageId.LOADING,
             productId = container.productId,
         ),
     )

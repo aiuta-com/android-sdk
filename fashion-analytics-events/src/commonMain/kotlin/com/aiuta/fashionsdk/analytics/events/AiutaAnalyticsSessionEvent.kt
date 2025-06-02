@@ -4,15 +4,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.SESSION_EVENT)
-public class AiutaSessionEvent(
+@SerialName(AiutaAnalyticsEvent.EventType.SESSION_EVENT)
+public class AiutaAnalyticsSessionEvent(
     @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
+    override val pageId: AiutaAnalyticsPageId? = null,
     @SerialName("productId")
     override val productId: String?,
     @SerialName("flow")
     public val flow: FlowType,
-) : AiutaAnalyticEvent {
+) : AiutaAnalyticsEvent {
     @Serializable
     public enum class FlowType {
         @SerialName("tryOn")

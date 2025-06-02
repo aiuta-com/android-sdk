@@ -20,7 +20,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.toBitmap
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.addWatermark
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.getUriFromBitmap
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.share.utils.shareContent
@@ -37,7 +37,7 @@ internal class AndroidShareManagerV2(
 ) : ShareManagerV2 {
     override suspend fun shareImages(
         content: String?,
-        pageId: AiutaAnalyticPageId,
+        pageId: AiutaAnalyticsPageId,
         productId: String?,
         imageUrls: List<String>,
         watermark: Painter?,

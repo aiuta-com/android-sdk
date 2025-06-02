@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@SerialName(AiutaAnalyticEvent.EventType.TRY_ON_EVENT)
+@SerialName(AiutaAnalyticsEvent.EventType.TRY_ON_EVENT)
 public class AiutaAnalyticsTryOnEvent(
     @SerialName("event")
     public val event: AiutaAnalyticsTryOnEventType,
@@ -15,7 +15,7 @@ public class AiutaAnalyticsTryOnEvent(
     @SerialName("errorMessage")
     public val errorMessage: String? = null,
     @SerialName("pageId")
-    public override val pageId: AiutaAnalyticPageId?,
+    public override val pageId: AiutaAnalyticsPageId?,
     @SerialName("productId")
     public override val productId: String?,
     // Try on meta info
@@ -27,7 +27,7 @@ public class AiutaAnalyticsTryOnEvent(
     public val downloadDuration: Double? = null,
     @SerialName("totalDuration")
     public val totalDuration: Double? = null,
-) : AiutaAnalyticEvent
+) : AiutaAnalyticsEvent
 
 @Serializable
 public enum class AiutaAnalyticsTryOnEventType {

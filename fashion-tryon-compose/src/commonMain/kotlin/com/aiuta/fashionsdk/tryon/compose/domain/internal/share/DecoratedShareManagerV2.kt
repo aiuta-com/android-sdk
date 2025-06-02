@@ -3,10 +3,10 @@ package com.aiuta.fashionsdk.tryon.compose.domain.internal.share
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.painter.Painter
-import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
-import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.analytics.events.AiutaShareEvent
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsPageId
+import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsShareEvent
 import com.aiuta.fashionsdk.analytics.events.AiutaShareEventType
+import com.aiuta.fashionsdk.internal.analytic.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAnalytic
 
 internal class DecoratedShareManagerV2(
@@ -16,14 +16,14 @@ internal class DecoratedShareManagerV2(
 
     override suspend fun shareImages(
         content: String?,
-        pageId: AiutaAnalyticPageId,
+        pageId: AiutaAnalyticsPageId,
         productId: String?,
         imageUrls: List<String>,
         watermark: Painter?,
     ): Result<Unit> {
         // Decorate with analytic
         analytic.sendEvent(
-            event = AiutaShareEvent(
+            event = AiutaAnalyticsShareEvent(
                 pageId = pageId,
                 productId = productId,
                 event = AiutaShareEventType.INITIATED,
