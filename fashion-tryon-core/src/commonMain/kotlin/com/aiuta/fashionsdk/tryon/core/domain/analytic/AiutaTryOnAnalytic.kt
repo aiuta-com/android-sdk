@@ -12,8 +12,7 @@ import com.aiuta.fashionsdk.tryon.core.domain.slice.ping.exception.AiutaTryOnGen
 
 internal fun InternalAiutaAnalytic.sendStartTryOnEvent(container: ProductGenerationContainer) {
     sendEvent(
-        event =
-        AiutaAnalyticsTryOnEvent(
+        event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_STARTED,
             pageId = AiutaAnalyticPageId.IMAGE_PICKER,
             productId = container.productId,
@@ -26,8 +25,7 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnErrorEvent(
     exception: Exception,
 ) {
     sendEvent(
-        event =
-        AiutaAnalyticsTryOnEvent(
+        event = AiutaAnalyticsTryOnEvent(
             event = AiutaAnalyticsTryOnEventType.TRY_ON_ERROR,
             errorType = when (exception) {
                 is AiutaTryOnGenerationException -> when (exception.type) {
@@ -40,11 +38,13 @@ internal fun InternalAiutaAnalytic.sendPublicTryOnErrorEvent(
                     AiutaTryOnExceptionType.OPERATION_EMPTY_RESULTS_FAILED -> AiutaAnalyticsTryOnErrorType.OPERATION_EMPTY_RESULTS
                     AiutaTryOnExceptionType.DOWNLOAD_RESULT_FAILED -> AiutaAnalyticsTryOnErrorType.DOWNLOAD_RESULT_FAILED
                 }
+
                 is FashionIOException -> when (exception.errorCode) {
                     // Unauthorized
                     401 -> AiutaAnalyticsTryOnErrorType.AUTHORIZATION_FAILED
                     else -> AiutaAnalyticsTryOnErrorType.START_OPERATION_FAILED
                 }
+
                 else -> AiutaAnalyticsTryOnErrorType.INTERNAL_SDK_ERROR
             },
             errorMessage = exception.message,

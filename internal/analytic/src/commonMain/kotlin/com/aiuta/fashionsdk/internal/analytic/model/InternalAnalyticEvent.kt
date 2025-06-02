@@ -28,7 +28,6 @@ public sealed interface InternalAnalyticEvent {
 
         // Internal
         public const val TERMINATE_EVENT: String = "terminateEvent"
-        public const val START_TRYON_EVENT: String = "startTryOnProcessEvent"
     }
 }
 
@@ -40,29 +39,3 @@ public class TerminateEvent(
     @SerialName("productId")
     override val productId: String?,
 ) : InternalAnalyticEvent
-
-@Serializable
-@SerialName(InternalAnalyticEvent.EventType.START_TRYON_EVENT)
-public class StartTryOnEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
-    @SerialName("productId")
-    override val productId: String?,
-    @SerialName("origin")
-    public val origin: TryOnOrigin,
-) : InternalAnalyticEvent {
-    @Serializable
-    public enum class TryOnOrigin {
-        @SerialName("selectedPhoto")
-        SELECTED_PHOTO,
-
-        @SerialName("tryOnButton")
-        TRY_ON_BUTTON,
-
-        @SerialName("retakeButton")
-        RETAKE_BUTTON,
-
-        @SerialName("retryNotification")
-        RETRY_NOTIFICATION,
-    }
-}

@@ -26,7 +26,6 @@ import coil3.compose.LocalPlatformContext
 import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.validation.AiutaTryOnInputImageValidationFeature
 import com.aiuta.fashionsdk.internal.analytic.model.AiutaAnalyticPageId
-import com.aiuta.fashionsdk.internal.analytic.model.StartTryOnEvent
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaFeatures
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalAiutaTryOnDialogController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
@@ -101,7 +100,6 @@ internal fun ActiveFooter(modifier: Modifier = Modifier) {
                         dialogController = dialogController,
                         features = features,
                         inputImageValidationStrings = inputImageValidationFeature.strings,
-                        origin = StartTryOnEvent.TryOnOrigin.TRY_ON_BUTTON,
                     )
                 },
             )
