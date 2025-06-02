@@ -344,10 +344,6 @@ private fun BoxScope.HistoryScreenInterface(
                         provider::getShareText.safeInvoke(skuIds)
                     }
 
-                    controller.sendHistoryEvent(
-                        AiutaAnalyticsHistoryEventType.GENERATED_IMAGE_SHARED,
-                    )
-
                     shareManager.shareImages(
                         content = shareText?.getOrNull(),
                         pageId = AiutaAnalyticsPageId.HISTORY,

@@ -16,9 +16,6 @@ public class AiutaAnalyticsResultsEvent(
 
 @Serializable
 public enum class AiutaAnalyticsResultsEventType {
-    @SerialName("resultShared")
-    RESULT_SHARED,
-
     @SerialName("productAddToWishlist")
     PRODUCT_ADD_TO_WISHLIST,
 

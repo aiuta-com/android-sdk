@@ -64,13 +64,6 @@ internal fun ActionBlock(
                             provider::getShareText.safeInvoke(skuIds)
                         }
 
-                        // Analytic
-                        controller.sendResultEvent(
-                            event = AiutaAnalyticsResultsEventType.RESULT_SHARED,
-                            pageId = AiutaAnalyticsPageId.RESULTS,
-                            productId = activeSKUItem.id,
-                        )
-
                         shareManager.shareImages(
                             content = shareText?.getOrNull(),
                             pageId = AiutaAnalyticsPageId.RESULTS,

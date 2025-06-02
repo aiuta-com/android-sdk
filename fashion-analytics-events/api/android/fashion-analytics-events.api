@@ -1,0 +1,259 @@
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType : java/lang/Enum {
+	public static final field CONSENT_GIVEN Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
+	public static final field ONBOARDING_FINISHED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
+	public static final field WELCOME_START_CLICKED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;ZZZZZZZZZZZZZZZ)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;ZZZZZZZZZZZZZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAuthenticationType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;
+	public final fun getImagePickerCameraFeatureEnabled ()Z
+	public final fun getImagePickerPredefinedModelFeatureEnabled ()Z
+	public final fun getImagePickerUploadsHistoryFeatureEnabled ()Z
+	public final fun getOnboardingBestResultsPageFeatureEnabled ()Z
+	public final fun getOnboardingFeatureEnabled ()Z
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun getShareFeatureEnabled ()Z
+	public final fun getShareWatermarkFeatureEnabled ()Z
+	public final fun getTryOnFeedbackFeatureEnabled ()Z
+	public final fun getTryOnFeedbackOtherFeatureEnabled ()Z
+	public final fun getTryOnFitDisclaimerFeatureEnabled ()Z
+	public final fun getTryOnGenerationsHistoryFeatureEnabled ()Z
+	public final fun getTryOnMultiItemFeatureEnabled ()Z
+	public final fun getTryOnWithOtherPhotoFeatureEnabled ()Z
+	public final fun getWelcomeScreenFeatureEnabled ()Z
+	public final fun getWishlistFeatureEnabled ()Z
+	public final fun getсonsentType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType : java/lang/Enum {
+	public static final field API_KEY Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;
+	public static final field JWT Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$AuthenticationType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType : java/lang/Enum {
+	public static final field EMBEDDED_INTO_ONBOARDING Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;
+	public static final field STANDALONE_IMAGE_PICKER_PAGE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;
+	public static final field STANDALONE_ONBOARDING_PAGE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsConfigureEvent$ConsentType;
+}
+
+public abstract interface class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public abstract fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public abstract fun getProductId ()Ljava/lang/String;
+	public fun serialize ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent$EventType {
+	public static final field CONFIGURE_EVENT Ljava/lang/String;
+	public static final field EXIT_EVENT Ljava/lang/String;
+	public static final field FEEDBACK_EVENT Ljava/lang/String;
+	public static final field HISTORY_EVENT Ljava/lang/String;
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent$EventType;
+	public static final field ONBOARDING_EVENT Ljava/lang/String;
+	public static final field PAGE_EVENT Ljava/lang/String;
+	public static final field PICKER_EVENT Ljava/lang/String;
+	public static final field RESULTS_EVENT Ljava/lang/String;
+	public static final field SESSION_EVENT Ljava/lang/String;
+	public static final field SHARE_EVENT Ljava/lang/String;
+	public static final field TRY_ON_EVENT Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsExitEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;)V
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;Ljava/lang/Integer;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;Ljava/lang/Integer;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;
+	public final fun getNegativeFeedbackOptionIndex ()Ljava/lang/Integer;
+	public final fun getNegativeFeedbackText ()Ljava/lang/String;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType : java/lang/Enum {
+	public static final field NEGATIVE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;
+	public static final field POSITIVE Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsFeedbackEventType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEventType : java/lang/Enum {
+	public static final field GENERATED_IMAGE_DELETED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsHistoryEventType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsOnboardingEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getConsentsIds ()Ljava/util/List;
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticOnboardingEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;)V
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId : java/lang/Enum {
+	public static final field BEST_RESULTS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field CONSENT Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field HISTORY Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field HOW_IT_WORKS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field IMAGE_PICKER Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field LOADING Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field RESULTS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static final field WELCOME Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType : java/lang/Enum {
+	public static final field CAMERA_OPENED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field GALLERY_PHOTO_SELECTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field NEW_PHOTO_TAKEN Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field PHOTO_GALLERY_OPENED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field PREDEFINED_MODELS_OPENED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field PREDEFINED_MODEL_SELECTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field UPLOADED_PHOTO_DELETED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field UPLOADED_PHOTO_SELECTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static final field UPLOADS_HISTORY_OPENED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPickerEventType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType : java/lang/Enum {
+	public static final field PICK_OTHER_PHOTO Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;
+	public static final field PRODUCT_ADD_TO_CART Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;
+	public static final field PRODUCT_ADD_TO_WISHLIST Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsResultsEventType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getFlow ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType : java/lang/Enum {
+	public static final field HISTORY Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;
+	public static final field TRY_ON Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsSessionEvent$FlowType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsShareEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaShareEventType;Ljava/lang/String;)V
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaShareEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun getTargetId ()Ljava/lang/String;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType : java/lang/Enum {
+	public static final field OPERATION_ABORTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public static final field USER_CANCELED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType : java/lang/Enum {
+	public static final field AUTHORIZATION_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field DOWNLOAD_RESULT_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field INTERNAL_SDK_ERROR Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field OPERATION_ABORTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field OPERATION_EMPTY_RESULTS Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field OPERATION_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field OPERATION_TIMEOUT Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field PREPARE_PHOTO_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field REQUEST_OPERATION_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field START_OPERATION_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static final field UPLOAD_PHOTO_FAILED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEvent : com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent {
+	public fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Double;)V
+	public synthetic fun <init> (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;Ljava/lang/String;Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Double;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getAbortReason ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnAbortedReasonType;
+	public final fun getDownloadDuration ()Ljava/lang/Double;
+	public final fun getErrorMessage ()Ljava/lang/String;
+	public final fun getErrorType ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnErrorType;
+	public final fun getEvent ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public fun getPageId ()Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsPageId;
+	public fun getProductId ()Ljava/lang/String;
+	public final fun getTotalDuration ()Ljava/lang/Double;
+	public final fun getTryOnDuration ()Ljava/lang/Double;
+	public final fun getUploadDuration ()Ljava/lang/Double;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType : java/lang/Enum {
+	public static final field PHOTO_UPLOADED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_ABORTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_ERROR Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_FINISHED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public static final field TRY_ON_STARTED Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsTryOnEventType;
+}
+
+public final class com/aiuta/fashionsdk/analytics/events/AiutaShareEventType : java/lang/Enum {
+	public static final field INITIATED Lcom/aiuta/fashionsdk/analytics/events/AiutaShareEventType;
+	public static final field SUCCEEDED Lcom/aiuta/fashionsdk/analytics/events/AiutaShareEventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/aiuta/fashionsdk/analytics/events/AiutaShareEventType;
+	public static fun values ()[Lcom/aiuta/fashionsdk/analytics/events/AiutaShareEventType;
+}
+

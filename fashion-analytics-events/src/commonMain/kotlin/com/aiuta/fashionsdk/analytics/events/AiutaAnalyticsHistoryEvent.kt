@@ -16,9 +16,6 @@ public class AiutaAnalyticsHistoryEvent(
 
 @Serializable
 public enum class AiutaAnalyticsHistoryEventType {
-    @SerialName("generatedImageShared")
-    GENERATED_IMAGE_SHARED,
-
     @SerialName("generatedImageDeleted")
     GENERATED_IMAGE_DELETED,
 }
