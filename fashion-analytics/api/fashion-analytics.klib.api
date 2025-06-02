@@ -6,10 +6,10 @@
 // - Show declarations: true
 
 // Library unique name: <com.aiuta:fashion-analytics>
-abstract interface com.aiuta.fashionsdk.analytics/AiutaAnalytic { // com.aiuta.fashionsdk.analytics/AiutaAnalytic|null[0]
-    abstract val analyticFlow // com.aiuta.fashionsdk.analytics/AiutaAnalytic.analyticFlow|{}analyticFlow[0]
-        abstract fun <get-analyticFlow>(): kotlinx.coroutines.flow/Flow<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent> // com.aiuta.fashionsdk.analytics/AiutaAnalytic.analyticFlow.<get-analyticFlow>|<get-analyticFlow>(){}[0]
+abstract interface com.aiuta.fashionsdk.analytics/AiutaAnalytics { // com.aiuta.fashionsdk.analytics/AiutaAnalytics|null[0]
+    abstract val analyticFlow // com.aiuta.fashionsdk.analytics/AiutaAnalytics.analyticFlow|{}analyticFlow[0]
+        abstract fun <get-analyticFlow>(): kotlinx.coroutines.flow/Flow<com.aiuta.fashionsdk.analytics.events/AiutaAnalyticsEvent> // com.aiuta.fashionsdk.analytics/AiutaAnalytics.analyticFlow.<get-analyticFlow>|<get-analyticFlow>(){}[0]
 }
 
-final val com.aiuta.fashionsdk.analytics/analytic // com.aiuta.fashionsdk.analytics/analytic|@com.aiuta.fashionsdk.Aiuta{}analytic[0]
-    final fun (com.aiuta.fashionsdk/Aiuta).<get-analytic>(): com.aiuta.fashionsdk.analytics/AiutaAnalytic // com.aiuta.fashionsdk.analytics/analytic.<get-analytic>|<get-analytic>@com.aiuta.fashionsdk.Aiuta(){}[0]
+final val com.aiuta.fashionsdk.analytics/analytics // com.aiuta.fashionsdk.analytics/analytics|@com.aiuta.fashionsdk.Aiuta{}analytics[0]
+    final fun (com.aiuta.fashionsdk/Aiuta).<get-analytics>(): com.aiuta.fashionsdk.analytics/AiutaAnalytics // com.aiuta.fashionsdk.analytics/analytics.<get-analytics>|<get-analytics>@com.aiuta.fashionsdk.Aiuta(){}[0]

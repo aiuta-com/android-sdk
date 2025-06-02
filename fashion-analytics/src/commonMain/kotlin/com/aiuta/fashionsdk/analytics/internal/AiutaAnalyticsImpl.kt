@@ -1,19 +1,19 @@
 package com.aiuta.fashionsdk.analytics.internal
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.analytics.AiutaAnalytic
+import com.aiuta.fashionsdk.analytics.AiutaAnalytics
 import com.aiuta.fashionsdk.analytics.events.AiutaAnalyticsEvent
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
 import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 import kotlinx.coroutines.flow.Flow
 
-internal class AiutaAnalyticImpl(
+internal class AiutaAnalyticsImpl(
     private val internalAnalytic: InternalAiutaAnalytic,
-) : AiutaAnalytic {
+) : AiutaAnalytics {
     override val analyticFlow: Flow<AiutaAnalyticsEvent> = internalAnalytic.analyticFlow
 
     companion object {
-        fun create(aiuta: Aiuta): AiutaAnalytic = AiutaAnalyticImpl(
+        fun create(aiuta: Aiuta): AiutaAnalytics = AiutaAnalyticsImpl(
             internalAnalytic = aiuta.internalAiutaAnalytic,
         )
     }
