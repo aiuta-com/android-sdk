@@ -14,89 +14,23 @@ public sealed interface InternalAnalyticEvent {
     public val productId: String?
 
     public object EventType {
-        public const val PAGE_EVENT: String = "pageEvent"
-        public const val ONBOARDING_EVENT: String = "onboardingEvent"
-        public const val PICKER_EVENT: String = "pickerEvent"
-        public const val EXIT_EVENT: String = "exitEvent"
-        public const val TRY_ON_EVENT: String = "tryOnEvent"
-        public const val RESULTS_EVENT: String = "resultsEvent"
-        public const val FEEDBACK_EVENT: String = "feedbackEvent"
-        public const val HISTORY_EVENT: String = "historyEvent"
+        public const val CONFIGURE_EVENT: String = "configure"
+        public const val SESSION_EVENT: String = "session"
+        public const val PAGE_EVENT: String = "page"
+        public const val ONBOARDING_EVENT: String = "onboarding"
+        public const val PICKER_EVENT: String = "picker"
+        public const val TRY_ON_EVENT: String = "tryOn"
+        public const val RESULTS_EVENT: String = "results"
+        public const val FEEDBACK_EVENT: String = "feedback"
+        public const val HISTORY_EVENT: String = "history"
+        public const val SHARE_EVENT: String = "share"
+        public const val EXIT_EVENT: String = "exit"
 
         // Internal
-        public const val CONFIGURE_EVENT: String = "configureEvent"
         public const val ERROR_EVENT: String = "errorEvent"
         public const val TERMINATE_EVENT: String = "terminateEvent"
-        public const val SESSION_EVENT: String = "sessionEvent"
         public const val START_TRYON_EVENT: String = "startTryOnProcessEvent"
         public const val SUCCESS_EVENT: String = "successEvent"
-        public const val SHARE_EVENT: String = "shareEvent"
-    }
-}
-
-@Serializable
-@SerialName(InternalAnalyticEvent.EventType.CONFIGURE_EVENT)
-public class ConfigureEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
-    @SerialName("productId")
-    override val productId: String? = null,
-    @SerialName("authentication")
-    public val authenticationType: AuthenticationType,
-    @SerialName("сonsentType")
-    public val сonsentType: ConsentType? = null,
-    // General toggles
-    @SerialName("welcomeScreenFeatureEnabled")
-    public val welcomeScreenFeatureEnabled: Boolean,
-    @SerialName("onboardingFeatureEnabled")
-    public val onboardingFeatureEnabled: Boolean,
-    @SerialName("onboardingBestResultsPageFeatureEnabled")
-    public val onboardingBestResultsPageFeatureEnabled: Boolean,
-    @SerialName("imagePickerCameraFeatureEnabled")
-    public val imagePickerCameraFeatureEnabled: Boolean,
-    @SerialName("imagePickerPredefinedModelFeatureEnabled")
-    public val imagePickerPredefinedModelFeatureEnabled: Boolean,
-    @SerialName("imagePickerUploadsHistoryFeatureEnabled")
-    public val imagePickerUploadsHistoryFeatureEnabled: Boolean,
-    @SerialName("tryOnFitDisclaimerFeatureEnabled")
-    public val tryOnFitDisclaimerFeatureEnabled: Boolean,
-    @SerialName("tryOnFeedbackFeatureEnabled")
-    public val tryOnFeedbackFeatureEnabled: Boolean,
-    @SerialName("tryOnFeedbackOtherFeatureEnabled")
-    public val tryOnFeedbackOtherFeatureEnabled: Boolean,
-    @SerialName("tryOnGenerationsHistoryFeatureEnabled")
-    public val tryOnGenerationsHistoryFeatureEnabled: Boolean,
-    @SerialName("tryOnMultiItemFeatureEnabled")
-    public val tryOnMultiItemFeatureEnabled: Boolean,
-    @SerialName("tryOnWithOtherPhotoFeatureEnabled")
-    public val tryOnWithOtherPhotoFeatureEnabled: Boolean,
-    @SerialName("shareFeatureEnabled")
-    public val shareFeatureEnabled: Boolean,
-    @SerialName("shareWatermarkFeatureEnabled")
-    public val shareWatermarkFeatureEnabled: Boolean,
-    @SerialName("wishlistFeatureEnabled")
-    public val wishlistFeatureEnabled: Boolean,
-) : InternalAnalyticEvent {
-
-    @Serializable
-    public enum class AuthenticationType {
-        @SerialName("apiKey")
-        API_KEY,
-
-        @SerialName("jwt")
-        JWT,
-    }
-
-    @Serializable
-    public enum class ConsentType {
-        @SerialName("embeddedIntoOnboarding")
-        EMBEDDED_INTO_ONBOARDING,
-
-        @SerialName("standaloneOnboardingPage")
-        STANDALONE_ONBOARDING_PAGE,
-
-        @SerialName("standaloneImagePickerPage")
-        STANDALONE_IMAGE_PICKER_PAGE,
     }
 }
 

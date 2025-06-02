@@ -22,11 +22,11 @@ import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGener
 import com.aiuta.fashionsdk.configuration.features.tryon.other.AiutaTryOnWithOtherPhotoFeature
 import com.aiuta.fashionsdk.configuration.features.welcome.AiutaWelcomeScreenFeature
 import com.aiuta.fashionsdk.configuration.features.wishlist.AiutaWishlistFeature
-import com.aiuta.fashionsdk.internal.analytic.model.ConfigureEvent
+import com.aiuta.fashionsdk.internal.analytic.model.AiutaConfigureEvent
 
 internal fun AiutaConfiguration.sendConfigurationEvent() {
     aiutaAnalytic.sendEvent(
-        event = ConfigureEvent(
+        event = AiutaConfigureEvent(
             authenticationType = aiuta.toAuthenticationType(),
             welcomeScreenFeatureEnabled = features.isFeatureInitialize<AiutaWelcomeScreenFeature>(),
             onboardingFeatureEnabled = features.isFeatureInitialize<AiutaOnboardingFeature>(),
@@ -48,14 +48,14 @@ internal fun AiutaConfiguration.sendConfigurationEvent() {
     )
 }
 
-private fun Aiuta.toAuthenticationType(): ConfigureEvent.AuthenticationType = when (authenticationStrategy) {
-    is ApiKeyAuthenticationStrategy -> ConfigureEvent.AuthenticationType.API_KEY
-    is JWTAuthenticationStrategy -> ConfigureEvent.AuthenticationType.JWT
+private fun Aiuta.toAuthenticationType(): AiutaConfigureEvent.AuthenticationType = when (authenticationStrategy) {
+    is ApiKeyAuthenticationStrategy -> AiutaConfigureEvent.AuthenticationType.API_KEY
+    is JWTAuthenticationStrategy -> AiutaConfigureEvent.AuthenticationType.JWT
 }
 
-private fun AiutaConsentFeature.toConsentType(): ConfigureEvent.ConsentType = when (this) {
-    is AiutaConsentEmbeddedIntoOnboardingFeature -> ConfigureEvent.ConsentType.EMBEDDED_INTO_ONBOARDING
-    is AiutaConsentStandaloneOnboardingPageFeature -> ConfigureEvent.ConsentType.STANDALONE_ONBOARDING_PAGE
-    is AiutaConsentStandaloneImagePickerPageFeature -> ConfigureEvent.ConsentType.STANDALONE_IMAGE_PICKER_PAGE
+private fun AiutaConsentFeature.toConsentType(): AiutaConfigureEvent.ConsentType = when (this) {
+    is AiutaConsentEmbeddedIntoOnboardingFeature -> AiutaConfigureEvent.ConsentType.EMBEDDED_INTO_ONBOARDING
+    is AiutaConsentStandaloneOnboardingPageFeature -> AiutaConfigureEvent.ConsentType.STANDALONE_ONBOARDING_PAGE
+    is AiutaConsentStandaloneImagePickerPageFeature -> AiutaConfigureEvent.ConsentType.STANDALONE_IMAGE_PICKER_PAGE
     else -> error("Not supported consent type")
 }
