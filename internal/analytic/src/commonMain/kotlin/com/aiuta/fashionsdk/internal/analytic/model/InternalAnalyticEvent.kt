@@ -73,26 +73,6 @@ public class ErrorEvent(
 }
 
 @Serializable
-@SerialName(InternalAnalyticEvent.EventType.SESSION_EVENT)
-public class SessionEvent(
-    @SerialName("pageId")
-    override val pageId: AiutaAnalyticPageId? = null,
-    @SerialName("productId")
-    override val productId: String?,
-    @SerialName("flow")
-    public val flow: FlowType,
-) : InternalAnalyticEvent {
-    @Serializable
-    public enum class FlowType {
-        @SerialName("tryOn")
-        TRY_ON,
-
-        @SerialName("history")
-        HISTORY,
-    }
-}
-
-@Serializable
 @SerialName(InternalAnalyticEvent.EventType.TERMINATE_EVENT)
 public class TerminateEvent(
     @SerialName("pageId")
