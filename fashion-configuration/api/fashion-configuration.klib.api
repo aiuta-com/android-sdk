@@ -2344,8 +2344,6 @@ final class com.aiuta.fashionsdk.configuration/AiutaConfiguration { // com.aiuta
 
     final val aiuta // com.aiuta.fashionsdk.configuration/AiutaConfiguration.aiuta|{}aiuta[0]
         final fun <get-aiuta>(): com.aiuta.fashionsdk/Aiuta // com.aiuta.fashionsdk.configuration/AiutaConfiguration.aiuta.<get-aiuta>|<get-aiuta>(){}[0]
-    final val aiutaAnalytic // com.aiuta.fashionsdk.configuration/AiutaConfiguration.aiutaAnalytic|{}aiutaAnalytic[0]
-        final fun <get-aiutaAnalytic>(): com.aiuta.fashionsdk.internal.analytics/InternalAiutaAnalytic // com.aiuta.fashionsdk.configuration/AiutaConfiguration.aiutaAnalytic.<get-aiutaAnalytic>|<get-aiutaAnalytic>(){}[0]
     final val debugSettings // com.aiuta.fashionsdk.configuration/AiutaConfiguration.debugSettings|{}debugSettings[0]
         final fun <get-debugSettings>(): com.aiuta.fashionsdk.configuration.debug/AiutaDebugSettings // com.aiuta.fashionsdk.configuration/AiutaConfiguration.debugSettings.<get-debugSettings>|<get-debugSettings>(){}[0]
     final val features // com.aiuta.fashionsdk.configuration/AiutaConfiguration.features|{}features[0]

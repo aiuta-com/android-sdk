@@ -1,0 +1,15 @@
+public final class com/aiuta/fashionsdk/internal/analytics/DefaultInternalAiutaAnalyticKt {
+	public static final fun getInternalAiutaAnalytic (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalytic;
+}
+
+public abstract interface class com/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalytic {
+	public abstract fun getAnalyticFlow ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun sendEvent (Lcom/aiuta/fashionsdk/analytics/events/AiutaAnalyticsEvent;)V
+}
+
+public final class com/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalyticFactory {
+	public static final field INSTANCE Lcom/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalyticFactory;
+	public final fun create (Lcom/aiuta/fashionsdk/Aiuta;)Lcom/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalytic;
+	public final fun getInternalAiutaAnalytic ()Lcom/aiuta/fashionsdk/internal/analytics/InternalAiutaAnalytic;
+}
+
