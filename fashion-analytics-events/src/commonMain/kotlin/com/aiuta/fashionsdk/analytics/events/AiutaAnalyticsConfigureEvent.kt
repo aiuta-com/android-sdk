@@ -11,9 +11,9 @@ public class AiutaAnalyticsConfigureEvent(
     @SerialName("productId")
     override val productId: String? = null,
     @SerialName("authType")
-    public val authenticationType: AuthenticationType,
+    public val authenticationType: AiutaAnalyticsAuthenticationType,
     @SerialName("consentFeatureType")
-    public val сonsentType: ConsentType? = null,
+    public val consentType: AiutaAnalyticsConsentType? = null,
     // General toggles
     @SerialName("welcomeScreenFeatureEnabled")
     public val welcomeScreenFeatureEnabled: Boolean,
@@ -45,26 +45,25 @@ public class AiutaAnalyticsConfigureEvent(
     public val shareWatermarkFeatureEnabled: Boolean,
     @SerialName("wishlistFeatureEnabled")
     public val wishlistFeatureEnabled: Boolean,
-) : AiutaAnalyticsEvent {
+) : AiutaAnalyticsEvent
 
-    @Serializable
-    public enum class AuthenticationType {
-        @SerialName("apiKey")
-        API_KEY,
+@Serializable
+public enum class AiutaAnalyticsAuthenticationType {
+    @SerialName("apiKey")
+    API_KEY,
 
-        @SerialName("jwt")
-        JWT,
-    }
+    @SerialName("jwt")
+    JWT,
+}
 
-    @Serializable
-    public enum class ConsentType {
-        @SerialName("embeddedIntoOnboarding")
-        EMBEDDED_INTO_ONBOARDING,
+@Serializable
+public enum class AiutaAnalyticsConsentType {
+    @SerialName("embeddedIntoOnboarding")
+    EMBEDDED_INTO_ONBOARDING,
 
-        @SerialName("standaloneOnboardingPage")
-        STANDALONE_ONBOARDING_PAGE,
+    @SerialName("standaloneOnboardingPage")
+    STANDALONE_ONBOARDING_PAGE,
 
-        @SerialName("standaloneImagePickerPage")
-        STANDALONE_IMAGE_PICKER_PAGE,
-    }
+    @SerialName("standaloneImagePickerPage")
+    STANDALONE_IMAGE_PICKER_PAGE,
 }

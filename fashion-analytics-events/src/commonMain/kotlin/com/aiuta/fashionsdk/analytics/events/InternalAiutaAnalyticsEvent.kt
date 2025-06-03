@@ -7,7 +7,7 @@ import kotlinx.serialization.json.JsonClassDiscriminator
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 @JsonClassDiscriminator("type")
-public interface InternalAiutaAnalyticsEvent {
+public sealed interface InternalAiutaAnalyticsEvent {
     public val pageId: AiutaAnalyticsPageId?
 
     public val productId: String?
