@@ -58,7 +58,7 @@ public class AiutaConfiguration(
     public val features: AiutaFeatures,
     public val userInterface: AiutaUserInterfaceConfiguration,
 ) {
-    public val aiutaAnalytic: InternalAiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
+    internal val aiutaAnalytic: InternalAiutaAnalytic by lazy { aiuta.internalAiutaAnalytic }
 
     /**
      * Builder class for creating [AiutaConfiguration] instances with DSL-style configuration.
