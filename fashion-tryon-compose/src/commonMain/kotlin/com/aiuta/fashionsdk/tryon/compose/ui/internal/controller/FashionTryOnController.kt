@@ -20,6 +20,7 @@ import com.aiuta.fashionsdk.configuration.features.tryon.AiutaTryOnFeature
 import com.aiuta.fashionsdk.configuration.features.tryon.history.AiutaTryOnGenerationsHistoryFeature
 import com.aiuta.fashionsdk.configuration.ui.actions.AiutaUserInterfaceActions
 import com.aiuta.fashionsdk.internal.analytics.InternalAiutaAnalytic
+import com.aiuta.fashionsdk.internal.analytics.internalAiutaAnalytic
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent.ConsentInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.images.GeneratedImageInteractor
 import com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.generated.operations.GeneratedOperationInteractor
@@ -52,6 +53,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
 ): FashionTryOnController {
     val uiScope = rememberCoroutineScope()
     val coilContext = LocalPlatformContext.current
+    val internalAiutaAnalytic = remember { aiutaConfiguration.aiuta.internalAiutaAnalytic }
 
     val onboardingFeature = aiutaConfiguration.features.provideFeature<AiutaOnboardingFeature>()
     val consentStandaloneFeature = aiutaConfiguration.features.provideFeature<AiutaConsentStandaloneFeature>()
@@ -95,7 +97,7 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
                 coilContext = coilContext,
                 generationsHistoryFeature = generationsHistoryFeature,
             ),
-            analytic = aiutaConfiguration.aiutaAnalytic,
+            analytic = internalAiutaAnalytic,
         )
     }.also {
         it.generationNavigationListener()
@@ -146,7 +148,8 @@ internal class FashionTryOnController(
     val selectorHolder: SelectedHolder<GeneratedImageUIModel> = SelectedHolder()
 
     // Data
-    public val lastSavedImages: MutableState<LastSavedImages> = mutableStateOf(LastSavedImages.Empty)
+    public val lastSavedImages: MutableState<LastSavedImages> =
+        mutableStateOf(LastSavedImages.Empty)
     public val lastSavedOperation: MutableState<GeneratedOperationUIModel?> = mutableStateOf(null)
 
     // Domain

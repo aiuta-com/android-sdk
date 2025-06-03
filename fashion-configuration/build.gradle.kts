@@ -17,9 +17,10 @@ kotlin {
             dependencies {
                 api(projects.fashion)
                 api(projects.fashionComposeResources)
-                api(projects.internal.internalFashionAnalytics)
 
                 implementation(compose.foundation)
+
+                implementation(projects.internal.internalFashionAnalytics)
             }
         }
     }

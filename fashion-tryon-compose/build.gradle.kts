@@ -58,7 +58,9 @@ kotlin {
                 implementation(libs.jetbrains.compose.ui.backhandler)
                 implementation(libs.sqlite.bundled)
 
+                implementation(projects.fashionAnalyticsEvents)
                 implementation(projects.fashionTryonComposeUikit)
+                implementation(projects.internal.internalFashionAnalytics)
             }
         }
         jvmMain {
