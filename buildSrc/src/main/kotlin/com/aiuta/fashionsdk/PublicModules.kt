@@ -19,5 +19,5 @@ val publicModules =
         "fashion-tryon-compose-uikit",
         "fashion-tryon-core",
         "fashion-tryon-paging",
-        "internal-fashion-analytic",
+        "internal-fashion-analytics",
     )
