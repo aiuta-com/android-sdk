@@ -89,7 +89,6 @@ internal fun BoxWithConstraintsScope.rememberFashionTryOnController(
                 onboardingFeature = onboardingFeature,
             ),
             consentInteractor = ConsentInteractor.getInstance(
-                aiuta = aiutaConfiguration.aiuta,
                 scope = uiScope,
                 consentStandaloneFeature = consentStandaloneFeature,
             ),

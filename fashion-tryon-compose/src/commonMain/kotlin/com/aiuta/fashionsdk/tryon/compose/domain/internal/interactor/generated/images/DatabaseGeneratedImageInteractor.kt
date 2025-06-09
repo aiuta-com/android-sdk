@@ -4,7 +4,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.GeneratedImageDatasource
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.GeneratedImageUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toEntity
@@ -47,15 +46,13 @@ internal class DatabaseGeneratedImageInteractor(
         generatedImageDatasource.removeAll()
     }
 
-    override fun countFlow(): Flow<Int> = generatedImageDatasource.countFlow()
+    override fun countFlow(): Flow<Long> = generatedImageDatasource.countFlow()
 
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
-        fun getInstance(platformContext: AiutaPlatformContext): DatabaseGeneratedImageInteractor = DatabaseGeneratedImageInteractor(
-            generatedImageDatasource = GeneratedImageDatasource.getInstance(
-                platformContext = platformContext,
-            ),
+        fun getInstance(): DatabaseGeneratedImageInteractor = DatabaseGeneratedImageInteractor(
+            generatedImageDatasource = GeneratedImageDatasource.getInstance(),
         )
     }
 }

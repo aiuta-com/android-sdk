@@ -159,7 +159,7 @@ internal fun FashionTryOnController.isAppbarHistoryAvailable(): State<Boolean> {
     return remember(generationStatus.value) {
         derivedStateOf {
             val isGenerationNotLoading = generationStatus.value != ProductGenerationUIStatus.LOADING
-            val isGenerationsHistoryNotEmpty = historyImageCount.value != 0
+            val isGenerationsHistoryNotEmpty = historyImageCount.value != 0L
 
             isGenerationNotLoading && isGenerationsHistoryFeatureAvailable && isGenerationsHistoryNotEmpty
         }

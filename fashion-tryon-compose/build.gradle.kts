@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.room)
+    alias(libs.plugins.sqldelight)
 }
 
 addAllMultiplatformTargets()
@@ -26,6 +27,7 @@ kotlin {
                 implementation(libs.androidx.core)
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.ktor.engine.okhttp)
+                implementation(libs.sqldelight.driver.android)
             }
         }
         androidUnitTest {
@@ -57,6 +59,8 @@ kotlin {
                 implementation(libs.jetbrains.lifecycle)
                 implementation(libs.jetbrains.compose.ui.backhandler)
                 implementation(libs.sqlite.bundled)
+                implementation(libs.sqldelight.adapters)
+                implementation(libs.sqldelight.extension.coroutines)
 
                 implementation(projects.fashionAnalyticsEvents)
                 implementation(projects.fashionTryonComposeUikit)
@@ -67,6 +71,7 @@ kotlin {
             dependencies {
                 implementation(libs.calf.picker)
                 implementation(libs.ktor.engine.okhttp)
+                implementation(libs.sqldelight.driver.jvm)
             }
         }
         mobileMain {
@@ -79,6 +84,7 @@ kotlin {
         nativeMain {
             dependencies {
                 implementation(libs.ktor.engine.darwin)
+                implementation(libs.sqldelight.driver.native)
             }
         }
     }
@@ -95,4 +101,15 @@ dependencies {
 
 room {
     schemaDirectory("$projectDir/schemas")
+}
+
+sqldelight {
+    databases {
+        create("AiutaTryOnDatabase") {
+            packageName.set("com.aiuta.fashionsdk.tryon.compose.data.internal.database")
+            schemaOutputDirectory.set(file("src/commonMain/sqldelight"))
+            verifyMigrations.set(true)
+            generateAsync.set(true)
+        }
+    }
 }

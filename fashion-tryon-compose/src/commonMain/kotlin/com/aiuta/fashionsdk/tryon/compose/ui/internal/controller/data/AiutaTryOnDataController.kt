@@ -8,10 +8,9 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.repository.config.Config
 
 @Composable
 internal fun rememberAiutaTryOnDataController(aiuta: () -> Aiuta): AiutaTryOnDataController {
-    val configRepository =
-        remember {
-            ConfigRepository.getInstance(aiuta())
-        }
+    val configRepository = remember {
+        ConfigRepository.getInstance(aiuta())
+    }
 
     return remember {
         AiutaTryOnDataController(

@@ -9,10 +9,12 @@ import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 
+@Deprecated("Migrate to SQLDelight builders")
 internal expect fun getDatabaseBuilder(
     platformContext: AiutaPlatformContext,
 ): RoomDatabase.Builder<AppDatabase>
 
+@Deprecated("Migrate to SQLDelight builders")
 internal fun buildRoomDatabase(platformContext: AiutaPlatformContext): AppDatabase = getDatabaseBuilder(platformContext)
     .setDriver(BundledSQLiteDriver())
     .setQueryCoroutineContext(Dispatchers.IO)

@@ -1,11 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.ui.internal.controller
 
 import com.aiuta.fashionsdk.Aiuta
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabaseFactory
 
 internal suspend fun validateControllerCache(aiuta: Aiuta) {
     try {
-        AppDatabase.validateCache(
+        AiutaTryOnDatabaseFactory.createDatabase(
             aiuta = aiuta,
         )
     } catch (e: Exception) {

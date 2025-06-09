@@ -1,0 +1,15 @@
+CREATE TABLE tryon_category (
+    id TEXT NOT NULL PRIMARY KEY
+);
+
+selectAll:
+SELECT *
+FROM tryon_category
+LIMIT 1;
+
+insert:
+INSERT OR REPLACE INTO tryon_category(id)
+VALUES (?);
+
+removeAll:
+DELETE FROM tryon_category;

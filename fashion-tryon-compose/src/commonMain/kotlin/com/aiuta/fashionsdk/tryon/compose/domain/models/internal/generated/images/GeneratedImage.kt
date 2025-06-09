@@ -3,6 +3,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.imag
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaGeneratedImage
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaOwnerType
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.Generated_image
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
 import com.aiuta.fashionsdk.tryon.core.domain.models.ProductGeneratedImage
@@ -15,7 +16,7 @@ internal data class GeneratedImageUIModel(
     val productIds: List<String> = emptyList(),
 )
 
-internal fun GeneratedImageEntity.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
+internal fun Generated_image.toUiModel(): GeneratedImageUIModel = GeneratedImageUIModel(
     id = id,
     imageUrl = imageUrl,
     type = type,

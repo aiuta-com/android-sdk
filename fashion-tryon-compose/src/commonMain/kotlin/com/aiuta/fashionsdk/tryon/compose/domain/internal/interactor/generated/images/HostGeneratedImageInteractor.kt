@@ -38,7 +38,7 @@ internal class HostGeneratedImageInteractor(
         return Result.success(Unit)
     }
 
-    override fun countFlow(): Flow<Int> = dataProvider.generatedImages.map { images -> images.size }
+    override fun countFlow(): Flow<Long> = dataProvider.generatedImages.map { images -> images.size.toLong() }
 
     companion object {
         fun getInstance(

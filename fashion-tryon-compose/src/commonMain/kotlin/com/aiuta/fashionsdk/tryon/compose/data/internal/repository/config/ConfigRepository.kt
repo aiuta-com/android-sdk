@@ -37,7 +37,7 @@ internal class ConfigRepository(
 
         fun getInstance(aiuta: Aiuta): ConfigRepository = ConfigRepository(
             timeSaver = TimeSaver.getInstance(aiuta.platformContext),
-            localDataSource = ConfigLocalDataSource.getInstance(aiuta.platformContext),
+            localDataSource = ConfigLocalDataSource.getInstance(),
             remoteDataSource = ConfigRemoteDataSource.getInstance(aiuta),
         )
     }

@@ -1,0 +1,15 @@
+CREATE TABLE config_meta (
+    etag TEXT NOT NULL PRIMARY KEY
+);
+
+selectAll:
+SELECT *
+FROM config_meta
+LIMIT 1;
+
+insert:
+INSERT OR REPLACE INTO config_meta(etag)
+VALUES (?);
+
+removeAll:
+DELETE FROM config_meta;

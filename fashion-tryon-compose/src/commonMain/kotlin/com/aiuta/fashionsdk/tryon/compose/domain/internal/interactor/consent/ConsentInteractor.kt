@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.consent
 
-import com.aiuta.fashionsdk.Aiuta
 import com.aiuta.fashionsdk.configuration.features.consent.AiutaConsentStandaloneFeature
 import com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovider.AiutaConsentStandaloneFeatureDataProviderBuiltIn
 import com.aiuta.fashionsdk.configuration.features.consent.standalone.dataprovider.AiutaConsentStandaloneFeatureDataProviderCustom
@@ -22,7 +21,6 @@ internal abstract class ConsentInteractor : AiutaConsentStandaloneFeatureDataPro
 
     companion object {
         fun getInstance(
-            aiuta: Aiuta,
             scope: CoroutineScope,
             consentStandaloneFeature: AiutaConsentStandaloneFeature?,
         ): ConsentInteractor = when (val dataProvider = consentStandaloneFeature?.dataProvider) {
@@ -30,7 +28,6 @@ internal abstract class ConsentInteractor : AiutaConsentStandaloneFeatureDataPro
 
             is AiutaConsentStandaloneFeatureDataProviderBuiltIn -> DatabaseConsentInteractor.getInstance(
                 scope = scope,
-                platformContext = aiuta.platformContext,
             )
 
             is AiutaConsentStandaloneFeatureDataProviderCustom -> HostConsentInteractor(

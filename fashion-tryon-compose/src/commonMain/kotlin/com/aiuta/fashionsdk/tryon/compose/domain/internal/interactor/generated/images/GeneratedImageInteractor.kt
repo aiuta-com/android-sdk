@@ -20,20 +20,16 @@ internal interface GeneratedImageInteractor {
 
     suspend fun removeAll(): Result<Unit>
 
-    fun countFlow(): Flow<Int>
+    fun countFlow(): Flow<Long>
 
     companion object {
         fun getInstance(
             aiuta: Aiuta,
             generationsHistoryFeature: AiutaTryOnGenerationsHistoryFeature?,
         ): GeneratedImageInteractor = when (val dataProvider = generationsHistoryFeature?.dataProvider) {
-            null -> EmptyGeneratedImageInteractor.getInstance(
-                platformContext = aiuta.platformContext,
-            )
+            null -> EmptyGeneratedImageInteractor.getInstance()
 
-            is AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn -> DatabaseGeneratedImageInteractor.getInstance(
-                platformContext = aiuta.platformContext,
-            )
+            is AiutaTryOnGenerationsHistoryFeatureDataProviderBuiltIn -> DatabaseGeneratedImageInteractor.getInstance()
 
             is AiutaTryOnGenerationsHistoryFeatureDataProviderCustom -> HostGeneratedImageInteractor.getInstance(
                 dataProvider = dataProvider,

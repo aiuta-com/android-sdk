@@ -33,11 +33,11 @@ internal fun SplashScreen(
     val isOnboardingPassed = controller.onboardingInteractor.isOnboardingCompleted.collectAsState()
 
     LaunchedEffect(Unit) {
+        // Validate database
+        validateControllerCache(aiuta = controller.aiuta)
+
         // Try to preload config
         launch { dataController.preloadConfig() }
-
-        // Validate controller
-        validateControllerCache(aiuta = controller.aiuta)
 
         // Check operation history
         val countGeneratedOperation =

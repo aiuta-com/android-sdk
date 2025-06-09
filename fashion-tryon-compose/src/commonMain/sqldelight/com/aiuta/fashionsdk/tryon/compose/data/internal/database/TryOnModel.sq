@@ -1,0 +1,21 @@
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType;
+
+CREATE TABLE tryon_model (
+    id TEXT NOT NULL PRIMARY KEY,
+    url TEXT NOT NULL,
+    type TEXT AS AiutaFileType NOT NULL,
+    category_id TEXT NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES tryon_category(id)
+);
+
+selectByCategory:
+SELECT *
+FROM tryon_model
+WHERE category_id = ?;
+
+insert:
+INSERT OR REPLACE INTO tryon_model(id, url, type, category_id)
+VALUES (?, ?, ?, ?);
+
+removeAll:
+DELETE FROM tryon_model;

@@ -1,0 +1,30 @@
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType;
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE generated_image (
+    id TEXT NOT NULL PRIMARY KEY,
+    imageUrl TEXT NOT NULL,
+    type TEXT AS AiutaFileType NOT NULL,
+    productIds TEXT AS List<String> NOT NULL
+);
+
+insert:
+INSERT OR REPLACE INTO generated_image(id, imageUrl, type, productIds)
+VALUES (?, ?, ?, ?);
+
+count:
+SELECT count(*)
+FROM generated_image;
+
+selectAll:
+SELECT *
+FROM generated_image
+LIMIT :limit OFFSET :offset;
+
+removeByIds:
+DELETE FROM generated_image
+WHERE id IN ?;
+
+removeAll:
+DELETE FROM generated_image;

@@ -1,0 +1,15 @@
+CREATE TABLE aiuta_codes (
+    subscription_id TEXT NOT NULL PRIMARY KEY
+);
+
+selectAll:
+SELECT *
+FROM aiuta_codes
+LIMIT 1;
+
+insert:
+INSERT OR REPLACE INTO aiuta_codes(subscription_id)
+VALUES (?);
+
+removeAll:
+DELETE FROM aiuta_codes;
