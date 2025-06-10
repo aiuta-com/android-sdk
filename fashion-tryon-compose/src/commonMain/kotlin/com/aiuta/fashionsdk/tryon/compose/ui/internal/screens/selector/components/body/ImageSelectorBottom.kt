@@ -117,7 +117,7 @@ internal fun ImageSelectorBottom(
                             },
                             size = sharedButtonSize,
                             onClick = {
-                                if (countGeneratedOperation.value == 0) {
+                                if (countGeneratedOperation.value == 0L) {
                                     uploadPhoto()
                                 } else {
                                     controller.bottomSheetNavigator.show(

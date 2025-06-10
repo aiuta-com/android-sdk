@@ -13,7 +13,6 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.Loc
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.composition.LocalController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.data.preloadConfig
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.updateActiveOperationWithFirstOrSetEmpty
-import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation.NavigationScreen
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.utils.features.provideFeature
 import kotlinx.coroutines.flow.first
@@ -33,9 +32,6 @@ internal fun SplashScreen(
     val isOnboardingPassed = controller.onboardingInteractor.isOnboardingCompleted.collectAsState()
 
     LaunchedEffect(Unit) {
-        // Validate database
-        validateControllerCache(aiuta = controller.aiuta)
-
         // Try to preload config
         launch { dataController.preloadConfig() }
 
@@ -50,7 +46,6 @@ internal fun SplashScreen(
         }
 
         // Solve should show onboarding or not
-
         val shouldShowOnboarding = when {
             // Onboarding not provided
             !features.isFeatureInitialize<AiutaOnboardingFeature>() -> false

@@ -1,11 +1,15 @@
 CREATE TABLE onboarding_meta (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
+    id TEXT NOT NULL PRIMARY KEY
 );
 
 select:
 SELECT *
 FROM onboarding_meta
 LIMIT 1;
+
+count:
+SELECT count(*)
+FROM onboarding_meta;
 
 insert:
 INSERT OR REPLACE INTO onboarding_meta(id)

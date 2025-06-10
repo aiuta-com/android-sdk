@@ -1,9 +1,11 @@
 package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding
 
 import app.cash.sqldelight.coroutines.asFlow
-import app.cash.sqldelight.coroutines.mapToList
+import app.cash.sqldelight.coroutines.mapToOne
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabaseFactory
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
@@ -15,16 +17,17 @@ internal class OnboardingDataSource(
     private val onboardingMetaQueries by lazy { database.onboardingMetaQueries }
 
     // Onboarding check
+    @OptIn(ExperimentalUuidApi::class)
     suspend fun insertOnboardingMeta() {
         withContext(Dispatchers.IO) {
-            onboardingMetaQueries.insert(id = null)
+            onboardingMetaQueries.insert(id = Uuid.random().toString())
         }
     }
 
-    fun getOnboardingEntitiesFlow(): Flow<List<Long>> = onboardingMetaQueries
-        .select()
+    fun count(): Flow<Long> = onboardingMetaQueries
+        .count()
         .asFlow()
-        .mapToList(Dispatchers.IO)
+        .mapToOne(Dispatchers.IO)
 
     companion object {
         fun getInstance(): OnboardingDataSource = OnboardingDataSource(

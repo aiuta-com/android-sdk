@@ -3,6 +3,9 @@ package com.aiuta.fashionsdk.tryon.compose.ui.internal.navigation
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.aiuta.fashionsdk.configuration.AiutaConfiguration
 import com.aiuta.fashionsdk.configuration.features.models.product.ProductItem
@@ -18,6 +21,7 @@ import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletin
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.deletingUploadedImagesListener
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.loading.rememberAiutaTryOnLoadingActionsController
 import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.rememberFashionTryOnController
+import com.aiuta.fashionsdk.tryon.compose.ui.internal.controller.validateControllerCache
 import com.aiuta.fashionsdk.tryon.compose.uikit.composition.LocalTheme
 
 @Composable
@@ -27,32 +31,51 @@ internal fun NavigationInitialisation(
     productItem: ProductItem,
     content: @Composable () -> Unit,
 ) {
-    BoxWithConstraints(
-        modifier = modifier,
-    ) {
-        val controller = rememberFashionTryOnController(
-            aiutaConfiguration = aiutaConfiguration,
-            productItem = productItem,
-        )
-
-        CompositionLocalProvider(
-            LocalAnalytic provides controller.analytic,
-            LocalController provides controller,
-            LocalTheme provides aiutaConfiguration.userInterface.theme,
-            LocalAiutaFeatures provides aiutaConfiguration.features,
-            LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
-                aiuta = { aiutaConfiguration.aiuta },
-            ),
-            LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
-            LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
+    DatabaseScope(aiutaConfiguration) {
+        BoxWithConstraints(
+            modifier = modifier,
         ) {
-            // Init listeners
-            val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
-            loadingActionsController.deletingGeneratedImagesListener()
-            loadingActionsController.deletingUploadedImagesListener(controller)
+            val controller = rememberFashionTryOnController(
+                aiutaConfiguration = aiutaConfiguration,
+                productItem = productItem,
+            )
 
-            // Actual content
-            content()
+            CompositionLocalProvider(
+                LocalAnalytic provides controller.analytic,
+                LocalController provides controller,
+                LocalTheme provides aiutaConfiguration.userInterface.theme,
+                LocalAiutaFeatures provides aiutaConfiguration.features,
+                LocalAiutaTryOnDataController provides rememberAiutaTryOnDataController(
+                    aiuta = { aiutaConfiguration.aiuta },
+                ),
+                LocalAiutaTryOnDialogController provides rememberAiutaTryOnDialogController(),
+                LocalAiutaTryOnLoadingActionsController provides rememberAiutaTryOnLoadingActionsController(),
+            ) {
+                // Init listeners
+                val loadingActionsController = LocalAiutaTryOnLoadingActionsController.current
+                loadingActionsController.deletingGeneratedImagesListener()
+                loadingActionsController.deletingUploadedImagesListener(controller)
+
+                // Actual content
+                content()
+            }
         }
+    }
+}
+
+@Composable
+private fun DatabaseScope(
+    aiutaConfiguration: AiutaConfiguration,
+    content: @Composable () -> Unit,
+) {
+    val isDbReady = remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        validateControllerCache(aiuta = aiutaConfiguration.aiuta)
+        isDbReady.value = true
+    }
+
+    if (isDbReady.value) {
+        content()
     }
 }
