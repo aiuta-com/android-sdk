@@ -36,7 +36,7 @@ internal class ConfigRepository(
         private val CONFIG_UPDATE_DURATION = 30.minutes
 
         fun getInstance(aiuta: Aiuta): ConfigRepository = ConfigRepository(
-            timeSaver = TimeSaver.getInstance(aiuta.platformContext),
+            timeSaver = TimeSaver.getInstance(),
             localDataSource = ConfigLocalDataSource.getInstance(),
             remoteDataSource = ConfigRemoteDataSource.getInstance(aiuta),
         )

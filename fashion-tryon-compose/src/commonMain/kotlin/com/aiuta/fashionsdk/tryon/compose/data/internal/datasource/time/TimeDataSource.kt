@@ -1,49 +1,43 @@
 package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time
 
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabase
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabaseFactory
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.toEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
 internal class TimeDataSource(
-    private val timeDao: TimeDao,
+    private val database: AiutaTryOnDatabase,
 ) {
+    private val timeMetaQueries by lazy { database.timeMetaQueries }
+
     suspend fun insertOrUpdateTimestamp(
         key: String,
         timestamp: String,
     ) {
         withContext(Dispatchers.IO) {
-            timeDao.insert(
-                timestamp =
-                TimestampEntity(
-                    timestampKey = key,
-                    timestamp = timestamp,
-                ),
+            timeMetaQueries.insert(
+                key = key,
+                timestamp = timestamp,
             )
         }
     }
 
     suspend fun getTimestamp(key: String): TimestampEntity? = withContext(Dispatchers.IO) {
-        timeDao
-            .getTimestamps(
-                limit = 1,
-                key = key,
-            )
-            .firstOrNull()
+        timeMetaQueries.selectByKey(key).executeAsOneOrNull()?.toEntity()
     }
 
     suspend fun deleteTimestamp(key: String) {
         withContext(Dispatchers.IO) {
-            timeDao.deleteTimestamp(key = key)
+            timeMetaQueries.deleteByKey(key)
         }
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): TimeDataSource = TimeDataSource(
-            timeDao = AppDatabase.getInstance(platformContext).timeDao(),
+        fun getInstance(): TimeDataSource = TimeDataSource(
+            database = AiutaTryOnDatabaseFactory.getInstance(),
         )
     }
 }

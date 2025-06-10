@@ -1,0 +1,20 @@
+CREATE TABLE time_meta (
+    key TEXT NOT NULL PRIMARY KEY,
+    timestamp TEXT NOT NULL
+);
+
+selectByKey:
+SELECT *
+FROM time_meta
+WHERE key = ?;
+
+insert:
+INSERT OR REPLACE INTO time_meta(key, timestamp)
+VALUES (?, ?);
+
+deleteByKey:
+DELETE FROM time_meta
+WHERE key = ?;
+
+removeAll:
+DELETE FROM source_image;

@@ -1,6 +1,5 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.time
 
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.TimeDataSource
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDateTime
@@ -30,8 +29,8 @@ internal class TimeSaver(
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): TimeSaver = TimeSaver(
-            timeDataSource = TimeDataSource.getInstance(platformContext),
+        fun getInstance(): TimeSaver = TimeSaver(
+            timeDataSource = TimeDataSource.getInstance(),
         )
     }
 }
