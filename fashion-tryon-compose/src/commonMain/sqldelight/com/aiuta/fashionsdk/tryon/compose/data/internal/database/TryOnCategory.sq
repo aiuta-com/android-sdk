@@ -2,7 +2,7 @@ CREATE TABLE tryon_category (
     id TEXT NOT NULL PRIMARY KEY
 );
 
-selectAll:
+select:
 SELECT *
 FROM tryon_category
 LIMIT 1;

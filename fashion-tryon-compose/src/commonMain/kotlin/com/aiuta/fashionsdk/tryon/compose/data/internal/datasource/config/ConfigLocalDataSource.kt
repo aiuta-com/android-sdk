@@ -15,7 +15,7 @@ internal class ConfigLocalDataSource(
     private val configMetaQueries by lazy { database.configMetaQueries }
 
     suspend fun getEtag(): String? = withContext(Dispatchers.IO) {
-        configMetaQueries.selectAll().executeAsOne()
+        configMetaQueries.select().executeAsOne()
     }
 
     suspend fun getBackendConfig(): ClientConfig? = withContext(Dispatchers.IO) {

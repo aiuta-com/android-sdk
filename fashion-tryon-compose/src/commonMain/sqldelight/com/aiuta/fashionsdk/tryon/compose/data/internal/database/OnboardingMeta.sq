@@ -1,0 +1,15 @@
+CREATE TABLE onboarding_meta (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
+);
+
+select:
+SELECT *
+FROM onboarding_meta
+LIMIT 1;
+
+insert:
+INSERT OR REPLACE INTO onboarding_meta(id)
+VALUES (?);
+
+removeAll:
+DELETE FROM onboarding_meta;

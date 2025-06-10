@@ -1,8 +1,6 @@
 package com.aiuta.fashionsdk.tryon.compose.domain.internal.interactor.onboarding
 
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.OnboardingDataSource
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -16,22 +14,21 @@ internal class DatabaseOnboardingInteractor(
 ) : OnboardingInteractor {
 
     override val isOnboardingCompleted: StateFlow<Boolean> = onboardingDataSource
-        .getOnboardingEntityFlow()
+        .getOnboardingEntitiesFlow()
         .distinctUntilChanged()
-        .map { entity -> entity != null }
+        .map { entities -> entities.isNotEmpty() }
         .stateIn(scope, SharingStarted.WhileSubscribed(5000L), false)
 
     override suspend fun completeOnboarding() {
-        onboardingDataSource.insertOnboardingEntity(OnboardingEntity())
+        onboardingDataSource.insertOnboardingMeta()
     }
 
     companion object {
         fun getInstance(
             scope: CoroutineScope,
-            platformContext: AiutaPlatformContext,
         ): DatabaseOnboardingInteractor = DatabaseOnboardingInteractor(
             scope = scope,
-            onboardingDataSource = OnboardingDataSource.getInstance(platformContext),
+            onboardingDataSource = OnboardingDataSource.getInstance(),
         )
     }
 }

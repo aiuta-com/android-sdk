@@ -9,12 +9,7 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.ListStringsConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.onboarding.OnboardingEntity
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.time.TimestampEntity
 import kotlin.concurrent.Volatile
 import kotlinx.atomicfu.locks.SynchronizedObject
@@ -38,14 +33,14 @@ internal const val DATABASE_NAME = "fashionsdk-database.db"
         TimestampEntity::class,
 
         // Generated images
-        GeneratedImageEntity::class,
+//        GeneratedImageEntity::class,
 
         // Generation operation
-        GeneratedOperationEntity::class,
-        SourceImageEntity::class,
+//        GeneratedOperationEntity::class,
+//        SourceImageEntity::class,
 
         // Onboarding saver
-        OnboardingEntity::class,
+//        OnboardingEntity::class,
 
     ],
     version = DATABASE_VERSION,
@@ -75,7 +70,7 @@ internal abstract class AppDatabase : RoomDatabase() {
 //    abstract fun sourceImageDao(): SourceImageDao
 
     // Onboarding saver
-    abstract fun onboardingDao(): OnboardingDao
+//    abstract fun onboardingDao(): OnboardingDao
 
     // Consent saver
 //    abstract fun consentDao(): ConsentDao

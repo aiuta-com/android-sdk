@@ -39,6 +39,9 @@ internal object AiutaTryOnDatabaseFactory : SynchronizedObject() {
                 typeAdapter = EnumColumnAdapter(),
                 productIdsAdapter = ListStringsAdapter(),
             ),
+            source_imageAdapter = Source_image.Adapter(
+                imageTypeAdapter = EnumColumnAdapter(),
+            ),
             tryon_modelAdapter = Tryon_model.Adapter(
                 typeAdapter = EnumColumnAdapter(),
             ),
@@ -55,7 +58,7 @@ internal object AiutaTryOnDatabaseFactory : SynchronizedObject() {
             val database = getInstance()
             val aiutaCodeQueries = database.aiutaCodeQueries
             val cachedSubscriptionId = aiutaCodeQueries
-                .selectAll()
+                .select()
                 .executeAsList()
                 .firstOrNull()
 

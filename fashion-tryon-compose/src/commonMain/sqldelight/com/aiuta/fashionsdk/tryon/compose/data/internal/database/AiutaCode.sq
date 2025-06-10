@@ -2,7 +2,7 @@ CREATE TABLE aiuta_codes (
     subscription_id TEXT NOT NULL PRIMARY KEY
 );
 
-selectAll:
+select:
 SELECT *
 FROM aiuta_codes
 LIMIT 1;

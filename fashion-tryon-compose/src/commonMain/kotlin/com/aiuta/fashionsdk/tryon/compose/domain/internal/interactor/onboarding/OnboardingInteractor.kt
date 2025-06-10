@@ -17,7 +17,6 @@ internal interface OnboardingInteractor : AiutaOnboardingFeatureDataProviderCust
 
             is AiutaOnboardingFeatureDataProviderBuiltIn -> DatabaseOnboardingInteractor.getInstance(
                 scope = scope,
-                platformContext = aiuta.platformContext,
             )
 
             is AiutaOnboardingFeatureDataProviderCustom -> HostOnboardingInteractor(

@@ -16,7 +16,7 @@ internal class TryOnCategoryLocalDataSource(
 
     suspend fun getCategories(): List<TryOnModelsCategory> = withContext(Dispatchers.IO) {
         database.transactionWithResult {
-            val categories = tryOnCategoryQueries.selectAll().executeAsList()
+            val categories = tryOnCategoryQueries.select().executeAsList()
             categories.map { category ->
                 TryOnModelsCategory(
                     category = category,
