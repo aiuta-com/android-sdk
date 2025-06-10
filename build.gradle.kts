@@ -30,7 +30,6 @@ plugins {
     alias(libs.plugins.buildKonfig) apply false
     alias(libs.plugins.dokka)
     alias(libs.plugins.kotlinx.serialization) apply false
-    alias(libs.plugins.ksp) apply false
     alias(libs.plugins.spotless)
 }
 

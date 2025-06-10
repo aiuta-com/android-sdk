@@ -7,9 +7,7 @@ plugins {
     id("kotlin-multiplatform")
     id("org.jetbrains.compose")
     id("org.jetbrains.kotlin.plugin.compose")
-    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization)
-    alias(libs.plugins.room)
     alias(libs.plugins.sqldelight)
 }
 
@@ -28,6 +26,7 @@ kotlin {
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.ktor.engine.okhttp)
                 implementation(libs.sqldelight.driver.android)
+                implementation(libs.androidx.ui.unit.android)
             }
         }
         androidUnitTest {
@@ -54,8 +53,6 @@ kotlin {
                 implementation(libs.kotlinx.serialization)
                 implementation(libs.ksoup.html)
                 implementation(libs.ksoup.entities)
-                implementation(libs.room.runtime)
-                implementation(libs.room.paging)
                 implementation(libs.jetbrains.lifecycle)
                 implementation(libs.jetbrains.compose.ui.backhandler)
                 implementation(libs.sqlite.bundled)
@@ -88,19 +85,6 @@ kotlin {
             }
         }
     }
-}
-
-dependencies {
-    implementation(libs.androidx.ui.unit.android)
-    add("kspAndroid", libs.room.compiler)
-    add("kspJvm", libs.room.compiler)
-    add("kspIosSimulatorArm64", libs.room.compiler)
-    add("kspIosX64", libs.room.compiler)
-    add("kspIosArm64", libs.room.compiler)
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
 }
 
 sqldelight {

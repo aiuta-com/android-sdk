@@ -31,9 +31,6 @@ jetbrains-lifecycle = "2.8.4"
 
 kotlin = "2.1.21"
 ktlint = "1.5.0"
-ksp = "2.1.21-2.0.1"
-
-room = "2.7.1"
 
 mockk = "1.13.14"
 moko = "0.19.1"
@@ -89,10 +86,6 @@ moko-permissions-camera = { module = "dev.icerock.moko:permissions-camera", vers
 moko-permissions-gallery = { module = "dev.icerock.moko:permissions-gallery", version.ref = "moko" }
 moko-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "moko" }
 
-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
-
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 sqldelight-adapters = { module = "app.cash.sqldelight:primitive-adapters", version.ref = "sqldelight" }
 sqldelight-driver-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
@@ -102,8 +95,6 @@ sqldelight-extension-coroutines = { module = "app.cash.sqldelight:coroutines-ext
 androidx-ui-unit-android = { group = "androidx.compose.ui", name = "ui-unit-android", version.ref = "uiUnitAndroid" }
 
 [plugins]
-room = { id = "androidx.room", version.ref = "room" }
-
 baselineProfile = { id = "androidx.baselineprofile", version.ref = "androidx-benchmark" }
 binaryCompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibility" }
 buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
@@ -111,7 +102,6 @@ buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig"
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
