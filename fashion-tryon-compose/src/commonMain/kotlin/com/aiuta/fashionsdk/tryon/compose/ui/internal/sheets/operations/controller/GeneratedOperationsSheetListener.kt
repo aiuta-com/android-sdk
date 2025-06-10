@@ -13,7 +13,7 @@ internal fun GeneratedOperationsSheetListener() {
         controller.generatedOperationInteractor
             .countGeneratedOperation()
             .collect { countGeneratedOperation ->
-                if (countGeneratedOperation == 0) {
+                if (countGeneratedOperation == 0L) {
                     controller.updateActiveOperationOrSetEmpty(null)
                     controller.bottomSheetNavigator.hide()
                 }

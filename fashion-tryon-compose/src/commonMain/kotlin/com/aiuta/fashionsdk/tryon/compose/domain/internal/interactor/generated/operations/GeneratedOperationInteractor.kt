@@ -21,7 +21,7 @@ internal interface GeneratedOperationInteractor {
 
     suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>): Result<Unit>
 
-    fun countGeneratedOperation(): Flow<Int>
+    fun countGeneratedOperation(): Flow<Long>
 
     suspend fun createImage(
         sourceImageId: String,
@@ -37,9 +37,7 @@ internal interface GeneratedOperationInteractor {
         ): GeneratedOperationInteractor = when (val dataProvider = uploadsHistoryFeature?.dataProvider) {
             null -> EmptyGeneratedOperationInteractor()
 
-            is AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn -> DatabaseGeneratedOperationInteractor.getInstance(
-                platformContext = aiuta.platformContext,
-            )
+            is AiutaImagePickerUploadsHistoryFeatureDataProviderBuiltIn -> DatabaseGeneratedOperationInteractor.getInstance()
 
             is AiutaImagePickerUploadsHistoryFeatureDataProviderCustom -> HostGeneratedOperationInteractor.getInstance(
                 dataProvider = dataProvider,

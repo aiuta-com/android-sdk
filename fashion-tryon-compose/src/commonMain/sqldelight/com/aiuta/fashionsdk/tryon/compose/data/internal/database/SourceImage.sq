@@ -1,0 +1,28 @@
+import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType;
+
+CREATE TABLE source_image (
+    id TEXT NOT NULL PRIMARY KEY,
+    operation_id TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    imageType TEXT AS AiutaFileType NOT NULL,
+    FOREIGN KEY (operation_id) REFERENCES generated_operation(id)
+);
+
+insert:
+INSERT OR REPLACE INTO source_image(id, operation_id, imageUrl, imageType)
+VALUES (?, ?, ?,?);
+
+
+selectByOperationId:
+SELECT *
+FROM source_image
+WHERE operation_id = ?;
+
+
+removeByOperationId:
+DELETE FROM source_image
+WHERE operation_id = ?;
+
+
+removeAll:
+DELETE FROM source_image;

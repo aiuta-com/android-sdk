@@ -9,9 +9,6 @@ import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.builder.buildRoomDatabase
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.ListStringsConverter
 import com.aiuta.fashionsdk.tryon.compose.data.internal.database.converters.TryOnModelsCategoriesConverter
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.images.dao.GeneratedImageDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.onboarding.dao.OnboardingDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.time.dao.TimeDao
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.GeneratedImageEntity
@@ -70,12 +67,12 @@ internal abstract class AppDatabase : RoomDatabase() {
     abstract fun timeDao(): TimeDao
 
     // Generated images
-    abstract fun generatedImageDao(): GeneratedImageDao
+//    abstract fun generatedImageDao(): GeneratedImageDao
 
     // Generation operation
-    abstract fun generatedOperationDao(): GeneratedOperationDao
+//    abstract fun generatedOperationDao(): GeneratedOperationDao
 
-    abstract fun sourceImageDao(): SourceImageDao
+//    abstract fun sourceImageDao(): SourceImageDao
 
     // Onboarding saver
     abstract fun onboardingDao(): OnboardingDao

@@ -1,0 +1,27 @@
+CREATE TABLE generated_operation (
+    id TEXT NOT NULL PRIMARY KEY
+);
+
+selectAll:
+SELECT *
+FROM generated_operation;
+
+selectAllWithPaging:
+SELECT *
+FROM generated_operation
+LIMIT :limit OFFSET :offset;
+
+insert:
+INSERT OR REPLACE INTO generated_operation(id)
+VALUES (?);
+
+count:
+SELECT count(*)
+FROM generated_operation;
+
+removeAll:
+DELETE FROM generated_operation;
+
+removeById:
+DELETE FROM generated_operation
+WHERE id = ?;

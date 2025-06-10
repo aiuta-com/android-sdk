@@ -2,7 +2,7 @@ package com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.oper
 
 import androidx.compose.runtime.Immutable
 import com.aiuta.fashionsdk.configuration.features.models.images.AiutaInputImage
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImages
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImagesEntity
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.UrlImage
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicCore
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.images.toPublicHistory
@@ -17,8 +17,8 @@ internal data class GeneratedOperationUIModel(
     }
 }
 
-internal fun GeneratedOperationWithImages.toUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
-    operationId = operation.id,
+internal fun GeneratedOperationWithImagesEntity.toUiModel(): GeneratedOperationUIModel = GeneratedOperationUIModel(
+    operationId = operationId,
     urlImages = sourceImages.map {
         UrlImage(
             imageId = it.id,

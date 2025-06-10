@@ -18,7 +18,7 @@ internal class EmptyGeneratedOperationInteractor : LocalGeneratedOperationIntera
 
     override suspend fun deleteOperations(operations: List<GeneratedOperationUIModel>): Result<Unit> = Result.success(Unit)
 
-    override fun countGeneratedOperation(): Flow<Int> = flowOf(0)
+    override fun countGeneratedOperation(): Flow<Long> = flowOf(0)
 
     override suspend fun createImage(
         sourceImageId: String,

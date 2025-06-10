@@ -37,7 +37,7 @@ internal class HostGeneratedOperationInteractor(
         )
     }
 
-    override fun countGeneratedOperation(): Flow<Int> = dataProvider.uploadedImages.map { images -> images.size }
+    override fun countGeneratedOperation(): Flow<Long> = dataProvider.uploadedImages.map { images -> images.size.toLong() }
 
     override suspend fun createImage(
         sourceImageId: String,

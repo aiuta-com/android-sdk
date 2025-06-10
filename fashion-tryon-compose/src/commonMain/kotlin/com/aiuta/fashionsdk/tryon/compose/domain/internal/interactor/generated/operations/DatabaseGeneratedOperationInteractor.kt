@@ -5,8 +5,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.filter
 import androidx.paging.map
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
 import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.GeneratedOperationDatasource
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImagesEntity
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.GeneratedOperationUIModel
 import com.aiuta.fashionsdk.tryon.compose.domain.models.internal.generated.operations.toUiModel
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
@@ -21,10 +21,18 @@ internal class DatabaseGeneratedOperationInteractor(
             pageSize = DEFAULT_PAGE_SIZE,
         ),
         pagingSourceFactory = {
-            generatedOperationDatasource.pagingGeneratedOperationWithImagesSource()
+            generatedOperationDatasource.pagingGeneratedOperations()
         },
     )
         .flow
+        .map { pagingData ->
+            pagingData.map { operationId ->
+                GeneratedOperationWithImagesEntity(
+                    operationId = operationId,
+                    sourceImages = generatedOperationDatasource.getSourceImagesByOperationId(operationId),
+                )
+            }
+        }
         .map { pagingData ->
             pagingData.filter { it.sourceImages.isNotEmpty() }
         }
@@ -32,10 +40,13 @@ internal class DatabaseGeneratedOperationInteractor(
             pagingData.map { it.toUiModel() }
         }
 
-    override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? = generatedOperationDatasource.getFirstGeneratedOperationWithImages()?.toUiModel()
+    override suspend fun getFirstGeneratedOperation(): GeneratedOperationUIModel? = generatedOperationDatasource
+        .getGeneratedOperationWithImages()
+        .firstOrNull()
+        ?.toUiModel()
 
     // Raw operation
-    override suspend fun createOperation(imageId: String): String = generatedOperationDatasource.createOperation().id
+    override suspend fun createOperation(imageId: String): String = generatedOperationDatasource.createOperation()
 
     override suspend fun deleteOperation(operation: GeneratedOperationUIModel): Result<Unit> = runCatching {
         generatedOperationDatasource.deleteOperation(operation.operationId)
@@ -48,7 +59,7 @@ internal class DatabaseGeneratedOperationInteractor(
         }
     }
 
-    override fun countGeneratedOperation(): Flow<Int> = generatedOperationDatasource.countGeneratedOperation()
+    override fun countGeneratedOperation(): Flow<Long> = generatedOperationDatasource.countGeneratedOperation()
 
     override suspend fun createImage(
         sourceImageId: String,
@@ -67,11 +78,8 @@ internal class DatabaseGeneratedOperationInteractor(
     companion object {
         private const val DEFAULT_PAGE_SIZE = 10
 
-        fun getInstance(platformContext: AiutaPlatformContext): DatabaseGeneratedOperationInteractor = DatabaseGeneratedOperationInteractor(
-            generatedOperationDatasource =
-            GeneratedOperationDatasource.getInstance(
-                platformContext = platformContext,
-            ),
+        fun getInstance(): DatabaseGeneratedOperationInteractor = DatabaseGeneratedOperationInteractor(
+            generatedOperationDatasource = GeneratedOperationDatasource.getInstance(),
         )
     }
 }

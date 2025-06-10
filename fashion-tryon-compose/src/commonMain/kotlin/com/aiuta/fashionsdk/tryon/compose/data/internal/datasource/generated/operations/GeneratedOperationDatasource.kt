@@ -1,44 +1,74 @@
 package com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations
 
 import androidx.paging.PagingSource
-import com.aiuta.fashionsdk.context.AiutaPlatformContext
-import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AppDatabase
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.GeneratedOperationDao
-import com.aiuta.fashionsdk.tryon.compose.data.internal.datasource.generated.operations.dao.SourceImageDao
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToOne
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabase
+import com.aiuta.fashionsdk.tryon.compose.data.internal.database.AiutaTryOnDatabaseFactory
 import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.SourceImageEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationEntity
-import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImages
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.images.toEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.entity.local.generated.operations.GeneratedOperationWithImagesEntity
+import com.aiuta.fashionsdk.tryon.compose.data.internal.utils.QueryPagingSource
 import com.aiuta.fashionsdk.tryon.core.data.datasource.image.models.AiutaFileType
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 internal class GeneratedOperationDatasource(
-    private val generatedOperationDao: GeneratedOperationDao,
-    private val sourceImageDao: SourceImageDao,
+    private val database: AiutaTryOnDatabase,
 ) {
-    // Combined operation
-    fun pagingGeneratedOperationWithImagesSource(): PagingSource<Int, GeneratedOperationWithImages> = generatedOperationDao.pagingGeneratedOperationWithImagesSource()
+    private val generatedOperationQueries by lazy { database.generatedOperationQueries }
+    private val sourceImageQueries by lazy { database.sourceImageQueries }
 
-    suspend fun getFirstGeneratedOperationWithImages(): GeneratedOperationWithImages? = withContext(Dispatchers.IO) {
-        generatedOperationDao.getFirstGeneratedOperationWithImages()
+    // Combined operation
+    fun pagingGeneratedOperations(): PagingSource<Int, String> = QueryPagingSource(
+        countQuery = generatedOperationQueries.count(),
+        transacter = generatedOperationQueries,
+        queryProvider = generatedOperationQueries::selectAllWithPaging,
+    )
+
+    suspend fun getGeneratedOperationWithImages(): List<GeneratedOperationWithImagesEntity> = withContext(Dispatchers.IO) {
+        val operationIds = generatedOperationQueries.selectAll().executeAsList()
+
+        return@withContext operationIds.map { operationId ->
+            GeneratedOperationWithImagesEntity(
+                operationId = operationId,
+                sourceImages = sourceImageQueries
+                    .selectByOperationId(operation_id = operationId)
+                    .executeAsList()
+                    .map { it.toEntity() },
+            )
+        }
+    }
+
+    suspend fun getSourceImagesByOperationId(operationId: String): List<SourceImageEntity> = withContext(Dispatchers.IO) {
+        sourceImageQueries
+            .selectByOperationId(operation_id = operationId)
+            .executeAsList()
+            .map { it.toEntity() }
     }
 
     // Raw operation
-    suspend fun createOperation(): GeneratedOperationEntity = withContext(Dispatchers.IO) {
-        val newOperation = GeneratedOperationEntity()
-        generatedOperationDao.insertOperation(newOperation)
+    @OptIn(ExperimentalUuidApi::class)
+    suspend fun createOperation(): String = withContext(Dispatchers.IO) {
+        val operationId = Uuid.random().toString()
+        generatedOperationQueries.insert(operationId)
 
-        newOperation
+        operationId
     }
 
     suspend fun deleteOperation(operationId: String) = withContext(Dispatchers.IO) {
-        generatedOperationDao.deleteOperation(operationId)
-        sourceImageDao.deleteImages(operationId)
+        generatedOperationQueries.removeById(operationId)
+        sourceImageQueries.removeByOperationId(operationId)
     }
 
-    fun countGeneratedOperation(): Flow<Int> = generatedOperationDao.countGeneratedOperation()
+    fun countGeneratedOperation(): Flow<Long> = generatedOperationQueries
+        .count()
+        .asFlow()
+        .mapToOne(Dispatchers.IO)
 
     // Source images
     suspend fun createImage(
@@ -46,25 +76,18 @@ internal class GeneratedOperationDatasource(
         imageUrl: String,
         imageType: AiutaFileType,
         operationId: String,
-    ): SourceImageEntity = withContext(Dispatchers.IO) {
-        val newSourceImage = SourceImageEntity(
+    ) = withContext(Dispatchers.IO) {
+        sourceImageQueries.insert(
             id = imageId,
-            operationId = operationId,
+            operation_id = operationId,
             imageUrl = imageUrl,
             imageType = imageType,
         )
-        val rowId = sourceImageDao.insertImage(sourceImage = newSourceImage)
-
-        sourceImageDao.getImage(sourceImageRowId = rowId)
     }
 
     companion object {
-        fun getInstance(platformContext: AiutaPlatformContext): GeneratedOperationDatasource = GeneratedOperationDatasource(
-            generatedOperationDao =
-            AppDatabase.getInstance(
-                platformContext,
-            ).generatedOperationDao(),
-            sourceImageDao = AppDatabase.getInstance(platformContext).sourceImageDao(),
+        fun getInstance(): GeneratedOperationDatasource = GeneratedOperationDatasource(
+            database = AiutaTryOnDatabaseFactory.getInstance(),
         )
     }
 }
